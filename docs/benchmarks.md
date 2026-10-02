@@ -56,8 +56,8 @@ For each size, every implementation receives exactly the same generated `.ts` fi
 
 | Workload | Implementations | Expected work |
 | --- | --- | --- |
-| Transitive dependency | Native built-in, TypeScript subprocess SDK, Rust executable plugin, Oxlint JavaScript plugin | Each client imports a shared module; one quarter of shared modules import their paired server module. Report the same forbidden client/server pairs. The rest are clean controls. |
-| Direct import | Native `forbiddenImport`, Oxlint `no-restricted-imports`, Oxlint JavaScript plugin | Reject the literal `../server/db.ts` in every scanned file, including type imports. One quarter of clients violate the rule and the others import a shared module. |
+| Transitive dependency | Native built-in, TypeScript subprocess SDK, Rust executable plugin, Oxlint JavaScript plugin | Each client imports a shared module; every fourth shared module imports its paired server module. Report the same forbidden client/server pairs. The rest are clean controls. |
+| Direct import | Native `forbiddenImport`, Oxlint `no-restricted-imports`, Oxlint JavaScript plugin | Reject the literal `../server/db.ts` in every scanned file, including type imports. Every fourth client violates the rule and the others import a shared module. |
 | Static cycle | Native `noCycles`, Oxlint `import/no-cycle` | Find the same disjoint two-module type-only cycles. Remaining pairs have a one-way edge or a dynamic return edge. |
 
 The native and executable Rust dependency rules use the same rule implementation. The TypeScript example traverses the host's graph through the SDK. The Oxlint graph plugin independently reads and parses the generated files with TypeScript 5.9.3, resolves their explicit relative `.ts` imports and traverses that graph. Its timing includes this extra parse and graph construction, plus Oxlint's own parsing. Oxlint can rebuild a graph without a project graph API. This implementation demonstrates that option. It supports the benchmark's explicit relative static imports only, and does not claim the host's workspace-package, alias or re-export provenance support.
