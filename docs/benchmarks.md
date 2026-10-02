@@ -68,13 +68,38 @@ For cycles, Archguard emits one diagnostic per strongly connected component whil
 
 The result has a separate process-overhead section. It compares a host with no rules to the same host plus an empty TypeScript SDK subprocess, and to the Rust graph executable on files with no selected clients. The added median includes JSON serialization, pipe IO, runtime startup, protocol decoding and shutdown. It is not just `node` startup time and is not subtracted from the workload measurements.
 
+## Final measured results
+
+[process-latency.json](../benchmarks/results/process-latency.json) records the accepted SDK query helper against source revision `3e177a3ebf3efbfa0897e69ed7e72f7e4e71a4bc`. Every workload remained complete and matched the same files, corpus hashes and expected violation sets as the initial run. Native CLI and Rust plugin executable hashes are identical across runs. Values below are process medians in milliseconds, followed by the minimum and maximum of seven samples.
+
+| Graph files | Native | Rust plugin | TypeScript SDK | Oxlint independent JS graph |
+| --- | --- | --- | --- | --- |
+| 100 | 8.17 [6.05, 10.91] | 13.82 [12.56, 17.50] | 150.26 [132.94, 153.32] | 556.28 [515.04, 673.69] |
+| 1000 | 26.13 [23.38, 46.57] | 40.85 [35.30, 55.66] | 170.51 [159.44, 183.58] | 735.00 [621.28, 1097.60] |
+| 4000 | 97.79 [83.31, 126.28] | 112.78 [103.10, 147.83] | 277.50 [253.02, 289.66] | 1088.19 [1050.03, 1216.43] |
+
+| Workload | Files | Native | Oxlint built-in | Oxlint local JS rule |
+| --- | --- | --- | --- | --- |
+| direct | 100 | 8.09 [6.62, 13.01] | 99.54 [90.63, 123.17] | 235.44 [198.69, 338.50] |
+| cycles | 100 | 23.90 [6.62, 33.34] | 119.96 [113.58, 172.38] | not measured |
+| direct | 1000 | 29.08 [24.54, 43.63] | 111.90 [103.24, 146.72] | 307.20 [278.87, 336.73] |
+| cycles | 1000 | 52.61 [30.47, 186.79] | 263.44 [133.16, 370.00] | not measured |
+| direct | 4000 | 134.23 [98.02, 153.80] | 208.26 [190.02, 233.89] | 597.73 [522.19, 641.99] |
+| cycles | 4000 | 902.51 [144.27, 987.69] | 651.82 [606.93, 1095.20] | not measured |
+
+The TypeScript graph plugin now builds its file lookup once and reuses it across client roots. Its 4000-file median fell from 786.42 to 277.50 ms on this corpus. Startup and protocol overhead remain substantial. The final empty SDK subprocess added 141.21, 152.36 and 162.89 ms to the no-rule host median at 100, 1000 and 4000 files; the Rust executable added 5.07, 17.83 and 50.90 ms. These figures include decoding and serialization as described above.
+
+The final 4000-file cycle median was slower than Oxlint, and varied widely even with an unchanged native executable. The raw samples include native host elapsed time and load averages, which were about 1.3 during those samples. These shared-host runs establish observed latency and equivalent detected cycle pairs; they do not establish the cause of the spread or a universal speed advantage. Synthetic file counts also do not predict T3 latency because the real files and dependency graph contain much more code and different connections.
+
+The final tool versions were Archguard 0.1.0, Node 24.21.0, Oxlint 1.86.0 and Rust 1.98.1 on Linux x86_64 with four reported CPUs. The TypeScript 7.0.2 compiler is installed for reference and is not timed. Independent graph parsing uses TypeScript 5.9.3.
+
 ## Recorded runs
 
 The first release run is retained in [process-latency.before-optimization.json](../benchmarks/results/process-latency.before-optimization.json). It records seven samples at 100, 1000 and 4000 files against source revision `c91b24e67ffbc8be180f9632d5a9ac26b9d30963`. All nine workload/size combinations passed completion, file count and violation-set checks. These measurements precede the SDK query optimization and apply to that source revision only.
 
 At 4000 files, transitive dependency process medians were 92.19 ms native, 117.18 ms Rust plugin, 786.42 ms TypeScript SDK and 1201.28 ms Oxlint's independent JavaScript graph implementation. The graph has 1667 imports and 334 expected forbidden pairs. Direct imports had 3998 imports and 1000 expected violations, with medians of 115.81 ms native, 210.99 ms Oxlint built-in and 557.37 ms Oxlint JavaScript. This direct corpus uses value imports only.
 
-The 4000-file cycle corpus had 3000 imports and 500 expected cycle pairs. Native reported 500 component diagnostics and Oxlint reported 1000 import diagnostics. Native's median was 558.10 ms, with a 137.00 to 650.58 ms sample range; Oxlint's median was 905.03 ms, with an 834.80 to 992.61 ms range. The native sample spread is too large to infer steady-state algorithmic complexity from this run on the shared host. A separate unchanged-binary probe measured 163.02 ms process time for the same 4000-file cycle corpus, so source code changes cannot explain the first run's higher median. Cycle detection needs profiling before attributing its cost to a particular function.
+The 4000-file cycle corpus had 3000 imports and 500 expected cycle pairs. Native reported 500 component diagnostics and Oxlint reported 1000 import diagnostics. Native's median was 558.10 ms, with a 137.00 to 650.58 ms sample range; Oxlint's median was 905.03 ms, with an 834.80 to 992.61 ms range. The native sample spread is too large to infer steady-state algorithmic complexity from this run on the shared host. Cycle detection needs profiling before attributing its cost to a particular function.
 
 The empty SDK process added 157.77, 154.08 and 176.70 ms to the no-rule host median at 100, 1000 and 4000 files. The Rust executable with no selected clients added 5.38, 12.27 and 34.42 ms. Full host medians, ranges and samples are in the result file. This is measured protocol and process overhead on this machine, not a fixed runtime tax.
 
