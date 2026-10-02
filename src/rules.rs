@@ -270,7 +270,7 @@ fn export_origins(
         let explicit = file
             .exports
             .iter()
-            .filter(|e| e.name == name)
+            .filter(|e| e.name == name && (include_types || !e.type_only))
             .collect::<Vec<_>>();
         let mut origins = BTreeSet::new();
         if !explicit.is_empty() {
@@ -301,6 +301,14 @@ fn export_origins(
                                     active,
                                 ));
                             }
+                        } else if edge.status == ResolutionStatus::External {
+                            origins.insert((
+                                format!(
+                                    "external:{}",
+                                    edge.specifier.as_deref().unwrap_or_default()
+                                ),
+                                binding.imported.clone(),
+                            ));
                         }
                     } else {
                         origins.insert((file.path.clone(), local.clone()));
@@ -310,21 +318,28 @@ fn export_origins(
                         if edge.type_only && !include_types {
                             continue;
                         }
-                        let Some(target) = edge.target.as_deref().and_then(|p| project.file(p))
-                        else {
-                            continue;
-                        };
+                        let target = edge.target.as_deref().and_then(|p| project.file(p));
                         for binding in &edge.bindings {
                             if binding.local == name && (include_types || !binding.type_only) {
-                                if binding.imported == "*" {
-                                    origins.insert((target.path.clone(), "*".into()));
-                                } else {
-                                    origins.extend(export_origins(
-                                        project,
-                                        target,
-                                        &binding.imported,
-                                        include_types,
-                                        active,
+                                if let Some(target) = target {
+                                    if binding.imported == "*" {
+                                        origins.insert((target.path.clone(), "*".into()));
+                                    } else {
+                                        origins.extend(export_origins(
+                                            project,
+                                            target,
+                                            &binding.imported,
+                                            include_types,
+                                            active,
+                                        ));
+                                    }
+                                } else if edge.status == ResolutionStatus::External {
+                                    origins.insert((
+                                        format!(
+                                            "external:{}",
+                                            edge.specifier.as_deref().unwrap_or_default()
+                                        ),
+                                        binding.imported.clone(),
                                     ));
                                 }
                             }

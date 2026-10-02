@@ -447,3 +447,47 @@ fn star_export_ambiguity_distinguishes_distinct_declarations_from_same_origin() 
             .is_empty()
     );
 }
+
+#[test]
+fn value_stars_and_declared_external_exports_preserve_public_names() {
+    let root = tempfile::tempdir().unwrap();
+    put(root.path(), "api.ts", "export const Foo=1;");
+    put(
+        root.path(),
+        "barrel.ts",
+        "export type Foo = {}; export * from './api.ts';",
+    );
+    let c = config(json!({"schemaVersion":1}));
+    let r = rule(
+        json!({"id":"api","kind":"requiredExport","files":["barrel.ts"],"names":["Foo"],"includeTypes":false}),
+    );
+    assert!(
+        r.check(&project::analyze(root.path(), &c).unwrap())
+            .unwrap()
+            .is_empty()
+    );
+    let r = rule(
+        json!({"id":"api","kind":"requiredExport","files":["barrel.ts"],"names":["runPromise"],"includeTypes":false}),
+    );
+    for source in [
+        "export {runPromise} from 'effect/Effect';",
+        "import {runPromise as run} from 'effect/Effect'; export {run as runPromise};",
+        "export * as runPromise from 'effect/Effect';",
+    ] {
+        put(root.path(), "barrel.ts", source);
+        let facts = project::analyze(root.path(), &c).unwrap();
+        assert!(facts.problems.is_empty(), "{:?}", facts.problems);
+        assert!(r.check(&facts).unwrap().is_empty(), "{source}");
+    }
+    put(
+        root.path(),
+        "barrel.ts",
+        "export type {runPromise} from 'effect/Effect';",
+    );
+    assert_eq!(
+        r.check(&project::analyze(root.path(), &c).unwrap())
+            .unwrap()
+            .len(),
+        1
+    );
+}
