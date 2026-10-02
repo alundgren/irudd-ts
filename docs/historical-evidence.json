@@ -193,15 +193,18 @@
   "unsupported": [
     {
       "pr": 14183,
-      "reason": "A run stuck in starting requires runtime state and scheduling behavior."
+      "reason": "A run stuck in starting requires runtime state and scheduling behavior.",
+      "prUrl": "https://github.com/pingdotgg/t3code/pull/14183"
     },
     {
       "pr": 14665,
-      "reason": "Duplicate event storage requires execution and database identity semantics."
+      "reason": "Duplicate event storage requires execution and database identity semantics.",
+      "prUrl": "https://github.com/pingdotgg/t3code/pull/14665"
     },
     {
       "pr": 14641,
-      "reason": "Nested wake ownership requires runtime lifecycle semantics."
+      "reason": "Nested wake ownership requires runtime lifecycle semantics.",
+      "prUrl": "https://github.com/pingdotgg/t3code/pull/14641"
     }
   ],
   "policyEvidence": [
@@ -229,5 +232,6 @@
         "serverSettings.ts"
       ]
     }
-  ]
+  ],
+  "selection": "Seven inspected candidate PRs and one policy PR from the recent workstream. This is a selected evidence set, not an exhaustive repository bug census."
 }
