@@ -10,7 +10,9 @@
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/test-support/**",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "**/*.ios.ts",
+    "**/*.ios.tsx"
   ],
   "extensions": [
     ".android.ts",
