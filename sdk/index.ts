@@ -17,23 +17,30 @@ export function runPlugin(rule: ProjectRule): void {
   process.stdout.write(JSON.stringify({ schemaVersion: 1, diagnostics: rule(readProject()) }) + "\n");
 }
 
-// The same breadth-first traversal is available to every TypeScript rule.
-export function dependencyPaths(project: ProjectFacts, start: string, includeTypes = true): ReadonlyMap<string, readonly string[]> {
+// Build the file lookup once when a rule queries many source files.
+export function createDependencyQuery(project: ProjectFacts): (start: string, includeTypes?: boolean) => ReadonlyMap<string, readonly string[]> {
   const files = new Map(project.files.map(file => [file.path, file]));
-  const paths = new Map<string, readonly string[]>();
-  const queue: (readonly string[])[] = [[start]];
-  const visited = new Set([start]);
-  for (let index = 0; index < queue.length; index++) {
-    const path = queue[index]!;
-    const file = files.get(path[path.length - 1]!);
-    if (!file) continue;
-    for (const edge of file.imports) {
-      if (edge.status !== "internal" || edge.target === null || (!includeTypes && edge.typeOnly) || visited.has(edge.target)) continue;
-      visited.add(edge.target);
-      const next = [...path, edge.target];
-      paths.set(edge.target, next);
-      queue.push(next);
+  return (start, includeTypes = true) => {
+    const paths = new Map<string, readonly string[]>();
+    const queue: (readonly string[])[] = [[start]];
+    const visited = new Set([start]);
+    for (let index = 0; index < queue.length; index++) {
+      const path = queue[index]!;
+      const file = files.get(path[path.length - 1]!);
+      if (!file) continue;
+      for (const edge of file.imports) {
+        if (edge.status !== "internal" || edge.target === null || (!includeTypes && edge.typeOnly) || visited.has(edge.target)) continue;
+        visited.add(edge.target);
+        const next = [...path, edge.target];
+        paths.set(edge.target, next);
+        queue.push(next);
+      }
     }
-  }
-  return paths;
+    return paths;
+  };
+}
+
+// Convenient for a single query. Reuse createDependencyQuery for many roots.
+export function dependencyPaths(project: ProjectFacts, start: string, includeTypes = true): ReadonlyMap<string, readonly string[]> {
+  return createDependencyQuery(project)(start, includeTypes);
 }
