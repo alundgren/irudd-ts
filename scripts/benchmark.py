@@ -194,13 +194,16 @@ def overhead(root, count, args):
     samples = {name: [] for name in commands}
     for repetition in range(args.repetitions + 1):
         for name in random.Random(repetition).sample(list(commands), len(commands)):
-            elapsed, code, report = execute(commands[name])
-            assert code == 0 and report["complete"] and not report["diagnostics"] and report["files"] == count
-            if repetition:
-                samples[name].append(elapsed)
+            try:
+                elapsed, code, report = execute(commands[name])
+                assert code == 0 and report["complete"] and not report["diagnostics"] and report["files"] == count
+                if repetition:
+                    samples[name].append(elapsed)
+            except (AssertionError, RuntimeError, KeyError, ValueError, subprocess.TimeoutExpired) as error:
+                return {"status": "incomparable", "files": count, "corpusSha256": digest, "commands": commands, "reason": f"Empty plugin {name} failed completion or work checks: {error}"}
     timings = {name: summary(values) for name, values in samples.items()}
     base = timings["host-no-rules"]["medianMs"]
-    return {"files": count, "corpusSha256": digest, "timings": timings, "addedMedianMs": {name: value["medianMs"] - base for name, value in timings.items()}, "commands": commands}
+    return {"status": "comparable", "files": count, "corpusSha256": digest, "timings": timings, "addedMedianMs": {name: value["medianMs"] - base for name, value in timings.items()}, "commands": commands}
 
 
 def main():
