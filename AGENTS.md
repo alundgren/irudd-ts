@@ -24,3 +24,5 @@ Check licenses before adding dependencies or copying upstream code. Retain upstr
 Use direct language. Do not introduce the words forbidden by the session's global AGENTS instructions in prose or new code names. Use `gh` for GitHub operations. Independent review is required before merging. The task integration branch is `t3code/rust-architecture-enforcement-cli`; child PRs target it. The final reviewed PR targets `main` and may merge under the user's authorization.
 
 Keep source-resolution profiles in sync with the SDK facts. Test platform lookup ordering and inherited aliases whenever resolver options change. T3 profiles are separate adoption candidates; distinguish current policy, historical migration policy and experimental rules in the catalog. A preset-entry count is not a count of demonstrated historical bugs. Module reachability must not be described as execution reachability.
+
+Reuse a TypeScript dependency query when checking many roots. Benchmark changes to SDK traversal against both selected violations and clean controls; keep baseline source revisions and executable hashes explicit when comparing before/after results.

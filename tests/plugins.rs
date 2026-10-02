@@ -94,6 +94,12 @@ fn rust_and_typescript_plugins_use_the_same_transitive_graph() {
     let root = tempfile::tempdir().unwrap();
     for (path, source) in [
         ("client/main.ts", "import '../shared/helper.ts';"),
+        ("client/second.ts", "import '../shared/helper.ts';"),
+        (
+            "client/types.ts",
+            "import type {db} from '../server/db.ts';",
+        ),
+        ("client/clean.ts", "export const clean=1;"),
         ("shared/helper.ts", "import '../server/db.ts';"),
         ("server/db.ts", "export const db=1;"),
     ] {
@@ -118,5 +124,23 @@ fn rust_and_typescript_plugins_use_the_same_transitive_graph() {
     };
     let ts = plugin::run(&facts, &config, root.path()).unwrap();
     assert_eq!(rust, ts);
-    assert_eq!(rust.len(), 1);
+    assert_eq!(rust.len(), 3);
+    let sdk = format!("file://{}/sdk/index.ts", env!("CARGO_MANIFEST_DIR"));
+    let config = PluginConfig {
+        name: "query-reuse".into(),
+        command: vec![
+            "node".into(),
+            "--input-type=module".into(),
+            "-e".into(),
+            format!(
+                "import assert from 'node:assert/strict'; import {{readProject,createDependencyQuery}} from {sdk:?}; const query=createDependencyQuery(readProject()); assert(query('client/main.ts').has('server/db.ts')); assert(query('client/second.ts').has('server/db.ts')); assert.equal(query('client/types.ts',false).size,0); assert(query('client/types.ts',true).has('server/db.ts')); assert.equal(query('client/clean.ts').size,0); process.stdout.write(JSON.stringify({{schemaVersion:1,diagnostics:[]}}));"
+            ),
+        ],
+        timeout_ms: 3000,
+    };
+    assert!(
+        plugin::run(&facts, &config, root.path())
+            .unwrap()
+            .is_empty()
+    );
 }
