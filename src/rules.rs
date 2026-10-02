@@ -130,12 +130,30 @@ impl ProjectRule for RuleConfig {
                 }
                 RuleKind::ForbiddenCall => {
                     if self.transitive {
-                        for (target,offset,path) in dependencies(project,file,self.include_types,true) {
-                            if let Some(dependency)=project.file(&target) {
+                        for (target, offset, path) in
+                            dependencies(project, file, self.include_types, true)
+                        {
+                            if let Some(dependency) = project.file(&target) {
                                 for call in &dependency.calls {
-                                    if call.origin.as_deref().is_some_and(|origin|origins.matches(origin)) {
-                                        let mut diagnostic=Diagnostic::new(&self.id,&file.path,offset,format!("reachable dependency {target} calls {}",call.origin.as_deref().unwrap_or_default()));
-                                        diagnostic.evidence=path.clone();diagnostic.evidence.push(format!("{target}:{}",call.offset));out.push(diagnostic);
+                                    if call
+                                        .origin
+                                        .as_deref()
+                                        .is_some_and(|origin| origins.matches(origin))
+                                    {
+                                        let mut diagnostic = Diagnostic::new(
+                                            &self.id,
+                                            &file.path,
+                                            offset,
+                                            format!(
+                                                "reachable dependency {target} calls {}",
+                                                call.origin.as_deref().unwrap_or_default()
+                                            ),
+                                        );
+                                        diagnostic.evidence = path.clone();
+                                        diagnostic
+                                            .evidence
+                                            .push(format!("{target}:{}", call.offset));
+                                        out.push(diagnostic);
                                     }
                                 }
                             }
@@ -225,7 +243,9 @@ impl ProjectRule for RuleConfig {
                     }
                 }
                 RuleKind::ServiceLayer => {
-                    if !file.services.is_empty() && !file.exports.iter().any(|e| e.name == "layer")
+                    if !file.services.is_empty()
+                        && export_origins(project, file, "layer", false, &mut BTreeSet::new()).len()
+                            != 1
                     {
                         out.push(Diagnostic::new(
                             &self.id,
