@@ -142,7 +142,7 @@
       "fixed": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
       "kind": "reduced reproduction",
       "category": "type-only dependency cycle",
-      "resolution": "generic .tsx, platform selection is not implied",
+      "resolution": "Default generic .tsx, plus Android and iOS configurations with exact upstream candidate orders. The resolved modal edge and cycle participants are asserted.",
       "sources": [
         {
           "commit": "5d493d67cedc3401af42e77d6a238bc49204a09",
@@ -185,6 +185,20 @@
           "verifiedText": "import type { ResolvedFilePreviewSource } from \"./FilePreviewModal.types\";",
           "sourceSha256": "a3dca66327eedf38e97804d568fe1d3b2de30c23301b33c3267d473eda3fa0aa",
           "line": 5
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/dependency-graph.test.ts",
+          "verifiedText": "  android: [\".android.ts\", \".android.tsx\", \".native.ts\", \".native.tsx\", \".ts\", \".tsx\"],",
+          "sourceSha256": "17603c720e0184fab65d8c4892a851697e997a23fc4d81ba6e66fe1cf439a3e2",
+          "line": 33
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/dependency-graph.test.ts",
+          "verifiedText": "  ios: [\".ios.ts\", \".ios.tsx\", \".native.ts\", \".native.tsx\", \".ts\", \".tsx\"],",
+          "sourceSha256": "17603c720e0184fab65d8c4892a851697e997a23fc4d81ba6e66fe1cf439a3e2",
+          "line": 34
         }
       ]
     }

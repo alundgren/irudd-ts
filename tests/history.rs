@@ -56,3 +56,53 @@ fn type_only_cycles_and_dynamic_return_edges_have_distinct_policy() {
     assert!(facts.problems.is_empty());
     assert!(archguard::rules::check(&facts, &config).unwrap().is_empty());
 }
+
+#[test]
+fn mobile_cycle_reduction_matches_both_upstream_platform_orders() {
+    use archguard::facts::ProjectRule;
+    let history = Path::new(env!("CARGO_MANIFEST_DIR")).join("benchmarks/history/13151");
+    let modal = "apps/mobile/src/components/FilePreviewModal.tsx";
+    for platform in ["android", "ios"] {
+        let expected_target = if platform == "ios" {
+            "apps/mobile/src/components/FilePreview.ios.tsx"
+        } else {
+            "apps/mobile/src/components/FilePreview.tsx"
+        };
+        for revision in ["before", "fixed"] {
+            let root = history.join(revision);
+            let config: archguard::config::Config = serde_json::from_slice(
+                &std::fs::read(root.join(format!("archguard.{platform}.json"))).unwrap(),
+            )
+            .unwrap();
+            config.validate().unwrap();
+            let facts = archguard::project::analyze(&root, &config).unwrap();
+            assert!(
+                facts.problems.is_empty(),
+                "{platform}/{revision}: {:?}",
+                facts.problems
+            );
+            let target = facts
+                .file(modal)
+                .unwrap()
+                .imports
+                .iter()
+                .find(|edge| edge.specifier.as_deref() == Some("./FilePreview"))
+                .unwrap()
+                .target
+                .as_deref();
+            assert_eq!(target, Some(expected_target));
+            let diagnostics = config.rules[0].check(&facts).unwrap();
+            assert_eq!(diagnostics.len(), usize::from(revision == "before"));
+            if revision == "before" {
+                assert_eq!(diagnostics[0].evidence.len(), 2);
+                assert!(
+                    diagnostics[0]
+                        .evidence
+                        .iter()
+                        .any(|file| file == expected_target)
+                );
+                assert!(diagnostics[0].evidence.iter().any(|file| file == modal));
+            }
+        }
+    }
+}
