@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "upstreamRepository": "https://github.com/pingdotgg/t3code",
+  "upstreamCommit": "e0db2a5e58bcbe7d738bca7667d2440ddb83e30f",
+  "configuration": "presets/t3code.json",
+  "configurationSha256": "842e0bead2dd7c1b6c4639a60bbb95df17cd78b214f8c4df8c4e8f552cf190ab",
+  "toolSourceRevision": "3e177a3ebf3efbfa0897e69ed7e72f7e4e71a4bc",
+  "binarySha256": "fd4cdd34855aaa5d81ec428229a11aec200d0a792d8dbff317636de55d2b92ca",
+  "exitCode": 2,
+  "files": 2531,
+  "imports": 19465,
+  "complete": false,
+  "analysisProblemCount": 3987,
+  "diagnosticCount": 239,
+  "diagnosticsByRule": {
+    "client-service-namespaces": 62,
+    "decider-no-persistence": 1,
+    "relay-service-namespaces": 2,
+    "server-service-namespaces": 173,
+    "transport-no-filesystem": 1
+  },
+  "representativeDiagnostics": [
+    {
+      "rule": "client-service-namespaces",
+      "file": "apps/mobile/src/connection/background-activity.ts",
+      "offset": 0,
+      "message": "import service module packages/client-runtime/src/connection/index.ts as a namespace instead of EnvironmentRegistry",
+      "evidence": [
+        "packages/client-runtime/src/connection/index.ts"
+      ]
+    },
+    {
+      "rule": "client-service-namespaces",
+      "file": "apps/mobile/src/connection/environment-cache-store.ts",
+      "offset": 0,
+      "message": "import service module packages/client-runtime/src/platform/index.ts as a namespace instead of EnvironmentCacheStore",
+      "evidence": [
+        "packages/client-runtime/src/platform/index.ts"
+      ]
+    },
+    {
+      "rule": "decider-no-persistence",
+      "file": "apps/server/src/orchestration/decider.ts",
+      "offset": 977,
+      "message": "forbidden dependency on apps/server/src/persistence/Errors.ts",
+      "evidence": [
+        "apps/server/src/orchestration/decider.ts",
+        "apps/server/src/orchestration/Errors.ts",
+        "apps/server/src/persistence/Errors.ts"
+      ]
+    },
+    {
+      "rule": "transport-no-filesystem",
+      "file": "apps/server/src/ws.ts",
+      "offset": 357,
+      "message": "forbidden import effect/FileSystem",
+      "evidence": []
+    }
+  ],
+  "interpretation": "Provisional policy findings on an incomplete uninstalled checkout, not confirmed defects. Most namespace findings are existing code predating V2 normalization. The decider path reaches a persistence Errors module; a forbidden module dependency does not prove IO or execution."
+}

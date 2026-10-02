@@ -49,8 +49,8 @@ Scouts also verified MIT licensing for [tRPC](https://github.com/trpc/trpc) and 
 
 | Approach | Advantages | Costs |
 | --- | --- | --- |
-| Rust only | Native access to project facts, compile-time checks, no JS startup | Rule authors need Rust; static extensions need a build; Rust dynamic ABI is unstable |
-| TypeScript only | Familiar rule authoring for target teams, Node 24 runs stripped TS | Node deployment/startup, JSON transfer, smaller typed fact vocabulary than a compiler API |
-| Rust core with both | One analysis reused by fast native rules and accessible TS plugins | A versioned protocol and two SDK contracts need compatibility tests |
+| Rust plugins only | Native access to project facts, compile-time checks, no JS startup | Rule authors need Rust; static extensions need a build; Rust dynamic ABI is unstable |
+| TypeScript plugins only | Familiar rule authoring for target teams, Node 24 runs stripped TS | Node deployment/startup, JSON transfer, smaller typed fact vocabulary than a compiler API |
+| Both plugin languages | One analysis reused by fast native rules and accessible TS plugins | A versioned protocol and two SDK contracts need compatibility tests |
 
-Recommend the mixed approach. Use built-in Rust rules for common graph operations and TypeScript for project-specific contracts over the same facts. Start with one subprocess per plugin per project, not one per file. This keeps the implementation auditable and avoids tying third-party plugins to Rust's ABI. Benchmark startup and serialization separately before introducing a persistent worker. Keep type-heavy Effect rules with Effect's compiler integration until there is a stable semantic provider.
+The CLI host stays in Rust in all three choices. Recommend supporting both plugin languages. Use built-in Rust rules for common graph operations and TypeScript for project-specific contracts over the same facts. Start with one subprocess per plugin per project, not one per file. This keeps the implementation auditable and avoids tying third-party plugins to Rust's ABI. Benchmark startup and serialization separately before introducing a persistent worker. Keep type-heavy Effect rules with Effect's compiler integration until there is a stable semantic provider.
