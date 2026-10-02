@@ -120,6 +120,17 @@ def normal(report, engine, workload, root, expected_files):
     return set(files)
 
 
+def load_average():
+    return list(os.getloadavg()) if hasattr(os, "getloadavg") else None
+
+
+def sample_context(report, engine):
+    context = {"loadAverage": load_average()}
+    if engine == "archguard":
+        context["reportedElapsedMs"] = report["elapsedMs"]
+    return context
+
+
 def summary(samples):
     return {"medianMs": statistics.median(samples), "minMs": min(samples), "maxMs": max(samples), "samplesMs": samples}
 
@@ -154,6 +165,7 @@ def benchmark(root, workload, count, args):
         host("native", [{"id": "cycles", "kind": "noCycles", "includeTypes": True}])
         ox("oxlint-built-in", {**oxbase, "plugins": ["import"], "rules": {"import/no-cycle": ["error", {"ignoreTypes": False, "ignoreExternal": True, "allowUnsafeDynamicCyclicDependency": True}]}})
     samples = {name: [] for name in commands}
+    contexts = {name: [] for name in commands}
     equivalence = {}
     base_result = {"workload": workload, "files": count, "imports": sum(source.count("import") for source in sources.values()), "sourceBytes": sum(len(source.encode()) for source in sources.values()), "corpusSha256": digest, "expectedViolations": len(expected), "expected": sorted(expected), "equivalence": equivalence, "commands": commands}
     for name, command in commands.items():
@@ -179,11 +191,12 @@ def benchmark(root, workload, count, args):
                 assert code == int(bool(expected))
                 assert len(report["diagnostics"]) == len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
                 samples[name].append(elapsed)
+                contexts[name].append(sample_context(report, engines[name]))
             except (AssertionError, RuntimeError, KeyError, ValueError, subprocess.TimeoutExpired) as error:
                 return {**base_result, "status": "incomparable", "reason": f"Sample {repetition}/{name} changed expected work: {error}"}
     timings = {name: summary(values) for name, values in samples.items()}
     base = timings["native"]["medianMs"]
-    return {**base_result, "status": "comparable", "timings": timings, "medianRelativeToNative": {name: values["medianMs"] / base for name, values in timings.items()}}
+    return {**base_result, "status": "comparable", "timings": timings, "sampleContext": contexts, "medianRelativeToNative": {name: values["medianMs"] / base for name, values in timings.items()}}
 
 
 def overhead(root, count, args):
@@ -196,6 +209,7 @@ def overhead(root, count, args):
         path = configuration(root, name, config)
         commands[name] = [str(args.binary), "check", "--json", "--root", str(root), "--config", str(path)]
     samples = {name: [] for name in commands}
+    contexts = {name: [] for name in commands}
     for repetition in range(args.repetitions + 1):
         for name in random.Random(repetition).sample(list(commands), len(commands)):
             try:
@@ -203,11 +217,12 @@ def overhead(root, count, args):
                 assert code == 0 and report["complete"] and not report["diagnostics"] and report["files"] == count
                 if repetition:
                     samples[name].append(elapsed)
+                    contexts[name].append(sample_context(report, "archguard"))
             except (AssertionError, RuntimeError, KeyError, ValueError, subprocess.TimeoutExpired) as error:
                 return {"status": "incomparable", "files": count, "corpusSha256": digest, "commands": commands, "reason": f"Empty plugin {name} failed completion or work checks: {error}"}
     timings = {name: summary(values) for name, values in samples.items()}
     base = timings["host-no-rules"]["medianMs"]
-    return {"status": "comparable", "files": count, "corpusSha256": digest, "timings": timings, "addedMedianMs": {name: value["medianMs"] - base for name, value in timings.items()}, "commands": commands}
+    return {"status": "comparable", "files": count, "corpusSha256": digest, "timings": timings, "sampleContext": contexts, "addedMedianMs": {name: value["medianMs"] - base for name, value in timings.items()}, "commands": commands}
 
 
 def main():
@@ -227,7 +242,7 @@ def main():
             parser.error(f"Missing executable {path}")
     def version(command):
         return subprocess.check_output(command, text=True).strip()
-    results = {"schemaVersion": 1, "dateUtc": datetime.datetime.now(datetime.timezone.utc).isoformat(), "platform": platform.platform(), "cpuCount": os.cpu_count(), "machine": platform.machine(), "versions": {"archguard": version([str(args.binary), "--version"]), "oxlint": version([str(args.oxlint), "--version"]), "node": version(["node", "--version"]), "rustc": version(["rustc", "--version"]), "typescript": version([str(REPO / "benchmarks/toolchain/node_modules/typescript/bin/tsc"), "--version"]), "graphParser": json.loads((REPO / "benchmarks/toolchain/node_modules/typescript-parser/package.json").read_text())["version"]}, "gitRevision": version(["git", "-C", str(REPO), "rev-parse", "HEAD"]), "binarySha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(), "rustPluginSha256": hashlib.sha256(args.rust_plugin.read_bytes()).hexdigest(), "repetitions": args.repetitions, "warmups": 1, "measurement": "wall time of complete fresh process, captured JSON output, serial trials, warm filesystem caches, Oxlint threads=1", "benchmarks": [], "overhead": []}
+    results = {"schemaVersion": 1, "dateUtc": datetime.datetime.now(datetime.timezone.utc).isoformat(), "platform": platform.platform(), "cpuCount": os.cpu_count(), "machine": platform.machine(), "loadAverageStart": load_average(), "versions": {"archguard": version([str(args.binary), "--version"]), "oxlint": version([str(args.oxlint), "--version"]), "node": version(["node", "--version"]), "rustc": version(["rustc", "--version"]), "typescript": version([str(REPO / "benchmarks/toolchain/node_modules/typescript/bin/tsc"), "--version"]), "graphParser": json.loads((REPO / "benchmarks/toolchain/node_modules/typescript-parser/package.json").read_text())["version"]}, "gitRevision": version(["git", "-C", str(REPO), "rev-parse", "HEAD"]), "binarySha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(), "rustPluginSha256": hashlib.sha256(args.rust_plugin.read_bytes()).hexdigest(), "repetitions": args.repetitions, "warmups": 1, "measurement": "wall time of complete fresh process, captured JSON output, serial trials, warm filesystem caches, Oxlint threads=1", "benchmarks": [], "overhead": []}
     for count in args.sizes:
         for workload in ["graph", "direct", "cycles"]:
             root = REPO / "benchmarks/local" / f"{workload}-{count}"
@@ -235,6 +250,7 @@ def main():
             results["benchmarks"].append(result)
             print(f"{workload} {count}: " + (", ".join(f"{name}={data['medianMs']:.2f}ms" for name, data in result["timings"].items()) if result["status"] == "comparable" else "incomparable, " + result["reason"]), flush=True)
         results["overhead"].append(overhead(REPO / "benchmarks/local" / f"overhead-{count}", count, args))
+    results["loadAverageEnd"] = load_average()
     write(args.output, json.dumps(results, indent=2) + "\n")
     print(args.output)
 
