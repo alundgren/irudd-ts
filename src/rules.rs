@@ -225,12 +225,26 @@ impl ProjectRule for RuleConfig {
                 }
                 RuleKind::RequiredExport => {
                     for name in &self.names {
-                        if !has_export(project, file, name, &mut BTreeSet::new()) {
+                        let origins = export_origins(
+                            project,
+                            file,
+                            name,
+                            self.include_types,
+                            &mut BTreeSet::new(),
+                        );
+                        if origins.len() != 1 {
                             out.push(Diagnostic::new(
                                 &self.id,
                                 &file.path,
                                 0,
-                                format!("required export {name} is absent"),
+                                format!(
+                                    "required export {name} is {}",
+                                    if origins.is_empty() {
+                                        "absent"
+                                    } else {
+                                        "ambiguous"
+                                    }
+                                ),
                             ));
                         }
                     }
@@ -241,82 +255,116 @@ impl ProjectRule for RuleConfig {
         Ok(out)
     }
 }
-fn has_export(
+fn export_origins(
     project: &ProjectFacts,
     file: &FileFacts,
     name: &str,
-    seen: &mut BTreeSet<String>,
-) -> bool {
-    if !seen.insert(file.path.clone()) {
-        return false;
+    include_types: bool,
+    active: &mut BTreeSet<(String, String)>,
+) -> BTreeSet<(String, String)> {
+    let key = (file.path.clone(), name.to_owned());
+    if !active.insert(key.clone()) {
+        return BTreeSet::new();
     }
-    if file.exports.iter().any(|e| e.name == name) {
-        return true;
-    }
-    if name == "default" {
-        return false;
-    }
-    file.imports
-        .iter()
-        .filter(|e| e.kind == "reExportAll")
-        .filter_map(|e| e.target.as_deref().and_then(|p| project.file(p)))
-        .any(|target| has_export(project, target, name, seen))
+    let result = (|| {
+        let explicit = file
+            .exports
+            .iter()
+            .filter(|e| e.name == name)
+            .collect::<Vec<_>>();
+        let mut origins = BTreeSet::new();
+        if !explicit.is_empty() {
+            for export in explicit {
+                if export.type_only && !include_types {
+                    continue;
+                }
+                if let Some(local) = &export.local {
+                    let imported = file
+                        .imports
+                        .iter()
+                        .filter(|e| e.kind == "import" || e.kind == "importEquals")
+                        .flat_map(|e| e.bindings.iter().map(move |b| (e, b)))
+                        .find(|(_, b)| &b.local == local);
+                    if let Some((edge, binding)) = imported {
+                        if binding.type_only && !include_types {
+                            continue;
+                        }
+                        if let Some(target) = edge.target.as_deref().and_then(|p| project.file(p)) {
+                            if binding.imported == "*" {
+                                origins.insert((target.path.clone(), "*".into()));
+                            } else {
+                                origins.extend(export_origins(
+                                    project,
+                                    target,
+                                    &binding.imported,
+                                    include_types,
+                                    active,
+                                ));
+                            }
+                        }
+                    } else {
+                        origins.insert((file.path.clone(), local.clone()));
+                    }
+                } else {
+                    for edge in &file.imports {
+                        if edge.type_only && !include_types {
+                            continue;
+                        }
+                        let Some(target) = edge.target.as_deref().and_then(|p| project.file(p))
+                        else {
+                            continue;
+                        };
+                        for binding in &edge.bindings {
+                            if binding.local == name && (include_types || !binding.type_only) {
+                                if binding.imported == "*" {
+                                    origins.insert((target.path.clone(), "*".into()));
+                                } else {
+                                    origins.extend(export_origins(
+                                        project,
+                                        target,
+                                        &binding.imported,
+                                        include_types,
+                                        active,
+                                    ));
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return origins;
+        }
+        if name != "default" {
+            for edge in &file.imports {
+                if edge.kind == "reExportAll"
+                    && (include_types || !edge.type_only)
+                    && let Some(target) = edge.target.as_deref().and_then(|p| project.file(p))
+                {
+                    origins.extend(export_origins(project, target, name, include_types, active));
+                }
+            }
+        }
+        origins
+    })();
+    active.remove(&key);
+    result
 }
 fn service_export(
     project: &ProjectFacts,
     file: &FileFacts,
     name: &str,
-    seen: &mut BTreeSet<(String, String)>,
+    _seen: &mut BTreeSet<(String, String)>,
 ) -> bool {
-    if !seen.insert((file.path.clone(), name.into())) {
+    let origins = export_origins(project, file, name, false, &mut BTreeSet::new());
+    if origins.len() != 1 {
         return false;
     }
-    if let Some(export) = file.exports.iter().find(|e| e.name == name) {
-        let local = export.local.as_deref().unwrap_or(name);
-        if file.services.iter().any(|s| s.name == local)
-            || (!file.services.is_empty() && matches!(local, "layer" | "make"))
-        {
-            return true;
-        }
-        for edge in &file.imports {
-            if edge.kind != "import" {
-                continue;
-            }
-            if let Some(target) = edge.target.as_deref().and_then(|p| project.file(p)) {
-                for binding in &edge.bindings {
-                    if binding.local == local
-                        && !binding.type_only
-                        && binding.imported != "*"
-                        && service_export(project, target, &binding.imported, seen)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-    }
-    for edge in &file.imports {
-        let Some(target) = edge.target.as_deref().and_then(|p| project.file(p)) else {
-            continue;
-        };
-        if edge.kind == "reExportAll"
-            && edge.bindings.is_empty()
-            && service_export(project, target, name, seen)
-        {
-            return true;
-        }
-        if edge.kind == "reExport" {
-            for b in &edge.bindings {
-                if !b.type_only
-                    && b.local == name
-                    && service_export(project, target, &b.imported, seen)
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    false
+    origins.iter().any(|(path, local)| {
+        project.file(path).is_some_and(|target| {
+            target.services.iter().any(|s| &s.name == local)
+                || (!target.services.is_empty() && matches!(local.as_str(), "layer" | "make"))
+        })
+    })
 }
 fn allowed(edge: &ImportFact, include_types: bool) -> bool {
     edge.status == ResolutionStatus::Internal && (include_types || !edge.type_only)

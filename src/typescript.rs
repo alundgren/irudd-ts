@@ -56,6 +56,11 @@ pub fn parse(path: &str, source: &str) -> Result<FileFacts> {
         if let Statement::TSImportEqualsDeclaration(import) = statement {
             visitor.collect_import_equals(import);
         }
+        if let Statement::ExportDeclaration(export) = statement
+            && let Declaration::TSImportEqualsDeclaration(import) = &export.declaration
+        {
+            visitor.collect_import_equals(import);
+        }
     }
     visitor.visit_program(&parsed.program);
     visitor.facts.imports.sort_by_key(|i| i.offset);
@@ -181,6 +186,7 @@ impl Collector<'_> {
     }
     fn export(&mut self, name: String, offset: u32) {
         self.facts.exports.push(ExportFact {
+            type_only: false,
             local: Some(name.clone()),
             name,
             offset: offset as usize,
@@ -237,6 +243,9 @@ impl<'a> Visit<'a> for Collector<'_> {
     fn visit_export_declaration(&mut self, it: &ExportDeclaration<'a>) {
         if let Some(id) = it.declaration.id() {
             self.export(id.name.to_string(), id.span.start);
+            if let Some(export) = self.facts.exports.last_mut() {
+                export.type_only = it.declaration.is_type();
+            }
         }
         if let Declaration::VariableDeclaration(decl) = &it.declaration {
             for variable in &decl.declarations {
@@ -252,6 +261,8 @@ impl<'a> Visit<'a> for Collector<'_> {
             self.facts.exports.push(ExportFact {
                 name: s.exported.to_string(),
                 local: Some(s.local.to_string()),
+                type_only: it.export_kind == ImportOrExportKind::Type
+                    || s.export_kind == ImportOrExportKind::Type,
                 offset: s.span.start as usize,
             });
         }
@@ -278,7 +289,13 @@ impl<'a> Visit<'a> for Collector<'_> {
             bindings,
         ));
         for s in &it.specifiers {
-            self.export(s.exported.to_string(), s.span.start);
+            self.facts.exports.push(ExportFact {
+                name: s.exported.to_string(),
+                local: None,
+                type_only: it.export_kind == ImportOrExportKind::Type
+                    || s.export_kind == ImportOrExportKind::Type,
+                offset: s.span.start as usize,
+            });
         }
         walk::walk_export_from_declaration(self, it);
     }
@@ -292,10 +309,24 @@ impl<'a> Visit<'a> for Collector<'_> {
             },
             it.export_kind == ImportOrExportKind::Type,
             it.span.start,
-            vec![],
+            it.exported
+                .as_ref()
+                .map(|name| {
+                    vec![ImportBinding {
+                        local: name.to_string(),
+                        imported: "*".into(),
+                        type_only: it.export_kind == ImportOrExportKind::Type,
+                    }]
+                })
+                .unwrap_or_default(),
         ));
         if let Some(name) = &it.exported {
-            self.export(name.to_string(), it.span.start);
+            self.facts.exports.push(ExportFact {
+                name: name.to_string(),
+                local: None,
+                type_only: it.export_kind == ImportOrExportKind::Type,
+                offset: it.span.start as usize,
+            });
         }
         walk::walk_export_all_declaration(self, it);
     }

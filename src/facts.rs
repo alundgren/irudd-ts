@@ -70,6 +70,7 @@ pub enum ResolutionStatus {
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct ExportFact {
     pub name: String,
+    pub type_only: bool,
     pub local: Option<String>,
     pub offset: usize,
 }

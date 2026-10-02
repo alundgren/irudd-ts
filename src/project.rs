@@ -412,8 +412,10 @@ fn export_target(
             serde_json::Value::Array(values) => {
                 for value in values {
                     match select(value, conditions) {
-                        Selection::Unmatched => {}
-                        selected => return selected,
+                        Selection::Target(target) if valid_export_target(&target) => {
+                            return Selection::Target(target);
+                        }
+                        _ => {}
                     }
                 }
                 Selection::Unmatched

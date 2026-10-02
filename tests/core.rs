@@ -351,3 +351,99 @@ fn function_results_do_not_inherit_imported_method_identity() {
             .any(|c| c.origin.as_deref() == Some("./factory.ts#client"))
     );
 }
+#[test]
+fn exported_import_equals_and_array_fallbacks_preserve_dependencies() {
+    let root = tempfile::tempdir().unwrap();
+    put(
+        root.path(),
+        "packages/api/package.json",
+        r#"{"name":"@app/api","exports":{".":[null,"../invalid.ts","./src/index.ts"]}}"#,
+    );
+    put(
+        root.path(),
+        "packages/api/src/index.ts",
+        "export const api=1;",
+    );
+    put(
+        root.path(),
+        "main.ts",
+        "export import Hidden = require('@app/api');",
+    );
+    let facts = project::analyze(root.path(), &config(json!({"schemaVersion":1}))).unwrap();
+    assert!(facts.problems.is_empty(), "{:?}", facts.problems);
+    assert_eq!(facts.file("main.ts").unwrap().imports.len(), 1);
+    assert_eq!(
+        facts.file("main.ts").unwrap().imports[0].status,
+        ResolutionStatus::Internal
+    );
+}
+#[test]
+fn explicit_and_type_only_exports_do_not_become_service_values() {
+    let root = tempfile::tempdir().unwrap();
+    put(
+        root.path(),
+        "service.ts",
+        "import * as C from 'effect/Context'; export class Foo extends C.Service<Foo, {}>()('app/Foo') {}",
+    );
+    put(
+        root.path(),
+        "barrel.ts",
+        "export * from './service.ts'; export const Foo=1;",
+    );
+    put(
+        root.path(),
+        "consumer.ts",
+        "import {Foo} from './barrel.ts';",
+    );
+    let r = rule(json!({"id":"namespace","kind":"serviceNamespace"}));
+    let c = config(json!({"schemaVersion":1}));
+    assert!(
+        r.check(&project::analyze(root.path(), &c).unwrap())
+            .unwrap()
+            .is_empty()
+    );
+    put(
+        root.path(),
+        "barrel.ts",
+        "export type * from './service.ts'; export const Foo=1;",
+    );
+    assert!(
+        r.check(&project::analyze(root.path(), &c).unwrap())
+            .unwrap()
+            .is_empty()
+    );
+    put(
+        root.path(),
+        "barrel.ts",
+        "export type {Foo} from './service.ts';",
+    );
+    assert!(
+        r.check(&project::analyze(root.path(), &c).unwrap())
+            .unwrap()
+            .is_empty()
+    );
+}
+#[test]
+fn star_export_ambiguity_distinguishes_distinct_declarations_from_same_origin() {
+    let root = tempfile::tempdir().unwrap();
+    put(root.path(), "a.ts", "export const api=1;");
+    put(root.path(), "b.ts", "export const api=2;");
+    put(
+        root.path(),
+        "barrel.ts",
+        "export * from './a.ts'; export * from './b.ts';",
+    );
+    let r = rule(json!({"id":"api","kind":"requiredExport","files":["barrel.ts"],"names":["api"]}));
+    let c = config(json!({"schemaVersion":1}));
+    let diagnostics = r
+        .check(&project::analyze(root.path(), &c).unwrap())
+        .unwrap();
+    assert_eq!(diagnostics.len(), 1);
+    assert!(diagnostics[0].message.contains("ambiguous"));
+    put(root.path(), "b.ts", "export {api} from './a.ts';");
+    assert!(
+        r.check(&project::analyze(root.path(), &c).unwrap())
+            .unwrap()
+            .is_empty()
+    );
+}
