@@ -26,7 +26,8 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         resolution: ResolutionProfile {
             mode: "source".into(),
             conditions: config.conditions.clone(),
-            extension_aliases: extension_aliases(),
+            extensions: config.extensions.clone(),
+            extension_aliases: config.extension_aliases.clone(),
             tsconfig: "nearest tsconfig paths and inheritance via Oxc; no compiler mode parity"
                 .into(),
         },
@@ -137,18 +138,8 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         cwd: Some(root.clone()),
         tsconfig: Some(TsconfigDiscovery::Auto),
         condition_names: config.conditions.clone(),
-        extensions: vec![
-            ".ts".into(),
-            ".tsx".into(),
-            ".mts".into(),
-            ".cts".into(),
-            ".js".into(),
-            ".jsx".into(),
-            ".mjs".into(),
-            ".cjs".into(),
-            ".json".into(),
-        ],
-        extension_alias: extension_aliases(),
+        extensions: config.extensions.clone(),
+        extension_alias: config.extension_aliases.clone(),
         ..ResolveOptions::default()
     });
     let available: BTreeSet<_> = paths.keys().cloned().collect();
@@ -187,16 +178,6 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         .problems
         .sort_by(|a, b| (&a.file, a.offset, &a.message).cmp(&(&b.file, b.offset, &b.message)));
     Ok(project)
-}
-fn extension_aliases() -> Vec<(String, Vec<String>)> {
-    vec![
-        (
-            ".js".into(),
-            vec![".ts".into(), ".tsx".into(), ".js".into()],
-        ),
-        (".mjs".into(), vec![".mts".into(), ".mjs".into()]),
-        (".cjs".into(), vec![".cts".into(), ".cjs".into()]),
-    ]
 }
 fn package(path: &str, absolute: &Path) -> Result<Option<PackageFacts>> {
     let source = std::fs::read_to_string(absolute)?;

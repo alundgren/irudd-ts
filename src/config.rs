@@ -13,6 +13,10 @@ pub struct Config {
     pub exclude: Vec<String>,
     #[serde(default = "default_conditions")]
     pub conditions: Vec<String>,
+    #[serde(default = "default_extensions")]
+    pub extensions: Vec<String>,
+    #[serde(default = "default_extension_aliases")]
+    pub extension_aliases: Vec<(String, Vec<String>)>,
     #[serde(default = "default_packages")]
     pub package_manifests: Vec<String>,
     #[serde(default)]
@@ -42,6 +46,12 @@ fn default_packages() -> Vec<String> {
 }
 fn default_conditions() -> Vec<String> {
     vec!["types".into(), "import".into(), "default".into()]
+}
+fn default_extensions() -> Vec<String> {
+    [".ts", ".tsx", ".mts", ".cts", ".js", ".jsx", ".mjs", ".cjs", ".json"].into_iter().map(String::from).collect()
+}
+fn default_extension_aliases() -> Vec<(String, Vec<String>)> {
+    vec![(".js".into(), vec![".ts".into(), ".tsx".into(), ".js".into()]), (".mjs".into(), vec![".mts".into(), ".mjs".into()]), (".cjs".into(), vec![".cts".into(), ".cjs".into()])]
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -126,6 +136,9 @@ impl Config {
         }
         if self.include.is_empty() {
             bail!("include must select at least one file pattern");
+        }
+        if self.extensions.is_empty() || self.extensions.iter().chain(self.extension_aliases.iter().flat_map(|(key,values)|std::iter::once(key).chain(values))).any(|extension| !extension.starts_with('.') || extension.len()<2 || extension.contains('/') || extension.contains('\\')) {
+            bail!("resolution extensions must be nonempty dot-prefixed suffixes");
         }
         let mut ids = std::collections::BTreeSet::new();
         for r in &self.rules {

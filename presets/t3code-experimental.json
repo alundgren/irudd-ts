@@ -1,0 +1,10 @@
+{
+ "schemaVersion":1,
+ "include":["apps/server/src/**/*.ts", "packages/**/*.ts"],
+ "exclude":["**/*.test.ts", "**/fixtures/**"],
+ "rules":[
+  {"id":"unique-service-identifiers", "kind":"uniqueServiceId"},
+  {"id":"domain-no-reachable-runtime", "kind":"forbiddenCall", "files":["apps/server/src/project/**", "apps/server/src/workspace/**"], "origins":["effect/Effect#runPromise", "effect/ManagedRuntime#make"], "transitive":true},
+  {"id":"workspace-service-layer", "kind":"serviceLayer", "files":["apps/server/src/workspace/WorkspacePaths.ts"]}
+ ]
+}

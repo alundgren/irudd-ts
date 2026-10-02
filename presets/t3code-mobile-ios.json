@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "include": [
+    "apps/mobile/src/**/*.ts",
+    "apps/mobile/src/**/*.tsx",
+    "packages/**/*.ts",
+    "packages/**/*.tsx"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/test-support/**",
+    "**/*.d.ts"
+  ],
+  "extensions": [
+    ".ios.ts",
+    ".ios.tsx",
+    ".native.ts",
+    ".native.tsx",
+    ".ts",
+    ".tsx",
+    ".js",
+    ".json"
+  ],
+  "rules": [
+    {
+      "id": "mobile-ios-static-cycles",
+      "kind": "noCycles",
+      "files": [
+        "apps/mobile/src/**"
+      ],
+      "includeTypes": true
+    }
+  ]
+}

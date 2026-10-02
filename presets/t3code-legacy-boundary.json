@@ -1,0 +1,10 @@
+{
+ "schemaVersion":1,
+ "include":["apps/server/src/**/*.ts", "packages/**/*.ts"],
+ "exclude":["**/*.test.ts", "**/fixtures/**"],
+ "rules":[
+  {"id":"legacy-importer-callers", "kind":"forbiddenDependency", "files":["apps/server/src/**"], "targets":["apps/server/src/orchestration-v2/legacy/**"], "exceptions":["apps/server/src/orchestration-v2/legacy/**", "apps/server/src/orchestration-v2/ThreadManagementService.ts", "apps/server/src/orchestration-v2/runtimeLayer.ts", "apps/server/src/project/ProjectService.ts", "apps/server/src/serverRuntimeStartup.ts"]},
+  {"id":"retired-v1-decider", "kind":"forbiddenImport", "specifiers":["**/orchestration/decider.ts"]},
+  {"id":"retired-legacy-contract", "kind":"forbiddenImport", "specifiers":["@t3tools/contracts/legacy-orchestration"]}
+ ]
+}
