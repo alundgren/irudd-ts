@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "id": "cycles",
+      "kind": "noCycles",
+      "includeTypes": true
+    }
+  ]
+}

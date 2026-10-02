@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "rules": [
+    {
+      "id": "namespace",
+      "kind": "serviceNamespace",
+      "files": [
+        "apps/mobile/src/connection/background-activity.ts"
+      ]
+    }
+  ]
+}
