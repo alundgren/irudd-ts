@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "include": ["src/*.rs", "sdk/**/*.ts", "examples/**/*.ts"],
+  "rules": [
+    {"id":"facts-independent", "kind":"forbiddenImport", "files":["src/facts.rs"], "specifiers":["crate::config::*", "crate::project::*", "crate::rules::*", "crate::plugin::*"]},
+    {"id":"providers-no-policy", "kind":"forbiddenImport", "files":["src/typescript.rs", "src/rust.rs"], "specifiers":["crate::rules::*", "crate::plugin::*", "crate::project::*", "crate::config::*"]},
+    {"id":"sdk-no-host-internals", "kind":"forbiddenDependency", "files":["sdk/**"], "targets":["examples/**"], "transitive":true},
+    {"id":"sdk-api", "kind":"requiredExport", "files":["sdk/index.ts"], "names":["ProjectFacts", "Diagnostic", "runPlugin", "dependencyPaths"]}
+  ]
+}
