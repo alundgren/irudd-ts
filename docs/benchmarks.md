@@ -32,7 +32,7 @@ Run these locally. There is no CI job and no build time in the measurements.
 
 ```sh
 npm ci --ignore-scripts --prefix benchmarks/toolchain
-cargo build --locked --release --examples
+cargo build --locked --release --bins --examples
 python3 scripts/benchmark.py
 ```
 
