@@ -151,27 +151,35 @@ def benchmark(root, workload, count, args):
         ox("oxlint-built-in", {**oxbase, "plugins": ["import"], "rules": {"import/no-cycle": ["error", {"ignoreTypes": False, "ignoreExternal": True, "allowUnsafeDynamicCyclicDependency": True}]}})
     samples = {name: [] for name in commands}
     equivalence = {}
+    base_result = {"workload": workload, "files": count, "imports": sum(source.count("import") for source in sources.values()), "sourceBytes": sum(len(source.encode()) for source in sources.values()), "corpusSha256": digest, "expectedViolations": len(expected), "expected": sorted(expected), "equivalence": equivalence, "commands": commands}
     for name, command in commands.items():
-        _, code, report = execute(command)
-        observed = normal(report, engines[name], workload, root, count)
-        expected_diagnostics = len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
-        equivalence[name] = {"matched": observed == expected, "expected": len(expected), "observed": len(observed), "diagnostics": len(report["diagnostics"])}
-        if observed != expected or code != int(bool(expected)) or len(report["diagnostics"]) != expected_diagnostics:
-            raise RuntimeError(f"Work mismatch {workload}/{count}/{name}: expected {expected}, observed {observed}, code {code}")
+        try:
+            _, code, report = execute(command)
+            observed = normal(report, engines[name], workload, root, count)
+            expected_diagnostics = len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
+            matched = observed == expected and code == int(bool(expected)) and len(report["diagnostics"]) == expected_diagnostics
+            equivalence[name] = {"matched": matched, "expected": len(expected), "observed": len(observed), "diagnostics": len(report["diagnostics"]), "exitCode": code}
+        except (AssertionError, RuntimeError, KeyError, ValueError, subprocess.TimeoutExpired) as error:
+            equivalence[name] = {"matched": False, "reason": str(error)}
+    if not all(item["matched"] for item in equivalence.values()):
+        return {**base_result, "status": "incomparable", "reason": "Completion, file count, rules or expected violations differed. No timings or ratios recorded."}
     # Rotate a seeded randomized order to reduce ordering and cache bias.
     rng = random.Random(42)
     for repetition in range(args.repetitions):
         order = list(commands)
         rng.shuffle(order)
         for name in order:
-            elapsed, code, report = execute(commands[name])
-            assert normal(report, engines[name], workload, root, count) == expected
-            assert code == int(bool(expected))
-            assert len(report["diagnostics"]) == len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
-            samples[name].append(elapsed)
+            try:
+                elapsed, code, report = execute(commands[name])
+                assert normal(report, engines[name], workload, root, count) == expected
+                assert code == int(bool(expected))
+                assert len(report["diagnostics"]) == len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
+                samples[name].append(elapsed)
+            except (AssertionError, RuntimeError, KeyError, ValueError, subprocess.TimeoutExpired) as error:
+                return {**base_result, "status": "incomparable", "reason": f"Sample {repetition}/{name} changed expected work: {error}"}
     timings = {name: summary(values) for name, values in samples.items()}
     base = timings["native"]["medianMs"]
-    return {"workload": workload, "files": count, "imports": sum(source.count("import") for source in sources.values()), "sourceBytes": sum(len(source.encode()) for source in sources.values()), "corpusSha256": digest, "expectedViolations": len(expected), "expected": sorted(expected), "equivalence": equivalence, "timings": timings, "medianRelativeToNative": {name: values["medianMs"] / base for name, values in timings.items()}, "commands": commands}
+    return {**base_result, "status": "comparable", "timings": timings, "medianRelativeToNative": {name: values["medianMs"] / base for name, values in timings.items()}}
 
 
 def overhead(root, count, args):
@@ -218,7 +226,7 @@ def main():
             root = REPO / "benchmarks/local" / f"{workload}-{count}"
             result = benchmark(root, workload, count, args)
             results["benchmarks"].append(result)
-            print(f"{workload} {count}: " + ", ".join(f"{name}={data['medianMs']:.2f}ms" for name, data in result["timings"].items()), flush=True)
+            print(f"{workload} {count}: " + (", ".join(f"{name}={data['medianMs']:.2f}ms" for name, data in result["timings"].items()) if result["status"] == "comparable" else "incomparable, " + result["reason"]), flush=True)
         results["overhead"].append(overhead(REPO / "benchmarks/local" / f"overhead-{count}", count, args))
     write(args.output, json.dumps(results, indent=2) + "\n")
     print(args.output)

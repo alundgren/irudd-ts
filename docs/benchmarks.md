@@ -52,7 +52,7 @@ Each sample measures the wall time of a new complete process through captured JS
 
 ## Equivalent work
 
-For each size, every implementation receives exactly the same generated `.ts` files. The runner checks the file count, completion status, exit status, diagnostic count and expected violation set before it records timings, then repeats these checks on every sample. It aborts on disagreement and produces no ratio for that run.
+For each size, every implementation receives exactly the same generated `.ts` files. The runner checks the file count, completion status, exit status, diagnostic count and expected violation set before it records timings, then repeats these checks on every sample. If the checks disagree, the workload is recorded as incomparable and receives no timings or ratios.
 
 | Workload | Implementations | Expected work |
 | --- | --- | --- |
