@@ -1,0 +1,12 @@
+[
+  {
+    "package": "oxlint",
+    "version": "1.86.0",
+    "license": "MIT"
+  },
+  {
+    "package": "typescript",
+    "version": "7.0.2",
+    "license": "Apache-2.0"
+  }
+]
