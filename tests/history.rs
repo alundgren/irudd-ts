@@ -25,8 +25,11 @@ fn upstream_reductions_fail_before_and_pass_after() {
             assert_eq!(report["complete"], true, "{id}/{revision}: {report}");
             assert_eq!(report["problems"].as_array().unwrap().len(), 0);
             let expected = usize::from(revision == "before");
-            assert_eq!(report["diagnostics"].as_array().unwrap().len(), expected,
-                       "{id}/{revision}: {report}");
+            assert_eq!(
+                report["diagnostics"].as_array().unwrap().len(),
+                expected,
+                "{id}/{revision}: {report}"
+            );
             assert_eq!(status, i32::from(revision == "before"));
         }
     }

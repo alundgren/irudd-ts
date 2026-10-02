@@ -103,7 +103,16 @@ def normal(report, engine, workload, root, expected_files):
     if workload == "cycles":
         # Each generated static cycle has exactly two modules. Oxlint emits an
         # import diagnostic per participant; Archguard emits one per component.
-        return {tuple(sorted([file, file[:-4] + ("b.ts" if file.endswith("a.ts") else "a.ts")])) for file in files}
+        cycles = set()
+        for file, diagnostic in zip(files, diagnostics):
+            span = diagnostic["labels"][0]["span"]
+            source = (root / file).read_text()
+            literal = source[span["offset"]:span["offset"] + span["length"]]
+            assert len(literal) > 2 and literal[0] in ['"', "'"], diagnostic
+            assert literal[-1] == literal[0], diagnostic
+            target = (root / file).parent.joinpath(literal[1:-1]).resolve().relative_to(root).as_posix()
+            cycles.add(tuple(sorted([file, target])))
+        return cycles
     return set(files)
 
 
@@ -145,8 +154,9 @@ def benchmark(root, workload, count, args):
     for name, command in commands.items():
         _, code, report = execute(command)
         observed = normal(report, engines[name], workload, root, count)
+        expected_diagnostics = len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
         equivalence[name] = {"matched": observed == expected, "expected": len(expected), "observed": len(observed), "diagnostics": len(report["diagnostics"])}
-        if observed != expected or code != int(bool(expected)):
+        if observed != expected or code != int(bool(expected)) or len(report["diagnostics"]) != expected_diagnostics:
             raise RuntimeError(f"Work mismatch {workload}/{count}/{name}: expected {expected}, observed {observed}, code {code}")
     # Rotate a seeded randomized order to reduce ordering and cache bias.
     rng = random.Random(42)
@@ -157,6 +167,7 @@ def benchmark(root, workload, count, args):
             elapsed, code, report = execute(commands[name])
             assert normal(report, engines[name], workload, root, count) == expected
             assert code == int(bool(expected))
+            assert len(report["diagnostics"]) == len(expected) * (2 if workload == "cycles" and engines[name] == "oxlint" else 1)
             samples[name].append(elapsed)
     timings = {name: summary(values) for name, values in samples.items()}
     base = timings["native"]["medianMs"]
