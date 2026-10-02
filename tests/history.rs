@@ -19,7 +19,36 @@ fn check(root: &Path) -> (i32, Value) {
 #[test]
 fn upstream_reductions_fail_before_and_pass_after() {
     let history = Path::new(env!("CARGO_MANIFEST_DIR")).join("benchmarks/history");
-    for id in ["14385", "14387", "14389", "13151"] {
+    for (id, rule, file, target, binding) in [
+        (
+            "14385",
+            "namespace",
+            "apps/server/src/git/linkCreatedPullRequest.ts",
+            "apps/server/src/orchestration-v2/Orchestrator.ts",
+            Some("OrchestratorV2"),
+        ),
+        (
+            "14387",
+            "namespace",
+            "apps/server/src/orchestration-v2/AcpRegistryOrchestratorV2.live.test.ts",
+            "apps/server/src/orchestration-v2/Orchestrator.ts",
+            Some("OrchestratorV2"),
+        ),
+        (
+            "14389",
+            "namespace",
+            "apps/mobile/src/connection/background-activity.ts",
+            "packages/client-runtime/src/connection/index.ts",
+            Some("EnvironmentRegistry"),
+        ),
+        (
+            "13151",
+            "cycles",
+            "apps/mobile/src/components/FilePreview.tsx",
+            "apps/mobile/src/components/FilePreviewModal.tsx",
+            None,
+        ),
+    ] {
         for revision in ["before", "fixed"] {
             let (status, report) = check(&history.join(id).join(revision));
             assert_eq!(report["complete"], true, "{id}/{revision}: {report}");
@@ -31,6 +60,27 @@ fn upstream_reductions_fail_before_and_pass_after() {
                 "{id}/{revision}: {report}"
             );
             assert_eq!(status, i32::from(revision == "before"));
+            if revision == "before" {
+                let diagnostic = &report["diagnostics"][0];
+                assert_eq!(diagnostic["rule"], rule);
+                assert_eq!(diagnostic["file"], file);
+                assert_eq!(diagnostic["offset"], 0);
+                let (message, evidence) = if let Some(binding) = binding {
+                    (
+                        format!(
+                            "import service module {target} as a namespace instead of {binding}"
+                        ),
+                        serde_json::json!([target]),
+                    )
+                } else {
+                    (
+                        "module dependency cycle".into(),
+                        serde_json::json!([file, target]),
+                    )
+                };
+                assert_eq!(diagnostic["message"], message);
+                assert_eq!(diagnostic["evidence"], evidence);
+            }
         }
     }
     let (status, report) = check(&history.join("controls"));
@@ -94,6 +144,10 @@ fn mobile_cycle_reduction_matches_both_upstream_platform_orders() {
             let diagnostics = config.rules[0].check(&facts).unwrap();
             assert_eq!(diagnostics.len(), usize::from(revision == "before"));
             if revision == "before" {
+                assert_eq!(diagnostics[0].rule, "cycles");
+                assert_eq!(diagnostics[0].file, expected_target);
+                assert_eq!(diagnostics[0].offset, 0);
+                assert_eq!(diagnostics[0].message, "module dependency cycle");
                 assert_eq!(diagnostics[0].evidence.len(), 2);
                 assert!(
                     diagnostics[0]
