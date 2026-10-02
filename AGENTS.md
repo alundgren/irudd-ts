@@ -22,3 +22,5 @@ Historical experiments record exact upstream commits and distinguish full replay
 Check licenses before adding dependencies or copying upstream code. Retain upstream notices for copied fixtures. Keep the dependency-license report current. Do not import proprietary rules or tools with incompatible redistribution terms.
 
 Use direct language. Do not introduce the words forbidden by the session's global AGENTS instructions in prose or new code names. Use `gh` for GitHub operations. Independent review is required before merging. The task integration branch is `t3code/rust-architecture-enforcement-cli`; child PRs target it. The final reviewed PR targets `main` and may merge under the user's authorization.
+
+Keep source-resolution profiles in sync with the SDK facts. Test platform lookup ordering and inherited aliases whenever resolver options change. T3 profiles are separate adoption candidates; distinguish current policy, historical migration policy and experimental rules in the catalog. A preset-entry count is not a count of demonstrated historical bugs. Module reachability must not be described as execution reachability.

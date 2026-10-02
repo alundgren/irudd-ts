@@ -18,6 +18,7 @@ pub struct ProjectFacts {
 pub struct ResolutionProfile {
     pub mode: String,
     pub conditions: Vec<String>,
+    pub extensions: Vec<String>,
     pub extension_aliases: Vec<(String, Vec<String>)>,
     pub tsconfig: String,
 }
