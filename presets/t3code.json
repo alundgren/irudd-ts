@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "include": [
+    "apps/**/*.ts",
+    "apps/**/*.tsx",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "infra/**/*.ts"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.live.test.ts",
+    "**/fixtures/**",
+    "**/test-fixtures/**"
+  ],
+  "rules": [
+    {
+      "id": "contracts-no-apps",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/contracts/src/**"
+      ],
+      "targets": [
+        "apps/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "contracts-no-client-runtime",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/contracts/src/**"
+      ],
+      "targets": [
+        "packages/client-runtime/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "contracts-no-node-runtime",
+      "kind": "forbiddenImport",
+      "files": [
+        "packages/contracts/src/**"
+      ],
+      "specifiers": [
+        "node:fs",
+        "node:fs/**",
+        "node:child_process",
+        "node:worker_threads"
+      ],
+      "includeTypes": false
+    },
+    {
+      "id": "contracts-no-react-runtime",
+      "kind": "forbiddenImport",
+      "files": [
+        "packages/contracts/src/**"
+      ],
+      "specifiers": [
+        "react",
+        "react/**",
+        "react-dom",
+        "react-dom/**"
+      ],
+      "includeTypes": false
+    },
+    {
+      "id": "client-runtime-no-server",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/client-runtime/src/**"
+      ],
+      "targets": [
+        "apps/server/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "client-runtime-no-web",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/client-runtime/src/**"
+      ],
+      "targets": [
+        "apps/web/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "client-runtime-no-mobile",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/client-runtime/src/**"
+      ],
+      "targets": [
+        "apps/mobile/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "client-runtime-no-desktop",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/client-runtime/src/**"
+      ],
+      "targets": [
+        "apps/desktop/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "web-no-server-source",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/web/src/**"
+      ],
+      "targets": [
+        "apps/server/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "mobile-no-server-source",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/mobile/src/**"
+      ],
+      "targets": [
+        "apps/server/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "web-no-mobile-source",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/web/src/**"
+      ],
+      "targets": [
+        "apps/mobile/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "mobile-no-web-source",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/mobile/src/**"
+      ],
+      "targets": [
+        "apps/web/src/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "shared-no-apps",
+      "kind": "forbiddenDependency",
+      "files": [
+        "packages/shared/src/**"
+      ],
+      "targets": [
+        "apps/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "decider-no-provider",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/server/src/orchestration/decider.ts"
+      ],
+      "targets": [
+        "apps/server/src/provider/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "decider-no-persistence",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/server/src/orchestration/decider.ts"
+      ],
+      "targets": [
+        "apps/server/src/persistence/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "decider-no-external-io",
+      "kind": "forbiddenImport",
+      "files": [
+        "apps/server/src/orchestration/decider.ts"
+      ],
+      "specifiers": [
+        "node:fs",
+        "node:fs/**",
+        "node:child_process",
+        "effect/FileSystem",
+        "effect/Process",
+        "effect/SqlClient"
+      ],
+      "includeTypes": false
+    },
+    {
+      "id": "projector-no-provider",
+      "kind": "forbiddenDependency",
+      "files": [
+        "apps/server/src/orchestration/projector.ts"
+      ],
+      "targets": [
+        "apps/server/src/provider/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "transport-no-filesystem",
+      "kind": "forbiddenImport",
+      "files": [
+        "apps/server/src/ws.ts"
+      ],
+      "specifiers": [
+        "node:fs",
+        "node:fs/**",
+        "effect/FileSystem"
+      ],
+      "includeTypes": false
+    },
+    {
+      "id": "transport-no-process",
+      "kind": "forbiddenImport",
+      "files": [
+        "apps/server/src/ws.ts"
+      ],
+      "specifiers": [
+        "node:child_process",
+        "effect/Process"
+      ],
+      "includeTypes": false
+    },
+    {
+      "id": "server-service-namespaces",
+      "kind": "serviceNamespace",
+      "files": [
+        "apps/server/src/**"
+      ]
+    },
+    {
+      "id": "client-service-namespaces",
+      "kind": "serviceNamespace",
+      "files": [
+        "packages/client-runtime/src/**",
+        "apps/web/src/**",
+        "apps/mobile/src/**"
+      ]
+    },
+    {
+      "id": "relay-service-namespaces",
+      "kind": "serviceNamespace",
+      "files": [
+        "infra/relay/src/**"
+      ]
+    },
+    {
+      "id": "domain-no-imperative-runtime",
+      "kind": "forbiddenCall",
+      "files": [
+        "apps/server/src/project/**",
+        "apps/server/src/workspace/**",
+        "apps/server/src/git/**",
+        "apps/server/src/persistence/**"
+      ],
+      "origins": [
+        "effect/Effect#runPromise",
+        "effect/Effect#runPromiseExit",
+        "effect/Effect#runSync",
+        "effect/ManagedRuntime#make",
+        "effect#Effect.runPromise",
+        "effect#Effect.runPromiseExit",
+        "effect#Effect.runSync",
+        "effect#ManagedRuntime.make"
+      ]
+    },
+    {
+      "id": "contracts-public-entry",
+      "kind": "publicEntry",
+      "files": [
+        "apps/**",
+        "packages/client-runtime/src/**"
+      ],
+      "targets": [
+        "packages/contracts/src/**"
+      ],
+      "specifiers": [
+        "@t3tools/contracts",
+        "@t3tools/contracts/**"
+      ]
+    },
+    {
+      "id": "client-runtime-public-entry",
+      "kind": "publicEntry",
+      "files": [
+        "apps/web/src/**",
+        "apps/mobile/src/**",
+        "apps/desktop/src/**"
+      ],
+      "targets": [
+        "packages/client-runtime/src/**"
+      ],
+      "specifiers": [
+        "@t3tools/client-runtime",
+        "@t3tools/client-runtime/**"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "archguard-benchmark-tools",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "oxlint": "1.86.0",
+    "typescript": "7.0.2",
+    "typescript-parser": "npm:typescript@5.9.3"
+  }
+}

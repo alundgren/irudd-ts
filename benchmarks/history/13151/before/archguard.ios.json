@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "extensions": [
+    ".ios.ts",
+    ".ios.tsx",
+    ".native.ts",
+    ".native.tsx",
+    ".ts",
+    ".tsx"
+  ],
+  "extensionAliases": [],
+  "exclude": [
+    "**/*.test.*",
+    "**/test-support/**",
+    "**/*.d.ts",
+    "**/*.android.*"
+  ],
+  "rules": [
+    {
+      "id": "cycles",
+      "kind": "noCycles",
+      "includeTypes": true
+    }
+  ]
+}
