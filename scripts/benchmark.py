@@ -34,7 +34,11 @@ def generate(root, workload, count):
             client, helper, server = (f"{directory}/{index}.ts" for directory in ["client", "shared", "server"])
             sources[client] = f'import "../{helper}";\n'
             bad = index % 4 == 0
-            sources[helper] = f'import "../{server}";\n' if bad else "export const helper = 1;\n"
+            if bad:
+                sources[helper] = (f'import type {{ db }} from "../{server}";\nexport type Data = typeof db;\n'
+                                   if index % 8 == 4 else f'import "../{server}";\n')
+            else:
+                sources[helper] = "export const helper = 1;\n"
             sources[server] = "export const db = 1;\n"
             if bad:
                 expected.add((client, server))
