@@ -27,6 +27,7 @@ With a separate T3 checkout and an explicitly installed, self-contained dependen
 node examples/code-quality/prepare-t3.ts /absolute/t3code /absolute/node_modules /tmp/archguard-t3-profiles
 archguard dryer --root /absolute/t3code --config /tmp/archguard-t3-profiles/dryer.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/path.json
+archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/path-strengthened.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/hostClassification.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/delimitedPreview.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/gitPatchPath.json
@@ -35,3 +36,5 @@ archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profile
 These are focused reproductions of unchanged source and tests using an authored Vitest configuration. They do not run T3's entire suite or its root setup. Profiles keep each module/test pair together and copy the SDK reporter and dependencies explicitly. The dependency directory must contain its actual package contents and links whose targets stay inside that directory; external package-store links need an explicit self-contained copy. The generator installs nothing and leaves the T3 checkout unchanged.
 
 Generated profiles use the running Node binary directly. This avoids version-manager launchers depending on the original user's home in a private workspace. Static domain profiles are also supplied for systems where `node` resolves to a standalone runtime.
+
+The strengthened path profile adds two authored tests in the private worker copy. They cover `../repo` and `.\\repo` relative paths and trimming `x/` to `x`, with ordinary paths and root paths as controls. The original T3 checkout stays untouched. These examples follow existing call sites and trailing-separator expectations; they do not prescribe how dispatch should represent `C:/`.

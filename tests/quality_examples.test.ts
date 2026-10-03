@@ -30,6 +30,13 @@ test("T3 profile generation refuses source aliases, corrects missing inputs and 
     const profile = JSON.parse(configuration.toString());
     assert.equal(profile.execution.command[0], process.execPath);
     assert.deepEqual(profile.plan.selection.include, ["packages/shared/src/path.ts"]);
+    const strengthened = JSON.parse(fs.readFileSync(path.join(output, "path-strengthened.json"), "utf8"));
+    assert.deepEqual(strengthened.plan, profile.plan);
+    assert.ok(strengthened.execution.command.includes("quality-controls/path.test.ts"));
+    assert.equal(strengthened.execution.workspace.dependencies.at(-1).destination, "quality-controls");
+    const supplemental = fs.readFileSync(path.join(output, "controls/path.test.ts"), "utf8");
+    assert.ok(supplemental.includes('isExplicitRelativePath(".\\\\repo")'));
+    assert.ok(supplemental.includes('normalizeProjectPathForDispatch("x/")'));
     assert.deepEqual(fs.readdirSync(path.join(checkout, "packages/shared/src")), before);
     assert.equal(fs.existsSync(path.join(checkout, "profiles")), false);
     assert.equal(invoke(output).status, 1);

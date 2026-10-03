@@ -27,7 +27,7 @@ const support = path.join(output, "support");
 fs.mkdirSync(support);
 fs.writeFileSync(path.join(support, "vite.config.ts"), `import { defineConfig } from "vite-plus/test/config";
 export default defineConfig({ test: {
-  include: ["packages/shared/src/{path,hostClassification,delimitedPreview,gitPatchPath}.test.ts"],
+  include: ["packages/shared/src/{path,hostClassification,delimitedPreview,gitPatchPath}.test.ts", "quality-controls/*.test.ts"],
   pool: "forks", maxWorkers: 1, fileParallelism: false,
   reporters: ["./sdk/mutator-vitest-reporter.ts"],
 }});
@@ -43,6 +43,31 @@ for (const name of modules) {
   } };
   fs.writeFileSync(path.join(output, `${name}.json`), JSON.stringify(config, null, 2) + "\n");
   fs.writeFileSync(path.join(output, `${name}-plan.json`), JSON.stringify(plan, null, 2) + "\n");
+  if (name === "path") {
+    const controls = path.join(output, "controls");
+    fs.mkdirSync(controls);
+    fs.writeFileSync(path.join(controls, "path.test.ts"), `import { expect, it } from "vite-plus/test";
+import { isExplicitRelativePath, normalizeProjectPathForDispatch } from "../packages/shared/src/path.ts";
+
+it("recognizes relative parent and Windows current-directory prefixes", () => {
+  expect(isExplicitRelativePath("../repo")).toBe(true);
+  expect(isExplicitRelativePath(".\\\\repo")).toBe(true);
+  expect(isExplicitRelativePath("./repo")).toBe(true);
+  expect(isExplicitRelativePath("..\\\\repo")).toBe(true);
+  expect(isExplicitRelativePath("~/repo")).toBe(false);
+});
+
+it("trims a trailing separator after a single-character project name", () => {
+  expect(normalizeProjectPathForDispatch("x/")).toBe("x");
+  expect(normalizeProjectPathForDispatch("x")).toBe("x");
+  expect(normalizeProjectPathForDispatch("/repo/")).toBe("/repo");
+  expect(normalizeProjectPathForDispatch("/")).toBe("/");
+});
+`);
+    config.execution.command.splice(5, 0, "quality-controls/path.test.ts");
+    config.execution.workspace.dependencies.push({ source: controls, destination: "quality-controls" });
+    fs.writeFileSync(path.join(output, "path-strengthened.json"), JSON.stringify(config, null, 2) + "\n");
+  }
 }
 fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion: 1,
   selection: { include: modules.map(name => `packages/shared/src/${name}.ts`) },
