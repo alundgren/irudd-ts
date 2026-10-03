@@ -67,7 +67,50 @@ def node_fingerprint(node, environment=None):
     if not path:
         raise ValueError("Explicit Node executable is unavailable")
     executable = Path(path).resolve()
-    return {"path": str(executable), "sha256": digest(executable.read_bytes())}
+    probe = subprocess.run([str(executable), "--input-type=module", "-e",
+                            'console.log(JSON.stringify({path:process.execPath,version:process.version}))'],
+                           env={"PATH": str(executable.parent)}, capture_output=True, timeout=15)
+    if probe.returncode:
+        raise ValueError("Explicit Node executable did not report its runtime identity")
+    actual = json.loads(probe.stdout)
+    if Path(actual["path"]).resolve() != executable or not isinstance(actual.get("version"), str):
+        raise ValueError("Configured executable does not directly launch the selected Node runtime")
+    return {"path": str(executable), "version": actual["version"], "sha256": digest(executable.read_bytes())}
+
+
+def runtime_environment(node_identity, configured=None):
+    environment = dict(configured or {})
+    environment["PATH"] = str(Path(node_identity["path"]).parent) + os.pathsep + environment.get("PATH", os.environ.get("PATH", ""))
+    return environment
+
+
+def direct_vitest_command(config="vite.config.ts"):
+    """Explicit copied Vitest route, resolved by execute_case with its pinned Node."""
+    return ["{node}", "{vitest}", "run", "--config", config]
+
+
+def vitest_entrypoint(source, dependencies, node, environment):
+    if dependencies is None:
+        raise ValueError("Direct Vitest execution requires an owned dependency store")
+    script = ('import {createRequire} from "node:module";import fs from "node:fs";import path from "node:path";'
+              'const root=createRequire(path.join(process.cwd(),"package.json"));'
+              'const context=root.resolve("vite-plus/package.json");'
+              'const packagePath=createRequire(context).resolve("vitest/package.json");'
+              'const info=JSON.parse(fs.readFileSync(packagePath,"utf8"));'
+              'const bin=typeof info.bin==="string"?info.bin:info.bin?.vitest;'
+              'if(typeof bin!=="string")throw new Error("Vitest package has no declared entrypoint");'
+              'console.log(JSON.stringify({path:fs.realpathSync(path.resolve(path.dirname(packagePath),bin)),'
+              'packagePath:fs.realpathSync(packagePath),context:fs.realpathSync(context),'
+              'version:info.version,vitePlusVersion:JSON.parse(fs.readFileSync(context,"utf8")).version}));')
+    probe = subprocess.run([node, "--input-type=module", "-e", script], cwd=source,
+                           env=environment, capture_output=True, timeout=15)
+    if probe.returncode:
+        raise ValueError("Copied vite-plus context cannot resolve its declared Vitest entrypoint: " + probe.stderr.decode(errors="replace")[:1000])
+    record = json.loads(probe.stdout)
+    for field in ["path", "packagePath", "context"]:
+        inside(Path(record[field]).resolve(), dependencies.root)
+    record["sha256"] = digest(Path(record["path"]).read_bytes())
+    return record
 
 
 def read_json(path):
@@ -473,8 +516,10 @@ def private_environment(directory, configured=None):
     return environment
 
 
-def validate_inventory(inventory, protocol, request, raw_exit):
+def validate_inventory(inventory, protocol, request, raw_exit, node_identity):
     problems = list(inventory.get("problems", []))
+    if inventory.get("runtime") != node_identity:
+        problems.append("Reporter runtime disagrees with the selected Node path, version or hash")
     for field in ["schemaVersion", "requestId", "runId", "inputDigest"]:
         if inventory.get(field) != request[field]:
             problems.append(f"Inventory {field} disagrees with request")
@@ -530,7 +575,7 @@ def validate_inventory(inventory, protocol, request, raw_exit):
 
 def execute_case(template, output, command, *, dependencies=None, baseline=None, mutation=None,
                  cwd=".", environment=None, timeout=60, input_digest=None, run_id=None, node="node", keep_source=False,
-                 import_controls=None, captured_artifacts=None):
+                 import_controls=None, captured_artifacts=None, expected_node=None):
     """Run one explicit fresh copy. Returns records and complete/unknown classification.
 
     Historical callers can pass their fixed inventory as baseline and a separate
@@ -545,29 +590,39 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     if dependencies:
         dependencies.attach(source)
     source_digest = hash_tree(template)[0]
+    configured_node = node
     node_identity = node_fingerprint(node, environment)
+    node = node_identity["path"]
+    environment = runtime_environment(node_identity, environment)
+    env = private_environment(output / "private", environment)
+    vitest = vitest_entrypoint(source, dependencies, node, env) if any("{vitest}" in str(argument) for argument in command) else None
     runner_digest = runner_fingerprint()
     input_digest = input_digest or digest(json.dumps({"source": source_digest,
         "dependencies": dependencies.sha256 if dependencies else None, "runner": runner_digest,
         "sdk": hash_tree(REPOSITORY / "sdk")[0], "command": command, "cwd": cwd,
-        "environment": {"PATH": os.environ.get("PATH", ""), **(environment or {})}, "node": node_identity}, sort_keys=True).encode())
+        "environment": environment, "node": node_identity,
+        "vitest": {key: value for key, value in (vitest or {}).items() if key not in {"path", "packagePath", "context"}}}, sort_keys=True).encode())
     result_path = output / "result.json"
     request_path = output / "request.json"
     request = {"schemaVersion": 1, "requestId": uuid.uuid4().hex, "runId": run_id or uuid.uuid4().hex,
                "inputDigest": input_digest, "phase": "mutation" if mutation else "baseline",
                "mutationId": mutation["id"] if mutation else None, "resultPath": str(result_path), "maxResultBytes": MAX_JSON}
     write_json(request_path, request)
-    env = private_environment(output / "private", environment)
     env.update(ARCHGUARD_MUTATION_REQUEST=str(request_path), ARCHGUARD_MUTATION_RESULT=str(result_path),
-               ARCHGUARD_RESEARCH_ROOT=str(source), ARCHGUARD_RESEARCH_INVENTORY=str(output / "inventory.json"))
+               ARCHGUARD_RESEARCH_ROOT=str(source), ARCHGUARD_RESEARCH_INVENTORY=str(output / "inventory.json"),
+               ARCHGUARD_RESEARCH_NODE=json.dumps(node_identity, sort_keys=True))
     replacements = {"root": str(source), "reporter": str(HERE / "vitest-reporter.ts"),
-                    "nodeReporter": str(HERE / "node-reporter.mjs"), "sdk": str(REPOSITORY / "sdk"), "node": node}
+                    "nodeReporter": str(HERE / "node-reporter.mjs"), "sdk": str(REPOSITORY / "sdk"), "node": node,
+                    "vitest": vitest["path"] if vitest else ""}
     actual_command = [str(argument).format_map(replacements) for argument in command]
+    if actual_command and actual_command[0] == configured_node:
+        actual_command[0] = node
     actual_cwd = source / cwd
     inside(actual_cwd.resolve(), source)
     evidence = {"templateSha256": source_digest, "mutation": mutation, "request": request,
                 "baselineIds": [test["id"] for test in baseline] if baseline is not None else None,
-                "node": node_identity, "runnerSha256": runner_digest,
+                "node": node_identity, "expectedNode": expected_node or node_identity,
+                "vitest": vitest, "runnerSha256": runner_digest,
                 "dependencySha256": dependencies.sha256 if dependencies else None, "cleanupComplete": True}
     try:
         if mutation:
@@ -612,7 +667,9 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
                     raise ValueError("Final SDK protocol validation failed")
                 protocol = json.loads(validation.stdout)
                 inventory = read_json(output / "inventory.json")
-                records, problems = validate_inventory(inventory, protocol, request, raw["exitCode"])
+                records, problems = validate_inventory(inventory, protocol, request, raw["exitCode"], expected_node or node_identity)
+                if expected_node is not None and node_identity != expected_node:
+                    problems.append("Selected Node runtime changed from the frozen execution identity")
             except (OSError, ValueError, subprocess.SubprocessError) as error:
                 problems.append(str(error))
         if baseline is not None:
@@ -702,14 +759,16 @@ def run_matrix(config, output):
                                        for field in ["schemaVersion", "operatorVersion", "configuration", "files", "sites", "complete"]):
         raise ValueError("Supplied mutation plan disagrees with fresh Archguard plan")
     runner_digest = runner_fingerprint()
+    node_identity = node_fingerprint(config.get("node", "node"), config.get("environment"))
     inputs_digest = digest(json.dumps({"inputs": manifest, "config": config, "dependencies": dependencies.sha256 if dependencies else None,
                                       "archguard": digest(archguard.read_bytes()), "runner": runner_digest,
                                       "sdk": hash_tree(REPOSITORY / "sdk")[0],
-                                      "node": node_fingerprint(config.get("node", "node"), config.get("environment")),
-                                      "effectivePath": config.get("environment", {}).get("PATH", os.environ.get("PATH", ""))}, sort_keys=True).encode())
+                                      "node": node_identity,
+                                      "environment": runtime_environment(node_identity, config.get("environment"))}, sort_keys=True).encode())
     options = dict(dependencies=dependencies, cwd=config.get("cwd", "."), environment=config.get("environment"),
                    timeout=config.get("timeoutSeconds", 60), input_digest=inputs_digest, run_id=uuid.uuid4().hex,
                    node=config.get("node", "node"), keep_source=config.get("keepSource", False),
+                   expected_node=node_identity,
                    import_controls=config.get("importControls"), captured_artifacts=config.get("capturedArtifacts"))
     baseline = execute_case(template, output / "baseline", config["command"], **options)
     inventory = baseline["tests"]

@@ -13,7 +13,7 @@ import time
 from unittest.mock import patch
 
 import runner as execution_runner
-from runner import DependencyStore, OwnedChild, execute_case, group_has_live_members, install_signal_handlers, private_environment, run_command, run_matrix, write_json
+from runner import DependencyStore, OwnedChild, direct_vitest_command, execute_case, group_has_live_members, install_signal_handlers, private_environment, run_command, run_matrix, write_json
 
 
 def fixture(directory, files):
@@ -180,7 +180,7 @@ def ownership_controls(output):
                "delayed-observation-reserves-leader", "unknown-observation-signals-suppressed"]})
 
 
-def execute_controls(output, archguard, installed=None, node="node"):
+def execute_controls(output, archguard, installed=None, node="node", wrong_node=None, vitest_node=None):
     output.mkdir(parents=True, exist_ok=False)
     ownership_controls(output)
     command = [node, "--test", "--test-reporter={nodeReporter}", "case.test.mjs"]
@@ -305,24 +305,38 @@ def execute_controls(output, archguard, installed=None, node="node"):
     records.append({"control": "owned-workspace-import-and-hash", "passed": True, "evidence": "workspace-mutated/execution.json"})
 
     if installed:
+        node = vitest_node or node
         dependencies = DependencyStore(installed, output / "vitest-store").copy()
         base_files = {"package.json": '{"type":"module"}', "source.ts": source}
         vt_tests = 'import {test,describe,expect} from "vite-plus/test";import {lower,upper} from "./source.ts";describe("boundaries",()=>{test("duplicate",()=>expect(lower(2)).toBe(false));test("duplicate",()=>expect(upper(3)).toBe(false));});'
-        vt_command = ["{root}/node_modules/.bin/vp", "test", "run", "--config", "vite.config.ts"]
+        pin_check = ('import assert from "node:assert/strict";import fs from "node:fs";import {createHash} from "node:crypto";'
+                     'import {execFileSync} from "node:child_process";const expected=JSON.parse(process.env.ARCHGUARD_RESEARCH_NODE);'
+                     'const executable=fs.realpathSync(process.execPath);'
+                     'assert.deepEqual({path:executable,version:process.version,sha256:createHash("sha256").update(fs.readFileSync(executable)).digest("hex")},expected);'
+                     'assert.equal(process.env.PATH.split(":")[0],executable.slice(0,executable.lastIndexOf("/")));'
+                     'assert.equal(fs.realpathSync(execFileSync("node",["-p","process.execPath"],{encoding:"utf8"}).trim()),expected.path);')
+        vt_command = direct_vitest_command()
         vt_config = 'import {defineConfig} from "vite-plus/test/config";export default defineConfig({test:{include:["case.test.ts"],pool:"forks",maxWorkers:1,reporters:[' + json.dumps(str(Path(__file__).resolve().parent / "vitest-reporter.ts")) + '],EXTRA}});'
 
-        def vt_fixture(name, tests_body=vt_tests, extra="", setup=None):
-            files = dict(base_files, **{"case.test.ts": tests_body, "vite.config.ts": vt_config.replace("EXTRA", extra)})
+        def vt_fixture(name, tests_body=vt_tests, extra="", setup=None, pinned=True):
+            files = dict(base_files, **{"case.test.ts": (pin_check if pinned else "") + tests_body, "vite.config.ts": vt_config.replace("EXTRA", extra)})
             if setup:
                 files["setup.ts"] = setup
             template = fixture(output / f"vitest-{name}-template", files)
             for target in dependencies.workspace_links.values():
-                (template / target).mkdir(parents=True, exist_ok=True)
+                workspace = template / target
+                workspace.mkdir(parents=True, exist_ok=True)
+                (workspace / "control.txt").write_text("Owned workspace directory control.\n")
             return template
 
         vt_template = vt_fixture("passing")
         vt_baseline = execute_case(vt_template, output / "vitest-passing", vt_command, dependencies=dependencies, node=node, timeout=40)
         require(vt_baseline["complete"], f"Vitest baseline must complete: {vt_baseline['infrastructureErrors']}")
+        inventory = json.loads((output / "vitest-passing/inventory.json").read_text())
+        require(inventory["runtime"] == vt_baseline["node"], "Reporter must agree with the pinned runtime path, version and hash")
+        require(vt_baseline["command"][:2] == [vt_baseline["node"]["path"], vt_baseline["vitest"]["path"]], "Vitest must launch directly using the absolute pinned Node")
+        require(not list((output / "vitest-passing/private").rglob("js_runtime")), "Direct Vitest must not install another runtime in the private directories")
+        records.append({"control": "direct-node-vitest-reporter-and-fork-pin", "passed": True, "evidence": "vitest-passing/execution.json"})
         require(len(vt_baseline["tests"]) == 2 and vt_baseline["tests"][0]["id"] != vt_baseline["tests"][1]["id"], "Vitest duplicate names need distinct IDs")
         for index, mutation in enumerate(plan["sites"]):
             result = execute_case(vt_template, output / f"vitest-mutant-{index}", vt_command,
@@ -330,6 +344,51 @@ def execute_controls(output, archguard, installed=None, node="node"):
             require(result["complete"] and sum(cell == "killed" for cell in result["outcomes"].values()) == 1,
                     f"Vitest must report exact independent kill set: {result['infrastructureErrors']}")
         records.append({"control": "vitest-dual-kill-duplicate-names", "passed": True, "evidence": "vitest-passing/execution.json"})
+        if wrong_node:
+            wrong_template = vt_fixture("wrong-runtime", pinned=False)
+            wrong_command = [str(Path(wrong_node).resolve()), *vt_command[1:]]
+            wrong = execute_case(wrong_template, output / "vitest-wrong-runtime", wrong_command, dependencies=dependencies,
+                                 baseline=vt_baseline["tests"], mutation=plan["sites"][0], node=node, timeout=40)
+            require(wrong["protocol"] and wrong["protocol"]["complete"] and wrong["protocol"]["tests"]["failed"] == 1,
+                    "Wrong runtime control must retain a complete real SDK assertion result")
+            require(not wrong["complete"] and all(cell == "unknown" for cell in wrong["outcomes"].values()) and
+                    any("Reporter runtime disagrees" in error for error in wrong["infrastructureErrors"]),
+                    "A real reporter on another runtime must invalidate every column cell")
+            records.append({"control": "vitest-wrong-runtime-real-reporter", "passed": True, "evidence": "vitest-wrong-runtime/execution.json"})
+            pin = output / "owned-node-pin"
+            pin.symlink_to(Path(node).resolve())
+            switched_template = vt_fixture("runtime-switch")
+            switched_config = {"sourceRoot": str(switched_template), "dependencyRoot": str(installed), "archguard": str(archguard),
+                "node": str(pin), "subject": {"name": "authored-runtime-switch", "revision": "authored"}, "command": vt_command,
+                "planConfig": {"schemaVersion": 1, "selection": {"include": ["source.ts"]}}}
+            original_execute = execution_runner.execute_case
+
+            def switch_after_baseline(*arguments, **options):
+                execution = original_execute(*arguments, **options)
+                if options.get("baseline") is None:
+                    pin.unlink()
+                    pin.symlink_to(Path(wrong_node).resolve())
+                return execution
+
+            try:
+                with patch.object(DependencyStore, "copy", return_value=dependencies), patch.object(execution_runner, "execute_case", side_effect=switch_after_baseline):
+                    switched = run_matrix(switched_config, output / "vitest-runtime-switch")
+                require(switched["baselineComplete"], "Runtime switch baseline must pass on the original frozen pin")
+                for column in switched["mutants"]:
+                    detail = json.loads((output / "vitest-runtime-switch" / column["evidence"]).read_text())
+                    require(detail["protocol"]["complete"] and detail["protocol"]["tests"]["failed"] == 1 and detail["node"] != detail["expectedNode"],
+                            "Changed runtime must retain actual assertion evidence and the original frozen identity")
+                    require(column["status"] == "error" and all(cell == "unknown" for cell in column["outcomes"].values()) and
+                            any("frozen execution identity" in error for error in column["infrastructureErrors"]),
+                            "Changing the selected runtime after baseline must invalidate every cell")
+            finally:
+                pin.unlink()
+                pin.symlink_to(Path(node).resolve())
+            restored = execute_case(switched_template, output / "vitest-runtime-restored", vt_command, dependencies=dependencies,
+                                    baseline=vt_baseline["tests"], node=str(pin), expected_node=vt_baseline["node"], timeout=40)
+            require(restored["complete"] and restored["status"] == "survived", "Restoring the same frozen runtime must accept a passing execution")
+            records.append({"control": "vitest-runtime-switch-between-columns-and-restoration", "passed": True,
+                            "evidence": "vitest-runtime-switch/matrix.json"})
         for name, body, extra, setup in [
             ("skipped", vt_tests.replace('test("duplicate"', 'test.skip("duplicate"', 1), "", None),
             ("missing", vt_tests.replace('test("duplicate",()=>expect(upper(3)).toBe(false));', ""), "", None),
@@ -363,8 +422,11 @@ def main():
     parser.add_argument("--archguard", required=True)
     parser.add_argument("--installed", help="Explicit installed Vitest repository, optional")
     parser.add_argument("--node", default="node")
+    parser.add_argument("--vitest-node", help="Explicit Vitest runtime when the native Node event adapter requires another version")
+    parser.add_argument("--wrong-node", help="Different actual Node executable for the real reporter runtime rejection control")
     arguments = parser.parse_args()
-    records = execute_controls(Path(arguments.output).resolve(), Path(arguments.archguard).resolve(), arguments.installed, arguments.node)
+    records = execute_controls(Path(arguments.output).resolve(), Path(arguments.archguard).resolve(), arguments.installed, arguments.node,
+                               arguments.wrong_node, arguments.vitest_node)
     print(f"Passed {len(records)} controls")
 
 
