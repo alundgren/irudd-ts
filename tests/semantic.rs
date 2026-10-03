@@ -474,12 +474,13 @@ fn semantic_incompleteness_does_not_change_legacy_plugin_graph_payload() {
     let root = tempfile::tempdir().unwrap();
     fs::write(
         root.path().join("main.ts"),
-        "declare const untyped:any; untyped.value;",
+        "import {x} from './model'; x.value;",
     )
     .unwrap();
-    let semantic = config(
+    fs::write(root.path().join("model.ts"), "export const x={value:1};").unwrap();
+    let mut semantic = config(
         root.path(),
-        json!([{"id":"a","tsconfig":"tsconfig.json","files":["*.ts"]}]),
+        json!([{"id":"a","tsconfig":"missing.json","files":["*.ts"]}]),
     );
     let semantic_path = root.path().join("semantic.json");
     fs::write(&semantic_path, serde_json::to_vec(&semantic).unwrap()).unwrap();
@@ -488,31 +489,78 @@ fn semantic_incompleteness_does_not_change_legacy_plugin_graph_payload() {
         "let input='';process.stdin.on('data',s=>input+=s);process.stdin.on('end',()=>{{require('node:fs').writeFileSync({marker:?},input);process.stdout.write(JSON.stringify({{schemaVersion:1,diagnostics:[]}}));}});"
     );
     let graph_config = root.path().join("archguard.json");
-    fs::write(&graph_config,serde_json::to_vec(&json!({"schemaVersion":1,"include":["main.ts"],"plugins":[{"name":"legacy","command":["node","-e",script]}]})).unwrap()).unwrap();
-    let output = std::process::Command::new(env!("CARGO_BIN_EXE_archguard"))
-        .args(["check", "--root"])
-        .arg(root.path())
-        .arg("--config")
-        .arg(&graph_config)
-        .arg("--semantic-config")
-        .arg(&semantic_path)
-        .arg("--json")
-        .output()
-        .unwrap();
+    fs::write(&graph_config,serde_json::to_vec(&json!({"schemaVersion":1,"include":["main.ts","model.ts"],"plugins":[{"name":"legacy","command":["node","-e",script]}]})).unwrap()).unwrap();
+    let cache = root.path().join("graph-cache.json");
+    let run = |cached: bool| {
+        let mut command = std::process::Command::new(env!("CARGO_BIN_EXE_archguard"));
+        command
+            .args(["check", "--root"])
+            .arg(root.path())
+            .arg("--config")
+            .arg(&graph_config)
+            .arg("--semantic-config")
+            .arg(&semantic_path)
+            .arg("--json");
+        if cached {
+            command.arg("--cache").arg(&cache);
+        }
+        command.output().unwrap()
+    };
+    let check_payload = || {
+        let payload: archguard::facts::ProjectFacts =
+            serde_json::from_slice(&fs::read(&marker).unwrap()).unwrap();
+        assert!(payload.problems.is_empty());
+        assert_eq!(
+            serde_json::to_value(&payload).unwrap()["files"],
+            serde_json::to_value(graph(root.path())).unwrap()["files"]
+        );
+    };
+    for attempt in 0..2 {
+        let output = run(true);
+        assert_eq!(
+            output.status.code(),
+            Some(2),
+            "{}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+        check_payload();
+        fs::remove_file(&marker).unwrap();
+        let report: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();
+        assert_eq!(report["complete"], false);
+        assert!(!report["problems"].as_array().unwrap().is_empty());
+        assert_eq!(report["cache"]["published"], attempt == 0);
+        if attempt == 1 {
+            assert_eq!(report["cache"]["parsedFiles"], 0);
+            assert_eq!(report["cache"]["resolvedEdges"], 0);
+            assert_eq!(report["cache"]["reusedFiles"], 2);
+            assert_eq!(report["cache"]["reusedEdges"], 1);
+        }
+    }
+    semantic.contexts[0].tsconfig = "tsconfig.json".into();
+    fs::write(&semantic_path, serde_json::to_vec(&semantic).unwrap()).unwrap();
+    let corrected = run(true);
     assert_eq!(
-        output.status.code(),
-        Some(2),
+        corrected.status.code(),
+        Some(0),
         "{}",
-        String::from_utf8_lossy(&output.stderr)
+        String::from_utf8_lossy(&corrected.stderr)
     );
-    let payload: archguard::facts::ProjectFacts =
-        serde_json::from_slice(&fs::read(marker).unwrap()).unwrap();
-    assert!(payload.problems.is_empty());
-    assert_eq!(
-        serde_json::to_value(&payload).unwrap()["files"],
-        serde_json::to_value(graph(root.path())).unwrap()["files"]
-    );
-    let report: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();
-    assert_eq!(report["complete"], false);
-    assert!(!report["problems"].as_array().unwrap().is_empty());
+    check_payload();
+    fs::remove_file(&marker).unwrap();
+    let mut report: serde_json::Value = serde_json::from_slice(&corrected.stdout).unwrap();
+    assert_eq!(report["complete"], true);
+    assert_eq!(report["cache"]["parsedFiles"], 0);
+    assert_eq!(report["cache"]["resolvedEdges"], 0);
+    assert_eq!(report["cache"]["reusedFiles"], 2);
+    assert_eq!(report["cache"]["reusedEdges"], 1);
+    assert_eq!(report["cache"]["published"], false);
+    let fresh = run(false);
+    assert_eq!(fresh.status.code(), Some(0));
+    check_payload();
+    let mut fresh_report: serde_json::Value = serde_json::from_slice(&fresh.stdout).unwrap();
+    for value in [&mut report, &mut fresh_report] {
+        value.as_object_mut().unwrap().remove("elapsedMs");
+        value.as_object_mut().unwrap().remove("cache");
+    }
+    assert_eq!(report, fresh_report);
 }

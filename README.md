@@ -14,7 +14,7 @@ scripts/check.sh
 
 `check --json` emits a deterministic diagnostic order plus scan counts, completeness and elapsed time. Exit codes are 0 for a complete clean check, 1 for policy violations, and 2 for incomplete analysis or invalid configuration. A parser error, unsupported dynamic target, excluded source dependency or unresolved internal import cannot produce a clean result. Diagnostics may still identify violations in an incomplete project, but the result requires attention.
 
-`check` and `facts` accept an opt-in `--cache /path/to/cache.json`. It reuses syntax facts and resolved imports after validating source contents, configuration, package metadata and filesystem lookups. Policies and plugins still run each time. See [cache behavior and measurements](docs/cache.md), including cases where validation costs more than fresh analysis.
+`check` and `facts` accept an opt-in `--cache /path/to/cache.json`. It reuses syntax facts and resolved imports after validating source contents, configuration, package metadata and filesystem lookups. Policies and plugins still run each time. The measured historical reductions and complete server control were slower with caching. See [cache behavior and measurements](docs/cache.md).
 
 Configuration is explicit JSON with `schemaVersion: 1`. Unknown keys and duplicate rule IDs fail. `--root` is relative to the invoking directory. Plugin commands run in the configuration file's directory, with that directory as their working directory. Glob selectors use `/` and match paths relative to the analysis root.
 
