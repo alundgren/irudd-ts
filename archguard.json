@@ -10,7 +10,9 @@
     "examples/repository-rules/**/*.ts",
     "examples/semantic/**/*.rs",
     "examples/semantic/**/*.ts",
-    "providers/typescript7/provider.mjs"
+    "providers/typescript7/provider.mjs",
+    "examples/code-quality/**/*.ts",
+    "tests/**/*.ts"
   ],
   "rules": [
     {
@@ -93,7 +95,18 @@
         "SemanticRule",
         "readSemanticFacts",
         "semanticFile",
-        "missingMemberDiagnostics"
+        "missingMemberDiagnostics",
+        "readMutationRequest",
+        "validateMutationRequest",
+        "validateMutationResult",
+        "writeMutationResult",
+        "TestExecutionRequest",
+        "TestExecutionResult",
+        "TestCounts",
+        "TestFailure",
+        "TestFailureKind",
+        "MutationVitestReporter",
+        "mutationProtocolLimits"
       ]
     },
     {
@@ -166,7 +179,8 @@
         "providers/**",
         "examples/graph-plugin/**",
         "examples/repository-rules/**",
-        "examples/semantic/**"
+        "examples/semantic/**",
+        "examples/code-quality/**"
       ],
       "specifiers": [
         "research/**",
@@ -211,7 +225,8 @@
       {
         "id": "test",
         "files": [
-          "tests/**/*.rs"
+          "tests/**/*.rs",
+          "tests/**/*.ts"
         ]
       },
       {
@@ -254,7 +269,9 @@
           "examples/repository-rules/**/*.ts",
           "examples/semantic/**/*.rs",
           "examples/semantic/**/*.ts",
-          "providers/typescript7/provider.mjs"
+          "providers/typescript7/provider.mjs",
+          "examples/code-quality/**/*.ts",
+          "tests/**/*.ts"
         ]
       },
       {

@@ -57,3 +57,5 @@ Plugins and semantic providers are trusted commands you explicitly configure. Su
 Start with the [runnable examples](examples/README.md), including a [T3 Code adoption case study](examples/t3code/README.md). The [documentation index](docs/README.md) has reference and extension guides.
 
 Archguard is MIT licensed. See [dependency licenses](docs/licenses/README.md) when distributing binaries or upstream assets.
+
+For optional structural duplicate and mutation feedback, see the [code-quality guide](docs/code-quality.md) and [authored examples](examples/code-quality/README.md). Findings are review evidence, with no CI gate or score target.

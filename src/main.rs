@@ -7,6 +7,7 @@ use archguard::{
 use clap::{Parser, Subcommand};
 use serde::Serialize;
 use std::{path::PathBuf, process::ExitCode, time::Instant};
+mod cli_quality;
 
 #[derive(Parser)]
 #[command(
@@ -19,6 +20,22 @@ struct Cli {
 }
 #[derive(Subcommand)]
 enum Action {
+    /// Report structural similarities for reviewer inspection.
+    Dryer {
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        #[arg(long)]
+        config: Option<PathBuf>,
+        #[arg(long)]
+        cache: Option<PathBuf>,
+        #[arg(long)]
+        json: bool,
+    },
+    /// Plan controlled TypeScript mutations.
+    Mutator {
+        #[command(subcommand)]
+        command: MutationAction,
+    },
     Check {
         #[arg(long, default_value = ".")]
         root: PathBuf,
@@ -49,6 +66,30 @@ enum Action {
         cache: Option<PathBuf>,
     },
 }
+#[derive(Subcommand)]
+enum MutationAction {
+    /// Run explicitly configured trusted tests against isolated mutations.
+    Run {
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        #[arg(long)]
+        config: PathBuf,
+        /// Execute a previously inspected plan after revalidating its source.
+        #[arg(long)]
+        plan: Option<PathBuf>,
+        #[arg(long)]
+        json: bool,
+    },
+    /// Enumerate runtime mutation sites without executing commands.
+    Plan {
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        #[arg(long)]
+        config: Option<PathBuf>,
+        #[arg(long)]
+        json: bool,
+    },
+}
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 struct Report {
@@ -75,6 +116,30 @@ fn execute() -> Result<u8> {
     let started = Instant::now();
     let cli = Cli::parse();
     let (root, path, json, facts, semantic_path, semantic_only, cache_path) = match cli.command {
+        Action::Dryer {
+            root,
+            config,
+            cache,
+            json,
+        } => {
+            return cli_quality::dryer(&root, config.as_deref(), cache.as_deref(), json);
+        }
+        Action::Mutator {
+            command: MutationAction::Plan { root, config, json },
+        } => {
+            return cli_quality::plan(&root, config.as_deref(), json);
+        }
+        Action::Mutator {
+            command:
+                MutationAction::Run {
+                    root,
+                    config,
+                    plan,
+                    json,
+                },
+        } => {
+            return cli_quality::run(&root, &config, plan.as_deref(), json);
+        }
         Action::Check {
             root,
             config,

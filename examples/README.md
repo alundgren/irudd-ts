@@ -10,3 +10,5 @@ Run commands from the repository root. The small examples use authored source fi
 | [T3 Code](t3code/README.md) | Real-repository adoption profiles and links to separate historical evidence |
 
 The Rust example names remain `graph_plugin`, `role_inventory`, and `semantic_request`.
+
+[Code-quality examples](code-quality/README.md) demonstrate structural similarities and weak/strengthened mutation tests using Node builtins.
