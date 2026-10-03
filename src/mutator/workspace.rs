@@ -6,12 +6,17 @@ use crate::{config::Matcher, quality::validate_relative_path};
 use anyhow::{Context, Result, bail};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
-use std::os::unix::fs::{MetadataExt, OpenOptionsExt, PermissionsExt, symlink};
+use std::os::fd::IntoRawFd;
+use std::os::unix::{
+    ffi::OsStrExt,
+    fs::{MetadataExt, OpenOptionsExt, PermissionsExt, symlink},
+};
 use std::{
     collections::{BTreeSet, VecDeque},
     fs::{self, File, OpenOptions},
     io::{Read, Write},
     path::{Component, Path, PathBuf},
+    time::{Duration, Instant},
 };
 
 #[derive(Debug)]
@@ -724,6 +729,9 @@ impl DirectoryQueueBudget {
     }
 }
 fn remove_owned(path: &Path, identity: (u64, u64)) -> Result<()> {
+    remove_owned_until(path, identity, Instant::now() + Duration::from_secs(30))
+}
+fn remove_owned_until(path: &Path, identity: (u64, u64), deadline: Instant) -> Result<()> {
     let metadata = match fs::symlink_metadata(path) {
         Ok(metadata) => metadata,
         Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(()),
@@ -738,27 +746,143 @@ fn remove_owned(path: &Path, identity: (u64, u64)) -> Result<()> {
         maximum_entries: 34000000,
         maximum_bytes: 134217728,
     };
+    let parent_path = path.parent().context("owned workspace has no parent")?;
+    let name = path.file_name().context("owned workspace has no name")?;
+    let parent = OpenOptions::new()
+        .read(true)
+        .custom_flags(nix::libc::O_NOFOLLOW | nix::libc::O_DIRECTORY | nix::libc::O_CLOEXEC)
+        .open(parent_path)?;
+    let root = File::from(nix::fcntl::openat(
+        &parent,
+        name,
+        nix::fcntl::OFlag::O_RDONLY
+            | nix::fcntl::OFlag::O_DIRECTORY
+            | nix::fcntl::OFlag::O_NOFOLLOW
+            | nix::fcntl::OFlag::O_CLOEXEC,
+        nix::sys::stat::Mode::empty(),
+    )?);
+    let metadata = root.metadata()?;
+    if (metadata.dev(), metadata.ino()) != identity {
+        bail!("owned workspace identity changed before cleanup open");
+    }
     budget.push(path)?;
-    let mut pending = vec![path.to_owned()];
-    while let Some(directory) = pending.pop() {
+    let mut pending = vec![(path.to_owned(), false, identity)];
+    while let Some((directory, remove, expected)) = pending.pop() {
         budget.pop(&directory);
-        let directory_file = OpenOptions::new()
-            .read(true)
-            .custom_flags(nix::libc::O_NOFOLLOW | nix::libc::O_DIRECTORY | nix::libc::O_CLOEXEC)
-            .open(&directory)?;
-        directory_file.set_permissions(fs::Permissions::from_mode(0o700))?;
-        for child in fs::read_dir(&directory)? {
-            let child = child?;
-            budget.entry(&directory, &child.file_name())?;
-            let metadata = child.file_type()?;
-            if metadata.is_dir() {
-                budget.push_length(directory.as_os_str().len() + 1 + child.file_name().len())?;
-                pending.push(child.path());
+        if Instant::now() >= deadline {
+            return Err(limit("owned workspace cleanup deadline reached"));
+        }
+        let relative = directory.strip_prefix(path)?;
+        if remove {
+            let (containing, name) = if relative.as_os_str().is_empty() {
+                (parent.try_clone()?, name)
+            } else {
+                (
+                    open_owned_directory(&root, relative.parent().unwrap_or(Path::new("")))?,
+                    relative
+                        .file_name()
+                        .context("owned directory has no name")?,
+                )
+            };
+            let metadata = nix::sys::stat::fstatat(
+                &containing,
+                name,
+                nix::fcntl::AtFlags::AT_SYMLINK_NOFOLLOW,
+            )?;
+            if (metadata.st_dev as u64, metadata.st_ino as u64) != expected {
+                bail!("owned directory identity changed before deletion");
+            }
+            nix::unistd::unlinkat(&containing, name, nix::unistd::UnlinkatFlags::RemoveDir)?;
+            continue;
+        }
+        let opened = open_owned_directory(&root, relative)?;
+        let metadata = opened.metadata()?;
+        if (metadata.dev(), metadata.ino()) != expected {
+            bail!("owned directory identity changed before traversal");
+        }
+        opened.set_permissions(fs::Permissions::from_mode(0o700))?;
+        budget.push(&directory)?;
+        pending.push((directory.clone(), true, expected));
+        visit_directory(&opened, |name| {
+            if Instant::now() >= deadline {
+                return Err(limit("owned workspace cleanup deadline reached"));
+            }
+            budget.entry(&directory, name)?;
+            let metadata =
+                nix::sys::stat::fstatat(&opened, name, nix::fcntl::AtFlags::AT_SYMLINK_NOFOLLOW)?;
+            if metadata.st_mode & nix::libc::S_IFMT == nix::libc::S_IFDIR {
+                budget.push_length(directory.as_os_str().len() + 1 + name.len())?;
+                pending.push((
+                    directory.join(name),
+                    false,
+                    (metadata.st_dev as u64, metadata.st_ino as u64),
+                ));
+            } else {
+                nix::unistd::unlinkat(&opened, name, nix::unistd::UnlinkatFlags::NoRemoveDir)?;
+            }
+            Ok(())
+        })?;
+    }
+    Ok(())
+}
+fn open_owned_directory(root: &File, relative: &Path) -> Result<File> {
+    let mut opened = root.try_clone()?;
+    for component in relative.components() {
+        let Component::Normal(name) = component else {
+            bail!("unsafe owned directory traversal");
+        };
+        opened = File::from(nix::fcntl::openat(
+            &opened,
+            name,
+            nix::fcntl::OFlag::O_RDONLY
+                | nix::fcntl::OFlag::O_DIRECTORY
+                | nix::fcntl::OFlag::O_NOFOLLOW
+                | nix::fcntl::OFlag::O_CLOEXEC,
+            nix::sys::stat::Mode::empty(),
+        )?);
+    }
+    Ok(opened)
+}
+fn visit_directory(
+    directory: &File,
+    mut visitor: impl FnMut(&std::ffi::OsStr) -> Result<()>,
+) -> Result<()> {
+    struct Directory(*mut nix::libc::DIR);
+    impl Drop for Directory {
+        fn drop(&mut self) {
+            unsafe {
+                nix::libc::closedir(self.0);
             }
         }
     }
-    fs::remove_dir_all(path)?;
-    Ok(())
+    let descriptor = directory.try_clone()?.into_raw_fd();
+    // fdopendir takes ownership only on success; the guard closes it afterward.
+    let pointer = unsafe { nix::libc::fdopendir(descriptor) };
+    if pointer.is_null() {
+        let error = std::io::Error::last_os_error();
+        unsafe {
+            nix::libc::close(descriptor);
+        }
+        return Err(error.into());
+    }
+    let directory = Directory(pointer);
+    loop {
+        nix::errno::Errno::clear();
+        let entry = unsafe { nix::libc::readdir(directory.0) };
+        if entry.is_null() {
+            let error = nix::errno::Errno::last_raw();
+            if error != 0 {
+                return Err(std::io::Error::from_raw_os_error(error).into());
+            }
+            return Ok(());
+        }
+        // readdir names remain valid until the next call on this owned DIR.
+        let name = unsafe { std::ffi::CStr::from_ptr((*entry).d_name.as_ptr()) }.to_bytes();
+        if name == b"." || name == b".." {
+            continue;
+        }
+        visitor(std::ffi::OsStr::from_bytes(name))?;
+    }
 }
 pub(crate) fn disk_usage(
     root: &Path,
@@ -948,6 +1072,43 @@ mod bounded_queue_tests {
         limits.max_inventory_bytes = 16777216;
         assert_eq!(disk_usage(&root, &limits, &|| Ok(())).unwrap(), 0);
         fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn cleanup_deadline_preserves_owned_tree_then_bounded_retry_removes_it() {
+        let root =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-cleanup-test")
+                .unwrap();
+        fs::create_dir(root.join("nested")).unwrap();
+        fs::write(root.join("nested/source.ts"), "export const value = true;").unwrap();
+        fs::set_permissions(root.join("nested"), fs::Permissions::from_mode(0o500)).unwrap();
+        let metadata = fs::symlink_metadata(&root).unwrap();
+        let identity = (metadata.dev(), metadata.ino());
+        let error = remove_owned_until(&root, identity, Instant::now()).unwrap_err();
+        assert!(error.downcast_ref::<WorkspaceLimit>().is_some());
+        assert!(root.join("nested/source.ts").is_file());
+        remove_owned(&root, identity).unwrap();
+        assert!(!root.exists());
+    }
+    #[test]
+    fn cleanup_unlinks_child_directory_links_without_touching_external_files_or_modes() {
+        let owned = tempfile::tempdir().unwrap();
+        let external = tempfile::tempdir().unwrap();
+        fs::write(
+            external.path().join("source.ts"),
+            "export const value = true;",
+        )
+        .unwrap();
+        fs::set_permissions(external.path(), fs::Permissions::from_mode(0o500)).unwrap();
+        symlink(external.path(), owned.path().join("linked-directory")).unwrap();
+        let metadata = fs::symlink_metadata(owned.path()).unwrap();
+        remove_owned(owned.path(), (metadata.dev(), metadata.ino())).unwrap();
+        assert!(!owned.path().exists());
+        assert_eq!(
+            fs::read_to_string(external.path().join("source.ts")).unwrap(),
+            "export const value = true;"
+        );
+        assert_eq!(fs::metadata(external.path()).unwrap().mode() & 0o777, 0o500);
+        fs::set_permissions(external.path(), fs::Permissions::from_mode(0o700)).unwrap();
     }
     #[test]
     fn declared_link_chain_root_modes_and_git_inputs_remain_in_identity() {
