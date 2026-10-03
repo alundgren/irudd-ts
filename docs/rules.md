@@ -2,6 +2,8 @@
 
 The default preset at [`presets/t3code.json`](../presets/t3code.json) contains 25 configured rule instances. That is a count of preset entries, not 25 observed defects or 25 independent historical fixes. The two mobile presets and the exploratory/legacy presets add separate entries with narrower scope.
 
+The separate [structural profile](../presets/t3code-structure.json) has nine configured file roles and eleven rules. It checks scoped classification, service/layer and toolkit companions, migration import prerequisites, exports and role dependencies. Its independently authored simulation is described in [repository-structure.md](repository-structure.md); it is an adoption candidate with synthetic controls, separate from historical defect counts.
+
 ## Default preset: 25 entries
 
 | Group | Rule instances | T3 convention and evidence | Existing overlap and limits |
