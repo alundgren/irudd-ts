@@ -103,7 +103,17 @@ pub(super) fn run(
     plan_path: Option<&Path>,
     json: bool,
 ) -> Result<u8> {
+    let started = std::time::Instant::now();
+    let cancellation = CliCancellation::install()?;
+    let token = &cancellation.token;
     let (configuration, directory) = mutator::MutatorConfig::read(configuration)?;
+    let deadline = started + std::time::Duration::from_millis(configuration.execution.limits.run_timeout_ms);
+    let guard = || {
+        ensure!(!token.is_cancelled(), "mutation run cancelled during planning");
+        ensure!(std::time::Instant::now() < deadline, "mutation run deadline reached during planning");
+        Ok(())
+    };
+    guard()?;
     let plan = match plan_path {
         Some(path) => {
             let plan: mutator::MutationPlan =
@@ -119,14 +129,15 @@ pub(super) fn run(
             );
             plan
         }
-        None => mutator::plan(root, &configuration.plan)?,
+        None => mutator::plan_with_guard(root, &configuration.plan, &guard)?,
     };
-    let cancellation = CliCancellation::install()?;
-    let report = mutator::run(
+    guard()?;
+    let report = mutator::run_until(
         &plan,
         &configuration.execution,
         &directory,
-        &cancellation.token,
+        token,
+        deadline,
     )?;
     if json {
         print_json(&report)?;
