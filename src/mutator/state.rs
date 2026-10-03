@@ -14,7 +14,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-const MAX_RECORD_BYTES: u64 = 16777216;
+const MAX_RECORD_BYTES: u64 = 33554432;
 const MAX_STATE_BYTES: u64 = 1073741824;
 const MAX_ACTIVE_BYTES: u64 = 16384;
 #[derive(Serialize, Deserialize)]
@@ -33,7 +33,7 @@ struct Record {
 struct Envelope {
     schema_version: u32,
     checksum: String,
-    record: Record,
+    record: String,
 }
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -49,6 +49,7 @@ pub(crate) struct RunState {
     _lock: Flock<File>,
     active: bool,
     bytes: std::cell::Cell<u64>,
+    records: std::cell::Cell<usize>,
 }
 impl RunState {
     pub fn open(
@@ -105,13 +106,22 @@ impl RunState {
         let lock = Flock::lock(file, FlockArg::LockExclusiveNonblock)
             .map_err(|(_, error)| anyhow::anyhow!("mutation state is locked: {error}"))?;
         if fs::symlink_metadata(directory.join("active.json")).is_ok() {
-            let _: Active = serde_json::from_slice(&storage::read_regular(
+            let active: Active = serde_json::from_slice(&storage::read_regular(
                 &directory.join("active.json"),
                 MAX_ACTIVE_BYTES,
             )?)
             .context("interrupted state has invalid active-run metadata")?;
+            if active.schema_version != 1
+                || active.run_id.len() > 4096
+                || !active.workspace.is_absolute()
+                || active.workspace.as_os_str().len() > 4096
+            {
+                bail!("prior active-run metadata invalid");
+            }
             bail!(
-                "prior run cleanup is uncertain; its owned workspace is preserved and state cannot be reused"
+                "prior run {} cleanup is uncertain; owned workspace {} is preserved and state cannot be reused",
+                active.run_id,
+                active.workspace.display()
             );
         }
         let records = directory.join("records");
@@ -156,6 +166,7 @@ impl RunState {
             _lock: lock,
             active: false,
             bytes: std::cell::Cell::new(bytes),
+            records: std::cell::Cell::new(count),
         })
     }
     pub fn begin(&mut self, run_id: &str, workspace: &OwnedDirectory) -> Result<()> {
@@ -164,16 +175,24 @@ impl RunState {
             run_id: run_id.into(),
             workspace: workspace.path.clone(),
         };
-        storage::atomic_write(
-            &self.directory.join("active.json"),
-            &storage::encode(&active, MAX_ACTIVE_BYTES)?,
-        )?;
-        self.active = true;
-        Ok(())
+        self.publish_active(&active, storage::atomic_write)
+    }
+    fn publish_active(
+        &mut self,
+        active: &Active,
+        writer: impl FnOnce(&Path, &[u8]) -> Result<()>,
+    ) -> Result<()> {
+        let bytes = storage::encode(active, MAX_ACTIVE_BYTES)?;
+        self.active = true; // Rename can succeed before directory sync fails; confirmed cleanup still removes the sentinel.
+        writer(&self.directory.join("active.json"), &bytes)
     }
     pub fn end(&mut self, cleanup_complete: bool) -> Result<()> {
         if self.active && cleanup_complete {
-            fs::remove_file(self.directory.join("active.json"))?;
+            match fs::remove_file(self.directory.join("active.json")) {
+                Ok(()) => {}
+                Err(error) if error.kind() == std::io::ErrorKind::NotFound => {}
+                Err(error) => return Err(error.into()),
+            }
             File::open(&self.directory)?.sync_all()?;
             self.active = false;
         }
@@ -201,12 +220,12 @@ impl RunState {
             serde_json::from_slice(&storage::read_regular(&path, MAX_RECORD_BYTES)?)
                 .context("invalid mutation state record")?;
         if envelope.schema_version != 1
-            || envelope.checksum
-                != storage::digest(&storage::encode(&envelope.record, MAX_RECORD_BYTES)?)
+            || envelope.checksum != storage::digest(envelope.record.as_bytes())
         {
             bail!("state record version/checksum invalid");
         }
-        let record = envelope.record;
+        let record: Record =
+            serde_json::from_str(&envelope.record).context("invalid state record payload")?;
         if record.schema_version != 1
             || record.input_digest != input
             || record.mutation_id != site.id
@@ -290,7 +309,8 @@ impl RunState {
             request: request.clone(),
             response: response.clone(),
         };
-        let checksum = storage::digest(&storage::encode(&record, MAX_RECORD_BYTES)?);
+        let record = String::from_utf8(storage::encode(&record, 16777216)?)?;
+        let checksum = storage::digest(record.as_bytes());
         let path = self.path(input, site)?;
         let bytes = storage::encode(
             &Envelope {
@@ -300,9 +320,9 @@ impl RunState {
             },
             MAX_RECORD_BYTES,
         )?;
-        let old = match fs::symlink_metadata(&path) {
-            Ok(metadata) if metadata.is_file() => metadata.len(),
-            Err(error) if error.kind() == std::io::ErrorKind::NotFound => 0,
+        let (old, new_record) = match fs::symlink_metadata(&path) {
+            Ok(metadata) if metadata.is_file() => (metadata.len(), false),
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => (0, true),
             _ => bail!("assigned state record is not regular"),
         };
         let total = self
@@ -314,8 +334,18 @@ impl RunState {
         if total > MAX_STATE_BYTES {
             bail!("state disk byte budget exhausted");
         }
-        storage::atomic_write(&path, &bytes)?;
+        let records = self
+            .records
+            .get()
+            .checked_add(usize::from(new_record))
+            .context("state record count overflow")?;
+        if records > 100000 {
+            bail!("state record count budget exhausted");
+        }
+        // Reserve conservatively before publication; errors can happen after rename.
         self.bytes.set(total);
+        self.records.set(records);
+        storage::atomic_write(&path, &bytes)?;
         Ok(())
     }
 }
@@ -391,6 +421,7 @@ mod tests {
         result.outcome = MutationOutcome::Survived;
         result.tests = Some(response.tests.clone());
         result.exit_code = Some(0);
+        result.elapsed_ms = 112.28964099999999;
         state
             .put(&input, &site, &result, &request, &response)
             .unwrap();
@@ -443,6 +474,44 @@ mod tests {
         fs::remove_file(config.directory.join("active.json")).unwrap();
         let state = RunState::open(&config, &root, &[]).unwrap();
         drop(state);
+        fs::remove_dir_all(root).unwrap();
+    }
+}
+
+#[cfg(test)]
+mod publication_tests {
+    use super::*;
+    #[test]
+    fn failed_directory_sync_after_active_publication_still_allows_confirmed_cleanup() {
+        let root =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-publication-test")
+                .unwrap();
+        let config = StateConfig {
+            directory: root.join("state"),
+            reuse: ReusePolicy::Off,
+            external_inputs: vec![],
+        };
+        let mut state = RunState::open(&config, &root, &[]).unwrap();
+        let mut owned = OwnedDirectory::create(&root, &[]).unwrap();
+        let active = Active {
+            schema_version: 1,
+            run_id: "run-post-rename-failure".into(),
+            workspace: owned.path.clone(),
+        };
+        assert!(
+            state
+                .publish_active(&active, |path, bytes| {
+                    storage::atomic_write(path, bytes)?;
+                    bail!("forced failure after rename")
+                })
+                .is_err()
+        );
+        assert!(state.directory.join("active.json").is_file());
+        owned.cleanup().unwrap();
+        state.end(true).unwrap();
+        assert!(!state.directory.join("active.json").exists());
+        drop(state);
+        RunState::open(&config, &root, &[]).unwrap();
         fs::remove_dir_all(root).unwrap();
     }
 }

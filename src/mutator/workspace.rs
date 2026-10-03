@@ -8,7 +8,7 @@ use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::os::unix::fs::{MetadataExt, OpenOptionsExt, PermissionsExt, symlink};
 use std::{
-    collections::BTreeSet,
+    collections::{BTreeSet, VecDeque},
     fs::{self, File, OpenOptions},
     io::{Read, Write},
     path::{Component, Path, PathBuf},
@@ -51,6 +51,106 @@ pub(crate) struct Inputs {
     pub roots: Vec<(PathBuf, String)>,
     pub entries: Vec<Entry>,
     pub bytes: u64,
+    pub root_mode: u32,
+    pub resolutions: Vec<ResolutionEvidence>,
+}
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ResolutionEvidence {
+    pub path: PathBuf,
+    pub mode: u32,
+    pub kind: EntryKind,
+    pub link: Option<PathBuf>,
+}
+pub(crate) fn resolve_evidence(
+    path: &Path,
+    maximum: u64,
+    guard: &impl Fn() -> Result<()>,
+) -> Result<(PathBuf, Vec<ResolutionEvidence>)> {
+    if !path.is_absolute() {
+        bail!("execution input path must be absolute");
+    }
+    let mut current = PathBuf::from("/");
+    let mut pending: VecDeque<_> = path
+        .components()
+        .filter(|part| !matches!(part, Component::RootDir))
+        .map(|part| part.as_os_str().to_owned())
+        .collect();
+    let mut evidence = Vec::new();
+    let mut links = 0usize;
+    let mut used = 0u64;
+    while let Some(part) = pending.pop_front() {
+        guard()?;
+        if part == "." {
+            continue;
+        }
+        if part == ".." {
+            current.pop();
+            continue;
+        }
+        let candidate = current.join(part);
+        let metadata = fs::symlink_metadata(&candidate)?;
+        let kind = if metadata.file_type().is_symlink() {
+            EntryKind::Link
+        } else if metadata.is_dir() {
+            EntryKind::Directory
+        } else if metadata.is_file() {
+            EntryKind::File
+        } else {
+            bail!("execution input path contains unsupported file");
+        };
+        let link = if kind == EntryKind::Link {
+            Some(fs::read_link(&candidate)?)
+        } else {
+            None
+        };
+        let path_text = candidate
+            .to_str()
+            .context("input resolution path must be UTF-8")?;
+        let link_text = link
+            .as_ref()
+            .map(|target| target.to_str().context("input link must be UTF-8"))
+            .transpose()?;
+        if path_text.len() > 4096 || link_text.is_some_and(|target| target.len() > 4096) {
+            return Err(limit("input resolution path budget exhausted"));
+        }
+        used = used
+            .checked_add(
+                path_text.len() as u64 * 6
+                    + link_text.map_or(0, |text| text.len() as u64 * 6)
+                    + 256,
+            )
+            .context("resolution budget overflow")?;
+        if used > maximum {
+            return Err(limit("input resolution metadata budget exhausted"));
+        }
+        evidence.push(ResolutionEvidence {
+            path: candidate.clone(),
+            mode: metadata.mode() & 0o777,
+            kind,
+            link: link.clone(),
+        });
+        if let Some(target) = link {
+            links += 1;
+            if links > 40 {
+                bail!("execution input has too many symbolic links");
+            }
+            if target.is_absolute() {
+                current = PathBuf::from("/");
+            }
+            let parts: Vec<_> = target
+                .components()
+                .filter(|part| !matches!(part, Component::RootDir))
+                .map(|part| part.as_os_str().to_owned())
+                .collect();
+            for part in parts.into_iter().rev() {
+                pending.push_front(part);
+            }
+        } else {
+            current = candidate;
+        }
+    }
+    Ok((current, evidence))
 }
 fn related(a: &Path, b: &Path) -> bool {
     a.starts_with(b) || b.starts_with(a)
@@ -75,17 +175,38 @@ impl Inputs {
         config_dir: &Path,
         guard: &impl Fn() -> Result<()>,
     ) -> Result<Self> {
-        let root = root
-            .canonicalize()
-            .context("canonical mutation input root")?;
+        Self::inventory_with_options(root, config, config_dir, guard, false)
+    }
+    pub fn inventory_external(
+        root: &Path,
+        config: &ExecutionConfig,
+        config_dir: &Path,
+        guard: &impl Fn() -> Result<()>,
+    ) -> Result<Self> {
+        Self::inventory_with_options(root, config, config_dir, guard, true)
+    }
+    fn inventory_with_options(
+        root: &Path,
+        config: &ExecutionConfig,
+        config_dir: &Path,
+        guard: &impl Fn() -> Result<()>,
+        include_git: bool,
+    ) -> Result<Self> {
+        let (root, mut resolutions) =
+            resolve_evidence(root, config.limits.max_inventory_bytes, guard)?;
         if !root.is_dir() {
             bail!("mutation input root must be a directory");
         }
         let mut roots = vec![(root.clone(), String::new())];
         for dependency in &config.workspace.dependencies {
-            let source = absolute(config_dir, &dependency.source)
-                .canonicalize()
-                .context("declared dependency source unavailable")?;
+            let (source, evidence) = resolve_evidence(
+                &absolute(config_dir, &dependency.source),
+                config.limits.max_inventory_bytes,
+                guard,
+            )
+            .context("declared dependency source unavailable")?;
+            resolutions.extend(evidence);
+            storage::encoded_size(&resolutions, config.limits.max_inventory_bytes)?;
             if roots.iter().any(|(existing, _)| related(&source, existing)) {
                 bail!("dependency source roots overlap");
             }
@@ -100,7 +221,8 @@ impl Inputs {
         let exclude = Matcher::new(&config.workspace.exclude)?;
         let mut entries = Vec::new();
         let mut bytes = 0u64;
-        let mut metadata_bytes = 0u64;
+        let mut metadata_bytes =
+            storage::encoded_size(&resolutions, config.limits.max_inventory_bytes)?;
         let mut visited = 0usize;
         for (source, destination) in &roots {
             let mut pending = vec![(source.clone(), destination.clone())];
@@ -113,7 +235,7 @@ impl Inputs {
                 if !relative.is_empty() {
                     validate_relative_path(&relative)?;
                 }
-                if relative.split('/').any(|part| part == ".git") {
+                if !include_git && relative.split('/').any(|part| part == ".git") {
                     continue;
                 }
                 let original = destination.is_empty();
@@ -163,7 +285,7 @@ impl Inputs {
                 if relative.is_empty() {
                     continue;
                 }
-                if original && kind != EntryKind::Directory && !include.matches(&relative) {
+                if original && !include.matches(&relative) {
                     continue;
                 }
                 let mode = metadata.mode() & 0o777;
@@ -243,6 +365,49 @@ impl Inputs {
                 });
             }
         }
+        // Preserve only selected directory records and the parents required by selected leaves.
+        let mut present: BTreeSet<String> =
+            entries.iter().map(|entry| entry.path.clone()).collect();
+        let mut parents = Vec::new();
+        for entry in &entries {
+            let mut parent = Path::new(&entry.path).parent();
+            while let Some(path) = parent {
+                if path.as_os_str().is_empty() {
+                    break;
+                }
+                let text = path.to_str().context("parent path encoding")?;
+                if !present.contains(text) {
+                    metadata_bytes = metadata_bytes
+                        .checked_add(text.len() as u64 * 6 + 512)
+                        .context("parent metadata overflow")?;
+                    if metadata_bytes > config.limits.max_inventory_bytes
+                        || present.len() >= config.limits.max_workspace_files
+                    {
+                        return Err(limit("selected parent metadata budget exhausted"));
+                    }
+                    present.insert(text.into());
+                    let source = root.join(path);
+                    let (source, mode) = match fs::symlink_metadata(&source) {
+                        Ok(metadata) if metadata.is_dir() => (source, metadata.mode() & 0o777),
+                        Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
+                            (PathBuf::new(), 0o755)
+                        }
+                        _ => bail!("selected parent is not a copied directory"),
+                    };
+                    parents.push(Entry {
+                        path: text.into(),
+                        kind: EntryKind::Directory,
+                        bytes: 0,
+                        mode,
+                        digest: String::new(),
+                        link: None,
+                        source,
+                    });
+                }
+                parent = path.parent();
+            }
+        }
+        entries.extend(parents);
         entries.sort_by(|a, b| a.path.cmp(&b.path));
         let mut paths = BTreeSet::new();
         for entry in &entries {
@@ -265,12 +430,18 @@ impl Inputs {
                 }
             }
         }
-        storage::encode(&entries, config.limits.max_inventory_bytes)?;
+        let root_mode = fs::metadata(&root)?.mode() & 0o777;
+        storage::encoded_size(
+            &(&entries, &resolutions, root_mode),
+            config.limits.max_inventory_bytes,
+        )?;
         Ok(Self {
             root,
             roots,
             entries,
             bytes,
+            root_mode,
+            resolutions,
         })
     }
     pub fn verify(
@@ -280,7 +451,11 @@ impl Inputs {
         guard: &impl Fn() -> Result<()>,
     ) -> Result<()> {
         let current = Self::inventory(&self.root, config, config_dir, guard)?;
-        if self.entries != current.entries || self.roots != current.roots {
+        if self.entries != current.entries
+            || self.roots != current.roots
+            || self.root_mode != current.root_mode
+            || self.resolutions != current.resolutions
+        {
             bail!("execution inputs changed during the run");
         }
         Ok(())
@@ -348,6 +523,7 @@ impl Inputs {
                 fs::Permissions::from_mode(entry.mode),
             )?;
         }
+        fs::set_permissions(destination, fs::Permissions::from_mode(self.root_mode))?;
         Ok(())
     }
 }
@@ -501,6 +677,52 @@ impl Drop for OwnedDirectory {
         }
     }
 }
+struct DirectoryQueueBudget {
+    entries: usize,
+    queued_bytes: u64,
+    maximum_entries: usize,
+    maximum_bytes: u64,
+}
+impl DirectoryQueueBudget {
+    fn entry(&mut self, parent: &Path, name: &std::ffi::OsStr) -> Result<()> {
+        self.entries = self
+            .entries
+            .checked_add(1)
+            .context("directory entry count overflow")?;
+        if self.entries > self.maximum_entries {
+            return Err(limit("directory traversal entry budget exhausted"));
+        }
+        if parent
+            .as_os_str()
+            .len()
+            .saturating_add(name.len())
+            .saturating_add(1)
+            > 4096
+        {
+            return Err(limit("generated directory path budget exhausted"));
+        }
+        Ok(())
+    }
+    fn push_length(&mut self, length: usize) -> Result<()> {
+        let bytes = length as u64 * 2 + 128;
+        self.queued_bytes = self
+            .queued_bytes
+            .checked_add(bytes)
+            .context("directory queue byte overflow")?;
+        if self.queued_bytes > self.maximum_bytes {
+            return Err(limit("directory queue metadata budget exhausted"));
+        }
+        Ok(())
+    }
+    fn push(&mut self, path: &Path) -> Result<()> {
+        self.push_length(path.as_os_str().len())
+    }
+    fn pop(&mut self, path: &Path) {
+        self.queued_bytes = self
+            .queued_bytes
+            .saturating_sub(path.as_os_str().len() as u64 * 2 + 128);
+    }
+}
 fn remove_owned(path: &Path, identity: (u64, u64)) -> Result<()> {
     let metadata = match fs::symlink_metadata(path) {
         Ok(metadata) => metadata,
@@ -510,13 +732,16 @@ fn remove_owned(path: &Path, identity: (u64, u64)) -> Result<()> {
     if !metadata.is_dir() || (metadata.dev(), metadata.ino()) != identity {
         bail!("owned workspace identity changed; refusing cleanup");
     } // Make owned read-only directories removable without following links.
+    let mut budget = DirectoryQueueBudget {
+        entries: 0,
+        queued_bytes: 0,
+        maximum_entries: 34000000,
+        maximum_bytes: 134217728,
+    };
+    budget.push(path)?;
     let mut pending = vec![path.to_owned()];
-    let mut count = 0usize;
     while let Some(directory) = pending.pop() {
-        count += 1;
-        if count > 1000000 {
-            bail!("cleanup entry budget exhausted");
-        }
+        budget.pop(&directory);
         let directory_file = OpenOptions::new()
             .read(true)
             .custom_flags(nix::libc::O_NOFOLLOW | nix::libc::O_DIRECTORY | nix::libc::O_CLOEXEC)
@@ -524,8 +749,10 @@ fn remove_owned(path: &Path, identity: (u64, u64)) -> Result<()> {
         directory_file.set_permissions(fs::Permissions::from_mode(0o700))?;
         for child in fs::read_dir(&directory)? {
             let child = child?;
+            budget.entry(&directory, &child.file_name())?;
             let metadata = child.file_type()?;
             if metadata.is_dir() {
+                budget.push_length(directory.as_os_str().len() + 1 + child.file_name().len())?;
                 pending.push(child.path());
             }
         }
@@ -538,10 +765,19 @@ pub(crate) fn disk_usage(
     limits: &ExecutionLimits,
     guard: &impl Fn() -> Result<()>,
 ) -> Result<u64> {
+    let mut budget = DirectoryQueueBudget {
+        entries: 0,
+        queued_bytes: 0,
+        maximum_entries: limits
+            .max_workspace_files
+            .saturating_mul(limits.workers + 2),
+        maximum_bytes: limits.max_inventory_bytes,
+    };
+    budget.push(root)?;
     let mut pending = vec![root.to_owned()];
     let mut bytes = 0u64;
-    let mut count = 0usize;
     while let Some(directory) = pending.pop() {
+        budget.pop(&directory);
         guard()?;
         let metadata = match fs::symlink_metadata(&directory) {
             Ok(metadata) => metadata,
@@ -559,20 +795,14 @@ pub(crate) fn disk_usage(
         for child in children {
             guard()?;
             let child = child?;
-            count = count.checked_add(1).context("generated entry overflow")?;
-            if count
-                > limits
-                    .max_workspace_files
-                    .saturating_mul(limits.workers + 2)
-            {
-                return Err(limit("generated workspace entry budget exhausted"));
-            }
+            budget.entry(&directory, &child.file_name())?;
             let metadata = match fs::symlink_metadata(child.path()) {
                 Ok(metadata) => metadata,
                 Err(error) if error.kind() == std::io::ErrorKind::NotFound => continue,
                 Err(error) => return Err(error.into()),
             };
             if metadata.is_dir() {
+                budget.push_length(directory.as_os_str().len() + 1 + child.file_name().len())?;
                 pending.push(child.path());
             } else if metadata.is_file() {
                 bytes = bytes
@@ -696,5 +926,97 @@ mod tests {
         assert_eq!(fs::metadata(&outside).unwrap().mode(), before);
         fs::remove_file(path).unwrap();
         fs::remove_dir(outside).unwrap();
+    }
+}
+
+#[cfg(test)]
+mod bounded_queue_tests {
+    use super::*;
+    #[test]
+    fn generated_queue_is_bounded_before_push_then_recovers() {
+        let root = storage::create_private_directory(&std::env::temp_dir(), "archguard-queue-test")
+            .unwrap();
+        for index in 0..40 {
+            fs::create_dir(root.join(format!("directory-{index}"))).unwrap();
+        }
+        let mut limits = ExecutionLimits {
+            max_inventory_bytes: 1024,
+            ..Default::default()
+        };
+        let error = disk_usage(&root, &limits, &|| Ok(())).unwrap_err();
+        assert!(error.downcast_ref::<WorkspaceLimit>().is_some());
+        limits.max_inventory_bytes = 16777216;
+        assert_eq!(disk_usage(&root, &limits, &|| Ok(())).unwrap(), 0);
+        fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn declared_link_chain_root_modes_and_git_inputs_remain_in_identity() {
+        let root =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-resolution-test")
+                .unwrap();
+        let external = root.join("external");
+        fs::create_dir(&external).unwrap();
+        fs::create_dir(external.join(".git")).unwrap();
+        fs::write(external.join(".git/config"), "one").unwrap();
+        symlink("external", root.join("inner")).unwrap();
+        symlink("inner", root.join("outer")).unwrap();
+        let path = root.join("outer");
+        let (target, first) = resolve_evidence(&path, 16777216, &|| Ok(())).unwrap();
+        assert_eq!(target, external);
+        fs::remove_file(root.join("inner")).unwrap();
+        symlink("./external", root.join("inner")).unwrap();
+        let (target, second) = resolve_evidence(&path, 16777216, &|| Ok(())).unwrap();
+        assert_eq!(target, external);
+        assert_ne!(first, second);
+        let mut config: ExecutionConfig = serde_json::from_str(r#"{"command":["node"]}"#).unwrap();
+        config.workspace.exclude.clear();
+        let first = Inputs::inventory_external(&path, &config, &root, &|| Ok(())).unwrap();
+        assert!(
+            first
+                .entries
+                .iter()
+                .any(|entry| entry.path == ".git/config")
+        );
+        fs::write(external.join(".git/config"), "two").unwrap();
+        let second = Inputs::inventory_external(&path, &config, &root, &|| Ok(())).unwrap();
+        assert_ne!(first.entries, second.entries);
+        fs::set_permissions(&external, fs::Permissions::from_mode(0o700)).unwrap();
+        let third = Inputs::inventory_external(&path, &config, &root, &|| Ok(())).unwrap();
+        assert_ne!(second.root_mode, third.root_mode);
+        fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
+    fn only_selected_parents_are_copied_with_declared_destinations() {
+        let root =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-selected-test")
+                .unwrap();
+        let dependency =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-dependency-test")
+                .unwrap();
+        fs::create_dir(root.join("node_modules")).unwrap();
+        fs::create_dir(root.join("src")).unwrap();
+        fs::write(root.join("src/a.ts"), "true").unwrap();
+        fs::write(dependency.join("runtime.js"), "ok").unwrap();
+        let mut config: ExecutionConfig = serde_json::from_str(r#"{"command":["node"]}"#).unwrap();
+        config.workspace.include = vec!["src/a.ts".into()];
+        config
+            .workspace
+            .dependencies
+            .push(super::super::config::DependencyCopy {
+                source: dependency.clone(),
+                destination: "node_modules".into(),
+            });
+        let inputs = Inputs::inventory(&root, &config, &root, &|| Ok(())).unwrap();
+        assert_eq!(
+            inputs
+                .entries
+                .iter()
+                .filter(|entry| entry.path == "node_modules")
+                .count(),
+            1
+        );
+        assert!(inputs.entries.iter().any(|entry| entry.path == "src"));
+        fs::remove_dir_all(root).unwrap();
+        fs::remove_dir_all(dependency).unwrap();
     }
 }

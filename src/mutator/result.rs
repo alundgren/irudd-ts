@@ -397,13 +397,54 @@ impl MutationResult {
         });
     }
 }
+pub(crate) struct EvidenceBudget {
+    used: u64,
+    problem_count: usize,
+    omitted: Vec<(usize, MutationOutcome, bool)>,
+}
+impl EvidenceBudget {
+    pub fn new(report: &MutationReport) -> Self {
+        Self {
+            used: storage::encoded_size(report, report.execution.limits.max_report_bytes)
+                .unwrap_or(report.execution.limits.max_report_bytes),
+            problem_count: report.problems.len(),
+            omitted: vec![],
+        }
+    }
+}
+impl MutationSummary {
+    pub(crate) fn add_outcome(&mut self, outcome: MutationOutcome, reused: bool) {
+        if reused {
+            self.reused += 1;
+        } else if !matches!(
+            outcome,
+            MutationOutcome::InvalidMutant | MutationOutcome::NotRun
+        ) {
+            self.executed += 1;
+        }
+        match outcome {
+            MutationOutcome::Killed => self.killed += 1,
+            MutationOutcome::Survived => self.survived += 1,
+            MutationOutcome::InvalidMutant => self.invalid_mutants += 1,
+            MutationOutcome::ExecutionError => self.execution_errors += 1,
+            MutationOutcome::TimedOut => self.timed_out += 1,
+            MutationOutcome::Cancelled => self.cancelled += 1,
+            MutationOutcome::NotRun => self.not_run += 1,
+        }
+    }
+}
 impl MutationReport {
     pub(crate) fn initial(plan: &MutationPlan, execution: ExecutionSummary) -> Self {
-        Self {
+        let mut report = Self {
             schema_version: 1,
             operator_version: plan.operator_version,
             root: plan.root.clone(),
-            selection: plan.selection.clone(),
+            selection: SelectionReport {
+                requested: plan.selection.requested.clone(),
+                selected: vec![],
+                skipped: vec![],
+                complete_within_selection: false,
+            },
             input_digest: String::new(),
             execution,
             complete: false,
@@ -412,9 +453,101 @@ impl MutationReport {
                 planned: plan.sites.len(),
                 ..MutationSummary::default()
             },
-            results: plan.sites.iter().map(MutationResult::initial).collect(),
+            results: vec![],
             problems: vec![],
             elapsed_ms: 0.0,
+        };
+        let maximum = report
+            .execution
+            .limits
+            .max_report_bytes
+            .saturating_sub(16384);
+        let mut used = storage::encoded_size(&report, maximum).unwrap_or(maximum);
+        let selection_size = storage::encoded_size(&plan.selection, maximum);
+        let empty_selection = storage::encoded_size(&report.selection, maximum).unwrap_or(0);
+        if let Ok(bytes) = selection_size
+            && used.saturating_sub(empty_selection).saturating_add(bytes) <= maximum
+        {
+            used = used - empty_selection + bytes;
+            report.selection = plan.selection.clone();
+        } else {
+            report.summary.omitted_results = plan.sites.len();
+            report.problem(
+                ExecutionProblemKind::Limit,
+                None,
+                None,
+                "source evidence exceeds report budget; selected/skipped source records omitted",
+            );
+            return report;
+        }
+        if plan.sites.len() > report.execution.limits.max_mutants {
+            report.summary.omitted_results = plan.sites.len();
+            report.problem(
+                ExecutionProblemKind::Limit,
+                None,
+                None,
+                "mutation count exceeds configured execution limit; result records omitted",
+            );
+            return report;
+        }
+        for site in &plan.sites {
+            let row = MutationResult::initial(site);
+            let bytes = storage::encoded_size(&row, maximum)
+                .unwrap_or(maximum)
+                .saturating_add(1);
+            if used.saturating_add(bytes) > maximum {
+                report.summary.omitted_results = plan.sites.len() - report.results.len();
+                report.problem(ExecutionProblemKind::Limit,None,None,"planned mutation metadata exceeds report budget; remaining result records omitted");
+                return report;
+            }
+            used += bytes;
+            report.results.push(row);
+        }
+        report
+    }
+    pub(crate) fn install_result(
+        &mut self,
+        index: usize,
+        mut result: MutationResult,
+        budget: &mut EvidenceBudget,
+    ) -> bool {
+        if budget.problem_count != self.problems.len() {
+            budget.used = storage::encoded_size(self, self.execution.limits.max_report_bytes)
+                .unwrap_or(self.execution.limits.max_report_bytes);
+            budget.problem_count = self.problems.len();
+        }
+        let old =
+            storage::encoded_size(&self.results[index], self.execution.limits.max_report_bytes)
+                .unwrap_or(0);
+        let new = storage::encoded_size(&result, self.execution.limits.max_report_bytes)
+            .unwrap_or(self.execution.limits.max_report_bytes);
+        let fits = budget.used.saturating_sub(old).saturating_add(new)
+            <= self.execution.limits.max_report_bytes.saturating_sub(16384);
+        if !fits {
+            budget.omitted.push((index, result.outcome, result.reused));
+            result.context = None;
+            result.message = None;
+            result.tests = None;
+            result.outcome = MutationOutcome::ExecutionError;
+            self.summary.omitted_results += 1;
+        }
+        let retained =
+            storage::encoded_size(&result, self.execution.limits.max_report_bytes).unwrap_or(new);
+        budget.used = budget.used.saturating_sub(old).saturating_add(retained);
+        self.results[index] = result;
+        fits
+    }
+    pub(crate) fn omit_results(&mut self, budget: &EvidenceBudget) {
+        let mut indexes: Vec<_> = budget.omitted.iter().map(|(index, _, _)| *index).collect();
+        indexes.sort_unstable();
+        indexes.dedup();
+        for index in indexes.into_iter().rev() {
+            self.results.remove(index);
+        }
+    }
+    pub(crate) fn count_omitted(&mut self, budget: &EvidenceBudget) {
+        for (_, outcome, reused) in &budget.omitted {
+            self.summary.add_outcome(*outcome, *reused);
         }
     }
     pub(crate) fn problem(
@@ -424,7 +557,7 @@ impl MutationReport {
         file: Option<String>,
         message: &str,
     ) {
-        if self.problems.len() >= 1024 {
+        if self.problems.len() >= 16 {
             return;
         }
         self.problems.push(ExecutionProblem {
@@ -433,6 +566,18 @@ impl MutationReport {
             file,
             message: bounded_message(message),
         });
+        if storage::encoded_size(self, self.execution.limits.max_report_bytes).is_err() {
+            self.problems.pop();
+            self.complete = false;
+            self.problems.clear();
+            self.problems.push(ExecutionProblem {
+                kind: ExecutionProblemKind::Limit,
+                mutation_id: None,
+                file: None,
+                message: "execution problems omitted because report byte budget was exhausted"
+                    .into(),
+            });
+        }
     }
     pub(crate) fn finish(&mut self, elapsed: f64) -> Result<()> {
         self.elapsed_ms = elapsed;
@@ -644,5 +789,101 @@ mod tests {
         result.location.start = 1;
         result.source_context(&source);
         assert!(result.context.is_none());
+    }
+}
+
+#[cfg(test)]
+mod evidence_tests {
+    use super::*;
+    #[test]
+    fn report_count_and_aggregate_messages_are_reserved_before_retention() {
+        let root =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-evidence-test")
+                .unwrap();
+        let source = (0..50)
+            .map(|index| format!("export const flag{index} = true;\n"))
+            .collect::<String>();
+        std::fs::write(root.join("a.ts"), source).unwrap();
+        let configuration = super::super::facts::MutationPlanConfig {
+            operators: vec![MutationOperator::Boolean],
+            ..Default::default()
+        };
+        let plan = super::super::plan(&root, &configuration).unwrap();
+        assert!(plan.complete);
+        assert_eq!(plan.sites.len(), 50);
+        let limits = ExecutionLimits {
+            max_report_bytes: 65536,
+            ..Default::default()
+        };
+        let execution = ExecutionSummary {
+            limits: limits.clone(),
+            workspace: WorkspaceSummary {
+                include: vec!["**".into()],
+                exclude: vec![],
+                dependency_destinations: vec![],
+            },
+            reuse: ReusePolicy::Off,
+            reuse_reason: None,
+        };
+        let mut report = MutationReport::initial(&plan, execution.clone());
+        assert!(report.problems.is_empty());
+        report.baseline.outcome = BaselineOutcome::Passed;
+        report.baseline.tests = Some(TestCounts {
+            passed: 1,
+            failed: 0,
+            skipped: 0,
+        });
+        let mut budget = EvidenceBudget::new(&report);
+        let mut rejected = false;
+        for (index, site) in plan.sites.iter().enumerate() {
+            let mut result = MutationResult::initial(site);
+            result.outcome = MutationOutcome::Killed;
+            result.tests = Some(TestCounts {
+                passed: 0,
+                failed: 1,
+                skipped: 0,
+            });
+            result.exit_code = Some(1);
+            result.message = Some("assertion context ".repeat(400));
+            if !report.install_result(index, result, &mut budget) {
+                rejected = true;
+                report.problem(
+                    ExecutionProblemKind::Limit,
+                    None,
+                    None,
+                    "result evidence omitted",
+                );
+                break;
+            }
+        }
+        assert!(rejected);
+        assert!(
+            report
+                .results
+                .iter()
+                .filter_map(|result| result.message.as_ref())
+                .map(String::len)
+                .sum::<usize>()
+                < 65536
+        );
+        report.omit_results(&budget);
+        report.finish(0.0).unwrap();
+        report.count_omitted(&budget);
+        assert!(!report.complete);
+        assert_eq!(report.summary.omitted_results, 1);
+        assert_eq!(report.results.len() + report.summary.omitted_results, 50);
+        assert!(storage::encoded_size(&report, 65536).is_ok());
+        let mut execution = execution;
+        execution.limits.max_mutants = 1;
+        let limited = MutationReport::initial(&plan, execution);
+        assert!(limited.results.is_empty());
+        assert_eq!(limited.summary.omitted_results, 50);
+        assert!(
+            limited
+                .problems
+                .iter()
+                .any(|problem| problem.kind == ExecutionProblemKind::Limit)
+        );
+        std::fs::remove_dir_all(root).unwrap();
     }
 }

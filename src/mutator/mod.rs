@@ -23,4 +23,4 @@ pub use result::{
 };
 
 mod run;
-pub use run::{CancellationToken, run};
+pub use run::{CancellationToken, run, run_until};

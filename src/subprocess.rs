@@ -605,6 +605,37 @@ mod unix {
         Ok(output)
     }
 
+    fn drain<R: Read>(
+        pipe: &mut Option<R>,
+        bytes: &mut Vec<u8>,
+        limit: usize,
+        name: &'static str,
+    ) -> std::result::Result<(), CommandStop> {
+        let Some(reader) = pipe.as_mut() else {
+            return Ok(());
+        };
+        let mut buffer = [0u8; 8192];
+        for _ in 0..16 {
+            let available = limit.saturating_sub(bytes.len());
+            let read_limit = available.saturating_add(1).min(buffer.len());
+            match reader.read(&mut buffer[..read_limit]) {
+                Ok(0) => {
+                    *pipe = None;
+                    return Ok(());
+                }
+                Ok(count) => {
+                    bytes.extend_from_slice(&buffer[..count.min(available)]);
+                    if count > available {
+                        return Err(CommandStop::OutputLimit(name));
+                    }
+                }
+                Err(error) if error.kind() == io::ErrorKind::WouldBlock => return Ok(()),
+                Err(error) if error.kind() == io::ErrorKind::Interrupted => {}
+                Err(error) => return Err(CommandStop::Io(format!("{name}: {error}"))),
+            }
+        }
+        Ok(())
+    }
     #[cfg(test)]
     mod ownership_tests {
         use super::*;
@@ -638,38 +669,6 @@ mod unix {
                     .contains("cleanup suppressed")
             );
         }
-    }
-
-    fn drain<R: Read>(
-        pipe: &mut Option<R>,
-        bytes: &mut Vec<u8>,
-        limit: usize,
-        name: &'static str,
-    ) -> std::result::Result<(), CommandStop> {
-        let Some(reader) = pipe.as_mut() else {
-            return Ok(());
-        };
-        let mut buffer = [0u8; 8192];
-        for _ in 0..16 {
-            let available = limit.saturating_sub(bytes.len());
-            let read_limit = available.saturating_add(1).min(buffer.len());
-            match reader.read(&mut buffer[..read_limit]) {
-                Ok(0) => {
-                    *pipe = None;
-                    return Ok(());
-                }
-                Ok(count) => {
-                    bytes.extend_from_slice(&buffer[..count.min(available)]);
-                    if count > available {
-                        return Err(CommandStop::OutputLimit(name));
-                    }
-                }
-                Err(error) if error.kind() == io::ErrorKind::WouldBlock => return Ok(()),
-                Err(error) if error.kind() == io::ErrorKind::Interrupted => {}
-                Err(error) => return Err(CommandStop::Io(format!("{name}: {error}"))),
-            }
-        }
-        Ok(())
     }
 }
 

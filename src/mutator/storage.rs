@@ -86,6 +86,32 @@ pub(crate) fn encode<T: Serialize + ?Sized>(value: &T, maximum: u64) -> Result<V
     Ok(writer.bytes)
 }
 
+pub(crate) fn encoded_size<T: Serialize + ?Sized>(value: &T, maximum: u64) -> Result<u64> {
+    struct Count {
+        bytes: u64,
+        maximum: u64,
+    }
+    impl Write for Count {
+        fn write(&mut self, bytes: &[u8]) -> std::io::Result<usize> {
+            let size = self
+                .bytes
+                .checked_add(bytes.len() as u64)
+                .ok_or_else(|| std::io::Error::other("encoded size overflow"))?;
+            if size > self.maximum {
+                return Err(std::io::Error::other("encoded evidence exceeds budget"));
+            }
+            self.bytes = size;
+            Ok(bytes.len())
+        }
+        fn flush(&mut self) -> std::io::Result<()> {
+            Ok(())
+        }
+    }
+    let mut count = Count { bytes: 0, maximum };
+    serde_json::to_writer(&mut count, value)?;
+    Ok(count.bytes)
+}
+
 pub(crate) fn atomic_write(path: &Path, bytes: &[u8]) -> Result<()> {
     let parent = path.parent().context("assigned file has no parent")?;
     let temporary = parent.join(format!(".archguard-{}.tmp", unique_id()));
