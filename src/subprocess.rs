@@ -170,6 +170,11 @@ mod unix {
             self.exited()?;
             match killpg(self.group, Signal::SIGKILL) {
                 Ok(()) | Err(Errno::ESRCH) => Ok(()),
+                #[cfg(target_os = "macos")]
+                Err(Errno::EPERM) if self.exited()? && !group_has_live_members(self.group)? => {
+                    // Darwin denies signals when the reserved leader is the only zombie.
+                    Ok(())
+                }
                 Err(error) => Err(error).context("process-group cleanup"),
             }
         }
@@ -704,6 +709,65 @@ mod unix {
             };
             assert_eq!(result, 0);
             assert_eq!(unsafe { info.si_pid() }, group.as_raw());
+        }
+
+        #[cfg(target_os = "macos")]
+        #[test]
+        fn exited_reserved_leader_without_live_members_finishes_cleanly() {
+            let mut command = Command::new("sh");
+            command.args(["-c", "exit 7"]).process_group(0);
+            let child = command.spawn().unwrap();
+            let group = Pid::from_raw(child.id() as i32);
+            let mut guard = ChildGuard {
+                child,
+                group,
+                owned: true,
+                finished: false,
+            };
+            let deadline = Instant::now() + Duration::from_secs(3);
+            while !guard.exited().unwrap() {
+                assert!(Instant::now() < deadline);
+                thread::sleep(Duration::from_millis(2));
+            }
+            assert_leader_reserved(group);
+            assert!(!group_has_live_members(group).unwrap());
+            assert_eq!(killpg(group, Signal::SIGKILL), Err(Errno::EPERM));
+            assert_eq!(guard.finish().unwrap().code(), Some(7));
+            assert!(!guard.owned && guard.finished);
+            assert!(guard.kill_group().is_err());
+        }
+
+        #[cfg(target_os = "macos")]
+        #[test]
+        fn exited_leader_with_live_descendant_cleans_the_whole_group() {
+            use std::io::BufRead;
+            let mut command = Command::new("sh");
+            command
+                .args(["-c", "sleep 30 & printf '%s\\n' \"$!\"; exit 0"])
+                .process_group(0)
+                .stdout(Stdio::piped());
+            let mut child = command.spawn().unwrap();
+            let group = Pid::from_raw(child.id() as i32);
+            let mut line = String::new();
+            std::io::BufReader::new(child.stdout.take().unwrap())
+                .read_line(&mut line)
+                .unwrap();
+            let descendant = line.trim().parse::<i32>().unwrap();
+            assert_ne!(descendant, group.as_raw());
+            let mut guard = ChildGuard {
+                child,
+                group,
+                owned: true,
+                finished: false,
+            };
+            let deadline = Instant::now() + Duration::from_secs(3);
+            while !guard.exited().unwrap() {
+                assert!(Instant::now() < deadline);
+                thread::sleep(Duration::from_millis(2));
+            }
+            assert!(group_has_live_members(group).unwrap());
+            assert_eq!(guard.finish().unwrap().code(), Some(0));
+            assert!(!guard.owned && guard.finished);
         }
 
         #[test]

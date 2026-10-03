@@ -52,6 +52,7 @@ pub(crate) enum EntryKind {
 }
 #[derive(Clone)]
 pub(crate) struct Inputs {
+    requested_root: PathBuf,
     pub root: PathBuf,
     pub roots: Vec<(PathBuf, String)>,
     pub entries: Vec<Entry>,
@@ -197,6 +198,7 @@ impl Inputs {
         guard: &impl Fn() -> Result<()>,
         include_git: bool,
     ) -> Result<Self> {
+        let requested_root = root.to_owned();
         let (root, mut resolutions) =
             resolve_evidence(root, config.limits.max_inventory_bytes, guard)?;
         if !root.is_dir() {
@@ -441,6 +443,7 @@ impl Inputs {
             config.limits.max_inventory_bytes,
         )?;
         Ok(Self {
+            requested_root,
             root,
             roots,
             entries,
@@ -455,7 +458,7 @@ impl Inputs {
         config_dir: &Path,
         guard: &impl Fn() -> Result<()>,
     ) -> Result<()> {
-        let current = Self::inventory(&self.root, config, config_dir, guard)?;
+        let current = Self::inventory(&self.requested_root, config, config_dir, guard)?;
         if self.entries != current.entries
             || self.roots != current.roots
             || self.root_mode != current.root_mode
@@ -952,6 +955,31 @@ mod tests {
     }
     fn config() -> ExecutionConfig {
         serde_json::from_str(r#"{"command":["node"]}"#).unwrap()
+    }
+    #[test]
+    fn unchanged_input_alias_verifies_and_retargeted_ancestor_is_rejected() {
+        let root = directory();
+        for name in ["first", "second"] {
+            fs::create_dir(root.join(name)).unwrap();
+            fs::create_dir(root.join(name).join("input")).unwrap();
+            fs::write(
+                root.join(name).join("input/source.ts"),
+                "export const value = true;",
+            )
+            .unwrap();
+        }
+        symlink("first", root.join("ancestor")).unwrap();
+        let requested = root.join("ancestor/input");
+        let config = config();
+        let inputs = Inputs::inventory(&requested, &config, &root, &|| Ok(())).unwrap();
+        inputs.verify(&config, &root, &|| Ok(())).unwrap();
+        fs::remove_file(root.join("ancestor")).unwrap();
+        symlink("second", root.join("ancestor")).unwrap();
+        assert!(inputs.verify(&config, &root, &|| Ok(())).is_err());
+        fs::remove_file(root.join("ancestor")).unwrap();
+        symlink("first", root.join("ancestor")).unwrap();
+        inputs.verify(&config, &root, &|| Ok(())).unwrap();
+        fs::remove_dir_all(root).unwrap();
     }
     #[test]
     fn isolated_copies_relocate_links_and_revalidate_membership_bytes_modes() {

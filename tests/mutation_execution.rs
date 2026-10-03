@@ -14,7 +14,7 @@ struct Fixture {
 }
 impl Fixture {
     fn new() -> Self {
-        let directory = tempfile::tempdir().unwrap();
+        let directory = tempfile::tempdir_in(std::env::temp_dir().canonicalize().unwrap()).unwrap();
         let root = directory.path().join("input");
         fs::create_dir(&root).unwrap();
         for (name, source) in [
