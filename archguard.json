@@ -11,7 +11,8 @@
     "examples/semantic/**/*.rs",
     "examples/semantic/**/*.ts",
     "providers/typescript7/provider.mjs",
-    "examples/code-quality/**/*.ts"
+    "examples/code-quality/**/*.ts",
+    "tests/**/*.ts"
   ],
   "rules": [
     {
@@ -224,7 +225,8 @@
       {
         "id": "test",
         "files": [
-          "tests/**/*.rs"
+          "tests/**/*.rs",
+          "tests/**/*.ts"
         ]
       },
       {
@@ -268,7 +270,8 @@
           "examples/semantic/**/*.rs",
           "examples/semantic/**/*.ts",
           "providers/typescript7/provider.mjs",
-          "examples/code-quality/**/*.ts"
+          "examples/code-quality/**/*.ts",
+          "tests/**/*.ts"
         ]
       },
       {

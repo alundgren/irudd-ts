@@ -28,3 +28,11 @@ See [architecture](architecture.md) for module and dependency ownership. README 
 To review a distribution, use `cargo package --locked --allow-dirty --no-verify`, inspect its normalized manifest and file list, then build or test the extracted archive. Do not publish as part of this validation. Installed `node_modules`, historical research tests, and measurement archives must not enter the crate.
 
 License inventories can be refreshed with `python3 scripts/licenses.py --write`, `python3 scripts/semantic_licenses.py --write`, and `python3 scripts/semantic_licenses.py --history --write`. Review the resulting license and notice records.
+
+Optional actual Vitest compatibility controls use an explicitly installed target repository:
+
+```sh
+node scripts/check_mutator_vitest.mjs /absolute/installed/t3code
+```
+
+This creates owned temporary fixtures and leaves the target source untouched. The Node SDK controls are part of `check.sh`. Focused T3 quality profiles and dependency-copy requirements are described in the [authored examples](../../examples/code-quality/README.md). Run those separately from validation when recording runtime or resource evidence.
