@@ -39,9 +39,13 @@ The authored domain example deliberately starts with weak tests. The strengthene
 
 Execution configuration sets worker count, per-command and whole-run deadlines, output/result/report budgets, workspace file and byte ceilings, open-file limits, CPU limits and generated-file limits. Linux can also enforce an address-space limit. The report records effective limits and selected workspace inputs. SIGINT and SIGTERM request cancellation and bounded cleanup.
 
+The executable and declared external inputs are hashed without copying them into the worker workspace. Their read limits are one GiB per file and eight GiB in total, separate from copied and generated workspace bytes. The metadata budget and shared run deadline still apply.
+
 Reuse is disabled by default. An explicit state directory outside source and dependency inputs can enable `declaredInputs` reuse. Archguard hashes the full configured workspace, tests, helpers, package metadata, dependency copies, executable, environment and declared external inputs. Changed inputs invalidate previous results conservatively. Every run still executes the baseline. Only complete killed or survived results with confirmed cleanup can be reused.
 
 Reuse assumes that you declared every relevant input. Network services, wall-clock time and other host state are not automatically reproducible. Keep reuse off for tests that depend on those inputs. Corrupt state is reported and rerun; unresolved cleanup prevents unsafe reuse. State uses an exclusive lock and atomic checksummed writes.
+
+Reuse invalidates the run's results when a declared input changes. It does not retain killed mutations by function alone. You can narrow source selection to changed files, but tests and helpers still belong in the declared workspace. The current runner does not use coverage to skip mutation sites.
 
 Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections. macOS has different memory controls from Linux.
 
