@@ -93,7 +93,17 @@
         "SemanticRule",
         "readSemanticFacts",
         "semanticFile",
-        "missingMemberDiagnostics"
+        "missingMemberDiagnostics",
+        "readMutationRequest",
+        "validateMutationRequest",
+        "validateMutationResult",
+        "writeMutationResult",
+        "TestExecutionRequest",
+        "TestExecutionResult",
+        "TestCounts",
+        "TestFailure",
+        "TestFailureKind",
+        "MutationVitestReporter"
       ]
     },
     {
