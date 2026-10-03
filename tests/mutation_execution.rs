@@ -166,6 +166,31 @@ fn incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages() 
         assert!(!encoded.contains(&escaped[1..escaped.len() - 1]));
     }
     assert!(encoded.len() <= fixture.config.limits.max_report_bytes as usize);
+    fixture.mode("secretField");
+    let invalid = fixture.run();
+    assert!(!invalid.complete);
+    assert_eq!(invalid.baseline.outcome, BaselineOutcome::ExecutionError);
+    let primary = invalid.baseline.message.as_ref().unwrap();
+    assert!(primary.contains("unknown field"), "{primary}");
+    assert!(primary.contains("[redacted]"));
+    assert!(!primary.contains(&environment_secret));
+    let escaped = serde_json::to_string(&environment_secret).unwrap();
+    assert!(!primary.contains(&escaped[1..escaped.len() - 1]));
+    fixture.mode("quietRuntime");
+    let runtime = fixture.run();
+    assert!(!runtime.complete);
+    assert_eq!(runtime.summary.execution_errors, 2);
+    for result in &runtime.results {
+        let message = result.message.as_ref().unwrap();
+        assert!(message.contains("validated Runtime failure"), "{message}");
+        assert!(message.contains("runtime-control"));
+        assert!(message.contains("quiet-runtime-control"));
+        assert_eq!(result.tests.as_ref().unwrap().failed, 1);
+        assert!(!message.contains(&environment_secret));
+        let escaped = serde_json::to_string(&environment_secret).unwrap();
+        assert!(!message.contains(&escaped[1..escaped.len() - 1]));
+        assert!(!message.contains(['\u{1b}', '\0', '\u{202e}']));
+    }
     fixture.mode("diagnosticsPass");
     let corrected = fixture.run();
     assert!(corrected.complete, "{:?}", corrected.problems);

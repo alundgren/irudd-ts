@@ -171,9 +171,15 @@ fn diagnostic_redactions<'a>(values: impl Iterator<Item = &'a String>) -> Result
 // Normalize a fixed input prefix before matching literal/escaped values. A
 // potentially clipped value suffix is redacted conservatively before display.
 fn output_excerpt(bytes: &[u8], redactions: &[impl AsRef<str>]) -> String {
+    bounded_excerpt(bytes, redactions, 2048, 1536)
+}
+fn bounded_excerpt(
+    bytes: &[u8],
+    redactions: &[impl AsRef<str>],
+    copied_bytes: usize,
+    display_bytes: usize,
+) -> String {
     const EXAMINED_BYTES: usize = 8192;
-    const COPIED_BYTES: usize = 2048;
-    const DISPLAY_BYTES: usize = 1536;
     let mut examined = bytes.len().min(EXAMINED_BYTES);
     if examined < bytes.len() {
         // Drop an incomplete final UTF-8 sequence rather than converting its
@@ -194,9 +200,9 @@ fn output_excerpt(bytes: &[u8], redactions: &[impl AsRef<str>]) -> String {
     }
     let normalized = sanitize_diagnostic(&String::from_utf8_lossy(&bytes[..examined]));
     let normalized_bytes = normalized.as_bytes();
-    let mut copied = Vec::with_capacity(COPIED_BYTES);
+    let mut copied = Vec::with_capacity(copied_bytes);
     let mut cursor = 0;
-    while cursor < normalized_bytes.len() && copied.len() < COPIED_BYTES {
+    while cursor < normalized_bytes.len() && copied.len() < copied_bytes {
         let remaining = &normalized_bytes[cursor..];
         if let Some(value) = redactions
             .iter()
@@ -209,7 +215,7 @@ fn output_excerpt(bytes: &[u8], redactions: &[impl AsRef<str>]) -> String {
             .max_by_key(|value| value.len())
         {
             const REPLACEMENT: &[u8] = b"[redacted]";
-            if copied.len() + REPLACEMENT.len() > COPIED_BYTES {
+            if copied.len() + REPLACEMENT.len() > copied_bytes {
                 break;
             }
             copied.extend_from_slice(REPLACEMENT);
@@ -220,10 +226,10 @@ fn output_excerpt(bytes: &[u8], redactions: &[impl AsRef<str>]) -> String {
         }
     }
     let decoded = String::from_utf8_lossy(&copied);
-    let mut displayed = String::with_capacity(DISPLAY_BYTES);
+    let mut displayed = String::with_capacity(display_bytes);
     let mut display_truncated = false;
     for character in decoded.chars() {
-        if displayed.len() + character.len_utf8() > DISPLAY_BYTES {
+        if displayed.len() + character.len_utf8() > display_bytes {
             display_truncated = true;
             break;
         }
@@ -244,12 +250,47 @@ fn command_diagnostics(stdout: &[u8], stderr: &[u8], redactions: &[impl AsRef<st
     }
     diagnostics
 }
-fn diagnostic_message(reason: &str, diagnostics: &str) -> String {
-    let mut end = reason.len().min(4096);
-    while !reason.is_char_boundary(end) {
-        end -= 1;
+fn validated_failure_diagnostic(result: &TestExecutionResult, redactions: &[String]) -> String {
+    let failure = result
+        .failures
+        .iter()
+        .find(|failure| failure.kind != TestFailureKind::Assertion)
+        .or_else(|| result.failures.first());
+    let Some(failure) = failure else {
+        return String::new();
+    };
+    let mut identity = output_excerpt(
+        failure.test_id.as_deref().unwrap_or("<none>").as_bytes(),
+        redactions,
+    );
+    if identity.len() > 256 {
+        let mut end = 256;
+        while !identity.is_char_boundary(end) {
+            end -= 1;
+        }
+        identity.truncate(end);
+        identity.push_str("[identity truncated]");
     }
-    bounded_message(&format!("{}{}", &reason[..end], diagnostics))
+    format!(
+        "\nvalidated {:?} failure, test {}: {}",
+        failure.kind,
+        identity,
+        output_excerpt(failure.message.as_bytes(), redactions)
+    )
+}
+fn diagnostic_message(reason: &str, diagnostics: &str, redactions: &[impl AsRef<str>]) -> String {
+    let reason = bounded_excerpt(reason.as_bytes(), redactions, 8192, 6144);
+    let mut message = format!("{reason}{diagnostics}");
+    if message.len() > MAX_MESSAGE_BYTES {
+        let marker = "\n[message truncated]";
+        let mut end = MAX_MESSAGE_BYTES - marker.len();
+        while !message.is_char_boundary(end) {
+            end -= 1;
+        }
+        message.truncate(end);
+        message.push_str(marker);
+    }
+    message
 }
 fn problem_kind(error: &anyhow::Error, fallback: ExecutionProblemKind) -> ExecutionProblemKind {
     if let Some(problem) = error.downcast_ref::<ClassifiedError>() {
@@ -863,8 +904,18 @@ impl TaskContext<'_> {
                 )
             })?;
             let reported = TestExecutionResult::read(&protocol.result_path, &protocol)?;
-            result.outcome = reported.classify(observed)?;
             result.tests = Some(reported.tests.clone());
+            result.outcome = match reported.classify(observed) {
+                Ok(outcome) => outcome,
+                Err(error) => {
+                    diagnostics = format!(
+                        "{}{}",
+                        validated_failure_diagnostic(&reported, &self.prepared.redactions),
+                        diagnostics
+                    );
+                    return Err(error);
+                }
+            };
             result.message = reported
                 .failures
                 .first()
@@ -883,7 +934,8 @@ impl TaskContext<'_> {
                     None => MutationOutcome::ExecutionError,
                 };
             }
-            let message = diagnostic_message(&error.to_string(), &diagnostics);
+            let message =
+                diagnostic_message(&error.to_string(), &diagnostics, &self.prepared.redactions);
             result.message = Some(message.clone());
             ExecutionProblem {
                 kind,
@@ -899,7 +951,8 @@ impl TaskContext<'_> {
             self.cleanup_unknown.store(true, Ordering::Relaxed);
             owned.cleanup_allowed = false;
             result.outcome = MutationOutcome::ExecutionError;
-            let message = diagnostic_message(&error.to_string(), &diagnostics);
+            let message =
+                diagnostic_message(&error.to_string(), &diagnostics, &self.prepared.redactions);
             result.message = Some(message.clone());
             problem = Some(ExecutionProblem {
                 kind: ExecutionProblemKind::Cleanup,
@@ -1378,6 +1431,7 @@ mod monitor_tests {
         let message = diagnostic_message(
             &"r".repeat(100_000),
             &command_diagnostics(&vec![b'a'; 100_000], &vec![b'b'; 100_000], &[] as &[&str]),
+            &[] as &[&str],
         );
         assert!(message.len() <= MAX_MESSAGE_BYTES);
         assert!(message.starts_with('r'));

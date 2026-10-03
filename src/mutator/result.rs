@@ -287,6 +287,7 @@ pub struct MutationSummary {
     pub cancelled: usize,
     pub not_run: usize,
     pub omitted_results: usize,
+    pub omitted_problems: usize,
 }
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
@@ -407,7 +408,10 @@ impl EvidenceBudget {
         Self {
             used: storage::encoded_size(report, report.execution.limits.max_report_bytes)
                 .unwrap_or(report.execution.limits.max_report_bytes),
-            problem_count: report.problems.len(),
+            problem_count: report
+                .problems
+                .len()
+                .saturating_add(report.summary.omitted_problems),
             omitted: vec![],
         }
     }
@@ -431,6 +435,22 @@ impl MutationSummary {
             MutationOutcome::Cancelled => self.cancelled += 1,
             MutationOutcome::NotRun => self.not_run += 1,
         }
+    }
+}
+fn problem_priority(problem: &ExecutionProblem) -> u8 {
+    match problem.kind {
+        ExecutionProblemKind::Cleanup => {
+            if problem.mutation_id.is_none() {
+                5
+            } else {
+                4
+            }
+        }
+        ExecutionProblemKind::Cancellation
+        | ExecutionProblemKind::InputChanged
+        | ExecutionProblemKind::State => 3,
+        ExecutionProblemKind::Limit => 2,
+        _ => 1,
     }
 }
 impl MutationReport {
@@ -511,10 +531,14 @@ impl MutationReport {
         mut result: MutationResult,
         budget: &mut EvidenceBudget,
     ) -> bool {
-        if budget.problem_count != self.problems.len() {
+        let problem_revision = self
+            .problems
+            .len()
+            .saturating_add(self.summary.omitted_problems);
+        if budget.problem_count != problem_revision {
             budget.used = storage::encoded_size(self, self.execution.limits.max_report_bytes)
                 .unwrap_or(self.execution.limits.max_report_bytes);
-            budget.problem_count = self.problems.len();
+            budget.problem_count = problem_revision;
         }
         let old =
             storage::encoded_size(&self.results[index], self.execution.limits.max_report_bytes)
@@ -557,26 +581,45 @@ impl MutationReport {
         file: Option<String>,
         message: &str,
     ) {
-        if self.problems.len() >= 16 {
-            return;
-        }
-        self.problems.push(ExecutionProblem {
+        let incoming = ExecutionProblem {
             kind,
             mutation_id: id,
             file,
             message: bounded_message(message),
-        });
-        if storage::encoded_size(self, self.execution.limits.max_report_bytes).is_err() {
-            self.problems.pop();
+        };
+        if self.problems.len() >= 16 {
+            self.summary.omitted_problems = self.summary.omitted_problems.saturating_add(1);
+            let lowest = self
+                .problems
+                .iter()
+                .enumerate()
+                .min_by_key(|(_, problem)| problem_priority(problem))
+                .map(|(index, _)| index)
+                .unwrap();
+            let priority = problem_priority(&incoming);
+            if priority > problem_priority(&self.problems[lowest]) || priority == 5 {
+                self.problems.remove(lowest);
+                self.problems.push(incoming);
+            }
+        } else {
+            self.problems.push(incoming);
+        }
+        while storage::encoded_size(self, self.execution.limits.max_report_bytes).is_err()
+            && self.problems.len() > 1
+        {
+            self.drop_lowest_problem();
             self.complete = false;
-            self.problems.clear();
-            self.problems.push(ExecutionProblem {
-                kind: ExecutionProblemKind::Limit,
-                mutation_id: None,
-                file: None,
-                message: "execution problems omitted because report byte budget was exhausted"
-                    .into(),
-            });
+        }
+    }
+    fn drop_lowest_problem(&mut self) {
+        if let Some((index, _)) = self
+            .problems
+            .iter()
+            .enumerate()
+            .min_by_key(|(_, problem)| problem_priority(problem))
+        {
+            self.problems.remove(index);
+            self.summary.omitted_problems = self.summary.omitted_problems.saturating_add(1);
         }
     }
     pub(crate) fn finish(&mut self, elapsed: f64) -> Result<()> {
@@ -590,9 +633,11 @@ impl MutationReport {
         });
         let planned = self.summary.planned;
         let omitted = self.summary.omitted_results;
+        let omitted_problems = self.summary.omitted_problems;
         self.summary = MutationSummary {
             planned,
             omitted_results: omitted,
+            omitted_problems,
             ..MutationSummary::default()
         };
         for result in &self.results {
@@ -617,6 +662,7 @@ impl MutationReport {
         self.complete = self.baseline.outcome == BaselineOutcome::Passed
             && self.problems.is_empty()
             && self.summary.omitted_results == 0
+            && self.summary.omitted_problems == 0
             && self.results.len() == planned
             && self.summary.execution_errors
                 + self.summary.timed_out
@@ -645,7 +691,7 @@ impl MutationReport {
                         .selected
                         .truncate(self.selection.selected.len() / 2);
                 } else if self.problems.len() > 1 {
-                    self.problems.truncate(self.problems.len() / 2);
+                    self.drop_lowest_problem();
                 } else {
                     return Err(anyhow::anyhow!(
                         "effective configuration cannot fit the report budget"
@@ -795,6 +841,119 @@ mod tests {
 #[cfg(test)]
 mod evidence_tests {
     use crate::mutator::result::*;
+    #[test]
+    fn capped_problems_count_omissions_and_preserve_terminal_recovery() {
+        let root = tempfile::tempdir().unwrap();
+        std::fs::write(root.path().join("a.ts"), "export const enabled = true;").unwrap();
+        let plan =
+            crate::mutator::plan(root.path(), &crate::mutator::MutationPlanConfig::default())
+                .unwrap();
+        let execution = ExecutionSummary {
+            limits: ExecutionLimits::default(),
+            workspace: WorkspaceSummary {
+                include: vec!["**".into()],
+                exclude: vec![],
+                dependency_destinations: vec![],
+            },
+            reuse: ReusePolicy::Off,
+            reuse_reason: None,
+        };
+        let mut report = MutationReport::initial(&plan, execution);
+        report.problem(
+            ExecutionProblemKind::Protocol,
+            Some("local-0".into()),
+            None,
+            "ordinary failure",
+        );
+        assert_eq!(report.summary.omitted_problems, 0);
+        assert_eq!(report.problems.len(), 1);
+        for index in 1..16 {
+            report.problem(
+                ExecutionProblemKind::Protocol,
+                Some(format!("local-{index}")),
+                None,
+                "local failure",
+            );
+        }
+        let mut budget = EvidenceBudget::new(&report);
+        report.problem(
+            ExecutionProblemKind::Cleanup,
+            Some("failed-task".into()),
+            None,
+            "task workspace preserved at /owned/run/task",
+        );
+        report.problem(
+            ExecutionProblemKind::Cleanup,
+            None,
+            None,
+            "owned run root preserved at /owned/run",
+        );
+        assert_eq!(report.problems.len(), 16);
+        assert_eq!(report.summary.omitted_problems, 2);
+        assert!(
+            report
+                .problems
+                .iter()
+                .any(|problem| problem.message.contains("/owned/run/task"))
+        );
+        assert!(
+            report
+                .problems
+                .iter()
+                .any(|problem| problem.message.contains("root preserved at /owned/run"))
+        );
+        let mut row = MutationResult::initial(&plan.sites[0]);
+        row.outcome = MutationOutcome::ExecutionError;
+        assert!(report.install_result(0, row, &mut budget));
+        assert_eq!(budget.problem_count, 18);
+        report.finish(0.0).unwrap();
+        assert_eq!(report.summary.omitted_problems, 2);
+        assert!(!report.complete);
+        assert!(
+            serde_json::to_string(&report)
+                .unwrap()
+                .contains("\"omittedProblems\":2")
+        );
+        // Exercise byte eviction separately from the fixed count cap.
+        let execution = ExecutionSummary {
+            limits: ExecutionLimits {
+                max_report_bytes: 65536,
+                ..Default::default()
+            },
+            workspace: WorkspaceSummary {
+                include: vec!["**".into()],
+                exclude: vec![],
+                dependency_destinations: vec![],
+            },
+            reuse: ReusePolicy::Off,
+            reuse_reason: None,
+        };
+        let mut byte_limited = MutationReport::initial(&plan, execution);
+        for _ in 0..12 {
+            byte_limited.problem(
+                ExecutionProblemKind::Protocol,
+                Some("later".into()),
+                None,
+                &"escaped \"".repeat(1000),
+            );
+        }
+        assert!(byte_limited.problems.len() < 12);
+        assert!(byte_limited.summary.omitted_problems > 0);
+        byte_limited.problem(
+            ExecutionProblemKind::Cleanup,
+            None,
+            None,
+            "owned run root preserved at /owned/byte-limited-run",
+        );
+        assert!(
+            byte_limited
+                .problems
+                .iter()
+                .any(|problem| problem.message.contains("/owned/byte-limited-run"))
+        );
+        assert!(storage::encoded_size(&byte_limited, 65536).is_ok());
+    }
+
     #[test]
     fn report_count_and_aggregate_messages_are_reserved_before_retention() {
         let root =

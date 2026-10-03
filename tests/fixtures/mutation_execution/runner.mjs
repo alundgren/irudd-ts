@@ -19,6 +19,7 @@ const result = {
   inputDigest: request.inputDigest, complete: true, exitCode: 0,
   reason: "finished", tests: { passed: 1, failed: 0, skipped: 0 }, failures: [],
 };
+if (control.mode === "secretField") result[process.env.DIAGNOSTIC_SECRET] = true;
 try {
   assert.equal(enabled(), true);
 } catch (error) {
@@ -31,6 +32,11 @@ if (control.mode === "baselineFailure" && request.phase === "baseline") {
   result.failures = [{ kind: "assertion", testId: "baseline", file: "subject.ts", message: "baseline control" }];
 }
 if (request.phase === "mutation") {
+  if (control.mode === "quietRuntime") {
+    result.exitCode = 1; result.tests = { passed: 0, failed: 1, skipped: 0 };
+    result.failures = [{ kind: "runtime", testId: "runtime-control", file: "subject.ts",
+      message: `quiet-runtime-control ${JSON.stringify(process.env.DIAGNOSTIC_SECRET)} ${process.env.DIAGNOSTIC_SECRET.replace("environment", "envi\u0000ron\u202ement")}` }];
+  }
   if (control.mode === "errorEnabled" && enabled() === false) {
     try { await import("./missing-control.ts"); }
     catch (error) { result.failures.push({ kind: "import", testId: null, file: "missing-control.ts", message: error.message }); }
