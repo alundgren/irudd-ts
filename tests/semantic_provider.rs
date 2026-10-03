@@ -270,8 +270,28 @@ fn deadline_kills_a_waiting_native_compiler_descendant() {
         root.path(),
         json!([{"id":"a","tsconfig":"tsconfig.json","files":["*.ts"]}]),
     );
-    let executable = Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("providers/typescript7/node_modules/@typescript/typescript-linux-x64/lib/tsc");
+    let provider = Path::new(env!("CARGO_MANIFEST_DIR")).join("providers/typescript7");
+    let resolved = std::process::Command::new("node")
+        .current_dir(&provider)
+        .args([
+            "--input-type=module",
+            "-e",
+            "import getExePath from './node_modules/typescript/lib/getExePath.js'; process.stdout.write(getExePath());",
+        ])
+        .output()
+        .unwrap();
+    assert!(resolved.status.success(), "{:?}", resolved);
+    let executable = std::path::PathBuf::from(String::from_utf8(resolved.stdout).unwrap());
+    assert!(executable.is_file(), "missing installed native compiler");
+    let version = std::process::Command::new(&executable)
+        .arg("--version")
+        .output()
+        .unwrap();
+    assert!(version.status.success(), "{:?}", version);
+    assert_eq!(
+        String::from_utf8(version.stdout).unwrap().trim(),
+        "Version 7.0.2"
+    );
     let marker = root.path().join("native-pid");
     // Keep the native input open, without depending on Node startup within the deadline.
     config.provider.command = vec![
