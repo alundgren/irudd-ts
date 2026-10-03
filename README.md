@@ -8,6 +8,7 @@ Requires Rust 1.96 or newer. TypeScript plugin examples and local validation req
 cargo build --release --locked
 ./target/release/archguard check --root . --config archguard.json
 ./target/release/archguard facts --root . --config archguard.json > project-facts.json
+npm ci --prefix providers/typescript7 --ignore-scripts --no-audit --no-fund
 scripts/check.sh
 ```
 
@@ -40,6 +41,8 @@ For TypeScript plugins, import `runPlugin`, `ProjectFacts`, `Diagnostic`, `depen
 Subprocess plugins are trusted local code. Archguard executes only commands you explicitly configure, passes one versioned JSON project on stdin, and requires one versioned JSON response on stdout. Logs belong on stderr. It bounds stdout and stderr, handles stdin concurrently and terminates the Unix process group on timeout or exit. Diagnostics must name known analyzed source files or package manifests and valid byte offsets. Repository diagnostics use `.` with offset zero. This is process management, not a sandbox.
 
 Licenses are checked against locked dependency manifests by `scripts/licenses.py`. The repository is MIT licensed. Preserve dependency license texts when distributing compiled binaries.
+
+An optional [TypeScript 7 semantic provider](docs/semantic-provider.md) exposes inferred public member facts through a separate versioned Rust and TypeScript contract. It pins the native compiler 7.0.2 and its experimental JavaScript API. Existing ProjectFacts v1 plugins keep their current payload. Local validation also checks the provider's pinned npm licenses and historical compiler fixtures.
 
 The optional `repository` section assigns file roles and checks companion files, registry imports, scoped classification and dependencies between roles. [Repository structure](docs/repository-structure.md) shows the Rust policy model, a runnable T3 simulation and its evidence limits. [Fact research](docs/fact-research.md) surveys additional compiler, build, schema and configuration facts used by other enforcement tools.
 
