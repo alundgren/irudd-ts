@@ -46,10 +46,14 @@ def input_record(root, config, facts):
     paths = sorted({file["path"] for file in facts["files"]}
                    | {package["path"] for package in facts["packages"]})
     files = [{"path": path, "sha256": sha256((root / path).read_bytes())} for path in paths]
+    metadata = [{"path": path, "sha256": sha256((root / path).read_bytes())}
+                for path in ["pnpm-lock.yaml", "pnpm-workspace.yaml", "node_modules/.modules.yaml", "node_modules/.pnpm/lock.yaml"]
+                if (root / path).is_file()]
     config_hash = sha256(config.read_bytes())
     return {"sourceFiles": len(facts["files"]), "selectedInputFiles": files,
             "configSha256": config_hash,
-            "corpusSha256": sha256(json.dumps({"files": files, "config": config_hash},
+            "repositoryMetadata": metadata,
+            "corpusSha256": sha256(json.dumps({"files": files, "config": config_hash, "metadata": metadata},
                                                sort_keys=True).encode())}
 
 
@@ -160,6 +164,10 @@ def main():
                     raise AssertionError(f"unchanged graph was not reused: {case['id']}")
             measured["primeComplete"] = prime_complete
             measured["input"] = input_record(root, config, fresh_facts["report"])
+            if report["complete"]:
+                snapshot = json.loads(cache.read_text())["snapshot"]
+                measured["input"]["resolverInputSha256"] = sha256(json.dumps(snapshot["observations"], sort_keys=True).encode())
+                measured["input"]["resolverInputs"] = len(snapshot["observations"])
             normalized_facts = dict(fresh_facts["report"])
             normalized_facts["root"] = "."
             measured["factsSha256"] = sha256(json.dumps(normalized_facts, sort_keys=True).encode())
