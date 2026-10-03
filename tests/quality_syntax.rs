@@ -1225,3 +1225,188 @@ fn prospective_cache_paths_cannot_create_typescript_sources() {
     assert!(!root.path().join("absent").exists());
     assert_eq!(fs::read_to_string(source).unwrap(), original);
 }
+
+#[cfg(all(target_os = "linux", target_env = "gnu"))]
+#[test]
+fn source_and_cache_open_races_reject_fifo_replacements() {
+    use std::{
+        os::unix::fs::FileTypeExt,
+        path::PathBuf,
+        process::Command,
+        time::{Duration, Instant},
+    };
+    if let Some(phase) = std::env::var_os("ARCHGUARD_QUALITY_FIFO_CHILD") {
+        let root = PathBuf::from(std::env::var_os("ARCHGUARD_QUALITY_FIFO_ROOT").unwrap());
+        let clean = phase == "clean";
+        if phase == "publication" {
+            use sha2::{Digest, Sha256};
+            let source = root.join("f.ts");
+            let before = fs::read(&source).unwrap();
+            let parent = PathBuf::from(std::env::var_os("ARCHGUARD_REVIEW_CACHE_PARENT").unwrap());
+            let report = dryer::analyze_cached(&root, &config(), &parent.join("f.ts")).unwrap();
+            assert!(!report.complete);
+            assert!(report.problems.iter().any(|p| p.kind == ProblemKind::Read));
+            assert_eq!(
+                Sha256::digest(&before),
+                Sha256::digest(fs::read(source).unwrap())
+            );
+            assert!(parent.is_symlink());
+            let saved = parent.with_file_name("parent.saved");
+            assert_eq!(fs::read_dir(saved).unwrap().count(), 0);
+            return;
+        }
+        let complete = if phase == "cache" {
+            dryer::analyze_cached(&root, &config(), &root.join("cache.json"))
+                .unwrap()
+                .complete
+        } else {
+            let report = mutator::plan(&root, &MutationPlanConfig::default()).unwrap();
+            if !clean {
+                assert!(
+                    report
+                        .problems
+                        .iter()
+                        .any(|p| matches!(p.kind, ProblemKind::Read | ProblemKind::ChangedSource))
+                );
+            }
+            report.complete
+        };
+        assert_eq!(complete, clean);
+        let target = PathBuf::from(std::env::var_os("ARCHGUARD_QUALITY_FIFO_PATH").unwrap());
+        assert_eq!(
+            fs::symlink_metadata(target).unwrap().file_type().is_fifo(),
+            !clean
+        );
+        return;
+    }
+    let compilation = TempDir::new().unwrap();
+    let library = compilation.path().join("fifo-race.so");
+    let fixture =
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("tests/fixtures/quality_fifo_race.c");
+    assert!(
+        Command::new("cc")
+            .args(["-shared", "-fPIC"])
+            .arg(fixture)
+            .arg("-ldl")
+            .arg("-o")
+            .arg(&library)
+            .status()
+            .unwrap()
+            .success()
+    );
+    let publication_library = compilation.path().join("cache-parent-race.so");
+    assert!(
+        Command::new("cc")
+            .args(["-shared", "-fPIC"])
+            .arg(
+                PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+                    .join("tests/fixtures/quality_cache_parent_race.c")
+            )
+            .arg("-ldl")
+            .arg("-o")
+            .arg(&publication_library)
+            .status()
+            .unwrap()
+            .success()
+    );
+    for (phase, hit) in [
+        ("clean", "0"),
+        ("source", "1"),
+        ("unchanged", "2"),
+        ("discovery", "3"),
+        ("cache", "1"),
+        ("publication", "0"),
+    ] {
+        let root = TempDir::new().unwrap();
+        let source = root.path().join("f.ts");
+        let original = "function f(){return true}";
+        fs::write(&source, original).unwrap();
+        let cache = root.path().join("cache.json");
+        if phase == "cache" {
+            assert!(
+                dryer::analyze_cached(root.path(), &config(), &cache)
+                    .unwrap()
+                    .complete
+            );
+        }
+        let outside = TempDir::new().unwrap();
+        let parent = outside.path().join("parent");
+        fs::create_dir(&parent).unwrap();
+        let target = if phase == "cache" { &cache } else { &source };
+        let mut child = Command::new(std::env::current_exe().unwrap())
+            .args([
+                "--exact",
+                "source_and_cache_open_races_reject_fifo_replacements",
+                "--nocapture",
+            ])
+            .env(
+                "LD_PRELOAD",
+                if phase == "publication" {
+                    &publication_library
+                } else {
+                    &library
+                },
+            )
+            .env("ARCHGUARD_REVIEW_CACHE_PARENT", &parent)
+            .env("ARCHGUARD_REVIEW_CACHE_SOURCE", root.path())
+            .env("ARCHGUARD_QUALITY_FIFO_CHILD", phase)
+            .env("ARCHGUARD_QUALITY_FIFO_ROOT", root.path())
+            .env("ARCHGUARD_QUALITY_FIFO_PATH", target)
+            .env("ARCHGUARD_QUALITY_FIFO_HIT", hit)
+            .spawn()
+            .unwrap();
+        let deadline = Instant::now()
+            + Duration::from_secs(if phase == "cache" || phase == "publication" {
+                120
+            } else {
+                10
+            });
+        let status = loop {
+            if let Some(status) = child.try_wait().unwrap() {
+                break status;
+            }
+            if Instant::now() >= deadline {
+                child.kill().unwrap();
+                child.wait().unwrap();
+                panic!("{phase}: source or cache open blocked on a replacement FIFO");
+            }
+            std::thread::sleep(Duration::from_millis(20));
+        };
+        assert!(status.success(), "{phase}: {status}");
+        if phase == "clean" || phase == "cache" || phase == "publication" {
+            assert_eq!(fs::read_to_string(source).unwrap(), original);
+        }
+    }
+}
+
+#[test]
+fn shorthand_and_expanded_properties_preserve_keys_and_binding_relationships() {
+    assert!(exact(
+        "function first(a){const total=a+1;return {total}} function second(x){const amount=x+2;return {total:amount}}"
+    ));
+    assert!(exact(
+        "function first(o){const {value}=o;return value} function second(p){const {value:value}=p;return value}"
+    ));
+    assert!(!exact(
+        "function first(a){const total=a+1;return {total}} function second(x){const amount=x+2;return {other:amount}}"
+    ));
+    assert!(!exact(
+        "function first(a,b){return {total:a,other:b}} function second(x,y){return {total:y,other:x}}"
+    ));
+    assert!(!exact(
+        "function first(o){const {value:a}=o;return a} function second(p){const {other:b}=p;return b}"
+    ));
+}
+
+#[test]
+fn prototype_setters_remain_distinct_from_shorthand_and_computed_data_properties() {
+    assert!(!exact(
+        "function first(__proto__){return {__proto__}} function second(__proto__){return {__proto__:__proto__}}"
+    ));
+    assert!(exact(
+        "function first(value){return {['__proto__']:value}} function second(other){return {['__proto__']:other}}"
+    ));
+    assert!(!exact(
+        "function first(value){return {__proto__:value}} function second(other){return {['__proto__']:other}}"
+    ));
+}

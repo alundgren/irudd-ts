@@ -146,13 +146,16 @@ impl Context<'_, '_> {
             AstKind::ObjectProperty(property) => serde_json::to_string(&(
                 format!("{:?}", property.kind),
                 property.method,
-                property.shorthand,
                 property.computed,
+                (!property.computed
+                    && property
+                        .key
+                        .static_name()
+                        .is_some_and(|name| name == "__proto__"))
+                .then_some(property.shorthand),
             ))
             .unwrap(),
-            AstKind::BindingProperty(property) => {
-                serde_json::to_string(&(property.shorthand, property.computed)).unwrap()
-            }
+            AstKind::BindingProperty(property) => property.computed.to_string(),
             AstKind::VariableDeclaration(variable) => {
                 serde_json::to_string(&(format!("{:?}", variable.kind), variable.declare)).unwrap()
             }

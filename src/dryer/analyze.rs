@@ -214,24 +214,137 @@ fn write_cache(path: &Path, payload: CachePayload, limits: &AnalysisLimits) -> R
         !fs::symlink_metadata(path).is_ok_and(|metadata| !metadata.is_file()),
         "dryer cache must be a regular file"
     );
-    let temporary = parent.join(format!(
+    #[cfg(unix)]
+    {
+        write_cache_in_directory(path, parent, &document)
+    }
+    #[cfg(not(unix))]
+    {
+        let temporary = parent.join(format!(
+            ".archguard-dryer-{}-{}.tmp",
+            std::process::id(),
+            TEMP_ID.fetch_add(1, Ordering::Relaxed)
+        ));
+        let outcome = (|| -> Result<()> {
+            let mut file = OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .open(&temporary)?;
+            serde_json::to_writer(&mut file, &document)?;
+            file.flush()?;
+            file.sync_all()?;
+            fs::rename(&temporary, path)?;
+            Ok(())
+        })();
+        if outcome.is_err() {
+            let _ = fs::remove_file(temporary);
+        }
+        outcome
+    }
+}
+
+#[cfg(unix)]
+fn write_cache_in_directory(path: &Path, parent: &Path, document: &CacheDocument) -> Result<()> {
+    use std::{
+        ffi::CString,
+        os::{
+            fd::{AsRawFd, FromRawFd},
+            unix::{
+                ffi::OsStrExt,
+                fs::{MetadataExt, OpenOptionsExt},
+            },
+        },
+    };
+    let canonical = parent.canonicalize()?;
+    let candidate = canonical.join(
+        path.file_name()
+            .ok_or_else(|| anyhow::anyhow!("cache requires a file name"))?,
+    );
+    if let Ok(relative) = candidate.strip_prefix(&document.payload.root) {
+        ensure!(
+            !relative.to_str().is_some_and(is_source_path),
+            "dryer cache cannot use a TypeScript source path"
+        );
+    }
+    let initial = fs::symlink_metadata(&canonical)?;
+    let directory = OpenOptions::new()
+        .read(true)
+        .custom_flags(nix::libc::O_DIRECTORY | nix::libc::O_NOFOLLOW | nix::libc::O_NONBLOCK)
+        .open(&canonical)?;
+    let descriptor = directory.metadata()?;
+    ensure!(
+        descriptor.is_dir()
+            && descriptor.dev() == initial.dev()
+            && descriptor.ino() == initial.ino(),
+        "cache parent directory changed before opening"
+    );
+    let verify = || -> Result<()> {
+        ensure!(
+            parent.canonicalize()? == canonical,
+            "cache parent directory changed during publication"
+        );
+        let current = fs::metadata(parent)?;
+        let owned = directory.metadata()?;
+        ensure!(
+            current.is_dir()
+                && current.dev() == descriptor.dev()
+                && current.ino() == descriptor.ino()
+                && owned.dev() == descriptor.dev()
+                && owned.ino() == descriptor.ino(),
+            "cache parent directory identity changed"
+        );
+        Ok(())
+    };
+    verify()?;
+    let temporary = CString::new(format!(
         ".archguard-dryer-{}-{}.tmp",
         std::process::id(),
         TEMP_ID.fetch_add(1, Ordering::Relaxed)
-    ));
+    ))?;
+    let destination = CString::new(path.file_name().expect("validated name").as_bytes())?;
+    // The owned directory keeps all three operations in the same directory even
+    // if the configured parent path is replaced by a link during publication.
+    let fd = unsafe {
+        nix::libc::openat(
+            directory.as_raw_fd(),
+            temporary.as_ptr(),
+            nix::libc::O_WRONLY
+                | nix::libc::O_CREAT
+                | nix::libc::O_EXCL
+                | nix::libc::O_CLOEXEC
+                | nix::libc::O_NOFOLLOW,
+            0o600,
+        )
+    };
+    if fd < 0 {
+        return Err(std::io::Error::last_os_error().into());
+    }
+    // openat returned a newly owned descriptor, closed by File on every path.
+    let mut file = unsafe { File::from_raw_fd(fd) };
     let outcome = (|| -> Result<()> {
-        let mut file = OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(&temporary)?;
-        serde_json::to_writer(&mut file, &document)?;
+        serde_json::to_writer(&mut file, document)?;
         file.flush()?;
         file.sync_all()?;
-        fs::rename(&temporary, path)?;
-        Ok(())
+        verify()?;
+        let status = unsafe {
+            nix::libc::renameat(
+                directory.as_raw_fd(),
+                temporary.as_ptr(),
+                directory.as_raw_fd(),
+                destination.as_ptr(),
+            )
+        };
+        if status != 0 {
+            return Err(std::io::Error::last_os_error().into());
+        }
+        directory.sync_all()?;
+        verify()
     })();
     if outcome.is_err() {
-        let _ = fs::remove_file(temporary);
+        // Only remove this invocation's created temporary entry through its owner.
+        unsafe {
+            nix::libc::unlinkat(directory.as_raw_fd(), temporary.as_ptr(), 0);
+        }
     }
     outcome
 }
