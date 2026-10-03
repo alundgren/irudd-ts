@@ -107,10 +107,17 @@ pub(super) fn run(
     let cancellation = CliCancellation::install()?;
     let token = &cancellation.token;
     let (configuration, directory) = mutator::MutatorConfig::read(configuration)?;
-    let deadline = started + std::time::Duration::from_millis(configuration.execution.limits.run_timeout_ms);
+    let deadline =
+        started + std::time::Duration::from_millis(configuration.execution.limits.run_timeout_ms);
     let guard = || {
-        ensure!(!token.is_cancelled(), "mutation run cancelled during planning");
-        ensure!(std::time::Instant::now() < deadline, "mutation run deadline reached during planning");
+        ensure!(
+            !token.is_cancelled(),
+            "mutation run cancelled during planning"
+        );
+        ensure!(
+            std::time::Instant::now() < deadline,
+            "mutation run deadline reached during planning"
+        );
         Ok(())
     };
     guard()?;
@@ -132,13 +139,7 @@ pub(super) fn run(
         None => mutator::plan_with_guard(root, &configuration.plan, &guard)?,
     };
     guard()?;
-    let report = mutator::run_until(
-        &plan,
-        &configuration.execution,
-        &directory,
-        token,
-        deadline,
-    )?;
+    let report = mutator::run_until(&plan, &configuration.execution, &directory, token, deadline)?;
     if json {
         print_json(&report)?;
     } else {
