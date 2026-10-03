@@ -45,6 +45,8 @@ The unchanged T3 path module and its six tests produce 21 sites, 15 killed and s
 
 The [counterexample helper](README.md) checks exact source hashes, applies the observed edit to an owned copy and retains T3 licensing. Its own controls verify moved source lines, unchanged ordinary relative paths and rejection of unknown owners or unsafe mutation IDs before output creation.
 
+Two authored supplemental tests in private worker copies cover the relative-path and trailing-separator behavior, with ordinary relative paths and preserved roots as negative controls. The replay kills exactly those two mutations, producing 17 killed and four surviving sites with eight passing baseline tests. The original frozen T3 source and tests remain unchanged. The two equivalent mutations and two specification questions remain for review.
+
 ## Execution and reuse choices
 
 The product runs a fresh baseline before mutation results or reuse. Each worker gets a fresh byte copy of the declared workspace and dependency inputs. It does not write through links to the original repository or installation. The optional state records reuse complete killed/survived results only when the full declared input identity still agrees. Changes to tests, helpers, configuration, executables, dependencies, metadata or source membership invalidate reuse. This deliberately reruns more work than function-only snapshots.
