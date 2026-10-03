@@ -387,19 +387,20 @@ class OwnedChild:
             os.killpg(self.pid, signal_number)
         except ProcessLookupError:
             pass
-        except PermissionError:
+        except PermissionError as error:
             # Darwin refuses a signal when the reserved leader is the only zombie.
-            if not self.exited() or group_has_live_members(self.pid):
+            if sys.platform != "darwin" or error.errno != errno.EPERM or not self.exited() or group_has_live_members(self.pid):
                 raise
+            return True
+        return False
 
     def finish(self, observe=group_has_live_members, grace=5):
         self.finished = True
         try:
             self.exited()
             residual = observe(self.pid)
-            if residual:
-                self.signal_group(signal.SIGKILL)
             deadline = time.monotonic() + grace
+            signal_denied = False
             while True:
                 exited = self.exited()
                 if exited and not observe(self.pid):
@@ -412,7 +413,15 @@ class OwnedChild:
                     return self.process.returncode, residual
                 if time.monotonic() >= deadline:
                     raise RuntimeError("Process-group cleanup exceeded its deadline")
-                self.signal_group(signal.SIGKILL)
+                if not signal_denied:
+                    try:
+                        signal_denied = self.signal_group(signal.SIGKILL)
+                    except PermissionError as error:
+                        if sys.platform != "darwin" or error.errno != errno.EPERM:
+                            raise
+                        # Keep the leader reserved while Darwin's denied signal
+                        # settles. Only renewed exit and empty-group proof allow reaping.
+                        signal_denied = True
                 time.sleep(0.01)
         except BaseException:
             # No numeric signals follow uncertain observation. Retain the Popen
