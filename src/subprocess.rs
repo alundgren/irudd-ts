@@ -626,6 +626,14 @@ mod unix {
                 output.stop = CommandStop::Cleanup(format!("{error:#}"));
             }
         }
+        // A fast command can leave generated files between periodic checks.
+        // Recheck after owned processes settle, before accepting its result.
+        if output.cleanup_complete
+            && output.stop == CommandStop::Completed
+            && let Err(error) = monitor()
+        {
+            output.stop = CommandStop::Monitor(format!("{error:#}"));
+        }
         Ok(output)
     }
 
@@ -909,12 +917,16 @@ mod tests {
 
     #[test]
     fn monitor_failure_stops_the_command_without_becoming_success() {
+        let mut checks = 0;
         let output = run_command(
             node("setInterval(()=>{},1000)"),
             b"",
             &limits(),
             || false,
-            || bail!("workspace budget control"),
+            || {
+                checks += 1;
+                bail!("workspace budget control")
+            },
         )
         .unwrap();
         assert_eq!(
@@ -922,6 +934,50 @@ mod tests {
             CommandStop::Monitor("workspace budget control".into())
         );
         assert!(output.status.is_some() && output.cleanup_complete);
+        assert_eq!(checks, 1);
+    }
+
+    #[test]
+    fn completed_commands_recheck_resources_after_child_cleanup() {
+        use nix::{errno::Errno, sys::signal::kill, unistd::Pid};
+        for reject in [true, false] {
+            let directory = tempfile::tempdir().unwrap();
+            let marker = directory.path().join("pid");
+            let mut command = Command::new("sh");
+            command.args(["-c", "printf '%s' \"$$\" > \"$1\"", "resource-control"]);
+            command.arg(&marker);
+            let mut checked_after_cleanup = false;
+            let output = run_command(
+                command,
+                b"",
+                &limits(),
+                || false,
+                || {
+                    if let Ok(text) = fs::read_to_string(&marker) {
+                        let pid = Pid::from_raw(text.parse().unwrap());
+                        if kill(pid, None) == Err(Errno::ESRCH) {
+                            checked_after_cleanup = true;
+                            if reject {
+                                bail!("completed workspace exceeds budget");
+                            }
+                        }
+                    }
+                    Ok(())
+                },
+            )
+            .unwrap();
+            assert!(checked_after_cleanup);
+            assert_eq!(output.status.unwrap().code(), Some(0));
+            assert!(output.cleanup_complete);
+            assert_eq!(
+                output.stop,
+                if reject {
+                    CommandStop::Monitor("completed workspace exceeds budget".into())
+                } else {
+                    CommandStop::Completed
+                }
+            );
+        }
     }
 
     #[test]
