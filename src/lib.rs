@@ -1,5 +1,6 @@
 pub mod cache;
 pub mod config;
+pub mod dryer;
 pub mod facts;
 pub mod mutator;
 pub mod plugin;

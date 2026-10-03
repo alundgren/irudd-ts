@@ -178,6 +178,10 @@ pub fn validate_report_size<T: Serialize + ?Sized>(
 }
 
 fn validate_encoded_bytes<T: Serialize + ?Sized>(value: &T, maximum: usize) -> Result<()> {
+    encoded_size(value, maximum).map(|_| ())
+}
+
+pub(crate) fn encoded_size<T: Serialize + ?Sized>(value: &T, maximum: usize) -> Result<usize> {
     struct Counter {
         bytes: usize,
         maximum: usize,
@@ -197,6 +201,7 @@ fn validate_encoded_bytes<T: Serialize + ?Sized>(value: &T, maximum: usize) -> R
             Ok(())
         }
     }
-    serde_json::to_writer(Counter { bytes: 0, maximum }, value)?;
-    Ok(())
+    let mut counter = Counter { bytes: 0, maximum };
+    serde_json::to_writer(&mut counter, value)?;
+    Ok(counter.bytes)
 }
