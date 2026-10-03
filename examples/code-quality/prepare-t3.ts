@@ -10,7 +10,8 @@ if (!checkoutArgument || !dependencyArgument || !outputArgument || process.argv.
 }
 const checkout = fs.realpathSync(checkoutArgument);
 const dependencies = fs.realpathSync(dependencyArgument);
-const output = path.resolve(outputArgument);
+const requestedOutput = path.resolve(outputArgument);
+const output = path.join(fs.realpathSync(path.dirname(requestedOutput)), path.basename(requestedOutput));
 if (fs.existsSync(output)) throw new Error("Output directory must be new");
 if (output === checkout || output.startsWith(checkout + path.sep) || output === dependencies || output.startsWith(dependencies + path.sep)) {
   throw new Error("Output must be outside source and dependency inputs");

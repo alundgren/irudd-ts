@@ -6,7 +6,8 @@ const [repositoryArgument, dependencyArgument, outputArgument] = process.argv.sl
 if (!repositoryArgument || !dependencyArgument || !outputArgument || process.argv.length !== 5) throw new Error("Usage: node prepare-self.mjs <Archguard repository> <self-contained node_modules> <new output directory>");
 const repository = fs.realpathSync(repositoryArgument);
 const dependencies = fs.realpathSync(dependencyArgument);
-const output = path.resolve(outputArgument);
+const requestedOutput = path.resolve(outputArgument);
+const output = path.join(fs.realpathSync(path.dirname(requestedOutput)), path.basename(requestedOutput));
 if (fs.existsSync(output)) throw new Error("Output directory must be new");
 if (output === repository || output.startsWith(repository + path.sep) || output === dependencies || output.startsWith(dependencies + path.sep)) throw new Error("Output must be outside source and dependency inputs");
 fs.mkdirSync(output, { recursive: true });

@@ -10,7 +10,7 @@ done
 cargo fmt --all -- --check
 cargo clippy --locked --all-targets --all-features -- -D warnings
 cargo test --locked --all-features
-node --test tests/mutator_sdk.test.ts tests/mutator_reporter.test.ts
+node --test tests/mutator_sdk.test.ts tests/mutator_reporter.test.ts tests/quality_examples.test.ts
 python3 scripts/licenses.py
 python3 scripts/semantic_licenses.py
 python3 scripts/semantic_licenses.py --history
