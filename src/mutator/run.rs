@@ -539,6 +539,7 @@ impl TaskContext<'_> {
                         .validation_gate
                         .lock()
                         .map_err(|_| anyhow::anyhow!("mutant validation coordinator failed"))?;
+                    guard()?;
                     super::validate_mutant(&site.location.file, &mutated, self.analysis_limits)?
                 };
                 match validation {
