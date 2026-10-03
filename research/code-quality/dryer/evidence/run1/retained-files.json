@@ -1,0 +1,8 @@
+{
+  "retained_from": "research/local/dryer-20261003-run1",
+  "sha256": {
+    "authored-dryer-probe.stderr": "94e63948b7f6b0b0a5078f0296ea564ca607c45a84b2f2075a37b9edd1fc2f79",
+    "authored-dryer-probe.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "provenance.json": "98ad023fda98778272db178f27e7a70a98366bda311b5896da5f55216583a2c3"
+  }
+}

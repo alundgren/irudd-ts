@@ -1,0 +1,1364 @@
+{
+  "status": "complete",
+  "upstream_revision": "6892667b3441b88379bc8d0439fc2152b0fdb341",
+  "config": {
+    "min_lines": 4,
+    "min_nodes": 20,
+    "threshold": 0.82,
+    "weighted": "subtree node count times occurrence count"
+  },
+  "diagnostics": [],
+  "parse_observations": [
+    {
+      "file": "A.ts",
+      "has_error": false,
+      "errors": [],
+      "upstream_warning": null,
+      "upstream_entries": 2
+    },
+    {
+      "file": "B.ts",
+      "has_error": false,
+      "errors": [],
+      "upstream_warning": null,
+      "upstream_entries": 2
+    },
+    {
+      "file": "C.ts",
+      "has_error": false,
+      "errors": [],
+      "upstream_warning": null,
+      "upstream_entries": 2
+    },
+    {
+      "file": "D.ts",
+      "has_error": false,
+      "errors": [],
+      "upstream_warning": null,
+      "upstream_entries": 2
+    },
+    {
+      "file": "E.ts",
+      "has_error": false,
+      "errors": [],
+      "upstream_warning": null,
+      "upstream_entries": 2
+    },
+    {
+      "file": "F.ts",
+      "has_error": false,
+      "errors": [],
+      "upstream_warning": null,
+      "upstream_entries": 2
+    }
+  ],
+  "entries": [
+    {
+      "file": "A.ts",
+      "start": 1,
+      "end": 7,
+      "nodes": 82
+    },
+    {
+      "file": "A.ts",
+      "start": 9,
+      "end": 15,
+      "nodes": 82
+    },
+    {
+      "file": "B.ts",
+      "start": 1,
+      "end": 7,
+      "nodes": 82
+    },
+    {
+      "file": "B.ts",
+      "start": 9,
+      "end": 17,
+      "nodes": 111
+    },
+    {
+      "file": "C.ts",
+      "start": 1,
+      "end": 7,
+      "nodes": 82
+    },
+    {
+      "file": "C.ts",
+      "start": 9,
+      "end": 16,
+      "nodes": 109
+    },
+    {
+      "file": "D.ts",
+      "start": 1,
+      "end": 5,
+      "nodes": 70
+    },
+    {
+      "file": "D.ts",
+      "start": 7,
+      "end": 11,
+      "nodes": 70
+    },
+    {
+      "file": "E.ts",
+      "start": 1,
+      "end": 5,
+      "nodes": 71
+    },
+    {
+      "file": "E.ts",
+      "start": 7,
+      "end": 11,
+      "nodes": 71
+    },
+    {
+      "file": "F.ts",
+      "start": 1,
+      "end": 45,
+      "nodes": 403
+    },
+    {
+      "file": "F.ts",
+      "start": 47,
+      "end": 91,
+      "nodes": 412
+    }
+  ],
+  "excluded": [],
+  "pairs": [
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 1.0,
+      "multiset": 1.0,
+      "weighted": 1.0,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.9071428571428571,
+      "multiset": 0.9544364508393285,
+      "weighted": 0.3746000492247108,
+      "candidate_at_082": true
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "set": 0.7,
+      "multiset": 0.7079646017699115,
+      "weighted": 0.41486486486486485,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "set": 0.7,
+      "multiset": 0.7079646017699115,
+      "weighted": 0.41486486486486485,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "set": 0.7,
+      "multiset": 0.7079646017699115,
+      "weighted": 0.41486486486486485,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "set": 0.7,
+      "multiset": 0.7079646017699115,
+      "weighted": 0.41486486486486485,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "set": 0.4050632911392405,
+      "multiset": 0.4921875,
+      "weighted": 0.13779128672745694,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "set": 0.4050632911392405,
+      "multiset": 0.4921875,
+      "weighted": 0.13779128672745694,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "set": 0.4050632911392405,
+      "multiset": 0.4921875,
+      "weighted": 0.13779128672745694,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "set": 0.4050632911392405,
+      "multiset": 0.4921875,
+      "weighted": 0.13779128672745694,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "set": 0.391304347826087,
+      "multiset": 0.5068493150684932,
+      "weighted": 0.13826940231935772,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 0.373134328358209,
+      "multiset": 0.46153846153846156,
+      "weighted": 0.09439124487004104,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "set": 0.3116883116883117,
+      "multiset": 0.3984375,
+      "weighted": 0.071875,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 0.3116883116883117,
+      "multiset": 0.3984375,
+      "weighted": 0.071875,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "set": 0.2976190476190476,
+      "multiset": 0.3609022556390977,
+      "weighted": 0.07805429864253394,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "set": 0.2976190476190476,
+      "multiset": 0.3609022556390977,
+      "weighted": 0.07805429864253394,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.29411764705882354,
+      "multiset": 0.42424242424242425,
+      "weighted": 0.08962264150943396,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.29411764705882354,
+      "multiset": 0.42424242424242425,
+      "weighted": 0.08962264150943396,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.29411764705882354,
+      "multiset": 0.42424242424242425,
+      "weighted": 0.08962264150943396,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.29411764705882354,
+      "multiset": 0.42424242424242425,
+      "weighted": 0.08962264150943396,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.2887323943661972,
+      "multiset": 0.17149758454106281,
+      "weighted": 0.04980340760157274,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.2887323943661972,
+      "multiset": 0.17149758454106281,
+      "weighted": 0.04980340760157274,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.2887323943661972,
+      "multiset": 0.17149758454106281,
+      "weighted": 0.04980340760157274,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.2887323943661972,
+      "multiset": 0.17149758454106281,
+      "weighted": 0.04980340760157274,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.2827586206896552,
+      "multiset": 0.16784869976359337,
+      "weighted": 0.04867114953570285,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.2827586206896552,
+      "multiset": 0.16784869976359337,
+      "weighted": 0.04867114953570285,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.2827586206896552,
+      "multiset": 0.16784869976359337,
+      "weighted": 0.04867114953570285,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.2827586206896552,
+      "multiset": 0.16784869976359337,
+      "weighted": 0.04867114953570285,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.27388535031847133,
+      "multiset": 0.19813519813519814,
+      "weighted": 0.05268109125117592,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.26875,
+      "multiset": 0.19406392694063926,
+      "weighted": 0.051533742331288344,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.25882352941176473,
+      "multiset": 0.34328358208955223,
+      "weighted": 0.06722689075630252,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.25882352941176473,
+      "multiset": 0.34328358208955223,
+      "weighted": 0.06722689075630252,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.24050632911392406,
+      "multiset": 0.34210526315789475,
+      "weighted": 0.06929347826086957,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "set": 0.23655913978494625,
+      "multiset": 0.3,
+      "weighted": 0.06575963718820861,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 9,
+        "end": 17,
+        "nodes": 111
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "set": 0.23655913978494625,
+      "multiset": 0.3,
+      "weighted": 0.06575963718820861,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.21518987341772153,
+      "multiset": 0.17701149425287357,
+      "weighted": 0.04219793564055859,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "start": 9,
+        "end": 16,
+        "nodes": 109
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.2111801242236025,
+      "multiset": 0.17342342342342343,
+      "weighted": 0.041307578008915304,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.19310344827586207,
+      "multiset": 0.13701923076923078,
+      "weighted": 0.02877935825339067,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.19310344827586207,
+      "multiset": 0.13701923076923078,
+      "weighted": 0.02877935825339067,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.1891891891891892,
+      "multiset": 0.13411764705882354,
+      "weighted": 0.028118939883645767,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.1891891891891892,
+      "multiset": 0.13411764705882354,
+      "weighted": 0.028118939883645767,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.15483870967741936,
+      "multiset": 0.11267605633802817,
+      "weighted": 0.022449653350940905,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "set": 0.15483870967741936,
+      "multiset": 0.11267605633802817,
+      "weighted": 0.022449653350940905,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.1518987341772152,
+      "multiset": 0.1103448275862069,
+      "weighted": 0.02193548387096774,
+      "candidate_at_082": false
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "set": 0.1518987341772152,
+      "multiset": 0.1103448275862069,
+      "weighted": 0.02193548387096774,
+      "candidate_at_082": false
+    }
+  ],
+  "sensitivity": [
+    {
+      "threshold": 0.7,
+      "set": 13,
+      "multiset": 13,
+      "weighted": 8
+    },
+    {
+      "threshold": 0.75,
+      "set": 9,
+      "multiset": 9,
+      "weighted": 8
+    },
+    {
+      "threshold": 0.8,
+      "set": 9,
+      "multiset": 9,
+      "weighted": 8
+    },
+    {
+      "threshold": 0.82,
+      "set": 9,
+      "multiset": 9,
+      "weighted": 8
+    },
+    {
+      "threshold": 0.85,
+      "set": 9,
+      "multiset": 9,
+      "weighted": 8
+    },
+    {
+      "threshold": 0.9,
+      "set": 9,
+      "multiset": 9,
+      "weighted": 8
+    },
+    {
+      "threshold": 0.95,
+      "set": 8,
+      "multiset": 9,
+      "weighted": 8
+    }
+  ]
+}

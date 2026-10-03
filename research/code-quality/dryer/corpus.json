@@ -1,0 +1,73 @@
+{
+  "revision": "31a9da179ed0763335f05681c577474aec5d2309",
+  "frozen_before_comparisons": true,
+  "selection_method": "Named bounded TS utility modules chosen by purpose and size before running tools; no result-driven expansion.",
+  "exclusions": [
+    "All other source files",
+    "All test files",
+    "node_modules",
+    "No whole-repository discovery or semantic/runtime checks"
+  ],
+  "files": [
+    {
+      "path": "apps/mobile/src/features/threads/customSnoozeDate.ts",
+      "reason": "Requested small date utility; may fall below default size",
+      "sha256": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "bytes": 651
+    },
+    {
+      "path": "apps/mobile/src/features/files/filePath.ts",
+      "reason": "Requested path utilities, includes 30-line path normalization",
+      "sha256": "7a0eadee659976ce0e580dd037b971dceabe4a2b08554e16433e5b3a95fd3ddd",
+      "bytes": 4711
+    },
+    {
+      "path": "apps/web/src/components/files/filePath.ts",
+      "reason": "Web counterpart for breadcrumbs, cross-platform comparison",
+      "sha256": "d10a135e8ceec5b666d6903a7d12f205256deeff8cdd63d587f9c61a419b8609",
+      "bytes": 2235
+    },
+    {
+      "path": "packages/shared/src/path.ts",
+      "reason": "Shared path utility counterpart",
+      "sha256": "4c576bb8969bbafaec9fbc4993a5ca991c1140cea227bb4a4e05916468c31d99",
+      "bytes": 2504
+    },
+    {
+      "path": "packages/shared/src/filePreview.ts",
+      "reason": "Larger related file classifiers",
+      "sha256": "ffda73eddc45277fbabe0b2d0ba0686375a9974e545ae9a9ead529d63b5604be",
+      "bytes": 7289
+    },
+    {
+      "path": "packages/shared/src/shell.ts",
+      "reason": "803-line module with larger shell-quoting functions",
+      "sha256": "42c9995afcbcb5a8109dd2ea900387b7c996e316d5117ed3638f6e3c687173ab",
+      "bytes": 27578
+    },
+    {
+      "path": "apps/web/src/proposedPlan.ts",
+      "reason": "125-line parser of plans",
+      "sha256": "db1127d19ae37410891cee84cbf9c52dc691a3acd9746eb75fc8e9ec7cf8ae16",
+      "bytes": 3749
+    },
+    {
+      "path": "apps/web/src/promptStashStore.ts",
+      "reason": "302-line store with larger update functions",
+      "sha256": "dec8499520f2f866f00c5f1a13b78511e6ca8da78fbad483b32b4b5849e2a6cb",
+      "bytes": 11856
+    },
+    {
+      "path": "apps/web/src/filePathDisplay.ts",
+      "reason": "Small display utilities compared with path utilities",
+      "sha256": "cfe3af92f9d51f3907877ab637f02f93785c0c1ef5114877996507d05fa86768",
+      "bytes": 2225
+    },
+    {
+      "path": "packages/client-runtime/src/markdownLinks.ts",
+      "reason": "346-line parsing and URL normalization module",
+      "sha256": "7fdccfefb8406197339e0aa3ccd215e787325352bd5fcdb0a32d3464999f30e0",
+      "bytes": 11155
+    }
+  ]
+}

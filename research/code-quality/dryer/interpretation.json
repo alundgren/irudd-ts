@@ -1,0 +1,223 @@
+{
+  "basis": "Manual inspection at pinned source revisions; all other pairs unclassified. Scores never imply required refactoring.",
+  "default_unreviewed_classification": "unclassified",
+  "reviewed": [
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "classification": "useful",
+      "reason": "Local renames and numeric changes in authored copy"
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "classification": "incidental",
+      "reason": "Repeated common baseline across independent authored controls"
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "classification": "incidental",
+      "reason": "Repeated common baseline across independent authored controls"
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "classification": "incidental",
+      "reason": "Repeated common baseline across independent authored controls"
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "start": 9,
+        "end": 15,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "classification": "incidental",
+      "reason": "Repeated common baseline across independent authored controls"
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "right": {
+        "file": "C.ts",
+        "start": 1,
+        "end": 7,
+        "nodes": 82
+      },
+      "classification": "incidental",
+      "reason": "Repeated common baseline across independent authored controls"
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 70
+      },
+      "right": {
+        "file": "D.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 70
+      },
+      "classification": "incidental",
+      "reason": "Unrelated account/battery behavior after property erasure"
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "start": 1,
+        "end": 5,
+        "nodes": 71
+      },
+      "right": {
+        "file": "E.ts",
+        "start": 7,
+        "end": 11,
+        "nodes": 71
+      },
+      "classification": "incidental",
+      "reason": "Intentional resource-request boilerplate"
+    },
+    {
+      "left": {
+        "file": "F.ts",
+        "start": 1,
+        "end": 45,
+        "nodes": 403
+      },
+      "right": {
+        "file": "F.ts",
+        "start": 47,
+        "end": 91,
+        "nodes": 412
+      },
+      "classification": "useful",
+      "reason": "45-line authored copy with changed names, condition and numbers"
+    },
+    {
+      "left": {
+        "file": "packages/shared/src/filePreview.ts",
+        "start": 117,
+        "end": 120,
+        "nodes": 75
+      },
+      "right": {
+        "file": "packages/shared/src/filePreview.ts",
+        "start": 123,
+        "end": 129,
+        "nodes": 91
+      },
+      "classification": "incidental",
+      "reason": "Deliberate classifier or output-construction variants sharing syntax",
+      "threshold": 0.7,
+      "default_threshold_member": false
+    },
+    {
+      "left": {
+        "file": "packages/shared/src/filePreview.ts",
+        "start": 117,
+        "end": 120,
+        "nodes": 75
+      },
+      "right": {
+        "file": "packages/shared/src/filePreview.ts",
+        "start": 132,
+        "end": 140,
+        "nodes": 101
+      },
+      "classification": "incidental",
+      "reason": "Deliberate classifier or output-construction variants sharing syntax",
+      "threshold": 0.7,
+      "default_threshold_member": false
+    },
+    {
+      "left": {
+        "file": "packages/shared/src/shell.ts",
+        "start": 203,
+        "end": 225,
+        "nodes": 257
+      },
+      "right": {
+        "file": "packages/shared/src/shell.ts",
+        "start": 408,
+        "end": 433,
+        "nodes": 292
+      },
+      "classification": "useful",
+      "reason": "Related PATH merge implementations with different case/quote normalization",
+      "threshold": 0.7,
+      "default_threshold_member": false
+    },
+    {
+      "left": {
+        "file": "apps/web/src/proposedPlan.ts",
+        "start": 98,
+        "end": 104,
+        "nodes": 50
+      },
+      "right": {
+        "file": "apps/web/src/proposedPlan.ts",
+        "start": 106,
+        "end": 109,
+        "nodes": 37
+      },
+      "classification": "incidental",
+      "reason": "Deliberate classifier or output-construction variants sharing syntax",
+      "threshold": 0.7,
+      "default_threshold_member": false
+    }
+  ],
+  "basis_run": "evidence/run3"
+}

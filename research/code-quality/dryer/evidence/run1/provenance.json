@@ -1,0 +1,80 @@
+{
+  "dryer_revision": "6892667b3441b88379bc8d0439fc2152b0fdb341",
+  "t3_revision": "31a9da179ed0763335f05681c577474aec5d2309",
+  "runtime": {
+    "python": "Python 3.12.14",
+    "node": "v24.21.0",
+    "python_executable_sha256": "edffa803e5c4d73a1357f7f2c6c9fd38e9693712b2c06793e6a5e5cc1090d03a",
+    "node_executable_sha256": "df7c6ae6e2acfda7f07dcbb1766aed00dcabb7e9551321e7df42bba93b64fc82",
+    "jscpd": "4.3.0",
+    "typescript": "5.9.3",
+    "jscpd_entry_sha256": "9cb349fd8ba27c32184a9a61dd82d14fe2663d6ffd5de63817922444442a8865"
+  },
+  "environment": "Shared development host; coordinated window excludes other agents' builds/tests/measurements, unrelated desktop processes may run.",
+  "measurements": "One wall-time observation per invocation; tools perform different checks. No speed comparison.",
+  "inputs": {
+    "DEPENDENCY-NOTICES.txt": "efd9fc3eac38c4c06cc6c833cc475e9ba8c63a3563d7909bb9b9ef061e615b40",
+    "README.md": "0bcdcea49852a296a4dd56c98003dea269b2fc07570fe0371652ff1b40befff5",
+    "T3-NOTICE.txt": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43",
+    "corpus.json": "54051eeb1da053edceb1caef6be04975fa7c35a78d51196208f2ffcbfe027b77",
+    "dependency-licenses.json": "5f9153e16b84dd4d71dae35be723cdf1c94654878c85065201bc62f5c077a25c",
+    "detector.mjs": "13bb8f7f98312958bce10b8d89b01189432953c7e872fe080bed633f36920506",
+    "detector.test.mjs": "1950d1d2386c934808cfa4ae26d831bfaea68cb16816e0f02364fcd06bbf24c5",
+    "fixtures/A.ts": "e712b5e1748f304daefc642584f1d900bdfe3a61698e2a2920452f4d0375b0d5",
+    "fixtures/B.ts": "c2094f43b7fec705a20ec81ed0904e2c362764d9e60691357304cdffc6e831e7",
+    "fixtures/C.ts": "43702f76855083057fd85bea9b561c4ff001c00c846e4a2dccd911bc3d41ed04",
+    "fixtures/D.ts": "9f2714f5cb1586a1f09fb48517bad2f53376ab0846ff96587292cf1bc23a5617",
+    "fixtures/E.ts": "32bd87cb92c8a518490b269e2ff04518dba85df3263825585dd259a29516f693",
+    "fixtures/F.ts": "6acf23ff47fe21d0361b96622aa81768691d5c9df4549e29765b170215498250",
+    "fixtures/diagnostic.txt": "ff6e2a6cf56e91d01d1729815c725fba4cd1c75c59fd4097f22f8498f9cde32b",
+    "licenses.py": "6166f6a2d6e1cb46303fa24d62948aaeb5dded936b0e4b65e5a9ea369931d79c",
+    "package-lock.json": "12a8d338dc4ff169decb33c67a74f8f7cf3ed6a04abe9b6fbba7e1251157c8e5",
+    "package.json": "4ca07ebc755479e71b62d65a3afe98255107ad1ce0868a7da965500eca783690",
+    "python-constraints.txt": "1f5cf6ae20af0dd6e49b7aca73c5c8e07b75210e7fb98ceca4aeb34673e8ca04",
+    "python-requirements.lock": "60c29994ac1d2a63500de69415da0447c0ce0551c5ca19f85b6cd65991dead64",
+    "run.py": "dc8a962ab3620311491f36895a3eca81c565d07ef7d691d02b3ac8953433fc16",
+    "upstream_probe.py": "611b00086c69fe4cc1fa1e413af98313a38821a9cac19425f1565602660ee4e7"
+  },
+  "upstream_sources": {
+    "src/dryer/__init__.py": "b711caa2cb644f7c635135375c52d361a5dc603170ba8deb82262ca853f58a17",
+    "src/dryer/__main__.py": "4ed62c1ccca56806c40d68cf357323aa32da712032daed62a2cdf7b172413206",
+    "src/dryer/astnorm.py": "4112b05ad2cd787bbe1aa81f5e72cde7634d7ae72ddd16e4ee37fb910092491a",
+    "src/dryer/cli.py": "5c10717e100312407259b217a45de98ef265ae46d390c23896cd050009fe8bf6",
+    "src/dryer/clojure_read.py": "afe6324ed84b7d51a940aac0ff7fbd76006c84deeaf1762c674b5b4ed2dbea65",
+    "src/dryer/discover.py": "9b6ff468cdf16bab891e1c7c539eebae3f0dc3b078d8e5c9f9a625fd13d09e02",
+    "src/dryer/extract.py": "55c632f91ec8e2422daf289c189c6554cf526e947ed37b0557a449815a371759",
+    "src/dryer/model.py": "311175eedaf69de74be13e69631967af69626ca788d29aedf2b72c3def6cfabe",
+    "src/dryer/report.py": "26bac1d3fee8c0c0b103f163bad1092eda1f0ddd1ee3d81cb395daf5a94e20cd",
+    "src/dryer/scan.py": "e264457134f66e09bf91a588876258aab0dce9f92e7483b86a83bd326a7eba05",
+    "src/dryer/shape.py": "0c8563fef60780873f2d09e908baed882380d09c645c4e12505132565e49466c",
+    "src/dryer/treesitter.py": "2877bf1ecfa8a2be01d45693f7ddf0dc1c0fad3299612676b492cf1dcfb374a9"
+  },
+  "grammar_artifacts": {
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/bundles/linux-x86_64-f72a6cc06efdc70785ebd283ecfae23e650f12211887349898594c78757d0f5b.tar.zst": "f72a6cc06efdc70785ebd283ecfae23e650f12211887349898594c78757d0f5b",
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/libs/libtree_sitter_typescript.so": "5afc27fbe28f53e72a43911085f7fd9c10820dd284bd2dc755b19589e1dcba6a",
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/manifest.json": "bad1eec2b1406c9d1359d53991249e99940dbfc5f36fd1bc7070874ca5d86a0f"
+  },
+  "commands": [
+    {
+      "label": "authored-dryer-probe",
+      "command": [
+        "/home/dev/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/bin/python3.12",
+        "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/upstream_probe.py",
+        "--checkout",
+        "/tmp/archguard-quality-research/upstream-dryer",
+        "--root",
+        "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures",
+        "A.ts",
+        "B.ts",
+        "C.ts",
+        "D.ts",
+        "E.ts",
+        "F.ts"
+      ],
+      "cwd": "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer",
+      "exit_code": 1,
+      "elapsed_seconds": 0.1735888029797934,
+      "execution_status": "error"
+    }
+  ]
+}
