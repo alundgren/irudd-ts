@@ -11,8 +11,9 @@ import shutil
 import subprocess
 import tarfile
 import tempfile
+import sys
 
-from runner import disk_check, hash_tree, install_signal_handlers, run_command, write_json
+from runner import disk_check, hash_tree, install_signal_handlers, runner_fingerprint, run_command, write_json
 
 
 def parse_libtest(text, returncode, assertion_sites=()):
@@ -30,7 +31,7 @@ def parse_libtest(text, returncode, assertion_sites=()):
                 site = (panics[0][0], int(panics[0][1])) if len(panics) == 1 else None
                 if site in assertion_sites and re.search(r"(?:assertion (?:`.*?` )?failed|assertion failed:)", block.group(1)):
                     outcome = "killed"
-        records.append({"id": "rust-lib::" + name, "name": name, "file": "src/lib.rs", "outcome": outcome})
+        records.append({"id": "rust-lib::" + name, "name": name, "file": None, "outcome": outcome})
     summary = re.search(r"^test result: (ok|FAILED)\. (\d+) passed; (\d+) failed; (\d+) ignored; (\d+) measured; (\d+) filtered out;", text, re.M)
     complete = bool(summary) and bool(records) and all(test["outcome"] != "unknown" for test in records)
     if summary:
@@ -90,6 +91,8 @@ def execute(template, active, evidence, cargo, rustc, target, test_filter, mutat
         sites = {(file, number) for number, line in enumerate((template / file).read_text().splitlines(), 1)
                  if re.search(r"^\s*assert(?:_eq|_ne)?!\s*\(", line)}
         result = parse_libtest(stdout, process["exitCode"], sites)
+        for test in result["tests"]:
+            test["file"] = file
     result["process"] = process
     write_json(evidence / "execution.json", result)
     return result
@@ -107,6 +110,10 @@ def main():
     install_signal_handlers()
     output = args.output.resolve()
     output.mkdir(parents=True)
+    engine_version = subprocess.check_output([str(args.cargo_mutants), "mutants", "--version"], text=True).strip()
+    if engine_version != "cargo-mutants 27.1.0":
+        raise ValueError("native experiment requires cargo-mutants 27.1.0")
+    tool_digest = runner_fingerprint()
     template = output / "template"
     archive(args.repository, args.revision, template)
     source_digest = hash_tree(template)[0]
@@ -122,8 +129,9 @@ def main():
     baseline = execute(template, active, output / "baseline", args.cargo, args.rustc, target, "mutator::result::tests")
     tests = [{key: value for key, value in test.items() if key != "outcome"} for test in baseline["tests"]]
     matrix = {"schemaVersion": 1, "baselineComplete": baseline["complete"] and baseline["status"] == "survived", "tests": tests,
-              "provenance": {"sourceSha256": source_digest, "executables": executables, "plannedMutants": len(mutants), "testDurations": "unavailable; cargo wall duration includes build"},
-              "subject": {"name": "Archguard Rust protocol slice", "revision": args.revision, "scope": "3 mutator::result::tests; selected comparison/logical/unary operators"}, "mutants": []}
+              "provenance": {"sourceSha256": source_digest, "executables": executables, "runnerSha256": tool_digest,
+                             "pythonSha256": hashlib.sha256(Path(sys.executable).resolve().read_bytes()).hexdigest(), "plannedMutants": len(mutants), "testDurations": "unavailable; cargo wall duration includes build"},
+              "subject": {"name": "Archguard Rust protocol slice", "revision": args.revision, "scope": "3 mutator::result::tests; selected binary/unary operators"}, "mutants": []}
     for index, mutation in enumerate(mutants):
         if not matrix["baselineComplete"]:
             break
@@ -140,6 +148,8 @@ def main():
         matrix["mutants"].append(column)
         write_json(output / "matrix.json", matrix)
         print(f"Rust {index + 1}/{len(mutants)} {result['status']}", flush=True)
+    if runner_fingerprint() != tool_digest:
+        raise RuntimeError("native experiment code changed during measurement")
     if hash_tree(template)[0] != source_digest:
         raise RuntimeError("native immutable template changed")
     write_json(output / "matrix.json", matrix)

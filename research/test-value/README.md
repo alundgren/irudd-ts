@@ -42,7 +42,7 @@ python3 research/test-value/history.py \
 
 The candidate file has a `candidates` array. Each entry names `id`, `subject` of `t3code` or `scope`, `repository`, exact `fix` and first `parent` commit hashes, `sourceFiles`, `testFiles`, `title`, and `relatedGroup`. The operator set and prefix limit are declared before outcomes are observed. Reusing an output directory with changed candidates, tools, operators, limits or dependencies fails. Start a new directory for a changed experiment.
 
-The native command requires explicit `--repository`, `--revision`, `--cargo`, `--rustc`, `--cargo-mutants`, and a new `--output` directory. It selects comparison/logical/unary mutations in production lines 1 through 211 of `src/mutator/result.rs` and runs three frozen inline tests. Its assertion classification requires one actual panic at a verified assertion statement in those tests. Other panics and incomplete runner output are unknown. Build duration is not a per-test cost measurement.
+The native command requires explicit `--repository`, `--revision`, `--cargo`, `--rustc`, `--cargo-mutants`, and a new `--output` directory. It selects binary/unary mutations in production lines 1 through 211 of `src/mutator/result.rs` and runs three frozen inline tests. Its assertion classification requires one actual panic at a verified assertion statement in those tests. Other panics and incomplete runner output are unknown. Build duration is not a per-test cost measurement.
 
 ```sh
 python3 research/test-value/report.py --root research/local/EXPERIMENT \
