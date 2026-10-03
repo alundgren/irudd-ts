@@ -177,6 +177,67 @@ fn native_provider_unicode_multicontext_and_unavailable_controls() {
     assert_eq!(findings, ts);
 }
 #[test]
+fn native_nullable_optional_and_union_members_remain_present() {
+    let root = tempfile::tempdir().unwrap();
+    fs::write(root.path().join("main.ts"), "export {}; declare const nullable:{member:number}|undefined|null; nullable?.member; declare const union:{member:number,first:true}|{member:string,second:true}; union.member;").unwrap();
+    let config = config(
+        root.path(),
+        json!([{"id":"app","tsconfig":"tsconfig.json","files":["*.ts"]}]),
+    );
+    let facts = analyze(&graph(root.path()), &config, root.path()).unwrap();
+    assert!(facts.complete);
+    let properties = &facts.file("app", "main.ts").unwrap().properties;
+    assert_eq!(properties.len(), 2);
+    assert!(
+        properties
+            .iter()
+            .all(|property| property.status == MemberStatus::Present)
+    );
+    assert!(check(&facts, &config).unwrap().is_empty());
+}
+#[test]
+fn index_signatures_without_named_symbols_do_not_prove_member_absence() {
+    let root = tempfile::tempdir().unwrap();
+    fs::write(root.path().join("main.ts"), "export {}; declare const indexed:Record<string,number>; indexed.member; declare const nullable:Record<string,number>|undefined; nullable?.member;").unwrap();
+    let config = config(
+        root.path(),
+        json!([{"id":"app","tsconfig":"tsconfig.json","files":["*.ts"]}]),
+    );
+    let facts = analyze(&graph(root.path()), &config, root.path()).unwrap();
+    assert!(!facts.complete);
+    assert!(facts.contexts[0].diagnostics.is_empty());
+    let properties = &facts.file("app", "main.ts").unwrap().properties;
+    assert_eq!(properties.len(), 2);
+    assert!(properties.iter().all(|property| {
+        property.status == MemberStatus::Unavailable
+            && property
+                .detail
+                .as_ref()
+                .unwrap()
+                .contains("Index signature")
+    }));
+    assert!(check(&facts, &config).unwrap().is_empty());
+}
+#[test]
+fn member_rule_remains_useful_when_compiler_diagnostics_are_suppressed() {
+    let root = tempfile::tempdir().unwrap();
+    fs::write(
+        root.path().join("main.ts"),
+        "export const x={value:1};\n// @ts-ignore\nx.missing;\n",
+    )
+    .unwrap();
+    let config = config(
+        root.path(),
+        json!([{"id":"app","tsconfig":"tsconfig.json","files":["*.ts"]}]),
+    );
+    let facts = analyze(&graph(root.path()), &config, root.path()).unwrap();
+    assert!(facts.complete);
+    assert!(facts.contexts[0].diagnostics.is_empty());
+    let findings = check(&facts, &config).unwrap();
+    assert_eq!(findings.len(), 1);
+    assert!(findings[0].message.contains("missing"));
+}
+#[test]
 fn native_clean_and_context_membership_failures() {
     let root = tempfile::tempdir().unwrap();
     fs::write(
@@ -351,10 +412,16 @@ fn deadline_kills_a_waiting_native_compiler_descendant() {
     let executable = Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("providers/typescript7/node_modules/@typescript/typescript-linux-x64/lib/tsc");
     let marker = root.path().join("native-pid");
-    let script = format!(
-        "const child=require('node:child_process').spawn({executable:?},['--api'],{{stdio:['pipe','ignore','ignore']}});require('node:fs').writeFileSync({marker:?},String(child.pid));setInterval(()=>{{}},1000);"
-    );
-    config.provider.command = vec!["node".into(), "-e".into(), script];
+    // Keep the native input open, without depending on Node startup within the deadline.
+    config.provider.command = vec![
+        "sh".into(),
+        "-c".into(),
+        "tail -f /dev/null | \"$1\" --api >/dev/null 2>&1 & printf '%s' \"$!\" > \"$2\"; wait"
+            .into(),
+        "semantic-deadline".into(),
+        executable.to_string_lossy().into(),
+        marker.to_string_lossy().into(),
+    ];
     config.provider.timeout_ms = 400;
     let error = analyze(&graph(root.path()), &config, root.path()).unwrap_err();
     assert!(error.to_string().contains("deadline"));

@@ -65,7 +65,12 @@ try {
                 row.properties.push({ ...site, receiver: { state, display }, status: 'unavailable', symbol: null, detail: `Receiver is ${state}` });
                 continue;
               }
-              const member = project.checker.getPropertyOfType(type, site.member);
+              // The actual access handles optional chains and union member resolution.
+              const member = project.checker.getSymbolAtLocation(node.name) ?? project.checker.getPropertyOfType(type, site.member);
+              if (!member && project.checker.getIndexInfosOfType(project.checker.getNonNullableType(type) ?? type).length) {
+                row.properties.push(unavailable(site, 'Index signature access has no resolved named member symbol'));
+                continue;
+              }
               const declarations = (member?.declarations ?? []).map(handle => {
                 const declaration = handle.resolve(project);
                 if (!declaration) throw new Error('Member declaration unavailable');
