@@ -31,14 +31,14 @@ for (const [profile, source, test] of [
   ["protocol", "sdk/mutator.ts", "quality-tests/mutator_sdk.test.ts"],
   ["reporter", "sdk/mutator-vitest-reporter.ts", "quality-tests/mutator_reporter.test.ts"],
 ]) {
-const config = { schemaVersion: 1, plan: { schemaVersion: 1, selection: { include: [source] } }, execution: {
-  command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", test, "--config", "quality-support/vite.config.ts"],
-  workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts"], dependencies: [
-    { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
-    { source: tests, destination: "quality-tests" }] },
-  limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
-} };
-fs.writeFileSync(path.join(output, `${profile}.json`), JSON.stringify(config, null, 2) + "\n");
+  const config = { schemaVersion: 1, plan: { schemaVersion: 1, selection: { include: [source] } }, execution: {
+    command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", test, "--config", "quality-support/vite.config.ts"],
+    workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts"], dependencies: [
+      { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
+      { source: tests, destination: "quality-tests" }] },
+    limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
+  } };
+  fs.writeFileSync(path.join(output, `${profile}.json`), JSON.stringify(config, null, 2) + "\n");
 }
 fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion: 1,
   selection: { include: ["sdk/**/*.ts", "examples/code-quality/**/*.ts"] } }, null, 2) + "\n");

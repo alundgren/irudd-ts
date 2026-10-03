@@ -16,3 +16,11 @@ This is a labeled test-runner adaptation. The existing Node SDK and reporter tes
 Inspect every surviving mutation and every execution error. A mutated API can throw an ordinary error inside a test. The conservative protocol records that as a runtime error rather than automatically treating it as an assertion kill. Missing result metadata and failed setup remain incomplete evidence. Retain those outcomes alongside useful survivors.
 
 The authored domain and unchanged focused T3 test profiles live in [examples/code-quality](../../../examples/code-quality/README.md). T3 scope is limited to the configured files and test commands. It does not establish whole-repository coverage.
+
+For the focused path profile, retain its source-only plan beside the run report and inspect concrete survivor counterexamples:
+
+```sh
+node research/code-quality/product/inspect-path.mjs /absolute/trusted-t3code /absolute/path-plan.json /absolute/path-report.json /tmp/archguard-path-counterexamples
+```
+
+This explicitly loads copied T3 path modules with Node, applies only the observed logical/zero-one edits, checks the original source hash, and retains upstream licensing beside the copies. It writes outside T3. The examples distinguish missing relative-path cases and one-character trailing separators from equivalent early returns and unresolved drive-root separator representation. Observing no difference on a few inputs alone does not prove equivalence; inspect the exported behavior and its callers.
