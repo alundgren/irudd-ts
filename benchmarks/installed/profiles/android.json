@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "include": [
+    "apps/mobile/**/*.ts",
+    "apps/mobile/**/*.tsx",
+    "apps/mobile/**/*.mts",
+    "apps/mobile/**/*.cts",
+    "apps/mobile/**/*.js",
+    "apps/mobile/**/*.jsx",
+    "apps/mobile/**/*.mjs",
+    "apps/mobile/**/*.cjs",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.mts",
+    "packages/**/*.cts",
+    "packages/**/*.js",
+    "packages/**/*.jsx",
+    "packages/**/*.mjs",
+    "packages/**/*.cjs"
+  ],
+  "exclude": [
+    ".repos/**",
+    "**/*.ios.ts",
+    "**/*.ios.tsx"
+  ],
+  "packageManifests": [
+    "package.json",
+    "apps/*/package.json",
+    "packages/*/package.json",
+    "infra/*/package.json",
+    "scripts/package.json",
+    "oxlint-plugin-t3code/package.json",
+    "apps/mobile/modules/*/package.json"
+  ],
+  "rules": [],
+  "conditions": [
+    "react-native",
+    "import",
+    "default"
+  ],
+  "extensions": [
+    ".android.ts",
+    ".android.tsx",
+    ".native.ts",
+    ".native.tsx",
+    ".ts",
+    ".tsx",
+    ".js",
+    ".jsx",
+    ".json"
+  ],
+  "requireExternalResolution": true
+}
