@@ -15,6 +15,8 @@ The normalizer preserves called operations, operators, binding relationships and
 
 The default threshold is 0.82 over unique subtree fingerprints. Every reported pair also includes counted and size-weighted similarity for comparison. Those values are evidence to inspect, not confidence estimates. Repeated boilerplate and unrelated functions can still match. Unknown syntax contributes exact source and an opaque-node count so the report exposes reduced normalization.
 
+Binding identifiers use declaration order. Adding a declaration can change later identifier assignments and lower similarity across otherwise parallel implementations. The explicit `localIdentifiers: "erase"` option helps investigate that case, while also discarding the distinction between repeated and different variables. Compare both reports before deciding whether a pair matters.
+
 Parsing has explicit byte, node, raw-unit and recursion budgets. Conservative preflight checks also count punctuation in strings and comments, so unusually large literals or flat expressions can produce an incomplete report even when a compiler accepts them. The report identifies that limit instead of claiming the file was analyzed. Inspect or narrow the source selection; do not treat skipped analysis as clean evidence.
 
 An optional `--cache /outside/project/dryer-cache.json` reuses complete extraction after checking configuration, source contents, discovery and implementation identity. Policies and comparisons still run. A cache hit does not establish a faster run.

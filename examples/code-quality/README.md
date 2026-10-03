@@ -27,6 +27,7 @@ With a separate T3 checkout and an explicitly installed, self-contained dependen
 node examples/code-quality/prepare-t3.ts /absolute/t3code /absolute/node_modules /tmp/archguard-t3-profiles
 archguard dryer --root /absolute/t3code --config /tmp/archguard-t3-profiles/dryer.json
 archguard dryer --root /absolute/t3code --config /tmp/archguard-t3-profiles/dryer-native.json
+archguard dryer --root /absolute/t3code --config /tmp/archguard-t3-profiles/dryer-native-erased-locals.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/path.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/path-strengthened.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/hostClassification.json
@@ -40,4 +41,4 @@ Generated profiles use the running Node binary directly. This avoids version-man
 
 The strengthened path profile adds two authored tests in the private worker copy. They cover `../repo` and `.\\repo` relative paths and trimming `x/` to `x`, with ordinary paths and root paths as controls. The original T3 checkout stays untouched. These examples follow existing call sites and trailing-separator expectations; they do not prescribe how dispatch should represent `C:/`.
 
-The native dryer profile compares three TSX editor implementations. Platform variants are an example of duplication that may be intentional. The separate exploratory profile lowers the threshold to 0.70 so a reviewer can inspect additional candidates. Neither profile establishes that an abstraction would improve the code.
+The native dryer profile compares three TSX editor implementations. Platform variants are an example of duplication that may be intentional. The separate exploratory profile lowers the threshold to 0.70 so a reviewer can inspect additional candidates. Another profile erases local identifiers while preserving property and call names. Comparing it with the default shows how binding relationships affect matches after declarations are inserted. None of these profiles establishes that an abstraction would improve the code.
