@@ -186,6 +186,96 @@ fn configuration_links_and_fifos_fail_without_blocking() {
 
 #[cfg(unix)]
 #[test]
+fn saved_plan_rejects_changed_bytes_and_tampering_before_running_tests() {
+    let root = tempfile::tempdir().unwrap();
+    let external = tempfile::tempdir().unwrap();
+    let source = "export const enabled = true;";
+    let source_path = root.path().join("domain.ts");
+    fs::write(&source_path, source).unwrap();
+    fs::write(
+        root.path().join("test.mjs"),
+        r#"
+import fs from 'node:fs';
+const request = JSON.parse(fs.readFileSync(process.env.ARCHGUARD_MUTATION_REQUEST, 'utf8'));
+fs.appendFileSync(process.argv[2], request.phase + '\n');
+fs.writeFileSync(request.resultPath, JSON.stringify({schemaVersion:1,
+  requestId:request.requestId,runId:request.runId,inputDigest:request.inputDigest,
+  complete:true,exitCode:0,reason:'finished',tests:{passed:1,failed:0,skipped:0},failures:[]}));
+"#,
+    )
+    .unwrap();
+    let node = Command::new("node")
+        .args(["-p", "process.execPath"])
+        .output()
+        .unwrap();
+    assert!(node.status.success());
+    let node = String::from_utf8(node.stdout).unwrap().trim().to_owned();
+    let marker = external.path().join("commands");
+    let configuration = external.path().join("run.json");
+    fs::write(
+        &configuration,
+        json!({"schemaVersion":1,
+        "plan":{"schemaVersion":1,"selection":{"include":["domain.ts"]}},
+        "execution":{"command":[node,"test.mjs",marker],
+            "workspace":{"include":["domain.ts","test.mjs"]},
+            "limits":{"runTimeoutMs":120000}}})
+        .to_string(),
+    )
+    .unwrap();
+    let plan_config = external.path().join("plan-config.json");
+    fs::write(
+        &plan_config,
+        r#"{"schemaVersion":1,"selection":{"include":["domain.ts"]}}"#,
+    )
+    .unwrap();
+    let planned = report(
+        &invoke(
+            root.path(),
+            &[
+                "mutator",
+                "plan",
+                "--config",
+                plan_config.to_str().unwrap(),
+                "--json",
+            ],
+        ),
+        0,
+    );
+    let plan_path = external.path().join("plan.json");
+    fs::write(&plan_path, planned.to_string()).unwrap();
+    let run = || {
+        invoke(
+            root.path(),
+            &[
+                "mutator",
+                "run",
+                "--config",
+                configuration.to_str().unwrap(),
+                "--plan",
+                plan_path.to_str().unwrap(),
+                "--json",
+            ],
+        )
+    };
+    fs::write(&source_path, "export const enabled = false;").unwrap();
+    assert_eq!(run().status.code(), Some(2));
+    assert!(!marker.exists());
+    fs::write(&source_path, source).unwrap();
+    let mut tampered = planned.clone();
+    tampered["sites"][0]["replacement"] = json!("true");
+    fs::write(&plan_path, tampered.to_string()).unwrap();
+    assert_eq!(run().status.code(), Some(2));
+    assert!(!marker.exists());
+    fs::write(&plan_path, planned.to_string()).unwrap();
+    let corrected = report(&run(), 0);
+    assert_eq!(corrected["complete"], true);
+    assert_eq!(corrected["summary"]["survived"], 1);
+    assert_eq!(fs::read_to_string(marker).unwrap(), "baseline\nmutation\n");
+    assert_eq!(fs::read_to_string(source_path).unwrap(), source);
+}
+
+#[cfg(unix)]
+#[test]
 fn run_cancellation_reports_incomplete_and_preserves_original_source() {
     use nix::{
         sys::signal::{Signal, kill},
