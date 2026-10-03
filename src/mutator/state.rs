@@ -476,6 +476,36 @@ mod tests {
         drop(state);
         fs::remove_dir_all(root).unwrap();
     }
+
+    #[test]
+    fn state_rejects_ancestor_links_and_accepts_corrected_directory() {
+        let root =
+            storage::create_private_directory(&std::env::temp_dir(), "archguard-state-link-test")
+                .unwrap();
+        fs::create_dir(root.join("actual")).unwrap();
+        std::os::unix::fs::symlink("actual", root.join("alias")).unwrap();
+        let mut config = StateConfig {
+            directory: root.join("alias/state"),
+            reuse: ReusePolicy::Off,
+            external_inputs: vec![],
+        };
+        assert!(RunState::open(&config, &root, &[]).is_err());
+        assert!(!root.join("actual/state").exists());
+        config.directory = root.join("actual/state");
+        drop(RunState::open(&config, &root, &[]).unwrap());
+        assert!(
+            RunState::open(
+                &StateConfig {
+                    directory: root.join("alias/state"),
+                    ..config
+                },
+                &root,
+                &[]
+            )
+            .is_err()
+        );
+        fs::remove_dir_all(root).unwrap();
+    }
 }
 
 #[cfg(test)]
