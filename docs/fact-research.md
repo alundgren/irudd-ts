@@ -1,8 +1,8 @@
 # Facts for repository enforcement
 
-Research captured 2026-10-03 through two web scouts and primary documentation checks. This is a broad category inventory, not a claim to list every analysis fact ever used in software. No new tool, dependency or upstream rule code was imported.
+Research captured 2026-10-03 through two web scouts and primary documentation checks. This is a broad category inventory, not a claim to list every analysis fact ever used in software. No new dependency or upstream rule code was added.
 
-Our next investment should be repository roles, registration relations and package dependency kinds. They fit the facts we already collect and address mistakes agents make when adding files. The working role simulation is documented in [repository structure](repository-structure.md).
+This iteration adds repository roles. Next, prioritize actual registration references and package dependency kinds. They address mistakes agents make when adding files, and avoid the cost of general program analysis. The working role simulation is documented in [repository structure](repository-structure.md).
 
 Schema compatibility and compiler-derived Effect requirements would provide different guarantees, but both need explicitly versioned providers and configuration. General taint, concurrency and resource analysis are much larger projects. A lexical imported call or module path cannot substitute for those analyses.
 

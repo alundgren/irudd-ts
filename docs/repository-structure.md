@@ -65,6 +65,14 @@ The runner verifies exact diagnostic IDs, complete analysis and exit 0 or 1 on e
 
 Raw results are saved to [structure-simulation.json](../benchmarks/results/structure-simulation.json). The broad research inventory is [fact-research.md](fact-research.md).
 
+## Recorded results
+
+The complete pinned T3 scan selected 1,151 files and 10,451 imports. It returned exit 0, zero analysis problems and zero policy diagnostics. It assigned 54 migrations, 11 persistence services, 12 persistence layers including infrastructure, three tool-contract modules, three handlers, 48 shared-contract modules, two API hosts, one migration registry and 474 tests. The 543 unassigned sources are outside the required classification scope. There were no overlapping assignments.
+
+That single end-to-end real-tree scan took 865.38 ms. It is an observation on this machine, not a general latency guarantee. The eleven synthetic cases used 11 to 13 files and seven measured runs after a warmup. Their medians ranged from 10.09 to 18.67 ms; the clean control's median was 18.67 ms. All ten deliberate violations produced exactly the expected rule, and all corrections passed. See the raw artifact for every sample and range.
+
+The [before-closure artifact](../benchmarks/results/structure-simulation-before-closure.json) retains the first experiment: 1,096 files, 84 excluded-source problems, exit 2 and no provisional diagnostics. Explicitly adding the referenced integration helpers and workspace package source directories made the later scan complete. The selected corpora differ, so these two real-tree timings are not a speed comparison.
+
 ## Useful next facts
 
 Registration references would let us check whether each migration's imported binding appears in the actual registry tuple, with a matching unique numeric ID and basename. The same declaration/reference facts could link `Rpc.make` declarations to RPC groups, and `Toolkit.make` members to handler mappings. They need lexical identity and structured argument values; matching strings alone is insufficient.
