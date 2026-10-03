@@ -244,12 +244,20 @@ mod unix {
             (Resource::RLIMIT_CPU, limits.cpu_seconds),
             (Resource::RLIMIT_FSIZE, limits.file_bytes),
             (Resource::RLIMIT_NOFILE, limits.open_files),
-            (Resource::RLIMIT_AS, limits.address_space_bytes),
         ];
         for (resource, value) in settings {
             if let Some(value) = value {
                 setrlimit(resource, value, value).map_err(io::Error::from)?;
             }
+        }
+        if let Some(value) = limits.address_space_bytes {
+            #[cfg(not(any(target_os = "freebsd", target_os = "netbsd", target_os = "openbsd")))]
+            setrlimit(Resource::RLIMIT_AS, value, value).map_err(io::Error::from)?;
+            #[cfg(any(target_os = "freebsd", target_os = "netbsd", target_os = "openbsd"))]
+            return Err(io::Error::new(
+                io::ErrorKind::Unsupported,
+                "address-space limit unsupported",
+            ));
         }
         Ok(())
     }
