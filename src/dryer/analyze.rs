@@ -556,7 +556,7 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
             comparisons += 1;
             compared_entries += work;
             let similarity = similarity(&bags[left], &bags[right], &weights);
-            if similarity.weighted < config.similarity_threshold {
+            if similarity.set < config.similarity_threshold {
                 continue;
             }
             let pair = ClonePair {

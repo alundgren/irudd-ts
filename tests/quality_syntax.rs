@@ -1055,3 +1055,50 @@ fn mutation_count_and_byte_limits_keep_distinct_problem_categories() {
             .complete
     );
 }
+
+#[test]
+fn configured_threshold_selects_unique_subtree_set_similarity() {
+    let source = "function first(x){return x+x} function second(y){return y+y+y}";
+    let evidence = compare(source, NormalizationOptions::default());
+    let values = &evidence.pairs[0].similarity;
+    assert!(values.set > values.weighted, "{values:?}");
+    let threshold = (values.set + values.weighted) / 2.0;
+    assert!(values.weighted < threshold && threshold < values.set);
+    let root = TempDir::new().unwrap();
+    fs::write(root.path().join("functions.ts"), source).unwrap();
+    let selected = dryer::analyze(
+        root.path(),
+        &DryerConfig {
+            similarity_threshold: threshold,
+            ..config()
+        },
+    )
+    .unwrap();
+    assert!(selected.complete);
+    assert_eq!(
+        selected.pairs.len(),
+        1,
+        "set similarity clears the threshold even though weighted similarity does not"
+    );
+    assert_eq!(&selected.pairs[0].similarity, values);
+    let rejected = dryer::analyze(
+        root.path(),
+        &DryerConfig {
+            similarity_threshold: (values.set + 1.0) / 2.0,
+            ..config()
+        },
+    )
+    .unwrap();
+    assert!(rejected.complete);
+    assert!(rejected.pairs.is_empty());
+    let lower = dryer::analyze(
+        root.path(),
+        &DryerConfig {
+            similarity_threshold: values.weighted / 2.0,
+            ..config()
+        },
+    )
+    .unwrap();
+    assert!(lower.complete);
+    assert_eq!(lower.pairs.len(), 1);
+}
