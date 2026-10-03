@@ -190,13 +190,13 @@ fn executable_digest() -> Result<String> {
         .map_err(anyhow::Error::msg)
 }
 
-fn observe<T, E: std::fmt::Display>(
+fn observe<T, E: std::fmt::Debug>(
     result: &std::result::Result<T, E>,
     value: impl FnOnce(&T) -> Observed,
 ) -> Observed {
     match result {
         Ok(result) => value(result),
-        Err(error) => Observed::Error(error.to_string()),
+        Err(error) => Observed::Error(format!("{error:?}")),
     }
 }
 
