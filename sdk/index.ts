@@ -45,3 +45,6 @@ export function createDependencyQuery(project: ProjectFacts): (start: string, in
 export function dependencyPaths(project: ProjectFacts, start: string, includeTypes = true): ReadonlyMap<string, readonly string[]> {
   return createDependencyQuery(project)(start, includeTypes);
 }
+
+export { readSemanticFacts, semanticFile, missingMemberDiagnostics } from "./semantic.ts";
+export type { SemanticFacts, SemanticFile, PropertyFact, SemanticRule, CompilerDiagnostic } from "./semantic.ts";

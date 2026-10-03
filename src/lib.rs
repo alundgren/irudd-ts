@@ -5,4 +5,6 @@ pub mod project;
 pub mod roles;
 pub mod rules;
 pub mod rust;
+pub mod semantic;
+mod subprocess;
 pub mod typescript;

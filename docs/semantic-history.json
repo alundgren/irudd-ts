@@ -1,0 +1,60 @@
+{
+  "pr": "https://github.com/pingdotgg/t3code/pull/11304",
+  "kind": "reduced compiler reproduction",
+  "before": "e1c94f703f05b43f2935d09ed1ef882d0ee13ff8",
+  "fixed": "fb52d125b78b2ed1638a719a7546fad9c695c620",
+  "compiler": "typescript7.0.2 unstable sync API",
+  "effect": "4.0.0-rc.112",
+  "sources": [
+    {
+      "commit": "e1c94f703f05b43f2935d09ed1ef882d0ee13ff8",
+      "path": "packages/client-runtime/src/state/deviceHubAccess.ts",
+      "sha256": "715ca33e11d40998096d320d45b97b16796aae56b966f0054f5f1fb98e0e857d",
+      "fixtures": [
+        "tests/fixtures/semantic-history/before.ts"
+      ],
+      "excerpts": [
+        "executeAuthenticatedEnvironmentHttpRequest({\n      prepared: input.prepared,\n      signer,\n      remoteAuthorization,\n      method: \"POST\",\n      url: (httpBaseUrl) => environmentEndpointUrl(httpBaseUrl, \"/api/auth/websocket-ticket\"),\n      timeoutMs: TICKET_TIMEOUT_MS,\n      request: ({ client, headers }) => client.auth.webSocketTicket({ headers }),\n    });"
+      ]
+    },
+    {
+      "commit": "fb52d125b78b2ed1638a719a7546fad9c695c620",
+      "path": "packages/client-runtime/src/state/deviceHubAccess.ts",
+      "sha256": "b015f7d57d7dd7fac3469bf6780ab370fb4b3d18dec141ad1d93e0c746b000a3",
+      "fixtures": [
+        "tests/fixtures/semantic-history/fixed.ts"
+      ],
+      "excerpts": [
+        "executeAuthenticatedEnvironmentHttpRequest({\n      prepared: input.prepared,\n      signer,\n      remoteAuthorization,\n      group: \"auth\",\n      method: \"POST\",\n      url: (httpBaseUrl) => environmentEndpointUrl(httpBaseUrl, \"/api/auth/websocket-ticket\"),\n      timeoutMs: TICKET_TIMEOUT_MS,\n      request: ({ client, headers }) => client.webSocketTicket({ headers }),\n    });"
+      ]
+    },
+    {
+      "commit": "fb52d125b78b2ed1638a719a7546fad9c695c620",
+      "path": "packages/client-runtime/src/state/environmentHttpAuth.ts",
+      "sha256": "adb4d568065aceeb9aab8a961473127463a48c7d02a93c0878f5a6e6131424d9",
+      "fixtures": [
+        "tests/fixtures/semantic-history/before.ts",
+        "tests/fixtures/semantic-history/fixed.ts"
+      ],
+      "excerpts": [
+        "<\n  Group extends Parameters<typeof makeEnvironmentHttpApiGroupClient>[1],\n  A,\n  E,\n  R,\n>(input: {\n  readonly prepared: PreparedConnection;\n  readonly signer: Option.Option<ManagedRelayDpopSigner[\"Service\"]>;\n  readonly remoteAuthorization?: Option.Option<RemoteEnvironmentAuthorization[\"Service\"]>;\n  readonly method: HttpMethod.HttpMethod;\n  readonly url: (httpBaseUrl: string) => string;\n  readonly timeoutMs: number;\n  readonly group: Group;\n  readonly request: (input: {\n    readonly client: Effect.Success<ReturnType<typeof makeEnvironmentHttpApiGroupClient<Group>>>;\n    readonly headers: EnvironmentHttpAuthHeaders;\n  }) => Effect.Effect<A, E, R>;\n  /** Some endpoints report rejected credentials in a successful response. */\n  readonly isUnauthorizedResponse?: (response: NoInfer<A>) => boolean;\n})"
+      ]
+    },
+    {
+      "commit": "fb52d125b78b2ed1638a719a7546fad9c695c620",
+      "path": "packages/client-runtime/src/rpc/http.ts",
+      "sha256": "ef326a941a37098797e32a58eb420744c653a58efec590d45e3785354c2079b2",
+      "fixtures": [
+        "tests/fixtures/semantic-history/before.ts",
+        "tests/fixtures/semantic-history/fixed.ts"
+      ],
+      "excerpts": [
+        "export const makeEnvironmentHttpApiGroupClient = <\n  Group extends keyof typeof EnvironmentHttpApi.groups,\n>(\n  httpBaseUrl: string,\n  group: Group,\n) =>\n  Effect.flatMap(HttpClient.HttpClient, (httpClient) =>\n    HttpApiClient.group(EnvironmentHttpApi, {\n      httpClient,\n      group,\n      baseUrl: remoteApiBaseUrl(httpBaseUrl),\n    }),\n  );\n\n"
+      ]
+    }
+  ],
+  "fixtures": {
+    "tests/fixtures/semantic-history/before.ts": "9dfb01946a0dc865374928ed484fd98eb4cf0a222e2d0c4637267a3b01266606",
+    "tests/fixtures/semantic-history/fixed.ts": "d858f8fc83fba5c8957219474fa63902b3a11ba88db9aa29c28ffde1a30280ee"
+  }
+}
