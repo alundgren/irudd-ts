@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { randomUUID } from "node:crypto";
+import { types } from "node:util";
 
 export interface TestExecutionRequest {
   schemaVersion: 1;
@@ -33,16 +34,19 @@ export interface TestExecutionResult {
   failures: readonly TestFailure[];
 }
 
-const MAX_REQUEST_BYTES = 65_536;
-const MAX_RESULT_BYTES = 16_777_216;
-const MAX_STRING_BYTES = 4_096;
-const MAX_FAILURES = 10_000;
+export const mutationProtocolLimits = Object.freeze({
+  maxRequestBytes: 65_536,
+  maxResultBytes: 8_388_608,
+  maxIdentityBytes: 4_096,
+  maxMessageBytes: 8_192,
+  maxFailures: 1_024,
+});
 const failureKinds = new Set(["assertion", "runtime", "import", "hook", "suite", "unhandled"]);
 const digest = /^[a-f0-9]{64}$/;
 
 function invalid(message: string): never { throw new Error(`Mutation protocol: ${message}`); }
 function record(value: unknown, fields: readonly string[], label: string): Record<string, unknown> {
-  if (value === null || typeof value !== "object" || Array.isArray(value)) invalid(`${label} must be an object`);
+  if (value === null || typeof value !== "object" || types.isProxy(value) || Array.isArray(value)) invalid(`${label} must be a plain object`);
   const object = value as Record<string, unknown>;
   const prototype = Object.getPrototypeOf(object);
   if (prototype !== Object.prototype && prototype !== null) invalid(`${label} must contain plain data`);
@@ -51,8 +55,18 @@ function record(value: unknown, fields: readonly string[], label: string): Recor
   if (keys.some(key => !("value" in Object.getOwnPropertyDescriptor(object, key)!))) invalid(`${label} cannot contain accessors`);
   return object;
 }
-function text(value: unknown, label: string, nonempty = true): asserts value is string {
-  if (typeof value !== "string" || (nonempty && value.length === 0) || value.includes("\0") || Buffer.byteLength(value) > MAX_STRING_BYTES) invalid(`${label} is not a bounded string`);
+function array(value: unknown, maximum: number, label: string): readonly unknown[] {
+  if (!Array.isArray(value) || types.isProxy(value) || Object.getPrototypeOf(value) !== Array.prototype || value.length > maximum) invalid(`${label} must be a bounded plain array`);
+  const keys = Reflect.ownKeys(value);
+  if (keys.length !== value.length + 1) invalid(`${label} must contain indexed data only`);
+  for (let index = 0; index < value.length; index++) {
+    const descriptor = Object.getOwnPropertyDescriptor(value, String(index));
+    if (!descriptor || !("value" in descriptor)) invalid(`${label} cannot contain accessors or missing indices`);
+  }
+  return value;
+}
+function text(value: unknown, label: string, nonempty = true, maximum: number = mutationProtocolLimits.maxIdentityBytes): asserts value is string {
+  if (typeof value !== "string" || (nonempty && value.length === 0) || value.includes("\0") || Buffer.byteLength(value) > maximum || /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/.test(value)) invalid(`${label} is not a bounded well-formed string`);
 }
 function count(value: unknown, label: string): asserts value is number {
   if (!Number.isSafeInteger(value) || (value as number) < 0) invalid(`${label} must be a nonnegative safe integer`);
@@ -73,7 +87,7 @@ export function validateMutationRequest(value: unknown): TestExecutionRequest {
   text(request.resultPath, "resultPath");
   if (!path.isAbsolute(request.resultPath)) invalid("resultPath must be absolute");
   count(request.maxResultBytes, "maxResultBytes");
-  if (request.maxResultBytes < 1_024 || request.maxResultBytes > MAX_RESULT_BYTES) invalid("result byte budget is outside supported limits");
+  if (request.maxResultBytes < 1_024 || request.maxResultBytes > mutationProtocolLimits.maxResultBytes) invalid("result byte budget is outside supported limits");
   return {
     schemaVersion: 1, requestId: request.requestId, runId: request.runId,
     inputDigest: request.inputDigest, phase: request.phase,
@@ -102,7 +116,7 @@ function readBoundedRegularFile(file: string, limit: number): Buffer {
 export function readMutationRequest(): TestExecutionRequest {
   const assigned = process.env.ARCHGUARD_MUTATION_REQUEST;
   if (!assigned || !path.isAbsolute(assigned)) invalid("ARCHGUARD_MUTATION_REQUEST must name an absolute file");
-  const raw = new TextDecoder("utf-8", { fatal: true }).decode(readBoundedRegularFile(assigned, MAX_REQUEST_BYTES));
+  const raw = new TextDecoder("utf-8", { fatal: true }).decode(readBoundedRegularFile(assigned, mutationProtocolLimits.maxRequestBytes));
   const request = validateMutationRequest(JSON.parse(raw));
   rejectDuplicateRequestFields(raw);
   if (process.env.ARCHGUARD_MUTATION_RESULT !== request.resultPath) invalid("assigned result path disagrees with request");
@@ -149,19 +163,19 @@ export function validateMutationResult(value: unknown, request: TestExecutionReq
   const counts = record(result.tests, ["passed", "failed", "skipped"], "tests");
   count(counts.passed, "passed"); count(counts.failed, "failed"); count(counts.skipped, "skipped");
   count(counts.passed + counts.failed + counts.skipped, "total test count");
-  if (!Array.isArray(result.failures) || result.failures.length > MAX_FAILURES) invalid("failures must be a bounded array");
+  const failureValues = array(result.failures, mutationProtocolLimits.maxFailures, "failures");
   const failedTests = new Set<string>();
   const failures: TestFailure[] = [];
-  for (const value of result.failures) {
-    const failure = record(value, ["kind", "testId", "file", "message"], "failure");
+  for (let index = 0; index < failureValues.length; index++) {
+    const failure = record(failureValues[index], ["kind", "testId", "file", "message"], "failure");
     if (!failureKinds.has(failure.kind as string)) invalid("unknown failure kind");
-    nullableText(failure.testId, "testId"); nullableText(failure.file, "file"); text(failure.message, "message", false);
+    nullableText(failure.testId, "testId"); nullableText(failure.file, "file"); text(failure.message, "message", false, mutationProtocolLimits.maxMessageBytes);
     if (failure.kind === "assertion" && failure.testId === null) invalid("assertion needs an executed test ID");
     if (failure.testId !== null) failedTests.add(failure.testId as string);
     failures.push({ kind: failure.kind as TestFailureKind, testId: failure.testId as string | null, file: failure.file as string | null, message: failure.message });
   }
   if (result.complete && failedTests.size !== counts.failed) invalid("failed test IDs disagree with failed count");
-  if (result.complete && result.exitCode === 0 && (counts.failed !== 0 || result.failures.length !== 0)) invalid("exit zero disagrees with failures");
+  if (result.complete && result.exitCode === 0 && (counts.failed !== 0 || failureValues.length !== 0)) invalid("exit zero disagrees with failures");
   return {
     schemaVersion: 1, requestId: request.requestId, runId: request.runId,
     inputDigest: request.inputDigest, complete: result.complete, exitCode: result.exitCode as number,

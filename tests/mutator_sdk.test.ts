@@ -5,6 +5,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import {
   readMutationRequest, validateMutationRequest, validateMutationResult, writeMutationResult,
+  mutationProtocolLimits,
 } from "../sdk/mutator.ts";
 import type { TestExecutionRequest, TestExecutionResult } from "../sdk/mutator.ts";
 
@@ -84,6 +85,7 @@ test("unknown fields, versions, accessor data and unsafe counts fail without coe
   const request = fixture(directory);
   assert.throws(() => validateMutationRequest({ ...request, schemaVersion: 2 }), /version/);
   assert.throws(() => validateMutationRequest({ ...request, executable: "injected" }), /unknown fields/);
+  assert.throws(() => validateMutationRequest({ ...request, requestId: "\ud800" }), /well-formed/);
   assert.throws(() => validateMutationRequest({ ...request, phase: "baseline" }), /cannot name/);
   assert.throws(() => validateMutationRequest({ ...request, maxResultBytes: Number.POSITIVE_INFINITY }), /integer/);
   assert.throws(() => validateMutationResult({ ...passing(request), tests: { passed: Number.MAX_SAFE_INTEGER, failed: 0, skipped: 1 } }, request), /total test count/);
@@ -106,4 +108,34 @@ test("encoding budget rejects escaped errors before replacing an existing good r
   writeMutationResult(request, result);
   assert.equal(JSON.parse(fs.readFileSync(request.resultPath, "utf8")).failures[0].message.length, 2_000);
   assert.deepEqual(fs.readdirSync(directory), ["result.json"]);
+}));
+
+test("shared wire ceilings accept their boundary and reject one extra byte or failure", () => withDirectory(directory => {
+  const request = fixture(directory);
+  assert.equal(validateMutationRequest({ ...request, maxResultBytes: mutationProtocolLimits.maxResultBytes }).maxResultBytes, 8_388_608);
+  assert.throws(() => validateMutationRequest({ ...request, maxResultBytes: mutationProtocolLimits.maxResultBytes + 1 }), /budget/);
+  const failure = { kind: "assertion" as const, testId: "case", file: null, message: "x".repeat(8_192) };
+  const result = { ...passing(request), exitCode: 1, tests: { passed: 0, failed: 1, skipped: 0 }, failures: [failure] };
+  assert.equal(validateMutationResult(result, request).failures[0]?.message.length, 8_192);
+  assert.throws(() => validateMutationResult({ ...result, failures: [{ ...failure, message: failure.message + "x" }] }, request), /bounded well-formed string/);
+  const failures = Array.from({ length: 1_024 }, () => ({ ...failure, message: "assertion control" }));
+  assert.equal(validateMutationResult({ ...result, failures }, request).failures.length, 1_024);
+  assert.throws(() => validateMutationResult({ ...result, failures: [...failures, failure] }, request), /bounded plain array/);
+}));
+
+test("failure accessors, custom iteration and proxy traps are rejected without invoking code", () => withDirectory(directory => {
+  const request = fixture(directory);
+  let invoked = false;
+  const failures: unknown[] = [];
+  Object.defineProperty(failures, "0", { get: () => { invoked = true; return {}; } });
+  assert.throws(() => validateMutationResult({ ...passing(request), failures }, request), /accessors/);
+  assert.equal(invoked, false);
+  const iterable: unknown[] = [];
+  Object.defineProperty(iterable, Symbol.iterator, { value: function* () { invoked = true; while (true) yield {}; } });
+  assert.throws(() => validateMutationResult({ ...passing(request), failures: iterable }, request), /indexed data/);
+  assert.equal(invoked, false);
+  const proxy = new Proxy(passing(request), { getPrototypeOf() { invoked = true; throw new Error("proxy trap"); } });
+  assert.throws(() => validateMutationResult(proxy, request), /plain object/);
+  assert.equal(invoked, false);
+  assert.equal(validateMutationResult(passing(request), request).complete, true);
 }));

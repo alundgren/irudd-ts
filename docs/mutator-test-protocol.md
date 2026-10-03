@@ -6,6 +6,8 @@ The runner assigns absolute paths through `ARCHGUARD_MUTATION_REQUEST` and `ARCH
 
 Use `writeMutationResult(request, result)` after the complete test command finishes. It validates and encodes bounded plain data, writes a private temporary file, syncs it and renames it over the assigned result. It rejects unsafe counts, mismatched task identity, unknown fields, accessors and custom serialization methods. Encoding also reserves space for JSON escaping. A result that exceeds its budget cannot replace a previous valid result.
 
+The shared `mutationProtocolLimits` fixes the wire ceilings at 65,536 request bytes, 8 MiB result bytes, 1,024 failure records, 4,096 bytes per identity and 8,192 bytes per error message. A configured result budget can be lower.
+
 ```ts
 import { readMutationRequest, writeMutationResult } from "./sdk/mutator.ts";
 
@@ -32,6 +34,8 @@ This example illustrates the result contract. A real adapter must derive counts 
 
 The reporter records test IDs, counts, assertion metadata, import and runtime errors, failed hooks and unhandled errors. It waits for the full test-run promise and runner close before reporting completion. Coverage and metadata writes can fail after `onTestRunEnd`. Vitest can also log teardown errors without retaining them in its unhandled-error state. The reporter observes these lifecycle outcomes and retains separate runtime evidence.
 
+A later process exit listener can throw after the first result was written. The uncaught-exception monitor rewrites that result as incomplete with unhandled-error evidence, while retaining Node's default termination behavior. If publication then fails, the reporter forces a process status that disagrees with any previously published result. The runner must reject that contradiction, even when the stale file says `complete: true`.
+
 It requires the public `waitForTestRunEnd`, `close`, runner error state and logger methods. Hook status uses the runner task exposed by Vitest's reported entities. Missing or replaced methods, unavailable hook metadata, interruption, pending work, retried tests with retained errors and exceeded event budgets produce incomplete evidence. Watch mode, repeated runs and merged report replay are unsupported. Use a fresh process for each test command.
 
 The adapter is fail closed. An assertion failure accompanied by a coverage, teardown, import or hook error must produce an execution error in the mutation runner. Such a failure is not evidence that tests killed the mutant. A timeout also remains a timeout.
@@ -50,6 +54,6 @@ To check actual framework behavior using an explicitly supplied T3 checkout with
 node scripts/check_mutator_vitest.mjs /absolute/path/to/t3code
 ```
 
-The script creates owned temporary fixtures and removes them afterward. It covers passing and assertion-only runs, assertion plus teardown, hook and runtime failures, import errors, late coverage and metadata errors, forced exit, replaced or missing lifecycle methods, and a corrected teardown. It installs nothing and changes no source in the supplied checkout. These controls are separate from measurement trials.
+The script creates owned temporary fixtures and removes them afterward. It covers passing and assertion-only runs, assertion plus teardown, hook and runtime failures, import errors, late coverage and metadata errors, late exit-listener errors, forced exit, replaced or missing lifecycle methods, merged result replay and a corrected teardown. It installs nothing and changes no source in the supplied checkout. These controls are separate from measurement trials.
 
 The lifecycle APIs are documented in [Vitest's reporter guide](https://vitest.dev/api/advanced/reporters) and [Vitest's advanced API](https://vitest.dev/api/advanced/vitest#waitfortestrunend). Compatibility depends on the actual installed runner behavior; method names alone do not establish support for another release.

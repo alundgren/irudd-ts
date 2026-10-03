@@ -19,8 +19,14 @@ function run(scenario: string): TestExecutionResult {
   }));
   const source = `
     import Reporter from ${JSON.stringify(reporter)};
+    import fs from "node:fs";
+    import {syncBuiltinESMExports} from "node:module";
     const scenario = ${JSON.stringify(scenario)};
     const reporter = new Reporter();
+    if(scenario === "lateExit") process.on("exit",()=>{throw new Error("late exit control");});
+    if(scenario === "failedPublication" || scenario === "failedPublicationTwo") process.on("exit",()=>{
+      fs.openSync=()=>{throw new Error("ENOSPC control");};syncBuiltinESMExports();throw new Error("late exit control");
+    });
     let resolveRun, rejectRun;
     const pending = new Promise((resolve,reject)=>{resolveRun=resolve;rejectRun=reject;});
     const context = {
@@ -35,7 +41,7 @@ function run(scenario: string): TestExecutionResult {
     const failed = !["pass", "pending", "missingApi", "replacedApi", "retry", "overflow"].includes(scenario);
     const test = {id:"case-1",type:"test",module:{moduleId:"case.test.ts"},result:()=>({
       state:failed ? "failed" : "passed",
-      errors:failed ? [{name:scenario === "runtime" ? "TypeError" : "AssertionError",message:"boundary control"}] : scenario === "retry" ? [{name:"AssertionError",message:"retry control"}] : [],
+      errors:failed ? [{name:scenario === "runtime" ? "TypeError" : "AssertionError",message:scenario === "unicode" ? "x".repeat(3_999)+"🚀" : "boundary control"}] : scenario === "retry" ? [{name:"AssertionError",message:"retry control"}] : [],
     })};
     const module = {
       type:"module",moduleId:"case.test.ts",errors:()=>scenario === "import" ? [{message:"import control"}] : [],
@@ -52,7 +58,7 @@ function run(scenario: string): TestExecutionResult {
     if(scenario === "lateRun") rejectRun(new Error("late coverage control")); else resolveRun();
     await Promise.resolve();
     await context.close();
-    process.exitCode = failed || scenario === "retry" || scenario === "overflow" ? 1 : 0;
+    process.exitCode = scenario === "failedPublicationTwo" ? 2 : failed || scenario === "retry" || scenario === "overflow" ? 1 : 0;
   `;
   try {
     const child = spawnSync(process.execPath, ["--input-type=module", "--eval", source], {
@@ -62,7 +68,8 @@ function run(scenario: string): TestExecutionResult {
     assert.equal(child.error, undefined, child.error?.message);
     assert.ok(fs.existsSync(resultPath), child.stderr.toString());
     const result = JSON.parse(fs.readFileSync(resultPath, "utf8")) as TestExecutionResult;
-    assert.equal(result.exitCode, child.status);
+    if (scenario === "failedPublication" || scenario === "failedPublicationTwo") assert.notEqual(result.exitCode, child.status, "Stale complete evidence must disagree with raw exit");
+    else assert.equal(result.exitCode, child.status);
     return result;
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
 }
@@ -86,6 +93,13 @@ test("assertion plus late run or cleanup failure cannot be assertion-only", () =
   const cleanup = run("cleanup");
   assert.ok(cleanup.failures.some(error => error.kind === "runtime"));
   assert.ok(cleanup.failures.some(error => error.kind === "assertion"));
+  const lateExit = run("lateExit");
+  assert.equal(lateExit.complete, false);
+  assert.ok(lateExit.failures.some(error => error.kind === "unhandled"));
+  const stale = run("failedPublication");
+  assert.equal(stale.complete, true);
+  assert.equal(stale.exitCode, 1);
+  assert.equal(run("failedPublicationTwo").exitCode, 2);
   assert.equal(run("assertion").failures.every(error => error.kind === "assertion"), true);
 });
 
@@ -110,4 +124,8 @@ test("retained retry errors and oversized runner metadata fail conservatively", 
   assert.equal(run("retry").complete, false);
   assert.equal(run("overflow").complete, false);
   assert.equal(run("assertion").complete, true);
+  const unicode = run("unicode");
+  assert.equal(unicode.complete, true);
+  assert.ok(unicode.failures[0]?.message.endsWith("[truncated]"));
+  assert.equal(Buffer.from(unicode.failures[0]!.message).toString("utf8"), unicode.failures[0]?.message);
 });

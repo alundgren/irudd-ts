@@ -103,7 +103,8 @@
         "TestCounts",
         "TestFailure",
         "TestFailureKind",
-        "MutationVitestReporter"
+        "MutationVitestReporter",
+        "mutationProtocolLimits"
       ]
     },
     {

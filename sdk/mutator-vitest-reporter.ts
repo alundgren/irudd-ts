@@ -1,7 +1,8 @@
 import {
-  readMutationRequest, writeMutationResult,
+  readMutationRequest, writeMutationResult, mutationProtocolLimits,
 } from "./mutator.ts";
 import type { TestExecutionRequest, TestExecutionResult, TestFailure, TestFailureKind } from "./mutator.ts";
+import { writeSync } from "node:fs";
 
 type RunnerError = { name?: unknown; code?: unknown; message?: unknown };
 type TestCase = {
@@ -37,6 +38,9 @@ function boundedMessage(value: unknown): string {
   const string = typeof value === "string" ? value : "Test runner error";
   let bounded = string.slice(0, 4_000);
   while (Buffer.byteLength(bounded) > 4_000) bounded = bounded.slice(0, -1);
+  const last = bounded.charCodeAt(bounded.length - 1);
+  if (last >= 0xD800 && last <= 0xDBFF) bounded = bounded.slice(0, -1);
+  bounded = Buffer.from(bounded).toString("utf8");
   return bounded.length < string.length ? `${bounded} [truncated]` : bounded;
 }
 function message(error: RunnerError): string { return boundedMessage(error?.message); }
@@ -61,6 +65,8 @@ export default class MutationVitestReporter {
   private closeFinished = false;
   private closing = false;
   private supported = true;
+  private finalized = false;
+  private publishedExitCode: number | undefined;
   private interrupted = false;
   private closeBridge: (() => Promise<void>) | undefined;
   private loggerBridge: ((...arguments_: unknown[]) => unknown) | undefined;
@@ -70,12 +76,17 @@ export default class MutationVitestReporter {
     this.request = readMutationRequest();
     if (reporterCreated) throw new Error("Mutation reporter supports one one-shot runner per process");
     reporterCreated = true;
-    process.on("uncaughtExceptionMonitor", error => this.addInfrastructure("unhandled", message(error)));
+    process.on("uncaughtExceptionMonitor", error => {
+      this.supported = false;
+      this.addInfrastructure("unhandled", message(error));
+      // A later exit listener can throw after our first finalizer wrote the file.
+      if (this.finalized) this.finalize(process.exitCode === undefined ? 1 : Number(process.exitCode));
+    });
     process.once("exit", exitCode => this.finalize(exitCode));
   }
 
   private addInfrastructure(kind: TestFailureKind, detail: string): void {
-    if (this.infrastructure.length >= MAX_EVENTS) { this.supported = false; return; }
+    if (this.infrastructure.length >= mutationProtocolLimits.maxFailures) { this.supported = false; return; }
     this.infrastructure.push({ kind, testId: null, file: null, message: boundedMessage(detail) });
   }
 
@@ -156,7 +167,7 @@ export default class MutationVitestReporter {
       return true;
     };
     const add = (kind: TestFailureKind, error: RunnerError, testId: string | null, fileName: string | null) => {
-      if (failures.length >= MAX_EVENTS) { this.supported = false; return; }
+      if (failures.length >= mutationProtocolLimits.maxFailures) { this.supported = false; return; }
       failures.push({ kind, testId, file: fileName, message: message(error) });
     };
     const addErrors = (kind: TestFailureKind, errors: readonly RunnerError[], testId: string | null, fileName: string | null) => {
@@ -211,7 +222,11 @@ export default class MutationVitestReporter {
   }
 
   private finalize(exitCode: number): void {
-    try { writeMutationResult(this.request, this.collect(exitCode)); }
+    this.finalized = true;
+    try {
+      writeMutationResult(this.request, this.collect(exitCode));
+      this.publishedExitCode = exitCode;
+    }
     catch {
       try {
         writeMutationResult(this.request, {
@@ -219,7 +234,12 @@ export default class MutationVitestReporter {
           complete: false, exitCode, reason: "infrastructureError", tests: { passed: 0, failed: 0, skipped: 0 },
           failures: [{ kind: "runtime", testId: null, file: null, message: "Reporter metadata unavailable or exceeded its budget" }],
         });
-      } catch { process.stderr.write("Archguard mutation reporter could not write its result\n"); }
+        this.publishedExitCode = exitCode;
+      } catch {
+        // If an earlier complete file remains, its raw status must disagree.
+        process.exitCode = this.publishedExitCode === 2 ? 3 : 2;
+        try { writeSync(2, "Archguard mutation reporter could not write its result\n"); } catch { /* Exit status remains the failure evidence. */ }
+      }
     }
   }
 }

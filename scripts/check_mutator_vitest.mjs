@@ -21,6 +21,8 @@ const cases = [
   {name:"passing", source:passing, complete:true, kinds:[]},
   {name:"assertion", source:failing, complete:true, kinds:["assertion"]},
   {name:"assertion-and-teardown", source:failing, extra:'globalSetup:["./setup.ts"],', setup:'export default function(){return ()=>{throw new Error("teardown control");};}', complete:true, kinds:["runtime","assertion"]},
+  {name:"assertion-and-exit-listener", source:failing, extra:'globalSetup:["./setup.ts"],', setup:'export default function(){process.on("exit",()=>{throw new Error("late exit control");});}', complete:false, kinds:["unhandled","assertion"]},
+  {name:"assertion-and-publication-failure", source:failing, extra:'globalSetup:["./setup.ts"],', setup:'import fs from "node:fs"; import {syncBuiltinESMExports} from "node:module"; export default function(){process.on("exit",()=>{fs.openSync=()=>{throw new Error("ENOSPC control");};syncBuiltinESMExports();throw new Error("late exit control");});}', complete:true, kinds:["assertion"], mismatchedExit:true},
   {name:"assertion-and-hook", source:failing+'\nimport {afterAll} from "vitest"; afterAll(()=>{throw new Error("hook control");});', complete:true, kinds:["hook","assertion"]},
   {name:"assertion-and-runtime", source:failing+'\ntest("runtime",()=>{throw new Error("runtime control");});', complete:true, kinds:["runtime","assertion"]},
   {name:"import-failure", source:'throw new Error("import control");\n'+passing, complete:true, kinds:["import"]},
@@ -76,11 +78,12 @@ try {
     assert.ok(fs.existsSync(request.resultPath),`${control.name}: ${child.stderr.toString()}`);
     const result = JSON.parse(fs.readFileSync(request.resultPath,"utf8"));
     assert.equal(result.complete,control.complete,`${control.name}: ${JSON.stringify(result)} ${child.stderr.toString()}`);
-    assert.equal(result.exitCode,child.status,control.name);
+    if (control.mismatchedExit) assert.notEqual(result.exitCode,child.status,control.name);
+    else assert.equal(result.exitCode,child.status,control.name);
     for (const kind of control.kinds) assert.ok(result.failures.some(failure=>failure.kind === kind),`${control.name}: missing ${kind}: ${JSON.stringify(result)}`);
     if (control.kinds.length === 0) assert.deepEqual(result.failures,[],control.name);
     if (control.name === "assertion") assert.ok(result.failures.every(failure=>failure.kind === "assertion"));
-    results.push({control:control.name,sourceSha256:createHash("sha256").update(control.source).digest("hex"),complete:result.complete,exitCode:result.exitCode,tests:result.tests,kinds:result.failures.map(failure=>failure.kind)});
+    results.push({control:control.name,sourceSha256:createHash("sha256").update(control.source).digest("hex"),complete:result.complete,exitCode:result.exitCode,rawExitCode:child.status,tests:result.tests,kinds:result.failures.map(failure=>failure.kind)});
     process.stderr.write(`Passed ${control.name}\n`);
   }
   process.stdout.write(JSON.stringify({schemaVersion:1,runner,controls:results},null,2)+"\n");
