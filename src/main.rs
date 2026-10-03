@@ -28,6 +28,9 @@ enum Action {
         json: bool,
         #[arg(long)]
         semantic_config: Option<PathBuf>,
+        /// Reuse a persistent source graph after validating its inputs.
+        #[arg(long)]
+        cache: Option<PathBuf>,
     },
     SemanticFacts {
         #[arg(long, default_value = ".")]
@@ -42,6 +45,8 @@ enum Action {
         root: PathBuf,
         #[arg(long, default_value = "archguard.json")]
         config: PathBuf,
+        #[arg(long)]
+        cache: Option<PathBuf>,
     },
 }
 #[derive(Serialize)]
@@ -54,6 +59,8 @@ struct Report {
     elapsed_ms: f64,
     diagnostics: Vec<Diagnostic>,
     problems: Vec<Problem>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    cache: Option<archguard::cache::CacheStats>,
 }
 fn main() -> ExitCode {
     match execute() {
@@ -67,22 +74,32 @@ fn main() -> ExitCode {
 fn execute() -> Result<u8> {
     let started = Instant::now();
     let cli = Cli::parse();
-    let (root, path, json, facts, semantic_path, semantic_only) = match cli.command {
+    let (root, path, json, facts, semantic_path, semantic_only, cache_path) = match cli.command {
         Action::Check {
             root,
             config,
             json,
             semantic_config,
-        } => (root, config, json, false, semantic_config, false),
-        Action::Facts { root, config } => (root, config, true, true, None, false),
+            cache,
+        } => (root, config, json, false, semantic_config, false, cache),
+        Action::Facts {
+            root,
+            config,
+            cache,
+        } => (root, config, true, true, None, false, cache),
         Action::SemanticFacts {
             root,
             config,
             semantic_config,
-        } => (root, config, true, false, Some(semantic_config), true),
+        } => (root, config, true, false, Some(semantic_config), true, None),
     };
     let (config, cwd) = config::read(&path)?;
-    let mut project = project::analyze(&root, &config)?;
+    let (mut project, cache) = if let Some(path) = cache_path {
+        let analysis = project::analyze_cached(&root, &config, &path)?;
+        (analysis.project, Some(analysis.cache))
+    } else {
+        (project::analyze(&root, &config)?, None)
+    };
     if facts {
         serde_json::to_writer_pretty(std::io::stdout().lock(), &project)?;
         println!();
@@ -148,6 +165,7 @@ fn execute() -> Result<u8> {
         elapsed_ms: started.elapsed().as_secs_f64() * 1000.0,
         diagnostics,
         problems: project.problems.clone(),
+        cache,
     };
     if json {
         serde_json::to_writer_pretty(std::io::stdout().lock(), &report)?;
