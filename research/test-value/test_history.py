@@ -6,11 +6,23 @@ import hashlib
 from unittest.mock import patch
 from history import register_experiment
 from history import verify_experiment_identity
+from history import run_fault
 from analyze import compact_evaluation, evaluate_fault, reconstruct_selections, summarize_faults
 from runner import MAX_JSON, read_json, write_json
 from test_analysis import matrix
 
 class HistoricalIdentityControls(unittest.TestCase):
+    def test_desktop_preflight_exclusion_never_archives_or_executes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            candidate={'id':'desktop','preflightExclusion':'requires desktop integration harness'}
+            with patch('history.archive') as archived, patch('history.execute_case') as executed:
+                result=run_fault(candidate,None,None,Path(directory)/'excluded',None,24,None,None,None)
+                self.assertFalse(result['verified']);self.assertFalse(result['executionAttempted'])
+                archived.assert_not_called();executed.assert_not_called()
+                for invalid in ['',True,10]:
+                    with self.subTest(invalid=invalid),self.assertRaisesRegex(ValueError,'preflight exclusion'):
+                        run_fault({**candidate,'preflightExclusion':invalid},None,None,Path(directory)/('invalid-'+str(invalid)),None,24,None,None,None)
+
     def test_registered_runtime_and_implementation_cannot_be_replaced(self):
         with tempfile.TemporaryDirectory() as directory:
             cli=Path(directory)/'cli';cli.write_bytes(b'fixed CLI bytes')

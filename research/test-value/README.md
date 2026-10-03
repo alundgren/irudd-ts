@@ -44,12 +44,16 @@ python3 research/test-value/history.py \
 
 The candidate file has a `candidates` array. Each entry names `id`, `subject` of `t3code` or `scope`, `repository`, exact `fix` and first `parent` commit hashes, `sourceFiles`, `testFiles`, `title`, and `relatedGroup`. The operator set and prefix limit are declared before outcomes are observed. Reusing an output directory with changed candidates, tools, operators, limits or dependencies fails. Start a new directory for a changed experiment.
 
+A declared `preflightExclusion` records a candidate that the configured harness cannot safely run, before archiving or test execution. Such candidates stay in the cohort ledger with `executionAttempted: false`. The overnight Node-only cohort excludes one Electron/Playwright integration harness after inspecting its launch helper.
+
 The native command requires explicit `--repository`, `--revision`, `--cargo`, `--rustc`, `--cargo-mutants`, and a new `--output` directory. It selects binary/unary mutations in production lines 1 through 211 of `src/mutator/result.rs` and runs three frozen inline tests. Its assertion classification requires one actual panic at a verified assertion statement in those tests. Other panics and incomplete runner output are unknown. Build duration is not a per-test cost measurement.
 
 ```sh
 python3 research/test-value/report.py --root research/local/EXPERIMENT \
   --output research/local/EXPERIMENT/report.html
 ```
+
+The report verifies each retained analysis against its matrix digest. An optional `report-metadata.json` under the experiment root supplies `handoff`, `pullRequest`, `validation`, `evidenceRoot`, `disk`, and `review`. It cannot override measured subjects or historical results.
 
 All scripts stop at 12% free disk space, ahead of the requested 10% boundary. Unknown process ownership or cleanup preserves source copies and stops further execution. The runner supports Linux and macOS process-group observations. These experiment commands do not launch the desktop app.
 
@@ -62,6 +66,8 @@ The baseline retains all its own requirements by construction. The report calls 
 The historical runner requires fixed pass, parent-source reversion assertion failure, restored pass, and unaffected tests. It uses fixed-revision tests and modern installed dependencies, so its output is an adapted source-reversion replay. It records parent test-file availability and matching test identities, but equal identities do not establish unchanged test bodies. Fix-added or changed regressions make the cohort retrospective.
 
 Ranking trials simulate equal test-count subsets from the matrix and fault labels. They do not rerun those subsets. This assumes full-pool per-test failure outcomes remain applicable to the selected subsets; interactions and order effects can violate that assumption. Seeds are averaged within faults before aggregation. The bootstrap resamples related-fault groups, not seeds. No selector is claimed to be scientifically validated as a test-retention score.
+
+Historical mutants target the same reverted files selected from the known fix. Both that known-location selection and the fix-revision tests can favor detection of the recorded change. This experiment does not establish prospective whole-repository ranking ability. Partial current matrices expose contribution on completed columns only; unknown columns can conceal further unique contribution.
 
 Historical trials retain selection counts and digests instead of repeating every test ID thousands of times. Digests bind the ordered selection to its budget, seed and strategy; matrix, test inventory and selector-code hashes are fixed alongside them. `reconstruct_selections(evaluation, matrix)` reproduces and checks the exact selections. Compact storage preserves the detection and retention outcomes and keeps large parameterized inventories within the JSON byte budget.
 

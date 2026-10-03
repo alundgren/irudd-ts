@@ -61,6 +61,11 @@ def plan(template, files, cli, output):
 
 def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity):
     output.mkdir(parents=True)
+    preflight=candidate.get('preflightExclusion')
+    if preflight is not None:
+        if not isinstance(preflight,str) or not preflight.strip() or len(preflight)>1000:
+            raise ValueError('invalid historical preflight exclusion')
+        return {**candidate,'verified':False,'executionAttempted':False,'exclusion':'Preflight: '+preflight}
     template = output / 'fixed-template'
     repository = Path(candidate['repository'])
     fix = subprocess.check_output(['git', '-C', str(repository), 'rev-parse', candidate['fix'] + '^{commit}'], text=True).strip()
