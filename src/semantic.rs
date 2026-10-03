@@ -5,7 +5,7 @@ use crate::{
 };
 use anyhow::{Context, Result, bail};
 use oxc_allocator::Allocator;
-use oxc_ast::ast::StaticMemberExpression;
+use oxc_ast::ast::{JSXMemberExpression, StaticMemberExpression};
 use oxc_ast_visit::{Visit, walk};
 use oxc_parser::Parser;
 use oxc_span::SourceType;
@@ -336,6 +336,13 @@ pub fn inventory(path: &str, source: &str) -> Result<Vec<PropertySite>> {
                 member: it.property.name.to_string(),
             });
             walk::walk_static_member_expression(self, it);
+        }
+        fn visit_jsx_member_expression(&mut self, it: &JSXMemberExpression<'a>) {
+            self.0.push(PropertySite {
+                offset: it.property.span.start as usize,
+                member: it.property.name.to_string(),
+            });
+            walk::walk_jsx_member_expression(self, it);
         }
     }
     let mut sites = Sites(vec![]);

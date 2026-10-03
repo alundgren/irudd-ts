@@ -69,6 +69,62 @@ fn independently_enumerates_public_sites_and_rejects_omissions() {
     assert!(validate(&request, &response).is_err());
 }
 #[test]
+fn native_jsx_member_tags_have_independent_sites_and_facts() {
+    let root = tempfile::tempdir().unwrap();
+    let config = config(
+        root.path(),
+        json!([{"id":"jsx","tsconfig":"tsconfig.json","files":["*.tsx"]}]),
+    );
+    fs::write(root.path().join("tsconfig.json"), r#"{"compilerOptions":{"strict":true,"noEmit":true,"skipLibCheck":true,"jsx":"preserve","target":"ESNext","module":"NodeNext","moduleResolution":"NodeNext"},"files":["main.tsx"]}"#).unwrap();
+    let analyze_source = |source: &str| {
+        fs::write(root.path().join("main.tsx"), source).unwrap();
+        let project = project::analyze(
+            root.path(),
+            &serde_json::from_value::<Config>(json!({"schemaVersion":1,"include":["*.tsx"]}))
+                .unwrap(),
+        )
+        .unwrap();
+        analyze(&project, &config, root.path()).unwrap()
+    };
+    let before = "const View={Child:()=>null}; const tag=<View.Missing/>;";
+    let facts = analyze_source(before);
+    let properties = &facts.file("jsx", "main.tsx").unwrap().properties;
+    assert_eq!(properties.len(), 1);
+    assert_eq!(properties[0].offset, before.find("Missing").unwrap());
+    assert_eq!(properties[0].receiver.state, ReceiverState::Known);
+    assert_eq!(properties[0].status, MemberStatus::Missing);
+    assert!(!facts.complete);
+    let fixed = analyze_source("const View={Child:()=>null}; const tag=<View.Child/>;");
+    assert!(fixed.complete);
+    assert_eq!(
+        fixed.file("jsx", "main.tsx").unwrap().properties[0].status,
+        MemberStatus::Present
+    );
+    let nested = inventory(
+        "main.tsx",
+        "const tag=<View.Nested.Child></View.Nested.Child>;",
+    )
+    .unwrap();
+    assert_eq!(
+        nested
+            .iter()
+            .map(|site| site.member.as_str())
+            .collect::<Vec<_>>(),
+        vec!["Nested", "Child", "Nested", "Child"]
+    );
+    let nested_facts = analyze_source(
+        "const emoji='😀'; const View={Nested:{Child:()=>null}}; const tag=<View.Nested.Child></View.Nested.Child>;",
+    );
+    assert!(nested_facts.complete);
+    let nested_properties = &nested_facts.file("jsx", "main.tsx").unwrap().properties;
+    assert_eq!(nested_properties.len(), 4);
+    assert!(
+        nested_properties
+            .iter()
+            .all(|property| property.status == MemberStatus::Present)
+    );
+}
+#[test]
 fn native_provider_unicode_multicontext_and_unavailable_controls() {
     let root = tempfile::tempdir().unwrap();
     let source = "export const emoji='😀'; const x={value:1}; x.value; x.missing; const unrelated={auth:{webSocketTicket:1}}; unrelated.auth.webSocketTicket; declare const untyped:any; untyped.auth; declare const unknownReceiver:unknown; unknownReceiver.auth;";
