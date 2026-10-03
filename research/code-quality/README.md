@@ -1,6 +1,6 @@
 # Code-quality evidence for coding agents
 
-These are runnable research prototypes for structural duplicate detection and mutation testing. They produce evidence for a reviewer, with source locations, raw outcomes, input provenance, and explicit limitations. They add no CI, quality gates, or product CLI commands.
+This directory retains the initial research prototypes for structural duplicate detection and mutation testing. They produce evidence for a reviewer, with source locations, raw outcomes, input provenance, and explicit limitations. The later [product dogfooding](product/FINDINGS.md) uses Archguard's own CLI and SDK; [the adoption guide](../../docs/code-quality.md) documents those commands. Neither phase adds CI or quality gates.
 
 Start with [the short findings](findings.md). The [interactive HTML report](report.html) lets you explore the recorded clone measures and thresholds. The [experiment protocol](protocol.md), [environment record](environment.json), and [author context](author-context.md) document the shared decisions and inputs. [Validation and review](validation.md) records the completed checks and child PRs.
 

@@ -1,5 +1,7 @@
 # Product dogfooding reproductions
 
+Read the [product findings](FINDINGS.md) alongside these commands. The [initial research](../findings.md) retains the reference-tool and mature-tool comparisons.
+
 Run these separately from builds and validation when retaining runtime or resource evidence. Keep output under ignored `research/local/` until its source, configuration, executable and environment provenance is recorded.
 
 Replay the six archived duplicate fixtures against the current product:
