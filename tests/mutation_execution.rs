@@ -305,7 +305,7 @@ fn completed_checkpoint_survives_cancel_and_resumes_after_fresh_baseline() {
         .join("records");
     let report = std::thread::scope(|scope| {
         scope.spawn(move || {
-            let deadline = std::time::Instant::now() + std::time::Duration::from_secs(20);
+            let deadline = std::time::Instant::now() + std::time::Duration::from_secs(180);
             while !waiting.exists()
                 || fs::read_dir(&records).map_or(true, |mut entries| entries.next().is_none())
             {

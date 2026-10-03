@@ -83,6 +83,30 @@ fn guard(token: &CancellationToken, deadline: Instant) -> Result<()> {
     }
     Ok(())
 }
+fn monitor_failure(
+    token: &CancellationToken,
+    deadline: Instant,
+) -> (MutationOutcome, ExecutionProblemKind, &'static str) {
+    if token.is_cancelled() {
+        (
+            MutationOutcome::Cancelled,
+            ExecutionProblemKind::Cancellation,
+            "test command cancelled during workspace monitoring",
+        )
+    } else if Instant::now() >= deadline {
+        (
+            MutationOutcome::TimedOut,
+            ExecutionProblemKind::Limit,
+            "mutation run deadline reached during workspace monitoring",
+        )
+    } else {
+        (
+            MutationOutcome::ExecutionError,
+            ExecutionProblemKind::Limit,
+            "shared workspace resource monitor interrupted execution",
+        )
+    }
+}
 fn problem_kind(error: &anyhow::Error, fallback: ExecutionProblemKind) -> ExecutionProblemKind {
     if let Some(problem) = error.downcast_ref::<ClassifiedError>() {
         problem.kind
@@ -652,8 +676,10 @@ impl TaskContext<'_> {
                 }
                 CommandStop::Monitor(_) => {
                     self.stop.store(true, Ordering::Relaxed);
-                    kind = ExecutionProblemKind::Limit;
-                    bail!("shared workspace resource monitor interrupted execution");
+                    let (outcome, problem, message) = monitor_failure(self.token, self.deadline);
+                    result.outcome = outcome;
+                    kind = problem;
+                    bail!(message);
                 }
                 CommandStop::OutputLimit(_) => {
                     kind = ExecutionProblemKind::Limit;
@@ -1130,4 +1156,66 @@ pub fn run_until(
     report.finish(start.elapsed().as_secs_f64() * 1000.0)?;
     report.count_omitted(&evidence_budget);
     Ok(report)
+}
+
+#[cfg(test)]
+mod monitor_tests {
+    use super::*;
+    use std::cell::Cell;
+
+    #[test]
+    fn interrupted_monitor_traversal_preserves_cancellation_and_resource_controls() {
+        let directory = tempfile::tempdir().unwrap();
+        for index in 0..40 {
+            fs::create_dir(directory.path().join(format!("entry-{index}"))).unwrap();
+        }
+        for cancel_during_walk in [true, false] {
+            let token = CancellationToken::new();
+            let deadline = Instant::now() + Duration::from_secs(2);
+            let limits = CommandLimits {
+                deadline,
+                stdin_bytes: 1024,
+                stdout_bytes: 1024,
+                stderr_bytes: 1024,
+                resources: ChildLimits::default(),
+            };
+            let mut workspace_limits = super::super::config::ExecutionLimits::default();
+            if !cancel_during_walk {
+                workspace_limits.max_inventory_bytes = 1024;
+            }
+            let visits = Cell::new(0);
+            let mut command = Command::new("sh");
+            command.args(["-c", "while :; do :; done"]);
+            let output = run_command(
+                command,
+                b"",
+                &limits,
+                || false,
+                || {
+                    workspace::disk_usage(directory.path(), &workspace_limits, &|| {
+                        visits.set(visits.get() + 1);
+                        if cancel_during_walk && visits.get() == 5 {
+                            token.cancel();
+                        }
+                        guard(&token, deadline)
+                    })?;
+                    Ok(())
+                },
+            )
+            .unwrap();
+            assert!(matches!(output.stop, CommandStop::Monitor(_)));
+            assert!(output.cleanup_complete);
+            let (outcome, problem, _) = monitor_failure(&token, deadline);
+            if cancel_during_walk {
+                assert_eq!(outcome, MutationOutcome::Cancelled);
+                assert_eq!(problem, ExecutionProblemKind::Cancellation);
+            } else {
+                assert_eq!(outcome, MutationOutcome::ExecutionError);
+                assert_eq!(problem, ExecutionProblemKind::Limit);
+            }
+        }
+        let (outcome, problem, _) = monitor_failure(&CancellationToken::new(), Instant::now());
+        assert_eq!(outcome, MutationOutcome::TimedOut);
+        assert_eq!(problem, ExecutionProblemKind::Limit);
+    }
 }

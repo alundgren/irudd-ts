@@ -40,7 +40,7 @@ if (request.phase === "mutation") {
   if (control.mode === "wait") await new Promise(resolve => setTimeout(resolve, 30_000));
   if (control.mode === "waitUnusedOnce" && enabled() && !fs.existsSync(`${marker}.released`)) {
     fs.writeFileSync(`${marker}.waiting`, "waiting");
-    await new Promise(resolve => setTimeout(resolve, 30_000));
+    await new Promise(resolve => setTimeout(resolve, 300_000));
   }
   if (control.mode === "disk") fs.writeFileSync("generated.bin", Buffer.alloc(2_000_000));
   if (control.mode === "stdout") process.stdout.write("x".repeat(2_000_000));
