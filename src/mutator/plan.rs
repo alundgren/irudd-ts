@@ -464,7 +464,7 @@ pub fn validate_mutant(
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::mutator::{MutationPlanConfig, plan, plan_with_guard};
     use std::sync::atomic::{AtomicUsize, Ordering};
     #[test]
     fn guarded_regeneration_can_stop_during_source_traversal_and_recover() {

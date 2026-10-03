@@ -681,7 +681,15 @@ fn fit_report(result: &mut DryerReport) {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::{
+        dryer::{
+            FunctionFacts, SimilarityValues,
+            analyze::{Bag, intern, similarity},
+            facts::{NodeKey, NormalizedFunction},
+        },
+        quality::{FunctionKind, FunctionLocation, SourceLocation},
+    };
+    use std::collections::{BTreeMap, HashMap};
     use std::hash::{BuildHasherDefault, Hasher};
     #[derive(Default)]
     struct ConstantHash;
