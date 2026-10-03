@@ -74,7 +74,7 @@ impl std::fmt::Display for Interrupted {
     }
 }
 impl std::error::Error for Interrupted {}
-fn guard(token: &CancellationToken, deadline: Instant) -> Result<()> {
+fn check_interruption(token: &CancellationToken, deadline: Instant) -> Result<()> {
     if token.is_cancelled() {
         return Err(Interrupted::Cancelled.into());
     }
@@ -97,7 +97,7 @@ fn monitor_failure(
         (
             MutationOutcome::TimedOut,
             ExecutionProblemKind::Limit,
-            "mutation run deadline reached during workspace monitoring",
+            "test command deadline reached during workspace monitoring",
         )
     } else {
         (
@@ -543,7 +543,7 @@ impl TaskContext<'_> {
             }
         };
         let task_result = (|| -> Result<()> {
-            let guard = || guard(self.token, self.deadline);
+            let guard = || check_interruption(self.token, self.deadline);
             guard()?;
             let workspace = owned.path.join("workspace");
             self.template.copy_to(&workspace, &guard)?;
@@ -642,11 +642,12 @@ impl TaskContext<'_> {
                 &limits,
                 || self.token.is_cancelled() || self.stop.load(Ordering::Relaxed),
                 || {
-                    workspace::disk_usage(self.parent, &self.config.limits, &guard)?;
+                    let command_guard = || check_interruption(self.token, limits.deadline);
+                    workspace::disk_usage(self.parent, &self.config.limits, &command_guard)?;
                     let mut local = self.config.limits.clone();
                     local.max_total_workspace_bytes = local.max_workspace_bytes;
                     local.workers = 0;
-                    workspace::disk_usage(&owned.path, &local, &guard)?;
+                    workspace::disk_usage(&owned.path, &local, &command_guard)?;
                     Ok(())
                 },
             )?;
@@ -675,8 +676,10 @@ impl TaskContext<'_> {
                     bail!("test command cancelled");
                 }
                 CommandStop::Monitor(_) => {
-                    self.stop.store(true, Ordering::Relaxed);
-                    let (outcome, problem, message) = monitor_failure(self.token, self.deadline);
+                    let (outcome, problem, message) = monitor_failure(self.token, limits.deadline);
+                    if outcome != MutationOutcome::TimedOut || Instant::now() >= self.deadline {
+                        self.stop.store(true, Ordering::Relaxed);
+                    }
                     result.outcome = outcome;
                     kind = problem;
                     bail!(message);
@@ -797,7 +800,7 @@ pub fn run_until(
     let cleanup_unknown = AtomicBool::new(false);
     let stop = AtomicBool::new(false);
     let operation = (|| -> Result<()> {
-        let guard = || guard(token, deadline);
+        let guard = || check_interruption(token, deadline);
         guard()?;
         if !report.problems.is_empty() {
             return Ok(());
@@ -1169,7 +1172,7 @@ mod monitor_tests {
         for index in 0..40 {
             fs::create_dir(directory.path().join(format!("entry-{index}"))).unwrap();
         }
-        for cancel_during_walk in [true, false] {
+        for mode in ["cancel", "deadline", "resource"] {
             let token = CancellationToken::new();
             let deadline = Instant::now() + Duration::from_secs(2);
             let limits = CommandLimits {
@@ -1180,7 +1183,7 @@ mod monitor_tests {
                 resources: ChildLimits::default(),
             };
             let mut workspace_limits = super::super::config::ExecutionLimits::default();
-            if !cancel_during_walk {
+            if mode == "resource" {
                 workspace_limits.max_inventory_bytes = 1024;
             }
             let visits = Cell::new(0);
@@ -1194,10 +1197,18 @@ mod monitor_tests {
                 || {
                     workspace::disk_usage(directory.path(), &workspace_limits, &|| {
                         visits.set(visits.get() + 1);
-                        if cancel_during_walk && visits.get() == 5 {
-                            token.cancel();
+                        if visits.get() == 5 {
+                            if mode == "cancel" {
+                                token.cancel();
+                            }
+                            if mode == "deadline" {
+                                std::thread::sleep(
+                                    deadline.saturating_duration_since(Instant::now())
+                                        + Duration::from_millis(1),
+                                );
+                            }
                         }
-                        guard(&token, deadline)
+                        check_interruption(&token, deadline)
                     })?;
                     Ok(())
                 },
@@ -1206,9 +1217,12 @@ mod monitor_tests {
             assert!(matches!(output.stop, CommandStop::Monitor(_)));
             assert!(output.cleanup_complete);
             let (outcome, problem, _) = monitor_failure(&token, deadline);
-            if cancel_during_walk {
+            if mode == "cancel" {
                 assert_eq!(outcome, MutationOutcome::Cancelled);
                 assert_eq!(problem, ExecutionProblemKind::Cancellation);
+            } else if mode == "deadline" {
+                assert_eq!(outcome, MutationOutcome::TimedOut);
+                assert_eq!(problem, ExecutionProblemKind::Limit);
             } else {
                 assert_eq!(outcome, MutationOutcome::ExecutionError);
                 assert_eq!(problem, ExecutionProblemKind::Limit);
