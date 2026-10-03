@@ -27,7 +27,16 @@ def configure(template, tests, reporter):
     config = {'environment': 'node', 'include': tests, 'pool': 'forks', 'maxWorkers': 1,
               'fileParallelism': False, 'retry': 0, 'bail': 0, 'testTimeout': 30000,
               'hookTimeout': 30000, 'reporters': [str(reporter)]}
-    text = 'import {defineConfig} from "vite-plus/test/config";\nexport default defineConfig({test:' + json.dumps(config) + '});\n'
+    if (template / 'packages/shared/src/testing/longTempDir.ts').exists():
+        config['setupFiles'] = ['packages/shared/src/testing/longTempDir.ts']
+    settings = {'test':config}
+    if (template / 'apps/web/src').exists():
+        settings['resolve'] = {'alias':{'~':str((template / 'apps/web/src').resolve())}}
+    # The alias must follow each fresh execution rather than point into the template.
+    text = 'import {defineConfig} from "vite-plus/test/config";import {fileURLToPath} from "node:url";\nconst config=' + json.dumps(settings) + ';\n'
+    if 'resolve' in settings:
+        text += 'config.resolve.alias["~"]=fileURLToPath(new URL("./apps/web/src",import.meta.url));\n'
+    text += 'export default defineConfig(config);\n'
     (template / 'research-test-value.config.ts').write_text(text)
 
 
