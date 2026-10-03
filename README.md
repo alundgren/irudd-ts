@@ -1,57 +1,59 @@
 # Archguard
 
-A Rust CLI for repository architecture contracts. Rust and TypeScript plugins receive the same resolved module graph, package inventory and syntax facts. Rules can follow dependencies across files without rebuilding that information.
+Archguard checks architecture rules across a source repository. It follows dependencies, enforces package and module boundaries, detects cycles, and checks file conventions such as companion files and registry imports. Rust and TypeScript plugins can add checks over the same project graph. An optional TypeScript compiler provider checks inferred public members.
 
-Requires Rust 1.96 or newer. TypeScript plugin examples and local validation require Node 24. This release runs subprocess plugins on Unix only.
+## Get started
 
-```bash
+Build from this checkout with Rust 1.96 or newer:
+
+```sh
 cargo build --release --locked
-./target/release/archguard check --root . --config archguard.json
-./target/release/archguard facts --root . --config archguard.json > project-facts.json
-npm ci --prefix providers/typescript7 --ignore-scripts --no-audit --no-fund
-scripts/check.sh
 ```
 
-`check --json` emits a deterministic diagnostic order plus scan counts, completeness and elapsed time. Exit codes are 0 for a complete clean check, 1 for policy violations, and 2 for incomplete analysis or invalid configuration. A parser error, unsupported dynamic target, excluded source dependency or unresolved internal import cannot produce a clean result. Diagnostics may still identify violations in an incomplete project, but the result requires attention.
-
-`check` and `facts` accept an opt-in `--cache /path/to/cache.json`. It reuses syntax facts and resolved imports after validating source contents, configuration, package metadata and filesystem lookups. Policies and plugins still run each time. The measured historical reductions and complete server control were slower with caching. See [cache behavior and measurements](docs/cache.md).
-
-Configuration is explicit JSON with `schemaVersion: 1`. Unknown keys and duplicate rule IDs fail. `--root` is relative to the invoking directory. Plugin commands run in the configuration file's directory, with that directory as their working directory. Glob selectors use `/` and match paths relative to the analysis root.
+Create `archguard.json` in the project you want to check:
 
 ```json
 {
   "schemaVersion": 1,
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "rules": [
-    {"id":"client-server", "kind":"forbiddenDependency", "files":["client/**"], "targets":["server/**"], "transitive":true}
-  ],
-  "plugins": [
-    {"name":"team-rules", "command":["node", "./team-rules.ts"], "timeoutMs":5000}
+    {
+      "id": "client-server",
+      "kind": "forbiddenDependency",
+      "files": ["src/client/**"],
+      "targets": ["src/server/**"],
+      "transitive": true
+    }
   ]
 }
 ```
 
-Available built-in rule kinds are `forbiddenDependency`, `forbiddenImport`, `forbiddenCall`, `noCycles`, `serviceNamespace`, `uniqueServiceId`, `serviceLayer`, `requiredExport`, `requiredFile`, `packageDependency` and `publicEntry`. Policy IDs and selectors turn these into repository-specific contracts. `includeTypes` defaults to true. Cycle checks exclude literal dynamic-import edges; other dependency checks include them. `exceptions` excludes source files for a particular rule. A `publicEntry` rule uses `targets` for protected files and `specifiers` for permitted public imports.
+Run the binary with your project's root and configuration path:
 
-The source graph uses Oxc Resolver with nearest-tsconfig path mappings and configured export conditions, which default to `types`, `import`, `default`. `extensions` controls extensionless lookup order; `extensionAliases` is an array of `[requestedSuffix, candidateSuffixes]` pairs. Defaults record `.js` to `.ts`/`.tsx`, `.mjs` to `.mts` and `.cjs` to `.cts` aliases. It is not a TypeScript type checker or a claim of compiler/runtime resolution parity. Uninstalled external packages remain external edges. Non-source assets are leaves. Workspace package manifests default to the root and immediate children of `apps`, `packages` and `infra`; set `packageManifests` explicitly for another layout. Packages must declare source exports to participate in workspace resolution. Scan selectors are not dependency closure: excluded or unselected source targets make analysis incomplete.
+```sh
+./target/release/archguard check --root /path/to/project --config /path/to/project/archguard.json
+```
 
-Set `requireExternalResolution: true` after installing a project's dependencies to require package lookups to succeed. Missing packages, missing configured export targets and unsupported host module identifiers then remain unresolved problems, with exit 2. Node builtins remain external endpoints. The v1 facts contract records this choice as `resolution.mode: "installed-source"`; the default mode remains `"source"`. Installed dependency source is outside graph traversal. [Installed T3 coverage](docs/installed-resolution.md) records the full source inventory, merged platform-change replays and remaining generated-input requirements.
+Add `--json` for machine-readable findings. `archguard facts` exports the resolved project graph for custom tooling.
 
-TypeScript syntax facts use lexical bindings. An imported alias such as `E.runPromise()` can be attributed to Effect, while a locally shadowed `E` is not. Reassignment, dynamic property names, arbitrary object aliases, macros and inferred types are outside this release's analysis. Rust facts support direct `crate::module` use paths for local dogfooding; they do not expand macros, nested/inline modules or resolve Rust types.
+| Exit | Meaning |
+| --- | --- |
+| `0` | Analysis completed and every check passed |
+| `1` | Analysis completed with policy violations |
+| `2` | Analysis could not complete, or configuration is invalid |
 
-For TypeScript plugins, import `runPlugin`, `ProjectFacts`, `Diagnostic`, `dependencyPaths` and `createDependencyQuery` from [sdk/index.ts](sdk/index.ts). [examples/graph-plugin.ts](examples/graph-plugin.ts) follows client dependencies transitively. Rust rules implement `ProjectRule`; [examples/graph_plugin.rs](examples/graph_plugin.rs) uses the identical facts and policy. Rust extensions are statically linked or separate executables, avoiding a compiler-dependent dynamic ABI.
+Parser errors and unresolved internal dependencies remain visible. Select all source files needed by your checks; selectors do not automatically include dependency closures. Source resolution follows explicit configuration and is separate from compiler checking and runtime behavior.
 
-Subprocess plugins are trusted local code. Archguard executes only commands you explicitly configure, passes one versioned JSON project on stdin, and requires one versioned JSON response on stdout. Logs belong on stderr. It bounds stdout and stderr, handles stdin concurrently and terminates the Unix process group on timeout or exit. Diagnostics must name known analyzed source files or package manifests and valid byte offsets. Repository diagnostics use `.` with offset zero. This is process management, not a sandbox.
+## Choose your checks
 
-Licenses are checked against locked dependency manifests by `scripts/licenses.py`. The repository is MIT licensed. Preserve dependency license texts when distributing compiled binaries.
+- [Built-in rules and configuration](docs/guides/configuration.md) cover dependencies, imports, calls, cycles, exports, and packages.
+- [Repository rules](docs/guides/repository-rules.md) classify file roles and check companions, registry import prerequisites, and dependencies between roles.
+- [Rust and TypeScript plugins](docs/extensions/plugins.md) use the same versioned project facts. The TypeScript SDK and examples require Node 24.
+- [Compiler member checks](docs/extensions/semantic-provider.md) use an optional, separately installed TypeScript 7.0.2 provider.
+- [Graph caching](docs/guides/cache.md) is opt-in. Recorded measurements have not shown a speed improvement.
 
-An optional [TypeScript 7 semantic provider](docs/semantic-provider.md) exposes inferred public member facts through a separate versioned Rust and TypeScript contract. It pins the native compiler 7.0.2 and its experimental JavaScript API. Existing ProjectFacts v1 plugins keep their current payload. Local validation also checks the provider's pinned npm licenses and historical compiler fixtures.
+Plugins and semantic providers are trusted commands you explicitly configure. Subprocess execution currently requires Unix.
 
-The optional `repository` section assigns file roles and checks companion files, registry imports, scoped classification and dependencies between roles. [Repository structure](docs/repository-structure.md) shows the Rust policy model, a runnable T3 simulation and its evidence limits. [Fact research](docs/fact-research.md) surveys additional compiler, build, schema and configuration facts used by other enforcement tools.
+Start with the [runnable examples](examples/README.md), including a [T3 Code adoption case study](examples/t3code/README.md). The [documentation index](docs/README.md) has reference and extension guides.
 
-T3 adoption profiles and their evidence are in [docs/rules.md](docs/rules.md). The default profile contains 25 policy instances, with separate Android/iOS cycle profiles and explicitly experimental or historical migration policies. [docs/research.md](docs/research.md) compares Oxc, TypeScript 7, Roslyn and other architecture tools, including license decisions.
-
-A `forbiddenCall` rule with `transitive: true` reports selected files whose dependency graph reaches an imported forbidden call, with the dependency path as evidence. This means module reachability, not execution reachability. Type-only edges can be excluded with `includeTypes: false`; syntax facts do not prove whether a callback runs or an Effect program fails.
-
-When a TypeScript rule queries many roots, call `createDependencyQuery(project)` once and reuse the returned function. `dependencyPaths` remains convenient for one root. Project facts are a snapshot; do not mutate them during a query. This avoids rebuilding the full file lookup for every selected source file.
-
-Historical reductions and reproducible comparisons are documented in [docs/benchmarks.md](docs/benchmarks.md). The runner checks equivalent detected violations before recording timing ratios and retains raw samples. See [the HTML report](docs/overnight-report.html) for the architecture, measured costs and remaining coverage work. `requiredExport` checks visible source origins and explicit external declarations; it does not enumerate external star exports. `uniqueServiceId` compares recognized literal identifiers; computed identifiers and arbitrary service factories require other checks.
+Archguard is MIT licensed. See [dependency licenses](docs/licenses/README.md) when distributing binaries or upstream assets.

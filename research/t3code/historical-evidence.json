@@ -1,0 +1,364 @@
+{
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "https://github.com/pingdotgg/t3code",
+    "verifiedCheckout": "e0db2a5e58bcbe7d738bca7667d2440ddb83e30f",
+    "license": "MIT",
+    "notice": "history/LICENSE.t3code"
+  },
+  "cases": [
+    {
+      "id": "14385",
+      "pr": "https://github.com/pingdotgg/t3code/pull/14385",
+      "before": "1716694b37b24baad7a0b5afe6abde8949278305",
+      "fixed": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+      "kind": "reduced reproduction",
+      "category": "service namespace convention",
+      "sources": [
+        {
+          "commit": "1716694b37b24baad7a0b5afe6abde8949278305",
+          "path": "apps/server/src/git/linkCreatedPullRequest.ts",
+          "verifiedText": "import { OrchestratorV2 } from \"../orchestration-v2/Orchestrator.ts\";",
+          "sourceSha256": "2a3d32e2423a74e0cf67c386ef4072c56df317f2b21d6a382b2359f8807b96fc",
+          "line": 15
+        },
+        {
+          "commit": "1716694b37b24baad7a0b5afe6abde8949278305",
+          "path": "apps/server/src/orchestration-v2/Orchestrator.ts",
+          "verifiedText": "\"t3/orchestration-v2/Orchestrator/OrchestratorV2\"",
+          "sourceSha256": "537bc76162c85bde5032edd86a40a54580aca7d8c522952b6339b1df7561280d",
+          "line": 297
+        },
+        {
+          "commit": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+          "path": "apps/server/src/git/linkCreatedPullRequest.ts",
+          "verifiedText": "import * as Orchestrator from \"../orchestration-v2/Orchestrator.ts\";",
+          "sourceSha256": "93061995a2cb5557a67c2804913844f5e2326919a9f2ac187b01b7374054bd52",
+          "line": 15
+        },
+        {
+          "commit": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+          "path": "apps/server/src/orchestration-v2/Orchestrator.ts",
+          "verifiedText": "\"t3/orchestration-v2/Orchestrator/OrchestratorV2\"",
+          "sourceSha256": "537bc76162c85bde5032edd86a40a54580aca7d8c522952b6339b1df7561280d",
+          "line": 297
+        }
+      ]
+    },
+    {
+      "id": "14387",
+      "pr": "https://github.com/pingdotgg/t3code/pull/14387",
+      "before": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+      "fixed": "2dfd31325f81edc8fb3cb1d10dc2bb0f2e7c67a5",
+      "kind": "reduced reproduction",
+      "category": "service namespace convention",
+      "sources": [
+        {
+          "commit": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+          "path": "apps/server/src/orchestration-v2/AcpRegistryOrchestratorV2.live.test.ts",
+          "verifiedText": "import { OrchestratorV2 } from \"./Orchestrator.ts\";",
+          "sourceSha256": "1a4c716a54469b4d134a8c69060908b50883f4b78e22a95cb9d5f0c348c853ad",
+          "line": 41
+        },
+        {
+          "commit": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+          "path": "apps/server/src/orchestration-v2/Orchestrator.ts",
+          "verifiedText": "\"t3/orchestration-v2/Orchestrator/OrchestratorV2\"",
+          "sourceSha256": "537bc76162c85bde5032edd86a40a54580aca7d8c522952b6339b1df7561280d",
+          "line": 297
+        },
+        {
+          "commit": "2dfd31325f81edc8fb3cb1d10dc2bb0f2e7c67a5",
+          "path": "apps/server/src/orchestration-v2/AcpRegistryOrchestratorV2.live.test.ts",
+          "verifiedText": "import * as Orchestrator from \"./Orchestrator.ts\";",
+          "sourceSha256": "acfa465d604bd75ab31d654f90e66b67dc1f8af2411a197c037590c336c85e63",
+          "line": 38
+        },
+        {
+          "commit": "2dfd31325f81edc8fb3cb1d10dc2bb0f2e7c67a5",
+          "path": "apps/server/src/orchestration-v2/Orchestrator.ts",
+          "verifiedText": "\"t3/orchestration-v2/Orchestrator/OrchestratorV2\"",
+          "sourceSha256": "537bc76162c85bde5032edd86a40a54580aca7d8c522952b6339b1df7561280d",
+          "line": 297
+        }
+      ]
+    },
+    {
+      "id": "14389",
+      "pr": "https://github.com/pingdotgg/t3code/pull/14389",
+      "before": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+      "fixed": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+      "kind": "reduced reproduction",
+      "category": "service namespace convention",
+      "sources": [
+        {
+          "commit": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+          "path": "apps/mobile/src/connection/background-activity.ts",
+          "verifiedText": "import { EnvironmentRegistry } from \"@t3tools/client-runtime/connection\";",
+          "sourceSha256": "dc87453c7ee1aa6fd6caff77884e188e7ae8527e395b5dc3d29d7a5e055cb3cd",
+          "line": 1
+        },
+        {
+          "commit": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+          "path": "packages/client-runtime/src/connection/index.ts",
+          "verifiedText": "EnvironmentRegistry,",
+          "sourceSha256": "51d6848d435f2d2fba92dd9d6496d5a7fb106d63a9ce0ba9af4dc677e6e295f3",
+          "line": 19
+        },
+        {
+          "commit": "16d72f4d84e764c93ee5d8c0e3533985e8a8db85",
+          "path": "packages/client-runtime/src/connection/registry.ts",
+          "verifiedText": "\"@t3tools/client-runtime/connection/registry/EnvironmentRegistry\"",
+          "sourceSha256": "bbc77d6231e64bdd9b19dc49839caa47ef5570ef736598f628c29b9a11c426ee",
+          "line": 143
+        },
+        {
+          "commit": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+          "path": "apps/mobile/src/connection/background-activity.ts",
+          "verifiedText": "import { EnvironmentRegistry } from \"@t3tools/client-runtime/connection\";",
+          "sourceSha256": "abb3a9f876b8781736bbedad875d9ed0558b2b4f4ee2952d63f14ca7069ecc5d",
+          "line": 1
+        },
+        {
+          "commit": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+          "path": "packages/client-runtime/src/connection/index.ts",
+          "verifiedText": "export * as EnvironmentRegistry from \"./registry.ts\";",
+          "sourceSha256": "7cc22cfd46a0d1c2035216f05bfff47e5674f1608a4a40ff042ef1fab82c876f",
+          "line": 12
+        },
+        {
+          "commit": "4e516096fe2dee65a38206152f635bb8a47db2e2",
+          "path": "packages/client-runtime/src/connection/registry.ts",
+          "verifiedText": "\"@t3tools/client-runtime/connection/registry/EnvironmentRegistry\"",
+          "sourceSha256": "bbc77d6231e64bdd9b19dc49839caa47ef5570ef736598f628c29b9a11c426ee",
+          "line": 143
+        }
+      ]
+    },
+    {
+      "id": "13151",
+      "pr": "https://github.com/pingdotgg/t3code/pull/13151",
+      "before": "5d493d67cedc3401af42e77d6a238bc49204a09b",
+      "fixed": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+      "kind": "reduced reproduction",
+      "category": "type-only dependency cycle",
+      "resolution": "Default generic .tsx, plus Android and iOS configurations with exact upstream candidate orders. The resolved modal edge and cycle participants are asserted.",
+      "sources": [
+        {
+          "commit": "5d493d67cedc3401af42e77d6a238bc49204a09b",
+          "path": "apps/mobile/src/components/FilePreviewModal.tsx",
+          "verifiedText": "import { FilePreview } from \"./FilePreview\";",
+          "sourceSha256": "6da03c6072f1d46c5b7838633ed7e6d3de4095aeb2c9bcf646bc5401edcfbc7d",
+          "line": 10
+        },
+        {
+          "commit": "5d493d67cedc3401af42e77d6a238bc49204a09b",
+          "path": "apps/mobile/src/components/FilePreview.tsx",
+          "verifiedText": "import type { ResolvedFilePreviewSource } from \"./FilePreviewModal\";",
+          "sourceSha256": "2de80a970c3573f4fce06fa6ec2884dba70b8f4de827ba76697091de9d08e40e",
+          "line": 6
+        },
+        {
+          "commit": "5d493d67cedc3401af42e77d6a238bc49204a09b",
+          "path": "apps/mobile/src/components/FilePreview.ios.tsx",
+          "verifiedText": "import type { ResolvedFilePreviewSource } from \"./FilePreviewModal\";",
+          "sourceSha256": "5f26ed4edf8485bccbdd41588365eb8dbe49ee69d592fc7c3f75da0fb799f03d",
+          "line": 5
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/components/FilePreviewModal.tsx",
+          "verifiedText": "import { FilePreview } from \"./FilePreview\";",
+          "sourceSha256": "79d202f2b2e15cf35ee90d5f5f1f497112635c98c3c4084d360445bdb4949563",
+          "line": 7
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/components/FilePreview.tsx",
+          "verifiedText": "import type { ResolvedFilePreviewSource } from \"./FilePreviewModal.types\";",
+          "sourceSha256": "8e18e6cf2b1894fd5b3bd4d7087f45babc2398cf44815117ab4846296a8767c8",
+          "line": 6
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/components/FilePreview.ios.tsx",
+          "verifiedText": "import type { ResolvedFilePreviewSource } from \"./FilePreviewModal.types\";",
+          "sourceSha256": "a3dca66327eedf38e97804d568fe1d3b2de30c23301b33c3267d473eda3fa0aa",
+          "line": 5
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/dependency-graph.test.ts",
+          "verifiedText": "  android: [\".android.ts\", \".android.tsx\", \".native.ts\", \".native.tsx\", \".ts\", \".tsx\"],",
+          "sourceSha256": "17603c720e0184fab65d8c4892a851697e997a23fc4d81ba6e66fe1cf439a3e2",
+          "line": 33
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/dependency-graph.test.ts",
+          "verifiedText": "  ios: [\".ios.ts\", \".ios.tsx\", \".native.ts\", \".native.tsx\", \".ts\", \".tsx\"],",
+          "sourceSha256": "17603c720e0184fab65d8c4892a851697e997a23fc4d81ba6e66fe1cf439a3e2",
+          "line": 34
+        },
+        {
+          "commit": "5821b778fd29e9c5b6945f4e7150f92d19a0a3da",
+          "path": "apps/mobile/src/components/FilePreviewModal.types.ts",
+          "verifiedText": "export interface ResolvedFilePreviewSource {",
+          "sourceSha256": "61240a6efe7b7995e52ed0dd32f56113dba609cfbda02c443e5f362d516960c5",
+          "line": 6
+        }
+      ]
+    },
+    {
+      "id": "12380",
+      "pr": "https://github.com/pingdotgg/t3code/pull/12380",
+      "before": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+      "fixed": "53830d413474b2a5749c040d4382c96002894b88",
+      "kind": "full selected mobile/workspace source replay with retained incomplete-analysis problems",
+      "category": "platform source resolution",
+      "measurementDirectory": "../benchmarks/installed/measurements",
+      "sources": [
+        {
+          "commit": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+          "path": "apps/mobile/src/features/agent-awareness/remoteRegistration.ts",
+          "verifiedText": "import { type LiveActivity } from \"expo-widgets\";",
+          "sourceSha256": "f5f3f05950788eee88dbd16e872c8e148bc9beff7b89ec616a1480a3c946547b",
+          "line": 1
+        },
+        {
+          "commit": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+          "path": "apps/mobile/src/widgets/AgentActivity.tsx",
+          "verifiedText": "import { HStack, Image, Spacer, Text, VStack, ZStack } from \"@expo/ui/swift-ui\";",
+          "sourceSha256": "64134e303a2187108f95fa7d31ffc5229147c725a725e0f99e42acc61605adaa",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/agent-awareness/remoteRegistration.ts",
+          "verifiedText": "import { type LiveActivity } from \"expo-widgets\";",
+          "sourceSha256": "03ab5dc1fed9d8387aefc6bad47e08bf04949364eaf2056000ff863b256bbac2",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/agent-awareness/agentLiveActivity.ts",
+          "verifiedText": "import type { LiveActivity } from \"expo-widgets\";",
+          "sourceSha256": "76dd68ca622c6547843d690f6658445d85efd76452cd075a110ffd23bf34bdbf",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/agent-awareness/agentLiveActivity.ios.ts",
+          "verifiedText": "import AgentActivity, { type AgentActivityProps } from \"../../widgets/AgentActivity\";",
+          "sourceSha256": "ca63c0052b3abbeb54125c87fdcc3c1a28df2ab505f5d89f4f55e0dc15dd8f52",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/widgets/AgentActivity.tsx",
+          "verifiedText": "import { HStack, Image, Spacer, Text, VStack, ZStack } from \"@expo/ui/swift-ui\";",
+          "sourceSha256": "64134e303a2187108f95fa7d31ffc5229147c725a725e0f99e42acc61605adaa",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "12381",
+      "pr": "https://github.com/pingdotgg/t3code/pull/12381",
+      "before": "53830d413474b2a5749c040d4382c96002894b88",
+      "fixed": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+      "kind": "full selected mobile/workspace source replay with retained incomplete-analysis problems",
+      "category": "platform source resolution",
+      "measurementDirectory": "../benchmarks/installed/measurements",
+      "sources": [
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/home/HomeRouteScreen.tsx",
+          "verifiedText": "import * as Arr from \"effect/Array\";",
+          "sourceSha256": "861b02a081ed703f2c61fef4c8f9dc8357d90160a70858aa8159a55617ec6190",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/home/HomeHeader.tsx",
+          "verifiedText": "import type { EnvironmentId, SidebarThreadSortOrder } from \"@t3tools/contracts\";",
+          "sourceSha256": "3b7ec0633dc15d0f214d32c6f5ceb0294a5f9037a7fa4c15654ab841348642ed",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeRouteScreen.tsx",
+          "verifiedText": "import * as Arr from \"effect/Array\";",
+          "sourceSha256": "861b02a081ed703f2c61fef4c8f9dc8357d90160a70858aa8159a55617ec6190",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeHeader.tsx",
+          "verifiedText": "import { NativeHeaderToolbar, NativeStackScreenOptions } from \"../../native/StackHeader\";",
+          "sourceSha256": "afd319c6939e1e46829cd42c9c5ac14976f321e1bb0faa02bad45ae52b1e4e57",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeHeader.android.tsx",
+          "verifiedText": "import type { MenuAction } from \"@react-native-menu/menu\";",
+          "sourceSha256": "6aefb0b22816ff0a951078381700a6bdb34776ccf6ab441518fd8411d10b77c0",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeHeader.types.ts",
+          "verifiedText": "import type { EnvironmentId, SidebarThreadSortOrder } from \"@t3tools/contracts\";",
+          "sourceSha256": "3e07071ca35a030c97e1170921acddbbae131697c27f88fd3d3ac25c2464a4be",
+          "line": 1
+        }
+      ]
+    }
+  ],
+  "counting": "Four PR reductions, two distinct architecture failure categories. The three namespace PRs apply one convention and must not be counted as three independent runtime bugs. None is a full upstream replay.",
+  "unsupported": [
+    {
+      "pr": 14183,
+      "reason": "A run stuck in starting requires runtime state and scheduling behavior.",
+      "prUrl": "https://github.com/pingdotgg/t3code/pull/14183"
+    },
+    {
+      "pr": 14665,
+      "reason": "Duplicate event storage requires execution and database identity semantics.",
+      "prUrl": "https://github.com/pingdotgg/t3code/pull/14665"
+    },
+    {
+      "pr": 14641,
+      "reason": "Nested wake ownership requires runtime lifecycle semantics.",
+      "prUrl": "https://github.com/pingdotgg/t3code/pull/14641"
+    }
+  ],
+  "policyEvidence": [
+    {
+      "pr": 14018,
+      "before": "f100c04bdeb402fd6fcda4a10162625e23a5af56",
+      "fixed": "babea405ec5149121979e7545990c458f5c0d2e6",
+      "classification": "policy and injected mutation evidence, no demonstrated before/fixed regression",
+      "source": {
+        "commit": "babea405ec5149121979e7545990c458f5c0d2e6",
+        "path": "apps/server/src/orchestration-v2/V1ImportBoundary.test.ts",
+        "verifiedText": "const legacyReaders = [\"orchestration-v2/legacy/\", \"persistence/Migrations/\"] as const;",
+        "sourceSha256": "f008be4403a697222b16597bc1dcf85eb8ef3599f3fc59f474c4438ce756e9d6",
+        "line": 14
+      },
+      "allowedLegacyImporters": [
+        "orchestration-v2/ThreadManagementService.ts",
+        "orchestration-v2/runtimeLayer.ts",
+        "project/ProjectService.ts",
+        "serverRuntimeStartup.ts"
+      ],
+      "allowedLegacyTableReaders": [
+        "orchestration-v2/legacy/",
+        "persistence/Migrations/",
+        "serverSettings.ts"
+      ]
+    }
+  ],
+  "selection": "Seven inspected candidate PRs and one policy PR from the recent workstream. This is a selected evidence set, not an exhaustive repository bug census."
+}

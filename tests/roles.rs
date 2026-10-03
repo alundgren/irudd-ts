@@ -8,7 +8,7 @@ fn put(root: &Path, path: &str, source: &str) {
     fs::write(path, source).unwrap();
 }
 fn policy() -> Config {
-    serde_json::from_str(include_str!("../presets/t3code-structure.json")).unwrap()
+    serde_json::from_str(include_str!("../examples/repository-rules/archguard.json")).unwrap()
 }
 fn check(root: &Path, config: &Config) -> Vec<archguard::facts::Diagnostic> {
     config.validate().unwrap();
@@ -18,53 +18,38 @@ fn check(root: &Path, config: &Config) -> Vec<archguard::facts::Diagnostic> {
 }
 fn clean_fixture(root: &Path) {
     for (path, source) in [
+        ("src/migrations/001_Events.ts", "export default 1;"),
+        ("src/migrations/002_Projects.ts", "export default 2;"),
         (
-            "apps/server/src/persistence/Migrations/001_Events.ts",
-            "export default 1;",
-        ),
-        (
-            "apps/server/src/persistence/Migrations/002_Projects.ts",
-            "export default 2;",
-        ),
-        (
-            "apps/server/src/persistence/Migrations/001_Events.test.ts",
+            "src/migrations/001_Events.test.ts",
             "import migration from './001_Events.ts';",
         ),
         (
-            "apps/server/src/persistence/Migrations.ts",
-            "import a from './Migrations/001_Events.ts'; import b from './Migrations/002_Projects.ts'; export const entries=[a,b];",
+            "src/migrations.ts",
+            "import a from './migrations/001_Events.ts'; import b from './migrations/002_Projects.ts'; export const entries=[a,b];",
         ),
+        ("src/services/Projects.ts", "export class Projects {}"),
         (
-            "apps/server/src/persistence/Services/Projects.ts",
-            "export class Projects {}",
+            "src/layers/Projects.ts",
+            "import {Projects} from '../services/Projects.ts'; export const live=Projects;",
         ),
+        ("src/layers/Sqlite.ts", "export const sqlite=1;"),
         (
-            "apps/server/src/persistence/Layers/Projects.ts",
-            "import {Projects} from '../Services/Projects.ts'; export const live=Projects;",
-        ),
-        (
-            "apps/server/src/persistence/Layers/Sqlite.ts",
-            "export const sqlite=1;",
-        ),
-        (
-            "apps/server/src/mcp/toolkits/preview/tools.ts",
+            "src/tools/preview/tools.ts",
             "export const standard=1; export const screenshot=2;",
         ),
         (
-            "apps/server/src/mcp/toolkits/preview/handlers.ts",
+            "src/tools/preview/handlers.ts",
             "import {standard,screenshot} from './tools.ts'; export const layers=[standard,screenshot];",
         ),
         (
-            "apps/server/src/mcp/toolkits/preview/handlers.test.ts",
+            "src/tools/preview/handlers.test.ts",
             "import './handlers.ts';",
         ),
+        ("src/contracts/rpc.ts", "export type Message={id:string};"),
         (
-            "packages/contracts/src/rpc.ts",
-            "export type Message={id:string};",
-        ),
-        (
-            "apps/server/src/ws.ts",
-            "import type {Message} from '../../../packages/contracts/src/rpc.ts';",
+            "src/host.ts",
+            "import type {Message} from './contracts/rpc.ts';",
         ),
     ] {
         put(root, path, source);
@@ -72,29 +57,29 @@ fn clean_fixture(root: &Path) {
 }
 
 #[test]
-fn t3_structural_simulation_has_failure_correction_and_controls() {
+fn repository_conventions_has_failure_correction_and_controls() {
     let root = tempfile::tempdir().unwrap();
     let config = policy();
     clean_fixture(root.path());
     assert!(check(root.path(), &config).is_empty());
     let cases = [
         (
-            "apps/server/src/persistence/Migrations/003_New.ts",
+            "src/migrations/003_New.ts",
             "export default 3;",
             "migration-registry-import",
         ),
         (
-            "apps/server/src/persistence/Services/Missing.ts",
+            "src/services/Missing.ts",
             "export const service=1;",
             "service-layer-companion",
         ),
         (
-            "apps/server/src/mcp/toolkits/new/tools.ts",
+            "src/tools/new/tools.ts",
             "export const toolkit=1;",
             "tool-handler-companion",
         ),
         (
-            "apps/server/src/persistence/Migrations/readme.ts",
+            "src/migrations/readme.ts",
             "export {};",
             "structure-classification",
         ),
@@ -107,11 +92,11 @@ fn t3_structural_simulation_has_failure_correction_and_controls() {
         fs::remove_file(root.path().join(path)).unwrap();
         assert!(check(root.path(), &config).is_empty());
     }
-    let handler = "apps/server/src/mcp/toolkits/preview/handlers.ts";
+    let handler = "src/tools/preview/handlers.ts";
     put(
         root.path(),
         handler,
-        "import '../../../persistence/Migrations/001_Events.ts';",
+        "import '../../migrations/001_Events.ts';",
     );
     assert_eq!(
         check(root.path(), &config)[0].rule,
@@ -119,24 +104,16 @@ fn t3_structural_simulation_has_failure_correction_and_controls() {
     );
     clean_fixture(root.path());
     assert!(check(root.path(), &config).is_empty());
-    fs::remove_file(
-        root.path()
-            .join("apps/server/src/mcp/toolkits/preview/handlers.test.ts"),
-    )
-    .unwrap();
+    fs::remove_file(root.path().join("src/tools/preview/handlers.test.ts")).unwrap();
     assert_eq!(check(root.path(), &config)[0].rule, "tool-handler-test");
     clean_fixture(root.path());
-    put(
-        root.path(),
-        "packages/contracts/src/rpc.ts",
-        "import '../../../apps/server/src/ws.ts';",
-    );
+    put(root.path(), "src/contracts/rpc.ts", "import '../host.ts';");
     assert_eq!(check(root.path(), &config)[0].rule, "contracts-no-host");
     clean_fixture(root.path());
     put(
         root.path(),
-        "apps/server/src/persistence/Services/Projects.ts",
-        "import type {live} from '../Layers/Projects.ts';",
+        "src/services/Projects.ts",
+        "import type {live} from '../layers/Projects.ts';",
     );
     assert_eq!(
         check(root.path(), &config)[0].rule,
@@ -152,17 +129,13 @@ fn registration_requires_static_value_edge_and_keeps_resolution_errors_visible()
     let config = policy();
     clean_fixture(root.path());
     for registry in [
-        "import type m from './Migrations/001_Events.ts'; import n from './Migrations/002_Projects.ts';",
-        "import('./Migrations/001_Events.ts'); import n from './Migrations/002_Projects.ts';",
-        "import n from './Migrations/002_Projects.ts';",
-        "function unused() { require('./Migrations/001_Events.ts'); } import n from './Migrations/002_Projects.ts';",
-        "export { default as m } from './Migrations/001_Events.ts'; import n from './Migrations/002_Projects.ts';",
+        "import type m from './migrations/001_Events.ts'; import n from './migrations/002_Projects.ts';",
+        "import('./migrations/001_Events.ts'); import n from './migrations/002_Projects.ts';",
+        "import n from './migrations/002_Projects.ts';",
+        "function unused() { require('./migrations/001_Events.ts'); } import n from './migrations/002_Projects.ts';",
+        "export { default as m } from './migrations/001_Events.ts'; import n from './migrations/002_Projects.ts';",
     ] {
-        put(
-            root.path(),
-            "apps/server/src/persistence/Migrations.ts",
-            registry,
-        );
+        put(root.path(), "src/migrations.ts", registry);
         let diagnostics = check(root.path(), &config);
         assert_eq!(diagnostics.len(), 1);
         assert_eq!(diagnostics[0].rule, "migration-registry-import");
@@ -170,15 +143,15 @@ fn registration_requires_static_value_edge_and_keeps_resolution_errors_visible()
     clean_fixture(root.path());
     put(
         root.path(),
-        "apps/server/src/persistence/Migrations.ts",
-        "import m = require('./Migrations/001_Events.ts'); import n from './Migrations/002_Projects.ts';",
+        "src/migrations.ts",
+        "import m = require('./migrations/001_Events.ts'); import n from './migrations/002_Projects.ts';",
     );
     assert!(check(root.path(), &config).is_empty());
     clean_fixture(root.path());
     put(
         root.path(),
-        "apps/server/src/persistence/Migrations.ts",
-        "import './Migrations/missing.ts';",
+        "src/migrations.ts",
+        "import './migrations/missing.ts';",
     );
     let config_path = root.path().join("archguard.json");
     fs::write(&config_path, serde_json::to_vec(&config).unwrap()).unwrap();

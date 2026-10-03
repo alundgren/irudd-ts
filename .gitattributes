@@ -1,3 +1,4 @@
-benchmarks/results/*.json linguist-generated=true
-docs/dependency-licenses.json linguist-generated=true
-benchmarks/toolchain/licenses.json linguist-generated=true
+research/**/results/*.json linguist-generated=true
+research/**/measurements/*.json linguist-generated=true
+docs/licenses/*.json linguist-generated=true
+research/benchmarks/toolchain/licenses.json linguist-generated=true

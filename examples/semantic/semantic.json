@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "provider": {
+    "name": "typescript7",
+    "command": [
+      "node",
+      "../../providers/typescript7/provider.mjs"
+    ],
+    "timeoutMs": 30000
+  },
+  "contexts": [
+    {
+      "id": "app",
+      "tsconfig": "tsconfig.json",
+      "files": [
+        "main.ts"
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "missing-member",
+      "kind": "missingMember",
+      "files": [
+        "**"
+      ]
+    }
+  ]
+}

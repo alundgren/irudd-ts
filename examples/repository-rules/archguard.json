@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "include": [
+    "src/**/*.ts"
+  ],
+  "rules": [
+    {
+      "id": "migration-default-export",
+      "kind": "requiredExport",
+      "files": [
+        "src/migrations/[0-9][0-9][0-9]_*.ts"
+      ],
+      "exceptions": [
+        "**/*.test.ts"
+      ],
+      "names": [
+        "default"
+      ]
+    },
+    {
+      "id": "production-no-test-import",
+      "kind": "forbiddenDependency",
+      "files": [
+        "src/**/*.ts"
+      ],
+      "exceptions": [
+        "**/*.test.ts",
+        "**/testUtils/**"
+      ],
+      "targets": [
+        "**/*.test.ts"
+      ]
+    }
+  ],
+  "repository": {
+    "roles": [
+      {
+        "id": "test",
+        "files": [
+          "**/*.test.ts"
+        ]
+      },
+      {
+        "id": "migration",
+        "files": [
+          "src/migrations/[0-9][0-9][0-9]_*.ts"
+        ],
+        "exclude": [
+          "**/*.test.ts"
+        ]
+      },
+      {
+        "id": "migration-registry",
+        "files": [
+          "src/migrations.ts"
+        ]
+      },
+      {
+        "id": "persistence-service",
+        "files": [
+          "src/services/*.ts"
+        ],
+        "exclude": [
+          "**/*.test.ts"
+        ]
+      },
+      {
+        "id": "persistence-layer",
+        "files": [
+          "src/layers/*.ts"
+        ],
+        "exclude": [
+          "**/*.test.ts"
+        ]
+      },
+      {
+        "id": "tool-contract",
+        "files": [
+          "src/tools/*/tools.ts"
+        ]
+      },
+      {
+        "id": "tool-handler",
+        "files": [
+          "src/tools/*/handlers.ts"
+        ]
+      },
+      {
+        "id": "rpc-contract",
+        "files": [
+          "src/contracts/*.ts"
+        ],
+        "exclude": [
+          "**/*.test.ts"
+        ]
+      },
+      {
+        "id": "api-host",
+        "files": [
+          "src/host.ts",
+          "src/http.ts"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "structure-classification",
+        "kind": "classified",
+        "files": [
+          "src/migrations/*.ts",
+          "src/services/*.ts",
+          "src/layers/*.ts",
+          "src/tools/**/*.ts",
+          "src/contracts/*.ts",
+          "src/host.ts",
+          "src/http.ts"
+        ]
+      },
+      {
+        "id": "migration-registry-import",
+        "kind": "registryImport",
+        "role": "migration",
+        "registry": "src/migrations.ts"
+      },
+      {
+        "id": "service-layer-companion",
+        "kind": "companion",
+        "role": "persistence-service",
+        "replace": [
+          "/services/",
+          "/layers/"
+        ]
+      },
+      {
+        "id": "tool-handler-companion",
+        "kind": "companion",
+        "role": "tool-contract",
+        "replace": [
+          "/tools.ts",
+          "/handlers.ts"
+        ]
+      },
+      {
+        "id": "tool-contract-companion",
+        "kind": "companion",
+        "role": "tool-handler",
+        "replace": [
+          "/handlers.ts",
+          "/tools.ts"
+        ]
+      },
+      {
+        "id": "tool-handler-test",
+        "kind": "companion",
+        "role": "tool-handler",
+        "replace": [
+          "/handlers.ts",
+          "/handlers.test.ts"
+        ]
+      },
+      {
+        "id": "contracts-no-host",
+        "kind": "forbiddenDependency",
+        "from": "rpc-contract",
+        "to": "api-host",
+        "transitive": true
+      },
+      {
+        "id": "services-no-live-layer",
+        "kind": "forbiddenDependency",
+        "from": "persistence-service",
+        "to": "persistence-layer",
+        "transitive": true
+      },
+      {
+        "id": "handlers-no-migrations",
+        "kind": "forbiddenDependency",
+        "from": "tool-handler",
+        "to": "migration"
+      }
+    ]
+  }
+}
