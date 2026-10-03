@@ -183,3 +183,37 @@ fn configuration_links_and_fifos_fail_without_blocking() {
         Some(0)
     );
 }
+
+#[cfg(unix)]
+#[test]
+fn run_cancellation_reports_incomplete_and_preserves_original_source() {
+    use nix::{sys::signal::{kill, Signal}, unistd::Pid};
+    use std::{thread, time::{Duration, Instant}};
+    let root = tempfile::tempdir().unwrap();
+    let external = tempfile::tempdir().unwrap();
+    let source = "export const enabled = true;";
+    fs::write(root.path().join("domain.ts"), source).unwrap();
+    fs::write(root.path().join("wait.mjs"), "import fs from 'node:fs'; fs.writeFileSync(process.argv[2], 'ready'); setInterval(()=>{},1000);").unwrap();
+    let node = Command::new("node").args(["-p", "process.execPath"]).output().unwrap();
+    assert!(node.status.success());
+    let node = String::from_utf8(node.stdout).unwrap().trim().to_owned();
+    let marker = external.path().join("ready");
+    let configuration = external.path().join("mutator.json");
+    fs::write(&configuration, json!({"schemaVersion":1, "plan":{"schemaVersion":1,"selection":{"include":["domain.ts"]}},
+        "execution":{"command":[node,"wait.mjs",marker],"workspace":{"include":["domain.ts","wait.mjs"]},
+            "limits":{"commandTimeoutMs":10000,"runTimeoutMs":20000}}}).to_string()).unwrap();
+    let child = Command::new(env!("CARGO_BIN_EXE_archguard"))
+        .args(["mutator","run","--json","--root"]).arg(root.path())
+        .arg("--config").arg(configuration)
+        .stdout(std::process::Stdio::piped()).stderr(std::process::Stdio::piped()).spawn().unwrap();
+    let deadline = Instant::now() + Duration::from_secs(10);
+    while !marker.exists() && Instant::now() < deadline { thread::sleep(Duration::from_millis(10)); }
+    // Signal only the captured CLI process; it owns cleanup of its test group.
+    kill(Pid::from_raw(child.id() as i32), Signal::SIGTERM).unwrap();
+    let output = child.wait_with_output().unwrap();
+    assert!(marker.exists(), "{}", String::from_utf8_lossy(&output.stderr));
+    let cancelled = report(&output, 2);
+    assert_eq!(cancelled["complete"], false);
+    assert_eq!(cancelled["baseline"]["outcome"], "cancelled");
+    assert_eq!(fs::read_to_string(root.path().join("domain.ts")).unwrap(), source);
+}
