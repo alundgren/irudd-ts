@@ -427,9 +427,24 @@ fn deadline_kills_a_waiting_native_compiler_descendant() {
     assert!(error.to_string().contains("deadline"));
     let pid = fs::read_to_string(marker).unwrap();
     let process = Path::new("/proc").join(pid.trim()).join("stat");
-    if let Ok(stat) = fs::read_to_string(process) {
-        let state = stat.rsplit_once(") ").unwrap().1.chars().next().unwrap();
-        assert_eq!(state, 'Z', "native compiler descendant survived deadline");
+    // SIGKILL delivery can finish after the direct shell has been reaped.
+    let observation_deadline = std::time::Instant::now() + std::time::Duration::from_secs(1);
+    loop {
+        match fs::read_to_string(&process) {
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => break,
+            Err(error) => panic!("cannot observe native compiler descendant: {error}"),
+            Ok(stat) => {
+                let state = stat.rsplit_once(") ").unwrap().1.chars().next().unwrap();
+                if state == 'Z' {
+                    break;
+                }
+                assert!(
+                    std::time::Instant::now() < observation_deadline,
+                    "native compiler descendant survived deadline with state {state}"
+                );
+            }
+        }
+        std::thread::sleep(std::time::Duration::from_millis(5));
     }
 }
 #[test]
