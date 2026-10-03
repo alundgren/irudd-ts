@@ -73,7 +73,7 @@ pub(crate) fn run<T: Serialize, R>(
     let mut command = Command::new(executable);
     command.args(&command_config.command[1..]).current_dir(cwd);
     let output = run_command(
-        &mut command,
+        command,
         &request,
         &CommandLimits {
             deadline,
@@ -116,8 +116,10 @@ pub(crate) fn run<T: Serialize, R>(
     Ok(response)
 }
 
+// Callers must retain default SIGCHLD disposition and exclusively reap their own
+// children for this call. Foreign waitpid calls can invalidate numeric cleanup.
 pub(crate) fn run_command(
-    command: &mut Command,
+    command: Command,
     input: &[u8],
     limits: &CommandLimits,
     cancelled: impl Fn() -> bool,
@@ -126,16 +128,16 @@ pub(crate) fn run_command(
     if input.len() > limits.stdin_bytes {
         bail!("input exceeds {} bytes", limits.stdin_bytes);
     }
-    #[cfg(not(unix))]
+    #[cfg(not(any(target_os = "linux", target_os = "macos")))]
     {
         let _ = (command, input, limits, cancelled, monitor);
-        bail!("subprocess execution requires Unix process-group cleanup in this release");
+        bail!("subprocess execution requires Linux or macOS process-group cleanup in this release");
     }
-    #[cfg(unix)]
+    #[cfg(any(target_os = "linux", target_os = "macos"))]
     unix::run(command, input, limits, cancelled, monitor)
 }
 
-#[cfg(unix)]
+#[cfg(any(target_os = "linux", target_os = "macos"))]
 mod unix {
     use super::*;
     use nix::{
@@ -158,63 +160,93 @@ mod unix {
     struct ChildGuard {
         child: Child,
         group: Pid,
-        group_cleaned: bool,
-        cleaned: bool,
+        owned: bool,
+        finished: bool,
     }
 
     impl ChildGuard {
         fn kill_group(&mut self) -> Result<()> {
-            if self.group_cleaned {
-                return Ok(());
-            }
+            self.exited()?;
             match killpg(self.group, Signal::SIGKILL) {
-                Ok(()) | Err(Errno::ESRCH) => {
-                    self.group_cleaned = true;
-                    Ok(())
-                }
+                Ok(()) | Err(Errno::ESRCH) => Ok(()),
                 Err(error) => Err(error).context("process-group cleanup"),
             }
         }
 
-        #[cfg(any(target_os = "linux", target_os = "macos"))]
         fn exited(&mut self) -> Result<bool> {
-            // WNOWAIT reserves the leader PID until its group has been killed.
-            let mut info: nix::libc::siginfo_t = unsafe { std::mem::zeroed() };
-            let result = unsafe {
-                nix::libc::waitid(
-                    nix::libc::P_PID,
-                    self.group.as_raw() as nix::libc::id_t,
-                    &mut info,
-                    nix::libc::WEXITED | nix::libc::WNOHANG | nix::libc::WNOWAIT,
-                )
-            };
-            if result == -1 {
-                let error = std::io::Error::last_os_error();
-                if error.kind() == std::io::ErrorKind::Interrupted {
-                    return Ok(false);
-                }
-                return Err(error).context("observing executable exit");
+            if !self.owned {
+                bail!("child ownership lost; numeric process cleanup suppressed");
             }
-            Ok(unsafe { info.si_pid() } == self.group.as_raw())
-        }
-
-        #[cfg(not(any(target_os = "linux", target_os = "macos")))]
-        fn exited(&mut self) -> Result<bool> {
-            Ok(self.child.try_wait()?.is_some())
+            // Reserve the leader PID until group liveness has been checked.
+            for _ in 0..8 {
+                let mut info: nix::libc::siginfo_t = unsafe { std::mem::zeroed() };
+                let result = unsafe {
+                    nix::libc::waitid(
+                        nix::libc::P_PID,
+                        self.group.as_raw() as nix::libc::id_t,
+                        &mut info,
+                        nix::libc::WEXITED | nix::libc::WNOHANG | nix::libc::WNOWAIT,
+                    )
+                };
+                if result == -1 {
+                    let error = io::Error::last_os_error();
+                    if error.kind() == io::ErrorKind::Interrupted {
+                        continue;
+                    }
+                    self.owned = false;
+                    if error.raw_os_error() == Some(nix::libc::ECHILD) {
+                        bail!("child ownership lost; numeric process cleanup suppressed");
+                    }
+                    return Err(error)
+                        .context("child ownership observation failed; cleanup suppressed");
+                }
+                return Ok(unsafe { info.si_pid() } == self.group.as_raw());
+            }
+            self.owned = false;
+            bail!("child ownership observation repeatedly interrupted; cleanup suppressed")
         }
 
         fn finish(&mut self) -> Result<ExitStatus> {
-            let group_result = self.kill_group();
+            self.finished = true;
+            let mut failure = self.kill_group().err();
+            if !self.owned {
+                return Err(failure.unwrap_or_else(|| anyhow::anyhow!("child ownership lost")));
+            }
             let _ = self.child.kill();
             let deadline = Instant::now() + CLEANUP_TIME;
             loop {
-                if let Some(status) = self.child.try_wait().context("reaping executable")? {
-                    self.cleaned = true;
-                    group_result?;
-                    return Ok(status);
+                let exited = self.exited()?;
+                if exited {
+                    match group_has_live_members(self.group) {
+                        Ok(false) => {
+                            let status = self
+                                .child
+                                .try_wait()
+                                .context("reaping executable")?
+                                .context("exited child status unavailable")?;
+                            self.owned = false;
+                            if let Some(error) = failure {
+                                return Err(error);
+                            }
+                            return Ok(status);
+                        }
+                        Ok(true) => {}
+                        Err(error) => {
+                            let _ = self.child.try_wait();
+                            self.owned = false;
+                            return Err(error).context("group cleanup uncertain");
+                        }
+                    }
                 }
                 if Instant::now() >= deadline {
-                    bail!("executable did not exit within cleanup deadline");
+                    if exited {
+                        let _ = self.child.try_wait();
+                        self.owned = false;
+                    }
+                    bail!("process group still had live members at cleanup deadline");
+                }
+                if failure.is_none() {
+                    failure = self.kill_group().err();
                 }
                 thread::sleep(Duration::from_millis(2));
             }
@@ -223,7 +255,7 @@ mod unix {
 
     impl Drop for ChildGuard {
         fn drop(&mut self) {
-            if !self.cleaned {
+            if !self.finished && self.owned {
                 let _ = self.finish();
             }
         }
@@ -236,6 +268,111 @@ mod unix {
             FcntlArg::F_SETFL(OFlag::from_bits_retain(flags) | OFlag::O_NONBLOCK),
         )?;
         Ok(())
+    }
+
+    fn require_child_ownership() -> Result<()> {
+        let mut action: nix::libc::sigaction = unsafe { std::mem::zeroed() };
+        let result =
+            unsafe { nix::libc::sigaction(nix::libc::SIGCHLD, std::ptr::null(), &mut action) };
+        if result == -1 {
+            return Err(io::Error::last_os_error()).context("checking SIGCHLD disposition");
+        }
+        if action.sa_sigaction != nix::libc::SIG_DFL
+            || action.sa_flags & nix::libc::SA_NOCLDWAIT != 0
+        {
+            bail!(
+                "command execution requires default SIGCHLD disposition and exclusive child reaping"
+            );
+        }
+        Ok(())
+    }
+
+    #[cfg(target_os = "linux")]
+    fn group_has_live_members(group: Pid) -> Result<bool> {
+        use std::fs;
+        for (index, entry) in fs::read_dir("/proc")
+            .context("process-group inventory unavailable")?
+            .enumerate()
+        {
+            if index >= 65536 {
+                bail!("process inventory exceeds cleanup limit");
+            }
+            let entry = entry?;
+            let name = entry.file_name();
+            let Some(pid) = name.to_str().and_then(|text| text.parse::<i32>().ok()) else {
+                continue;
+            };
+            match nix::unistd::getpgid(Some(Pid::from_raw(pid))) {
+                Ok(current) if current == group => {}
+                Ok(_) | Err(Errno::ESRCH) => continue,
+                Err(error) => return Err(error).context("process-group membership observation"),
+            }
+            let file = match fs::File::open(entry.path().join("stat")) {
+                Ok(file) => file,
+                Err(error) if error.kind() == io::ErrorKind::NotFound => continue,
+                Err(error) => return Err(error).context("process-group member observation"),
+            };
+            let mut text = String::new();
+            file.take(4097).read_to_string(&mut text)?;
+            if text.len() > 4096 {
+                bail!("process record exceeds cleanup limit");
+            }
+            let at = text.rfind(')').context("invalid process record")?;
+            let fields: Vec<_> = text[at + 1..].split_ascii_whitespace().take(3).collect();
+            if fields.len() != 3 {
+                bail!("incomplete process record");
+            }
+            let pgrp: i32 = fields[2].parse().context("invalid process group")?;
+            if pgrp == group.as_raw() && !matches!(fields[0], "Z" | "X") {
+                return Ok(true);
+            }
+        }
+        Ok(false)
+    }
+
+    #[cfg(target_os = "macos")]
+    fn group_has_live_members(group: Pid) -> Result<bool> {
+        const MAX_MEMBERS: usize = 4096;
+        let mut pids = vec![0i32; MAX_MEMBERS];
+        unsafe {
+            *nix::libc::__error() = 0;
+        }
+        let count = unsafe {
+            nix::libc::proc_listpgrppids(
+                group.as_raw(),
+                pids.as_mut_ptr().cast(),
+                (pids.len() * size_of::<i32>()) as i32,
+            )
+        };
+        if count < 0 || (count == 0 && unsafe { *nix::libc::__error() } != 0) {
+            return Err(io::Error::last_os_error()).context("process-group inventory unavailable");
+        }
+        if count as usize >= MAX_MEMBERS {
+            bail!("process group exceeds cleanup inventory limit");
+        }
+        for pid in pids.into_iter().take(count as usize).filter(|pid| *pid > 0) {
+            let mut info: nix::libc::proc_bsdinfo = unsafe { std::mem::zeroed() };
+            let bytes = unsafe {
+                nix::libc::proc_pidinfo(
+                    pid,
+                    nix::libc::PROC_PIDTBSDINFO,
+                    0,
+                    (&mut info as *mut nix::libc::proc_bsdinfo).cast(),
+                    size_of::<nix::libc::proc_bsdinfo>() as i32,
+                )
+            };
+            if bytes != size_of::<nix::libc::proc_bsdinfo>() as i32 {
+                let error = io::Error::last_os_error();
+                if error.raw_os_error() == Some(nix::libc::ESRCH) {
+                    continue;
+                }
+                return Err(error).context("process-group member observation");
+            }
+            if info.pbi_pgid == group.as_raw() as u32 && info.pbi_status != nix::libc::SZOMB {
+                return Ok(true);
+            }
+        }
+        Ok(false)
     }
 
     fn resources(limits: &ChildLimits) -> io::Result<()> {
@@ -263,12 +400,13 @@ mod unix {
     }
 
     pub(super) fn run(
-        command: &mut Command,
+        mut command: Command,
         input: &[u8],
         limits: &CommandLimits,
         cancelled: impl Fn() -> bool,
         mut monitor: impl FnMut() -> Result<()>,
     ) -> Result<CommandOutput> {
+        require_child_ownership()?;
         if cancelled() || Instant::now() >= limits.deadline {
             return Ok(CommandOutput {
                 status: None,
@@ -305,8 +443,8 @@ mod unix {
         let mut guard = ChildGuard {
             child,
             group,
-            group_cleaned: false,
-            cleaned: false,
+            owned: true,
+            finished: false,
         };
         let stdin = guard.child.stdin.take().context("stdin unavailable")?;
         let stdout = guard.child.stdout.take().context("stdout unavailable")?;
@@ -327,6 +465,7 @@ mod unix {
         };
         let mut input_at = 0usize;
         let mut drain_deadline = None;
+        let mut exited = false;
         let mut next_monitor = Instant::now();
         loop {
             if cancelled() {
@@ -394,21 +533,14 @@ mod unix {
                     }
                 }
             }
-            if output.status.is_none() {
+            if !exited {
                 match guard.exited() {
                     Ok(true) => {
+                        exited = true;
                         stdin = None;
                         if let Err(error) = guard.kill_group() {
                             output.stop = CommandStop::Cleanup(format!("{error:#}"));
                             break;
-                        }
-                        match guard.child.try_wait() {
-                            Ok(status) => output.status = status,
-                            Err(error) => {
-                                output.stop =
-                                    CommandStop::Io(format!("reaping executable: {error}"));
-                                break;
-                            }
                         }
                         drain_deadline = Some(Instant::now() + CLEANUP_TIME);
                     }
@@ -419,7 +551,7 @@ mod unix {
                     }
                 }
             }
-            if output.status.is_some() && stdout.is_none() && stderr.is_none() {
+            if exited && stdout.is_none() && stderr.is_none() {
                 break;
             }
             let mut pipes = vec![];
@@ -451,6 +583,41 @@ mod unix {
             }
         }
         Ok(output)
+    }
+
+    #[cfg(test)]
+    mod ownership_tests {
+        use super::*;
+
+        #[test]
+        fn lost_child_ownership_suppresses_finish_and_drop_signals() {
+            let mut command = Command::new("sh");
+            command.args(["-c", "exit 0"]).process_group(0);
+            let mut child = command.spawn().unwrap();
+            let group = Pid::from_raw(child.id() as i32);
+            child.wait().unwrap();
+            let mut guard = ChildGuard {
+                child,
+                group,
+                owned: true,
+                finished: false,
+            };
+            assert!(
+                guard
+                    .finish()
+                    .unwrap_err()
+                    .to_string()
+                    .contains("ownership lost")
+            );
+            assert!(!guard.owned && guard.finished);
+            assert!(
+                guard
+                    .kill_group()
+                    .unwrap_err()
+                    .to_string()
+                    .contains("cleanup suppressed")
+            );
+        }
     }
 
     fn drain<R: Read>(
@@ -513,7 +680,7 @@ mod tests {
     #[test]
     fn raw_transport_preserves_nonzero_status_and_both_streams() {
         let output = run_command(
-            &mut node("process.stdout.write('out');process.stderr.write('err');process.exitCode=7"),
+            node("process.stdout.write('out');process.stderr.write('err');process.exitCode=7"),
             b"",
             &limits(),
             || false,
@@ -530,7 +697,7 @@ mod tests {
     #[test]
     fn raw_transport_closes_stdin_after_complete_delivery() {
         let output = run_command(
-            &mut node("let text='';process.stdin.on('data',chunk=>text+=chunk);process.stdin.on('end',()=>process.stdout.write(text))"),
+            node("let text='';process.stdin.on('data',chunk=>text+=chunk);process.stdin.on('end',()=>process.stdout.write(text))"),
             b"request\n", &limits(), || false, || Ok(()),
         ).unwrap();
         assert_eq!(output.stop, CommandStop::Completed);
@@ -543,7 +710,7 @@ mod tests {
         let root = tempfile::tempdir().unwrap();
         let marker = root.path().join("ran");
         let program = format!("require('node:fs').writeFileSync({marker:?},'ran')");
-        let output = run_command(&mut node(&program), b"", &limits(), || true, || Ok(())).unwrap();
+        let output = run_command(node(&program), b"", &limits(), || true, || Ok(())).unwrap();
         assert_eq!(output.stop, CommandStop::Cancelled);
         assert!(output.status.is_none() && output.cleanup_complete);
         assert!(!marker.exists());
@@ -553,7 +720,7 @@ mod tests {
     fn cancellation_after_spawn_reaps_the_command() {
         let flag = AtomicBool::new(false);
         let output = run_command(
-            &mut node("setInterval(()=>{},1000)"),
+            node("setInterval(()=>{},1000)"),
             b"",
             &limits(),
             || flag.load(Ordering::Relaxed),
@@ -579,8 +746,7 @@ mod tests {
                 "stderr",
             ),
         ] {
-            let output =
-                run_command(&mut node(program), b"", &limits(), || false, || Ok(())).unwrap();
+            let output = run_command(node(program), b"", &limits(), || false, || Ok(())).unwrap();
             assert_eq!(output.stop, CommandStop::OutputLimit(stream));
             assert!(output.stdout.len() <= 1024 && output.stderr.len() <= 1024);
             assert!(output.cleanup_complete);
@@ -590,7 +756,7 @@ mod tests {
     #[test]
     fn monitor_failure_stops_the_command_without_becoming_success() {
         let output = run_command(
-            &mut node("setInterval(()=>{},1000)"),
+            node("setInterval(()=>{},1000)"),
             b"",
             &limits(),
             || false,
@@ -610,7 +776,7 @@ mod tests {
         bound.deadline = Instant::now() + Duration::from_millis(250);
         let input = vec![b'x'; 2 * 1024 * 1024];
         let output = run_command(
-            &mut node("setInterval(()=>{},1000)"),
+            node("setInterval(()=>{},1000)"),
             &input,
             &bound,
             || false,
@@ -632,7 +798,7 @@ mod tests {
         let program = format!(
             "const child=require('node:child_process').spawn(process.execPath,['-e','setInterval(()=>{{}},1000)'],{{detached:true,stdio:['ignore',1,2]}});require('node:fs').writeFileSync({marker:?},String(child.pid));child.unref();process.exit(0)"
         );
-        let output = run_command(&mut node(&program), b"", &limits(), || false, || Ok(()));
+        let output = run_command(node(&program), b"", &limits(), || false, || Ok(()));
         if let Ok(pid) = fs::read_to_string(&marker)
             .and_then(|text| text.parse::<i32>().map_err(std::io::Error::other))
         {
@@ -656,9 +822,65 @@ mod tests {
             .env("ARCHGUARD_TEST_FILE", &file);
         let mut bound = limits();
         bound.resources.file_bytes = Some(4096);
-        let output = run_command(&mut command, b"", &bound, || false, || Ok(())).unwrap();
+        let output = run_command(command, b"", &bound, || false, || Ok(())).unwrap();
         assert!(!output.status.unwrap().success());
         assert!(output.cleanup_complete);
         assert!(fs::metadata(file).unwrap().len() <= 4096);
+    }
+    #[test]
+    fn independently_owned_commands_apply_current_resource_limits() {
+        for files in [128u64, 256] {
+            let mut command = Command::new("sh");
+            command.args(["-c", "ulimit -n"]);
+            let mut bound = limits();
+            bound.resources.open_files = Some(files);
+            let output = run_command(command, b"", &bound, || false, || Ok(())).unwrap();
+            assert_eq!(output.stop, CommandStop::Completed);
+            assert_eq!(
+                String::from_utf8(output.stdout).unwrap().trim(),
+                files.to_string()
+            );
+            assert!(output.cleanup_complete);
+        }
+    }
+
+    #[test]
+    fn auto_reap_dispositions_are_rejected_before_spawn() {
+        use nix::sys::signal::{SaFlags, SigAction, SigHandler, SigSet, Signal, sigaction};
+        const CASE: &str = "ARCHGUARD_SUBPROCESS_SIGCHLD_CONTROL";
+        if let Ok(case) = std::env::var(CASE) {
+            let action = if case == "ignore" {
+                SigAction::new(SigHandler::SigIgn, SaFlags::empty(), SigSet::empty())
+            } else {
+                SigAction::new(SigHandler::SigDfl, SaFlags::SA_NOCLDWAIT, SigSet::empty())
+            };
+            unsafe {
+                sigaction(Signal::SIGCHLD, &action).unwrap();
+            }
+            let root = tempfile::tempdir().unwrap();
+            let marker = root.path().join("ran");
+            let program = format!("require('node:fs').writeFileSync({marker:?},'ran')");
+            let error = run_command(node(&program), b"", &limits(), || false, || Ok(()))
+                .err()
+                .unwrap();
+            assert!(error.to_string().contains("SIGCHLD"));
+            assert!(!marker.exists());
+            return;
+        }
+        for case in ["ignore", "noChildWait"] {
+            let mut command = Command::new(std::env::current_exe().unwrap());
+            command.args([
+                "subprocess::tests::auto_reap_dispositions_are_rejected_before_spawn",
+                "--exact",
+                "--nocapture",
+            ]);
+            command.env(CASE, case);
+            let mut bound = limits();
+            bound.stdout_bytes = 8192;
+            bound.stderr_bytes = 8192;
+            let output = run_command(command, b"", &bound, || false, || Ok(())).unwrap();
+            assert_eq!(output.stop, CommandStop::Completed);
+            assert!(output.status.unwrap().success() && output.cleanup_complete);
+        }
     }
 }
