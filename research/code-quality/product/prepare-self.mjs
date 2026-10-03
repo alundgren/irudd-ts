@@ -14,28 +14,35 @@ const support = path.join(output, "support");
 const tests = path.join(output, "tests");
 fs.mkdirSync(support); fs.mkdirSync(tests);
 for (const name of ["mutator.ts", "mutator-vitest-reporter.ts"]) fs.copyFileSync(path.join(repository, "sdk", name), path.join(support, name));
-const original = fs.readFileSync(path.join(repository, "tests/mutator_sdk.test.ts"), "utf8");
-const adapted = original.replace('import { test } from "node:test";', 'import { test } from "vitest";');
-if (adapted === original) throw new Error("Expected Node test import is unavailable");
-fs.writeFileSync(path.join(tests, "mutator_sdk.test.ts"), adapted);
+for (const name of ["mutator_sdk", "mutator_reporter"]) {
+  const original = fs.readFileSync(path.join(repository, `tests/${name}.test.ts`), "utf8");
+  const adapted = original.replace('import { test } from "node:test";', 'import { test } from "vitest";');
+  if (adapted === original) throw new Error("Expected Node test import is unavailable");
+  fs.writeFileSync(path.join(tests, `${name}.test.ts`), adapted);
+}
 fs.writeFileSync(path.join(support, "vite.config.ts"), `import { defineConfig } from "vite-plus/test/config";
-export default defineConfig({ test: { include: ["quality-tests/mutator_sdk.test.ts"],
+export default defineConfig({ test: { include: ["quality-tests/*.test.ts"],
   pool: "forks", maxWorkers: 1, fileParallelism: false,
   reporters: ["./quality-support/mutator-vitest-reporter.ts"],
 }});
 `);
-const config = { schemaVersion: 1, plan: { schemaVersion: 1, selection: { include: ["sdk/mutator.ts"] } }, execution: {
-  command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", "--config", "quality-support/vite.config.ts"],
-  workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts"], dependencies: [
+for (const [profile, source, test] of [
+  ["protocol", "sdk/mutator.ts", "quality-tests/mutator_sdk.test.ts"],
+  ["reporter", "sdk/mutator-vitest-reporter.ts", "quality-tests/mutator_reporter.test.ts"],
+]) {
+const config = { schemaVersion: 1, plan: { schemaVersion: 1, selection: { include: [source] } }, execution: {
+  command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", test, "--config", "quality-support/vite.config.ts"],
+  workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts"], dependencies: [
     { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
     { source: tests, destination: "quality-tests" }] },
   limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
 } };
-fs.writeFileSync(path.join(output, "mutator.json"), JSON.stringify(config, null, 2) + "\n");
+fs.writeFileSync(path.join(output, `${profile}.json`), JSON.stringify(config, null, 2) + "\n");
+}
 fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion: 1,
   selection: { include: ["sdk/**/*.ts", "examples/code-quality/**/*.ts"] } }, null, 2) + "\n");
 fs.writeFileSync(path.join(output, "adaptation.json"), JSON.stringify({
-  originalTests: "tests/mutator_sdk.test.ts", change: "Only the test registration import changes from node:test to vitest; assertions and source imports remain identical.",
+  originalTests: ["tests/mutator_sdk.test.ts", "tests/mutator_reporter.test.ts"], change: "Only the test registration import changes from node:test to vitest; assertions and source imports remain identical.",
   instrumentation: "The reporter and its protocol helper are fixed trusted support copies so mutations in the tested SDK cannot alter result publication.",
 }, null, 2) + "\n");
 console.log(`Self-dogfooding profiles written to ${output}`);

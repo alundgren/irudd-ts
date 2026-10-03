@@ -13,7 +13,7 @@ cargo run --locked -- mutator run --root . --config /tmp/archguard-domain-profil
 
 The mutation commands need Node 24. They copy only the domain, harness and SDK protocol file. No npm installation is necessary. The tiny synchronous harness executes real assertions and identifies each failed test. For an existing Vitest project, use the [Vitest reporter](../../docs/mutator-test-protocol.md).
 
-`domain.ts` supplies shipping, invoice and approval examples. `run-domain.ts` contains deliberately weak tests and strengthened behavior checks. Both pass against the original implementation. Inspect surviving mutants rather than aiming for a percentage. The displayed-amount addition of zero intentionally permits an equivalent arithmetic mutation.
+`domain.ts` supplies shipping, invoice and approval examples. `run-domain.ts` contains deliberately weak tests and strengthened behavior checks. Both pass against the original implementation. Inspect surviving mutants rather than aiming for a percentage. The absolute-magnitude display normalizes negative zero before adding zero, so subtracting zero is an equivalent arithmetic mutation. The strengthened tests explicitly check signed zero.
 
 `clones.ts` contains authored invoice/order copy controls and similar port/retry adapters. The copy controls deserve inspection. The adapters express different input contracts, so their shared structure alone does not justify merging them.
 

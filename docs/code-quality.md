@@ -27,13 +27,13 @@ archguard mutator run --root . --config examples/code-quality/mutator-weak.json 
 archguard mutator run --root . --config examples/code-quality/mutator-strong.json
 ```
 
-Planning parses selected source and lists exact UTF-8 byte edits. It executes no repository commands. Runtime operators cover comparisons, equality, arithmetic, logical operators, unary/update operations, boolean literals and zero/one literals. Type-only literals are excluded. The plan identifies source hashes and mutation ownership. Stored plans are revalidated before execution.
+Planning parses selected source and lists exact UTF-8 byte edits. It executes no repository commands. Runtime operators cover comparisons, equality, arithmetic, logical operators, prefix/postfix update operations, boolean literals and zero/one literals. Type-only literals are excluded. The plan identifies source hashes and mutation ownership. Stored plans are revalidated before execution.
 
 Running requires an explicit trusted command and Linux or macOS. Archguard never discovers or installs a test runner. It copies configured source and dependencies into private workspaces, runs a fresh baseline, and then applies one verified edit per fresh worker copy. The original source stays untouched. File selection determines analysis scope; workspace selection determines the command's available inputs. Declare all required tests, helpers, configuration and dependency copies. Exclude the original installed dependency and build directories when supplying separate dependency copies.
 
 The [test protocol](mutator-test-protocol.md) records executed tests and failure kinds. Use the supplied Node-builtin SDK and Vitest reporter with an already installed compatible Vitest. A nonzero process status alone cannot kill a mutant. Assertion failures can kill it; missing metadata, imports, teardown failures, timeouts and resource failures remain separate outcomes. Syntax-invalid edits are identified before execution. A survivor names the original expression, replacement and source context for a reviewer.
 
-The authored domain example deliberately starts with weak tests. The strengthened set adds exact shipping boundaries, an international shipment, nonzero tax, the promised approval flag and an empty total. `amount + 0` changing to `amount - 0` is an intentional equivalent control. Decide whether a survivor exposes missing behavior, a missing specification or an equivalent change before adding tests.
+The authored domain example deliberately starts with weak tests. The strengthened set adds exact shipping boundaries, an international shipment, nonzero tax, the promised approval flag and an empty total. `Math.abs(amount) + 0` changing to `Math.abs(amount) - 0` is an intentional equivalent control. Decide whether a survivor exposes missing behavior, a missing specification or an equivalent change before adding tests.
 
 ## Bound execution and reuse
 

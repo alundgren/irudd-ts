@@ -23,10 +23,11 @@ export function sumAmounts(amounts: readonly number[]): number {
   return total;
 }
 
-// Subtracting zero instead of adding it changes no observable result here.
-// This is an intentional equivalent-mutant control, not a demand for a test.
-export function displayedAmount(amount: number): number {
-  return amount + 0;
+// Math.abs normalizes signed zero. Adding or subtracting zero then has the
+// same observable result, including Object.is comparisons of negative zero.
+export function displayedMagnitude(amount: number): number {
+  if (!Number.isFinite(amount)) throw new Error("A displayed amount must be finite");
+  return Math.abs(amount) + 0;
 }
 
 // An empty import has no first amount. The normal nonempty example does not

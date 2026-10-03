@@ -1,7 +1,7 @@
 import assert, { AssertionError } from "node:assert/strict";
 import { readMutationRequest, writeMutationResult } from "../../sdk/mutator.ts";
 import type { TestFailure } from "../../sdk/mutator.ts";
-import { approval, displayedAmount, firstAmount, invoiceTotal, qualifiesForFreeShipping, sumAmounts } from "./domain.ts";
+import { approval, displayedMagnitude, firstAmount, invoiceTotal, qualifiesForFreeShipping, sumAmounts } from "./domain.ts";
 
 // This small synchronous harness reports actual assertion outcomes. A project
 // with Vitest should use MutationVitestReporter instead.
@@ -13,7 +13,7 @@ const cases: [string, () => void][] = [
   ["approval amount", () => assert.equal(approval({ subtotal: 75, member: false, domestic: false }).amount, 75)],
   ["amount list", () => assert.equal(sumAmounts([10, 20]), 30)],
   ["first imported amount", () => assert.equal(firstAmount([10, 20]), 10)],
-  ["displayed amount", () => assert.equal(displayedAmount(5), 5)],
+  ["displayed magnitude", () => assert.equal(displayedMagnitude(5), 5)],
 ];
 if (mode === "strong") cases.push(
   ["shipping exact boundary", () => assert.equal(qualifiesForFreeShipping({ subtotal: 100, member: false, domestic: true }), true)],
@@ -25,7 +25,9 @@ if (mode === "strong") cases.push(
   ["empty amount list", () => assert.equal(sumAmounts([]), 0)],
   ["empty imported list", () => assert.equal(firstAmount([]), 0)],
   ["single imported amount", () => assert.equal(firstAmount([10]), 10)],
-  ["negative displayed amount", () => assert.equal(displayedAmount(-5), -5)],
+  ["nonfinite magnitude", () => assert.throws(() => displayedMagnitude(Number.NaN), /finite/)],
+  ["signed zero magnitude", () => assert.equal(Object.is(displayedMagnitude(-0), 0), true)],
+  ["negative amount magnitude", () => assert.equal(displayedMagnitude(-5), 5)],
 );
 const failures: TestFailure[] = [];
 let passed = 0;

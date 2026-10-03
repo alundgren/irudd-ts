@@ -136,6 +136,9 @@ pub(super) fn run(
             report.baseline.outcome,
             completion(report.complete)
         );
+        if let Some(message) = &report.baseline.message {
+            println!("  {}", display(message));
+        }
         println!(
             "{} planned, {} executed, {} reused, {} killed, {} survived",
             report.summary.planned,
@@ -149,7 +152,7 @@ pub(super) fn run(
                 continue;
             }
             println!(
-                "{:?} {}:{} bytes {}..{}  {} -> {}{}",
+                "{:?} {}:{} bytes {}..{}  {} -> {}{}  {}",
                 result.outcome,
                 display(&result.location.file),
                 result.location.line,
@@ -157,7 +160,8 @@ pub(super) fn run(
                 result.location.end,
                 display(&result.expected),
                 display(&result.replacement),
-                if result.reused { " [reused]" } else { "" }
+                if result.reused { " [reused]" } else { "" },
+                result.mutation_id,
             );
             if let Some(context) = &result.context {
                 println!(
