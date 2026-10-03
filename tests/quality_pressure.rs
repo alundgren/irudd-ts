@@ -6,12 +6,10 @@ use archguard::{
 
 fn accepted_and_rejected(name: &str, accepted: String, rejected: String) {
     let limits = AnalysisLimits::hard_maximum();
+    let validation = validate_mutant("src/pressure.tsx", &accepted, &limits).unwrap();
     assert!(
-        matches!(
-            validate_mutant("src/pressure.tsx", &accepted, &limits).unwrap(),
-            SyntaxValidation::Valid
-        ),
-        "accepted {name} input did not parse"
+        matches!(validation, SyntaxValidation::Valid),
+        "accepted {name} input did not parse: {validation:?}"
     );
     println!("accepted {name}: {} source bytes", accepted.len());
     let SyntaxValidation::Incomplete { problems } =
@@ -103,8 +101,8 @@ fn parser_accepts_the_hard_envelope_and_rejects_excess_input() {
     );
     accepted_and_rejected(
         "arrows",
-        function(format!("{}0", "()=>".repeat(depth / 2))),
-        function(format!("{}0", "()=>".repeat(depth / 2 + 1))),
+        function(format!("{}0", "()=>".repeat((depth - 1) / 2))),
+        function(format!("{}0", "()=>".repeat((depth - 1) / 2 + 1))),
     );
     accepted_and_rejected(
         "binary",

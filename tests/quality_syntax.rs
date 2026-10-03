@@ -995,3 +995,63 @@ fn ambient_declarations_are_excluded_while_runtime_namespace_initializers_remain
     assert!(plain.complete);
     assert_eq!(plain.sites.len(), 2);
 }
+
+#[test]
+fn mutation_count_and_byte_limits_keep_distinct_problem_categories() {
+    let source = format!(
+        "function {}(){{return [{}]}}",
+        "n".repeat(220),
+        "true,".repeat(40)
+    );
+    let config = MutationPlanConfig {
+        limits: AnalysisLimits {
+            max_report_bytes: 64 * 1024,
+            ..AnalysisLimits::default()
+        },
+        ..MutationPlanConfig::default()
+    };
+    let limited = mutator::inventory("f.ts", &source, &config).unwrap();
+    assert!(!limited.complete);
+    assert!(
+        limited
+            .problems
+            .iter()
+            .any(|p| p.kind == ProblemKind::ReportLimit
+                && p.limit == Some(AnalysisLimitKind::ReportBytes))
+    );
+    assert!(
+        mutator::inventory("f.ts", &source, &MutationPlanConfig::default())
+            .unwrap()
+            .complete
+    );
+    assert!(
+        mutator::inventory("f.ts", "const f=()=>true", &config)
+            .unwrap()
+            .complete
+    );
+    let root = TempDir::new().unwrap();
+    fs::write(root.path().join("a.ts"), "const a=()=>true").unwrap();
+    fs::write(root.path().join("b.ts"), "const b=()=>false").unwrap();
+    let limited = MutationPlanConfig {
+        limits: AnalysisLimits {
+            max_sites: 1,
+            ..AnalysisLimits::default()
+        },
+        ..MutationPlanConfig::default()
+    };
+    let result = mutator::plan(root.path(), &limited).unwrap();
+    assert!(!result.complete);
+    assert_eq!(result.sites.len(), 1);
+    assert!(
+        result
+            .problems
+            .iter()
+            .any(|p| p.kind == ProblemKind::AnalysisLimit
+                && p.limit == Some(AnalysisLimitKind::Sites))
+    );
+    assert!(
+        mutator::plan(root.path(), &MutationPlanConfig::default())
+            .unwrap()
+            .complete
+    );
+}

@@ -206,17 +206,24 @@ fn inventory_with_nodes(
                 source_sha256: hash.clone(),
             };
             site.id = site.identity();
-            if result.sites.len() >= limits.max_sites
-                || !push_evidence(&mut result.sites, site, &mut used, limits)
-            {
+            let count_limit = result.sites.len() >= limits.max_sites;
+            if count_limit || !push_evidence(&mut result.sites, site, &mut used, limits) {
                 result.complete = false;
                 result.omitted_evidence.sites += 1;
                 result.problems.push(issue(
-                    ProblemKind::AnalysisLimit,
+                    if count_limit {
+                        ProblemKind::AnalysisLimit
+                    } else {
+                        ProblemKind::ReportLimit
+                    },
                     &path_owned,
                     start,
                     "mutation site collection limit reached",
-                    Some(AnalysisLimitKind::Sites),
+                    Some(if count_limit {
+                        AnalysisLimitKind::Sites
+                    } else {
+                        AnalysisLimitKind::ReportBytes
+                    }),
                     limits,
                 ));
                 break;
@@ -243,7 +250,13 @@ pub fn plan(root: &Path, config: &MutationPlanConfig) -> Result<MutationPlan> {
     crate::mutator::plan_guarded(root, config, &|| Ok(()))
 }
 
-pub(crate) fn plan_guarded(
+/// Build a mutation plan with caller-controlled cancellation or deadline checks.
+///
+/// The guard runs during discovery, before and after each bounded file parse, and
+/// during final source verification. Its errors stop planning and are returned
+/// unchanged. An individual parser call finishes within the configured source
+/// limits before the next guard check.
+pub fn plan_with_guard(
     root: &Path,
     config: &MutationPlanConfig,
     guard: &(impl Fn() -> Result<()> + Sync),
@@ -264,6 +277,7 @@ pub(crate) fn plan_guarded(
         omitted_evidence: loaded.omitted,
     };
     let mut sites_used = 0;
+    let mut site_limit = None;
     let mut problem_used = result
         .problems
         .iter()
@@ -305,13 +319,29 @@ pub(crate) fn plan_guarded(
                 }
             }
             for site in inventory.sites {
-                if result.sites.len() >= config.limits.max_sites
+                let count_limit = result.sites.len() >= config.limits.max_sites;
+                if count_limit
                     || !push_evidence(&mut result.sites, site, &mut sites_used, &config.limits)
                 {
                     result.omitted_evidence.sites += 1;
+                    site_limit.get_or_insert(if count_limit {
+                        (ProblemKind::AnalysisLimit, AnalysisLimitKind::Sites)
+                    } else {
+                        (ProblemKind::ReportLimit, AnalysisLimitKind::ReportBytes)
+                    });
                 }
             }
         }
+    }
+    if let Some((kind, limit)) = site_limit {
+        result.problems.push(issue(
+            kind,
+            ".",
+            0,
+            "mutation site collection limit reached",
+            Some(limit),
+            &config.limits,
+        ));
     }
     for file in &result.files {
         guard()?;
@@ -443,7 +473,7 @@ mod tests {
             std::fs::write(root.path().join(format!("{index}.ts")), "const f=()=>true").unwrap();
         }
         let calls = AtomicUsize::new(0);
-        let interrupted = plan_guarded(root.path(), &MutationPlanConfig::default(), &|| {
+        let interrupted = plan_with_guard(root.path(), &MutationPlanConfig::default(), &|| {
             anyhow::ensure!(
                 calls.fetch_add(1, Ordering::Relaxed) < 5,
                 "cancelled regeneration"
@@ -453,7 +483,7 @@ mod tests {
         assert!(interrupted.is_err());
         assert!(calls.load(Ordering::Relaxed) >= 6);
         let corrected =
-            plan_guarded(root.path(), &MutationPlanConfig::default(), &|| Ok(())).unwrap();
+            plan_with_guard(root.path(), &MutationPlanConfig::default(), &|| Ok(())).unwrap();
         assert!(corrected.complete);
         assert_eq!(corrected.sites.len(), 8);
         assert!(
