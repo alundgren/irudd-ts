@@ -141,3 +141,41 @@ test("failure accessors, custom iteration and proxy traps are rejected without i
   assert.equal(invoked, false);
   assert.equal(validateMutationResult(passing(request), request).complete, true);
 }));
+
+test("null-prototype protocol records are accepted and custom prototypes remain rejected", () => withDirectory(directory => {
+  const request = fixture(directory);
+  const plainRequest = Object.assign(Object.create(null), request);
+  assert.deepEqual(validateMutationRequest(plainRequest), request);
+  const result = Object.assign(Object.create(null), passing(request), {
+    tests: Object.assign(Object.create(null), { passed: 1, failed: 0, skipped: 0 }),
+  });
+  assert.deepEqual(validateMutationResult(result, plainRequest), passing(request));
+  const custom = Object.setPrototypeOf({ ...request }, { extra: "custom prototype" });
+  assert.throws(() => validateMutationRequest(custom), /plain data/);
+  assert.deepEqual(validateMutationRequest(request), request);
+}));
+
+test("proxy failure arrays cannot execute prototype traps during validation", () => withDirectory(directory => {
+  const request = fixture(directory);
+  let invoked = false;
+  const failures = new Proxy([], {
+    getPrototypeOf() { invoked = true; throw new Error("array proxy trap"); },
+  });
+  assert.throws(() => validateMutationResult({ ...passing(request), failures }, request), /bounded plain array/);
+  assert.equal(invoked, false);
+  assert.deepEqual(validateMutationResult(passing(request), request).failures, []);
+}));
+
+test("task and failed-test identities reject empty or NUL data while empty messages remain valid", () => withDirectory(directory => {
+  const request = fixture(directory);
+  for (const field of ["requestId", "runId"] as const) {
+    for (const invalid of ["", "invalid\0identity"]) {
+      assert.throws(() => validateMutationRequest({ ...request, [field]: invalid }), /bounded well-formed string/);
+    }
+  }
+  const failed = { ...passing(request), exitCode: 1, tests: { passed: 0, failed: 1, skipped: 0 },
+    failures: [{ kind: "assertion" as const, testId: "boundary-case", file: null, message: "" }] };
+  assert.equal(validateMutationResult(failed, request).failures[0]?.message, "");
+  assert.throws(() => validateMutationResult({ ...failed, failures: [{ ...failed.failures[0]!, testId: "" }] }, request), /bounded well-formed string/);
+  assert.deepEqual(validateMutationRequest(request), request);
+}));
