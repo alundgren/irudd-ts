@@ -19,6 +19,8 @@ RUSTC_FOR_TESTS=/absolute/pinned/rustc python3 -m unittest discover \
   -s research/test-value -p 'test_*.py' -v
 ```
 
+The optional sensitivity controls also need `TEST_VALUE_EVIDENCE` pointing to an experiment root with prepared `history/t3code-dependencies.json` and its owned dependency store, and `TEST_VALUE_NODE` naming the pinned T3 executable. Set `TEST_VALUE_CONTROLS_OUTPUT` to a new directory to retain the actual failing, corrected and negative-control events. Without the two Vitest inputs, that optional control is explicitly skipped.
+
 [runner.md](runner.md) documents the owned-source runner, configuration and real Vitest/Node controls. Install dependencies independently before a run. Each run has fresh source and private home, temporary and cache directories. Workspace dependency imports point into that execution's source, and external dependency bytes are copied once into an owned store. Missing, duplicate, skipped, retried or unfinished tests make the column incomplete. Runtime and hook errors are unknown outcomes, not assertion kills.
 
 ```sh
@@ -70,5 +72,16 @@ Ranking trials simulate equal test-count subsets from the matrix and fault label
 Historical mutants target the same reverted files selected from the known fix. Both that known-location selection and the fix-revision tests can favor detection of the recorded change. This experiment does not establish prospective whole-repository ranking ability. Partial current matrices expose contribution on completed columns only; unknown columns can conceal further unique contribution.
 
 Historical trials retain selection counts and digests instead of repeating every test ID thousands of times. Digests bind the ordered selection to its budget, seed and strategy; matrix, test inventory and selector-code hashes are fixed alongside them. `reconstruct_selections(evaluation, matrix)` reproduces and checks the exact selections. Compact storage preserves the detection and retention outcomes and keeps large parameterized inventories within the JSON byte budget.
+
+## Posthoc sensitivity analysis
+
+The primary policy counts assertions only. `sensitivity.py` provides a separately labeled analysis specified after observing its exclusions. It accepts complete Vitest test-body failure records while rejecting global, hook, import, unhandled, identity and cleanup problems. The Node adapter is excluded because its retained records lack the failure origin needed for this distinction. For the native slice, only `Result::unwrap` failures at exact frozen test-source lines are added. Assertion and other failure identities remain separate.
+
+```sh
+python3 research/test-value/sensitivity.py --root PRIMARY_SLICE --output NEW_SECONDARY_SLICE
+python3 research/test-value/sensitivity.py --root PRIMARY_NATIVE --output NEW_SECONDARY_NATIVE --native
+```
+
+The derived matrix binds original event hashes and the primary matrix hash. It calculates its own fixed requirement set without changing primary bytes. Compare denominators as well as kills. Exceptions can reflect defensive checks or incidental crashes; more kills do not establish stronger assertions. [Du, Palepu and Jones, ISSTA 2023](https://superhangdu.com/publications/issta-23/conference-paper.pdf) studies this distinction. [Stryker's outcome definitions](https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/) distinguish individually failed tests from test-runner errors. This secondary analysis does not replace the historical assertion-regression eligibility controls.
 
 Runtime fields exclude shared setup and startup. Repeated clean baselines do not prove zero flakiness. Historical churn and ownership cost were not measured. A minimal observed core remains exploratory until actual subsets, requirement coverage outside sampled mutants, and historical fault behavior are checked independently.
