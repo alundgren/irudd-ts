@@ -1,0 +1,4 @@
+# External checkout versions are validated by evaluate.py; do not vendor their source.
+tree-sitter==0.26.0
+tree-sitter-language-pack==1.20.0
+setuptools==82.0.1

@@ -1,0 +1,47 @@
+{
+  "recordedWindow": "2026-10-03 UTC, coordinator reserved exclusive slot after required release build and full repo check; unrelated host processes uncontrolled",
+  "samples": "one run for each condition; times are observations, not performance estimates",
+  "cacheScriptHash": "bd1523db216da5045743bd865d693d3cdf548003cc49fce3814f397ce8d269f4",
+  "derivedDependencyInputHashes": {
+    "seed": "8810c5021f498a1243c33eda54295c3ba9814d84ad5f0532412ce959c65af9a3",
+    "edited": "e62e3e03befa3bff26d15138cd75282bb0eac19d7e7e0ef0fff273f7723136d5"
+  },
+  "dependencyHashNote": "Seed content comes from the exact setup literal in evaluate.py; edited file hash read after trial. Dependency bytes were not included in upstream sourceHashes fields.",
+  "mainOutputFiles": {
+    "weak-baseline.json": "4ad30c72bf6f3dfcf35814f78d8c1c48c5ed439120c873391a85023963558fea",
+    "corrected-coverage.json": "e102b04f45ee75077e81f2ad877b94da234acee6b6b0e58be78d0e98241d45f2",
+    "real-corrected-stryker.json": "8095faecebfd2ea73b2bbcff09eeab983ae2fe6f186369cf359ed4ac14e53613",
+    "weak-inventory.json": "3c6625f613dc9c4cb44c3b5c011cb9bb9d97ca2b6c1cc74326cd62ef9f95dd30",
+    "cache-helper.json": "6be4cdda6393f60692c4759f4374e96424f9e652a7638c61a547a896e0dd9ace",
+    "cache-baseline.json": "4b6c387d953b90fcc34f56204d6e8df4f581daeea1f62a633ca11b4d4a5763da",
+    "reliability.json": "7cc7cb2b60a178997cb6d6114a01573cd5ba44980d26f3b8f7001bc4cc88aca5",
+    "real-corrected-inventory.json": "1175da036d3ce205d95bbeee8b372e9f41751194ac90d9c90381d345d45d615e",
+    "corrected-stryker.json": "7e2f57769665e583eac1100f48019f94b444aeb5918821aab1f89e289fc4887d",
+    "weak-coverage.json": "d8385d69aefc0c380b7a7f2758d14499bcfd8d9895f4a4988f909b5e60d84e47",
+    "corrected-upstream.json": "cf0eec13907cb4caa36dbab0da238faffb2bc5028d1c0837d1af7e292327b3df",
+    "weak-stryker.json": "0f2d9b93435536dea708e8f90c5c51f10bce52cc66b21ddc0d8377be58e5c409",
+    "real-stryker.json": "304917f0b57a4628b43aac98f5753848ff4cb6d7023631c96d6d6e8ff8517d1b",
+    "summary.json": "f6619c8129c8d32a1b055d547b798026e6306241531d5809814506304690f25a",
+    "provenance.json": "7005689a4f7917d1f42cc034e7d90ef7e17d8f1c15eac7911184da71fff5cf90",
+    "real-upstream.json": "92b772c110e0b7287e582f6e0c5bfaf50ae91b980c1303935b3d0157da3de6b5",
+    "cache-dependency.json": "b24f2caa9ca439e09867f64887f2899a7371ddfd6e17910292e98fde342edef2",
+    "cache-tests.json": "b983c41ae7eaab64db80d84fbfd256d29a57d3519b22708a54b9afb1c2f2aee6",
+    "corrected-baseline.json": "b5adc6991e9d50aa4a8bd83ce0ad260e9b4e440220ce2ae078492806640617a3",
+    "cache-config.json": "5b46ca80dec4a36ba9d0bc33a64b4e704dd10a068fc42e765329d65624dc5405",
+    "corrected-inventory.json": "6a3171bc9fe1a045211da8d61da3863ebc74fcd04b34b77fea06f38b84bc9987",
+    "real-corrected-upstream.json": "a238be6416b1da859a302067356d2b76c98a3e7109c120465e9cb194065108f0",
+    "review-input.json": "27889b2910cec5b8a8afe4d3259cb1f117e5485de4e974c0687a259531f648ff",
+    "weak-upstream.json": "a50c3525f03134f3ed504638059979a38ebecbb9d0e22a7f3040a2750da582fd",
+    "real-inventory.json": "9bd8823ea9efa3ce582710d264590df8c4bbd7f1b379f5b6409663f0418ad11c"
+  },
+  "parserArtifacts": {
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/manifest.json": "bad1eec2b1406c9d1359d53991249e99940dbfc5f36fd1bc7070874ca5d86a0f",
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/libs/libtree_sitter_typescript.so": "5afc27fbe28f53e72a43911085f7fd9c10820dd284bd2dc755b19589e1dcba6a",
+    "/tmp/archguard-quality-research/mutator-venv/lib/python3.14/site-packages/tree_sitter/_binding.cpython-314-x86_64-linux-gnu.so": "acfe00fcd79a5f567cb8ecb744ff33332eca2c55ac0a9e8a1070bc363a638d2c"
+  },
+  "derivedTextCorrection": {
+    "issue": "Stryker location columns are one-based UTF-16 units; initial derived source excerpts were shifted by one",
+    "correction": "Regenerated derived inventories, summary and review-input from unchanged raw reports with corrected source slicing",
+    "summarizeScriptHash": "391b0411ae250132cf5256c6e7e6a0da543191f3af44c6320e00d6765f823c82"
+  }
+}
