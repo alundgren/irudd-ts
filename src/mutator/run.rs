@@ -1,0 +1,959 @@
+use super::{
+    config::{ExecutionConfig, ReusePolicy},
+    facts::{MutationPlan, MutationSite, SyntaxValidation},
+    result::*,
+    state::RunState,
+    storage,
+    workspace::{self, EntryKind, Inputs, OwnedDirectory, WorkspaceLimit},
+};
+use crate::subprocess::{ChildLimits, CommandLimits, CommandStop, run_command};
+use anyhow::{Context, Result, bail};
+use serde::Serialize;
+use std::{
+    collections::BTreeMap,
+    fs,
+    path::{Path, PathBuf},
+    process::Command,
+    sync::{
+        Arc,
+        atomic::{AtomicBool, AtomicUsize, Ordering},
+        mpsc,
+    },
+    time::{Duration, Instant},
+};
+
+#[derive(Clone)]
+pub struct CancellationToken {
+    flag: CancellationFlag,
+}
+#[derive(Clone)]
+enum CancellationFlag {
+    Owned(Arc<AtomicBool>),
+    Static(&'static AtomicBool),
+}
+impl Default for CancellationToken {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+impl CancellationToken {
+    pub fn new() -> Self {
+        Self {
+            flag: CancellationFlag::Owned(Arc::new(AtomicBool::new(false))),
+        }
+    }
+    pub fn from_static_flag(flag: &'static AtomicBool) -> Self {
+        Self {
+            flag: CancellationFlag::Static(flag),
+        }
+    }
+    pub fn cancel(&self) {
+        match &self.flag {
+            CancellationFlag::Owned(flag) => flag.store(true, Ordering::Relaxed),
+            CancellationFlag::Static(flag) => flag.store(true, Ordering::Relaxed),
+        }
+    }
+    pub fn is_cancelled(&self) -> bool {
+        match &self.flag {
+            CancellationFlag::Owned(flag) => flag.load(Ordering::Relaxed),
+            CancellationFlag::Static(flag) => flag.load(Ordering::Relaxed),
+        }
+    }
+}
+#[derive(Debug)]
+enum Interrupted {
+    Cancelled,
+    Deadline,
+}
+impl std::fmt::Display for Interrupted {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(match self {
+            Self::Cancelled => "mutation run cancelled",
+            Self::Deadline => "mutation run deadline reached",
+        })
+    }
+}
+impl std::error::Error for Interrupted {}
+fn guard(token: &CancellationToken, deadline: Instant) -> Result<()> {
+    if token.is_cancelled() {
+        return Err(Interrupted::Cancelled.into());
+    }
+    if Instant::now() >= deadline {
+        return Err(Interrupted::Deadline.into());
+    }
+    Ok(())
+}
+fn problem_kind(error: &anyhow::Error, fallback: ExecutionProblemKind) -> ExecutionProblemKind {
+    if let Some(problem) = error.downcast_ref::<ClassifiedError>() {
+        problem.kind
+    } else if error.downcast_ref::<WorkspaceLimit>().is_some() {
+        ExecutionProblemKind::Limit
+    } else if let Some(reason) = error.downcast_ref::<Interrupted>() {
+        match reason {
+            Interrupted::Cancelled => ExecutionProblemKind::Cancellation,
+            Interrupted::Deadline => ExecutionProblemKind::Limit,
+        }
+    } else {
+        fallback
+    }
+}
+#[derive(Debug)]
+struct ClassifiedError {
+    kind: ExecutionProblemKind,
+    message: String,
+}
+impl std::fmt::Display for ClassifiedError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.message)
+    }
+}
+impl std::error::Error for ClassifiedError {}
+fn classified(error: anyhow::Error, fallback: ExecutionProblemKind) -> anyhow::Error {
+    ClassifiedError {
+        kind: problem_kind(&error, fallback),
+        message: bounded_message(&error.to_string()),
+    }
+    .into()
+}
+struct Prepared {
+    program: PathBuf,
+    environment: BTreeMap<String, String>,
+    external: Vec<(PathBuf, String, u32)>,
+    command_digest: String,
+    environment_digest: String,
+    product_digest: String,
+}
+impl Prepared {
+    fn new(
+        config: &ExecutionConfig,
+        config_dir: &Path,
+        inputs: &Inputs,
+        guard: &impl Fn() -> Result<()>,
+    ) -> Result<Self> {
+        let mut environment = BTreeMap::new();
+        for key in &config.inherit_environment {
+            if let Some(value) = std::env::var_os(key) {
+                environment.insert(
+                    key.clone(),
+                    value
+                        .into_string()
+                        .map_err(|_| anyhow::anyhow!("inherited environment must be UTF-8"))?,
+                );
+            }
+        }
+        environment.extend(config.environment.clone());
+        let environment_bytes = storage::encode(&environment, 65536)
+            .context("execution environment exceeds byte budget")?;
+        let program = resolve_program(
+            &config.command[0],
+            &environment,
+            &inputs.root.join(&config.working_directory),
+        )?;
+        let mut external = Vec::new();
+        let mut paths = vec![program.clone(), std::env::current_exe()?.canonicalize()?];
+        if let Some(state) = &config.state {
+            for path in &state.external_inputs {
+                paths.push(
+                    workspace::absolute(config_dir, path)
+                        .canonicalize()
+                        .context("declared external input unavailable")?,
+                );
+            }
+        }
+        paths.sort();
+        paths.dedup();
+        let mut bytes = 0u64;
+        let mut metadata_bytes = 0u64;
+        for path in paths {
+            guard()?;
+            let metadata = fs::symlink_metadata(&path)?;
+            if metadata.is_dir() {
+                let mut outside = config.clone();
+                outside.workspace = Default::default();
+                outside.state = None;
+                let inventory = Inputs::inventory(&path, &outside, config_dir, guard)?;
+                bytes = bytes
+                    .checked_add(inventory.bytes)
+                    .context("external input byte count overflow")?;
+                let encoded =
+                    storage::encode(&inventory.entries, config.limits.max_inventory_bytes)?;
+                metadata_bytes = metadata_bytes
+                    .checked_add(encoded.len() as u64)
+                    .context("external metadata byte count overflow")?;
+                external.push((path, storage::digest(&encoded), 0));
+            } else if metadata.is_file() {
+                bytes = bytes
+                    .checked_add(metadata.len())
+                    .context("external input byte count overflow")?;
+                external.push((
+                    path.clone(),
+                    workspace::hash_file(&path, config.limits.max_workspace_file_bytes, guard)?,
+                    mode(&metadata),
+                ));
+                metadata_bytes = metadata_bytes
+                    .checked_add(path.as_os_str().len() as u64 * 6 + 256)
+                    .context("external metadata byte count overflow")?;
+            } else {
+                bail!("declared external input must be regular or a directory");
+            }
+            if bytes > config.limits.max_workspace_bytes
+                || metadata_bytes > config.limits.max_inventory_bytes
+            {
+                return Err(WorkspaceLimit("external input budget exhausted").into());
+            }
+        }
+        let product = std::env::current_exe()?.canonicalize()?;
+        let product_digest = external
+            .iter()
+            .find(|(path, _, _)| *path == product)
+            .context("missing executable identity")?
+            .1
+            .clone();
+        Ok(Self {
+            program,
+            environment,
+            external,
+            command_digest: storage::digest(&storage::encode(&config.command, 65536)?),
+            environment_digest: storage::digest(&environment_bytes),
+            product_digest,
+        })
+    }
+    fn verify(
+        &self,
+        config: &ExecutionConfig,
+        config_dir: &Path,
+        inputs: &Inputs,
+        guard: &impl Fn() -> Result<()>,
+    ) -> Result<()> {
+        inputs.verify(config, config_dir, guard)?;
+        let now = Self::new(config, config_dir, inputs, guard)?;
+        if self.program != now.program
+            || self.external != now.external
+            || self.environment_digest != now.environment_digest
+            || self.product_digest != now.product_digest
+        {
+            bail!("external execution inputs changed");
+        }
+        Ok(())
+    }
+    fn identity(
+        &self,
+        plan: &MutationPlan,
+        config: &ExecutionConfig,
+        inputs: &Inputs,
+    ) -> Result<String> {
+        #[derive(Serialize)]
+        #[serde(rename_all = "camelCase")]
+        struct Identity<'a> {
+            schema_version: u32,
+            runner_version: u32,
+            product_version: &'static str,
+            product_digest: &'a str,
+            os: &'static str,
+            architecture: &'static str,
+            root: &'a Path,
+            plan_configuration: &'a super::facts::MutationPlanConfig,
+            sites: &'a [MutationSite],
+            entries: &'a [workspace::Entry],
+            roots: &'a [(PathBuf, String)],
+            program: &'a Path,
+            external: &'a [(PathBuf, String, u32)],
+            command_digest: &'a str,
+            environment_digest: &'a str,
+            working_directory: &'a str,
+            limits: &'a super::config::ExecutionLimits,
+            workspace: &'a super::config::WorkspaceConfig,
+        }
+        // Dependency source paths are included only in the hash; no configuration/env values are persisted.
+        let identity = Identity {
+            schema_version: 1,
+            runner_version: 1,
+            product_version: env!("CARGO_PKG_VERSION"),
+            product_digest: &self.product_digest,
+            os: std::env::consts::OS,
+            architecture: std::env::consts::ARCH,
+            root: &inputs.root,
+            plan_configuration: &plan.configuration,
+            sites: &plan.sites,
+            entries: &inputs.entries,
+            roots: &inputs.roots,
+            program: &self.program,
+            external: &self.external,
+            command_digest: &self.command_digest,
+            environment_digest: &self.environment_digest,
+            working_directory: &config.working_directory,
+            limits: &config.limits,
+            workspace: &config.workspace,
+        };
+        Ok(storage::digest(&storage::encode(
+            &identity,
+            config
+                .limits
+                .max_inventory_bytes
+                .checked_add(plan.configuration.limits.max_report_bytes as u64)
+                .context("identity byte budget overflow")?,
+        )?))
+    }
+    fn command(
+        &self,
+        config: &ExecutionConfig,
+        inputs: &Inputs,
+        workspace: &Path,
+        task: &Path,
+        request: &TestExecutionRequest,
+    ) -> Result<Command> {
+        let program = relocate(&self.program, inputs, workspace);
+        let mut command = Command::new(program);
+        for argument in &config.command[1..] {
+            let path = Path::new(argument);
+            if path.is_absolute() {
+                command.arg(relocate(path, inputs, workspace));
+            } else {
+                command.arg(argument);
+            }
+        }
+        let cwd = workspace.join(&config.working_directory);
+        if !cwd.is_dir() {
+            bail!("configured working directory was not copied");
+        }
+        let home = task.join("home");
+        let temporary = task.join("tmp");
+        fs::create_dir(&home)?;
+        fs::create_dir(&temporary)?;
+        command
+            .current_dir(cwd)
+            .env_clear()
+            .envs(&self.environment)
+            .env("HOME", home)
+            .env("TMPDIR", &temporary)
+            .env("TMP", &temporary)
+            .env("TEMP", temporary)
+            .env("ARCHGUARD_MUTATION_REQUEST", task.join("request.json"))
+            .env("ARCHGUARD_MUTATION_RESULT", &request.result_path);
+        Ok(command)
+    }
+}
+fn mode(metadata: &fs::Metadata) -> u32 {
+    use std::os::unix::fs::MetadataExt;
+    metadata.mode() & 0o777
+}
+fn relocate(path: &Path, inputs: &Inputs, destination: &Path) -> PathBuf {
+    for (root, relative) in &inputs.roots {
+        if let Ok(suffix) = path.strip_prefix(root) {
+            return destination.join(relative).join(suffix);
+        }
+    }
+    path.to_owned()
+}
+fn resolve_program(
+    command: &str,
+    environment: &BTreeMap<String, String>,
+    cwd: &Path,
+) -> Result<PathBuf> {
+    let path = Path::new(command);
+    let candidates = if path.components().count() > 1 || path.is_absolute() {
+        vec![if path.is_absolute() {
+            path.to_owned()
+        } else {
+            cwd.join(path)
+        }]
+    } else {
+        std::env::split_paths(
+            environment
+                .get("PATH")
+                .context("bare command requires explicitly inherited/configured PATH")?,
+        )
+        .map(|parent| {
+            if parent.is_absolute() {
+                parent.join(path)
+            } else {
+                cwd.join(parent).join(path)
+            }
+        })
+        .collect()
+    };
+    for candidate in candidates {
+        if let Ok(path) = candidate.canonicalize() {
+            let metadata = fs::metadata(&path)?;
+            if metadata.is_file() && mode(&metadata) & 0o111 != 0 {
+                return Ok(path);
+            }
+        }
+    }
+    bail!("explicit test command executable unavailable")
+}
+struct TaskResult {
+    result: MutationResult,
+    request: Option<TestExecutionRequest>,
+    response: Option<TestExecutionResult>,
+    problem: Option<ExecutionProblem>,
+    cleanup_complete: bool,
+}
+struct TaskContext<'a> {
+    config: &'a ExecutionConfig,
+    prepared: &'a Prepared,
+    original: &'a Inputs,
+    template: &'a Inputs,
+    parent: &'a Path,
+    run_id: &'a str,
+    input_digest: &'a str,
+    token: &'a CancellationToken,
+    deadline: Instant,
+    analysis_limits: &'a crate::quality::AnalysisLimits,
+    stop: &'a AtomicBool,
+    cleanup_unknown: &'a AtomicBool,
+}
+impl TaskContext<'_> {
+    fn execute(&self, site: Option<&MutationSite>) -> TaskResult {
+        let start = Instant::now();
+        let mut result = site
+            .map(MutationResult::initial)
+            .unwrap_or_else(|| MutationResult {
+                mutation_id: String::new(),
+                location: crate::quality::SourceLocation {
+                    file: "baseline.ts".into(),
+                    start: 0,
+                    end: 1,
+                    line: 1,
+                    end_line: 1,
+                },
+                operator: super::facts::MutationOperator::Boolean,
+                expected: String::new(),
+                replacement: String::new(),
+                context: None,
+                outcome: MutationOutcome::NotRun,
+                reused: false,
+                tests: None,
+                exit_code: None,
+                elapsed_ms: 0.0,
+                message: None,
+            });
+        let mut request = None;
+        let mut response = None;
+        let mut cleanup_complete = true;
+        let mut kind = ExecutionProblemKind::Workspace;
+        let task = storage::create_private_directory(self.parent, "task");
+        let mut owned = match task {
+            Ok(path) => match OwnedDirectory::from_path(path) {
+                Ok(owned) => owned,
+                Err(error) => {
+                    return TaskResult {
+                        result,
+                        request,
+                        response,
+                        problem: Some(ExecutionProblem {
+                            kind,
+                            mutation_id: site.map(|site| site.id.clone()),
+                            file: site.map(|site| site.location.file.clone()),
+                            message: bounded_message(&error.to_string()),
+                        }),
+                        cleanup_complete: false,
+                    };
+                }
+            },
+            Err(error) => {
+                return TaskResult {
+                    result,
+                    request,
+                    response,
+                    problem: Some(ExecutionProblem {
+                        kind,
+                        mutation_id: site.map(|site| site.id.clone()),
+                        file: site.map(|site| site.location.file.clone()),
+                        message: bounded_message(&error.to_string()),
+                    }),
+                    cleanup_complete: true,
+                };
+            }
+        };
+        let task_result = (|| -> Result<()> {
+            let guard = || guard(self.token, self.deadline);
+            guard()?;
+            let workspace = owned.path.join("workspace");
+            self.template.copy_to(&workspace, &guard)?;
+            if let Some(site) = site {
+                let path = workspace.join(&site.location.file);
+                let source = String::from_utf8(storage::read_regular(
+                    &path,
+                    self.config.limits.max_workspace_file_bytes,
+                )?)
+                .context("mutation source is not UTF-8")?;
+                result.source_context(&source);
+                kind = ExecutionProblemKind::InvalidPlan;
+                let mutated = super::apply_edit(&source, site)
+                    .map_err(|error| anyhow::anyhow!(error.message))?;
+                match super::validate_mutant(&site.location.file, &mutated, self.analysis_limits)? {
+                    SyntaxValidation::Valid => {}
+                    SyntaxValidation::InvalidSyntax { diagnostics } => {
+                        result.outcome = MutationOutcome::InvalidMutant;
+                        result.message = diagnostics
+                            .first()
+                            .map(|problem| bounded_message(&problem.message));
+                        return Ok(());
+                    }
+                    SyntaxValidation::Incomplete { problems } => {
+                        kind = if problems.iter().any(|problem| problem.limit.is_some()) {
+                            ExecutionProblemKind::Limit
+                        } else {
+                            ExecutionProblemKind::Command
+                        };
+                        bail!("mutant syntax validation is incomplete");
+                    }
+                }
+                storage::atomic_write(&path, mutated.as_bytes())?;
+            }
+            kind = ExecutionProblemKind::Limit;
+            workspace::disk_usage(self.parent, &self.config.limits, &guard)?;
+            let protocol = TestExecutionRequest {
+                schema_version: 1,
+                request_id: storage::unique_id(),
+                run_id: self.run_id.into(),
+                input_digest: self.input_digest.into(),
+                phase: if site.is_some() {
+                    ExecutionPhase::Mutation
+                } else {
+                    ExecutionPhase::Baseline
+                },
+                mutation_id: site.map(|site| site.id.clone()),
+                result_path: owned.path.join("result.json"),
+                max_result_bytes: self.config.limits.max_result_bytes,
+            };
+            protocol.validate()?;
+            let payload = storage::encode(
+                &protocol,
+                MAX_REQUEST_BYTES.min(self.config.limits.max_stdin_bytes),
+            )?;
+            storage::atomic_write(&owned.path.join("request.json"), &payload)?;
+            kind = ExecutionProblemKind::Command;
+            let command = self.prepared.command(
+                self.config,
+                self.original,
+                &workspace,
+                &owned.path,
+                &protocol,
+            )?;
+            let limits = CommandLimits {
+                deadline: self.deadline.min(
+                    Instant::now() + Duration::from_millis(self.config.limits.command_timeout_ms),
+                ),
+                stdin_bytes: self.config.limits.max_stdin_bytes as usize,
+                stdout_bytes: self.config.limits.max_stdout_bytes as usize,
+                stderr_bytes: self.config.limits.max_stderr_bytes as usize,
+                resources: ChildLimits {
+                    core_bytes: Some(0),
+                    cpu_seconds: Some(self.config.limits.max_cpu_seconds),
+                    file_bytes: Some(self.config.limits.max_generated_file_bytes),
+                    open_files: Some(self.config.limits.max_open_files),
+                    address_space_bytes: self.config.limits.max_address_space_bytes,
+                },
+            };
+            let raw = run_command(
+                command,
+                &payload,
+                &limits,
+                || self.token.is_cancelled() || self.stop.load(Ordering::Relaxed),
+                || {
+                    workspace::disk_usage(self.parent, &self.config.limits, &guard)?;
+                    let mut local = self.config.limits.clone();
+                    local.max_total_workspace_bytes = local.max_workspace_bytes;
+                    local.workers = 0;
+                    workspace::disk_usage(&owned.path, &local, &guard)?;
+                    Ok(())
+                },
+            )?;
+            cleanup_complete = raw.cleanup_complete;
+            owned.cleanup_allowed = cleanup_complete;
+            if !cleanup_complete {
+                self.cleanup_unknown.store(true, Ordering::Relaxed);
+                kind = ExecutionProblemKind::Cleanup;
+                bail!("test process cleanup is uncertain; workspace preserved");
+            }
+            result.exit_code = raw.status.and_then(|status| status.code());
+            match raw.stop {
+                CommandStop::Completed => {}
+                CommandStop::TimedOut => {
+                    result.outcome = MutationOutcome::TimedOut;
+                    kind = ExecutionProblemKind::Limit;
+                    bail!("test command deadline reached");
+                }
+                CommandStop::Cancelled => {
+                    result.outcome = MutationOutcome::Cancelled;
+                    kind = ExecutionProblemKind::Cancellation;
+                    bail!("test command cancelled");
+                }
+                CommandStop::OutputLimit(_) | CommandStop::Monitor(_) => {
+                    kind = ExecutionProblemKind::Limit;
+                    bail!("test command resource/output limit or monitor interrupted execution");
+                }
+                CommandStop::Io(_) | CommandStop::Cleanup(_) => {
+                    bail!("test command transport/cleanup incomplete")
+                }
+            }
+            if !raw.stdin_complete {
+                bail!("test command did not consume the request");
+            }
+            // Stream bytes are bounded by transport and discarded; protocol supplies actionable failures.
+            let _ = (raw.stdout, raw.stderr);
+            kind = ExecutionProblemKind::Protocol;
+            let observed = result
+                .exit_code
+                .context("test command terminated without an exit code")?;
+            let reported = TestExecutionResult::read(&protocol.result_path, &protocol)?;
+            result.outcome = reported.classify(observed)?;
+            result.tests = Some(reported.tests.clone());
+            result.message = reported
+                .failures
+                .first()
+                .map(|failure| bounded_message(&failure.message));
+            request = Some(protocol);
+            response = Some(reported);
+            Ok(())
+        })();
+        result.elapsed_ms = start.elapsed().as_secs_f64() * 1000.0;
+        let mut problem = task_result.err().map(|error| {
+            kind = problem_kind(&error, kind);
+            if result.outcome == MutationOutcome::NotRun {
+                result.outcome = match error.downcast_ref::<Interrupted>() {
+                    Some(Interrupted::Cancelled) => MutationOutcome::Cancelled,
+                    Some(Interrupted::Deadline) => MutationOutcome::TimedOut,
+                    None => MutationOutcome::ExecutionError,
+                };
+            }
+            let message = bounded_message(&error.to_string());
+            result.message = Some(message.clone());
+            ExecutionProblem {
+                kind,
+                mutation_id: site.map(|site| site.id.clone()),
+                file: site.map(|site| site.location.file.clone()),
+                message,
+            }
+        });
+        if owned.cleanup_allowed
+            && let Err(error) = owned.cleanup()
+        {
+            cleanup_complete = false;
+            self.cleanup_unknown.store(true, Ordering::Relaxed);
+            owned.cleanup_allowed = false;
+            result.outcome = MutationOutcome::ExecutionError;
+            problem = Some(ExecutionProblem {
+                kind: ExecutionProblemKind::Cleanup,
+                mutation_id: site.map(|site| site.id.clone()),
+                file: site.map(|site| site.location.file.clone()),
+                message: bounded_message(&error.to_string()),
+            });
+        }
+        TaskResult {
+            result,
+            request,
+            response,
+            problem,
+            cleanup_complete,
+        }
+    }
+}
+
+pub fn run(
+    plan: &MutationPlan,
+    config: &ExecutionConfig,
+    config_dir: &Path,
+    token: &CancellationToken,
+) -> Result<MutationReport> {
+    config.validate()?;
+    plan.validate()?;
+    let config_dir = config_dir
+        .canonicalize()
+        .context("configuration directory unavailable")?;
+    let start = Instant::now();
+    let deadline = start + Duration::from_millis(config.limits.run_timeout_ms);
+    let reuse = config
+        .state
+        .as_ref()
+        .map_or(ReusePolicy::Off, |state| state.reuse);
+    let summary=ExecutionSummary{limits:config.limits.clone(),workspace:WorkspaceSummary{include:config.workspace.include.clone(),exclude:config.workspace.exclude.clone(),dependency_destinations:config.workspace.dependencies.iter().map(|dependency|dependency.destination.clone()).collect()},reuse,reuse_reason:Some(if reuse==ReusePolicy::DeclaredInputs{"reuse relies on explicitly declared deterministic inputs; baseline always runs fresh"}else{"result reuse is disabled"}.into())};
+    let mut report = MutationReport::initial(plan, summary);
+    let mut owned = None;
+    let mut state = None;
+    let cleanup_unknown = AtomicBool::new(false);
+    let stop = AtomicBool::new(false);
+    let operation = (|| -> Result<()> {
+        let guard = || guard(token, deadline);
+        guard()?;
+        if !plan.complete {
+            report.problem(
+                ExecutionProblemKind::InvalidPlan,
+                None,
+                None,
+                "mutation plan is incomplete",
+            );
+            return Ok(());
+        }
+        if plan.sites.len() > config.limits.max_mutants {
+            report.problem(
+                ExecutionProblemKind::Limit,
+                None,
+                None,
+                "mutation count exceeds configured execution limit",
+            );
+            return Ok(());
+        }
+        if storage::encode(&report, config.limits.max_report_bytes).is_err() {
+            report.problem(
+                ExecutionProblemKind::Limit,
+                None,
+                None,
+                "planned evidence exceeds execution report budget",
+            );
+            return Ok(());
+        }
+        let regenerated = super::plan(Path::new(&plan.root), &plan.configuration)?;
+        guard()?;
+        if !regenerated.complete
+            || storage::encode(plan, plan.configuration.limits.max_report_bytes as u64)?
+                != storage::encode(
+                    &regenerated,
+                    plan.configuration.limits.max_report_bytes as u64,
+                )?
+        {
+            report.problem(
+                ExecutionProblemKind::InvalidPlan,
+                None,
+                None,
+                "plan does not match the complete current runtime-expression inventory",
+            );
+            return Ok(());
+        }
+        let inputs = Inputs::inventory(Path::new(&plan.root), config, &config_dir, &guard)?;
+        for file in &plan.files {
+            let entry = inputs
+                .entries
+                .iter()
+                .find(|entry| entry.path == file.path)
+                .context("selected mutation source was not copied by workspace configuration")?;
+            if entry.kind != EntryKind::File
+                || entry.bytes != file.bytes as u64
+                || entry.digest != file.sha256
+            {
+                bail!("selected mutation source differs from planned bytes");
+            }
+        }
+        let prepared = Prepared::new(config, &config_dir, &inputs, &guard)?;
+        report.input_digest = prepared.identity(plan, config, &inputs)?;
+        let copies = inputs
+            .bytes
+            .checked_mul(config.limits.workers as u64 + 1)
+            .context("worker disk reservation overflow")?;
+        if copies > config.limits.max_total_workspace_bytes {
+            report.problem(
+                ExecutionProblemKind::Limit,
+                None,
+                None,
+                "template and configured workers exceed aggregate workspace reservation",
+            );
+            return Ok(());
+        }
+        if let Some(state_config) = &config.state {
+            let candidate = RunState::open(state_config, &config_dir, &inputs.roots)
+                .map_err(|error| classified(error, ExecutionProblemKind::State))?;
+            for (external, _, _) in &prepared.external {
+                if external.starts_with(&candidate.directory)
+                    || candidate.directory.starts_with(external)
+                {
+                    bail!("state directory overlaps a declared execution input");
+                }
+            }
+            state = Some(candidate);
+        }
+        let parent = state
+            .as_ref()
+            .map_or_else(std::env::temp_dir, |state| state.directory.clone());
+        owned = Some(OwnedDirectory::create(&parent, &inputs.roots)?);
+        let parent = &owned.as_ref().context("missing owned workspace")?.path;
+        let run_id = storage::unique_id();
+        if let Some(state) = &mut state {
+            state
+                .begin(&run_id, owned.as_ref().context("missing owned workspace")?)
+                .map_err(|error| classified(error, ExecutionProblemKind::State))?;
+        }
+        let template_path = parent.join("template");
+        inputs.copy_to(&template_path, &guard)?;
+        prepared
+            .verify(config, &config_dir, &inputs, &guard)
+            .map_err(|error| classified(error, ExecutionProblemKind::InputChanged))?;
+        let mut template = inputs.clone();
+        for entry in &mut template.entries {
+            entry.source = template_path.join(&entry.path);
+        }
+        let input_digest = report.input_digest.clone();
+        let context = TaskContext {
+            config,
+            prepared: &prepared,
+            original: &inputs,
+            template: &template,
+            parent,
+            run_id: &run_id,
+            input_digest: &input_digest,
+            token,
+            deadline,
+            analysis_limits: &plan.configuration.limits,
+            stop: &stop,
+            cleanup_unknown: &cleanup_unknown,
+        };
+        let baseline = context.execute(None);
+        report.baseline = BaselineResult {
+            outcome: match baseline.result.outcome {
+                MutationOutcome::Survived => BaselineOutcome::Passed,
+                MutationOutcome::Killed => BaselineOutcome::Failed,
+                MutationOutcome::TimedOut => BaselineOutcome::TimedOut,
+                MutationOutcome::Cancelled => BaselineOutcome::Cancelled,
+                _ => BaselineOutcome::ExecutionError,
+            },
+            tests: baseline.result.tests,
+            exit_code: baseline.result.exit_code,
+            elapsed_ms: baseline.result.elapsed_ms,
+            message: baseline.result.message,
+        };
+        if let Some(problem) = baseline.problem {
+            report.problems.push(problem);
+        }
+        if report.baseline.outcome != BaselineOutcome::Passed {
+            report.problem(
+                ExecutionProblemKind::Baseline,
+                None,
+                None,
+                "fresh baseline did not complete with at least one passing test and no failures",
+            );
+            return Ok(());
+        }
+        prepared
+            .verify(config, &config_dir, &inputs, &guard)
+            .map_err(|error| classified(error, ExecutionProblemKind::InputChanged))?;
+        let mut tasks = Vec::new();
+        for (index, site) in plan.sites.iter().enumerate() {
+            guard()?;
+            if let Some(state) = &state
+                && let Some(saved) = state
+                    .get(&report.input_digest, site)
+                    .map_err(|error| classified(error, ExecutionProblemKind::State))?
+            {
+                report.results[index] = saved;
+                continue;
+            }
+            tasks.push(index);
+        }
+        let next = AtomicUsize::new(0);
+        let (send, receive) = mpsc::sync_channel(config.limits.workers);
+        std::thread::scope(|scope| {
+            for _ in 0..config.limits.workers.min(tasks.len()) {
+                let send = send.clone();
+                let context = &context;
+                let next = &next;
+                let tasks = &tasks;
+                scope.spawn(move || {
+                    while !context.stop.load(Ordering::Relaxed)
+                        && !context.token.is_cancelled()
+                        && Instant::now() < context.deadline
+                    {
+                        let slot = next.fetch_add(1, Ordering::Relaxed);
+                        let Some(&index) = tasks.get(slot) else {
+                            break;
+                        };
+                        let task = context.execute(Some(&plan.sites[index]));
+                        if task.problem.is_some() {
+                            context.stop.store(true, Ordering::Relaxed);
+                        }
+                        if send.send((index, task)).is_err() {
+                            break;
+                        }
+                    }
+                });
+            }
+            drop(send);
+            for (index, task) in receive {
+                report.results[index] = task.result;
+                if let Some(problem) = task.problem {
+                    report.problems.push(problem);
+                }
+                if task.cleanup_complete
+                    && matches!(
+                        report.results[index].outcome,
+                        MutationOutcome::Killed | MutationOutcome::Survived
+                    )
+                {
+                    match prepared.verify(config, &config_dir, &inputs, &guard) {
+                        Ok(()) => {
+                            if let (Some(state), Some(request), Some(response)) =
+                                (&state, task.request, task.response)
+                                && let Err(error) = state.put(
+                                    &report.input_digest,
+                                    &plan.sites[index],
+                                    &report.results[index],
+                                    &request,
+                                    &response,
+                                )
+                            {
+                                stop.store(true, Ordering::Relaxed);
+                                report.problem(
+                                    ExecutionProblemKind::State,
+                                    Some(plan.sites[index].id.clone()),
+                                    None,
+                                    &error.to_string(),
+                                );
+                            }
+                        }
+                        Err(error) => {
+                            stop.store(true, Ordering::Relaxed);
+                            report.problem(
+                                problem_kind(&error, ExecutionProblemKind::InputChanged),
+                                Some(plan.sites[index].id.clone()),
+                                None,
+                                &error.to_string(),
+                            );
+                        }
+                    }
+                }
+            }
+        });
+        guard()?;
+        prepared
+            .verify(config, &config_dir, &inputs, &guard)
+            .map_err(|error| classified(error, ExecutionProblemKind::InputChanged))?;
+        Ok(())
+    })();
+    if let Err(error) = operation {
+        report.problem(
+            problem_kind(&error, ExecutionProblemKind::Workspace),
+            None,
+            None,
+            &error.to_string(),
+        );
+    }
+    if let Some(owned) = &mut owned {
+        owned.cleanup_allowed = !cleanup_unknown.load(Ordering::Relaxed);
+        if owned.cleanup_allowed
+            && let Err(error) = owned.cleanup()
+        {
+            owned.cleanup_allowed = false;
+            report.problem(
+                ExecutionProblemKind::Cleanup,
+                None,
+                None,
+                &error.to_string(),
+            );
+        }
+        if !owned.cleanup_allowed {
+            report.problem(
+                ExecutionProblemKind::Cleanup,
+                None,
+                None,
+                "owned workspace preserved because cleanup was not confirmed",
+            );
+        }
+        if let Some(state) = &mut state
+            && let Err(error) = state.end(owned.cleanup_allowed)
+        {
+            report.problem(ExecutionProblemKind::State, None, None, &error.to_string());
+        }
+    }
+    report.finish(start.elapsed().as_secs_f64() * 1000.0)?;
+    Ok(report)
+}

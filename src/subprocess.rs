@@ -446,12 +446,32 @@ mod unix {
             owned: true,
             finished: false,
         };
-        let stdin = guard.child.stdin.take().context("stdin unavailable")?;
-        let stdout = guard.child.stdout.take().context("stdout unavailable")?;
-        let stderr = guard.child.stderr.take().context("stderr unavailable")?;
-        nonblocking(&stdin)?;
-        nonblocking(&stdout)?;
-        nonblocking(&stderr)?;
+        let pipes = (|| -> Result<_> {
+            let stdin = guard.child.stdin.take().context("stdin unavailable")?;
+            let stdout = guard.child.stdout.take().context("stdout unavailable")?;
+            let stderr = guard.child.stderr.take().context("stderr unavailable")?;
+            nonblocking(&stdin)?;
+            nonblocking(&stdout)?;
+            nonblocking(&stderr)?;
+            Ok((stdin, stdout, stderr))
+        })();
+        let (stdin, stdout, stderr) = match pipes {
+            Ok(pipes) => pipes,
+            Err(error) => {
+                let cleanup = guard.finish();
+                return Ok(CommandOutput {
+                    status: cleanup.as_ref().ok().copied(),
+                    stdout: vec![],
+                    stderr: vec![],
+                    stop: match &cleanup {
+                        Ok(_) => CommandStop::Io(format!("preparing command pipes: {error:#}")),
+                        Err(error) => CommandStop::Cleanup(format!("{error:#}")),
+                    },
+                    stdin_complete: input.is_empty(),
+                    cleanup_complete: cleanup.is_ok(),
+                });
+            }
+        };
         let mut stdin = if input.is_empty() { None } else { Some(stdin) };
         let mut stdout = Some(stdout);
         let mut stderr = Some(stderr);
