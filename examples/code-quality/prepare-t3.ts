@@ -68,6 +68,26 @@ it("trims a trailing separator after a single-character project name", () => {
     config.execution.workspace.dependencies.push({ source: controls, destination: "quality-controls" });
     fs.writeFileSync(path.join(output, "path-strengthened.json"), JSON.stringify(config, null, 2) + "\n");
   }
+  if (name === "gitPatchPath") {
+    const controls = path.join(output, "controls");
+    fs.mkdirSync(controls, { recursive: true });
+    fs.writeFileSync(path.join(controls, "gitPatchPath.test.ts"), String.raw`import { expect, it } from "vite-plus/test";
+import { quoteGitPatchPath, unquoteGitPatchPath } from "../packages/shared/src/gitPatchPath.ts";
+
+it("preserves single-character literal segments around path escapes", () => {
+  expect(unquoteGitPatchPath("a\tb")).toBe("a\tb");
+  expect(unquoteGitPatchPath('"a\tb"')).toBe("a\tb");
+  expect(unquoteGitPatchPath("a\n")).toBe("a\n");
+  expect(unquoteGitPatchPath(quoteGitPatchPath("a\tb"))).toBe("a\tb");
+  expect(unquoteGitPatchPath("ab\tcd")).toBe("ab\tcd");
+  expect(unquoteGitPatchPath("a")).toBe("a");
+  expect(unquoteGitPatchPath("plain.ts")).toBe("plain.ts");
+});
+`);
+    config.execution.command.splice(5, 0, "quality-controls/gitPatchPath.test.ts");
+    config.execution.workspace.dependencies.push({ source: controls, destination: "quality-controls" });
+    fs.writeFileSync(path.join(output, "gitPatchPath-strengthened.json"), JSON.stringify(config, null, 2) + "\n");
+  }
 }
 fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion: 1,
   selection: { include: modules.map(name => `packages/shared/src/${name}.ts`) },
