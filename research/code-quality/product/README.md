@@ -2,6 +2,14 @@
 
 Run these separately from builds and validation when retaining runtime or resource evidence. Keep output under ignored `research/local/` until its source, configuration, executable and environment provenance is recorded.
 
+Replay the six archived duplicate fixtures against the current product:
+
+```sh
+node research/code-quality/product/replay-dryer.mjs /absolute/archguard-binary /absolute/archguard /tmp/archguard-dryer-product-cases
+```
+
+This retains every comparison at threshold zero and compares default normalization, erased properties, erased local identifiers and preserved literals. It records raw output, configuration, source and executable hashes, and verifies source preservation. The fixtures are syntax-only examples with undefined domain types and calls; they are not executed or compiler-checked. Inspect the scores alongside intended duplication and semantic differences.
+
 For the TypeScript protocol SDK and reporter, supply the current repository and an explicit self-contained Vite Plus installation:
 
 ```sh
