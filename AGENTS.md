@@ -8,10 +8,13 @@ Modules:
 - `typescript` and `rust`: syntax providers; they produce facts without deciding policy.
 - `project`: file discovery, package inventory and module resolution.
 - `rules`: repository-wide policy over the immutable facts.
+- `roles`: explicit file-role classification and relationships over analyzed source files.
 - `plugin`: explicit trusted subprocess execution with bounded IO and deadlines.
 - `main`: command parsing, rendering and exit codes.
 
 Run `scripts/check.sh` locally before a PR. Do not add CI. Tests must exercise a meaningful failure, a correction and relevant negative controls. Run our own CLI on `archguard.json` when changing the SDK or examples; add applicable contracts as the tool grows.
+
+Repository roles are configured policy, not inferred compiler or runtime facts. Role selectors do not expand source discovery. Companion checks require analyzed source files; registry-import checks require static value import declarations and do not prove actual registry membership or execution. Keep the structural T3 simulation separate from the default adoption profile and historical bug evidence.
 
 Never silently discard parser errors or unresolved internal graph edges. Exit 0 means a complete clean check; exit 1 means policy violations; exit 2 means the check could not complete. Every import remains visible with its resolution status. Source resolution is configured explicitly and must not be described as TypeScript compiler or runtime parity.
 

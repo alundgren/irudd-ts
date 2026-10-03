@@ -1,10 +1,23 @@
 {
   "schemaVersion": 1,
-  "include": ["src/*.rs", "sdk/**/*.ts", "examples/**/*.ts"],
+  "include": ["src/*.rs", "tests/roles.rs", "sdk/**/*.ts", "examples/**/*.ts"],
   "rules": [
     {"id":"facts-independent", "kind":"forbiddenImport", "files":["src/facts.rs"], "specifiers":["crate::config::*", "crate::project::*", "crate::rules::*", "crate::plugin::*"]},
     {"id":"providers-no-policy", "kind":"forbiddenImport", "files":["src/typescript.rs", "src/rust.rs"], "specifiers":["crate::rules::*", "crate::plugin::*", "crate::project::*", "crate::config::*"]},
     {"id":"sdk-no-host-internals", "kind":"forbiddenDependency", "files":["sdk/**"], "targets":["examples/**"], "transitive":true},
     {"id":"sdk-api", "kind":"requiredExport", "files":["sdk/index.ts"], "names":["ProjectFacts", "Diagnostic", "runPlugin", "dependencyPaths", "createDependencyQuery"]}
-  ]
+  ],
+  "repository": {
+    "roles": [
+      {"id":"rust-module", "files":["src/*.rs"], "exclude":["src/roles.rs"]},
+      {"id":"repository-policy", "files":["src/roles.rs"]},
+      {"id":"test", "files":["tests/*.rs"]},
+      {"id":"typescript-sdk", "files":["sdk/**/*.ts"]},
+      {"id":"example", "files":["examples/**/*.ts"]}
+    ],
+    "rules": [
+      {"id":"own-source-role", "kind":"classified", "files":["src/*.rs", "tests/roles.rs", "sdk/**/*.ts", "examples/**/*.ts"]},
+      {"id":"repository-policy-test", "kind":"companion", "role":"repository-policy", "replace":["src/", "tests/"]}
+    ]
+  }
 }

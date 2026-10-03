@@ -10,6 +10,9 @@ pub fn check(project: &ProjectFacts, config: &Config) -> Result<Vec<Diagnostic>>
     for rule in &config.rules {
         diagnostics.extend(rule.check(project)?);
     }
+    if let Some(repository) = &config.repository {
+        diagnostics.extend(repository.check(project)?);
+    }
     diagnostics.sort();
     diagnostics.dedup();
     Ok(diagnostics)
@@ -416,7 +419,7 @@ fn service_export(
 fn allowed(edge: &ImportFact, include_types: bool) -> bool {
     edge.status == ResolutionStatus::Internal && (include_types || !edge.type_only)
 }
-fn dependencies(
+pub(crate) fn dependencies(
     project: &ProjectFacts,
     start: &FileFacts,
     include_types: bool,
