@@ -92,10 +92,13 @@ export default class InventoryReporter extends MutationVitestReporter {
       if (!destination || !path.isAbsolute(destination)) throw new Error("Inventory destination unavailable");
       const request = this.inventoryRequest;
       const resultHash = createHash("sha256").update(fs.readFileSync(request.resultPath)).digest("hex");
+      const executable = fs.realpathSync(process.execPath);
+      const runtime = { path: executable, version: process.version,
+        sha256: createHash("sha256").update(fs.readFileSync(executable)).digest("hex") };
       const encoded = JSON.stringify({
         schemaVersion: 1, requestId: request.requestId, runId: request.runId,
         inputDigest: request.inputDigest, protocolSha256: resultHash,
-        tests: this.tests, problems: this.inventoryProblems,
+        runtime, tests: this.tests, problems: this.inventoryProblems,
       });
       if (Buffer.byteLength(encoded) > 8 * 1024 * 1024) throw new Error("Inventory exceeds byte budget");
       const temporary = `${destination}.tmp`;

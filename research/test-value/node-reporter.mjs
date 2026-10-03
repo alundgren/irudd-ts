@@ -57,8 +57,10 @@ function publish(exitCode) {
     const result = {schemaVersion:1,requestId:request.requestId,runId:request.runId,inputDigest:request.inputDigest,complete:ended && problems.length === 0,exitCode,
       reason:ended && problems.length === 0 ? "finished" : "infrastructureError",tests:counts,failures};
     writeMutationResult(request,result);
+    const executable = fs.realpathSync(process.execPath);
+    const runtime = {path:executable,version:process.version,sha256:createHash("sha256").update(fs.readFileSync(executable)).digest("hex")};
     const inventory = {schemaVersion:1,requestId:request.requestId,runId:request.runId,inputDigest:request.inputDigest,
-      protocolSha256:createHash("sha256").update(fs.readFileSync(request.resultPath)).digest("hex"),tests,problems};
+      protocolSha256:createHash("sha256").update(fs.readFileSync(request.resultPath)).digest("hex"),runtime,tests,problems};
     const destination = process.env.ARCHGUARD_RESEARCH_INVENTORY;
     const bytes = JSON.stringify(inventory);
     if (Buffer.byteLength(bytes)>8*1024*1024) throw new Error("Node inventory budget exceeded");

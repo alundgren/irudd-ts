@@ -18,11 +18,12 @@ Supply an absolute installed Archguard binary and a config such as:
   "sourceRoot": "/absolute/clean/source",
   "dependencyRoot": "/absolute/installed/source",
   "archguard": "/absolute/archguard",
+  "node": "/absolute/pinned/runtime/bin/node",
   "subject": { "name": "selected-subject", "revision": "exact-git-commit" },
   "workspaceInclude": ["**"],
   "workspaceExclude": ["**/dist-electron/**"],
   "command": [
-    "{root}/node_modules/.bin/vp", "test", "run",
+    "{node}", "{vitest}", "run",
     "--config", "vite.config.ts", "--reporter={reporter}",
     "selected/file.test.ts"
   ],
@@ -46,6 +47,13 @@ Node commands use `--test-reporter={nodeReporter}` and explicit test paths.
 Command arguments also support `{sdk}` and `{node}`. `cwd` is relative to the
 owned source root. Configured environment values are hashed; keep credentials
 out of the configuration and artifacts.
+
+`{vitest}` resolves the declared Vitest executable from the copied `vite-plus`
+package context. This also works when the subject has no top-level Vitest
+dependency. The runner launches that file directly with the selected actual
+Node executable. It does not invoke the Vite+ launcher or install runtimes in
+each execution's private HOME. Prepare the subject's pinned runtime before the
+reserved execution window and supply its absolute executable path.
 
 ```sh
 python3 research/test-value/runner.py run \
@@ -84,6 +92,11 @@ bind it to the final SDK v1 result. After the child exits, `protocol-check.ts`
 validates that result with the product SDK. The parent compares the actual exit
 status, aggregate counts, raw assertion IDs and individual records. Matching
 aggregate counts alone cannot establish a complete test inventory.
+Both reporters record their actual executable path, version and SHA256. These
+must agree with the selected Node identity or every baseline cell stays unknown.
+The selected executable's directory comes first in PATH, including for forked
+tests and configured import checks. Protocol validation uses that same absolute
+executable. Runtime identity and the resolved Vitest entry hash enter provenance.
 
 Timeouts, rejected edits and infrastructure failures retain `unknown` for every
 baseline cell. Failed baselines produce evidence and `notRun` columns. They do
@@ -138,7 +151,9 @@ The CLI handles SIGINT and SIGTERM so command cleanup runs before it exits.
 python3 research/test-value/controls_runner.py \
   --output /absolute/new-controls-directory \
   --archguard /absolute/archguard \
-  --installed /absolute/installed/vitest/repository
+  --installed /absolute/installed/vitest/repository \
+  --node /absolute/pinned/runtime/bin/node \
+  --wrong-node /absolute/different/runtime/bin/node
 ```
 
 The optional `--installed` argument enables real Vitest controls. Without it,
@@ -150,6 +165,11 @@ mutation orders. They create owned fixtures and never edit the installed source.
 Their durations are validation observations, not reserved benchmark measurements.
 Process controls also cover a live descendant after leader exit, deadlines,
 lost child ownership, delayed group observation and unavailable group inventory.
+Vitest controls check the actual runtime inside a forked test and the reporter,
+and reject a real assertion result produced under another runtime. If the pinned
+Vitest runtime lacks native Node event identity fields, use `--vitest-node` for
+that pin and `--node` for the supported native adapter runtime. The distinction
+is retained in each execution's evidence.
 
 ## Historical caller API
 
@@ -158,6 +178,8 @@ and the explicit command. Its return contains `tests`, `complete`, `status`,
 `outcomes`, `infrastructureErrors`, `protocol` and process metadata. Freeze
 `fixed_result["tests"]` as `baseline` for faulty and corrected executions.
 `dependencies` accepts one reusable `DependencyStore(...).copy()` instance.
+Use `direct_vitest_command(config_path)` for the explicit direct command and
+pass `node=absolute_runtime_path` to `execute_case` for each subject's pin.
 Standalone callers can use `install_signal_handlers()` to route interruption
 through owned subprocess cleanup. It returns previous handlers for restoration.
 The caller must record revision identities, classify the replay method and
