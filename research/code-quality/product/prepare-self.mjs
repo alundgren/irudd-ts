@@ -10,10 +10,16 @@ const requestedOutput = path.resolve(outputArgument);
 const output = path.join(fs.realpathSync(path.dirname(requestedOutput)), path.basename(requestedOutput));
 if (fs.existsSync(output)) throw new Error("Output directory must be new");
 if (output === repository || output.startsWith(repository + path.sep) || output === dependencies || output.startsWith(dependencies + path.sep)) throw new Error("Output must be outside source and dependency inputs");
+for (const relative of ["sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts", "tests/mutator_sdk.test.ts", "tests/mutator_reporter.test.ts"]) {
+  if (!fs.statSync(path.join(repository, relative)).isFile()) throw new Error(`Missing self-test input ${relative}`);
+}
+if (!fs.statSync(path.join(dependencies, "vite-plus/bin/vp")).isFile()) throw new Error("Explicit Vite Plus installation is required");
 fs.mkdirSync(output, { recursive: true });
 const support = path.join(output, "support");
 const tests = path.join(output, "tests");
 fs.mkdirSync(support); fs.mkdirSync(tests);
+const packageManifest = path.join(output, "package.json");
+fs.writeFileSync(packageManifest, JSON.stringify({ name: "archguard-quality-self-fixture", private: true, type: "module" }) + "\n");
 for (const name of ["mutator.ts", "mutator-vitest-reporter.ts"]) fs.copyFileSync(path.join(repository, "sdk", name), path.join(support, name));
 for (const name of ["mutator_sdk", "mutator_reporter"]) {
   const original = fs.readFileSync(path.join(repository, `tests/${name}.test.ts`), "utf8");
@@ -35,7 +41,7 @@ for (const [profile, source, test] of [
     command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", test, "--config", "quality-support/vite.config.ts"],
     workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts"], dependencies: [
       { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
-      { source: tests, destination: "quality-tests" }] },
+      { source: tests, destination: "quality-tests" }, { source: packageManifest, destination: "package.json" }] },
     limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
   } };
   fs.writeFileSync(path.join(output, `${profile}.json`), JSON.stringify(config, null, 2) + "\n");
@@ -45,5 +51,6 @@ fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion
 fs.writeFileSync(path.join(output, "adaptation.json"), JSON.stringify({
   originalTests: ["tests/mutator_sdk.test.ts", "tests/mutator_reporter.test.ts"], change: "Only the test registration import changes from node:test to vitest; assertions and source imports remain identical.",
   instrumentation: "The reporter and its protocol helper are fixed trusted support copies so mutations in the tested SDK cannot alter result publication.",
+  packageManifest: "An authored private ESM package manifest is explicitly copied to the worker root because Vite Plus requires a package there.",
 }, null, 2) + "\n");
 console.log(`Self-dogfooding profiles written to ${output}`);

@@ -21,7 +21,7 @@ archguard mutator run --root /absolute/archguard --config /tmp/archguard-self-pr
 archguard mutator run --root /absolute/archguard --config /tmp/archguard-self-profiles/reporter.json --json
 ```
 
-This is a labeled test-runner adaptation. The existing Node SDK and reporter tests register with Vitest instead of `node:test`; their assertions and SDK imports remain unchanged. A fixed reporter/protocol copy handles instrumentation independently of mutations in the SDK under test. All copies are explicit dependency inputs. The generator installs nothing and changes no repository source. This tests TypeScript SDK behavior, not the Rust implementation.
+This is a labeled test-runner adaptation. The existing Node SDK and reporter tests register with Vitest instead of `node:test`; their assertions and SDK imports remain unchanged. A fixed reporter/protocol copy handles instrumentation independently of mutations in the SDK under test. An authored private ESM package manifest satisfies Vite Plus's workspace-root requirement. All copies are explicit dependency inputs. The generator installs nothing and changes no repository source. This tests TypeScript SDK behavior, not the Rust implementation.
 
 Inspect every surviving mutation and every execution error. A mutated API can throw an ordinary error inside a test. The conservative protocol records that as a runtime error rather than automatically treating it as an assertion kill. Missing result metadata and failed setup remain incomplete evidence. Retain those outcomes alongside useful survivors.
 
