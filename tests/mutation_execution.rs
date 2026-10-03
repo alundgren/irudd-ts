@@ -176,6 +176,16 @@ fn incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages() 
     assert!(!primary.contains(&environment_secret));
     let escaped = serde_json::to_string(&environment_secret).unwrap();
     assert!(!primary.contains(&escaped[1..escaped.len() - 1]));
+    fixture.mode("invalidRuntime");
+    let unvalidated = fixture.run();
+    assert!(!unvalidated.complete);
+    assert_eq!(unvalidated.summary.execution_errors, 2);
+    for result in &unvalidated.results {
+        let message = result.message.as_ref().unwrap();
+        assert!(message.contains("protocol string"), "{message}");
+        assert!(!message.contains("quiet-runtime-control"));
+        assert!(result.tests.is_none());
+    }
     fixture.mode("quietRuntime");
     let runtime = fixture.run();
     assert!(!runtime.complete);

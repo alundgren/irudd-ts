@@ -32,10 +32,11 @@ if (control.mode === "baselineFailure" && request.phase === "baseline") {
   result.failures = [{ kind: "assertion", testId: "baseline", file: "subject.ts", message: "baseline control" }];
 }
 if (request.phase === "mutation") {
-  if (control.mode === "quietRuntime") {
+  if (control.mode === "quietRuntime" || control.mode === "invalidRuntime") {
     result.exitCode = 1; result.tests = { passed: 0, failed: 1, skipped: 0 };
     result.failures = [{ kind: "runtime", testId: "runtime-control", file: "subject.ts",
-      message: `quiet-runtime-control ${JSON.stringify(process.env.DIAGNOSTIC_SECRET)} ${process.env.DIAGNOSTIC_SECRET.replace("environment", "envi\u0000ron\u202ement")}` }];
+      message: `quiet-runtime-control ${JSON.stringify(process.env.DIAGNOSTIC_SECRET)} ${process.env.DIAGNOSTIC_SECRET.replace("environment", "envi\u202eronment")}` }];
+    if (control.mode === "invalidRuntime") result.failures[0].message += "\u0000";
   }
   if (control.mode === "errorEnabled" && enabled() === false) {
     try { await import("./missing-control.ts"); }
