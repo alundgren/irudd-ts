@@ -1,5 +1,13 @@
 # Historical reductions and local benchmarks
 
+## Repository-role iteration
+
+[Repository structure](repository-structure.md) records the new structural experiment: ten deliberately invalid fixtures and their corrections, plus a complete scan of the pinned T3 server dependency closure. Those checks establish the selected structural policies, separate from the historical reductions below.
+
+The existing equivalent-work benchmark was rerun on source revision `6e78dca`, retaining [all raw samples](../benchmarks/results/process-latency-repository-roles.json). At 4,000 synthetic files, graph-check medians were 119.33 ms native, 141.95 ms with a Rust subprocess, 331.06 ms with a TypeScript subprocess and 1,414.35 ms with the independent Oxlint JavaScript graph. Native graph samples ranged from 88.57 to 187.30 ms. Direct-import medians were 147.82 ms native, 253.13 ms Oxlint built-in and 706.63 ms Oxlint JavaScript. Cycle medians were 152.74 ms native and 650.07 ms Oxlint built-in. Every workload passed expected violation and negative-control equivalence checks before timing ratios were recorded.
+
+These are the existing graph/direct/cycle workloads, not an Oxlint equivalent of the new companion or registry-import rules. Earlier measurements below remain valid evidence, including the unfavorable native cycle comparison and its large variance. No traversal algorithm changed in this iteration; differences between runs do not establish an implementation speedup. Machine load and complete process costs remain relevant. The [initial overlapping run](../benchmarks/results/process-latency-repository-roles-validation-overlap.json) is retained with an explicit note because local validation ran concurrently during its initial work. Use the subsequent run for this iteration's comparison.
+
 The fixtures test two architecture policies against four upstream PRs. Three PRs adopted the same Effect service namespace convention. They are not three independently discovered runtime bugs. The fourth removed a type-only import cycle. These are reduced syntax and dependency reproductions, not full builds or replays of T3 Code.
 
 [historical-evidence.json](historical-evidence.json) records exact before and fixed commits, upstream paths, checked source text, line numbers and SHA-256 hashes of the original files. Copied snippets retain [T3 Code's MIT notice](../benchmarks/history/LICENSE.t3code). Verify the source evidence against a local upstream clone with:

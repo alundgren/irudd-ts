@@ -39,6 +39,8 @@ Subprocess plugins are trusted local code. Archguard executes only commands you 
 
 Licenses are checked against locked dependency manifests by `scripts/licenses.py`. The repository is MIT licensed. Preserve dependency license texts when distributing compiled binaries.
 
+The optional `repository` section assigns file roles and checks companion files, registry imports, scoped classification and dependencies between roles. [Repository structure](docs/repository-structure.md) shows the Rust policy model, a runnable T3 simulation and its evidence limits. [Fact research](docs/fact-research.md) surveys additional compiler, build, schema and configuration facts used by other enforcement tools.
+
 T3 adoption profiles and their evidence are in [docs/rules.md](docs/rules.md). The default profile contains 25 policy instances, with separate Android/iOS cycle profiles and explicitly experimental or historical migration policies. [docs/research.md](docs/research.md) compares Oxc, TypeScript 7, Roslyn and other architecture tools, including license decisions.
 
 A `forbiddenCall` rule with `transitive: true` reports selected files whose dependency graph reaches an imported forbidden call, with the dependency path as evidence. This means module reachability, not execution reachability. Type-only edges can be excluded with `includeTypes: false`; syntax facts do not prove whether a callback runs or an Effect program fails.

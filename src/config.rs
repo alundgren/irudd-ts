@@ -22,6 +22,8 @@ pub struct Config {
     #[serde(default)]
     pub rules: Vec<RuleConfig>,
     #[serde(default)]
+    pub repository: Option<crate::roles::RepositoryPolicy>,
+    #[serde(default)]
     pub plugins: Vec<PluginConfig>,
 }
 fn default_include() -> Vec<String> {
@@ -167,7 +169,7 @@ impl Config {
         {
             bail!("resolution extensions must be nonempty dot-prefixed suffixes");
         }
-        let mut ids = std::collections::BTreeSet::new();
+        let mut ids = std::collections::BTreeSet::<&str>::new();
         for r in &self.rules {
             if r.id.trim().is_empty() || !ids.insert(&r.id) {
                 bail!("empty or duplicate rule id {}", r.id);
@@ -192,6 +194,9 @@ impl Config {
                 RuleKind::RequiredExport if r.names.is_empty() => bail!("{} requires names", r.id),
                 _ => {}
             }
+        }
+        if let Some(repository) = &self.repository {
+            repository.validate(&mut ids)?;
         }
         let mut names = std::collections::BTreeSet::new();
         for p in &self.plugins {
