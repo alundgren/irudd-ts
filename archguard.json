@@ -1,23 +1,168 @@
 {
   "schemaVersion": 1,
-  "include": ["src/*.rs", "tests/roles.rs", "sdk/**/*.ts", "examples/**/*.ts"],
+  "include": [
+    "src/*.rs",
+    "tests/roles.rs",
+    "tests/cache.rs",
+    "tests/semantic.rs",
+    "sdk/**/*.ts",
+    "examples/**/*.ts"
+  ],
   "rules": [
-    {"id":"facts-independent", "kind":"forbiddenImport", "files":["src/facts.rs"], "specifiers":["crate::config::*", "crate::project::*", "crate::rules::*", "crate::plugin::*"]},
-    {"id":"providers-no-policy", "kind":"forbiddenImport", "files":["src/typescript.rs", "src/rust.rs"], "specifiers":["crate::rules::*", "crate::plugin::*", "crate::project::*", "crate::config::*"]},
-    {"id":"sdk-no-host-internals", "kind":"forbiddenDependency", "files":["sdk/**"], "targets":["examples/**"], "transitive":true},
-    {"id":"sdk-api", "kind":"requiredExport", "files":["sdk/index.ts"], "names":["ProjectFacts", "Diagnostic", "runPlugin", "dependencyPaths", "createDependencyQuery", "SemanticFacts", "SemanticRule", "readSemanticFacts", "semanticFile", "missingMemberDiagnostics"]}
+    {
+      "id": "facts-independent",
+      "kind": "forbiddenImport",
+      "files": [
+        "src/facts.rs"
+      ],
+      "specifiers": [
+        "crate::config::*",
+        "crate::project::*",
+        "crate::rules::*",
+        "crate::plugin::*",
+        "crate::cache::*",
+        "crate::semantic::*",
+        "crate::subprocess::*"
+      ]
+    },
+    {
+      "id": "providers-no-policy",
+      "kind": "forbiddenImport",
+      "files": [
+        "src/typescript.rs",
+        "src/rust.rs"
+      ],
+      "specifiers": [
+        "crate::rules::*",
+        "crate::plugin::*",
+        "crate::project::*",
+        "crate::config::*",
+        "crate::cache::*",
+        "crate::semantic::*",
+        "crate::subprocess::*"
+      ]
+    },
+    {
+      "id": "sdk-no-host-internals",
+      "kind": "forbiddenDependency",
+      "files": [
+        "sdk/**"
+      ],
+      "targets": [
+        "examples/**"
+      ],
+      "transitive": true
+    },
+    {
+      "id": "sdk-api",
+      "kind": "requiredExport",
+      "files": [
+        "sdk/index.ts"
+      ],
+      "names": [
+        "ProjectFacts",
+        "Diagnostic",
+        "runPlugin",
+        "dependencyPaths",
+        "createDependencyQuery",
+        "SemanticFacts",
+        "SemanticRule",
+        "readSemanticFacts",
+        "semanticFile",
+        "missingMemberDiagnostics"
+      ]
+    }
   ],
   "repository": {
     "roles": [
-      {"id":"rust-module", "files":["src/*.rs"], "exclude":["src/roles.rs"]},
-      {"id":"repository-policy", "files":["src/roles.rs"]},
-      {"id":"test", "files":["tests/*.rs"]},
-      {"id":"typescript-sdk", "files":["sdk/**/*.ts"]},
-      {"id":"example", "files":["examples/**/*.ts"]}
+      {
+        "id": "rust-module",
+        "files": [
+          "src/*.rs"
+        ],
+        "exclude": [
+          "src/roles.rs",
+          "src/cache.rs",
+          "src/semantic.rs"
+        ]
+      },
+      {
+        "id": "repository-policy",
+        "files": [
+          "src/roles.rs"
+        ]
+      },
+      {
+        "id": "graph-cache",
+        "files": [
+          "src/cache.rs"
+        ]
+      },
+      {
+        "id": "compiler-semantics",
+        "files": [
+          "src/semantic.rs"
+        ]
+      },
+      {
+        "id": "test",
+        "files": [
+          "tests/*.rs"
+        ]
+      },
+      {
+        "id": "typescript-sdk",
+        "files": [
+          "sdk/**/*.ts"
+        ]
+      },
+      {
+        "id": "example",
+        "files": [
+          "examples/**/*.ts"
+        ]
+      }
     ],
     "rules": [
-      {"id":"own-source-role", "kind":"classified", "files":["src/*.rs", "tests/roles.rs", "sdk/**/*.ts", "examples/**/*.ts"]},
-      {"id":"repository-policy-test", "kind":"companion", "role":"repository-policy", "replace":["src/", "tests/"]}
+      {
+        "id": "own-source-role",
+        "kind": "classified",
+        "files": [
+          "src/*.rs",
+          "tests/roles.rs",
+          "tests/cache.rs",
+          "tests/semantic.rs",
+          "sdk/**/*.ts",
+          "examples/**/*.ts"
+        ]
+      },
+      {
+        "id": "repository-policy-test",
+        "kind": "companion",
+        "role": "repository-policy",
+        "replace": [
+          "src/",
+          "tests/"
+        ]
+      },
+      {
+        "id": "graph-cache-test",
+        "kind": "companion",
+        "role": "graph-cache",
+        "replace": [
+          "src/",
+          "tests/"
+        ]
+      },
+      {
+        "id": "compiler-semantics-test",
+        "kind": "companion",
+        "role": "compiler-semantics",
+        "replace": [
+          "src/",
+          "tests/"
+        ]
+      }
     ]
   }
 }
