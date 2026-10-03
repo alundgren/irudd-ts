@@ -219,10 +219,20 @@ mod unix {
         fn finish_with_grace(
             &mut self,
             grace: Duration,
-            mut observe_group: impl FnMut(Pid) -> Result<bool>,
+            observe_group: impl FnMut(Pid) -> Result<bool>,
         ) -> Result<ExitStatus> {
             self.finished = true;
-            let mut failure = self.kill_group().err();
+            let failure = self.kill_group().err();
+            self.settle_group(grace, observe_group, failure)
+        }
+
+        fn settle_group(
+            &mut self,
+            grace: Duration,
+            mut observe_group: impl FnMut(Pid) -> Result<bool>,
+            mut failure: Option<anyhow::Error>,
+        ) -> Result<ExitStatus> {
+            self.finished = true;
             if !self.owned {
                 return Err(failure.unwrap_or_else(|| anyhow::anyhow!("child ownership lost")));
             }
@@ -233,6 +243,17 @@ mod unix {
                 if exited {
                     match observe_group(self.group) {
                         Ok(false) => {
+                            if !self.exited()? {
+                                bail!("owned leader exit proof changed before cleanup completed");
+                            }
+                            #[cfg(target_os = "macos")]
+                            if failure.as_ref().is_some_and(|error| {
+                                error.root_cause().downcast_ref::<Errno>() == Some(&Errno::EPERM)
+                            }) {
+                                // A transient Darwin signal denial is settled by the
+                                // reserved leader's exit and positive empty-group proof.
+                                failure = None;
+                            }
                             let status = self
                                 .child
                                 .try_wait()
@@ -735,6 +756,57 @@ mod unix {
             assert_eq!(guard.finish().unwrap().code(), Some(7));
             assert!(!guard.owned && guard.finished);
             assert!(guard.kill_group().is_err());
+        }
+
+        #[cfg(target_os = "macos")]
+        #[test]
+        fn earlier_signal_denial_requires_confirmed_owned_group_cleanup() {
+            use std::os::unix::process::ExitStatusExt;
+            let mut settled = owned_terminated_child();
+            let status = settled
+                .settle_group(
+                    PROCESS_CLEANUP_TIME,
+                    |group| {
+                        assert_leader_reserved(group);
+                        group_has_live_members(group)
+                    },
+                    Some(anyhow::Error::new(Errno::EPERM).context("process-group cleanup")),
+                )
+                .unwrap();
+            assert_eq!(status.signal(), Some(nix::libc::SIGKILL));
+            assert!(!settled.owned && settled.finished);
+
+            let mut other_error = owned_terminated_child();
+            let error = other_error
+                .settle_group(
+                    PROCESS_CLEANUP_TIME,
+                    |group| {
+                        assert_leader_reserved(group);
+                        group_has_live_members(group)
+                    },
+                    Some(anyhow::Error::new(Errno::EIO).context("process-group cleanup")),
+                )
+                .unwrap_err();
+            assert_eq!(
+                error.root_cause().downcast_ref::<Errno>(),
+                Some(&Errno::EIO)
+            );
+            assert!(!other_error.owned && other_error.finished);
+
+            let mut unconfirmed = owned_terminated_child();
+            let error = unconfirmed
+                .settle_group(
+                    PROCESS_CLEANUP_TIME,
+                    |group| {
+                        assert_leader_reserved(group);
+                        bail!("inventory unavailable")
+                    },
+                    Some(anyhow::Error::new(Errno::EPERM).context("process-group cleanup")),
+                )
+                .unwrap_err();
+            assert!(format!("{error:#}").contains("inventory unavailable"));
+            assert!(!unconfirmed.owned && unconfirmed.finished);
+            assert!(unconfirmed.kill_group().is_err());
         }
 
         #[cfg(target_os = "macos")]
