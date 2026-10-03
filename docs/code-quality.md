@@ -51,6 +51,8 @@ Reuse invalidates the run's results when a declared input changes. It does not r
 
 Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections. macOS has different memory controls from Linux.
 
+Cleanup checks a separate thirty-second deadline while traversing owned workspaces. It preserves the workspace and reports its location when safe removal cannot finish. Individual kernel filesystem calls can still block; the traversal deadline is not a hard wall-clock guarantee for an unresponsive filesystem.
+
 ## Use the reports with an agent
 
 Give the reviewer the selected scope, complete/incomplete status and concrete findings. For a similar pair, ask whether duplication is intentional or hides a reusable concept. For a survivor, ask which promised behavior changed without an assertion noticing. Keep equivalent mutations and intended parallel implementations as documented examples when they help explain a decision.
