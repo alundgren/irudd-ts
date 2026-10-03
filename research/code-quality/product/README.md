@@ -32,3 +32,5 @@ node research/code-quality/product/inspect-path.mjs /absolute/trusted-t3code /ab
 ```
 
 This explicitly loads copied T3 path modules with Node, applies only the observed logical/zero-one edits, checks the original source hash, and retains upstream licensing beside the copies. It writes outside T3. The examples distinguish missing relative-path cases and one-character trailing separators from equivalent early returns and unresolved drive-root separator representation. Observing no difference on a few inputs alone does not prove equivalence; inspect the exported behavior and its callers.
+
+Counterexamples use the mutation owner's function name, so source comments can move lines without changing which exported behavior is tested. Unknown owners and invalid mutation IDs fail before creating output. A focused correction control is available with `node --test research/code-quality/product/inspect-path.test.mjs`.
