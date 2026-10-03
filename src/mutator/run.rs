@@ -1,4 +1,4 @@
-use super::{
+use crate::mutator::{
     config::{ExecutionConfig, ReusePolicy},
     facts::{MutationPlan, MutationSite, SyntaxValidation},
     result::*,
@@ -304,7 +304,7 @@ impl Prepared {
             os: &'static str,
             architecture: &'static str,
             root: &'a Path,
-            plan_configuration: &'a super::facts::MutationPlanConfig,
+            plan_configuration: &'a crate::mutator::facts::MutationPlanConfig,
             sites: &'a [MutationSite],
             entries: &'a [workspace::Entry],
             root_mode: u32,
@@ -317,8 +317,8 @@ impl Prepared {
             command_digest: &'a str,
             environment_digest: &'a str,
             working_directory: &'a str,
-            limits: &'a super::config::ExecutionLimits,
-            workspace: &'a super::config::WorkspaceConfig,
+            limits: &'a crate::mutator::config::ExecutionLimits,
+            workspace: &'a crate::mutator::config::WorkspaceConfig,
         }
         // Dependency source paths are included only in the hash; no configuration/env values are persisted.
         let identity = Identity {
@@ -493,7 +493,7 @@ impl TaskContext<'_> {
                     line: 1,
                     end_line: 1,
                 },
-                operator: super::facts::MutationOperator::Boolean,
+                operator: crate::mutator::facts::MutationOperator::Boolean,
                 expected: String::new(),
                 replacement: String::new(),
                 context: None,
@@ -556,7 +556,7 @@ impl TaskContext<'_> {
                 .context("mutation source is not UTF-8")?;
                 result.source_context(&source);
                 kind = ExecutionProblemKind::InvalidPlan;
-                let mutated = super::apply_edit(&source, site)
+                let mutated = crate::mutator::apply_edit(&source, site)
                     .map_err(|error| anyhow::anyhow!(error.message))?;
                 let validation = {
                     let _permit = self
@@ -564,7 +564,11 @@ impl TaskContext<'_> {
                         .lock()
                         .map_err(|_| anyhow::anyhow!("mutant validation coordinator failed"))?;
                     guard()?;
-                    super::validate_mutant(&site.location.file, &mutated, self.analysis_limits)?
+                    crate::mutator::validate_mutant(
+                        &site.location.file,
+                        &mutated,
+                        self.analysis_limits,
+                    )?
                 };
                 match validation {
                     SyntaxValidation::Valid => {}
@@ -832,7 +836,8 @@ pub fn run_until(
             );
             return Ok(());
         }
-        let regenerated = super::plan_guarded(Path::new(&plan.root), &plan.configuration, &guard)?;
+        let regenerated =
+            crate::mutator::plan_guarded(Path::new(&plan.root), &plan.configuration, &guard)?;
         guard()?;
         if !regenerated.complete
             || storage::encode(plan, plan.configuration.limits.max_report_bytes as u64)?
@@ -1163,7 +1168,7 @@ pub fn run_until(
 
 #[cfg(test)]
 mod monitor_tests {
-    use super::*;
+    use crate::mutator::run::*;
     use std::cell::Cell;
 
     #[test]
@@ -1182,7 +1187,7 @@ mod monitor_tests {
                 stderr_bytes: 1024,
                 resources: ChildLimits::default(),
             };
-            let mut workspace_limits = super::super::config::ExecutionLimits::default();
+            let mut workspace_limits = crate::mutator::config::ExecutionLimits::default();
             if mode == "resource" {
                 workspace_limits.max_inventory_bytes = 1024;
             }

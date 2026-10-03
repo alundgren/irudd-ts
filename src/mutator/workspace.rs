@@ -1,4 +1,4 @@
-use super::{
+use crate::mutator::{
     config::{ExecutionConfig, ExecutionLimits},
     storage,
 };
@@ -945,7 +945,7 @@ pub(crate) fn disk_usage(
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::mutator::workspace::*;
     fn directory() -> PathBuf {
         storage::create_private_directory(&std::env::temp_dir(), "archguard-workspace-test")
             .unwrap()
@@ -1006,7 +1006,7 @@ mod tests {
         config
             .workspace
             .dependencies
-            .push(super::super::config::DependencyCopy {
+            .push(crate::mutator::config::DependencyCopy {
                 source: outside.clone(),
                 destination: "deps".into(),
             });
@@ -1055,7 +1055,7 @@ mod tests {
 
 #[cfg(test)]
 mod bounded_queue_tests {
-    use super::*;
+    use crate::mutator::workspace::*;
     #[test]
     fn generated_queue_is_bounded_before_push_then_recovers() {
         let root = storage::create_private_directory(&std::env::temp_dir(), "archguard-queue-test")
@@ -1163,7 +1163,7 @@ mod bounded_queue_tests {
         config
             .workspace
             .dependencies
-            .push(super::super::config::DependencyCopy {
+            .push(crate::mutator::config::DependencyCopy {
                 source: dependency.clone(),
                 destination: "node_modules".into(),
             });

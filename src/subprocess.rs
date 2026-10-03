@@ -139,7 +139,7 @@ pub(crate) fn run_command(
 
 #[cfg(any(target_os = "linux", target_os = "macos"))]
 mod unix {
-    use super::*;
+    use crate::subprocess::*;
     use nix::{
         errno::Errno,
         fcntl::{FcntlArg, OFlag, fcntl},
@@ -638,7 +638,7 @@ mod unix {
     }
     #[cfg(test)]
     mod ownership_tests {
-        use super::*;
+        use crate::subprocess::unix::*;
 
         #[test]
         fn lost_child_ownership_suppresses_finish_and_drop_signals() {
@@ -674,7 +674,7 @@ mod unix {
 
 #[cfg(all(test, unix))]
 mod tests {
-    use super::*;
+    use crate::subprocess::*;
     use std::{
         fs,
         sync::atomic::{AtomicBool, Ordering},

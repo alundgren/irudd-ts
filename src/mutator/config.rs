@@ -1,4 +1,4 @@
-use super::{facts::MutationPlanConfig, storage};
+use crate::mutator::{facts::MutationPlanConfig, storage};
 use crate::{
     config::Matcher,
     quality::{
@@ -363,7 +363,7 @@ impl ExecutionLimits {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::mutator::config::*;
     #[test]
     fn explicit_commands_defaults_and_resource_corrections() {
         assert!(serde_json::from_str::<ExecutionConfig>("{}").is_err());

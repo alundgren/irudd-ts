@@ -1,4 +1,4 @@
-use super::{
+use crate::mutator::{
     config::{ExecutionLimits, ReusePolicy},
     facts::{MutationOperator, MutationPlan, MutationSite},
     storage,
@@ -660,7 +660,7 @@ impl MutationReport {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::mutator::result::*;
     fn request() -> TestExecutionRequest {
         TestExecutionRequest {
             schema_version: 1,
@@ -794,7 +794,7 @@ mod tests {
 
 #[cfg(test)]
 mod evidence_tests {
-    use super::*;
+    use crate::mutator::result::*;
     #[test]
     fn report_count_and_aggregate_messages_are_reserved_before_retention() {
         let root =
@@ -804,11 +804,11 @@ mod evidence_tests {
             .map(|index| format!("export const flag{index} = true;\n"))
             .collect::<String>();
         std::fs::write(root.join("a.ts"), source).unwrap();
-        let configuration = super::super::facts::MutationPlanConfig {
+        let configuration = crate::mutator::facts::MutationPlanConfig {
             operators: vec![MutationOperator::Boolean],
             ..Default::default()
         };
-        let plan = super::super::plan(&root, &configuration).unwrap();
+        let plan = crate::mutator::plan(&root, &configuration).unwrap();
         assert!(plan.complete);
         assert_eq!(plan.sites.len(), 50);
         let limits = ExecutionLimits {

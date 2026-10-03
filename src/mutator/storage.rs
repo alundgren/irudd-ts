@@ -150,7 +150,7 @@ pub(crate) fn create_private_directory(parent: &Path, prefix: &str) -> Result<Pa
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::mutator::storage::*;
     #[test]
     fn bounded_regular_io_and_atomic_replacement() {
         let directory =

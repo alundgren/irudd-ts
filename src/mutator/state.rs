@@ -1,4 +1,4 @@
-use super::{
+use crate::mutator::{
     config::{ReusePolicy, StateConfig},
     facts::MutationSite,
     result::{MutationOutcome, MutationResult, TestExecutionRequest, TestExecutionResult},
@@ -352,12 +352,12 @@ impl RunState {
 
 #[cfg(test)]
 mod tests {
-    use super::super::{
+    use crate::mutator::state::*;
+    use crate::mutator::{
         facts::MutationOperator,
         result::{ExecutionPhase, TestCompletionReason, TestCounts},
         storage,
     };
-    use super::*;
     use crate::quality::SourceLocation;
     fn site() -> MutationSite {
         let mut site = MutationSite {
@@ -480,7 +480,7 @@ mod tests {
 
 #[cfg(test)]
 mod publication_tests {
-    use super::*;
+    use crate::mutator::state::*;
     #[test]
     fn failed_directory_sync_after_active_publication_still_allows_confirmed_cleanup() {
         let root =
