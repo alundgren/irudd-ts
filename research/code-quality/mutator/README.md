@@ -60,3 +60,5 @@ Reproduce the focused reliability controls in a new ignored directory:
 ```bash
 /tmp/mutation-research/venv/bin/python research/code-quality/mutator/classifier_controls.py --t3 /tmp/mutation-research/t3code --output research/local/mutation-classifier-controls
 ```
+
+After deliberately retaining evidence, use `python3 research/code-quality/mutator/refresh_manifest.py --check-tracked` to regenerate its manifest. Stage retained files first so the command can reject files missing from the Git index. The generator excludes `__pycache__`, `.pyc` and `.pyo` artifacts and leaves raw JSON bytes unchanged. Verify the documented `sha256sum` command in a clean staged export before committing metadata updates.
