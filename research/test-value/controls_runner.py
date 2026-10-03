@@ -2,6 +2,7 @@
 """Real runner failure controls. All inputs and outputs are owned copies."""
 
 import argparse
+import errno
 import hashlib
 import json
 import os
@@ -180,9 +181,157 @@ def ownership_controls(output):
                "delayed-observation-reserves-leader", "unknown-observation-signals-suppressed"]})
 
 
+def settling_controls(output):
+    """Darwin signal denial must settle with positive evidence or stay incomplete."""
+    require(sys.platform == "darwin", "Darwin settling controls require macOS")
+    directory = output / "ownership-settling"
+    directory.mkdir()
+    records = []
+    denied = PermissionError(errno.EPERM, "Injected Darwin signal denial")
+
+    process = subprocess.Popen(["/bin/sh", "-c", "sleep 0.2; exit 7"], start_new_session=True)
+    child = OwnedChild(process)
+    try:
+        with patch("os.killpg", side_effect=denied) as signaling:
+            code, residual = child.finish(grace=1)
+            require(code == 7 and residual and signaling.call_count == 1,
+                    "Initially live denied group must settle without another numeric signal")
+    finally:
+        if process.returncode is None:
+            # The before-fix regression also leaves its reservation intact.
+            deadline = time.monotonic() + 2
+            while os.waitid(os.P_PID, process.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT) is None:
+                require(time.monotonic() < deadline, "Short-lived control must exit naturally")
+                time.sleep(0.01)
+            require(not group_has_live_members(process.pid), "Control group must be empty before reaping")
+            OwnedChild(process).finish()
+    records.append({"control": "delayed-darwin-denial-settles", "passed": True})
+
+    template = fixture(directory / "template", {"case.py": 'import time;time.sleep(0.3)\n'})
+    original_finish = OwnedChild.finish
+    captured = []
+
+    def short_finish(child, observe=group_has_live_members, grace=5):
+        captured.append(child.process)
+        return original_finish(child, observe=observe, grace=0.04)
+
+    with patch("os.killpg", side_effect=denied) as signaling:
+        timed = execute_case(template, directory / "settled-timeout", [sys.executable, "case.py"], timeout=0.03,
+                             baseline=[{"id": "explicit-timeout-control"}])
+    require(timed["status"] == "timeout" and timed["cleanupComplete"] is True and not timed["complete"] and
+            timed["outcomes"] == {"explicit-timeout-control": "unknown"} and signaling.call_count == 1,
+            "Settled timeout cleanup must preserve timeout classification and unknown cells")
+    records.append({"control": "settled-timeout-remains-unknown", "passed": True, "evidence": "settled-timeout/execution.json"})
+
+    (template / "case.py").write_text('import time;time.sleep(30)\n')
+    try:
+        with patch("os.killpg", side_effect=denied) as signaling, patch.object(OwnedChild, "finish", short_finish):
+            live = execute_case(template, directory / "live-deadline", [sys.executable, "case.py"], timeout=0.03)
+        require(live["cleanupComplete"] is False and live["cleanupErrors"] and signaling.call_count == 1,
+                "Denied live group must remain incomplete after its bounded deadline")
+        require((directory / "live-deadline/source/case.py").exists(), "Unconfirmed cleanup must retain the source")
+        require(group_has_live_members(captured[-1].pid), "Live deadline negative must retain a real live group")
+    finally:
+        if captured and captured[-1].returncode is None:
+            OwnedChild(captured[-1]).finish()
+    records.append({"control": "live-deadline-retains-source", "passed": True, "evidence": "live-deadline/execution.json"})
+
+    process = subprocess.Popen(["/bin/sh", "-c", "sleep 0.2; exit 0"], start_new_session=True)
+    calls = 0
+
+    def unavailable_after_denial(group):
+        nonlocal calls
+        calls += 1
+        if calls > 1:
+            raise RuntimeError("Injected unavailable inventory after signal denial")
+        return group_has_live_members(group)
+
+    try:
+        with patch("os.killpg", side_effect=denied) as signaling:
+            try:
+                OwnedChild(process).finish(observe=unavailable_after_denial, grace=1)
+            except RuntimeError as error:
+                require("unavailable" in str(error), "Unknown observation must be explicit")
+            else:
+                raise AssertionError("Unavailable observation was accepted after signal denial")
+            require(signaling.call_count == 1 and os.waitid(os.P_PID, process.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT).si_pid == process.pid,
+                    "Unknown observation must suppress signals and retain the exited leader")
+    finally:
+        if process.returncode is None:
+            OwnedChild(process).finish()
+    records.append({"control": "unknown-after-denial-keeps-reservation", "passed": True})
+
+    process = subprocess.Popen(["/bin/sh", "-c", "sleep 0.2; exit 0"], start_new_session=True)
+    original_waitid = os.waitid
+
+    def reap_after_denial(*arguments):
+        status = original_waitid(*arguments)
+        if status is not None and signaling.call_count:
+            require(not group_has_live_members(process.pid), "External reaper control must first prove the group empty")
+            pid, code = os.waitpid(process.pid, 0)
+            require(pid == process.pid, "Control must reap only its own leader")
+            process.returncode = os.waitstatus_to_exitcode(code)
+            raise ChildProcessError(errno.ECHILD, "Injected ownership loss after denial")
+        return status
+
+    try:
+        with patch("os.killpg", side_effect=denied) as signaling, patch("os.waitid", side_effect=reap_after_denial):
+            try:
+                OwnedChild(process).finish(grace=1)
+            except RuntimeError as error:
+                require("ownership" in str(error), "Ownership loss after denial must remain explicit")
+            else:
+                raise AssertionError("Ownership loss after denial was accepted")
+            require(signaling.call_count == 1 and process.returncode == 0, "No numeric signal may follow the external reap")
+    finally:
+        if process.returncode is None:
+            OwnedChild(process).finish()
+    records.append({"control": "ownership-lost-after-denial", "passed": True})
+
+    for name, platform, failure in [("io-error", "darwin", OSError(errno.EIO, "Injected signal I/O error")),
+                                    ("non-darwin-denial", "linux", denied)]:
+        process = subprocess.Popen(["/bin/sh", "-c", "exec sleep 30"], start_new_session=True)
+        try:
+            with patch("os.killpg", side_effect=failure) as signaling, patch.object(execution_runner.sys, "platform", platform):
+                try:
+                    OwnedChild(process).finish(observe=lambda _group: True, grace=0.04)
+                except OSError as error:
+                    require(error.errno == failure.errno, "Unrecoverable signal error must be retained")
+                else:
+                    raise AssertionError("Unrecoverable signal error was accepted")
+                require(signaling.call_count == 1, "Unrecoverable signal error must suppress further signals")
+        finally:
+            if process.returncode is None:
+                OwnedChild(process).finish()
+        records.append({"control": name, "passed": True})
+
+    # signal_group itself must not accept an empty zombie group on another OS.
+    process = subprocess.Popen(["/bin/sh", "-c", "exit 0"], start_new_session=True)
+    child = OwnedChild(process)
+    deadline = time.monotonic() + 2
+    while not child.exited():
+        require(time.monotonic() < deadline, "Direct signal control must exit")
+        time.sleep(0.01)
+    try:
+        with patch("os.killpg", side_effect=denied), patch.object(execution_runner.sys, "platform", "linux"):
+            try:
+                child.signal_group(signal.SIGKILL)
+            except PermissionError as error:
+                require(error.errno == errno.EPERM, "Non-Darwin direct denial must retain EPERM")
+            else:
+                raise AssertionError("Non-Darwin direct denial was accepted")
+    finally:
+        child.finish()
+    records.append({"control": "direct-non-darwin-empty-group-denial", "passed": True})
+    write_json(directory / "controls.json", {"schemaVersion": 1, "controls": records, "timingUse": "validation only"})
+    return records
+
+
 def execute_controls(output, archguard, installed=None, node="node", wrong_node=None, vitest_node=None):
     output.mkdir(parents=True, exist_ok=False)
     ownership_controls(output)
+    if sys.platform == "darwin":
+        settling_controls(output)
     command = [node, "--test", "--test-reporter={nodeReporter}", "case.test.mjs"]
     common = 'import {test,describe} from "node:test";import assert from "node:assert/strict";'
     source = "export const lower=(value:number)=>value < 2;\nexport const upper=(value:number)=>value > 3;\n"
@@ -424,7 +573,16 @@ def main():
     parser.add_argument("--node", default="node")
     parser.add_argument("--vitest-node", help="Explicit Vitest runtime when the native Node event adapter requires another version")
     parser.add_argument("--wrong-node", help="Different actual Node executable for the real reporter runtime rejection control")
+    parser.add_argument("--ownership-only", action="store_true", help="Run only subprocess ownership and Darwin cleanup controls")
     arguments = parser.parse_args()
+    if arguments.ownership_only:
+        output = Path(arguments.output).resolve()
+        output.mkdir(parents=True, exist_ok=False)
+        ownership_controls(output)
+        if sys.platform == "darwin":
+            settling_controls(output)
+        print("Passed subprocess ownership controls")
+        return
     records = execute_controls(Path(arguments.output).resolve(), Path(arguments.archguard).resolve(), arguments.installed, arguments.node,
                                arguments.wrong_node, arguments.vitest_node)
     print(f"Passed {len(records)} controls")
