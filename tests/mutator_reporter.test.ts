@@ -58,7 +58,12 @@ function run(scenario: string): TestExecutionResult {
     if(scenario === "lateRun") rejectRun(new Error("late coverage control")); else resolveRun();
     await Promise.resolve();
     await context.close();
-    process.exitCode = scenario === "failedPublicationTwo" ? 2 : failed || scenario === "retry" || scenario === "overflow" ? 1 : 0;
+    if(scenario === "postRenamePublication") {
+      let opens=0;const originalOpen=fs.openSync;
+      fs.openSync=(...args)=>{if(++opens>1)throw new Error("ENOSPC control");return originalOpen(...args);};
+      fs.rmSync=()=>{throw new Error("cleanup control after rename");};syncBuiltinESMExports();
+    }
+    process.exitCode = scenario === "failedPublicationTwo" || scenario === "postRenamePublication" ? 2 : failed || scenario === "retry" || scenario === "overflow" ? 1 : 0;
   `;
   try {
     const child = spawnSync(process.execPath, ["--input-type=module", "--eval", source], {
@@ -68,7 +73,7 @@ function run(scenario: string): TestExecutionResult {
     assert.equal(child.error, undefined, child.error?.message);
     assert.ok(fs.existsSync(resultPath), child.stderr.toString());
     const result = JSON.parse(fs.readFileSync(resultPath, "utf8")) as TestExecutionResult;
-    if (scenario === "failedPublication" || scenario === "failedPublicationTwo") assert.notEqual(result.exitCode, child.status, "Stale complete evidence must disagree with raw exit");
+    if (scenario === "failedPublication" || scenario === "failedPublicationTwo" || scenario === "postRenamePublication") assert.notEqual(result.exitCode, child.status, "Stale complete evidence must disagree with raw exit");
     else assert.equal(result.exitCode, child.status);
     return result;
   } finally { fs.rmSync(directory, { recursive: true, force: true }); }
@@ -100,6 +105,9 @@ test("assertion plus late run or cleanup failure cannot be assertion-only", () =
   assert.equal(stale.complete, true);
   assert.equal(stale.exitCode, 1);
   assert.equal(run("failedPublicationTwo").exitCode, 2);
+  const postRename = run("postRenamePublication");
+  assert.equal(postRename.complete, true);
+  assert.equal(postRename.exitCode, 2);
   assert.equal(run("assertion").failures.every(error => error.kind === "assertion"), true);
 });
 

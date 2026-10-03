@@ -116,7 +116,7 @@ function readBoundedRegularFile(file: string, limit: number): Buffer {
 export function readMutationRequest(): TestExecutionRequest {
   const assigned = process.env.ARCHGUARD_MUTATION_REQUEST;
   if (!assigned || !path.isAbsolute(assigned)) invalid("ARCHGUARD_MUTATION_REQUEST must name an absolute file");
-  const raw = new TextDecoder("utf-8", { fatal: true }).decode(readBoundedRegularFile(assigned, mutationProtocolLimits.maxRequestBytes));
+  const raw = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(readBoundedRegularFile(assigned, mutationProtocolLimits.maxRequestBytes));
   const request = validateMutationRequest(JSON.parse(raw));
   rejectDuplicateRequestFields(raw);
   if (process.env.ARCHGUARD_MUTATION_RESULT !== request.resultPath) invalid("assigned result path disagrees with request");

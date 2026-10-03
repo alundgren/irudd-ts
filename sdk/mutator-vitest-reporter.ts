@@ -237,7 +237,7 @@ export default class MutationVitestReporter {
         this.publishedExitCode = exitCode;
       } catch {
         // If an earlier complete file remains, its raw status must disagree.
-        process.exitCode = this.publishedExitCode === 2 ? 3 : 2;
+        process.exitCode = [2, 3, 4].find(code => code !== this.publishedExitCode && code !== exitCode)!;
         try { writeSync(2, "Archguard mutation reporter could not write its result\n"); } catch { /* Exit status remains the failure evidence. */ }
       }
     }

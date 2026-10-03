@@ -71,6 +71,8 @@ test("assigned request refuses symlinks, excessive bytes and wrong result path",
     assert.throws(readMutationRequest, /bounded regular/);
     fs.writeFileSync(requestFile, Buffer.from([0xff]));
     assert.throws(readMutationRequest, /encoded data/);
+    fs.writeFileSync(requestFile, Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf]), Buffer.from(JSON.stringify(request))]));
+    assert.throws(readMutationRequest, SyntaxError);
     fs.writeFileSync(requestFile, JSON.stringify(request).replace('"schemaVersion":1', '"schemaVersion":2,"schemaVersion":1'));
     assert.throws(readMutationRequest, /duplicate fields/);
     fs.writeFileSync(requestFile, JSON.stringify(request));
