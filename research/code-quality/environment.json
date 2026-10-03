@@ -1,0 +1,21 @@
+{
+  "purpose": "Shared environment and required release build, not a comparative benchmark",
+  "sourceRevision": "657a5aabb564d9f4f6784a70fa4fe3faef87a613",
+  "upstreamT3Revision": "31a9da179ed0763335f05681c577474aec5d2309",
+  "environment": {
+    "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.43",
+    "node": "v24.21.0",
+    "python": "3.14.4",
+    "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)"
+  },
+  "requiredBuild": {
+    "command": "cargo build --release --locked --bins --examples",
+    "exitCode": 0,
+    "binary": "target/release/archguard",
+    "sha256": "6ebf07d12eb5cd5b33b65e7bad8574772161c80513bc2d8cdede31086056fbc3"
+  },
+  "measurementPolicy": "One workstream at a time; own builds, installs and validation run outside recorded timing windows. Shared host elapsed costs are observations rather than controlled performance claims.",
+  "measurementExceptions": [
+    "The final mutation window included a brief local Python syntax check and text scan. The recorded costs remain observations, not controlled benchmarks."
+  ]
+}
