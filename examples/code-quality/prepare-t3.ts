@@ -38,7 +38,7 @@ for (const name of modules) {
     workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["package.json", "packages/shared/package.json", `packages/shared/src/${name}.ts`, `packages/shared/src/${name}.test.ts`],
       dependencies: [{ source: dependencies, destination: "node_modules" },
         { source: path.join(repository, "sdk"), destination: "sdk" }, { source: support, destination: "quality-support" }] },
-    limits: { workers: 1, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
+    limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
   } };
   fs.writeFileSync(path.join(output, `${name}.json`), JSON.stringify(config, null, 2) + "\n");
   fs.writeFileSync(path.join(output, `${name}-plan.json`), JSON.stringify(plan, null, 2) + "\n");

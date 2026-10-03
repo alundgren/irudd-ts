@@ -29,7 +29,7 @@ const config = { schemaVersion: 1, plan: { schemaVersion: 1, selection: { includ
   workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts"], dependencies: [
     { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
     { source: tests, destination: "quality-tests" }] },
-  limits: { workers: 1, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
+  limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
 } };
 fs.writeFileSync(path.join(output, "mutator.json"), JSON.stringify(config, null, 2) + "\n");
 fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion: 1,
