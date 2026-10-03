@@ -26,7 +26,7 @@ export default defineConfig({ test: { include: ["quality-tests/mutator_sdk.test.
 `);
 const config = { schemaVersion: 1, plan: { schemaVersion: 1, selection: { include: ["sdk/mutator.ts"] } }, execution: {
   command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", "--config", "quality-support/vite.config.ts"],
-  workspace: { include: ["sdk/mutator.ts"], dependencies: [
+  workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts"], dependencies: [
     { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
     { source: tests, destination: "quality-tests" }] },
   limits: { workers: 1, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },

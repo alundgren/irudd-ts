@@ -19,6 +19,12 @@
         "sdk/mutator.ts",
         "examples/code-quality/domain.ts",
         "examples/code-quality/run-domain.ts"
+      ],
+      "exclude": [
+        ".git/**",
+        "**/node_modules/**",
+        "node_modules/**",
+        "target/**"
       ]
     },
     "limits": {

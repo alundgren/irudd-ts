@@ -35,7 +35,7 @@ for (const name of modules) {
   const plan = { schemaVersion: 1, selection: { include: [`packages/shared/src/${name}.ts`] } };
   const config = { schemaVersion: 1, plan, execution: {
     command: [process.execPath, "node_modules/vite-plus/bin/vp", "test", "run", `packages/shared/src/${name}.test.ts`, "--config", "quality-support/vite.config.ts"],
-    workspace: { include: ["package.json", "packages/shared/package.json", `packages/shared/src/${name}.ts`, `packages/shared/src/${name}.test.ts`],
+    workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["package.json", "packages/shared/package.json", `packages/shared/src/${name}.ts`, `packages/shared/src/${name}.test.ts`],
       dependencies: [{ source: dependencies, destination: "node_modules" },
         { source: path.join(repository, "sdk"), destination: "sdk" }, { source: support, destination: "quality-support" }] },
     limits: { workers: 1, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
