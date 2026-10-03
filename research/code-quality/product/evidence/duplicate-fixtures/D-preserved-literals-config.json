@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "D.ts"
+    ]
+  },
+  "similarityThreshold": 0,
+  "normalization": {
+    "literals": "value"
+  }
+}

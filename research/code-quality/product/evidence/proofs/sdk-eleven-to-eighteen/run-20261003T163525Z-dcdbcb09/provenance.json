@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "reportPath": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/self-protocol-strong-r10.json",
+  "reportSha256": "69b30eddd17747cdad34a3e0a7002cc86b53f7c9287efe6513a13b424ae93a95",
+  "originalSdkSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "originalSdkBytes": 11944,
+  "beforeTests": {
+    "head": "64e42d73d30a4875ffd0594b9a83f8dbcee5f1ef",
+    "sha256": "0141364df654c9f135ffad647d32f33039e292b8ce2e598fa6edbbc8dc9c186a",
+    "count": 11
+  },
+  "afterTests": {
+    "head": "5da417247bc3b0f899c2d626d37baee5b4e30cbe",
+    "sha256": "811a15c8268a5752c350d1a50f1beeb9ac881ceb02412da9dc5d0448c2cfa56b",
+    "count": 18
+  },
+  "node": {
+    "launcher": "/home/dev/.local/share/vite-plus/bin/node",
+    "executable": "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "7fde7b8afa198da66257f42ee2001d874c7355631e6d1579a5fb5ef1f246df4c"
+  },
+  "execution": {
+    "serial": true,
+    "childDeadlineSeconds": 15,
+    "outputLimitBytesPerStream": 65536,
+    "ownedCopy": "/tmp/archguard-sdk-public-proof-hym0xk11",
+    "ownedCopyRemoved": true,
+    "fixtureTemporariesConfinedToOwnedCopy": true,
+    "originalSdkUnchanged": true
+  },
+  "boundary": "This is direct Node correctness evidence, not a new complete mutator replay or a timing comparison. Original R10 incompleteness, runtime errors and timeout remain unchanged."
+}

@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-10-03T18:17:22.329Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19",
+  "mutation": {
+    "mutationId": "5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 6089,
+      "end": 6091,
+      "line": 136,
+      "endLine": 136
+    },
+    "operator": "logical",
+    "expected": "||",
+    "replacement": "&&",
+    "context": {
+      "before": "    if (this.runEnded || modules.length > MAX_EVENTS ",
+      "after": " errors.length > MAX_EVENTS) { this.supported = false; return; }",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "survived",
+    "reused": false,
+    "tests": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "exitCode": 0,
+    "elapsedMs": 64880.38003200001,
+    "message": null
+  },
+  "variant": "final",
+  "namePattern": "a second reporter",
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "5c6f811817a6e60351f9ffb8176617c6434a03bf2b0a2ec783f82e5f8e52cd9b",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "5cd6a8035cc33a5d4c3b4713880b12242a80ce299bfb445890e7fd2f4b90cec0",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-name-pattern=a second reporter",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "✔ a second reporter is rejected and repeated test runs stay incomplete (1429.831257ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1823.574636\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

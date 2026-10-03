@@ -1,0 +1,10 @@
+{
+  "original": "t3-delimitedPreview-strengthened-resumed-r12.json",
+  "rerun": "t3-delimitedPreview-unchanged-reuse-r12.json",
+  "sameDeclaredInputDigest": "54058c430b411e06bffe10fddab1f44b9d3fada971066883f2cdf7a25d9eda16",
+  "freshBaselineTests": 13,
+  "completeKilledResultsReused": 50,
+  "timeoutsRerun": 2,
+  "stillComplete": false,
+  "interpretation": "Real unchanged T3 profile reruns baseline and reuses complete cleanup-confirmed outcomes. Timeouts are not cached or counted as kills. This validates reuse behavior, not lower runtime; ordinary runs were concurrent."
+}

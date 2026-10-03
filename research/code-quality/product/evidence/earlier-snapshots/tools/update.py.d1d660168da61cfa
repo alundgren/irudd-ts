@@ -1,0 +1,331 @@
+#!/usr/bin/env python3
+"""Retain bounded experiment evidence. Reads only named experiment directories."""
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import runpy
+import subprocess
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--raw-root", type=Path, default=Path("/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product"))
+parser.add_argument("--repository", type=Path, default=Path("/tmp/archguard-quality-product-cli-reviewed-worktree"))
+parser.add_argument("--include-log", type=Path, action="append", default=[])
+parser.add_argument("--include-proof", type=Path, action="append", default=[])
+args = parser.parse_args()
+archive = args.repository / "research/code-quality/product/evidence"
+archive.mkdir(parents=True, exist_ok=True)
+stamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
+previous = json.loads((archive / "manifest.json").read_text()) if (archive / "manifest.json").exists() else {}
+metadata = {row["path"]: row for row in previous.get("files", [])}
+excluded = []
+extensions = {".json", ".ts", ".tsx", ".md", ".txt", ".tsv", ".stdout", ".stderr", ".html", ".log", ".mjs", ".py", ".patch"}
+pruned = {"node_modules", "target", "state", ".state", ".git", ".quality", "runtime", "workspaces", "mutator-workspaces"}
+maximum_file = 8 * 1024 * 1024
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def write_json(path, data):
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=True) + "\n")
+
+
+def retain_bytes(data, target, source, category):
+    if len(data) > maximum_file or b"\0" in data:
+        excluded.append({"source": source, "reason": "non-text or over 8 MiB per-file bound"})
+        return
+    data.decode("utf-8")
+    destination = archive / target
+    if destination.exists() and destination.read_bytes() != data:
+        old_data = destination.read_bytes()
+        historical = Path("earlier-snapshots") / target.parent / (target.name + "." + sha(old_data)[:16])
+        old_destination = archive / historical
+        old_destination.parent.mkdir(parents=True, exist_ok=True)
+        old_destination.write_bytes(old_data)
+        old_destination.chmod(0o644)
+        old_metadata = metadata.get(target.as_posix(), {})
+        metadata[historical.as_posix()] = {**old_metadata, "path": historical.as_posix(),
+                                         "category": "earlierSnapshot", "source": source,
+                                         "status": "earlier exact byte snapshot; replaced in current archive view"}
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(data)
+    destination.chmod(0o644)
+    old = metadata.get(target.as_posix(), {})
+    metadata[target.as_posix()] = {"path": target.as_posix(), "source": source,
+        "category": category, "capturedAt": old.get("capturedAt", stamp) if old.get("sha256") == sha(data) else stamp,
+        "status": "exact byte snapshot; completion requires the report and provenance"}
+
+
+def retain(path, target, category):
+    if path.is_symlink() or not path.is_file():
+        excluded.append({"source": str(path), "reason": "missing, symlink or non-regular file"})
+        return
+    before = path.stat()
+    data = path.read_bytes()
+    after = path.stat()
+    if (before.st_size, before.st_mtime_ns) != (after.st_size, after.st_mtime_ns):
+        raise RuntimeError("source changed during capture: " + str(path))
+    retain_bytes(data, target, str(path), category)
+
+
+def retain_tree(source, target, category):
+    if not source.is_dir():
+        excluded.append({"source": str(source), "reason": "named evidence directory unavailable"})
+        return
+    for directory, children, names in os.walk(source, followlinks=False):
+        for child in list(children):
+            candidate = Path(directory) / child
+            if child in pruned or child.startswith(("owned-test-", "owned-probe-", "archguard-mutator-", "task-")) or candidate.is_symlink():
+                children.remove(child)
+                excluded.append({"source": str(candidate), "reason": "runtime state, dependency tree or link"})
+        for name in sorted(names):
+            path = Path(directory) / name
+            if source.name == "new-sdk-public-control-proofs" and name == "driver.py" and Path(directory) != source:
+                excluded.append({"source": str(path), "reason": "repeated SDK driver source; one root driver retained"})
+                continue
+            if path.suffix not in extensions and name not in {"LICENSE", "NOTICE", "COPYING", "LATEST.txt"}:
+                excluded.append({"source": str(path), "reason": "executable driver or unrelated file type"})
+                continue
+            retain(path, target / path.relative_to(source), category)
+
+
+for path in sorted(args.raw_root.iterdir()):
+    if path.is_file():
+        if path.name.startswith("report-draft"):
+            excluded.append({"source": str(path), "reason": "unfinished presentation draft; excluded from completion evidence"})
+            previous_draft = metadata.get("raw/" + path.name)
+            if previous_draft:
+                previous_draft["category"] = "workInProgress"
+                previous_draft["status"] = "earlier draft snapshot only; no completion claim"
+        elif path.name in {"disk-cache-cleanup.json", "manual-control-dependency-release.json"}:
+            excluded.append({"source": str(path), "reason": "installation/cache administration, not a retained outcome"})
+        elif path.suffix in extensions:
+            retain(path, Path("raw") / path.name, "raw")
+retain_tree(args.raw_root / "new-sdk-public-control-proofs", Path("proofs/sdk-eleven-to-eighteen"), "sdkProof")
+
+trees = {
+    "archguard-quality-product-dryer-cases-final": ("duplicate-fixtures", "duplicateFixtures"),
+    "archguard-quality-product-path-counterexamples": ("proofs/path-initial", "pathProof"),
+    "archguard-quality-product-path-counterexamples-final": ("proofs/path-final", "pathProof"),
+    "archguard-quality-product-self-counterexamples": ("proofs/sdk-seven-tests", "sdkProof"),
+    "archguard-quality-product-self-counterexamples-own-data": ("proofs/sdk-own-data", "sdkProof"),
+    "archguard-quality-product-host-boundary-selection-review": ("proofs/host-selected-boundaries", "hostProof"),
+    "archguard-quality-product-host-survivor-review": ("proofs/host-survivors", "hostProof"),
+    "archguard-quality-product-reporter-survivor-review": ("proofs/reporter-survivors", "reporterProof"),
+    "archguard-quality-product-self-profiles-final18": ("profiles/self-eighteen-tests", "configuration"),
+    "archguard-quality-product-self-profiles-strong": ("profiles/self-eleven-tests", "configuration"),
+    "archguard-quality-product-self-profiles-corrected": ("profiles/self-seven-tests", "configuration"),
+    "archguard-quality-product-self-profiles-final": ("profiles/self-initial-manifest", "configuration"),
+    "archguard-quality-product-domain-profiles-final": ("profiles/domain-final", "configuration"),
+    "archguard-quality-product-domain-profiles-coordinator-final": ("profiles/domain-coordinator-final", "configuration"),
+    "archguard-quality-product-dryer-cases-coordinator-final": ("duplicate-fixtures-coordinator-final", "duplicateFixtures"),
+    "archguard-quality-product-t3-profiles-final": ("profiles/t3-final", "configuration"),
+    "archguard-quality-product-t3-profiles-r10": ("profiles/t3-r10", "configuration"),
+    "archguard-quality-product-t3-profiles-r12": ("profiles/t3-r12", "configuration"),
+    "archguard-quality-product-t3-profiles-git-strong-v2": ("profiles/git-strong-v2", "configuration"),
+}
+for name, (target, category) in trees.items():
+    retain_tree(Path("/tmp") / name, Path(target), category)
+
+logs = ["archguard-quality-product-execution-pressure-final.log",
+        "archguard-quality-product-execution-delivery-check.log",
+        "archguard-quality-syntax-r8-four-red.log",
+        "archguard-quality-syntax-r8-six-green.log",
+        "archguard-quality-syntax-threshold-red.log",
+        "archguard-quality-syntax-threshold-green.log",
+        "archguard-quality-sdk-own-data-control.log",
+        "archguard-quality-sdk-check.log",
+        "archguard-quality-product-cli-sdk-public-boundaries.log",
+        "archguard-quality-product-cli-reviewed-required-check.log",
+        "archguard-quality-product-final-node31.log",
+        "archguard-quality-product-final-types.log",
+        "archguard-quality-product-final-macos-all-targets.log",
+        "archguard-quality-product-cli-reviewed-required-check-resumed.log",
+        "archguard-quality-product-cleanup-grace-controls.log",
+        "archguard-quality-product-cleanup-final-required-check.log"]
+for path in [*(Path("/tmp") / name for name in logs), *args.include_log]:
+    retain(path, Path("logs") / path.name, "validationLog")
+for path in args.include_proof:
+    retain(path, Path("validation") / path.name, "validationProof")
+for name in ["archguard-quality-product-t3-classification-review.md"]:
+    retain(Path("/tmp") / name, Path("reviews") / name, "review")
+
+frozen = Path("/tmp/archguard-quality-product-t3code")
+t3_names = ["LICENSE", "package.json", "pnpm-lock.yaml", "pnpm-workspace.yaml", "packages/shared/src/path.ts",
+    "packages/shared/src/path.test.ts", "packages/shared/src/delimitedPreview.ts",
+    "packages/shared/src/delimitedPreview.test.ts", "packages/shared/src/gitPatchPath.ts",
+    "packages/shared/src/gitPatchPath.test.ts", "packages/shared/src/hostClassification.ts",
+    "packages/shared/src/hostClassification.test.ts", "apps/web/src/browser/browserTargetResolver.test.ts",
+    "apps/mobile/src/native/T3ComposerEditor.tsx",
+    "apps/mobile/src/native/T3ComposerEditor.ios.tsx", "apps/mobile/src/native/T3ComposerEditor.native.tsx"]
+for name in t3_names:
+    retain(frozen / name, Path("sources/frozen-t3") / name, "sourceProof")
+retain_tree(frozen / "patches", Path("sources/frozen-t3/patches"), "sourceProof")
+retain(Path("/tmp/archguard-quality-product-dependencies.json"), Path("reproduction/dependencies.json"), "configuration")
+retain(Path("/tmp/archguard-quality-product-t3-install.log"), Path("reproduction/t3-install.log"), "validationLog")
+product = Path("/tmp/archguard-quality-product-cli-worktree")
+for name in ["LICENSE", "sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts",
+    "examples/code-quality/domain.ts", "examples/code-quality/run-domain.ts", "examples/code-quality/clones.ts"]:
+    retain(product / name, Path("sources/product-replay") / name, "sourceProof")
+for letter in "ABCDEF":
+    name = "research/code-quality/dryer/fixtures/" + letter + ".ts"
+    retain(product / name, Path("sources/duplicate-fixtures") / (letter + ".ts"), "sourceProof")
+retain(product / "LICENSE", Path("sources/duplicate-fixtures/LICENSE"), "sourceProof")
+for relative in ["examples/code-quality/domain.ts", "examples/code-quality/run-domain.ts", "LICENSE"]:
+    revision = "fea603d2b178a5f498b54db9d800147007299bc8"
+    result = subprocess.run(["git", "show", revision + ":" + relative], cwd=args.repository,
+                            capture_output=True, timeout=10)
+    if result.returncode == 0:
+        retain_bytes(result.stdout, Path("sources/domain-initial") / relative,
+                     "git:" + revision + ":" + relative, "sourceProof")
+    else:
+        excluded.append({"source": "git:" + revision + ":" + relative, "reason": "source revision unavailable"})
+retain(args.repository / "LICENSE", Path("profiles/LICENSE.archguard"), "sourceProof")
+retain(frozen / "LICENSE", Path("profiles/LICENSE.t3code"), "sourceProof")
+retain(args.repository / "LICENSE", Path("proofs/sdk-eleven-to-eighteen/LICENSE"), "sourceProof")
+retain(args.repository / "LICENSE", Path("proofs/reporter-survivors/LICENSE"), "sourceProof")
+for name in ["tests/mutator_sdk.test.ts", "tests/mutator_reporter.test.ts", "tests/quality_examples.test.ts"]:
+    retain(args.repository / name, Path("sources/delivery-tests") / name, "sourceProof")
+retain(args.repository / "LICENSE", Path("sources/delivery-tests/LICENSE"), "sourceProof")
+recovery_index = archive / "recovery/git-cleanup/index.json"
+recovery = json.loads(recovery_index.read_bytes())["tasks"] if recovery_index.is_file() else []
+for label, report_name, state in [
+    ("r12", "t3-gitPatchPath-strengthened-r12.json", Path("/tmp/archguard-quality-product-t3-profiles-r12/state/gitPatchPath-strengthened")),
+    ("confirmation", "t3-gitPatchPath-cleanup-confirmation.json", Path("/tmp/archguard-quality-product-t3-git-cleanup-confirmation-state"))]:
+    journal = state / "active.json"
+    if not journal.is_file():
+        excluded.append({"source": str(journal), "reason": "requested failed-Git journal unavailable"})
+        continue
+    journal_data = json.loads(journal.read_bytes())
+    workspace = Path(journal_data["workspace"])
+    require_directory = workspace.parent == state and workspace.name.startswith("archguard-mutator-")
+    if not require_directory:
+        raise RuntimeError("failed-Git journal workspace was outside named state directory")
+    target = Path("recovery/git-cleanup") / label
+    retain(journal, target / "active.json", "recovery")
+    retain(frozen / "LICENSE", target / "LICENSE", "sourceProof")
+    retain(workspace / "template/packages/shared/src/gitPatchPath.ts", target / "original-gitPatchPath.ts", "recovery")
+    provenance_path = args.raw_root / report_name.replace(".json", "-provenance.json")
+    if provenance_path.is_file():
+        provenance = json.loads(provenance_path.read_bytes())
+        config_path = Path(provenance["command"][provenance["command"].index("--config") + 1])
+        retain(config_path, target / "configuration.json", "recovery")
+    for task in sorted(workspace.glob("task-*")):
+        if not task.is_dir() or task.is_symlink():
+            continue
+        request = task / "request.json"
+        source = task / "workspace/packages/shared/src/gitPatchPath.ts"
+        retain(request, target / task.name / "request.json", "recovery")
+        retain(source, target / task.name / "gitPatchPath.ts", "recovery")
+        recovery.append({"label": label, "report": "raw/" + report_name,
+            "runId": journal_data["runId"], "originalWorkspace": str(workspace), "originalTask": str(task),
+            "sourceSha256": sha(source.read_bytes()) if source.is_file() else None,
+            "requestSha256": sha(request.read_bytes()) if request.is_file() else None,
+            "excluded": ["node_modules", "temporary home", "temporary tmp", "compiled caches", "entire runtime workspace", "state record store"],
+            "meaning": "Minimal forensic text only; old process ownership and a usable execution workspace cannot be recreated from this snapshot."})
+recovery = {row["originalTask"]: row for row in recovery}
+write_json(recovery_index, {"schemaVersion": 1, "capturedAt": stamp, "tasks": [recovery[key] for key in sorted(recovery)]})
+revision = "e2f3d3740253578d5d66e9bb847c4f8d8f19975a"
+source_names = subprocess.run(["git", "ls-tree", "-r", "--name-only", revision, "src", "sdk", "tests", "scripts", "research/code-quality/product", "examples/code-quality"], cwd=args.repository,
+                              capture_output=True, text=True, timeout=10)
+inventory = []
+if source_names.returncode == 0:
+    for relative in source_names.stdout.splitlines():
+        result = subprocess.run(["git", "show", revision + ":" + relative], cwd=args.repository, capture_output=True, timeout=10)
+        if result.returncode == 0:
+            inventory.append({"path": relative, "bytes": len(result.stdout), "sha256": sha(result.stdout)})
+    for relative in ["src/subprocess.rs", "tests/mutator_reporter.test.ts", "LICENSE"]:
+        result = subprocess.run(["git", "show", revision + ":" + relative], cwd=args.repository, capture_output=True, timeout=10)
+        if result.returncode == 0:
+            retain_bytes(result.stdout, Path("sources/cleanup-e2f3d37") / relative, "git:" + revision + ":" + relative, "sourceProof")
+write_json(archive / "sources/cleanup-e2f3d37/inventory.json", {"schemaVersion": 1, "revision": revision, "files": inventory,
+    "meaning": "Committed product, SDK, test and reproduction-tool text at the cleanup correction revision. This inventory does not claim the earlier executable included that correction."})
+retain(Path(__file__), Path("tools/update.py"), "archiveTool")
+heads = {}
+for label, directory in [("frozenT3", frozen), ("productSourceCopies", product), ("archiveAssemblyRepository", args.repository)]:
+    result = subprocess.run(["git", "rev-parse", "HEAD"], cwd=directory, capture_output=True, timeout=10)
+    heads[label] = result.stdout.decode().strip() if result.returncode == 0 else None
+write_json(archive / "capture-context.json", {"schemaVersion": 1, "capturedAt": stamp,
+    "heads": heads, "meaning": "Current source-copy and assembly locations only. Run executable/source revisions remain in original per-run provenance. No later-build, validation or approval claim."})
+
+verify = runpy.run_path(str(archive / "verify.py"))
+claims = []
+source_checks = []
+report_claim = verify["report_claim"]
+for name, meta in sorted(metadata.items()):
+    if meta["category"] not in ("raw", "duplicateFixtures"):
+        continue
+    path = archive / name
+    if path.suffix not in (".json", ".stdout"):
+        continue
+    try:
+        data = json.loads(path.read_bytes())
+    except (ValueError, UnicodeDecodeError):
+        continue
+    if not isinstance(data, dict) or "complete" not in data:
+        continue
+    claim = report_claim(name, data)
+    if claim:
+        claims.append(claim)
+        for item in data["selection"]["selected"]:
+            candidates = [Path("sources/frozen-t3") / item["path"],
+                          Path("sources/product-replay") / item["path"],
+                          Path("sources/domain-initial") / item["path"],
+                          Path("sources/duplicate-fixtures") / item["path"]]
+            for candidate in candidates:
+                if (archive / candidate).is_file() and sha((archive / candidate).read_bytes()) == item["sha256"]:
+                    source_checks.append({"report": name, "selectedPath": item["path"],
+                                          "archivedSource": candidate.as_posix(), "expectedSha256": item["sha256"]})
+                    break
+write_json(archive / "report-summary.json", {"schemaVersion": 1,
+    "meaning": "Counts and completeness copied from retained reports, then checked against retained result records. All attempted sites do not imply complete analysis.",
+    "reports": claims, "sourceChecks": source_checks})
+
+lines = ["# Retained run index", "", "This index reflects report bytes. Runtime errors, timeouts and cancellation remain incomplete evidence. The source revisions and executable identities live in the adjacent provenance files.", "",
+    "| Report | Complete | Baseline passing tests | Planned | Executed | Reused | Killed | Survived | Runtime errors | Timeouts | Cancelled | Not run |", "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
+for claim in claims:
+    if claim["kind"] != "mutationRun":
+        continue
+    s = claim["summary"]
+    baseline = claim["baseline"]
+    columns = [f"[{Path(claim['path']).name}]({claim['path']})", str(claim["complete"]).lower(),
+               str((baseline.get("tests") or {}).get("passed", baseline["outcome"]))]
+    columns += [str(s.get(field, 0)) for field in ["planned", "executed", "reused", "killed", "survived", "executionErrors", "timedOut", "cancelled", "notRun"]]
+    lines.append("| " + " | ".join(columns) + " |")
+(archive / "run-index.md").write_text("\n".join(lines) + "\n")
+write_json(archive / "exclusions.json", {"schemaVersion": 1, "recordedAt": stamp,
+    "policy": "Retain bounded experiment reports, selected source/test proof text, explicit configuration and notices. No installed dependencies, executable binaries, process state or private execution workspaces.",
+    "globalExclusions": ["All node_modules and dependency installations", "All target and compiled executable files",
+        "State/.state records and active journals except explicitly requested minimal failed-Git forensic text", "Private execution workspaces and runtime temporary files except those selected forensic request/source copies",
+        "Repeated SDK driver.py source copies; one root driver, commands and provenance are retained",
+        "Unrelated historical comparison archive, which remains untouched",
+        "Most intermediate build/check logs; selected relevant failure/correction and pressure logs are retained"],
+    "namedExclusions": excluded})
+relocations = [{"original": row["source"], "archived": name} for name, row in sorted(metadata.items()) if "source" in row]
+write_json(archive / "relocations.json", {"schemaVersion": 1,
+    "meaning": "Original paths remain literal in raw evidence. This map locates their archived copies; it does not rewrite commands or reconstruct excluded installations.",
+    "files": relocations})
+
+entries = []
+for path in sorted(archive.rglob("*")):
+    if not path.is_file() or path.name in {"manifest.json", "SHA256SUMS"}:
+        continue
+    name = path.relative_to(archive).as_posix()
+    data = path.read_bytes()
+    meta = metadata.get(name, {"path": name, "category": "archiveMetadata", "status": "authored archive documentation or derived inventory"})
+    entries.append({**meta, "bytes": len(data), "sha256": sha(data)})
+if sum(row["bytes"] for row in entries) > 32 * 1024 * 1024:
+    raise RuntimeError("archive exceeded 32 MiB total bound")
+write_json(archive / "manifest.json", {"schemaVersion": 1, "capturedAt": stamp,
+    "archivePurpose": "Product correctness and review evidence; no benchmark, full-repository coverage or final validation approval implied",
+    "inventoryExclusions": ["manifest.json is covered by SHA256SUMS", "SHA256SUMS cannot include its own checksum"],
+    "files": entries})
+all_files = sorted(path for path in archive.rglob("*") if path.is_file() and path.name != "SHA256SUMS")
+(archive / "SHA256SUMS").write_text("".join(sha(path.read_bytes()) + "  " + path.relative_to(archive).as_posix() + "\n" for path in all_files))
+verify["verify"](archive)
+print("Archive:", archive)
+print("Retained bytes:", sum(row["bytes"] for row in entries))

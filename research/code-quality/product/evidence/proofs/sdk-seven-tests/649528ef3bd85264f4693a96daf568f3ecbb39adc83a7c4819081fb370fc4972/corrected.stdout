@@ -1,0 +1,40 @@
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (16.405362ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (1.720239ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (5.570571ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (1.324942ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (9.950471ms)
+✔ shared wire ceilings accept their boundary and reject one extra byte or failure (8.987044ms)
+✔ failure accessors, custom iteration and proxy traps are rejected without invoking code (1.369996ms)
+✔ null-prototype protocol records are accepted and custom prototypes remain rejected (1.090535ms)
+✔ proxy failure arrays cannot execute prototype traps during validation (0.714353ms)
+✖ task and failed-test identities reject empty or NUL data while empty messages remain valid (1.591119ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 246.384676
+
+✖ failing tests:
+
+test at tests/corrected.test.ts:169:1
+✖ task and failed-test identities reject empty or NUL data while empty messages remain valid (1.591119ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///tmp/archguard-quality-product-self-counterexamples/649528ef3bd85264f4693a96daf568f3ecbb39adc83a7c4819081fb370fc4972/tests/corrected.test.ts:173:14
+      at withDirectory (file:///tmp/archguard-quality-product-self-counterexamples/649528ef3bd85264f4693a96daf568f3ecbb39adc83a7c4819081fb370fc4972/tests/corrected.test.ts:27:9)
+      at TestContext.<anonymous> (file:///tmp/archguard-quality-product-self-counterexamples/649528ef3bd85264f4693a96daf568f3ecbb39adc83a7c4819081fb370fc4972/tests/corrected.test.ts:169:106)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /bounded well-formed string/,
+    operator: 'throws',
+    diff: 'simple'
+  }

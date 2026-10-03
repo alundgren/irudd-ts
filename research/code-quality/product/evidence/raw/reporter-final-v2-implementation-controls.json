@@ -1,0 +1,13 @@
+{
+  "productionReporterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "testSha256": "5cd6a8035cc33a5d4c3b4713880b12242a80ce299bfb445890e7fd2f4b90cec0",
+  "testProposal": "mutator_reporter.final-v2.test.ts",
+  "prototypeBaselineTests": 5,
+  "strengthenedTests": 10,
+  "scope": "Test-only public diagnostic/lifecycle controls; unchanged production SDK. Full154-site mutation run uses the frozen original5-test adaptation and remains a separate experiment.",
+  "strictTypeScript": {
+    "exitCode": 0,
+    "command": "providers/typescript7/node_modules/.bin/tsc --noEmit --strict --target es2024 --module preserve --moduleResolution bundler --allowImportingTsExtensions --types node --typeRoots /tmp/archguard-quality-product-dependencies/.pnpm/@types+node@24.12.4/node_modules/@types sdk/*.ts examples/code-quality/*.ts tests/mutator_sdk.test.ts tests/mutator_reporter.test.ts tests/quality_examples.test.ts",
+    "preflightCorrection": "Initial invocation assumed tsgo and a top-level @types directory. It exited127 before checking any TypeScript source. Corrected invocation uses the actual pinnedtypescript7.0.2 tsc entry and pnpm Node24 declaration path."
+  }
+}

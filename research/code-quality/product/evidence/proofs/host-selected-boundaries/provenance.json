@@ -1,0 +1,22 @@
+{
+  "frozenT3Revision": "31a9da179ed0763335f05681c577474aec5d2309",
+  "source": "/tmp/archguard-quality-product-t3code/packages/shared/src/hostClassification.ts",
+  "sourceSha256": "07576a1ed02ccbd1b3b84d82bbb95d663959edaaf87f470324a5d361fd89e66a",
+  "originalTest": "/tmp/archguard-quality-product-t3code/apps/web/src/browser/browserTargetResolver.test.ts",
+  "originalTestSha256": "82a509a10d7baa36bb2784da19afdfc87e70b3289cf8286bded3f0e8170a9d8a",
+  "assertionBlocks": [
+    {
+      "name": "classifies exact private IPv4 and IPv6 boundaries",
+      "firstLine": 220,
+      "lastLine": 275
+    },
+    {
+      "name": "allows only globally routable hosts to reach a public favicon provider",
+      "firstLine": 276,
+      "lastLine": 348
+    }
+  ],
+  "adaptation": "Two existing assertion blocks copied unchanged. Added Vitest registration/assertion import; changed both dynamic import targets from browserTargetResolver to the shared hostClassification module. No runtime, build or mutation replay performed. Original files unchanged. Profile retains the original shared tests and adds these two blocks; one worker, at most 238 mutations, reuse disabled.",
+  "adaptedTestSha256": "ca59fb9192b671fcb810f5b82cda62cdb7a5d672f7b98cc7feef736c839997ff",
+  "licenseSha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+}

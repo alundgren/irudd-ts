@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-10-03T18:27:48.844Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "e0566803ff9f8d836d7e0e79e5d97d5bd0ac4b4bc8d4262f6ef1436b8ea45c47",
+  "mutation": {
+    "mutationId": "e0566803ff9f8d836d7e0e79e5d97d5bd0ac4b4bc8d4262f6ef1436b8ea45c47",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 4070,
+      "end": 4072,
+      "line": 94,
+      "endLine": 94
+    },
+    "operator": "logical",
+    "expected": "||",
+    "replacement": "&&",
+    "context": {
+      "before": "    if (!context || typeof context.close !== \"function\" || typeof context.waitForTestRunEnd !== \"function\" || typeof context.state?.getUnhandledErrors !== \"function\" ",
+      "after": " typeof context.logger?.error !== \"function\") {",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "timedOut",
+    "reused": false,
+    "tests": null,
+    "exitCode": null,
+    "elapsedMs": 80497.04224600001,
+    "message": "[redacted] command deadline reached during workspace monitoring"
+  },
+  "variant": "original",
+  "namePattern": null,
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "a8b227574f340704bde2556cb840e25f057563154d3f1e0bd5dc150025f56290",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "d306d79ea0cd3127dbde7b9290298036f6811ad04558a0882fcef85a693be725",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "✔ assertion failures retain IDs and passing controls finish cleanly (766.961888ms)\n✔ assertion plus late run or cleanup failure cannot be assertion-only (3205.901639ms)\n✔ runtime, import, suite, hook and unhandled failures remain distinct (3210.179266ms)\n✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (3961.785238ms)\n✔ retained retry errors and oversized runner metadata fail conservatively (1408.331954ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 13015.455424\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

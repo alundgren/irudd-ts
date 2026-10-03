@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-10-03T18:12:22.917Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "baseline",
+  "mutation": null,
+  "variant": "proposed",
+  "namePattern": null,
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "204447c7639f086e66c25904d2ab8042c7bd79e4a3be76313b9e6f37773f477c",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "✔ assertion failures retain IDs and passing controls finish cleanly (1625.940052ms)\n✔ assertion plus late run or cleanup failure cannot be assertion-only (3795.321457ms)\n✔ runtime, import, suite, hook and unhandled failures remain distinct (3927.743569ms)\n✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (3349.495237ms)\n✔ retained retry errors and oversized runner metadata fail conservatively (2331.069013ms)\n✔ reporter diagnostics preserve short messages and the beginning of truncated messages (2010.091641ms)\n✔ Node assertion names and codes remain assertion failures while runtime errors stay distinct (2271.904383ms)\n✔ pending runner close stays incomplete and ordinary logs do not become cleanup failures (2201.200492ms)\n✔ a second reporter is rejected and repeated test runs stay incomplete (1889.750209ms)\n✔ a throwing hook reported only at start retains hook failure evidence (1271.518423ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 25524.430184\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

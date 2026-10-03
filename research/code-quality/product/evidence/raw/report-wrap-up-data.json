@@ -1,0 +1,146 @@
+{
+  "outcome": "Implementation and experiments are retained in PR #15. Work stopped for a fresh VM. The PR is draft and remains unmerged while final acceptance is pending.",
+  "examples": [
+    {
+      "title": "Structural candidates",
+      "description": "These comparisons help a reviewer inspect copied operations. They do not prescribe refactoring. The default filter misses two edited copies and flags intentional boilerplate.",
+      "columns": [
+        "Case",
+        "Set similarity",
+        "Interpretation"
+      ],
+      "rows": [
+        [
+          "Changed names and values",
+          "1.000",
+          "Useful copy candidate"
+        ],
+        [
+          "Added guard and call",
+          "0.723",
+          "Missed at 0.82"
+        ],
+        [
+          "Different implementation",
+          "0.290",
+          "Low similarity"
+        ],
+        [
+          "Unrelated behavior",
+          "0.292",
+          "Properties distinguish operations"
+        ],
+        [
+          "Intentional boilerplate",
+          "0.879",
+          "Keep duplication when appropriate"
+        ],
+        [
+          "45-line copy",
+          "0.774",
+          "Missed at 0.82; property erasure raises to 0.917"
+        ]
+      ]
+    },
+    {
+      "title": "Boundary tests",
+      "description": "The authored domain has eleven mutation sites. Six survivors expose behavior gaps that stronger tests correct. An equivalent zero-sign calculation remains.",
+      "source": "Original:  total >= 100\nMutation:  total > 100\n\nAdd the exact boundary assertion because the shipping rule promises it.\nKeep nearby values below and above the threshold as controls.",
+      "columns": [
+        "Tests",
+        "Killed",
+        "Survived"
+      ],
+      "rows": [
+        [
+          "Six ordinary tests",
+          "4",
+          "7"
+        ],
+        [
+          "Eighteen behavior tests",
+          "10",
+          "1"
+        ]
+      ]
+    },
+    {
+      "title": "T3 test selection",
+      "description": "The focused host run had 153 survivors. Adapting two broader existing T3 test blocks removes 88 of them. The supplemental run has 171 assertion kills, 65 survivors and two ordinary runtime errors. These are selection gaps, not 88 newly discovered missing upstream tests."
+    },
+    {
+      "title": "SDK dogfooding",
+      "description": "Inspection of twenty SDK survivors identified eleven public-behavior test gaps. Direct controls confirmed that the old eleven tests pass every observed mutation and the strengthened eighteen tests fail each one. Ordinary exceptions remain runtime evidence under the conservative protocol.",
+      "columns": [
+        "Inspected survivors",
+        "Count"
+      ],
+      "rows": [
+        [
+          "Public test gaps",
+          "11"
+        ],
+        [
+          "Implementation details",
+          "7"
+        ],
+        [
+          "Equivalent under stated assumptions",
+          "2"
+        ]
+      ]
+    },
+    {
+      "title": "Reporter dogfooding",
+      "description": "The original five-test reporter run had three framework timeouts. An unchanged retry ran a fresh baseline, reused 151 complete results and reran those three. It completed with 66 kills and 88 survivors. Selected public behavior controls have eight retained old-test PASS/new-test FAIL witnesses.",
+      "columns": [
+        "Classification",
+        "Survivors"
+      ],
+      "rows": [
+        [
+          "Useful public controls",
+          "46"
+        ],
+        [
+          "Implementation details",
+          "40"
+        ],
+        [
+          "Qualified equivalents",
+          "2"
+        ]
+      ]
+    },
+    {
+      "title": "Cleanup and reuse",
+      "description": "Two Git parser runs reproduced cleanup uncertainty after a nonadvancing-loop mutation. The corrected source gives owned process groups five seconds to settle while keeping pipe drain bounded at 250 ms. Regression controls preserve ownership and fail closed. Real corrected replay and final acceptance must be checked in the handoff. CSV reuse preserves 50 complete results after a fresh baseline and reruns two genuine timeouts."
+    }
+  ],
+  "validation": [
+    "The earlier full required check and extracted-package public commands passed at source 3f9f4e6. They predate the final cleanup correction.",
+    "Final reporter controls passed all 31 Node tests; strict TypeScript validation passed. The corrected source release build passed. The final whole required check and corrected Git replay were running at wrap-up.",
+    "Linux isolated pressure controls returned descriptors 4 to 4 and threads 2 to 2, with no remaining children, owned workspaces or active journal. Native macOS runtime execution remains untested.",
+    "The repository includes raw successful and adverse evidence, per-survivor classifications, licenses, proof drivers, configurations and a verified dependency-export helper. No temporary path or saved checkpoint is required to resume."
+  ],
+  "limitations": "Native macOS runtime testing is unavailable here. Oxc parsing and bindings do not provide compiler types. Mutation commands are explicitly trusted. Private copies protect the original source; they are not a hostile-code sandbox. Equivalent mutants, missing specifications, framework timeouts and incomplete commands require review.",
+  "handoff": {
+    "repository": "alundgren/irudd-ts",
+    "integrationBranch": "t3code/dryer-mutator-research",
+    "integrationHead": "54e98675b276069649b4c8d8fce71c7b6c20cdcf",
+    "coordinatorBranch": "feature/quality-cli-reviewed",
+    "coordinatorHead": "3f9f4e69285001c9f1a0d01ddd869313aee86182",
+    "finalPR": "https://github.com/alundgren/irudd-ts/pull/15",
+    "finalMergeAuthorized": false,
+    "status": "stopped for fresh VM; draft PR; final acceptance pending",
+    "reviewedSourceHead": "e2f3d3740253578d5d66e9bb847c4f8d8f19975a",
+    "handoff": "research/code-quality/product/HANDOFF.md",
+    "review": "research/code-quality/product/FINAL-REVIEW.md",
+    "remaining": [
+      "Final required check / corrected Git replay",
+      "Exact-final isolated pressure and extracted-package validation",
+      "Independent acceptance and ready transition; leave main unmerged"
+    ],
+    "temporaryStateRequired": false
+  }
+}

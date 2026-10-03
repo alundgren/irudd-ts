@@ -1,0 +1,982 @@
+{
+  "schemaVersion": 1,
+  "inspection": "Read-only source and completed result inspection",
+  "capturedAt": "2026-10-03T16:30:59.204954+00:00",
+  "scope": "sdk/mutator.ts against tests/mutator_sdk.test.ts; original eleven-test dogfood run retained",
+  "source": {
+    "worktree": "/tmp/archguard-quality-product-cli-worktree",
+    "head": "64e42d73d30a4875ffd0594b9a83f8dbcee5f1ef",
+    "file": "sdk/mutator.ts",
+    "sha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+    "testFile": "tests/mutator_sdk.test.ts",
+    "testSha256": "811a15c8268a5752c350d1a50f1beeb9ac881ceb02412da9dc5d0448c2cfa56b"
+  },
+  "runEvidence": {
+    "report": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/self-protocol-strong-r10.json",
+    "reportSha256": "69b30eddd17747cdad34a3e0a7002cc86b53f7c9287efe6513a13b424ae93a95",
+    "inputDigest": "c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd",
+    "complete": false,
+    "baseline": {
+      "outcome": "passed",
+      "tests": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exitCode": 0,
+      "elapsedMs": 10642.736919,
+      "message": null
+    },
+    "summary": {
+      "planned": 129,
+      "executed": 129,
+      "reused": 0,
+      "killed": 38,
+      "survived": 20,
+      "invalidMutants": 0,
+      "executionErrors": 70,
+      "timedOut": 1,
+      "cancelled": 0,
+      "notRun": 0,
+      "omittedResults": 0,
+      "omittedProblems": 55
+    },
+    "warning": "The run is incomplete: seventy execution errors and one timeout remain distinct from recognized kills and survivors. Twenty survivors are individually inspectable; this does not establish complete mutation coverage."
+  },
+  "classificationCounts": {
+    "usefulMissingTest": 11,
+    "implementationDetail": 7,
+    "equivalent": 2
+  },
+  "proposedControls": {
+    "path": "/tmp/archguard-quality-product-sdk-proposed-controls.ts",
+    "sha256": "838b8ba06e38d741176bcdc59b99623e11921f6a2cf485a6b3ef94f1e9848144",
+    "executed": false,
+    "repositoryEdits": false,
+    "notes": "Seven concise public-behavior tests. Existing eleven-test evidence is unchanged. Do not assert allocation sizes or conservative encoding arithmetic."
+  },
+  "survivors": [
+    {
+      "mutationId": "6a00ffd30ae5cf7eafeb9f1d29257026cad2422034c24143fe373701dd58bc2d",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 1502,
+        "end": 1504,
+        "line": 49,
+        "endLine": 49
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "  if (value === null ",
+        "after": " typeof value !== \"object\" || types.isProxy(value) || Array.isArray(value)) invalid(`${label} must be a plain object`);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-6a00ffd30ae5cf7eafeb9f1d29257026cad2422034c24143fe373701dd58bc2d.json",
+          "recordChecksum": "fc9c261ca1e086a0386349fbf48f1a724304e5a9c5161661685f9504ce1fc126",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "Removing the non-object check permits a callable value whose own fields and prototype imitate plain request data. Ordinary primitive rejection alone does not exercise this bypass.",
+      "counterexample": "Create an arrow function, delete its configurable length/name own properties, set its prototype to Object.prototype, and assign exactly the valid request fields. Original rejects typeof function; mutant reaches all subsequent checks and returns a normalized request.",
+      "negativeControls": [
+        "Normal and null-prototype request records remain accepted. A record with a custom prototype stays rejected."
+      ],
+      "recommendation": "Add rejection of callable protocol input without calling the function.",
+      "proposedControls": [
+        "callable values cannot impersonate plain request data"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "a83bf358f1049517d28ce87b9c9e4cc3030fc28ceda06782e42e07a28fc2f6b2",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 4295,
+        "end": 4298,
+        "line": 83,
+        "endLine": 83
+      },
+      "operator": "equality",
+      "expected": "===",
+      "replacement": "!==",
+      "context": {
+        "before": "  if (request.phase ",
+        "after": " \"mutation\") {",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-a83bf358f1049517d28ce87b9c9e4cc3030fc28ceda06782e42e07a28fc2f6b2.json",
+          "recordChecksum": "5e4aab1ebb8bedbbc03a6bd38066c1d58ab2603d96f400164c3e9ad584acdb71",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "The existing fixtures exercise mutation phase with an already valid ID. Inverting this branch rejects valid baseline input and skips validation of mutation IDs.",
+      "counterexample": "A baseline request with mutationId=null is valid in the original and rejected by the mutant. A mutation request with a malformed non-SHA256 ID is rejected in the original and accepted by the mutant.",
+      "negativeControls": [
+        "A valid mutation request remains accepted. Baseline with a nonnull ID and unknown phase stay rejected."
+      ],
+      "recommendation": "Check valid baseline and mutation requests plus malformed phase-dependent IDs.",
+      "proposedControls": [
+        "baseline and mutation requests enforce their distinct mutation identities"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "1389f2946fb601cb561ad4897df41b72e2b78c4a14ddfbac8c6309e111ae1a46",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 5348,
+        "end": 5349,
+        "line": 103,
+        "endLine": 103
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "    if (!metadata.isFile() || metadata.size ",
+        "after": " limit) invalid(\"request must be a bounded regular file\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-1389f2946fb601cb561ad4897df41b72e2b78c4a14ddfbac8c6309e111ae1a46.json",
+          "recordChecksum": "7d32ea9431444be1abe99d568ec3dff1c630b389a5b048b41e3c18be1cd2a4bb",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "The public request ceiling is inclusive. Current tests reject 65,537 bytes but never accept 65,536 valid bytes.",
+      "counterexample": "Write a valid request with leading JSON whitespace totaling exactly 65,536 bytes and the essential closing brace at the final byte. Original accepts it; metadata.size>=limit rejects it.",
+      "negativeControls": [
+        "65,537 bytes stays rejected. An ordinary smaller request remains accepted."
+      ],
+      "recommendation": "Add an exact request ceiling acceptance control and one extra byte rejection.",
+      "proposedControls": [
+        "the request byte ceiling includes an exact-size valid JSON document"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "dc01ba80ecefe1dc22c7ddd6194b2a5de79a5f1e4d6dbf5febe44ab28a5a1e4b",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 5445,
+        "end": 5446,
+        "line": 104,
+        "endLine": 104
+      },
+      "operator": "arithmetic",
+      "expected": "+",
+      "replacement": "-",
+      "context": {
+        "before": "    const bytes = Buffer.alloc(limit ",
+        "after": " 1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-dc01ba80ecefe1dc22c7ddd6194b2a5de79a5f1e4d6dbf5febe44ab28a5a1e4b.json",
+          "recordChecksum": "d7a9c41fd2a9b01d7a7f13fbf8137ff09478f45a19bede61edbeaf61a9ec7dfc",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "Reducing the buffer to limit-1 truncates a valid document at the supported public ceiling. This is observable through the public reader without asserting its allocation strategy.",
+      "counterexample": "Use the exact 65,536-byte valid request with the closing brace at the last byte. The limit-1 buffer drops the brace, so JSON parsing rejects a supported document.",
+      "negativeControls": [
+        "A smaller request remains accepted. A file over the public ceiling stays rejected."
+      ],
+      "recommendation": "Reuse the public exact-byte-ceiling control; do not assert buffer allocation.",
+      "proposedControls": [
+        "the request byte ceiling includes an exact-size valid JSON document"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "380039bc090a000515b3f6eae8efcd2b9a49f76cb331fb50c3ef84b7d446625e",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 5447,
+        "end": 5448,
+        "line": 104,
+        "endLine": 104
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "    const bytes = Buffer.alloc(limit + ",
+        "after": ");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-380039bc090a000515b3f6eae8efcd2b9a49f76cb331fb50c3ef84b7d446625e.json",
+          "recordChecksum": "762528eaab93e1e34fdc532cb8a9f7127c1628f2344c1d8e43666d4fc4559129",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "For a stable regular file, fstat rejects oversize files before reading, and a limit-sized buffer still accepts every permitted byte count. This is stable-file equivalence only. The extra byte also detects growth after fstat; that race was not exercised by the current tests.",
+      "counterexample": "No stable-file public counterexample. If the same open file grows after fstat and begins with a complete valid limit-byte JSON prefix, the mutant can stop before the extra byte and miss the growth. This is an unexecuted race hypothesis.",
+      "negativeControls": [
+        "Exact permitted bytes and one extra stable byte are covered by the proposed public boundary control. Existing symlink and excessive-file controls remain relevant."
+      ],
+      "recommendation": "Do not assert the internal allocation. Retain the qualified equivalence and note that a future deterministic real-file growth control could assess the bounded-reader race separately.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "6bafae0ce410428b5c42ee21290782431d7e5ee93dd14af8ea6dbab7ba0127a8",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 5485,
+        "end": 5486,
+        "line": 106,
+        "endLine": 106
+      },
+      "operator": "comparison",
+      "expected": "<",
+      "replacement": "<=",
+      "context": {
+        "before": "    while (used ",
+        "after": " bytes.length) {",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-6bafae0ce410428b5c42ee21290782431d7e5ee93dd14af8ea6dbab7ba0127a8.json",
+          "recordChecksum": "44467a55863af5c8c4638a285eb2b1c966fadf4eb8bd75b17140f03984fc6d13",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "equivalent",
+      "reason": "For an ordinary regular-file read, the changed loop can perform one extra zero-length read after filling the buffer. That read returns zero and breaks; returned bytes and the subsequent byte-limit decision remain the same.",
+      "counterexample": "No public behavior counterexample under the supported ordinary file-read contract. Changing a mocked zero-length read to return nonzero would test the mock instead of this contract.",
+      "negativeControls": [
+        "Short reads, ordinary EOF, exact request bytes, and over-ceiling bytes retain the same public outcome."
+      ],
+      "recommendation": "Document this survivor; add no private call-count assertion.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "5a10b3d1281b08a3acde24ab972798c97970e64be54839b9bac92f140db27b6c",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 5655,
+        "end": 5656,
+        "line": 111,
+        "endLine": 111
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "    if (used ",
+        "after": " limit) invalid(\"request exceeds its byte budget\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-5a10b3d1281b08a3acde24ab972798c97970e64be54839b9bac92f140db27b6c.json",
+          "recordChecksum": "d7b6ab7538482edd33c37a97e10293132f74ecbb1b71bedb4c7ba9a62b016702",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "This boundary comparison rejects bytes exactly at the public request ceiling. Existing tests cover only above-ceiling bytes.",
+      "counterexample": "The same exact 65,536-byte valid request reaches used==limit. Original accepts it and mutant rejects it.",
+      "negativeControls": [
+        "One extra stable byte stays rejected. An ordinary smaller request remains accepted."
+      ],
+      "recommendation": "Reuse the public exact-byte-ceiling control.",
+      "proposedControls": [
+        "the request byte ceiling includes an exact-size valid JSON document"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "dfb1dc6994d8587c6428d952bd2743f0c3d379236cd875d8957735850000f779",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 5926,
+        "end": 5928,
+        "line": 118,
+        "endLine": 118
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "  if (!assigned ",
+        "after": " !path.isAbsolute(assigned)) invalid(\"ARCHGUARD_MUTATION_REQUEST must name an absolute file\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-dfb1dc6994d8587c6428d952bd2743f0c3d379236cd875d8957735850000f779.json",
+          "recordChecksum": "481d1f4abef2c255afe28223c356f4dccf951556ab6751c572b6977ffbdf3144",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "Changing OR to AND skips the absolute-path requirement whenever the assigned environment value is nonempty.",
+      "counterexample": "Assign an existing valid request file through path.relative(process.cwd(),requestFile). Original rejects the relative path; mutant opens the same file and accepts the request.",
+      "negativeControls": [
+        "An absolute path to that same file remains accepted. Assigned result identity and existing symlink rejection remain checked."
+      ],
+      "recommendation": "Check a real relative path, then restore the absolute assignment and both environment variables.",
+      "proposedControls": [
+        "assigned request files require absolute paths even when a relative file exists"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "0bebe53f4000f7556a9fe00832ac679b1040c94c747e6d8d675d721ad239a946",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 6826,
+        "end": 6828,
+        "line": 133,
+        "endLine": 133
+      },
+      "operator": "update",
+      "expected": "++",
+      "replacement": "--",
+      "context": {
+        "before": "    while (/[\\t\\r\\n ]/.test(raw[offset] ?? \"\")) offset",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-0bebe53f4000f7556a9fe00832ac679b1040c94c747e6d8d675d721ad239a946.json",
+          "recordChecksum": "087be42ce57b05cecd0c6d7a3adbd18523ab759450c383eb02495da7b59d3db6",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "Current requests are minified, so the whitespace-skipping update is not exercised. Valid JSON formatting is part of the reader contract.",
+      "counterexample": "A valid request with leading newline/tab and pretty-printed key spacing is accepted by the original. The mutant moves offset backward when it meets whitespace, so the sticky token scan cannot consume the document correctly.",
+      "negativeControls": [
+        "A minified request still works. A repeated key using an escaped spelling request\\u0049d stays rejected after JSON key decoding."
+      ],
+      "recommendation": "Add formatted JSON acceptance, an escaped duplicate-key rejection, and a corrected minified request.",
+      "proposedControls": [
+        "formatted request JSON is accepted while escaped duplicate keys remain rejected"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "721480f438f5bb567cff4822cfc36576f0cd1186f6f4f96bdd74074801e17f75",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 8129,
+        "end": 8131,
+        "line": 160,
+        "endLine": 160
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "  if (!Number.isInteger(result.exitCode) ",
+        "after": " (result.exitCode as number) < 0 || (result.exitCode as number) > 255) invalid(\"exitCode must be a process exit code\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-721480f438f5bb567cff4822cfc36576f0cd1186f6f4f96bdd74074801e17f75.json",
+          "recordChecksum": "75c8fad64390765c5466e4b76323d18df95e89768549dcfb623239ecec8e84dc",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "The first changed logical operator weakens the independent integer check. The existing suite exercises only integer exit codes 0 and 1.",
+      "counterexample": "A result with exitCode=1.5, otherwise a valid completed result without failures, is rejected by the original and accepted by the mutant. NaN also bypasses the mutant comparisons.",
+      "negativeControls": [
+        "Integer exit codes 0, 1, and 255 remain accepted. Negative and above-255 values must be rejected."
+      ],
+      "recommendation": "Check process-code integer and range requirements through validateMutationResult.",
+      "proposedControls": [
+        "result exit codes accept integer endpoints and reject values outside the process range"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "f9fcbef8a014d15db23c5c30c18d5d6a3460489dd65d2f5fae842a911bab6514",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 8164,
+        "end": 8166,
+        "line": 160,
+        "endLine": 160
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "  if (!Number.isInteger(result.exitCode) || (result.exitCode as number) < 0 ",
+        "after": " (result.exitCode as number) > 255) invalid(\"exitCode must be a process exit code\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-f9fcbef8a014d15db23c5c30c18d5d6a3460489dd65d2f5fae842a911bab6514.json",
+          "recordChecksum": "4bf4f8392657c8df6bbfc274a6e8b0b71c829e0d8d1e0ff721c22ef6c07fb744",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "The second changed logical operator combines the two mutually exclusive range failures, weakening both range checks for integer values.",
+      "counterexample": "exitCode=-1 or 256 is rejected by the original. In the mutant, an integer cannot be simultaneously below zero and above 255, so either value is accepted.",
+      "negativeControls": [
+        "Integer endpoints 0 and 255 remain accepted. A fractional value stays rejected by the remaining integer check."
+      ],
+      "recommendation": "Use the same public exit-code boundary control.",
+      "proposedControls": [
+        "result exit codes accept integer endpoints and reject values outside the process range"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "4dedfeae1ffedce2896bd8515a867c46b0bdb63fab00242af66fba134a5d57de",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 8195,
+        "end": 8196,
+        "line": 160,
+        "endLine": 160
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "  if (!Number.isInteger(result.exitCode) || (result.exitCode as number) < 0 || (result.exitCode as number) ",
+        "after": " 255) invalid(\"exitCode must be a process exit code\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-4dedfeae1ffedce2896bd8515a867c46b0bdb63fab00242af66fba134a5d57de.json",
+          "recordChecksum": "f61bdb53347ced55477de2051b725e93c399f6e567dd28fbf2ca935892b0457a",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "The public process-code range includes 255. The current suite never checks that endpoint.",
+      "counterexample": "exitCode=255 with otherwise valid result data is accepted by the original and rejected by the mutant.",
+      "negativeControls": [
+        "0 and 1 remain accepted. -1, 256, fractions, strings, null, NaN, and infinity remain rejected."
+      ],
+      "recommendation": "Use the same public exit-code boundary control.",
+      "proposedControls": [
+        "result exit codes accept integer endpoints and reject values outside the process range"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "7bb5810bbf7acb7d9e3a0e2a8c1c3f9763960aa00aea3417202c2275918ebfa9",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 9880,
+        "end": 9882,
+        "line": 178,
+        "endLine": 178
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "  if (result.complete && result.exitCode === 0 && (counts.failed !== 0 ",
+        "after": " failureValues.length !== 0)) invalid(\"exit zero disagrees with failures\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-7bb5810bbf7acb7d9e3a0e2a8c1c3f9763960aa00aea3417202c2275918ebfa9.json",
+          "recordChecksum": "c2f291607d7bcbd0984ed3394133fdb114d9d76b03670ed53c16316f3af1e98c",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "usefulMissingTest",
+      "reason": "The current contradictory-exit test has both a failed assertion count and a failure record. AND and OR give the same result in that fixture. Hook-only failures can have zero failed test IDs.",
+      "counterexample": "A complete exit-zero result with passed=1, failed=0 and one hook failure with testId=null passes failed-ID consistency. Original rejects the contradictory exit status; mutant accepts it because counts.failed is zero.",
+      "negativeControls": [
+        "The same hook-only result with exitCode=1 is accepted. An exit-zero result with no failures remains accepted."
+      ],
+      "recommendation": "Add a completed hook-only exit-zero rejection and corrected nonzero result.",
+      "proposedControls": [
+        "a completed hook-only failure cannot declare exit zero"
+      ],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "2fc896a04b8b7e12bbf7f722f008ca6e6550434a8255203772cbbe75a92b0999",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 10481,
+        "end": 10482,
+        "line": 189,
+        "endLine": 189
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "  let conservative = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-2fc896a04b8b7e12bbf7f722f008ca6e6550434a8255203772cbbe75a92b0999.json",
+          "recordChecksum": "95680a78e760049ac036194536fa87bec4e57bfd5c1100869458480ec12b3f93",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "Changes the initial conservative estimate from one byte to zero. These values implement an allocation reserve; their exact arithmetic is not a documented serialized-output promise. The final Buffer.byteLength check still enforces the configured encoded-byte ceiling.",
+      "counterexample": "A result near the internal conservative estimate could receive a different rejection decision. No concrete public contract violation was established by this source inspection; this is not a claim of whole-program equivalence.",
+      "negativeControls": [
+        "Existing escaped-message rejection preserves the previous published record. The corrected larger budget writes the same public result."
+      ],
+      "recommendation": "Keep the observed survivor. Do not add tests that calculate or assert conservative arithmetic constants.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "2ae466fd0fcea8526ffac06fba6703624df86b011e6700326e13518ee43c16df",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 10651,
+        "end": 10652,
+        "line": 193,
+        "endLine": 193
+      },
+      "operator": "arithmetic",
+      "expected": "+",
+      "replacement": "-",
+      "context": {
+        "before": "    if (typeof next === \"string\") conservative += next.length * 6 ",
+        "after": " 2;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-2ae466fd0fcea8526ffac06fba6703624df86b011e6700326e13518ee43c16df.json",
+          "recordChecksum": "9069d4d32ab28b38091c90262a1140d6d624194bf0d3745a19f53687f949ddae",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "Changes the conservative allowance for string quotes by four bytes per string. These values implement an allocation reserve; their exact arithmetic is not a documented serialized-output promise. The final Buffer.byteLength check still enforces the configured encoded-byte ceiling.",
+      "counterexample": "A result near the internal conservative estimate could receive a different rejection decision. No concrete public contract violation was established by this source inspection; this is not a claim of whole-program equivalence.",
+      "negativeControls": [
+        "Existing escaped-message rejection preserves the previous published record. The corrected larger budget writes the same public result."
+      ],
+      "recommendation": "Keep the observed survivor. Do not add tests that calculate or assert conservative arithmetic constants.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "975ec04ccffa1bba0899d2e52197f69a7af0c7e8d3ad72506060193fbcc5ba66",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 10775,
+        "end": 10776,
+        "line": 195,
+        "endLine": 195
+      },
+      "operator": "arithmetic",
+      "expected": "+",
+      "replacement": "-",
+      "context": {
+        "before": "      if (Array.isArray(next)) { conservative += next.length ",
+        "after": " 2; pending.push(...next); }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-975ec04ccffa1bba0899d2e52197f69a7af0c7e8d3ad72506060193fbcc5ba66.json",
+          "recordChecksum": "c051bbd68e7864a80107e1b15a67b25334749448663b3eb9dcb935de88f47c55",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "Changes the conservative allowance for array punctuation by four bytes per array. These values implement an allocation reserve; their exact arithmetic is not a documented serialized-output promise. The final Buffer.byteLength check still enforces the configured encoded-byte ceiling.",
+      "counterexample": "A result near the internal conservative estimate could receive a different rejection decision. No concrete public contract violation was established by this source inspection; this is not a claim of whole-program equivalence.",
+      "negativeControls": [
+        "Existing escaped-message rejection preserves the previous published record. The corrected larger budget writes the same public result."
+      ],
+      "recommendation": "Keep the observed survivor. Do not add tests that calculate or assert conservative arithmetic constants.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "0d6c088d23c7361cf6fa5081731c165f2c0fcec3aab6ac648c762f4006b40288",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 10887,
+        "end": 10888,
+        "line": 196,
+        "endLine": 196
+      },
+      "operator": "arithmetic",
+      "expected": "*",
+      "replacement": "/",
+      "context": {
+        "before": "      else { const entries = Object.entries(next); conservative += entries.length ",
+        "after": " 2 + 2; for (const [key, child] of entries) pending.push(key, child); }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-0d6c088d23c7361cf6fa5081731c165f2c0fcec3aab6ac648c762f4006b40288.json",
+          "recordChecksum": "4bc1829c47e2e756cdc3f6af3731ff8856d8d060f2f1f81f19b38d6b8f0bc8fd",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "Changes the conservative per-entry object punctuation multiplier. These values implement an allocation reserve; their exact arithmetic is not a documented serialized-output promise. The final Buffer.byteLength check still enforces the configured encoded-byte ceiling.",
+      "counterexample": "A result near the internal conservative estimate could receive a different rejection decision. No concrete public contract violation was established by this source inspection; this is not a claim of whole-program equivalence.",
+      "negativeControls": [
+        "Existing escaped-message rejection preserves the previous published record. The corrected larger budget writes the same public result."
+      ],
+      "recommendation": "Keep the observed survivor. Do not add tests that calculate or assert conservative arithmetic constants.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "091906e1593d8b27db35f73fcf38fbfd5a5e39e6aaeac8f762c048862bf0b6ad",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 10891,
+        "end": 10892,
+        "line": 196,
+        "endLine": 196
+      },
+      "operator": "arithmetic",
+      "expected": "+",
+      "replacement": "-",
+      "context": {
+        "before": "      else { const entries = Object.entries(next); conservative += entries.length * 2 ",
+        "after": " 2; for (const [key, child] of entries) pending.push(key, child); }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-091906e1593d8b27db35f73fcf38fbfd5a5e39e6aaeac8f762c048862bf0b6ad.json",
+          "recordChecksum": "0f3c3f2508dabc0ab18165badac23e87c9d34650bd005b56040695ba9e8341c0",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "Changes the conservative allowance for object delimiters by four bytes per record. These values implement an allocation reserve; their exact arithmetic is not a documented serialized-output promise. The final Buffer.byteLength check still enforces the configured encoded-byte ceiling.",
+      "counterexample": "A result near the internal conservative estimate could receive a different rejection decision. No concrete public contract violation was established by this source inspection; this is not a claim of whole-program equivalence.",
+      "negativeControls": [
+        "Existing escaped-message rejection preserves the previous published record. The corrected larger budget writes the same public result."
+      ],
+      "recommendation": "Keep the observed survivor. Do not add tests that calculate or assert conservative arithmetic constants.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "9eca45c3726e3aa9adb46af629e77222a78c4998a7cf7750a377f657d3a45954",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 11012,
+        "end": 11013,
+        "line": 198,
+        "endLine": 198
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "    if (conservative ",
+        "after": " limit) invalid(\"result exceeds conservative encoding budget\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-9eca45c3726e3aa9adb46af629e77222a78c4998a7cf7750a377f657d3a45954.json",
+          "recordChecksum": "730153280dd1fa204d80b2c37bef35e0c5925b284a2fb14eb0326e1a50845c3f",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "implementationDetail",
+      "reason": "Changes whether an estimate equal to the conservative budget is admitted. These values implement an allocation reserve; their exact arithmetic is not a documented serialized-output promise. The final Buffer.byteLength check still enforces the configured encoded-byte ceiling.",
+      "counterexample": "A result near the internal conservative estimate could receive a different rejection decision. No concrete public contract violation was established by this source inspection; this is not a claim of whole-program equivalence.",
+      "negativeControls": [
+        "Existing escaped-message rejection preserves the previous published record. The corrected larger budget writes the same public result."
+      ],
+      "recommendation": "Keep the observed survivor. Do not add tests that calculate or assert conservative arithmetic constants.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    },
+    {
+      "mutationId": "2924fd2b53c5027a9a5ce73596a6db606abfdaf1eda0863963308dee5cbffb4f",
+      "location": {
+        "file": "sdk/mutator.ts",
+        "start": 11155,
+        "end": 11156,
+        "line": 201,
+        "endLine": 201
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "  if (Buffer.byteLength(encoded) ",
+        "after": " limit) invalid(\"encoded result exceeds byte budget\");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "observed": {
+        "outcome": "survived",
+        "tests": {
+          "passed": 11,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "reused": false
+      },
+      "stateEvidence": [
+        {
+          "path": "/tmp/archguard-quality-product-self-profiles-strong/state/protocol/records/c93c0120ba7705f264c49919f1391f6ba0bd8b092f9e7ab58d76bba1922a16bd-2924fd2b53c5027a9a5ce73596a6db606abfdaf1eda0863963308dee5cbffb4f.json",
+          "recordChecksum": "949bc20ddca8e93bd23349ac84c2432ae0c7fe1117a957eb757ff6d954c4e0c9",
+          "cleanupComplete": true
+        }
+      ],
+      "classification": "equivalent",
+      "reason": "Validated public results use bounded safe integer scalars and plain records. The conservative estimate is strictly greater than the actual compact JSON encoding because every scalar receives 32 bytes and record punctuation is overestimated. If encoded bytes equal limit, the earlier conservative-budget check has already rejected the result.",
+      "counterexample": "No public counterexample through writeMutationResult for validated results. The final equality case is unreachable while the existing conservative bound and normalized result layout remain in effect.",
+      "negativeControls": [
+        "The existing escaped-message budget test rejects oversized data before replacing the previous record. Small valid result publication remains accepted."
+      ],
+      "recommendation": "Document equivalence within the current validated public input contract; recheck if conservative encoding or normalized result data changes.",
+      "proposedControls": [],
+      "verification": "Source reasoning only; this inspection did not execute original or mutated code."
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+[
+  {
+    "id": "a2530b23aba0cc45a9b6452747b97c071a1d504bccc6282582433e101944f2ac",
+    "line": 18,
+    "expected": "||",
+    "replacement": "&&",
+    "function": "isExplicitRelativePath",
+    "examples": [
+      {
+        "input": "../repo",
+        "original": true,
+        "mutant": false
+      },
+      {
+        "input": ".\\repo",
+        "original": true,
+        "mutant": false
+      },
+      {
+        "input": "./repo",
+        "original": true,
+        "mutant": true
+      },
+      {
+        "input": "..\\repo",
+        "original": true,
+        "mutant": true
+      }
+    ],
+    "observedDifferences": [
+      {
+        "input": "../repo",
+        "original": true,
+        "mutant": false
+      },
+      {
+        "input": ".\\repo",
+        "original": true,
+        "mutant": false
+      }
+    ]
+  },
+  {
+    "id": "df409ba3bdf25ebbee084494c1f1b283331e2546c2bdae5a6f6d0a85ab538b95",
+    "line": 29,
+    "expected": "||",
+    "replacement": "&&",
+    "function": "normalizeProjectPathForDispatch",
+    "examples": [
+      {
+        "input": "",
+        "original": "",
+        "mutant": ""
+      },
+      {
+        "input": "/",
+        "original": "/",
+        "mutant": "/"
+      },
+      {
+        "input": "\\",
+        "original": "\\",
+        "mutant": "\\"
+      },
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:/"
+      },
+      {
+        "input": "C:\\",
+        "original": "C:\\",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "x/",
+        "original": "x",
+        "mutant": "x"
+      },
+      {
+        "input": "///",
+        "original": "///",
+        "mutant": "///"
+      },
+      {
+        "input": "\\\\",
+        "original": "\\\\",
+        "mutant": "\\\\"
+      }
+    ],
+    "observedDifferences": []
+  },
+  {
+    "id": "82481b22d48a10a61afba95af56c2ba86df1144d6c30449d7f2e5d0e0fa48f95",
+    "line": 29,
+    "expected": "||",
+    "replacement": "&&",
+    "function": "normalizeProjectPathForDispatch",
+    "examples": [
+      {
+        "input": "",
+        "original": "",
+        "mutant": ""
+      },
+      {
+        "input": "/",
+        "original": "/",
+        "mutant": "/"
+      },
+      {
+        "input": "\\",
+        "original": "\\",
+        "mutant": "\\"
+      },
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "C:\\",
+        "original": "C:\\",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "x/",
+        "original": "x",
+        "mutant": "x"
+      },
+      {
+        "input": "///",
+        "original": "///",
+        "mutant": "///"
+      },
+      {
+        "input": "\\\\",
+        "original": "\\\\",
+        "mutant": "\\\\"
+      }
+    ],
+    "observedDifferences": [
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:\\"
+      }
+    ]
+  },
+  {
+    "id": "ce437be9943989a28dc64c985887333a87f2d8d4382da83985bea25dabfc166d",
+    "line": 33,
+    "expected": "0",
+    "replacement": "1",
+    "function": "normalizeProjectPathForDispatch",
+    "examples": [
+      {
+        "input": "",
+        "original": "",
+        "mutant": ""
+      },
+      {
+        "input": "/",
+        "original": "/",
+        "mutant": "/"
+      },
+      {
+        "input": "\\",
+        "original": "\\",
+        "mutant": "\\"
+      },
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:/"
+      },
+      {
+        "input": "C:\\",
+        "original": "C:\\",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "x/",
+        "original": "x",
+        "mutant": "x"
+      },
+      {
+        "input": "///",
+        "original": "///",
+        "mutant": "///"
+      },
+      {
+        "input": "\\\\",
+        "original": "\\\\",
+        "mutant": "\\\\"
+      }
+    ],
+    "observedDifferences": []
+  },
+  {
+    "id": "08477dc227be10ceecd670632a5663599a2821f818acae8e92705e165993f0b6",
+    "line": 33,
+    "expected": "||",
+    "replacement": "&&",
+    "function": "normalizeProjectPathForDispatch",
+    "examples": [
+      {
+        "input": "",
+        "original": "",
+        "mutant": ""
+      },
+      {
+        "input": "/",
+        "original": "/",
+        "mutant": "/"
+      },
+      {
+        "input": "\\",
+        "original": "\\",
+        "mutant": "\\"
+      },
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "C:\\",
+        "original": "C:\\",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "x/",
+        "original": "x",
+        "mutant": "x"
+      },
+      {
+        "input": "///",
+        "original": "///",
+        "mutant": "///"
+      },
+      {
+        "input": "\\\\",
+        "original": "\\\\",
+        "mutant": "\\\\"
+      }
+    ],
+    "observedDifferences": [
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:\\"
+      }
+    ]
+  },
+  {
+    "id": "8b7f5a9bf65d73287923456334bb37b3e6eb5a784a36fbeded785f0a68795f88",
+    "line": 39,
+    "expected": "0",
+    "replacement": "1",
+    "function": "normalizeProjectPathForDispatch",
+    "examples": [
+      {
+        "input": "",
+        "original": "",
+        "mutant": ""
+      },
+      {
+        "input": "/",
+        "original": "/",
+        "mutant": "/"
+      },
+      {
+        "input": "\\",
+        "original": "\\",
+        "mutant": "\\"
+      },
+      {
+        "input": "C:/",
+        "original": "C:/",
+        "mutant": "C:/"
+      },
+      {
+        "input": "C:\\",
+        "original": "C:\\",
+        "mutant": "C:\\"
+      },
+      {
+        "input": "x/",
+        "original": "x",
+        "mutant": "x/"
+      },
+      {
+        "input": "///",
+        "original": "///",
+        "mutant": ""
+      },
+      {
+        "input": "\\\\",
+        "original": "\\\\",
+        "mutant": ""
+      }
+    ],
+    "observedDifferences": [
+      {
+        "input": "x/",
+        "original": "x",
+        "mutant": "x/"
+      },
+      {
+        "input": "///",
+        "original": "///",
+        "mutant": ""
+      },
+      {
+        "input": "\\\\",
+        "original": "\\\\",
+        "mutant": ""
+      }
+    ]
+  }
+]

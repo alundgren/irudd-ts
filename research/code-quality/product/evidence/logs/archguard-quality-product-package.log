@@ -1,0 +1,10 @@
+warning: manifest has no documentation, homepage or repository
+  |
+  = note: see https://doc.rust-lang.org/cargo/reference/manifest.html#package-metadata for more info
+   Packaging archguard v0.1.0 (/tmp/archguard-quality-product-cli-reviewed-worktree)
+warning: ignoring test `t3_cache` as `research/t3code/tests/cache.rs` is not included in the published package
+warning: ignoring test `t3_history` as `research/t3code/tests/history.rs` is not included in the published package
+warning: ignoring test `t3_profiles` as `research/t3code/tests/profiles.rs` is not included in the published package
+warning: ignoring test `t3_semantic` as `research/t3code/tests/semantic.rs` is not included in the published package
+    Updating crates.io index
+    Packaged 140 files, 979.2KiB (214.7KiB compressed)

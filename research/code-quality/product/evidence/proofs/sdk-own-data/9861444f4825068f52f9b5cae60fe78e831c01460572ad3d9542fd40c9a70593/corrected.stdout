@@ -1,0 +1,41 @@
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (10.73756ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (1.732513ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (5.445518ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (1.779729ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (7.708921ms)
+✔ shared wire ceilings accept their boundary and reject one extra byte or failure (8.672128ms)
+✔ failure accessors, custom iteration and proxy traps are rejected without invoking code (1.434336ms)
+✔ null-prototype protocol records are accepted and custom prototypes remain rejected (1.180381ms)
+✔ proxy failure arrays cannot execute prototype traps during validation (1.003693ms)
+✔ task and failed-test identities reject empty or NUL data while empty messages remain valid (1.598242ms)
+✖ required protocol fields must be own data and cannot invoke inherited getters (2.322682ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 270.854462
+
+✖ failing tests:
+
+test at tests/corrected.test.ts:183:1
+✖ required protocol fields must be own data and cannot invoke inherited getters (2.322682ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at file:///tmp/archguard-quality-product-self-counterexamples-own-data/9861444f4825068f52f9b5cae60fe78e831c01460572ad3d9542fd40c9a70593/tests/corrected.test.ts:195:12
+      at withDirectory (file:///tmp/archguard-quality-product-self-counterexamples-own-data/9861444f4825068f52f9b5cae60fe78e831c01460572ad3d9542fd40c9a70593/tests/corrected.test.ts:27:9)
+      at TestContext.<anonymous> (file:///tmp/archguard-quality-product-self-counterexamples-own-data/9861444f4825068f52f9b5cae60fe78e831c01460572ad3d9542fd40c9a70593/tests/corrected.test.ts:183:93)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /missing or unknown fields/,
+    operator: 'throws',
+    diff: 'simple'
+  }

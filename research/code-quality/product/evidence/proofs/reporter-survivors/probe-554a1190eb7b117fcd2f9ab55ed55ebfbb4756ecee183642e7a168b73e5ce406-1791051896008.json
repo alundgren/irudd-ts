@@ -1,0 +1,36 @@
+{
+  "createdAt": "2026-10-03T18:24:56.008Z",
+  "node": "v24.21.0",
+  "scope": "Bounded authored lifecycle probes, not actual Vitest or universal equivalence proof",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "sourceReporterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "sourceProtocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "output": [
+    {
+      "scenario": "aggregateModuleBudget",
+      "mutationId": "554a1190eb7b117fcd2f9ab55ed55ebfbb4756ecee183642e7a168b73e5ce406",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "b12ca71383a06409b623107403adf78830d5bf15fbe00386a7d889acd598623c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "aggregateModuleBudget",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 0,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    }
+  ]
+}

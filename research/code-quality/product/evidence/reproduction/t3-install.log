@@ -1,0 +1,16 @@
+! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-11.10.0.tgz
+Scope: 3 of 16 workspace projects
+? Verifying lockfile against supply-chain policies (2094 entries)...
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+.                                        | +653 ++++++++++++++++++++++++++++++++
+Progress: resolved 653, reused 35, downloaded 0, added 0
+Progress: resolved 653, reused 256, downloaded 0, added 0
+Progress: resolved 653, reused 349, downloaded 0, added 0
+Progress: resolved 653, reused 652, downloaded 0, added 14
+Progress: resolved 653, reused 652, downloaded 0, added 109
+Progress: resolved 653, reused 652, downloaded 0, added 317
+✓ Lockfile passes supply-chain policies (2094 entries in 6.5s)
+Progress: resolved 653, reused 652, downloaded 0, added 652
+Progress: resolved 653, reused 652, downloaded 0, added 653, done
+Done in 9.8s using pnpm v11.10.0

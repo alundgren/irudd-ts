@@ -1,0 +1,63 @@
+{
+  "stage": "Intermediate local product replay; final integrated replay pending",
+  "scope": "Authored domain only",
+  "rows": [
+    {
+      "mutationId": "58694dabef3579669745b9b03110b93586613872dc9926a4dbe6447e5f3aae6d",
+      "line": 9,
+      "expected": ">=",
+      "replacement": ">",
+      "classification": "missing test",
+      "reason": "No test covered the advertised minimum exactly. The strengthened boundary test uses subtotal100."
+    },
+    {
+      "mutationId": "1d29f297da47c98c06c2d1a7919a7195cccd7dc5d3830530abe530d2034ccfe8",
+      "line": 9,
+      "expected": "&&",
+      "replacement": "||",
+      "classification": "missing test",
+      "reason": "The weak suite only used a qualifying domestic purchase. The strengthened suite includes international and under-minimum controls."
+    },
+    {
+      "mutationId": "b6d14c01b7dfd1b062a95945dd441d26ba8a89e1dff4fa9b070518bd21482b84",
+      "line": 13,
+      "expected": "+",
+      "replacement": "-",
+      "classification": "missing test",
+      "reason": "Tax was always zero, so addition and subtraction were indistinguishable. The strengthened test uses tax8."
+    },
+    {
+      "mutationId": "fb7bfd89a657123c61c1c97ccf54791c4810ff95f131d17c10a0fc75a83d16f2",
+      "line": 17,
+      "expected": "true",
+      "replacement": "false",
+      "classification": "missing test",
+      "reason": "The weak suite asserted only the amount, omitting the approval promise."
+    },
+    {
+      "mutationId": "6a746976e2493637da6331f5c1c5bbaecfae9c2e66b90bf4799c7770aac8c13a",
+      "line": 30,
+      "expected": "+",
+      "replacement": "-",
+      "classification": "equivalent",
+      "reason": "For finite amounts, Math.abs removes negative zero and adding/subtracting positive zero gives the same magnitude."
+    },
+    {
+      "mutationId": "ba33061eb0f3fb0d05c36791567552def970397ac1e534f42c9be2f59cbfc18e",
+      "line": 36,
+      "expected": "0",
+      "replacement": "1",
+      "classification": "missing test",
+      "reason": "The weak suite used only a two-element import. The strengthened tests cover an empty and single-element import."
+    },
+    {
+      "mutationId": "ab05bc29a17ee6163f8e40c7ee85d3389d2b1ce401a9bc34cc4a325a43e61190",
+      "line": 36,
+      "expected": "0",
+      "replacement": "1",
+      "classification": "missing test",
+      "reason": "The weak suite used only a two-element import. The strengthened tests cover an empty and single-element import."
+    }
+  ],
+  "correction": "The strengthened 18-test baseline killed all six behavior-changing survivors and retained the equivalent control. This does not establish a general useful-survivor percentage."
+}

@@ -1,0 +1,536 @@
+{
+  "createdAt": "2026-10-03T18:10:07.841Z",
+  "node": "v24.21.0",
+  "scope": "Bounded authored lifecycle probes, not actual Vitest or universal equivalence proof",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "sourceReporterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "sourceProtocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "output": [
+    {
+      "scenario": "shortMessage",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "shortMessage",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "assertion",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "ascii4000",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "ascii4000",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "assertion",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "multibyteMessage",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "multibyteMessage",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "assertion",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "prefixééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé [truncated]"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "assertionAlias",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "assertionAlias",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "assertion",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "assertionCode",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "assertionCode",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "assertion",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "runtimeCode",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "runtimeCode",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "runtime",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "noClose",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "noClose",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 0,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "pendingClose",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "pendingClose",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 0,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "normalLog",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "normalLog",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 0,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "secondReporter",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":true,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "secondReporter",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 0,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "lateExitDefault",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "file:///home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/[eval1]:7\n    if(scenario === \"lateExitDefault\") process.on(\"exit\", () => {throw new Error(\"late failure without assigned exit code\");});\n                                                                 ^\n\nError: late failure without assigned exit code\n    at process.<anonymous> (file:///home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/[eval1]:7:72)\n    at process.emit (node:events:526:24)\n\nNode.js v24.21.0\n",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "lateExitDefault",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 1,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "unhandled",
+            "testId": null,
+            "file": null,
+            "message": "late failure without assigned exit code"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "hookRunErrors",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "hookRunErrors",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "hook",
+            "testId": null,
+            "file": "case.test.ts",
+            "message": "Test hook beforeAll failed"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "duplicateHook",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "duplicateHook",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "hook",
+            "testId": null,
+            "file": "case.test.ts",
+            "message": "Test hook beforeAll failed"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "hookStartOnly",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "hookStartOnly",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "hook",
+            "testId": null,
+            "file": "case.test.ts",
+            "message": "Test hook beforeAll failed"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "earlyErrors",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "earlyErrors",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "unhandled",
+            "testId": null,
+            "file": null,
+            "message": "early run error"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "timeout",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "timeout",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 0,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "runtime",
+            "testId": null,
+            "file": null,
+            "message": "Test runner cleanup timed out"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "repeatRun",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "repeatRun",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 0,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "control": "existing",
+    "exitCode": 2,
+    "stderr": "usage: copy-dependencies.py [-h] checkout destination\ncopy-dependencies.py: error: destination must not exist\n"
+  },
+  {
+    "control": "symlinkParent",
+    "exitCode": 2,
+    "stderr": "usage: copy-dependencies.py [-h] checkout destination\ncopy-dependencies.py: error: destination must be outside the checkout\n"
+  },
+  {
+    "control": "dotdot",
+    "exitCode": 2,
+    "stderr": "usage: copy-dependencies.py [-h] checkout destination\ncopy-dependencies.py: error: destination must be outside the checkout\n"
+  }
+]

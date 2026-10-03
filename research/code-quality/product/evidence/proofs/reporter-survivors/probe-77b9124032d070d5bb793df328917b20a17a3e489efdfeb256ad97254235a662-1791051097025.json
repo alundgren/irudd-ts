@@ -1,0 +1,109 @@
+{
+  "createdAt": "2026-10-03T18:11:37.025Z",
+  "node": "v24.21.0",
+  "scope": "Bounded authored lifecycle probes, not actual Vitest or universal equivalence proof",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "sourceReporterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "sourceProtocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "output": [
+    {
+      "scenario": "assertionAlias",
+      "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "7d20321fe05e648e1c282d6e1f9de6b9098708e45d2c319ba6fd7df02571dfd4",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "assertionAlias",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "runtime",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "assertionCode",
+      "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "7d20321fe05e648e1c282d6e1f9de6b9098708e45d2c319ba6fd7df02571dfd4",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "assertionCode",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "runtime",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "runtimeCode",
+      "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "7d20321fe05e648e1c282d6e1f9de6b9098708e45d2c319ba6fd7df02571dfd4",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "runtimeCode",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "runtime",
+            "testId": "case-1",
+            "file": "case.test.ts",
+            "message": "boundary control"
+          }
+        ]
+      }
+    }
+  ]
+}

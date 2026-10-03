@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-03T18:53:23.599839+00:00",
+  "tasks": [
+    {
+      "label": "confirmation",
+      "report": "raw/t3-gitPatchPath-cleanup-confirmation.json",
+      "runId": "2469581-1791052902171213023-1",
+      "originalWorkspace": "/tmp/archguard-quality-product-t3-git-cleanup-confirmation-state/archguard-mutator-2469581-1791052902171162499-0",
+      "originalTask": "/tmp/archguard-quality-product-t3-git-cleanup-confirmation-state/archguard-mutator-2469581-1791052902171162499-0/task-2469581-1791052947364834245-74",
+      "sourceSha256": "1326fe346e83a02bb99481d67e0fd5a22a5a27d2f8ce73b209110d745edffd42",
+      "requestSha256": "33e91f831be96c7722d0cb590005bf251c4622021a12fc38bf201db1cfe663c8",
+      "excluded": [
+        "node_modules",
+        "temporary home",
+        "temporary tmp",
+        "compiled caches",
+        "entire runtime workspace",
+        "state record store"
+      ],
+      "meaning": "Minimal forensic text only; old process ownership and a usable execution workspace cannot be recreated from this snapshot."
+    },
+    {
+      "label": "r12",
+      "report": "raw/t3-gitPatchPath-strengthened-r12.json",
+      "runId": "2455320-1791052127657346045-1",
+      "originalWorkspace": "/tmp/archguard-quality-product-t3-profiles-r12/state/gitPatchPath-strengthened/archguard-mutator-2455320-1791052127657320167-0",
+      "originalTask": "/tmp/archguard-quality-product-t3-profiles-r12/state/gitPatchPath-strengthened/archguard-mutator-2455320-1791052127657320167-0/task-2455320-1791052233660079018-74",
+      "sourceSha256": "1326fe346e83a02bb99481d67e0fd5a22a5a27d2f8ce73b209110d745edffd42",
+      "requestSha256": "5e1b2dd5c6d99c623756929e3699724d74d45bbdbfd29266935eed1e7eb882a8",
+      "excluded": [
+        "node_modules",
+        "temporary home",
+        "temporary tmp",
+        "compiled caches",
+        "entire runtime workspace",
+        "state record store"
+      ],
+      "meaning": "Minimal forensic text only; old process ownership and a usable execution workspace cannot be recreated from this snapshot."
+    }
+  ]
+}

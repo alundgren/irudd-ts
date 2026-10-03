@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Archguard duplicate and mutation evidence</title>
+<style>
+:root{--bg:#F2EADE;--panel:#EADFCD;--text:#604939;--muted:#66574D;--link:#3D5D71;--line:#C1AF9A;--ok:#3D6034;--accent:#784F26}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:48px 28px 80px}h1{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:-.015em;line-height:1.2;max-width:22ch}h2{font-size:22px;font-weight:600;margin:40px 0 12px}p{max-width:74ch}a{color:var(--link)}code,pre{font-family:ui-monospace,monospace}pre{background:var(--panel);padding:20px;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;line-height:1.6}button{font:inherit;color:var(--text);background:var(--bg);padding:9px 16px;border:1px solid var(--line);border-radius:8px;cursor:pointer}button[aria-pressed=true]{background:var(--accent);color:var(--bg)}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--link);outline-offset:3px}.flow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin:30px 0}.flow article{padding:20px;background:var(--panel);border-radius:12px}.flow strong{display:block;font-weight:600}.flow p{margin:6px 0 0}.subtitle{color:var(--muted)}nav{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.evidence{min-height:150px}table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}td,th{padding:12px;text-align:left;vertical-align:top}th{font-weight:600}tbody tr:nth-child(odd){background:var(--panel)}.table-scroll{overflow:auto}details{margin:18px 0}summary{cursor:pointer;font-weight:500}.notice{color:var(--muted);font-size:14px}.footer{margin-top:44px;border-top:1px solid var(--line);padding-top:22px}@media(max-width:620px){main{padding:28px 18px 50px}.flow{grid-template-columns:1fr;gap:10px}td,th{padding:10px 8px}.table-scroll{font-size:16px}table{table-layout:fixed}td,th{overflow-wrap:anywhere}}
+</style></head><body><main>
+<p class="subtitle">Archguard · TypeScript and TSX review tools</p>
+<h1>Concrete feedback for implementers and reviewers</h1>
+<p id="outcome">Work is in progress. This local template is not a completion report.</p>
+<p><a href="https://github.com/alundgren/irudd-ts/pull/15">Review the final pull request</a></p>
+<div class="flow" aria-label="Evidence workflow">
+<article><strong>Selected source and tests</strong><p>Explicit scope, trusted commands and declared dependency copies.</p></article>
+<article><strong>Deterministic evidence</strong><p>Structural similarities and verified one-edit test runs, with completeness and limits.</p></article>
+<article><strong>Engineering decision</strong><p>Inspect intended duplication, missing behavior, equivalent mutations and noisy outcomes.</p></article>
+</div>
+<h2>The implementation choices</h2>
+<p>The product reuses Archguard's pinned Oxc parser and binding analysis. The SDK uses Node builtins. Test runners are explicitly supplied by the caller. Compiler semantics and architecture policies remain separate.</p>
+<p>Duplicate detection preserves calls, operators, property names and binding relationships by default. Set, counted and weighted comparisons are visible together. Mutation execution uses fresh private copies, a fresh baseline and bounded commands. Reuse is opt-in over the full declared input identity.</p>
+<p>Findings do not impose a similarity target or a mutation score. Complete evidence exits successfully even when it contains pairs or survivors.</p>
+<h2>Inspect the examples</h2>
+<nav id="choices" aria-label="Choose evidence"></nav><section class="evidence" id="evidence" aria-live="polite"></section>
+<h2>What was tested</h2>
+<div id="validation"></div>
+<h2>Tradeoffs and follow-up</h2>
+<p id="limitations"></p>
+<p>Useful future work includes more repository-specific survivor classifications and a native macOS runtime trial. Cache hits alone do not prove faster analysis. Duplication and equivalent mutations still need a reviewer who understands the specification.</p>
+<details><summary>Branch, review and reproduction information</summary><pre id="handoff"></pre></details>
+<p class="footer">Prepared for review. The final pull request stays open against main.</p>
+</main><script id="report-data" type="application/json">{"outcome":"Work is in progress. This local template is not a completion report.","examples":[],"validation":[],"limitations":"Validation is still in progress.","handoff":{}}</script>
+<script>
+const data=JSON.parse(document.querySelector('#report-data').textContent);
+document.querySelector('#outcome').textContent=data.outcome;
+document.querySelector('#limitations').textContent=data.limitations;
+document.querySelector('#handoff').textContent=JSON.stringify(data.handoff,null,2);
+for(const item of data.validation){const p=document.createElement('p');p.textContent=item;document.querySelector('#validation').append(p)}
+function show(example){const area=document.querySelector('#evidence');area.replaceChildren();const p=document.createElement('p');p.textContent=example.description;area.append(p);if(example.rows){const wrap=document.createElement('div');wrap.className='table-scroll';const table=document.createElement('table');const head=document.createElement('thead');const hr=document.createElement('tr');for(const label of example.columns){const th=document.createElement('th');th.textContent=label;hr.append(th)}head.append(hr);table.append(head);const body=document.createElement('tbody');for(const row of example.rows){const tr=document.createElement('tr');for(const value of row){const td=document.createElement('td');td.textContent=value;tr.append(td)}body.append(tr)}table.append(body);wrap.append(table);area.append(wrap)}if(example.source){const pre=document.createElement('pre');pre.textContent=example.source;area.append(pre)}for(const b of document.querySelectorAll('#choices button'))b.setAttribute('aria-pressed',String(b.textContent===example.title))}
+for(const example of data.examples){const button=document.createElement('button');button.type='button';button.textContent=example.title;button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>show(example));document.querySelector('#choices').append(button)}
+if(data.examples.length)show(data.examples[0]);
+</script></body></html>

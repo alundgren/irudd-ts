@@ -1,0 +1,26 @@
+{
+  "completedAt": "2026-10-03T18:26:54.963058+00:00",
+  "SDKsourceSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterTestSha256": "ae6db639b369ed0f3bd12cd236c01692dc731d5d83a727aaa469d77845c6ea1c",
+  "scope": "Seven additional public lifecycle/diagnostic test groups, unchanged SDKproduction. Original five tests and full154mutation replay retained separately.",
+  "node": {
+    "command": "node --test tests/mutator_sdk.test.ts tests/mutator_reporter.test.ts tests/quality_examples.test.ts",
+    "exitCode": 0,
+    "tests": 31,
+    "log": "/tmp/archguard-quality-product-final-node31.log"
+  },
+  "strictTypeScript": {
+    "exitCode": 0,
+    "log": "/tmp/archguard-quality-product-final-types.log",
+    "compiler": "Existing pinned TypeScript7.0.2"
+  },
+  "newReporterGroups": [
+    "short and truncated diagnostic beginnings",
+    "Node assertion aliases and runtime negative",
+    "unfinished close and ordinary logs",
+    "single reporter and repeated runs",
+    "throwing/unfinished/completed hook controls",
+    "runner cleanup timeout",
+    "failure-record overflow and exact supported boundary"
+  ]
+}

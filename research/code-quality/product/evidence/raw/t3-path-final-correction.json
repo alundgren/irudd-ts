@@ -1,0 +1,18 @@
+{
+  "scope": "Two authored supplemental behavior tests in private copies; original frozen T3 source/tests unchanged. Negative controls retained.",
+  "changes": [
+    {
+      "mutationId": "a2530b23aba0cc45a9b6452747b97c071a1d504bccc6282582433e101944f2ac",
+      "line": 18,
+      "before": "survived",
+      "after": "killed"
+    },
+    {
+      "mutationId": "8b7f5a9bf65d73287923456334bb37b3e6eb5a784a36fbeded785f0a68795f88",
+      "line": 39,
+      "before": "survived",
+      "after": "killed"
+    }
+  ],
+  "remaining": "Two equivalent mutants and two drive-root representation specification questions; no score target."
+}

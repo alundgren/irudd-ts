@@ -1,0 +1,133 @@
+TAP version 13
+# Subtest: wrong task identity is rejected, corrected result writes atomically, old task stays rejected
+ok 1 - wrong task identity is rejected, corrected result writes atomically, old task stays rejected
+  ---
+  duration_ms: 32.956928
+  type: 'test'
+  ...
+# Subtest: assertion counts require executed test IDs; mixed hook failure stays distinct
+ok 2 - assertion counts require executed test IDs; mixed hook failure stays distinct
+  ---
+  duration_ms: 11.380088
+  type: 'test'
+  ...
+# Subtest: assigned request refuses symlinks, excessive bytes and wrong result path
+ok 3 - assigned request refuses symlinks, excessive bytes and wrong result path
+  ---
+  duration_ms: 15.71817
+  type: 'test'
+  ...
+# Subtest: unknown fields, versions, accessor data and unsafe counts fail without coercion
+ok 4 - unknown fields, versions, accessor data and unsafe counts fail without coercion
+  ---
+  duration_ms: 1.405863
+  type: 'test'
+  ...
+# Subtest: encoding budget rejects escaped errors before replacing an existing good record
+ok 5 - encoding budget rejects escaped errors before replacing an existing good record
+  ---
+  duration_ms: 19.452587
+  type: 'test'
+  ...
+# Subtest: shared wire ceilings accept their boundary and reject one extra byte or failure
+ok 6 - shared wire ceilings accept their boundary and reject one extra byte or failure
+  ---
+  duration_ms: 47.938725
+  type: 'test'
+  ...
+# Subtest: failure accessors, custom iteration and proxy traps are rejected without invoking code
+ok 7 - failure accessors, custom iteration and proxy traps are rejected without invoking code
+  ---
+  duration_ms: 4.058191
+  type: 'test'
+  ...
+# Subtest: null-prototype protocol records are accepted and custom prototypes remain rejected
+ok 8 - null-prototype protocol records are accepted and custom prototypes remain rejected
+  ---
+  duration_ms: 11.308245
+  type: 'test'
+  ...
+# Subtest: proxy failure arrays cannot execute prototype traps during validation
+ok 9 - proxy failure arrays cannot execute prototype traps during validation
+  ---
+  duration_ms: 0.765488
+  type: 'test'
+  ...
+# Subtest: task and failed-test identities reject empty or NUL data while empty messages remain valid
+ok 10 - task and failed-test identities reject empty or NUL data while empty messages remain valid
+  ---
+  duration_ms: 11.782779
+  type: 'test'
+  ...
+# Subtest: required protocol fields must be own data and cannot invoke inherited getters
+ok 11 - required protocol fields must be own data and cannot invoke inherited getters
+  ---
+  duration_ms: 1.063224
+  type: 'test'
+  ...
+# Subtest: baseline and mutation requests enforce their distinct mutation identities
+ok 12 - baseline and mutation requests enforce their distinct mutation identities
+  ---
+  duration_ms: 8.233869
+  type: 'test'
+  ...
+# Subtest: callable values cannot impersonate plain request data
+ok 13 - callable values cannot impersonate plain request data
+  ---
+  duration_ms: 0.741243
+  type: 'test'
+  ...
+# Subtest: assigned request files require absolute paths even when a relative file exists
+ok 14 - assigned request files require absolute paths even when a relative file exists
+  ---
+  duration_ms: 11.554774
+  type: 'test'
+  ...
+# Subtest: formatted request JSON is accepted while escaped duplicate keys remain rejected
+ok 15 - formatted request JSON is accepted while escaped duplicate keys remain rejected
+  ---
+  duration_ms: 11.038171
+  type: 'test'
+  ...
+# Subtest: the request byte ceiling includes an exact-size valid JSON document
+not ok 16 - the request byte ceiling includes an exact-size valid JSON document
+  ---
+  duration_ms: 5.009214
+  type: 'test'
+  location: '/tmp/archguard-sdk-public-proof-hym0xk11/tests/mutator_sdk.test.ts:277:1'
+  failureType: 'testCodeFailure'
+  error: 'Mutation protocol: request exceeds its byte budget'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    invalid (file:///tmp/archguard-sdk-public-proof-hym0xk11/sdk/mutator.ts:47:50)
+    readBoundedRegularFile (file:///tmp/archguard-sdk-public-proof-hym0xk11/sdk/mutator.ts:111:24)
+    readMutationRequest (file:///tmp/archguard-sdk-public-proof-hym0xk11/sdk/mutator.ts:119:81)
+    file:///tmp/archguard-sdk-public-proof-hym0xk11/tests/mutator_sdk.test.ts:285:22
+    sdkAssignedRequest (file:///tmp/archguard-sdk-public-proof-hym0xk11/tests/mutator_sdk.test.ts:218:5)
+    file:///tmp/archguard-sdk-public-proof-hym0xk11/tests/mutator_sdk.test.ts:278:3
+    withDirectory (file:///tmp/archguard-sdk-public-proof-hym0xk11/tests/mutator_sdk.test.ts:27:9)
+    TestContext.<anonymous> (file:///tmp/archguard-sdk-public-proof-hym0xk11/tests/mutator_sdk.test.ts:277:83)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+  ...
+# Subtest: result exit codes accept integer endpoints and reject values outside the process range
+ok 17 - result exit codes accept integer endpoints and reject values outside the process range
+  ---
+  duration_ms: 6.644546
+  type: 'test'
+  ...
+# Subtest: a completed hook-only failure cannot declare exit zero
+ok 18 - a completed hook-only failure cannot declare exit zero
+  ---
+  duration_ms: 0.732125
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 17
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1039.896701

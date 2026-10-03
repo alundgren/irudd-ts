@@ -1,0 +1,26 @@
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (81.894416ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (9.9984ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (46.066063ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (1.719568ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (87.489974ms)
+✔ shared wire ceilings accept their boundary and reject one extra byte or failure (45.333184ms)
+✔ failure accessors, custom iteration and proxy traps are rejected without invoking code (21.894312ms)
+✔ null-prototype protocol records are accepted and custom prototypes remain rejected (1.119388ms)
+✔ proxy failure arrays cannot execute prototype traps during validation (16.534844ms)
+✔ task and failed-test identities reject empty or NUL data while empty messages remain valid (1.68318ms)
+✔ required protocol fields must be own data and cannot invoke inherited getters (0.806265ms)
+✔ baseline and mutation requests enforce their distinct mutation identities (3.062843ms)
+✔ callable values cannot impersonate plain request data (11.545767ms)
+✔ assigned request files require absolute paths even when a relative file exists (2.586125ms)
+✔ formatted request JSON is accepted while escaped duplicate keys remain rejected (6.590274ms)
+✔ the request byte ceiling includes an exact-size valid JSON document (47.691825ms)
+✔ result exit codes accept integer endpoints and reject values outside the process range (4.130655ms)
+✔ a completed hook-only failure cannot declare exit zero (2.43386ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1232.012113

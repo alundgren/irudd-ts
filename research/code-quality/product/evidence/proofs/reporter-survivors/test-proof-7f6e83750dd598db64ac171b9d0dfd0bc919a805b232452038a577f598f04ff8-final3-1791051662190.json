@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-10-03T18:21:02.188Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8",
+  "mutation": {
+    "mutationId": "7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 7771,
+      "end": 7776,
+      "line": 170,
+      "endLine": 170
+    },
+    "operator": "boolean",
+    "expected": "false",
+    "replacement": "true",
+    "context": {
+      "before": "      if (failures.length >= mutationProtocolLimits.maxFailures) { this.supported = ",
+      "after": "; return; }",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "survived",
+    "reused": false,
+    "tests": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "exitCode": 0,
+    "elapsedMs": 18169.936977999998,
+    "message": null
+  },
+  "variant": "final3",
+  "namePattern": "failure record overflow stays",
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "ff3b7307dfbc2c3a6ebb2e4a7ed61ae60f231a793e70ca7541c650e792cbae3d",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "ae6db639b369ed0f3bd12cd236c01692dc731d5d83a727aaa469d77845c6ea1c",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-name-pattern=failure record overflow stays",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 1,
+  "signal": null,
+  "error": null,
+  "stdout": "✖ failure record overflow stays incomplete while the supported failure budget remains complete (266.542403ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 562.842027\n\n✖ failing tests:\n\ntest at tests/mutator_reporter.test.ts:233:1\n✖ failure record overflow stays incomplete while the supported failure budget remains complete (266.542403ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  true !== false\n  \n      at TestContext.<anonymous> (file:///tmp/archguard-quality-product-reporter-survivor-review/owned-test-OodMuN/tests/mutator_reporter.test.ts:235:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.start (node:internal/test_runner/test:1262:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: true,\n    expected: false,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

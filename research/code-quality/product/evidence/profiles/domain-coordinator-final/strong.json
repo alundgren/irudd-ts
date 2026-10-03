@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "plan": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "examples/code-quality/domain.ts"
+      ]
+    }
+  },
+  "execution": {
+    "command": [
+      "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "examples/code-quality/run-domain.ts",
+      "strong"
+    ],
+    "workspace": {
+      "include": [
+        "sdk/mutator.ts",
+        "examples/code-quality/domain.ts",
+        "examples/code-quality/run-domain.ts"
+      ],
+      "exclude": [
+        ".git/**",
+        "**/node_modules/**",
+        "node_modules/**",
+        "target/**"
+      ]
+    },
+    "limits": {
+      "workers": 1,
+      "maxMutants": 100,
+      "commandTimeoutMs": 10000,
+      "runTimeoutMs": 120000
+    }
+  }
+}

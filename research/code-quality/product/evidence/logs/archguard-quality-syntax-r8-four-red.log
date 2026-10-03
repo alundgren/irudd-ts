@@ -1,0 +1,69 @@
+   Compiling archguard v0.1.0 (/tmp/archguard-quality-product-syntax-worktree)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 20.32s
+     Running tests/quality_syntax.rs (/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/target/debug/deps/quality_syntax-9586c9fdf80caaf0)
+
+running 28 tests
+test ambient_declarations_are_excluded_while_runtime_namespace_initializers_remain_present ... ok
+test binding_relationships_renames_shadowing_and_captures_are_distinct ... ok
+test called_operations_operators_order_and_optional_slots_are_preserved ... ok
+test aggregate_reports_omit_evidence_before_collection_and_keep_json_valid ... ok
+test computed_call_names_preserve_literal_descendants_in_both_property_modes ... FAILED
+test computed_property_keys_retain_runtime_mutations_while_static_keys_do_not ... FAILED
+test comparison_counts_and_resource_limits_preserve_partial_results ... ok
+test configured_threshold_selects_unique_subtree_set_similarity ... ok
+test conservative_fallback_keeps_jsx_regex_and_unsupported_nodes_exact ... ok
+test discovery_parse_failure_correction_and_source_preservation_are_explicit ... ok
+test exact_utf8_crlf_edits_stale_inputs_and_syntax_classification_have_controls ... ok
+test final_plan_discovery_detects_added_sources_and_ignores_excluded_changes ... FAILED
+test guards_are_typed_incomplete_and_a_longer_comparison_edit_is_not_invalid_syntax ... ok
+test mutation_count_and_byte_limits_keep_distinct_problem_categories ... ok
+test mutation_sites_are_runtime_only_exact_and_cover_every_operator_group ... ok
+test dogfood_existing_sdk_and_ts_examples_with_explicit_scope ... ok
+test parallel_batches_produce_the_same_order_and_facts_as_one_worker ... ok
+test property_and_literal_modes_have_explicit_controls ... ok
+test recursive_operator_guard_handles_punctuation_and_keyword_chains ... ok
+test selected_directory_links_do_not_claim_complete_descendant_coverage ... ok
+test selected_links_are_incomplete_and_cache_links_never_replace_input ... ok
+test prospective_cache_paths_cannot_create_typescript_sources ... FAILED
+test selection_excludes_callbacks_overloads_and_nested_candidates ... ok
+test strict_dryer_configuration_and_bounded_names_remain_correctable ... ok
+test candidate_limits_apply_before_size_filters_and_recovered_cache_trees_are_validated ... ok
+test truncated_display_names_do_not_change_exact_internal_operation_keys ... ok
+test cache_validates_bytes_discovery_options_corruption_and_source_destination ... ok
+test selected_source_byte_file_node_and_encoding_failures_are_correctable ... ok
+
+failures:
+
+---- computed_call_names_preserve_literal_descendants_in_both_property_modes stdout ----
+
+thread 'computed_call_names_preserve_literal_descendants_in_both_property_modes' (1940917) panicked at tests/quality_syntax.rs:1117:9:
+assertion failed: !different.pairs[0].exact_normalized_match
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- computed_property_keys_retain_runtime_mutations_while_static_keys_do_not stdout ----
+
+thread 'computed_property_keys_retain_runtime_mutations_while_static_keys_do_not' (1940923) panicked at tests/quality_syntax.rs:1138:9:
+assertion `left == right` failed: const value={ [true ? 0 : 1]:2 };
+  left: 0
+ right: 3
+
+---- final_plan_discovery_detects_added_sources_and_ignores_excluded_changes stdout ----
+
+thread 'final_plan_discovery_detects_added_sources_and_ignores_excluded_changes' (1941007) panicked at tests/quality_syntax.rs:1171:5:
+assertion failed: !changed.complete
+
+---- prospective_cache_paths_cannot_create_typescript_sources stdout ----
+
+thread 'prospective_cache_paths_cannot_create_typescript_sources' (1941155) panicked at tests/quality_syntax.rs:1212:5:
+assertion failed: dryer::analyze_cached(root.path(), &config(), &invalid).is_err()
+
+
+failures:
+    computed_call_names_preserve_literal_descendants_in_both_property_modes
+    computed_property_keys_retain_runtime_mutations_while_static_keys_do_not
+    final_plan_discovery_detects_added_sources_and_ignores_excluded_changes
+    prospective_cache_paths_cannot_create_typescript_sources
+
+test result: FAILED. 24 passed; 4 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.60s
+
+error: test failed, to rerun pass `--test quality_syntax`

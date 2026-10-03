@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "A.ts"
+    ]
+  },
+  "similarityThreshold": 0,
+  "normalization": {
+    "properties": "erase"
+  }
+}

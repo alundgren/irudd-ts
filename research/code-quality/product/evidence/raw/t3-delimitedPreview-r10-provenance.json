@@ -1,0 +1,84 @@
+{
+  "command": [
+    "/tmp/archguard-quality-product-cli-r10-replay",
+    "mutator",
+    "run",
+    "--root",
+    "/tmp/archguard-quality-product-t3code",
+    "--config",
+    "/tmp/archguard-quality-product-t3-profiles-r10/delimitedPreview.json",
+    "--json"
+  ],
+  "started": "2026-10-03T16:09:12.363189+00:00",
+  "durationMs": 622765,
+  "measurementUse": "ordinary validation; concurrent other checks, no runtime comparison",
+  "exitCode": 2,
+  "executableSha256": "8f4ee235022a279013aa1442867e873b81b2170a0d644aab953731bbcf0fcccb",
+  "productWorktreeHead": "6af74e9",
+  "sourceProvenance": "r10-replay-source-provenance.json",
+  "configuration": {
+    "schemaVersion": 1,
+    "plan": {
+      "schemaVersion": 1,
+      "selection": {
+        "include": [
+          "packages/shared/src/delimitedPreview.ts"
+        ]
+      }
+    },
+    "execution": {
+      "command": [
+        "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "node_modules/vite-plus/bin/vp",
+        "test",
+        "run",
+        "packages/shared/src/delimitedPreview.test.ts",
+        "--config",
+        "quality-support/vite.config.ts"
+      ],
+      "workspace": {
+        "exclude": [
+          ".git/**",
+          "**/node_modules/**",
+          "node_modules/**",
+          "target/**"
+        ],
+        "include": [
+          "package.json",
+          "packages/shared/package.json",
+          "packages/shared/src/delimitedPreview.ts",
+          "packages/shared/src/delimitedPreview.test.ts"
+        ],
+        "dependencies": [
+          {
+            "source": "/tmp/archguard-quality-product-dependencies",
+            "destination": "node_modules"
+          },
+          {
+            "source": "/tmp/archguard-quality-product-cli-worktree/sdk",
+            "destination": "sdk"
+          },
+          {
+            "source": "/tmp/archguard-quality-product-t3-profiles-r10/support",
+            "destination": "quality-support"
+          }
+        ]
+      },
+      "limits": {
+        "workers": 2,
+        "maxInventoryBytes": 67108864,
+        "commandTimeoutMs": 30000,
+        "runTimeoutMs": 3600000
+      },
+      "state": {
+        "directory": "/tmp/archguard-quality-product-t3-profiles-r10/state/delimitedPreview",
+        "reuse": "declaredInputs"
+      }
+    }
+  },
+  "configurationSha256": "3bca0429974bd0557f4e3017460c6e234ce9a4c8364b355189222477478647aa",
+  "sourceHashes": {
+    "packages/shared/src/delimitedPreview.ts": "3871bc65931237038e63a94df7c72341b9d81f95a79108ac45c771533352c0fe"
+  },
+  "sourceBytesPreserved": true
+}

@@ -1,0 +1,1 @@
+{"pid": 2402592, "command": ["/tmp/archguard-quality-product-coordinator-final", "mutator", "run", "--root", "/tmp/archguard-quality-product-cli-reviewed-worktree", "--config", "/tmp/archguard-quality-product-domain-profiles-coordinator-final/weak.json", "--json"], "started": "2026-10-03T18:08:25.760918+00:00"}

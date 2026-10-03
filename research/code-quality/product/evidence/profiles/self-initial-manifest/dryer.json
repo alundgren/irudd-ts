@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "sdk/**/*.ts",
+      "examples/code-quality/**/*.ts"
+    ]
+  }
+}

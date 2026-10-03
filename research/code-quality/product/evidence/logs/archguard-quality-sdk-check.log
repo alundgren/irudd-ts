@@ -1,0 +1,184 @@
+    Checking archguard v0.1.0 (/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.41s
+   Compiling archguard v0.1.0 (/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.38s
+     Running unittests src/lib.rs (target/debug/deps/archguard-f6c3519f2c64d627)
+
+running 2 tests
+test cache::tests::executing_binary_identity_change_discards_a_valid_entry ... ok
+test cache::tests::observations_changed_after_reuse_cannot_be_published ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s
+
+     Running unittests src/main.rs (target/debug/deps/archguard-4cf0b2502bb85130)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/architecture.rs (target/debug/deps/architecture-f5d6ab5d5547a41f)
+
+running 1 test
+test own_import_contracts_reject_policy_and_research_dependencies ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.59s
+
+     Running tests/cache.rs (target/debug/deps/cache-e8eb09d04f5c26b8)
+
+running 11 tests
+test cache_destination_cannot_replace_selected_source_or_manifest ... ok
+test cache_destination_cannot_replace_inherited_resolution_input ... ok
+test inherited_config_outside_root_and_new_nearest_config_invalidate_edges ... ok
+test corrupt_entries_fail_once_recover_and_incompatible_versions_are_misses ... ok
+test installed_package_link_repointing_invalidates_resolution ... ok
+test discovery_parse_failure_correction_and_profile_changes_match_fresh ... ok
+test negative_lookups_include_unselected_and_ignored_targets ... ok
+test rust_candidates_and_root_identity_are_validated ... ok
+test unchanged_graph_reuses_edges_but_source_bytes_override_timestamps ... ok
+test workspace_and_installed_manifests_and_missing_packages_are_inputs ... ok
+test cli_reused_graph_still_runs_plugins_and_reports_corruption ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 23.50s
+
+     Running tests/core.rs (target/debug/deps/core-7d7ef27eb43956c8)
+
+running 16 tests
+test function_results_do_not_inherit_imported_method_identity ... ok
+test exported_import_equals_and_array_fallbacks_preserve_dependencies ... ok
+test exclusions_outside_root_dynamic_and_parse_errors_cannot_pass_clean ... ok
+test graph_tracks_workspace_exports_reexports_and_types ... ok
+test import_equals_cannot_bypass_dependency_policy ... ok
+test explicit_and_type_only_exports_do_not_become_service_values ... ok
+test provenance_handles_aliases_shadowing_strings_and_require ... ok
+test inherited_aliases_and_missing_alias_targets_are_internal ... ok
+test installed_source_requires_packages_and_preserves_host_endpoints ... ok
+test local_export_aliases_keep_service_provenance ... ok
+test star_export_ambiguity_distinguishes_distinct_declarations_from_same_origin ... ok
+test service_namespace_resolves_definitions_and_barrels ... ok
+test workspace_export_cannot_escape_the_package ... ok
+test selected_null_export_is_blocked_and_namespace_exports_do_not_flatten ... ok
+test transitive_rules_report_path_and_cycles_distinguish_types_and_dynamic_edges ... ok
+test value_stars_and_declared_external_exports_preserve_public_names ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running tests/plugins.rs (target/debug/deps/plugins-31d61a1fd40bb85f)
+
+running 5 tests
+test inherited_pipes_are_closed_by_process_group_cleanup ... ok
+test successful_plugin_and_source_range_validation ... ok
+test unread_large_stdin_times_out ... ok
+test rust_and_typescript_plugins_use_the_same_transitive_graph ... ok
+test plugin_failures_are_bounded_and_never_clean ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.44s
+
+     Running tests/policies.rs (target/debug/deps/policies-1060005a2f596b32)
+
+running 4 tests
+test public_entry_distinguishes_package_import_from_private_file ... ok
+test platform_resolution_changes_the_actual_cycle ... ok
+test runtime_reachability_has_dependency_evidence_and_respects_shadowing ... ok
+test service_and_package_contracts_have_failure_and_correction_controls ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/roles.rs (target/debug/deps/roles-c4510c676b1a05af)
+
+running 5 tests
+test malformed_role_configuration_and_path_mapping_fail_closed ... ok
+test roles_do_not_hide_unknown_or_overlapping_assignments ... ok
+test role_dependencies_cross_unassigned_modules_and_respect_type_and_role_exclusions ... ok
+test registration_requires_static_value_edge_and_keeps_resolution_errors_visible ... ok
+test repository_conventions_has_failure_correction_and_controls ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.62s
+
+     Running tests/semantic.rs (target/debug/deps/semantic-a3ed224404b258de)
+
+running 3 tests
+test legacy_payload_remains_strict_and_provider_version_is_pinned ... ok
+test independently_enumerates_public_sites_and_rejects_omissions ... ok
+test malformed_and_omitted_process_responses_are_errors ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.25s
+
+     Running tests/semantic_provider.rs (target/debug/deps/semantic_provider-3124bed6277cbc5c)
+
+running 9 tests
+test deadline_kills_a_waiting_native_compiler_descendant ... ok
+test member_rule_remains_useful_when_compiler_diagnostics_are_suppressed ... ok
+test index_signatures_without_named_symbols_do_not_prove_member_absence ... ok
+test native_nullable_optional_and_union_members_remain_present ... ok
+test native_clean_and_context_membership_failures ... ok
+test native_provider_unicode_multicontext_and_unavailable_controls ... ok
+test native_jsx_member_tags_have_independent_sites_and_facts ... ok
+test native_inherited_config_diagnostics_and_repository_plugins_are_inert ... ok
+test semantic_incompleteness_does_not_change_legacy_plugin_graph_payload ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 18.53s
+
+     Running research/t3code/tests/cache.rs (target/debug/deps/t3_cache-6e6c4ebb44ea1090)
+
+running 2 tests
+test merged_barrel_edit_reruns_policy_for_reused_consumer ... ok
+test merged_type_extraction_addition_missing_target_and_reverse_deletion ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.36s
+
+     Running research/t3code/tests/history.rs (target/debug/deps/t3_history-b750b298155eb6bc)
+
+running 3 tests
+test type_only_cycles_and_dynamic_return_edges_have_distinct_policy ... ok
+test mobile_cycle_reduction_matches_both_upstream_platform_orders ... ok
+test upstream_reductions_fail_before_and_pass_after ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.28s
+
+     Running research/t3code/tests/profiles.rs (target/debug/deps/t3_profiles-a6fe0c16b96bec71)
+
+running 3 tests
+test published_profiles_validate ... ok
+test mobile_profiles_ignore_inactive_platform_cycles ... ok
+test t3_presets_match_resolved_retired_sources_and_react_subpaths ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s
+
+     Running research/t3code/tests/semantic.rs (target/debug/deps/t3_semantic-8118aaa726b52681)
+
+running 1 test
+test merged_pr_11304_reduced_before_fixed_and_partial_correction ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.37s
+
+   Doc-tests archguard
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+✔ assertion failures retain IDs and passing controls finish cleanly (321.767848ms)
+✔ assertion plus late run or cleanup failure cannot be assertion-only (469.23665ms)
+✔ runtime, import, suite, hook and unhandled failures remain distinct (1262.408663ms)
+✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (1209.886006ms)
+✔ retained retry errors and oversized runner metadata fail conservatively (528.002312ms)
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (10.470822ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (1.356431ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (4.465941ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (0.941576ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (7.781365ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4021.875965
+172 locked package licenses checked
+providers/typescript7: 21 locked npm licenses and upstream notice hashes checked
+research/t3code/semantic: 13 locked npm licenses and upstream notice hashes checked
+41 maintained Markdown files and preserved artifact hashes checked
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.30s
+     Running `target/debug/archguard check --config archguard.json`
+52 files, 324 imports, 0 violations, 0 analysis problems in 417.53 ms

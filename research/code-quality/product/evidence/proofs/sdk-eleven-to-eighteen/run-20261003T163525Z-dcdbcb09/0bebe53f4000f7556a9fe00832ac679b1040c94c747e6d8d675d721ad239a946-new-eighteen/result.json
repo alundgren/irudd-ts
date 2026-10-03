@@ -1,0 +1,52 @@
+{
+  "label": "0bebe53f4000f7556a9fe00832ac679b1040c94c747e6d8d675d721ad239a946-new-eighteen",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/mutator_sdk.test.ts"
+  ],
+  "childDeadlineSeconds": 15,
+  "sourceSha256": "6779c613d453fd0b174219dc467a925c8f31d3877343ebe6e2a630d72679f068",
+  "testsSha256": "811a15c8268a5752c350d1a50f1beeb9ac881ceb02412da9dc5d0448c2cfa56b",
+  "expectedExitCode": 1,
+  "exitCode": 1,
+  "timedOut": false,
+  "matchesExpected": true,
+  "output": {
+    "stdout": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/0bebe53f4000f7556a9fe00832ac679b1040c94c747e6d8d675d721ad239a946-new-eighteen/stdout.txt",
+      "retainedBytes": 6387,
+      "totalBytes": 6387,
+      "truncated": false,
+      "sha256": "ce3d6bf4bd46c3894f69adc5f98675edec5f9361287585f63689f531804bcbab"
+    },
+    "stderr": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/0bebe53f4000f7556a9fe00832ac679b1040c94c747e6d8d675d721ad239a946-new-eighteen/stderr.txt",
+      "retainedBytes": 0,
+      "totalBytes": 0,
+      "truncated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "failedTestLines": [
+    "not ok 15 - formatted request JSON is accepted while escaped duplicate keys remain rejected",
+    "not ok 16 - the request byte ceiling includes an exact-size valid JSON document"
+  ],
+  "failureDetails": [
+    "  failureType: 'testCodeFailure'",
+    "  error: 'Mutation protocol: request token unavailable'",
+    "  code: 'ERR_TEST_FAILURE'",
+    "  failureType: 'testCodeFailure'",
+    "  error: 'Mutation protocol: request token unavailable'",
+    "  code: 'ERR_TEST_FAILURE'"
+  ],
+  "tapSummary": [
+    "# tests 18",
+    "# pass 16",
+    "# fail 2",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0"
+  ]
+}

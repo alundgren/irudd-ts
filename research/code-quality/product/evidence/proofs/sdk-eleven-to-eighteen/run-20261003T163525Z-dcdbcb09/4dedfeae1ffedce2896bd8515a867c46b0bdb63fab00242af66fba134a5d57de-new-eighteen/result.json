@@ -1,0 +1,48 @@
+{
+  "label": "4dedfeae1ffedce2896bd8515a867c46b0bdb63fab00242af66fba134a5d57de-new-eighteen",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/mutator_sdk.test.ts"
+  ],
+  "childDeadlineSeconds": 15,
+  "sourceSha256": "34391b3345530ea3e37ea99bcda7e25d2cf52afde93aaa0e1adbbbedda233f89",
+  "testsSha256": "811a15c8268a5752c350d1a50f1beeb9ac881ceb02412da9dc5d0448c2cfa56b",
+  "expectedExitCode": 1,
+  "exitCode": 1,
+  "timedOut": false,
+  "matchesExpected": true,
+  "output": {
+    "stdout": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/4dedfeae1ffedce2896bd8515a867c46b0bdb63fab00242af66fba134a5d57de-new-eighteen/stdout.txt",
+      "retainedBytes": 5158,
+      "totalBytes": 5158,
+      "truncated": false,
+      "sha256": "6ac544fed0b56e4b056c6b4957c0dcf720cf54dc39d382334cfb9406b449caf0"
+    },
+    "stderr": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/4dedfeae1ffedce2896bd8515a867c46b0bdb63fab00242af66fba134a5d57de-new-eighteen/stderr.txt",
+      "retainedBytes": 0,
+      "totalBytes": 0,
+      "truncated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "failedTestLines": [
+    "not ok 17 - result exit codes accept integer endpoints and reject values outside the process range"
+  ],
+  "failureDetails": [
+    "  failureType: 'testCodeFailure'",
+    "  error: 'Mutation protocol: exitCode must be a process exit code'",
+    "  code: 'ERR_TEST_FAILURE'"
+  ],
+  "tapSummary": [
+    "# tests 18",
+    "# pass 17",
+    "# fail 1",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0"
+  ]
+}

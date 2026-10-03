@@ -1,0 +1,15 @@
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (8.711191ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (0.886283ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (5.32402ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (1.09908ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (6.651629ms)
+✔ shared wire ceilings accept their boundary and reject one extra byte or failure (5.322509ms)
+✔ failure accessors, custom iteration and proxy traps are rejected without invoking code (0.811103ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 220.024721

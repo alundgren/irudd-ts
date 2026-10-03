@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "B.ts"
+    ]
+  },
+  "similarityThreshold": 0,
+  "normalization": {}
+}

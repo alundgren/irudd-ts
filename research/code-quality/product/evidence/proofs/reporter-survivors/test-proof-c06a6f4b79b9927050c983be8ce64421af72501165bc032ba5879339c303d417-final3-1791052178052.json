@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-10-03T18:29:38.044Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417",
+  "mutation": {
+    "mutationId": "c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 6058,
+      "end": 6060,
+      "line": 136,
+      "endLine": 136
+    },
+    "operator": "logical",
+    "expected": "||",
+    "replacement": "&&",
+    "context": {
+      "before": "    if (this.runEnded ",
+      "after": " modules.length > MAX_EVENTS || errors.length > MAX_EVENTS) { this.supported = false; return; }",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "timedOut",
+    "reused": false,
+    "tests": null,
+    "exitCode": null,
+    "elapsedMs": 64734.676437999995,
+    "message": "[redacted] command deadline reached during workspace monitoring"
+  },
+  "variant": "final3",
+  "namePattern": "a second reporter",
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "cb5d03a1b00785945ce18531d293613b95c462bb0b10fe1673d5b910f2e5f75f",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "ae6db639b369ed0f3bd12cd236c01692dc731d5d83a727aaa469d77845c6ea1c",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-name-pattern=a second reporter",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 1,
+  "signal": null,
+  "error": null,
+  "stdout": "✖ a second reporter is rejected and repeated test runs stay incomplete (719.522596ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1128.962864\n\n✖ failing tests:\n\ntest at tests/mutator_reporter.test.ts:201:1\n✖ a second reporter is rejected and repeated test runs stay incomplete (719.522596ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  true !== false\n  \n      at TestContext.<anonymous> (file:///tmp/archguard-quality-product-reporter-survivor-review/owned-test-OHckF4/tests/mutator_reporter.test.ts:206:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.start (node:internal/test_runner/test:1262:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: true,\n    expected: false,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

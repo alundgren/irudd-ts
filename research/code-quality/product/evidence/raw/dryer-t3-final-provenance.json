@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/tmp/archguard-quality-product-cli-final-replay",
+    "dryer",
+    "--root",
+    "/tmp/archguard-quality-product-t3code",
+    "--config",
+    "/tmp/archguard-quality-product-t3-profiles-final/dryer.json",
+    "--json"
+  ],
+  "exitCode": 0,
+  "binarySha256": "eb703cce80a28717eaa5bd8e283813d523cfeea541fb7c03ddda78aabc75559d",
+  "configuration": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "packages/shared/src/path.ts",
+        "packages/shared/src/hostClassification.ts",
+        "packages/shared/src/delimitedPreview.ts",
+        "packages/shared/src/gitPatchPath.ts"
+      ]
+    }
+  },
+  "configurationSha256": "7feb73dfc1292ce898bf2bda6c1be8871f10b6e315528e804cd39ae12486139b",
+  "measurementUse": "ordinary concurrent validation; no runtime comparison",
+  "sourceHashes": {
+    "packages/shared/src/delimitedPreview.ts": "3871bc65931237038e63a94df7c72341b9d81f95a79108ac45c771533352c0fe",
+    "packages/shared/src/gitPatchPath.ts": "13b51b2f71d422893e109bdb4f7062278d56303679d89e96ba4db8edda76b07a",
+    "packages/shared/src/hostClassification.ts": "07576a1ed02ccbd1b3b84d82bbb95d663959edaaf87f470324a5d361fd89e66a",
+    "packages/shared/src/path.ts": "4c576bb8969bbafaec9fbc4993a5ca991c1140cea227bb4a4e05916468c31d99"
+  }
+}

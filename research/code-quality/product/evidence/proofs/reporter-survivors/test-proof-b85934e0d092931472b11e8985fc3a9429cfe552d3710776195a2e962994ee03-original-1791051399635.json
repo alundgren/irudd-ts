@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-10-03T18:16:39.635Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03",
+  "mutation": {
+    "mutationId": "b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 4968,
+      "end": 4973,
+      "line": 112,
+      "endLine": 112
+    },
+    "operator": "boolean",
+    "expected": "false",
+    "replacement": "true",
+    "context": {
+      "before": "      finally { this.closing = ",
+      "after": "; }",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "survived",
+    "reused": false,
+    "tests": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "exitCode": 0,
+    "elapsedMs": 26429.964341000003,
+    "message": null
+  },
+  "variant": "original",
+  "namePattern": null,
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "11b22f9bd3e5a8479cb21917a4b2fd405e0d05cad67e32b67963e74da7f62bff",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "d306d79ea0cd3127dbde7b9290298036f6811ad04558a0882fcef85a693be725",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "✔ assertion failures retain IDs and passing controls finish cleanly (1247.225363ms)\n✔ assertion plus late run or cleanup failure cannot be assertion-only (3183.192913ms)\n✔ runtime, import, suite, hook and unhandled failures remain distinct (4275.571451ms)\n✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (4052.406051ms)\n✔ retained retry errors and oversized runner metadata fail conservatively (2412.196585ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 15905.663838\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "corpus": {
+    "repository": "https://github.com/pingdotgg/t3code",
+    "commit": "31a9da179ed0763335f05681c577474aec5d2309",
+    "worktree": "/tmp/archguard-quality-product-t3code"
+  },
+  "framework": {
+    "vitePlus": "1.0.0",
+    "vitest": "5.0.1",
+    "node": "24.21.0",
+    "installedFrom": "pnpm-lock.yaml",
+    "lockSha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5"
+  },
+  "sdkHead": "7521944",
+  "reporterSha256": "59c478f52acd4756324a4647e010dd3e8efa18dc97726c040c2d541609fb4b42",
+  "controlCommand": "node scripts/check_mutator_vitest.mjs /tmp/archguard-quality-product-t3code",
+  "controlOutputSha256": "2673c2f3a7a459522ed6d430083e5a64031375411f9d79a22da1a9c1ecc95428",
+  "classification": "authored actual-framework controls, correctness only, not timing or leak measurements"
+}

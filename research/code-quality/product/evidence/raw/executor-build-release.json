@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-03T16:34:33.240210+00:00",
+  "head": "7ece2c6f6c804573ad7eed6c534d5ee3df1b6cd2",
+  "action": "release owned completed executor build directory only",
+  "removed": "/tmp/archguard-quality-product-execution-worktree/target",
+  "retainedPressureExecutable": "/tmp/archguard-quality-executor-pressure-final-binary",
+  "sha256": "7b2d994a357247404196a1d28668bb31fc83b5609da48a0b6190ae270e965569",
+  "checks": "/tmp/archguard-quality-product-execution-delivery-check.log",
+  "pressure": "/tmp/archguard-quality-product-execution-pressure-final.log",
+  "ownedAdverseWorkspacesPreserved": true
+}

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "plan": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "packages/shared/src/path.ts"
+      ]
+    }
+  },
+  "execution": {
+    "command": [
+      "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "node_modules/vite-plus/bin/vp",
+      "test",
+      "run",
+      "packages/shared/src/path.test.ts",
+      "quality-controls/path.test.ts",
+      "--config",
+      "quality-support/vite.config.ts"
+    ],
+    "workspace": {
+      "exclude": [
+        ".git/**",
+        "**/node_modules/**",
+        "node_modules/**",
+        "target/**"
+      ],
+      "include": [
+        "package.json",
+        "packages/shared/package.json",
+        "packages/shared/src/path.ts",
+        "packages/shared/src/path.test.ts"
+      ],
+      "dependencies": [
+        {
+          "source": "/tmp/archguard-quality-product-dependencies",
+          "destination": "node_modules"
+        },
+        {
+          "source": "/tmp/archguard-quality-product-cli-worktree/sdk",
+          "destination": "sdk"
+        },
+        {
+          "source": "/tmp/archguard-quality-product-t3-profiles-r10/support",
+          "destination": "quality-support"
+        },
+        {
+          "source": "/tmp/archguard-quality-product-t3-profiles-r10/controls",
+          "destination": "quality-controls"
+        }
+      ]
+    },
+    "limits": {
+      "workers": 2,
+      "maxInventoryBytes": 67108864,
+      "commandTimeoutMs": 30000,
+      "runTimeoutMs": 3600000
+    },
+    "state": {
+      "directory": "/tmp/archguard-quality-product-t3-profiles-r10/state/path-strengthened",
+      "reuse": "declaredInputs"
+    }
+  }
+}

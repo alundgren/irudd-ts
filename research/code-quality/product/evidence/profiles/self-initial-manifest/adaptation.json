@@ -1,0 +1,8 @@
+{
+  "originalTests": [
+    "tests/mutator_sdk.test.ts",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "change": "Only the test registration import changes from node:test to vitest; assertions and source imports remain identical.",
+  "instrumentation": "The reporter and its protocol helper are fixed trusted support copies so mutations in the tested SDK cannot alter result publication."
+}

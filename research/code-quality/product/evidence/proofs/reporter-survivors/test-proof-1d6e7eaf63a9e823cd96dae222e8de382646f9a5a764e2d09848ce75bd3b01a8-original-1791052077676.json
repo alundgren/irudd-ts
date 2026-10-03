@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-10-03T18:27:57.673Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "1d6e7eaf63a9e823cd96dae222e8de382646f9a5a764e2d09848ce75bd3b01a8",
+  "mutation": {
+    "mutationId": "1d6e7eaf63a9e823cd96dae222e8de382646f9a5a764e2d09848ce75bd3b01a8",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 5815,
+      "end": 5820,
+      "line": 129,
+      "endLine": 129
+    },
+    "operator": "boolean",
+    "expected": "false",
+    "replacement": "true",
+    "context": {
+      "before": "    if (this.hooks.length >= MAX_EVENTS) { this.supported = ",
+      "after": "; return; }",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "timedOut",
+    "reused": false,
+    "tests": null,
+    "exitCode": null,
+    "elapsedMs": 66177.64033000001,
+    "message": "[redacted] command deadline reached during workspace monitoring"
+  },
+  "variant": "original",
+  "namePattern": null,
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "dc27a44ccbdb9625ae0a0d18bb0a8b53417d57b28ebba45911a611b8f20a8a58",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "d306d79ea0cd3127dbde7b9290298036f6811ad04558a0882fcef85a693be725",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 0,
+  "signal": null,
+  "error": null,
+  "stdout": "✔ assertion failures retain IDs and passing controls finish cleanly (733.342018ms)\n✔ assertion plus late run or cleanup failure cannot be assertion-only (2127.40406ms)\n✔ runtime, import, suite, hook and unhandled failures remain distinct (1973.892299ms)\n✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (2139.288835ms)\n✔ retained retry errors and oversized runner metadata fail conservatively (1078.552942ms)\nℹ tests 5\nℹ suites 0\nℹ pass 5\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 8479.919029\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

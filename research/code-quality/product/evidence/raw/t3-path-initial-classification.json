@@ -1,0 +1,100 @@
+{
+  "scope": "Focused unchanged T3 path helper and six original tests. This does not establish coverage of the whole repository.",
+  "stage": "Preliminary product checkpoint. Replay the final implementation before making final validation or cost claims.",
+  "rows": [
+    {
+      "id": "a2530b23aba0cc45a9b6452747b97c071a1d504bccc6282582433e101944f2ac",
+      "line": 18,
+      "expected": "||",
+      "replacement": "&&",
+      "classification": "missing test",
+      "reason": "Existing tests omit ../repo and .\\repo. Callers use this decision when joining the input to cwd.",
+      "counterexamples": [
+        {
+          "input": "../repo",
+          "original": true,
+          "mutant": false
+        },
+        {
+          "input": ".\\repo",
+          "original": true,
+          "mutant": false
+        }
+      ]
+    },
+    {
+      "id": "df409ba3bdf25ebbee084494c1f1b283331e2546c2bdae5a6f6d0a85ab538b95",
+      "line": 29,
+      "expected": "||",
+      "replacement": "&&",
+      "classification": "equivalent",
+      "reason": "Single slash roots reach the empty-result guard after trimming. Exported normalization remains the same.",
+      "counterexamples": []
+    },
+    {
+      "id": "82481b22d48a10a61afba95af56c2ba86df1144d6c30449d7f2e5d0e0fa48f95",
+      "line": 29,
+      "expected": "||",
+      "replacement": "&&",
+      "classification": "missing specification",
+      "reason": "The inspected comments, tests and callers do not specify whether dispatch must preserve C:/ instead of returning C:\\.",
+      "counterexamples": [
+        {
+          "input": "C:/",
+          "original": "C:/",
+          "mutant": "C:\\"
+        }
+      ]
+    },
+    {
+      "id": "ce437be9943989a28dc64c985887333a87f2d8d4382da83985bea25dabfc166d",
+      "line": 33,
+      "expected": "0",
+      "replacement": "1",
+      "classification": "equivalent",
+      "reason": "Empty inputs and paths with one character still return their original value through the remaining guards or trimming.",
+      "counterexamples": []
+    },
+    {
+      "id": "08477dc227be10ceecd670632a5663599a2821f818acae8e92705e165993f0b6",
+      "line": 33,
+      "expected": "||",
+      "replacement": "&&",
+      "classification": "missing specification",
+      "reason": "This changes the same unspecified drive-root representation as the second root OR mutation.",
+      "counterexamples": [
+        {
+          "input": "C:/",
+          "original": "C:/",
+          "mutant": "C:\\"
+        }
+      ]
+    },
+    {
+      "id": "8b7f5a9bf65d73287923456334bb37b3e6eb5a784a36fbeded785f0a68795f88",
+      "line": 39,
+      "expected": "0",
+      "replacement": "1",
+      "classification": "missing test",
+      "reason": "x/ keeps its trailing separator after zero changes to one. Separator-only inputs also change, but their contract needs clarification.",
+      "counterexamples": [
+        {
+          "input": "x/",
+          "original": "x",
+          "mutant": "x/"
+        },
+        {
+          "input": "///",
+          "original": "///",
+          "mutant": ""
+        },
+        {
+          "input": "\\\\",
+          "original": "\\\\",
+          "mutant": ""
+        }
+      ]
+    }
+  ],
+  "independentAudit": "The q4 scout reviewed the actual path helper, tests and callers. It ran no probes and edited no source."
+}

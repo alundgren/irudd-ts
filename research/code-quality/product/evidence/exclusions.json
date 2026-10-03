@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-03T18:53:23.599839+00:00",
+  "policy": "Retain bounded experiment reports, selected source/test proof text, explicit configuration and notices. No installed dependencies, executable binaries, process state or private execution workspaces.",
+  "globalExclusions": [
+    "All node_modules and dependency installations",
+    "All target and compiled executable files",
+    "State/.state records and active journals except explicitly requested minimal failed-Git forensic text",
+    "Private execution workspaces and runtime temporary files except those selected forensic request/source copies",
+    "Repeated SDK driver.py source copies; one root driver, commands and provenance are retained",
+    "Unrelated historical comparison archive, which remains untouched",
+    "Most intermediate build/check logs; selected relevant failure/correction and pressure logs are retained"
+  ],
+  "namedExclusions": [
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/disk-cache-cleanup.json",
+      "reason": "installation/cache administration, not a retained outcome"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/manual-control-dependency-release.json",
+      "reason": "installation/cache administration, not a retained outcome"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/report-draft-browser-desktop.png",
+      "reason": "unfinished presentation draft; excluded from completion evidence"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/report-draft-browser-mobile.png",
+      "reason": "unfinished presentation draft; excluded from completion evidence"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/report-draft-browser.json",
+      "reason": "unfinished presentation draft; excluded from completion evidence"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/report-draft-data.json",
+      "reason": "unfinished presentation draft; excluded from completion evidence"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/report-draft.html",
+      "reason": "unfinished presentation draft; excluded from completion evidence"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/driver.py",
+      "reason": "repeated SDK driver source; one root driver retained"
+    },
+    {
+      "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163444Z-c89a286d/driver.py",
+      "reason": "repeated SDK driver source; one root driver retained"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-host-boundary-selection-review/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-self-profiles-final18/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-self-profiles-strong/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-self-profiles-corrected/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-self-profiles-final/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-t3-profiles-final/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-t3-profiles-r10/state",
+      "reason": "runtime state, dependency tree or link"
+    },
+    {
+      "source": "/tmp/archguard-quality-product-t3-profiles-r12/state",
+      "reason": "runtime state, dependency tree or link"
+    }
+  ]
+}

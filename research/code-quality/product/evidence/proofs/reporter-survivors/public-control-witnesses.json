@@ -1,0 +1,115 @@
+{
+  "createdAt": "2026-10-03T18:30:45.923Z",
+  "baselineFinalV3": {
+    "file": "test-proof-baseline-final3-1791051625540.json",
+    "status": 0,
+    "tests": 12,
+    "sha256": "ae6db639b369ed0f3bd12cd236c01692dc731d5d83a727aaa469d77845c6ea1c"
+  },
+  "witnesses": [
+    {
+      "behavior": "Short diagnostics",
+      "mutationId": "0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f",
+      "oldOriginalFive": {
+        "file": "test-proof-0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f-original-1791051342708.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f-final3-1791052138080.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "Node assertion aliases",
+      "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+      "oldOriginalFive": {
+        "file": "test-proof-77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662-original-1791051361390.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662-final3-1791052139920.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "Pending close",
+      "mutationId": "d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854",
+      "oldOriginalFive": {
+        "file": "test-proof-d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854-original-1791051194340.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854-final3-1791052142069.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "Ordinary logging after close",
+      "mutationId": "b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03",
+      "oldOriginalFive": {
+        "file": "test-proof-b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03-original-1791051399635.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03-final3-1791052145367.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "One reporter per process",
+      "mutationId": "606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3",
+      "oldOriginalFive": {
+        "file": "test-proof-606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3-original-1791051419101.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3-final3-1791052147156.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "Started hook without completion metadata",
+      "mutationId": "81d2333da0d2b56a8dd74d2c322ca2c529310706b9aad211042496868b4305d8",
+      "oldOriginalFive": {
+        "file": "test-proof-81d2333da0d2b56a8dd74d2c322ca2c529310706b9aad211042496868b4305d8-original-1791052026369.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-81d2333da0d2b56a8dd74d2c322ca2c529310706b9aad211042496868b4305d8-final3-1791051846776.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "Cleanup timeout",
+      "mutationId": "c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef",
+      "oldOriginalFive": {
+        "file": "test-proof-c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef-original-1791051651753.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef-final3-1791051652760.json",
+        "status": 1
+      }
+    },
+    {
+      "behavior": "Failure-record overflow",
+      "mutationId": "7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8",
+      "oldOriginalFive": {
+        "file": "test-proof-7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8-original-1791051661431.json",
+        "status": 0
+      },
+      "newFinalV3Control": {
+        "file": "test-proof-7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8-final3-1791051662190.json",
+        "status": 1
+      }
+    }
+  ],
+  "separateTimedOutSiteWitness": {
+    "behavior": "Repeated onTestRunEnd",
+    "mutationId": "c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417",
+    "recordedMutationOutcome": "timedOut",
+    "oldOriginalFive": "test-proof-c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417-original-1791052086638.json",
+    "newFinalV3Control": "test-proof-c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417-final3-1791052178052.json",
+    "interpretation": "The bounded Node control exposes the repeated-run completeness defect. It does not replace the original installed-framework timeout or count it as a kill."
+  }
+}

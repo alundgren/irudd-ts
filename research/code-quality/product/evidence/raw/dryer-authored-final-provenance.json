@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/tmp/archguard-quality-product-cli-final-replay",
+    "dryer",
+    "--root",
+    "/tmp/archguard-quality-product-cli-worktree",
+    "--config",
+    "/tmp/archguard-quality-product-cli-worktree/examples/code-quality/dryer.json",
+    "--json"
+  ],
+  "exitCode": 0,
+  "binarySha256": "eb703cce80a28717eaa5bd8e283813d523cfeea541fb7c03ddda78aabc75559d",
+  "configuration": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "examples/code-quality/clones.ts"
+      ]
+    }
+  },
+  "configurationSha256": "610765167df893c1e64cc353414111ffbdb873a2c1d6f214b91e2e80c9b1da5f",
+  "measurementUse": "ordinary concurrent validation; no runtime comparison",
+  "sourceHashes": {
+    "examples/code-quality/clones.ts": "8d738756c26f3ff440fe51fe3009b578f86ee4e88fb95d9ecbdfa8355fa0a4c7"
+  }
+}

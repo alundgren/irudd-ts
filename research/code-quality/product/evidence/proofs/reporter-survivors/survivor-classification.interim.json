@@ -1,0 +1,2357 @@
+{
+  "createdAt": "2026-10-03T18:25:09.102Z",
+  "scope": "Completed immutable checkpoints for the original five-control reporter profile. Raw outcomes are unchanged. Category decisions are source review and bounded authored probes, not a replacement mutation score.",
+  "completeRecordCount": 151,
+  "expectedMutationCount": 154,
+  "allExpectedRecordsAvailable": false,
+  "outcomes": {
+    "killed": 66,
+    "survived": 85
+  },
+  "classificationCounts": {
+    "useful_missing_public_control": 43,
+    "implementation_detail": 36,
+    "equivalent": 2,
+    "unresolved": 4
+  },
+  "sourceReporterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "sourceProtocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "limitations": [
+    "Only finalized reusable records are read. Active worker files and journals are untouched.",
+    "Plain Node probes exercise authored lifecycle events. The original mutation run remains the actual installed Vitest comparison.",
+    "Matching outputs on sampled inputs do not prove equivalence. Equivalent decisions require source reasoning under the documented one-shot callback contract.",
+    "Internal diagnostic variants and exact private capacity boundaries do not automatically justify extra assertions."
+  ],
+  "survivors": [
+    {
+      "mutationId": "0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1328,
+        "end": 1329,
+        "line": 39,
+        "endLine": 39
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "  let bounded = string.slice(",
+        "after": ", 4_000);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f.json",
+      "recordChecksum": "0faa6a0ea5da37b9a8dd6ca3bef8f24d18d3ee450716e547e9f1a5105df5d06e",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The edit removes the first character of every nonempty error message, including short messages that require no truncation.",
+      "suggestedControl": "A failed assertion retains the exact short message, a corrected passing run has no failures.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f-final-1791051344457.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-0d5c0d6e796efe2b7968ef30e2fab06faf5aada7a386e1714857fd768587543f-original-1791051342708.json"
+      ]
+    },
+    {
+      "mutationId": "b7267cac5dfe6aac972b5866ced78b32e32c9793af1e8424244c26093a555d46",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1375,
+        "end": 1376,
+        "line": 40,
+        "endLine": 40
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "  while (Buffer.byteLength(bounded) ",
+        "after": " 4_000) bounded = bounded.slice(0, -1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-b7267cac5dfe6aac972b5866ced78b32e32c9793af1e8424244c26093a555d46.json",
+      "recordChecksum": "af523e7a33abb01b3b09b6e5ca1dcbe47e81bde81bca44ef4c1f731b0a8b374a",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit trims one additional character when a message occupies exactly the reporter's internal 4,000-byte limit. The published protocol permits bounded truncated messages and does not promise this private boundary.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "2f44ac1a1e238d0fff8f1c38e0353bf3f4876fea4cab0c498662a2f0e72f0b87",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1408,
+        "end": 1409,
+        "line": 40,
+        "endLine": 40
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "  while (Buffer.byteLength(bounded) > 4_000) bounded = bounded.slice(",
+        "after": ", -1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-2f44ac1a1e238d0fff8f1c38e0353bf3f4876fea4cab0c498662a2f0e72f0b87.json",
+      "recordChecksum": "c21173f47b7083c3f98278abab4415b93796aa058b30c900f68e9dc342b04a47",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Byte-budget trimming removes the message prefix as well as its suffix, which can remove the error's identifying text.",
+      "suggestedControl": "A long multibyte diagnostic retains its distinctive prefix, carries a truncation marker, and remains valid UTF-8.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "ffeaf2347978c49b6853d1ae688658947a6d431b1fd89796211ea1c6a771eec0",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1465,
+        "end": 1466,
+        "line": 41,
+        "endLine": 41
+      },
+      "operator": "arithmetic",
+      "expected": "-",
+      "replacement": "+",
+      "context": {
+        "before": "  const last = bounded.charCodeAt(bounded.length ",
+        "after": " 1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-ffeaf2347978c49b6853d1ae688658947a6d431b1fd89796211ea1c6a771eec0.json",
+      "recordChecksum": "4882294d40b39522671bfa56b9207ad83ab94c1e6036c5f4a397861090fd8c59",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes handling of a trailing unpaired high surrogate. Valid UTF-16 messages split at the 4,000-code-unit boundary already exceed the byte limit and the preceding byte loop removes that incomplete pair. Arbitrary malformed JavaScript strings can differ, so this is not a universal equivalence claim. The later UTF-8 conversion still produces valid protocol text.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "f0533cdbc6905119f03f59b6235fb7b7ec621b58f9a0209ed6d233c1bc1b3345",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1467,
+        "end": 1468,
+        "line": 41,
+        "endLine": 41
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "  const last = bounded.charCodeAt(bounded.length - ",
+        "after": ");",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-f0533cdbc6905119f03f59b6235fb7b7ec621b58f9a0209ed6d233c1bc1b3345.json",
+      "recordChecksum": "32632cf673f55aa158381f9614bb90336df065208c027df82824850a8a26635b",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes handling of a trailing unpaired high surrogate. Valid UTF-16 messages split at the 4,000-code-unit boundary already exceed the byte limit and the preceding byte loop removes that incomplete pair. Arbitrary malformed JavaScript strings can differ, so this is not a universal equivalence claim. The later UTF-8 conversion still produces valid protocol text.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "d010c9a3449d03b246c0f7d148ab92291b6431084b1900c632d8a7d83c889915",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1482,
+        "end": 1484,
+        "line": 42,
+        "endLine": 42
+      },
+      "operator": "comparison",
+      "expected": ">=",
+      "replacement": ">",
+      "context": {
+        "before": "  if (last ",
+        "after": " 0xD800 && last <= 0xDBFF) bounded = bounded.slice(0, -1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-d010c9a3449d03b246c0f7d148ab92291b6431084b1900c632d8a7d83c889915.json",
+      "recordChecksum": "8b5e31db8754b6e495656693a5fc21212df72a1d5b7f693e905ea46d5afdf48b",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes handling of a trailing unpaired high surrogate. Valid UTF-16 messages split at the 4,000-code-unit boundary already exceed the byte limit and the preceding byte loop removes that incomplete pair. Arbitrary malformed JavaScript strings can differ, so this is not a universal equivalence claim. The later UTF-8 conversion still produces valid protocol text.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "29fd537d93e77b836c44311ec7a744634ba86cf770c979b2a767d410a51a6bb7",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1492,
+        "end": 1494,
+        "line": 42,
+        "endLine": 42
+      },
+      "operator": "logical",
+      "expected": "&&",
+      "replacement": "||",
+      "context": {
+        "before": "  if (last >= 0xD800 ",
+        "after": " last <= 0xDBFF) bounded = bounded.slice(0, -1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-29fd537d93e77b836c44311ec7a744634ba86cf770c979b2a767d410a51a6bb7.json",
+      "recordChecksum": "bb10c9ddb606a82275ca90b9caa76bce428278e6a260091bd1dc2c3ed2af5edb",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The changed logical operator drops the final character of ordinary short messages because almost every character matches one side of the condition.",
+      "suggestedControl": "Require the exact short diagnostic and retain a clean passing control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "36db06425ab14b11bf692793ac5906207cea27bd242beb7359fa216e0d3b0619",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1500,
+        "end": 1502,
+        "line": 42,
+        "endLine": 42
+      },
+      "operator": "comparison",
+      "expected": "<=",
+      "replacement": "<",
+      "context": {
+        "before": "  if (last >= 0xD800 && last ",
+        "after": " 0xDBFF) bounded = bounded.slice(0, -1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-36db06425ab14b11bf692793ac5906207cea27bd242beb7359fa216e0d3b0619.json",
+      "recordChecksum": "d06421ed63f6da647a8fc49953ae6002ed28bb077fddb74c1cdcc492a603c46e",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes handling of a trailing unpaired high surrogate. Valid UTF-16 messages split at the 4,000-code-unit boundary already exceed the byte limit and the preceding byte loop removes that incomplete pair. Arbitrary malformed JavaScript strings can differ, so this is not a universal equivalence claim. The later UTF-8 conversion still produces valid protocol text.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "987694007355d4223eab3391f89de6e077bae7470bee8c947f6f11617aa22a76",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1535,
+        "end": 1536,
+        "line": 42,
+        "endLine": 42
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "  if (last >= 0xD800 && last <= 0xDBFF) bounded = bounded.slice(",
+        "after": ", -1);",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-987694007355d4223eab3391f89de6e077bae7470bee8c947f6f11617aa22a76.json",
+      "recordChecksum": "c1fc3161d5f08530777ed537e22b72a2390f3fd320456b52352ca12327d5ceba",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes handling of a trailing unpaired high surrogate. Valid UTF-16 messages split at the 4,000-code-unit boundary already exceed the byte limit and the preceding byte loop removes that incomplete pair. Arbitrary malformed JavaScript strings can differ, so this is not a universal equivalence claim. The later UTF-8 conversion still produces valid protocol text.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "d62845fccf51133fcc40864bf7cda5ccea83f23d6449b38002072bc7f356ab52",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1618,
+        "end": 1619,
+        "line": 44,
+        "endLine": 44
+      },
+      "operator": "comparison",
+      "expected": "<",
+      "replacement": "<=",
+      "context": {
+        "before": "  return bounded.length ",
+        "after": " string.length ? `${bounded} [truncated]` : bounded;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-d62845fccf51133fcc40864bf7cda5ccea83f23d6449b38002072bc7f356ab52.json",
+      "recordChecksum": "99a44edbf5608f66ffd8092565fe12146cd5dd1de6fb06d9b005ab336403f05e",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The edit marks unchanged short diagnostics as truncated.",
+      "suggestedControl": "Require the exact short diagnostic and check an actual long diagnostic still carries the truncation marker.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 1906,
+        "end": 1908,
+        "line": 48,
+        "endLine": 48
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "  return error?.name === \"AssertionError\" || error?.name === \"AssertionError [ERR_ASSERTION]\" ",
+        "after": " error?.code === \"ERR_ASSERTION\";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662.json",
+      "recordChecksum": "7b0143f8c4657c29af0d484b8788d957d12d47283aa052fd0ba88ac126bf2408",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Node assertion name and code aliases become runtime failures, so a real test assertion no longer counts as assertion evidence.",
+      "suggestedControl": "Exercise both the AssertionError [ERR_ASSERTION] name and the ERR_ASSERTION code, with TypeError and passing controls.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/probe-77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662-1791051097025.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662-final-1791051363084.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662-original-1791051361390.json"
+      ]
+    },
+    {
+      "mutationId": "5192f4b8e9e56c4c1b0810b3b0a79e16580f72913d20a455737352bffc3e9f81",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 2576,
+        "end": 2581,
+        "line": 64,
+        "endLine": 64
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "  private closeStarted = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-5192f4b8e9e56c4c1b0810b3b0a79e16580f72913d20a455737352bffc3e9f81.json",
+      "recordChecksum": "e88369c30c5cdd68850df3d8776a47d2f56a47923b8b1af6354ea135966ddf1a",
+      "cleanupComplete": true,
+      "classification": "equivalent",
+      "reason": "For the public one-shot lifecycle, closeFinished can become true only inside closeBridge after closeStarted becomes true. Initializing closeStarted to true cannot make complete true while closeFinished remains false. No other public behavior reads closeStarted.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 2609,
+        "end": 2614,
+        "line": 65,
+        "endLine": 65
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "  private closeFinished = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854.json",
+      "recordChecksum": "5c6c2a6858133d677e3a3bb860b01cc1651ce2a92107d8afbbd615f8164020de",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A close that started but never settled can be reported complete with no failures.",
+      "suggestedControl": "Start a close promise that remains pending, verify incomplete evidence, then verify a resolved close completes cleanly.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/probe-d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854-1791051088980.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854-original-1791051194340.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-d61cb99af205a2c2080a671dbba4112b07b7ea5eba62f65f8c68e166d9d15854-proposed-1791051210097.json"
+      ]
+    },
+    {
+      "mutationId": "e02b02f150dfeff69696ff53954db8d2c25e38f0edda12b2cb2284348dc8b479",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 2636,
+        "end": 2641,
+        "line": 66,
+        "endLine": 66
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "  private closing = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-e02b02f150dfeff69696ff53954db8d2c25e38f0edda12b2cb2284348dc8b479.json",
+      "recordChecksum": "a30a1b77ccc1ed0b2f438e37f35cda5819660ceb96de5ff364fa84336978b010",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Ordinary logger calls outside runner close become cleanup failure evidence.",
+      "suggestedControl": "Logger calls before and after a successful close leave a passing result complete and free of failures, while actual cleanup logging remains a runtime failure.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-e02b02f150dfeff69696ff53954db8d2c25e38f0edda12b2cb2284348dc8b479-final-1791051383218.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-e02b02f150dfeff69696ff53954db8d2c25e38f0edda12b2cb2284348dc8b479-original-1791051379634.json"
+      ]
+    },
+    {
+      "mutationId": "eb94219b626a5cfd20806a67dc2cba029332c3b5fb36255e70f28f66d2a66908",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 2693,
+        "end": 2698,
+        "line": 68,
+        "endLine": 68
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "  private finalized = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-eb94219b626a5cfd20806a67dc2cba029332c3b5fb36255e70f28f66d2a66908.json",
+      "recordChecksum": "43cc10e644d8b0bc51594ce7c00ce7dfb9f41f72ccec7f0a51383c47841a8de7",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "Before finalization, an uncaught exception triggers an extra publication attempt. The exit listener still finalizes again, and supported is already false with unhandled evidence. Counting intermediate writes would test the implementation rather than the final result contract.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "801cd4a59e83411b7c7d2f062d8d17b524e04d8909add80a3409dcb2d8dd5bfc",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 2773,
+        "end": 2778,
+        "line": 70,
+        "endLine": 70
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "  private interrupted = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-801cd4a59e83411b7c7d2f062d8d17b524e04d8909add80a3409dcb2d8dd5bfc.json",
+      "recordChecksum": "9495c5da4f79012658378f697f2531a693db041fda9407621d12b26187569f15",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "Every accepted onTestRunEnd call overwrites interrupted from its reason. The changed initial value affects only an incomplete process that never ends a run, changing its incomplete reason without allowing completion.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3162,
+        "end": 3166,
+        "line": 78,
+        "endLine": 78
+      },
+      "operator": "boolean",
+      "expected": "true",
+      "replacement": "false",
+      "context": {
+        "before": "    reporterCreated = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3.json",
+      "recordChecksum": "4f2b316876a9945f174457939536b78978db3eb61045234424e2555f3c656275",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The process accepts a second reporter and installs another set of finalization listeners.",
+      "suggestedControl": "A second reporter construction is rejected while the first reporter still publishes the valid one-shot result.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3-final-1791051420347.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-606b4ce42a192aadf48fc578fc5240f129f311ad5a77fe552768809cc6e311e3-original-1791051419101.json"
+      ]
+    },
+    {
+      "mutationId": "ac4a9bf300049967cd05e4e09ce44ecca26ef008979fc93b85df0098396d67c3",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3451,
+        "end": 3454,
+        "line": 83,
+        "endLine": 83
+      },
+      "operator": "equality",
+      "expected": "===",
+      "replacement": "!==",
+      "context": {
+        "before": "      if (this.finalized) this.finalize(process.exitCode ",
+        "after": " undefined ? 1 : Number(process.exitCode));",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-ac4a9bf300049967cd05e4e09ce44ecca26ef008979fc93b85df0098396d67c3.json",
+      "recordChecksum": "b56b9368613db5346306fc4fe7d626506d74f1daa7408eca872b9219c5ff17f2",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A late throwing exit listener without an assigned exit code can publish a status that disagrees with Node's actual termination, or force fallback metadata.",
+      "suggestedControl": "Run a clean test without assigning process.exitCode, then throw in a later exit listener. Require incomplete unhandled evidence and a result status matching the raw child status.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "358d0d0185e104a8334f9c02b6aff87618969313305a04b71cebc460c003b975",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3467,
+        "end": 3468,
+        "line": 83,
+        "endLine": 83
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "      if (this.finalized) this.finalize(process.exitCode === undefined ? ",
+        "after": " : Number(process.exitCode));",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-358d0d0185e104a8334f9c02b6aff87618969313305a04b71cebc460c003b975.json",
+      "recordChecksum": "8b778c50d8c6482d6a519b3fb0e07dcf5059cea6a967bf2866d3833c6f9d416d",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A late throwing exit listener without an assigned exit code can publish a status that disagrees with Node's actual termination, or force fallback metadata.",
+      "suggestedControl": "Run a clean test without assigning process.exitCode, then throw in a later exit listener. Require incomplete unhandled evidence and a result status matching the raw child status.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "d4b46f7b757dba1b937d8342e6910342a286192124251917f3104bd6cc10dd33",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3684,
+        "end": 3686,
+        "line": 89,
+        "endLine": 89
+      },
+      "operator": "comparison",
+      "expected": ">=",
+      "replacement": ">",
+      "context": {
+        "before": "    if (this.infrastructure.length ",
+        "after": " mutationProtocolLimits.maxFailures) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-d4b46f7b757dba1b937d8342e6910342a286192124251917f3104bd6cc10dd33.json",
+      "recordChecksum": "29cf2c702b0e7a23744a5246a0257cabcecbaf531eb8ed85ec20c0d7b7be3a81",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit admits one failure beyond the shared wire ceiling. SDK validation rejects the oversized result and publishes the conservative fallback, so it does not turn the overflow into complete evidence. A test requiring the exact retained failure array would add a diagnostic retention requirement beyond the documented fallback.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "8b593b6da9a40e7c6930df3c52834f1b8c33d12f4bb6d2d112fbf687e6bc9d24",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3742,
+        "end": 3747,
+        "line": 89,
+        "endLine": 89
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    if (this.infrastructure.length >= mutationProtocolLimits.maxFailures) { this.supported = ",
+        "after": "; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-8b593b6da9a40e7c6930df3c52834f1b8c33d12f4bb6d2d112fbf687e6bc9d24.json",
+      "recordChecksum": "9d6cb0da9c7995b8889ba5cafd527a961bb194e96b6287f4cb48cf52905241b9",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Infrastructure failure overflow can leave the result marked complete while additional events were dropped.",
+      "suggestedControl": "Emit more than the shared failure budget during close, require incomplete evidence, and verify a single cleanup error remains separately recorded.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "1240dd10e1a506adb9564eadf9e798a954b1978b1b1041308f9e9c755b585f54",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3921,
+        "end": 3923,
+        "line": 94,
+        "endLine": 94
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context ",
+        "after": " typeof context.close !== \"function\" || typeof context.waitForTestRunEnd !== \"function\" || typeof context.state?.getUnhandledErrors !== \"function\" || typeof context.logger?.error !== \"function\") {",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-1240dd10e1a506adb9564eadf9e798a954b1978b1b1041308f9e9c755b585f54.json",
+      "recordChecksum": "841af8300ee2714e1885ac9d6c1c4b3a5970a81d9418524a29b91eb922c6c925",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The early API rejection changes, but a missing method still prevents settlement or successful close, fails the final API checks, or reaches the conservative publication fallback. These paths continue to publish incomplete evidence. Better early diagnostics are possible, but there is no demonstrated false complete result from this edit under one-shot usage.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "80d5f3c7eeb127578cfde7e58907f8570e5d5e70c560bc60e6e53cbe64a39c84",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 3960,
+        "end": 3962,
+        "line": 94,
+        "endLine": 94
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context || typeof context.close !== \"function\" ",
+        "after": " typeof context.waitForTestRunEnd !== \"function\" || typeof context.state?.getUnhandledErrors !== \"function\" || typeof context.logger?.error !== \"function\") {",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-80d5f3c7eeb127578cfde7e58907f8570e5d5e70c560bc60e6e53cbe64a39c84.json",
+      "recordChecksum": "e1b845d51105a15de07f02872b6306478001a93b2c29aa5708a0296120dec0f6",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The early API rejection changes, but a missing method still prevents settlement or successful close, fails the final API checks, or reaches the conservative publication fallback. These paths continue to publish incomplete evidence. Better early diagnostics are possible, but there is no demonstrated false complete result from this edit under one-shot usage.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "7f2018551aa32c3ac663e760840960e236dcf466e18b71ef30caac6ab57a02b7",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 4011,
+        "end": 4013,
+        "line": 94,
+        "endLine": 94
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context || typeof context.close !== \"function\" || typeof context.waitForTestRunEnd !== \"function\" ",
+        "after": " typeof context.state?.getUnhandledErrors !== \"function\" || typeof context.logger?.error !== \"function\") {",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-7f2018551aa32c3ac663e760840960e236dcf466e18b71ef30caac6ab57a02b7.json",
+      "recordChecksum": "d10ac16e56f67b51b82caae0d9564793eaa2e2108ebc1bacb5c60f1607f2d30b",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The early API rejection changes, but a missing method still prevents settlement or successful close, fails the final API checks, or reaches the conservative publication fallback. These paths continue to publish incomplete evidence. Better early diagnostics are possible, but there is no demonstrated false complete result from this edit under one-shot usage.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "90d220bb5c3159e5eec6f30a266d848860a09c4314520c2d827e6d9fc2b1a620",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 4143,
+        "end": 4148,
+        "line": 95,
+        "endLine": 95
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-90d220bb5c3159e5eec6f30a266d848860a09c4314520c2d827e6d9fc2b1a620.json",
+      "recordChecksum": "76890b45a2215205bb6cbf5d4db9ddd47cb2eb6f86a3fa80718bc1ecf11a7230",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The early API rejection changes, but a missing method still prevents settlement or successful close, fails the final API checks, or reaches the conservative publication fallback. These paths continue to publish incomplete evidence. Better early diagnostics are possible, but there is no demonstrated false complete result from this edit under one-shot usage.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 4968,
+        "end": 4973,
+        "line": 112,
+        "endLine": 112
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      finally { this.closing = ",
+        "after": "; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03.json",
+      "recordChecksum": "e9ad568741688d3c54103d4d082d5091371ef65d0b5ec1a8b29b2e9127712947",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Ordinary logger calls outside runner close become cleanup failure evidence.",
+      "suggestedControl": "Logger calls before and after a successful close leave a passing result complete and free of failures, while actual cleanup logging remains a runtime failure.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03-final-1791051402287.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-b85934e0d092931472b11e8985fc3a9429cfe552d3710776195a2e962994ee03-original-1791051399635.json"
+      ]
+    },
+    {
+      "mutationId": "2e4d65cd9d712a41ac42f97e9dd12cf12dd2f922f97a2d739015ad0d813fb438",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 5781,
+        "end": 5783,
+        "line": 129,
+        "endLine": 129
+      },
+      "operator": "comparison",
+      "expected": ">=",
+      "replacement": ">",
+      "context": {
+        "before": "    if (this.hooks.length ",
+        "after": " MAX_EVENTS) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-2e4d65cd9d712a41ac42f97e9dd12cf12dd2f922f97a2d739015ad0d813fb438.json",
+      "recordChecksum": "7c725ae561669094ec4684a4a6445ef9a0fe2b53b9288a268adb58d8279dec29",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "One hook event beyond the reporter's event budget is accepted, and an all-passing oversized hook inventory can remain complete.",
+      "suggestedControl": "Require an oversized hook event stream to remain incomplete, with a normal passing hook control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "c545cfba363e0694585eb62240c3ac184b5a5940cdf4ce7e1557932f4d4b3ba6",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6076,
+        "end": 6077,
+        "line": 136,
+        "endLine": 136
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "    if (this.runEnded || modules.length ",
+        "after": " MAX_EVENTS || errors.length > MAX_EVENTS) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-c545cfba363e0694585eb62240c3ac184b5a5940cdf4ce7e1557932f4d4b3ba6.json",
+      "recordChecksum": "55d0dde587fb823daf012e79a77d0164a03accb642c85e6b8e15cfe3c8c19952",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit rejects a boundary-sized input one event earlier. It reduces the accepted inventory limit and does not permit incomplete analysis to appear complete. The exact private event ceiling is not an adopter contract.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6089,
+        "end": 6091,
+        "line": 136,
+        "endLine": 136
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (this.runEnded || modules.length > MAX_EVENTS ",
+        "after": " errors.length > MAX_EVENTS) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19.json",
+      "recordChecksum": "358b76bba531256552a8ddac784fb7fa24375d2d67d6669249cbfeae9bfe7387",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "An oversized module inventory is accepted when the early error inventory stays within budget.",
+      "suggestedControl": "Use a finite oversized module inventory with one valid test and otherwise empty modules, require incomplete evidence, and preserve a normal passing module control.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19-final-1791051442330.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19-original-1791051440133.json"
+      ]
+    },
+    {
+      "mutationId": "b1e3872472b2e70923b6661abe3a02652710b17a146fa5e55d725ba4cde90399",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6106,
+        "end": 6107,
+        "line": 136,
+        "endLine": 136
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "    if (this.runEnded || modules.length > MAX_EVENTS || errors.length ",
+        "after": " MAX_EVENTS) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-b1e3872472b2e70923b6661abe3a02652710b17a146fa5e55d725ba4cde90399.json",
+      "recordChecksum": "ea8ef461c7b924239cf7209873bddd4a33ddad03dcbd25d4745f1502c9e40534",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit rejects a boundary-sized input one event earlier. It reduces the accepted inventory limit and does not permit incomplete analysis to appear complete. The exact private event ceiling is not an adopter contract.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "8ed655516db869c42638114cdfa39483606dac6f125dd2d7fd1420e6b3330f48",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6139,
+        "end": 6144,
+        "line": 136,
+        "endLine": 136
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    if (this.runEnded || modules.length > MAX_EVENTS || errors.length > MAX_EVENTS) { this.supported = ",
+        "after": "; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-8ed655516db869c42638114cdfa39483606dac6f125dd2d7fd1420e6b3330f48.json",
+      "recordChecksum": "a22e8a65c9b47d6ef4d0e70fe2c72dae39ced7dcd33f1dfb8e384b4d1929e3fa",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A second onTestRunEnd call can escape the one-shot run guard and retain complete evidence.",
+      "suggestedControl": "End the same run twice, require incomplete evidence, and preserve a single-run passing control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "738bdf106f0f3c22dc7ad46361cb48fded553bf1bb2a84c42159733a5ea52e80",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6292,
+        "end": 6295,
+        "line": 139,
+        "endLine": 139
+      },
+      "operator": "equality",
+      "expected": "!==",
+      "replacement": "===",
+      "context": {
+        "before": "    if (reason !== \"passed\" && reason !== \"failed\" && reason ",
+        "after": " \"interrupted\") this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-738bdf106f0f3c22dc7ad46361cb48fded553bf1bb2a84c42159733a5ea52e80.json",
+      "recordChecksum": "37f83884c6176b381d73383feb0eecc9652c46045a1ae6e46c9940ba617ab074",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "An unsupported run-end reason can remain complete.",
+      "suggestedControl": "Use an unknown run reason, require incomplete evidence, and retain passed, failed, and interrupted controls.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "0ebf73d3b1cde87366f72ca02eba6a54c2cf3ce7f4f52b5b0cca8fb38c664e21",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6328,
+        "end": 6333,
+        "line": 139,
+        "endLine": 139
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    if (reason !== \"passed\" && reason !== \"failed\" && reason !== \"interrupted\") this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-0ebf73d3b1cde87366f72ca02eba6a54c2cf3ce7f4f52b5b0cca8fb38c664e21.json",
+      "recordChecksum": "b67aabebb35532b86eb78d48a96215a7b8659ea42db7388294323b406118d169",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "An unsupported run-end reason can remain complete.",
+      "suggestedControl": "Use an unknown run reason, require incomplete evidence, and retain passed, failed, and interrupted controls.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "7b691668250204a9bb36b41f26641923ecf958b6aab4a54f34d699e2f8cd5c54",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6450,
+        "end": 6452,
+        "line": 143,
+        "endLine": 143
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context ",
+        "after": " context.waitForTestRunEnd !== this.waitMethod) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-7b691668250204a9bb36b41f26641923ecf958b6aab4a54f34d699e2f8cd5c54.json",
+      "recordChecksum": "352ef2730c38550d4f0f2520baeb717df867d7eb05f644cc216321910415d71b",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The immediate context or wait-method check changes, but no callback settlement is recorded on rejection and final collection rechecks the context methods. A replaced wait method still fails the final identity check. No useful public completion difference has been established.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "35a004454d71f9745bc17b1e747ba0d0dd2b23e9650d0286e1a7ccd254f477c0",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6519,
+        "end": 6524,
+        "line": 143,
+        "endLine": 143
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    if (!context || context.waitForTestRunEnd !== this.waitMethod) { this.supported = ",
+        "after": "; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-35a004454d71f9745bc17b1e747ba0d0dd2b23e9650d0286e1a7ccd254f477c0.json",
+      "recordChecksum": "1d37699541d26e0d0e61824688ba3ce9568f6cb3140e4693eeeb66daa4d3cb60",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The immediate context or wait-method check changes, but no callback settlement is recorded on rejection and final collection rechecks the context methods. A replaced wait method still fails the final identity check. No useful public completion difference has been established.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "67f2fea322066f6a37c8a16725b42df33afe48a686a34b75a0fcdebe868f7e17",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6701,
+        "end": 6703,
+        "line": 147,
+        "endLine": 147
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!pending ",
+        "after": " typeof pending.then !== \"function\") { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-67f2fea322066f6a37c8a16725b42df33afe48a686a34b75a0fcdebe868f7e17.json",
+      "recordChecksum": "a24eb5bf1592f9f1b643f3c151546f2e43634d259f46214e130ce386d6bfed44",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "An invalid wait return value reaches the catch block instead of the early return, adding a runtime diagnostic. runSettled remains false in either case, so the run stays incomplete.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "c6e8c1313e38baf2cbe94414efa47c26bfad71de5fa999dd8bf0fbac9c7d5b99",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6759,
+        "end": 6764,
+        "line": 147,
+        "endLine": 147
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      if (!pending || typeof pending.then !== \"function\") { this.supported = ",
+        "after": "; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-c6e8c1313e38baf2cbe94414efa47c26bfad71de5fa999dd8bf0fbac9c7d5b99.json",
+      "recordChecksum": "30a9bc7a5fb4ff398639f45004f14fd58f0a156e06092feb9ecde593ecd174cd",
+      "cleanupComplete": true,
+      "classification": "equivalent",
+      "reason": "Returning from the invalid-promise branch leaves runSettled false. Its true supported assignment cannot satisfy the independent runSettled completion requirement in a one-shot run.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7070,
+        "end": 7075,
+        "line": 155,
+        "endLine": 155
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef.json",
+      "recordChecksum": "6742a4c249a9170f68ad66e7fefcbf624a0b57480c02a52daf180b4d303a090b",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A runner cleanup timeout can publish complete:true if the child exits nonzero, even though timeout evidence is present.",
+      "suggestedControl": "Call onProcessTimeout after a settled failed run, require incomplete runtime evidence, and verify a corrected run completes.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/probe-c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef-1791051433076.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef-final3-1791051652760.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-c8d530de556ccfe58dac63cf667bcb2bb2037e4c543add1e89bf1daf8c77ceef-original-1791051651753.json"
+      ]
+    },
+    {
+      "mutationId": "06720ec0cb8b46c6e15f69179662002ea0fa12eb56e889e817c7c8af8aac6c51",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7385,
+        "end": 7386,
+        "line": 163,
+        "endLine": 163
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "    let visited = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-06720ec0cb8b46c6e15f69179662002ea0fa12eb56e889e817c7c8af8aac6c51.json",
+      "recordChecksum": "db0ca505ddfe9062f86d5b54a78103f616feef787d4a8e21574b97231315f6e0",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes the exact internal aggregate event budget boundary by one event. It can reject a boundary-sized traversal earlier but does not permit a false complete result.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "4cdc47141bc13bd9c654ac7aca9e809be2f088cca45583f5a9b6d385f44d797c",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7454,
+        "end": 7455,
+        "line": 165,
+        "endLine": 165
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "      if (count ",
+        "after": " MAX_EVENTS * 3 - visited) { this.supported = false; return false; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-4cdc47141bc13bd9c654ac7aca9e809be2f088cca45583f5a9b6d385f44d797c.json",
+      "recordChecksum": "ee6729deb6b5c144ff6a5652b713d8c2af1ca6f65cdb9754512172634fae2ad8",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit changes the exact internal aggregate event budget boundary by one event. It can reject a boundary-sized traversal earlier but does not permit a false complete result.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "8d1c44003a81f5cf0cfb5ae4c04d722f0ceb3bdbe014cb8d2f0cf55ec4433797",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7467,
+        "end": 7468,
+        "line": 165,
+        "endLine": 165
+      },
+      "operator": "arithmetic",
+      "expected": "*",
+      "replacement": "/",
+      "context": {
+        "before": "      if (count > MAX_EVENTS ",
+        "after": " 3 - visited) { this.supported = false; return false; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-8d1c44003a81f5cf0cfb5ae4c04d722f0ceb3bdbe014cb8d2f0cf55ec4433797.json",
+      "recordChecksum": "06dfba81fa338b9f8f114633fd822623b313e67cec329c632521667aee898ecc",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The aggregate event budget becomes smaller. This rejects larger supported inventories earlier, but does not compromise conservative incomplete reporting. A workload-size acceptance promise would be needed to make the exact private capacity a useful public control.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "23ada62c98495c1f581be1eddb3eb89cc87c731855cdee4d6a97547d34624b8c",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7471,
+        "end": 7472,
+        "line": 165,
+        "endLine": 165
+      },
+      "operator": "arithmetic",
+      "expected": "-",
+      "replacement": "+",
+      "context": {
+        "before": "      if (count > MAX_EVENTS * 3 ",
+        "after": " visited) { this.supported = false; return false; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-23ada62c98495c1f581be1eddb3eb89cc87c731855cdee4d6a97547d34624b8c.json",
+      "recordChecksum": "de31f6116367a0fe8f5508fd3c6dc0bef0f82ba4770b64c37f6802bee04a7d90",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The available event budget grows with each visited event instead of decreasing, so the aggregate traversal bound stops enforcing a limit.",
+      "suggestedControl": "Use an oversized finite suite inventory, require incomplete evidence, and verify a normal suite inventory completes.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "554a1190eb7b117fcd2f9ab55ed55ebfbb4756ecee183642e7a168b73e5ce406",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7501,
+        "end": 7506,
+        "line": 165,
+        "endLine": 165
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      if (count > MAX_EVENTS * 3 - visited) { this.supported = ",
+        "after": "; return false; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-554a1190eb7b117fcd2f9ab55ed55ebfbb4756ecee183642e7a168b73e5ce406.json",
+      "recordChecksum": "dc41118badd6d386affa48aa0dd9b9184cf12313025142460c8346339c9e14a2",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The module loop relies on reserve to mark budget exhaustion unsupported. After earlier suites and tests fill the aggregate budget, the next module can stop collection while leaving complete:true.",
+      "suggestedControl": "Use a finite mixed module and suite inventory that exceeds the aggregate event budget, require incomplete evidence, and keep a smaller complete inventory as the corrected control. The assertion targets completeness rather than an internal counter.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/probe-554a1190eb7b117fcd2f9ab55ed55ebfbb4756ecee183642e7a168b73e5ce406-1791051896008.json"
+      ]
+    },
+    {
+      "mutationId": "324630ce17426711ce751bcd8b0383c61aa7b2edcdb189a6a0106fc6aa6c2ce4",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7515,
+        "end": 7520,
+        "line": 165,
+        "endLine": 165
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      if (count > MAX_EVENTS * 3 - visited) { this.supported = false; return ",
+        "after": "; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-324630ce17426711ce751bcd8b0383c61aa7b2edcdb189a6a0106fc6aa6c2ce4.json",
+      "recordChecksum": "102943f117190a37fe7c33c62753c0ad30174dc1277b50628d3dbd4158297098",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The reserve function still sets supported false on exhaustion, but returning true continues collection beyond that internal point. Completion remains conservative. This changes internal traversal work and needs a separate bounded-iteration requirement before adding a public behavior assertion.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "03d0314eb7d0c28cc2e17134c74035945c24c81daf1eb54cd2519d0dbe90d606",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7713,
+        "end": 7715,
+        "line": 170,
+        "endLine": 170
+      },
+      "operator": "comparison",
+      "expected": ">=",
+      "replacement": ">",
+      "context": {
+        "before": "      if (failures.length ",
+        "after": " mutationProtocolLimits.maxFailures) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-03d0314eb7d0c28cc2e17134c74035945c24c81daf1eb54cd2519d0dbe90d606.json",
+      "recordChecksum": "c17d22cff7619240b37d05c118fd86ef4e095b50322aff463579ebc3b7a23c58",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "One failure beyond the wire ceiling reaches SDK validation, which rejects it and replaces the result with incomplete fallback evidence. The result remains fail closed.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 7771,
+        "end": 7776,
+        "line": 170,
+        "endLine": 170
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      if (failures.length >= mutationProtocolLimits.maxFailures) { this.supported = ",
+        "after": "; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8.json",
+      "recordChecksum": "748cc95d433b4a7720cd7e8cf6df87ebcfa9ccefa3ee40a11dce18b04ecb665d",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Failure records past the shared ceiling are dropped without marking the analysis incomplete. An oversized array of assertion errors becomes complete assertion-only evidence, which can incorrectly count as a killed mutant.",
+      "suggestedControl": "Overflow the shared failure record budget, require incomplete evidence, then verify the supported failure budget still retains complete assertion evidence and a corrected passing run stays clean.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/probe-7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8-1791051534000.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8-final3-1791051662190.json",
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-7f6e83750dd598db64ac171b9d0dfd0bc919a805b232452038a577f598f04ff8-original-1791051661431.json"
+      ]
+    },
+    {
+      "mutationId": "77a41b070916fc4bdf576093c3472f0962ca4aba774c66c9510283837f2b1f80",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8039,
+        "end": 8041,
+        "line": 174,
+        "endLine": 174
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!Array.isArray(errors) ",
+        "after": " errors.length > MAX_EVENTS || !reserve(errors.length)) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-77a41b070916fc4bdf576093c3472f0962ca4aba774c66c9510283837f2b1f80.json",
+      "recordChecksum": "936cd825a2433cf959fe1cba05f33b2f6f10675052b652644601a1e2f54a90dd",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A non-array iterable error collection can pass the guard and be treated as complete runner metadata.",
+      "suggestedControl": "A module returning an empty Set for errors is incomplete, while the corrected empty array permits a clean complete result.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "5af6cf60ba1b2bc5120d5f0780f245f5ad0c5f4d510a0f28ca2c18af61ed42f5",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8056,
+        "end": 8057,
+        "line": 174,
+        "endLine": 174
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "      if (!Array.isArray(errors) || errors.length ",
+        "after": " MAX_EVENTS || !reserve(errors.length)) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-5af6cf60ba1b2bc5120d5f0780f245f5ad0c5f4d510a0f28ca2c18af61ed42f5.json",
+      "recordChecksum": "14b4724c52fc91066902d0b5db4115d80a8ca6d64c5e96a4b30ff3ee913cddc0",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "An error array exactly at the private event limit is rejected one event earlier. Both variants remain incomplete because this inventory also exceeds the much smaller shared failure record ceiling.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "8493009efc17641c6ef6b297c72ff45559cb61487d93c272ed3a1b61caca5ab6",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8069,
+        "end": 8071,
+        "line": 174,
+        "endLine": 174
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!Array.isArray(errors) || errors.length > MAX_EVENTS ",
+        "after": " !reserve(errors.length)) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-8493009efc17641c6ef6b297c72ff45559cb61487d93c272ed3a1b61caca5ab6.json",
+      "recordChecksum": "bc160a7f4da02a02ed130a7bb7a13183e426b1df5322f34a80c234d383c9ddd7",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The individual error-array event check and aggregate reservation no longer run independently. Ordinary oversized arrays still exceed the shared failure ceiling and become incomplete. Custom array iterators could differ, so this is not a universal equivalence claim. Exact iteration accounting is an internal constraint rather than a proposed diagnostic test.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "056b865d285cea11ec10fc629607453fdc6f9137dc3c76b057c2de0743ac981f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8270,
+        "end": 8271,
+        "line": 178,
+        "endLine": 178
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "      if (!reserve(",
+        "after": ")) break;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-056b865d285cea11ec10fc629607453fdc6f9137dc3c76b057c2de0743ac981f.json",
+      "recordChecksum": "759c416c804c9ed2170b9e7bfda810de1c89c182488dcba66e383782029efb04",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "Module visits no longer contribute to the private aggregate event counter. The independent module limit remains, and the edit only changes available internal traversal capacity for a mixed inventory. No additional public arithmetic assertion is proposed.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "6a2b3415cecea294a27d1daa73dd045c12c80361b5e318ca2967deaa8042a91f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8308,
+        "end": 8310,
+        "line": 179,
+        "endLine": 179
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!module.children ",
+        "after": " typeof module.children.allTests !== \"function\" || typeof module.children.allSuites !== \"function\" || typeof module.errors !== \"function\") { this.supported = false; continue; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-6a2b3415cecea294a27d1daa73dd045c12c80361b5e318ca2967deaa8042a91f.json",
+      "recordChecksum": "fcda164a8137dd9dcc7019409aa74d74aa9709b4b3f243cc928ed6af857540c7",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "A missing children or collection method reaches invocation and throws instead of the early guard. finalize catches that exception and publishes incomplete fallback evidence. The edit does not admit complete unsupported module data under the documented method contract.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "574b9fcd82ff70c9fa9845d787de4677a5944f66afd03b91033c39a99fd57a55",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8358,
+        "end": 8360,
+        "line": 179,
+        "endLine": 179
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!module.children || typeof module.children.allTests !== \"function\" ",
+        "after": " typeof module.children.allSuites !== \"function\" || typeof module.errors !== \"function\") { this.supported = false; continue; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-574b9fcd82ff70c9fa9845d787de4677a5944f66afd03b91033c39a99fd57a55.json",
+      "recordChecksum": "e774b2a8fef65d5beb0022725554c667b8e4c8e7ed1e1b3fa514bbaa62149bc5",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "A missing children or collection method reaches invocation and throws instead of the early guard. finalize catches that exception and publishes incomplete fallback evidence. The edit does not admit complete unsupported module data under the documented method contract.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "882d5585f27c0bb146e91a6c5f096f0796a6aa1bc5f0460986ad1a4f4c0f5c50",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8409,
+        "end": 8411,
+        "line": 179,
+        "endLine": 179
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!module.children || typeof module.children.allTests !== \"function\" || typeof module.children.allSuites !== \"function\" ",
+        "after": " typeof module.errors !== \"function\") { this.supported = false; continue; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-882d5585f27c0bb146e91a6c5f096f0796a6aa1bc5f0460986ad1a4f4c0f5c50.json",
+      "recordChecksum": "4b7517d8e3d8f00cae40b3deb734634457f0cb1af211cfadd33d735bfad8d467",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "A missing children or collection method reaches invocation and throws instead of the early guard. finalize catches that exception and publishes incomplete fallback evidence. The edit does not admit complete unsupported module data under the documented method contract.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "10997827953bcf0222f160739951099d9ed11bdffbcc3b2c5f29f1f6e65e7223",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8468,
+        "end": 8473,
+        "line": 179,
+        "endLine": 179
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      if (!module.children || typeof module.children.allTests !== \"function\" || typeof module.children.allSuites !== \"function\" || typeof module.errors !== \"function\") { this.supported = ",
+        "after": "; continue; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-10997827953bcf0222f160739951099d9ed11bdffbcc3b2c5f29f1f6e65e7223.json",
+      "recordChecksum": "ec1f2f833bdaa792749bf313336ee5f0db9ac7b8fb30db0b4cf67269c77be55b",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "An unsupported module can be skipped while another valid module leaves complete evidence, hiding part of the reported run.",
+      "suggestedControl": "Collect a valid module plus a module with unavailable children metadata, require incomplete evidence, and retain the valid module alone as the corrected control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "054f09bc07fc912f4d1dff62767d467b5364d0bc0ff1b061bc4a36e3affad778",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8629,
+        "end": 8630,
+        "line": 182,
+        "endLine": 182
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "        if (!reserve(",
+        "after": ") || typeof suite.errors !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-054f09bc07fc912f4d1dff62767d467b5364d0bc0ff1b061bc4a36e3affad778.json",
+      "recordChecksum": "9647163b1748e36d82e0e4af00e956f77ecfc2c793751061069ae86a919957ce",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Suite visits stop consuming aggregate event capacity, removing the traversal bound for a suite iterator.",
+      "suggestedControl": "Use a finite oversized suite inventory, require incomplete evidence, and retain a normal suite inventory as the corrected control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "bd486f80da2ae07f808bb10bc99183c396511fc8630d8890c456b51d6414283f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8632,
+        "end": 8634,
+        "line": 182,
+        "endLine": 182
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "        if (!reserve(1) ",
+        "after": " typeof suite.errors !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-bd486f80da2ae07f808bb10bc99183c396511fc8630d8890c456b51d6414283f.json",
+      "recordChecksum": "c1bdaac2bbd491e95dbbb1bd1aaa93a5a70c3977ee6047ce91d4e10fa15293b7",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "A missing suite errors method still throws into incomplete fallback publication, while reserve exhaustion independently marks unsupported. Collection can continue farther after exhaustion. This affects internal stopping behavior without demonstrating a false complete result.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "dcfd06080ca531a23cc332866a3bae406401cd024491f09aa344b0ad45bca584",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8690,
+        "end": 8695,
+        "line": 182,
+        "endLine": 182
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "        if (!reserve(1) || typeof suite.errors !== \"function\") { this.supported = ",
+        "after": "; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-dcfd06080ca531a23cc332866a3bae406401cd024491f09aa344b0ad45bca584.json",
+      "recordChecksum": "ed782a15400944209519369346f092ea87a7cd3be86008b3a492599f5e44aedb",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A suite with unavailable error metadata can stop suite collection without marking the run incomplete, while ordinary tests still provide a complete result.",
+      "suggestedControl": "Use a suite missing its errors method alongside one valid test, require incomplete evidence, and correct the suite to an empty error array.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "f318d1b47ca5e96c1957aea26537c276af5cdf457101e45ab90c81614b216ac7",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8853,
+        "end": 8854,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "        if (!reserve(",
+        "after": ") || seen.size >= MAX_EVENTS || typeof test.id !== \"string\" || seen.has(test.id) || typeof test.result !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-f318d1b47ca5e96c1957aea26537c276af5cdf457101e45ab90c81614b216ac7.json",
+      "recordChecksum": "9a418006bf2b2648100c7b194b87e73c537e88a85b12552e5603a1d6843f9264",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "Test visits stop consuming the private aggregate event budget. The independent seen-test limit still bounds tests, so this changes mixed-inventory capacity without removing every traversal bound. No additional public arithmetic assertion is proposed.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "d681bc9684c1a18fa60cc263c71f2fb80124e0463b342d832e2b40fcf78a123d",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8856,
+        "end": 8858,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "        if (!reserve(1) ",
+        "after": " seen.size >= MAX_EVENTS || typeof test.id !== \"string\" || seen.has(test.id) || typeof test.result !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-d681bc9684c1a18fa60cc263c71f2fb80124e0463b342d832e2b40fcf78a123d.json",
+      "recordChecksum": "bfb86a00123cb0fa88831573cfff17544df57fddfdc0b3d6a74f6834c19127c3",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A passing test inventory beyond the reporter's seen-test limit can be accepted as complete.",
+      "suggestedControl": "Require an oversized unique passing-test inventory to remain incomplete, with a normal unique passing-test control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "ecf53f87c59a0793f38bd7cd7812c9118b522e799eb0a449269e9ae3932fe7fd",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8869,
+        "end": 8871,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "comparison",
+      "expected": ">=",
+      "replacement": ">",
+      "context": {
+        "before": "        if (!reserve(1) || seen.size ",
+        "after": " MAX_EVENTS || typeof test.id !== \"string\" || seen.has(test.id) || typeof test.result !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-ecf53f87c59a0793f38bd7cd7812c9118b522e799eb0a449269e9ae3932fe7fd.json",
+      "recordChecksum": "89d7d90b35dae4cc378cfafb3f54731df0775523d2b5067160aa88d118fbc249",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A passing test inventory beyond the reporter's seen-test limit can be accepted as complete.",
+      "suggestedControl": "Require an oversized unique passing-test inventory to remain incomplete, with a normal unique passing-test control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "79f787dafafd4c247daa368e10ec79039d854cd8a844bd4af342d72f960d1210",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8883,
+        "end": 8885,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "        if (!reserve(1) || seen.size >= MAX_EVENTS ",
+        "after": " typeof test.id !== \"string\" || seen.has(test.id) || typeof test.result !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-79f787dafafd4c247daa368e10ec79039d854cd8a844bd4af342d72f960d1210.json",
+      "recordChecksum": "7ef7c3fd97be7850cb62f8667c90b8c4c4ae22d2eedb848581907359fd5fb621",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A passing test inventory beyond the reporter's seen-test limit can be accepted as complete.",
+      "suggestedControl": "Require an oversized unique passing-test inventory to remain incomplete, with a normal unique passing-test control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "a15ed24f7873d8334e9ec7fbcc1d682075a0fe183f695b552f569531b1163e58",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8914,
+        "end": 8916,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "        if (!reserve(1) || seen.size >= MAX_EVENTS || typeof test.id !== \"string\" ",
+        "after": " seen.has(test.id) || typeof test.result !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-a15ed24f7873d8334e9ec7fbcc1d682075a0fe183f695b552f569531b1163e58.json",
+      "recordChecksum": "212efad7fb83b64c70af382af5ad2143b1b0bcb49ba59e41f72d715fee85106d",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A non-string test identifier can pass collection when it is otherwise a new passing test.",
+      "suggestedControl": "Use a passing test with invalid identity metadata, require incomplete evidence, and correct its ID to a string.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "957fa3e998177db0f17176d733fb9ba26f79bc14b275d96d988ba20a4c88fbf1",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8935,
+        "end": 8937,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "        if (!reserve(1) || seen.size >= MAX_EVENTS || typeof test.id !== \"string\" || seen.has(test.id) ",
+        "after": " typeof test.result !== \"function\") { this.supported = false; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-957fa3e998177db0f17176d733fb9ba26f79bc14b275d96d988ba20a4c88fbf1.json",
+      "recordChecksum": "7e895575210453913d3dd31132babed0e4c59c72e8be13fd7f2b3dd0d2465f34",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "Duplicate passing test IDs can be counted twice without marking the result incomplete.",
+      "suggestedControl": "Collect duplicate passing test IDs, require incomplete evidence, and use distinct IDs as the corrected count control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "f29845b22a4a738ea7315f3dd99797f65bc6fb07e415268056dd2b528512c2a9",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 8992,
+        "end": 8997,
+        "line": 186,
+        "endLine": 186
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "        if (!reserve(1) || seen.size >= MAX_EVENTS || typeof test.id !== \"string\" || seen.has(test.id) || typeof test.result !== \"function\") { this.supported = ",
+        "after": "; break; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-f29845b22a4a738ea7315f3dd99797f65bc6fb07e415268056dd2b528512c2a9.json",
+      "recordChecksum": "a63f5422253f93f42265ec7e2951d181ce16dbf9fe59cf2855e88c5f0ac8ebd8",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "An invalid test entry can stop collection without marking the run incomplete. A previously collected valid passing test makes this appear complete.",
+      "suggestedControl": "Collect one valid passing test followed by unavailable result metadata, require incomplete evidence, and correct the missing result method.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "381f11739d452ee475c7488d762f77da71c88c72ffd16cdcb3a0d9af8a20d7f3",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9356,
+        "end": 9358,
+        "line": 192,
+        "endLine": 192
+      },
+      "operator": "update",
+      "expected": "++",
+      "replacement": "--",
+      "context": {
+        "before": "        } else if (result.state === \"skipped\") tests.skipped",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-381f11739d452ee475c7488d762f77da71c88c72ffd16cdcb3a0d9af8a20d7f3.json",
+      "recordChecksum": "ee0a4397a625ecd397f8fa54d5fd414653bc47317acff9e46010df7cec67682f",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A skipped test decrements the skipped count, producing invalid negative counters and conservative fallback for an otherwise valid run.",
+      "suggestedControl": "Run one passing test plus one skipped test, require complete evidence with the exact counts, and retain the passing-only control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "f30dd1fe0724ba4a489c259d5265b0f48811354a593b28ccb1189f6ba06e5b90",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9489,
+        "end": 9494,
+        "line": 195,
+        "endLine": 195
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "          if (!result.errors?.length) { this.supported = ",
+        "after": "; add(\"runtime\", { message: \"Failed test lacks error metadata\" }, test.id, file(test)); }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-f30dd1fe0724ba4a489c259d5265b0f48811354a593b28ccb1189f6ba06e5b90.json",
+      "recordChecksum": "767bec707c78e63ee94879b71e2520f283dd7e14d003c0332583b73969c7252b",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A failed test without error metadata can be marked complete with a runtime placeholder instead of incomplete.",
+      "suggestedControl": "Omit a failed test's error metadata, require incomplete evidence, and correct it with an actual assertion error.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "f2d1a5c616b920ee8c4dce1bdde92e1d0eae86ee0c8ff915e31615a2daeb7e65",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9628,
+        "end": 9630,
+        "line": 196,
+        "endLine": 196
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "          if (!Array.isArray(result.errors) ",
+        "after": " result.errors.length > MAX_EVENTS || !reserve(result.errors.length)) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-f2d1a5c616b920ee8c4dce1bdde92e1d0eae86ee0c8ff915e31615a2daeb7e65.json",
+      "recordChecksum": "c7d70511e36550656f58bb3129bbdc6a8d3851b3d59e6670720cc3d3a87a2730",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "For ordinary error arrays, oversized data still fails the shared failure record ceiling or missing failed-ID validation. A custom non-array iterable with an invented length can differ. No extra assertion is proposed for that unsupported custom object, and this is not a universal equivalence claim.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "fbc81b847303938e25f22250a85e6daad692530389aa563a75d1466a47d2afd9",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9652,
+        "end": 9653,
+        "line": 196,
+        "endLine": 196
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "          if (!Array.isArray(result.errors) || result.errors.length ",
+        "after": " MAX_EVENTS || !reserve(result.errors.length)) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-fbc81b847303938e25f22250a85e6daad692530389aa563a75d1466a47d2afd9.json",
+      "recordChecksum": "ed08b9ce56be9920fc0fb464deb4739d4a951ecee5c208d6601e49893d12be39",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The edit rejects an array at the private per-test event boundary. Such an array also exceeds the shared failure record limit, so both variants remain incomplete.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "9ac3c93d4f2e392ea5ccbbd61cd77fc5f81606767bf513f6da73e6a8e4313858",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9665,
+        "end": 9667,
+        "line": 196,
+        "endLine": 196
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "          if (!Array.isArray(result.errors) || result.errors.length > MAX_EVENTS ",
+        "after": " !reserve(result.errors.length)) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-9ac3c93d4f2e392ea5ccbbd61cd77fc5f81606767bf513f6da73e6a8e4313858.json",
+      "recordChecksum": "6d084d45190301cb9e23f4a28c244afd5f3deb1e13c7cb2352818ce7babe0cc5",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "For ordinary error arrays, oversized data still fails the shared failure record ceiling or missing failed-ID validation. A custom non-array iterable with an invented length can differ. No extra assertion is proposed for that unsupported custom object, and this is not a universal equivalence claim.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "59d8a080365b01e5177502cf1ac7d20c9b2aca344203f7a01a50d9688efb9f5a",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9717,
+        "end": 9722,
+        "line": 196,
+        "endLine": 196
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "          if (!Array.isArray(result.errors) || result.errors.length > MAX_EVENTS || !reserve(result.errors.length)) this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-59d8a080365b01e5177502cf1ac7d20c9b2aca344203f7a01a50d9688efb9f5a.json",
+      "recordChecksum": "d54cab423407cbbfebaf77d45f266752067d8bd477205f558ca4e9685181de01",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "The changed assignment can restore supported after a failed test with missing errors already marked the run unsupported. Its runtime placeholder supplies the required failed test ID, so the SDK can accept complete:true.",
+      "suggestedControl": "Omit errors entirely on a failed test, require incomplete evidence, and correct it to a real assertion error array.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "db73e929a99a1b1ca6e3a8b6242d2d9fdfbbf5220bee992e77cd3f3e10cf232d",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 9883,
+        "end": 9888,
+        "line": 198,
+        "endLine": 198
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "        } else this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-db73e929a99a1b1ca6e3a8b6242d2d9fdfbbf5220bee992e77cd3f3e10cf232d.json",
+      "recordChecksum": "7ec6a1081367c95d53c0195a7fb402b934af4d7e91768225e76911a55d5ba855",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A test in an unsupported state can be ignored while other valid passing tests leave complete evidence.",
+      "suggestedControl": "Collect a valid passing test plus a test with unknown state, require incomplete evidence, and correct that state to passed or skipped with the expected counts.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "52e351b928a75399aeb2c430af82e051a783f1c33b493f958fac9c36a34ba87c",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10228,
+        "end": 10231,
+        "line": 206,
+        "endLine": 206
+      },
+      "operator": "equality",
+      "expected": "===",
+      "replacement": "!==",
+      "context": {
+        "before": "      if (state === \"fail\" || (state ",
+        "after": " \"run\" && result?.errors?.length)) add(\"hook\", { message: `Test hook ${hook.name} failed` }, null, file(hook.entity));",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-52e351b928a75399aeb2c430af82e051a783f1c33b493f958fac9c36a34ba87c.json",
+      "recordChecksum": "86d20b0e024570a16b6ed1f91e5de5276f84cd01bef0f2ce02884a07bc7ab8c0",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A throwing hook left in run state without an end callback loses complete hook failure classification.",
+      "suggestedControl": "Record a hook only at start with run state and actual errors, require hook failure evidence, and correct it to a passing completed hook.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "81d2333da0d2b56a8dd74d2c322ca2c529310706b9aad211042496868b4305d8",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10238,
+        "end": 10240,
+        "line": 206,
+        "endLine": 206
+      },
+      "operator": "logical",
+      "expected": "&&",
+      "replacement": "||",
+      "context": {
+        "before": "      if (state === \"fail\" || (state === \"run\" ",
+        "after": " result?.errors?.length)) add(\"hook\", { message: `Test hook ${hook.name} failed` }, null, file(hook.entity));",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-81d2333da0d2b56a8dd74d2c322ca2c529310706b9aad211042496868b4305d8.json",
+      "recordChecksum": "3dd85405edf73e132ca745f54936fd65b361eccf353d0f605effee3560bf3a7b",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A hook left in run state with no error metadata can be reported as a completed hook failure instead of incomplete metadata.",
+      "suggestedControl": "A started hook with no completion metadata stays incomplete, while a throwing started hook with errors is a complete hook failure and a completed passing hook adds no hook failure.",
+      "directArtifacts": [
+        "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-81d2333da0d2b56a8dd74d2c322ca2c529310706b9aad211042496868b4305d8-final3-1791051846776.json"
+      ]
+    },
+    {
+      "mutationId": "8b9a6784e9ae05871f07b6a7236f00d15651b59b1106f55249477da6d025c5ab",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10559,
+        "end": 10561,
+        "line": 210,
+        "endLine": 210
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context ",
+        "after": " context.close !== this.closeBridge || context.logger.error !== this.loggerBridge || context.waitForTestRunEnd !== this.waitMethod) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-8b9a6784e9ae05871f07b6a7236f00d15651b59b1106f55249477da6d025c5ab.json",
+      "recordChecksum": "4aa38384d377584116097815850706eea0d378624b7360d1ffc75420f97ff3fb",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A replaced lifecycle method can escape the final identity check after a valid run and successful close.",
+      "suggestedControl": "Replace the close, logger, or wait method after their normal work has settled, require incomplete evidence, and preserve the same run without replacement as a clean control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "ed1509ca1df88cdbcb47c3f841e94c606598707d675a865879cb2d2c9aa965b9",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10597,
+        "end": 10599,
+        "line": 210,
+        "endLine": 210
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context || context.close !== this.closeBridge ",
+        "after": " context.logger.error !== this.loggerBridge || context.waitForTestRunEnd !== this.waitMethod) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-ed1509ca1df88cdbcb47c3f841e94c606598707d675a865879cb2d2c9aa965b9.json",
+      "recordChecksum": "ffddd3d584dfcc9b5881cd8807ca0f26f069b64863bc4b127a117cb2ebe67c60",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A replaced lifecycle method can escape the final identity check after a valid run and successful close.",
+      "suggestedControl": "Replace the close, logger, or wait method after their normal work has settled, require incomplete evidence, and preserve the same run without replacement as a clean control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "2baaae993eb77f2934035c8c2b6a5fa61cdce24d20fbd3d76fb875bad34af62f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10643,
+        "end": 10645,
+        "line": 210,
+        "endLine": 210
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context || context.close !== this.closeBridge || context.logger.error !== this.loggerBridge ",
+        "after": " context.waitForTestRunEnd !== this.waitMethod) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-2baaae993eb77f2934035c8c2b6a5fa61cdce24d20fbd3d76fb875bad34af62f.json",
+      "recordChecksum": "c326deda50b60330d7d84702a23b9c8474b7e0bf602f19d79ba7fce87a2dba65",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A replaced lifecycle method can escape the final identity check after a valid run and successful close.",
+      "suggestedControl": "Replace the close, logger, or wait method after their normal work has settled, require incomplete evidence, and preserve the same run without replacement as a clean control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "3761596954d3025c78d97ff190081a57e296802cdc9bb78ffc51f1a7f981cbaa",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10710,
+        "end": 10715,
+        "line": 210,
+        "endLine": 210
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    if (!context || context.close !== this.closeBridge || context.logger.error !== this.loggerBridge || context.waitForTestRunEnd !== this.waitMethod) this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-3761596954d3025c78d97ff190081a57e296802cdc9bb78ffc51f1a7f981cbaa.json",
+      "recordChecksum": "349916526eef09f1374f610bc044bbcb6bd3905a40ad15df243d99f0b4396c63",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A replaced lifecycle method can escape the final identity check after a valid run and successful close.",
+      "suggestedControl": "Replace the close, logger, or wait method after their normal work has settled, require incomplete evidence, and preserve the same run without replacement as a clean control.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "15cd3971892909f1213cb87548ca1a6ea5549a2e98d151007bfb921213624141",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10826,
+        "end": 10828,
+        "line": 213,
+        "endLine": 213
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "      if (!Array.isArray(errors) ",
+        "after": " errors.length > MAX_EVENTS) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-15cd3971892909f1213cb87548ca1a6ea5549a2e98d151007bfb921213624141.json",
+      "recordChecksum": "b523f86315b291733da25e4880b3146e47b3674a243b4857ca3a80c417313481",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "A non-array iterable unhandled-error collection can be accepted as complete metadata.",
+      "suggestedControl": "Make getUnhandledErrors return an empty Set, require incomplete evidence, and correct it to an empty array for a clean complete run.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "ede9d1216e6aed93ffdd111a89b249d4b8fac49def2ea0f7f3dd03723f8e8b7f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10843,
+        "end": 10844,
+        "line": 213,
+        "endLine": 213
+      },
+      "operator": "comparison",
+      "expected": ">",
+      "replacement": ">=",
+      "context": {
+        "before": "      if (!Array.isArray(errors) || errors.length ",
+        "after": " MAX_EVENTS) this.supported = false;",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-ede9d1216e6aed93ffdd111a89b249d4b8fac49def2ea0f7f3dd03723f8e8b7f.json",
+      "recordChecksum": "6068cad78e39260d97604f274cfe045df8a63965f7d0f12176ddf07aa566f729",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The changed boundary rejects one error array earlier. Such an array also exceeds the shared failure-record ceiling, so ordinary arrays remain incomplete in either case.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "5351a9c0c7fb0eb7f375d3dcf8790f51bea0eb80703c02895b8d9bfc43f5683a",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 10874,
+        "end": 10879,
+        "line": 213,
+        "endLine": 213
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "      if (!Array.isArray(errors) || errors.length > MAX_EVENTS) this.supported = ",
+        "after": ";",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-5351a9c0c7fb0eb7f375d3dcf8790f51bea0eb80703c02895b8d9bfc43f5683a.json",
+      "recordChecksum": "82e27d808273bcd17adb0a348326f7b9d687386c791aad8957bef52612c85372",
+      "cleanupComplete": true,
+      "classification": "useful_missing_public_control",
+      "reason": "An unsupported or oversized unhandled-error inventory can be discarded without marking the run incomplete. A retained assertion failure can then appear complete and assertion-only.",
+      "suggestedControl": "Combine an assertion failure with oversized unhandled-error metadata, require incomplete evidence, and verify the corrected bounded unhandled-error inventory retains its separate failure kind.",
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "95235f5e37bc47779db5974ced6c640569ac637cae0ffc8a52f5c2575ad19f8d",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 11749,
+        "end": 11750,
+        "line": 233,
+        "endLine": 233
+      },
+      "operator": "zeroOne",
+      "expected": "1",
+      "replacement": "0",
+      "context": {
+        "before": "          schemaVersion: ",
+        "after": ", requestId: this.request.requestId, runId: this.request.runId, inputDigest: this.request.inputDigest,",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-95235f5e37bc47779db5974ced6c640569ac637cae0ffc8a52f5c2575ad19f8d.json",
+      "recordChecksum": "4aac932a3eebdba72e5907ac5c87ead99c98be71c78578b121d61c25698ebef3",
+      "cleanupComplete": true,
+      "classification": "implementation_detail",
+      "reason": "The fallback result uses an invalid schema version and cannot be published. The reporter then forces contradictory raw status instead of preserving structured fallback metadata. This is weaker diagnostics on an already incomplete path, rather than false complete evidence.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "eca6de69b13632012a50babf42a2ddadb9b002e4575488319938a8786315c331",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 11873,
+        "end": 11878,
+        "line": 234,
+        "endLine": 234
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "          complete: ",
+        "after": ", exitCode, reason: \"infrastructureError\", tests: { passed: 0, failed: 0, skipped: 0 },",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-eca6de69b13632012a50babf42a2ddadb9b002e4575488319938a8786315c331.json",
+      "recordChecksum": "0fdb01b539f15b82855853c4b92865ea7e84779265219fc3c151bb79e37fc6a2",
+      "cleanupComplete": true,
+      "classification": "unresolved",
+      "reason": "This completed survivor has not yet received its individual source review.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "09dd6b44bad39982233f43cb6ae253bab590cdff79f3866b7e7f00661e435a73",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 11938,
+        "end": 11939,
+        "line": 234,
+        "endLine": 234
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "          complete: false, exitCode, reason: \"infrastructureError\", tests: { passed: ",
+        "after": ", failed: 0, skipped: 0 },",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-09dd6b44bad39982233f43cb6ae253bab590cdff79f3866b7e7f00661e435a73.json",
+      "recordChecksum": "6ea8d2daebaf3a019a4069ee53a541aad2f37379bf187c35ed8b9b4708ad929b",
+      "cleanupComplete": true,
+      "classification": "unresolved",
+      "reason": "This completed survivor has not yet received its individual source review.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "755d8494854874c6da2d4b2611a88a58a8abf8a684222c088744901df5c6f499",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 11949,
+        "end": 11950,
+        "line": 234,
+        "endLine": 234
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "          complete: false, exitCode, reason: \"infrastructureError\", tests: { passed: 0, failed: ",
+        "after": ", skipped: 0 },",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-755d8494854874c6da2d4b2611a88a58a8abf8a684222c088744901df5c6f499.json",
+      "recordChecksum": "846be3aaa98866b804b7f9a056e5b62f0d7024c04cdca69814276dcb04c55e2a",
+      "cleanupComplete": true,
+      "classification": "unresolved",
+      "reason": "This completed survivor has not yet received its individual source review.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    },
+    {
+      "mutationId": "2caacafd28260668a06e702f4c73b83c316adb5c492a5cc6b1c9350e6901614f",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 11961,
+        "end": 11962,
+        "line": 234,
+        "endLine": 234
+      },
+      "operator": "zeroOne",
+      "expected": "0",
+      "replacement": "1",
+      "context": {
+        "before": "          complete: false, exitCode, reason: \"infrastructureError\", tests: { passed: 0, failed: 0, skipped: ",
+        "after": " },",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "rawOutcome": "survived",
+      "recordFile": "6495a9264b85aac1dfbd67b59d482f804d76b12ff3745fac7a4da1335b63a1c3-2caacafd28260668a06e702f4c73b83c316adb5c492a5cc6b1c9350e6901614f.json",
+      "recordChecksum": "c0355809c0f55b995d93d5d9e10f5dd68d8411b722124571434f6e5c082f60ab",
+      "cleanupComplete": true,
+      "classification": "unresolved",
+      "reason": "This completed survivor has not yet received its individual source review.",
+      "suggestedControl": null,
+      "directArtifacts": []
+    }
+  ]
+}

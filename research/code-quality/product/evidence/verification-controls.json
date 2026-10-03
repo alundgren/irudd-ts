@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "scope": "Owned archive copies only; no source/test execution.",
+  "command": [
+    "python3",
+    "/tmp/archguard-quality-product-evidence-controls.py"
+  ],
+  "records": [
+    {
+      "control": "unchanged archive",
+      "expectedExitCode": 0,
+      "exitCode": 0,
+      "stdout": "Verified 739 retained files, checksum inventory, 82 report summaries, 108 source links and 11 SDK correction controls; 153 host classification rows checked.\n",
+      "stderr": ""
+    },
+    {
+      "control": "changed retained report bytes",
+      "expectedExitCode": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Archive verification failed: raw/domain-weak-final.json: byte count differs\n"
+    },
+    {
+      "control": "missing source proof",
+      "expectedExitCode": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Archive verification failed: inventory differs: ['sources/frozen-t3/packages/shared/src/path.ts']\n"
+    },
+    {
+      "control": "unexpected retained file",
+      "expectedExitCode": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Archive verification failed: inventory differs: ['unrecorded.txt']\n"
+    },
+    {
+      "control": "changed kill count with refreshed hashes",
+      "expectedExitCode": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Archive verification failed: raw/domain-strong-final.json: incorrect killed\n"
+    },
+    {
+      "control": "timeout report falsely marked complete with refreshed hashes",
+      "expectedExitCode": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Archive verification failed: raw/t3-delimitedPreview-r10.json: complete with problems\n"
+    },
+    {
+      "control": "host classification omits a survivor with refreshed hashes",
+      "expectedExitCode": 1,
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "Archive verification failed: host classification does not account for every original survivor exactly once\n"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "sourceRoot": "/tmp/archguard-quality-product-t3code",
+  "sourceRevision": "31a9da179ed0763335f05681c577474aec5d2309",
+  "roots": [
+    "vite-plus",
+    "effect",
+    "@effect/vitest",
+    "react",
+    "react-test-renderer",
+    "jose",
+    "yaml",
+    "@noble/hashes",
+    "vitest"
+  ],
+  "files": 10247,
+  "bytes": 286134017,
+  "source": "explicit export of existing pinned packages, no install or source edit"
+}

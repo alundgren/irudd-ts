@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-10-03T18:28:59.919Z",
+  "node": "v24.21.0",
+  "sourceRoot": "/tmp/archguard-quality-product-cli-reviewed-worktree",
+  "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+  "mutation": {
+    "mutationId": "77b9124032d070d5bb793df328917b20a17a3e489efdfeb256ad97254235a662",
+    "location": {
+      "file": "sdk/mutator-vitest-reporter.ts",
+      "start": 1906,
+      "end": 1908,
+      "line": 48,
+      "endLine": 48
+    },
+    "operator": "logical",
+    "expected": "||",
+    "replacement": "&&",
+    "context": {
+      "before": "  return error?.name === \"AssertionError\" || error?.name === \"AssertionError [ERR_ASSERTION]\" ",
+      "after": " error?.code === \"ERR_ASSERTION\";",
+      "truncatedBefore": false,
+      "truncatedAfter": false
+    },
+    "outcome": "survived",
+    "reused": false,
+    "tests": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "exitCode": 0,
+    "elapsedMs": 34020.940203000006,
+    "message": null
+  },
+  "variant": "final3",
+  "namePattern": "Node assertion names",
+  "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "reporterChildSha256": "7d20321fe05e648e1c282d6e1f9de6b9098708e45d2c319ba6fd7df02571dfd4",
+  "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testInputSha256": "ae6db639b369ed0f3bd12cd236c01692dc731d5d83a727aaa469d77845c6ea1c",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-name-pattern=Node assertion names",
+    "tests/mutator_reporter.test.ts"
+  ],
+  "status": 1,
+  "signal": null,
+  "error": null,
+  "stdout": "✖ Node assertion names and codes remain assertion failures while runtime errors stay distinct (515.591875ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1325.163008\n\n✖ failing tests:\n\ntest at tests/mutator_reporter.test.ts:180:1\n✖ Node assertion names and codes remain assertion failures while runtime errors stay distinct (515.591875ms)\n  AssertionError [ERR_ASSERTION]: assertionAlias\n  + actual - expected\n  \n  + 'runtime'\n  - 'assertion'\n  \n      at TestContext.<anonymous> (file:///tmp/archguard-quality-product-reporter-survivor-review/owned-test-bvq3BB/tests/mutator_reporter.test.ts:184:12)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.start (node:internal/test_runner/test:1262:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 'runtime',\n    expected: 'assertion',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+  "stderr": "",
+  "reporterAfterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+  "protocolAfterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+}

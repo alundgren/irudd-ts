@@ -1,0 +1,10 @@
+{
+  "stage": "node executable preflight",
+  "error": "Resolving the node launcher symlink changed its invocation name to vp; the Node version assertion failed before any baseline or mutation tests.",
+  "nodeLauncher": "/home/dev/.local/share/vite-plus/bin/node",
+  "resolvedLauncher": "/home/dev/.local/share/vite-plus/1.0.0/bin/vp",
+  "resolvedVersionOutput": "vp v1.0.0\n\nLocal vite-plus:\n  vite-plus  Not found\n\nTools:\n  vite             Not found\n  rolldown         Not found\n  vitest           Not found\n  oxfmt            Not found\n  oxlint           Not found\n  oxlint-tsgolint  Not found\n  tsdown           Not found\n\nEnvironment:\n  Package manager  Not found\n  Node.js          v24.21.0",
+  "actualNodeExecutable": "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+  "sdkCommandsExecuted": 0,
+  "ownedCopyCreated": false
+}

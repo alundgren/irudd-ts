@@ -1,0 +1,42 @@
+{
+  "label": "baseline-old-eleven",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/mutator_sdk.test.ts"
+  ],
+  "childDeadlineSeconds": 15,
+  "sourceSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+  "testsSha256": "0141364df654c9f135ffad647d32f33039e292b8ce2e598fa6edbbc8dc9c186a",
+  "expectedExitCode": 0,
+  "exitCode": 0,
+  "timedOut": false,
+  "matchesExpected": true,
+  "output": {
+    "stdout": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/baseline-old-eleven/stdout.txt",
+      "retainedBytes": 2677,
+      "totalBytes": 2677,
+      "truncated": false,
+      "sha256": "7a8788420313967618628f650f1871136448ac4c53c6eb4f14f62e3ee688b941"
+    },
+    "stderr": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/baseline-old-eleven/stderr.txt",
+      "retainedBytes": 0,
+      "totalBytes": 0,
+      "truncated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "failedTestLines": [],
+  "failureDetails": [],
+  "tapSummary": [
+    "# tests 11",
+    "# pass 11",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0"
+  ]
+}

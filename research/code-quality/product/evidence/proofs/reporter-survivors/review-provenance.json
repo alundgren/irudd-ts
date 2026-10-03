@@ -1,0 +1,28 @@
+{
+  "createdAt": "2026-10-03T18:28:22.624Z",
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "taskSnapshot": "/tmp/archguard-quality-product-models.json",
+    "taskSnapshotSha256": "0c7afed5c1db61b6ddf47469086938bc4509e2bdd362eff454609cf29ec08bd3"
+  },
+  "scope": "Independent source review and bounded authored Node probes. No production edits, commits, PRs, dependency installations, cargo runs or additional mutation inventory runs.",
+  "sourceFiles": [
+    {
+      "file": "/tmp/archguard-quality-product-cli-reviewed-worktree/sdk/mutator-vitest-reporter.ts",
+      "beforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "afterSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c"
+    },
+    {
+      "file": "/tmp/archguard-quality-product-cli-reviewed-worktree/sdk/mutator.ts",
+      "beforeSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "afterSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+    }
+  ],
+  "originalTestSHA256": "d306d79ea0cd3127dbde7b9290298036f6811ad04558a0882fcef85a693be725",
+  "finalV3TestSHA256": "ae6db639b369ed0f3bd12cd236c01692dc731d5d83a727aaa469d77845c6ea1c",
+  "originalReportSHA256": "655df5cc91158e7e6ce6add391e1a6a6f1412cae24d62941045d2f06e1ab25d5",
+  "preservation": "The original full 154-site report remains unchanged, including all three timeouts. Direct probe outcomes are separate and never replace original mutation outcomes.",
+  "cleanup": "Every review child uses an owned directory. spawnSync returns final exit status or signal before that directory is removed. No owned child directories remain.",
+  "correctionsFile": "/tmp/archguard-quality-product-reporter-survivor-review/review-corrections.json"
+}

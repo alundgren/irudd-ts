@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "plan": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "sdk/mutator.ts"
+      ]
+    }
+  },
+  "execution": {
+    "command": [
+      "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "node_modules/vite-plus/bin/vp",
+      "test",
+      "run",
+      "quality-tests/mutator_sdk.test.ts",
+      "--config",
+      "quality-support/vite.config.ts"
+    ],
+    "workspace": {
+      "exclude": [
+        ".git/**",
+        "**/node_modules/**",
+        "node_modules/**",
+        "target/**"
+      ],
+      "include": [
+        "sdk/mutator.ts",
+        "sdk/mutator-vitest-reporter.ts"
+      ],
+      "dependencies": [
+        {
+          "source": "/tmp/archguard-quality-product-dependencies",
+          "destination": "node_modules"
+        },
+        {
+          "source": "/tmp/archguard-quality-product-self-profiles-corrected/support",
+          "destination": "quality-support"
+        },
+        {
+          "source": "/tmp/archguard-quality-product-self-profiles-corrected/tests",
+          "destination": "quality-tests"
+        },
+        {
+          "source": "/tmp/archguard-quality-product-self-profiles-corrected/package.json",
+          "destination": "package.json"
+        }
+      ]
+    },
+    "limits": {
+      "workers": 2,
+      "maxInventoryBytes": 67108864,
+      "commandTimeoutMs": 30000,
+      "runTimeoutMs": 3600000
+    },
+    "state": {
+      "directory": "/tmp/archguard-quality-product-self-profiles-corrected/state/protocol",
+      "reuse": "declaredInputs"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"pid": 2469581, "command": ["/tmp/archguard-quality-product-coordinator-final", "mutator", "run", "--root", "/tmp/archguard-quality-product-t3code", "--config", "/tmp/archguard-quality-product-t3-profiles-r12/gitPatchPath-cleanup-confirmation.json", "--json"], "started": "2026-10-03T18:41:40.823247+00:00"}

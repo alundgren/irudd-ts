@@ -1,0 +1,26 @@
+{
+  "createdAt": "2026-10-03T18:28:22.623Z",
+  "items": [
+    {
+      "mutationId": "554a1190eb7b117fcd2f9ab55ed55ebfbb4756ecee183642e7a168b73e5ce406",
+      "earlierClassification": "equivalent",
+      "earlierReason": "The reserve function still returns false at exhaustion. All callers independently mark unsupported when reserve returns false, so this supported assignment is redundant for completion under the documented one-shot lifecycle.",
+      "correction": "The module-loop caller at line 178 only breaks when reserve returns false. It does not mark unsupported independently.",
+      "counterexample": "A first module with 29,998 empty suites and one passing test fills the aggregate budget. Collection then tries a second module. The unchanged reporter produces complete:false. This mutant produces complete:true with passed:1 and no failures.",
+      "correctedClassification": "useful_missing_public_control",
+      "mutationProbe": "/tmp/archguard-quality-product-reporter-survivor-review/probe-554a1190eb7b117fcd2f9ab55ed55ebfbb4756ecee183642e7a168b73e5ce406-1791051896008.json",
+      "baselineProbe": "/tmp/archguard-quality-product-reporter-survivor-review/probe-baseline-1791051896932.json",
+      "publicControl": "Oversized mixed metadata must remain incomplete. The assertion concerns completion, not an internal counter."
+    },
+    {
+      "mutationId": "5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19",
+      "earlierProposedWitness": "Repeated onTestRunEnd should be rejected.",
+      "observedWitness": "The selected repeated-run test passed on this mutant. It is retained as an unfavorable candidate witness rather than presented as a kill.",
+      "reason": "The edit changes the second logical operator between module and early-error bounds. It does not change the first repeated-run guard.",
+      "correctedClassification": "useful_missing_public_control",
+      "correctedProposedWitness": "An oversized module inventory with one passing test and empty remaining modules must stay incomplete.",
+      "originalFiveReceipt": "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19-original-1791051440133.json",
+      "unfavorableNewControlReceipt": "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-5c47e3ccff87fd25534d67ead3f4264ca9e6f6f34f47e131d86172d7b9c5bb19-final-1791051442330.json"
+    }
+  ]
+}

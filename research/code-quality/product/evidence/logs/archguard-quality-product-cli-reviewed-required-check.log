@@ -1,0 +1,124 @@
+    Checking archguard v0.1.0 (/tmp/archguard-quality-product-cli-reviewed-worktree)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 43.08s
+   Compiling archguard v0.1.0 (/tmp/archguard-quality-product-cli-reviewed-worktree)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 37s
+     Running unittests src/lib.rs (target/debug/deps/archguard-57d4489d6887ce9b)
+
+running 40 tests
+test dryer::analyze::tests::hash_collisions_do_not_establish_exact_normalized_equality ... ok
+test dryer::analyze::tests::jaccard_formulas_preserve_distinct_counts_and_subtree_weights ... ok
+test mutator::config::tests::duplicate_and_reserved_environment_rejected_without_values ... ok
+test mutator::config::tests::explicit_commands_defaults_and_resource_corrections ... ok
+test mutator::result::evidence_tests::capped_problems_count_omissions_and_preserve_terminal_recovery ... ok
+test mutator::result::evidence_tests::report_count_and_aggregate_messages_are_reserved_before_retention ... ok
+test mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators ... ok
+test mutator::result::tests::only_matching_complete_assertions_kill ... ok
+test mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets ... ok
+test mutator::run::monitor_tests::command_excerpt_bounds_redacts_boundary_values_and_sanitizes_output ... ok
+test mutator::plan::tests::guarded_regeneration_can_stop_during_source_traversal_and_recover ... ok
+test mutator::run::monitor_tests::peer_failure_stop_is_distinct_from_requested_cancellation_and_deadline ... ok
+test mutator::state::publication_tests::failed_directory_sync_after_active_publication_still_allows_confirmed_cleanup ... ok
+test mutator::state::tests::durable_complete_records_require_identity_checksums_and_exclusive_lock ... ok
+test mutator::state::tests::unresolved_active_state_and_input_aliases_are_preserved ... ok
+test mutator::storage::tests::bounded_regular_io_and_atomic_replacement ... ok
+test mutator::workspace::bounded_queue_tests::cleanup_deadline_preserves_owned_tree_then_bounded_retry_removes_it ... ok
+test mutator::workspace::bounded_queue_tests::cleanup_unlinks_child_directory_links_without_touching_external_files_or_modes ... ok
+test mutator::workspace::bounded_queue_tests::declared_link_chain_root_modes_and_git_inputs_remain_in_identity ... ok
+test mutator::workspace::bounded_queue_tests::generated_queue_is_bounded_before_push_then_recovers ... ok
+test mutator::workspace::bounded_queue_tests::only_selected_parents_are_copied_with_declared_destinations ... ok
+test mutator::workspace::tests::budgets_external_links_and_excluded_targets_fail_then_correct ... ok
+test mutator::workspace::tests::cleanup_refuses_replaced_root_and_preserves_external_permissions ... ok
+test mutator::workspace::tests::isolated_copies_relocate_links_and_revalidate_membership_bytes_modes ... ok
+test subprocess::tests::auto_reap_dispositions_are_rejected_before_spawn ... ok
+test subprocess::tests::cancellation_after_spawn_reaps_the_command ... ok
+test subprocess::tests::cancellation_before_spawn_has_no_filesystem_effects ... ok
+test subprocess::tests::child_file_limit_restricts_generated_bytes ... ok
+test mutator::run::monitor_tests::interrupted_monitor_traversal_preserves_cancellation_and_resource_controls ... ok
+test subprocess::tests::independently_owned_commands_apply_current_resource_limits ... ok
+test subprocess::tests::monitor_failure_stops_the_command_without_becoming_success ... ok
+test subprocess::tests::escaped_descendant_pipes_produce_bounded_cleanup_failure ... ok
+test subprocess::tests::raw_transport_closes_stdin_after_complete_delivery ... ok
+test subprocess::tests::raw_transport_preserves_nonzero_status_and_both_streams ... ok
+test subprocess::tests::stream_limits_stop_commands_and_keep_only_bounded_bytes ... ok
+test subprocess::unix::ownership_tests::lost_child_ownership_suppresses_finish_and_drop_signals ... ok
+test subprocess::unix::ownership_tests::vanished_proc_descriptor_does_not_make_group_cleanup_uncertain ... ok
+test subprocess::tests::unread_stdin_deadline_does_not_leave_a_writer_thread ... ok
+test cache::tests::observations_changed_after_reuse_cannot_be_published ... ok
+test cache::tests::executing_binary_identity_change_discards_a_valid_entry ... ok
+
+test result: ok. 40 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.38s
+
+     Running unittests src/main.rs (target/debug/deps/archguard-91e8f4c49fad3d87)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/architecture.rs (target/debug/deps/architecture-4a6876d967aace27)
+
+running 1 test
+test own_import_contracts_reject_policy_and_research_dependencies ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.71s
+
+     Running tests/cache.rs (target/debug/deps/cache-ff619cb5c7899d72)
+
+running 11 tests
+test cache_destination_cannot_replace_inherited_resolution_input ... ok
+test cache_destination_cannot_replace_selected_source_or_manifest ... ok
+test discovery_parse_failure_correction_and_profile_changes_match_fresh ... ok
+test corrupt_entries_fail_once_recover_and_incompatible_versions_are_misses ... ok
+test inherited_config_outside_root_and_new_nearest_config_invalidate_edges ... ok
+test negative_lookups_include_unselected_and_ignored_targets ... ok
+test installed_package_link_repointing_invalidates_resolution ... ok
+test rust_candidates_and_root_identity_are_validated ... ok
+test unchanged_graph_reuses_edges_but_source_bytes_override_timestamps ... ok
+test workspace_and_installed_manifests_and_missing_packages_are_inputs ... ok
+test cli_reused_graph_still_runs_plugins_and_reports_corruption has been running for over 60 seconds
+test cli_reused_graph_still_runs_plugins_and_reports_corruption ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 61.49s
+
+     Running tests/core.rs (target/debug/deps/core-55702339b700eb74)
+
+running 16 tests
+test function_results_do_not_inherit_imported_method_identity ... ok
+test exported_import_equals_and_array_fallbacks_preserve_dependencies ... ok
+test graph_tracks_workspace_exports_reexports_and_types ... ok
+test explicit_and_type_only_exports_do_not_become_service_values ... ok
+test exclusions_outside_root_dynamic_and_parse_errors_cannot_pass_clean ... ok
+test import_equals_cannot_bypass_dependency_policy ... ok
+test provenance_handles_aliases_shadowing_strings_and_require ... ok
+test inherited_aliases_and_missing_alias_targets_are_internal ... ok
+test installed_source_requires_packages_and_preserves_host_endpoints ... ok
+test local_export_aliases_keep_service_provenance ... ok
+test service_namespace_resolves_definitions_and_barrels ... ok
+test selected_null_export_is_blocked_and_namespace_exports_do_not_flatten ... ok
+test workspace_export_cannot_escape_the_package ... ok
+test star_export_ambiguity_distinguishes_distinct_declarations_from_same_origin ... ok
+test transitive_rules_report_path_and_cycles_distinguish_types_and_dynamic_edges ... ok
+test value_stars_and_declared_external_exports_preserve_public_names ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.55s
+
+     Running tests/mutation_execution.rs (target/debug/deps/mutation_execution-f2a22fe26fdff241)
+
+running 8 tests
+test cancelled_or_timed_out_commands_cleanup_and_allow_fresh_resume has been running for over 60 seconds
+test completed_checkpoint_survives_cancel_and_resumes_after_fresh_baseline has been running for over 60 seconds
+test earlier_deadline_prevents_commands_without_changing_config_identity has been running for over 60 seconds
+test fresh_baseline_resume_invalidation_and_source_preservation has been running for over 60 seconds
+test earlier_deadline_prevents_commands_without_changing_config_identity ... ok
+test incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages has been running for over 60 seconds
+test completed_checkpoint_survives_cancel_and_resumes_after_fresh_baseline ... ok
+test cancelled_or_timed_out_commands_cleanup_and_allow_fresh_resume ... ok
+test repeated_linux_execution_resources_remain_bounded ... ignored, requires a release build and an exclusive execution pressure window
+test parallel_workers_and_rewritten_copies_keep_independent_outcomes has been running for over 60 seconds
+test runtime_protocol_failures_never_count_as_kills has been running for over 60 seconds
+test parallel_workers_and_rewritten_copies_keep_independent_outcomes ... ok
+test fresh_baseline_resume_invalidation_and_source_preservation ... ok
+test incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages ... ok
+test runtime_protocol_failures_never_count_as_kills ... ok
+
+test result: ok. 7 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 822.63s
+

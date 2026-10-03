@@ -1,0 +1,40 @@
+{
+  "stage": "Intermediate local assembly, not final integrated validation",
+  "sourceCheckpoint": "d1424da plus corrected cancellation test",
+  "syntaxCheckpoint": "38ff79a",
+  "executorCheckpoint": "09bb581",
+  "cliControls": {
+    "otherFour": "passed together",
+    "baselineCancellation": "initial 10-second readiness wait failed before baseline; corrected 60-second wait and 120-second run deadline passed in 41.28 seconds in unoptimized build",
+    "limitation": "Final full suite still required after integration"
+  },
+  "nodeControls": {
+    "passed": 13,
+    "includes": [
+      "SDK protocol",
+      "reporter lifecycle",
+      "profile generation and source preservation"
+    ]
+  },
+  "typescript": {
+    "compiler": "pinned TypeScript 7.0.2",
+    "flags": [
+      "strict",
+      "noEmit",
+      "target esnext",
+      "module esnext",
+      "moduleResolution bundler",
+      "allowImportingTsExtensions"
+    ],
+    "result": "passed",
+    "scope": [
+      "sdk/*.ts",
+      "examples/code-quality/*.ts",
+      "tests/mutator_sdk.test.ts",
+      "tests/mutator_reporter.test.ts",
+      "tests/quality_examples.test.ts"
+    ],
+    "negativeInvocation": "NodeNext inferred CommonJS without a root package and rejected import.meta. Explicit ESM no-emit checking was then used."
+  },
+  "measurement": "Ordinary concurrent validation. No runtime comparison or performance claim."
+}

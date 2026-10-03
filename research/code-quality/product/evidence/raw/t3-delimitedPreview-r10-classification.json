@@ -1,0 +1,122 @@
+{
+  "sourceReport": "t3-delimitedPreview-r10.json",
+  "reportSha256": "d422764f9a4aa8e8a4c9cad44bb8b196cc685275f5d4b04b23290801dedc398d",
+  "sourceProvenance": "t3-delimitedPreview-r10-provenance.json",
+  "scope": "All seven surviving edits; classifications independently corroborated against frozen source/test/callers. No universal useful-survivor percentage claim.",
+  "survivors": [
+    {
+      "mutationId": "a0696b7e65a9f92d2a3b1d50893309da62eeae8a2321c442cf04d900a9468f56",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 989,
+        "end": 993,
+        "line": 22,
+        "endLine": 22
+      },
+      "original": "true",
+      "replacement": "false",
+      "classification": "missing test",
+      "evidence": "A31st column loses the truncated indicator when other limits are not exceeded.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    },
+    {
+      "mutationId": "8b35095096471729292e074cbd9cb575f7c2fbbb764338a9214a8f5a567029a6",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 1201,
+        "end": 1202,
+        "line": 29,
+        "endLine": 29
+      },
+      "original": "<",
+      "replacement": "<=",
+      "classification": "missing test",
+      "evidence": "An escaped quote after2000 characters admits one extra character.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    },
+    {
+      "mutationId": "ed54d1ece1ae8a113e41cf1333bd5e3e1f9737367fc084aef429e551ed3447a0",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 1247,
+        "end": 1251,
+        "line": 30,
+        "endLine": 30
+      },
+      "original": "true",
+      "replacement": "false",
+      "classification": "missing test",
+      "evidence": "An escaped quote beyond the cell limit loses the truncated indicator.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    },
+    {
+      "mutationId": "a9c3df139ab2a1e4a92db7a3280072f8756d3bef5b30439d4c78c305e7ec7e59",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 1583,
+        "end": 1585,
+        "line": 44,
+        "endLine": 44
+      },
+      "original": "&&",
+      "replacement": "||",
+      "classification": "missing test",
+      "evidence": "BareCR skips the following character and consecutiveLF records can disappear.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    },
+    {
+      "mutationId": "7017f47cd6a52d7e58c393a8a4c60b71bc164d2328578038ed2b74a842d404cd",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 1729,
+        "end": 1730,
+        "line": 46,
+        "endLine": 46
+      },
+      "original": "<",
+      "replacement": "<=",
+      "classification": "missing test",
+      "evidence": "Exactly100 rows with a terminating line ending are falsely marked truncated.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    },
+    {
+      "mutationId": "021f5b180ccaf0a634b900ca3caba9f45c78d7e4138d8a89e31bd82e4c5a166c",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 1745,
+        "end": 1746,
+        "line": 46,
+        "endLine": 46
+      },
+      "original": "1",
+      "replacement": "0",
+      "classification": "missing test",
+      "evidence": "Exactly100 rows with a terminating line ending are falsely marked truncated.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    },
+    {
+      "mutationId": "0657a6743bce22de2ba7575513cdcb19398cef6b9475c11cde3f1d6a2961547b",
+      "location": {
+        "file": "packages/shared/src/delimitedPreview.ts",
+        "start": 1828,
+        "end": 1832,
+        "line": 49,
+        "endLine": 49
+      },
+      "original": "true",
+      "replacement": "false",
+      "classification": "missing test",
+      "evidence": "Ordinary cell overflow loses the truncated indicator.",
+      "supplementalControl": "examples/code-quality/prepare-t3.ts generated delimitedPreview-strengthened profile at ebc856b; full strengthened replay pending"
+    }
+  ],
+  "runtimeOutcomes": {
+    "tenFrameworkTimeouts": "Source inspection shows bounded loops, including CRLF update-- returning after100 rows; these are operational failures, not proof of nontermination or recognized assertion kills.",
+    "twoCommandTimeouts": "Outer decrement and escaped-quote decrement admit backward or zero-net progress; reported as timeouts, not kills.",
+    "timeoutTrial": "R10original5sVitest outcomes retained; later15s test timeout still under30s command bound planned."
+  },
+  "cleanup": {
+    "activeJournalRemoved": true,
+    "sourceBytesPreserved": true
+  }
+}

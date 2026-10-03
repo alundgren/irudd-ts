@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "C.ts"
+    ]
+  },
+  "similarityThreshold": 0,
+  "normalization": {
+    "localIdentifiers": "erase"
+  }
+}

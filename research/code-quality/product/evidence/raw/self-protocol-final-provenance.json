@@ -1,0 +1,81 @@
+{
+  "command": [
+    "/tmp/archguard-quality-product-cli-final-replay",
+    "mutator",
+    "run",
+    "--root",
+    "/tmp/archguard-quality-product-cli-worktree",
+    "--config",
+    "/tmp/archguard-quality-product-self-profiles-final/protocol.json",
+    "--json"
+  ],
+  "started": "2026-10-03T15:38:00.623309+00:00",
+  "durationMs": 12031,
+  "measurementUse": "ordinary validation; concurrent other checks, no runtime comparison",
+  "exitCode": 2,
+  "executableSha256": "eb703cce80a28717eaa5bd8e283813d523cfeea541fb7c03ddda78aabc75559d",
+  "productWorktreeHead": "66fc952",
+  "configuration": {
+    "schemaVersion": 1,
+    "plan": {
+      "schemaVersion": 1,
+      "selection": {
+        "include": [
+          "sdk/mutator.ts"
+        ]
+      }
+    },
+    "execution": {
+      "command": [
+        "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "node_modules/vite-plus/bin/vp",
+        "test",
+        "run",
+        "quality-tests/mutator_sdk.test.ts",
+        "--config",
+        "quality-support/vite.config.ts"
+      ],
+      "workspace": {
+        "exclude": [
+          ".git/**",
+          "**/node_modules/**",
+          "node_modules/**",
+          "target/**"
+        ],
+        "include": [
+          "sdk/mutator.ts",
+          "sdk/mutator-vitest-reporter.ts"
+        ],
+        "dependencies": [
+          {
+            "source": "/tmp/archguard-quality-product-dependencies",
+            "destination": "node_modules"
+          },
+          {
+            "source": "/tmp/archguard-quality-product-self-profiles-final/support",
+            "destination": "quality-support"
+          },
+          {
+            "source": "/tmp/archguard-quality-product-self-profiles-final/tests",
+            "destination": "quality-tests"
+          }
+        ]
+      },
+      "limits": {
+        "workers": 2,
+        "maxInventoryBytes": 67108864,
+        "commandTimeoutMs": 30000,
+        "runTimeoutMs": 3600000
+      },
+      "state": {
+        "directory": "/tmp/archguard-quality-product-self-profiles-final/state/protocol",
+        "reuse": "declaredInputs"
+      }
+    }
+  },
+  "configurationSha256": "80326c01f90be04422764873f1f65f8d99721ee6824faa2af64a9d9bb13c0560",
+  "sourceHashes": {
+    "sdk/mutator.ts": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
+  },
+  "sourceBytesPreserved": true
+}

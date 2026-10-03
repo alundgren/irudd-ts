@@ -1,0 +1,1 @@
+{"pid": 2164912, "command": ["/tmp/archguard-quality-product-cli-final-replay", "mutator", "run", "--root", "/tmp/archguard-quality-product-cli-worktree", "--config", "/tmp/archguard-quality-product-self-profiles-corrected/protocol.json", "--json"], "started": "2026-10-03T15:43:42.775202+00:00"}

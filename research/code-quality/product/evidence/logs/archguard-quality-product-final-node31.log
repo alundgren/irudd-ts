@@ -1,0 +1,39 @@
+✔ assertion failures retain IDs and passing controls finish cleanly (1983.804773ms)
+✔ assertion plus late run or cleanup failure cannot be assertion-only (3938.281064ms)
+✔ runtime, import, suite, hook and unhandled failures remain distinct (3415.864365ms)
+✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (3685.491872ms)
+✔ retained retry errors and oversized runner metadata fail conservatively (2077.112933ms)
+✔ reporter diagnostics preserve short messages and the beginning of truncated messages (1623.414042ms)
+✔ Node assertion names and codes remain assertion failures while runtime errors stay distinct (2413.624146ms)
+✔ pending runner close stays incomplete and ordinary logs do not become cleanup failures (1925.310072ms)
+✔ a second reporter is rejected and repeated test runs stay incomplete (1503.842124ms)
+✔ a throwing hook reported only at start retains hook failure evidence (1404.859642ms)
+✔ runner cleanup timeout remains incomplete alongside assertion failures (1467.028302ms)
+✔ failure record overflow stays incomplete while the supported failure budget remains complete (1567.953852ms)
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (16.018136ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (3.073181ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (9.377791ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (4.499482ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (11.643096ms)
+✔ shared wire ceilings accept their boundary and reject one extra byte or failure (16.794734ms)
+✔ failure accessors, custom iteration and proxy traps are rejected without invoking code (1.319ms)
+✔ null-prototype protocol records are accepted and custom prototypes remain rejected (2.935976ms)
+✔ proxy failure arrays cannot execute prototype traps during validation (0.630446ms)
+✔ task and failed-test identities reject empty or NUL data while empty messages remain valid (1.264209ms)
+✔ required protocol fields must be own data and cannot invoke inherited getters (3.835785ms)
+✔ baseline and mutation requests enforce their distinct mutation identities (2.946866ms)
+✔ callable values cannot impersonate plain request data (1.691485ms)
+✔ assigned request files require absolute paths even when a relative file exists (2.639132ms)
+✔ formatted request JSON is accepted while escaped duplicate keys remain rejected (4.116257ms)
+✔ the request byte ceiling includes an exact-size valid JSON document (19.594807ms)
+✔ result exit codes accept integer endpoints and reject values outside the process range (4.238285ms)
+✔ a completed hook-only failure cannot declare exit zero (0.741814ms)
+✔ T3 profile generation refuses source aliases, corrects missing inputs and preserves existing output (1896.984052ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27536.531643

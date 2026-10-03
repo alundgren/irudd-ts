@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/tmp/archguard-quality-product-cli-final-replay",
+    "dryer",
+    "--root",
+    "/tmp/archguard-quality-product-t3code",
+    "--config",
+    "/tmp/archguard-quality-product-t3-profiles-final/dryer-native.json",
+    "--json"
+  ],
+  "exitCode": 0,
+  "binarySha256": "eb703cce80a28717eaa5bd8e283813d523cfeea541fb7c03ddda78aabc75559d",
+  "configuration": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "apps/mobile/src/native/T3ComposerEditor.tsx",
+        "apps/mobile/src/native/T3ComposerEditor.ios.tsx",
+        "apps/mobile/src/native/T3ComposerEditor.native.tsx"
+      ]
+    }
+  },
+  "configurationSha256": "3b7a91d1e78567f98ac8ac416e8b0eaf1488bc63c5023e0034f8710feed72f24",
+  "measurementUse": "ordinary concurrent validation; no runtime comparison",
+  "sourceHashes": {
+    "apps/mobile/src/native/T3ComposerEditor.ios.tsx": "84adb216f0ecd302a4a64de18e524088776f6e2e95170981c7b2bf82702b46b5",
+    "apps/mobile/src/native/T3ComposerEditor.native.tsx": "9df0bbb6dbd564507e6c9a999c0710e9df1ca19297d327ec72543009948be352",
+    "apps/mobile/src/native/T3ComposerEditor.tsx": "79e7a340e06ac18695b31aede4a40930faca401bdc26c592b763e4c19d38ed84"
+  }
+}

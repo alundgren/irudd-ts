@@ -1,0 +1,49 @@
+{
+  "label": "dc01ba80ecefe1dc22c7ddd6194b2a5de79a5f1e4d6dbf5febe44ab28a5a1e4b-new-eighteen",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/mutator_sdk.test.ts"
+  ],
+  "childDeadlineSeconds": 15,
+  "sourceSha256": "f808f2d318fedc3dcc8ec64430fdf937fdbf39c01a0daf583e757cb13467a84f",
+  "testsSha256": "811a15c8268a5752c350d1a50f1beeb9ac881ceb02412da9dc5d0448c2cfa56b",
+  "expectedExitCode": 1,
+  "exitCode": 1,
+  "timedOut": false,
+  "matchesExpected": true,
+  "output": {
+    "stdout": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/dc01ba80ecefe1dc22c7ddd6194b2a5de79a5f1e4d6dbf5febe44ab28a5a1e4b-new-eighteen/stdout.txt",
+      "retainedBytes": 5229,
+      "totalBytes": 5229,
+      "truncated": false,
+      "sha256": "029ab5dca21b13b0b50b034e1d3652d3d01c91b7dea8f361f2afc9fd13763ff5"
+    },
+    "stderr": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/dc01ba80ecefe1dc22c7ddd6194b2a5de79a5f1e4d6dbf5febe44ab28a5a1e4b-new-eighteen/stderr.txt",
+      "retainedBytes": 0,
+      "totalBytes": 0,
+      "truncated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "failedTestLines": [
+    "not ok 16 - the request byte ceiling includes an exact-size valid JSON document"
+  ],
+  "failureDetails": [
+    "  failureType: 'testCodeFailure'",
+    "  error: \"Expected ',' or '}' after property value in JSON at position 65535 (line 1 column 65536)\"",
+    "  code: 'ERR_TEST_FAILURE'",
+    "  name: 'SyntaxError'"
+  ],
+  "tapSummary": [
+    "# tests 18",
+    "# pass 17",
+    "# fail 1",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0"
+  ]
+}

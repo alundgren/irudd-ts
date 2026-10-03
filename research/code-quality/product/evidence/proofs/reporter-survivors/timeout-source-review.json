@@ -1,0 +1,127 @@
+{
+  "createdAt": "2026-10-03T18:28:57.827Z",
+  "authoritativeReportSHA256": "655df5cc91158e7e6ce6add391e1a6a6f1412cae24d62941045d2f06e1ab25d5",
+  "scope": "Source inspection and bounded original-five Node probes. No replay of the installed Vitest mutation command.",
+  "entries": [
+    {
+      "mutationId": "e0566803ff9f8d836d7e0e79e5d97d5bd0ac4b4bc8d4262f6ef1436b8ea45c47",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 4070,
+        "end": 4072,
+        "line": 94,
+        "endLine": 94
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (!context || typeof context.close !== \"function\" || typeof context.waitForTestRunEnd !== \"function\" || typeof context.state?.getUnhandledErrors !== \"function\" ",
+        "after": " typeof context.logger?.error !== \"function\") {",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "outcome": "timedOut",
+      "reused": false,
+      "tests": null,
+      "exitCode": null,
+      "elapsedMs": 80497.04224600001,
+      "message": "[redacted] command deadline reached during workspace monitoring",
+      "sourceAssessment": "The edit joins the getUnhandledErrors and logger availability checks with &&. Every original-five context has both methods, except missingApi removes waitForTestRunEnd and is rejected by an earlier unchanged term. The exercised guard decisions remain the same. The edit adds no loop, await, timer, or pending promise.",
+      "expectedBehaviorForExercisedControls": "Bounded finite execution is expected from the edited source. No new nonprogress mechanism appears on the original-five paths.",
+      "plainNodeProbe": {
+        "receipt": "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-e0566803ff9f8d836d7e0e79e5d97d5bd0ac4b4bc8d4262f6ef1436b8ea45c47-original-1791052068851.json",
+        "status": 0,
+        "signal": null,
+        "summary": [
+          "ℹ tests 5",
+          "ℹ pass 5",
+          "ℹ fail 0",
+          "ℹ duration_ms 13015.455424"
+        ]
+      },
+      "actualVitestCause": "Unresolved. Passing plain Node controls and source reasoning do not establish why the original installed-framework run exceeded its command deadline.",
+      "preservedOutcome": "timedOut. This probe does not change the recorded outcome or count it as a kill or survivor."
+    },
+    {
+      "mutationId": "1d6e7eaf63a9e823cd96dae222e8de382646f9a5a764e2d09848ce75bd3b01a8",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 5815,
+        "end": 5820,
+        "line": 129,
+        "endLine": 129
+      },
+      "operator": "boolean",
+      "expected": "false",
+      "replacement": "true",
+      "context": {
+        "before": "    if (this.hooks.length >= MAX_EVENTS) { this.supported = ",
+        "after": "; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "outcome": "timedOut",
+      "reused": false,
+      "tests": null,
+      "exitCode": null,
+      "elapsedMs": 66177.64033000001,
+      "message": "[redacted] command deadline reached during workspace monitoring",
+      "sourceAssessment": "The changed assignment occurs only after 10,000 retained hook events. Original-five scenarios record at most one hook event in each child. This branch is not reached by those controls and adds no waiting or iteration.",
+      "expectedBehaviorForExercisedControls": "Bounded finite execution is expected from the edited source. No new nonprogress mechanism appears on the original-five paths.",
+      "plainNodeProbe": {
+        "receipt": "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-1d6e7eaf63a9e823cd96dae222e8de382646f9a5a764e2d09848ce75bd3b01a8-original-1791052077676.json",
+        "status": 0,
+        "signal": null,
+        "summary": [
+          "ℹ tests 5",
+          "ℹ pass 5",
+          "ℹ fail 0",
+          "ℹ duration_ms 8479.919029"
+        ]
+      },
+      "actualVitestCause": "Unresolved. Passing plain Node controls and source reasoning do not establish why the original installed-framework run exceeded its command deadline.",
+      "preservedOutcome": "timedOut. This probe does not change the recorded outcome or count it as a kill or survivor."
+    },
+    {
+      "mutationId": "c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417",
+      "location": {
+        "file": "sdk/mutator-vitest-reporter.ts",
+        "start": 6058,
+        "end": 6060,
+        "line": 136,
+        "endLine": 136
+      },
+      "operator": "logical",
+      "expected": "||",
+      "replacement": "&&",
+      "context": {
+        "before": "    if (this.runEnded ",
+        "after": " modules.length > MAX_EVENTS || errors.length > MAX_EVENTS) { this.supported = false; return; }",
+        "truncatedBefore": false,
+        "truncatedAfter": false
+      },
+      "outcome": "timedOut",
+      "reused": false,
+      "tests": null,
+      "exitCode": null,
+      "elapsedMs": 64734.676437999995,
+      "message": "[redacted] command deadline reached during workspace monitoring",
+      "sourceAssessment": "The first run-end guard changes || to && between runEnded and module count. Original-five children call onTestRunEnd once with one module and no early errors. Both variants continue to collect that same finite run. The edit adds no loop or waiting operation.",
+      "expectedBehaviorForExercisedControls": "Bounded finite execution is expected from the edited source. No new nonprogress mechanism appears on the original-five paths.",
+      "plainNodeProbe": {
+        "receipt": "/tmp/archguard-quality-product-reporter-survivor-review/test-proof-c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417-original-1791052086638.json",
+        "status": 0,
+        "signal": null,
+        "summary": [
+          "ℹ tests 5",
+          "ℹ pass 5",
+          "ℹ fail 0",
+          "ℹ duration_ms 8690.002404"
+        ]
+      },
+      "actualVitestCause": "Unresolved. Passing plain Node controls and source reasoning do not establish why the original installed-framework run exceeded its command deadline.",
+      "preservedOutcome": "timedOut. This probe does not change the recorded outcome or count it as a kill or survivor."
+    }
+  ]
+}

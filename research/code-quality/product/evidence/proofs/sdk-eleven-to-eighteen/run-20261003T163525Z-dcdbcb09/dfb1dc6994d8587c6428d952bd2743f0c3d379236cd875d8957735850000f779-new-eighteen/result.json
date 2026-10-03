@@ -1,0 +1,49 @@
+{
+  "label": "dfb1dc6994d8587c6428d952bd2743f0c3d379236cd875d8957735850000f779-new-eighteen",
+  "command": [
+    "/home/dev/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "--test",
+    "--test-reporter=tap",
+    "tests/mutator_sdk.test.ts"
+  ],
+  "childDeadlineSeconds": 15,
+  "sourceSha256": "51361c69fa4d1456443150394b50f1a9a68b49849e5a86bacb139ccb8167b536",
+  "testsSha256": "811a15c8268a5752c350d1a50f1beeb9ac881ceb02412da9dc5d0448c2cfa56b",
+  "expectedExitCode": 1,
+  "exitCode": 1,
+  "timedOut": false,
+  "matchesExpected": true,
+  "output": {
+    "stdout": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/dfb1dc6994d8587c6428d952bd2743f0c3d379236cd875d8957735850000f779-new-eighteen/stdout.txt",
+      "retainedBytes": 5189,
+      "totalBytes": 5189,
+      "truncated": false,
+      "sha256": "36c5eb9aeafb1a7cb66e3040677200deab114da14d669ad47df68317ce7850e2"
+    },
+    "stderr": {
+      "path": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/new-sdk-public-control-proofs/run-20261003T163525Z-dcdbcb09/dfb1dc6994d8587c6428d952bd2743f0c3d379236cd875d8957735850000f779-new-eighteen/stderr.txt",
+      "retainedBytes": 0,
+      "totalBytes": 0,
+      "truncated": false,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "failedTestLines": [
+    "not ok 14 - assigned request files require absolute paths even when a relative file exists"
+  ],
+  "failureDetails": [
+    "  failureType: 'testCodeFailure'",
+    "  error: 'Missing expected exception.'",
+    "  code: 'ERR_ASSERTION'",
+    "  name: 'AssertionError'"
+  ],
+  "tapSummary": [
+    "# tests 18",
+    "# pass 17",
+    "# fail 1",
+    "# cancelled 0",
+    "# skipped 0",
+    "# todo 0"
+  ]
+}

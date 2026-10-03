@@ -1,0 +1,170 @@
+{
+  "createdAt": "2026-10-03T18:44:45.252Z",
+  "scope": "Separate bounded authored Node controls after the unchanged installed-framework retry completed. These do not alter either mutation report.",
+  "helperSha256": "de3bdd9827ab7e417ab0ef340e2b04491cbf366597aef2ec314d4ffb4fc27e5f",
+  "output": [
+    {
+      "scenario": "missingLogger",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "missingLogger",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 0,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": [
+          {
+            "kind": "runtime",
+            "testId": null,
+            "file": null,
+            "message": "Unsupported test runner lifecycle API"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "missingLogger",
+      "mutationId": "e0566803ff9f8d836d7e0e79e5d97d5bd0ac4b4bc8d4262f6ef1436b8ea45c47",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "a8b227574f340704bde2556cb840e25f057563154d3f1e0bd5dc150025f56290",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "missingLogger",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 0,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "hookOverflow",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "hookOverflow",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 1,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "hookOverflow",
+      "mutationId": "1d6e7eaf63a9e823cd96dae222e8de382646f9a5a764e2d09848ce75bd3b01a8",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dc27a44ccbdb9625ae0a0d18bb0a8b53417d57b28ebba45911a611b8f20a8a58",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 1,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "hookOverflow",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 1,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "repeatRun",
+      "mutationId": null,
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "repeatRun",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": false,
+        "exitCode": 0,
+        "reason": "infrastructureError",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    },
+    {
+      "scenario": "repeatRun",
+      "mutationId": "c06a6f4b79b9927050c983be8ce64421af72501165bc032ba5879339c303d417",
+      "reporterBeforeSha256": "dbff96a69460b77db97a52e490233e46c6d8cc2dd725f336baf34011b351db3c",
+      "reporterChildSha256": "cb5d03a1b00785945ce18531d293613b95c462bb0b10fe1673d5b910f2e5f75f",
+      "protocolSha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206",
+      "status": 0,
+      "signal": null,
+      "stdout": "{\"secondRejected\":false,\"initThrew\":false}\n",
+      "stderr": "",
+      "result": {
+        "schemaVersion": 1,
+        "requestId": "repeatRun",
+        "runId": "independent-reporter-review",
+        "inputDigest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "complete": true,
+        "exitCode": 0,
+        "reason": "finished",
+        "tests": {
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0
+        },
+        "failures": []
+      }
+    }
+  ]
+}

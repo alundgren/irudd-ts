@@ -1,0 +1,110 @@
+{
+  "outcome": "The CLI and Rust APIs are implemented. Final checks, self-dogfooding and evidence review are still in progress. The final PR will remain open against main.",
+  "examples": [
+    {
+      "title": "Structural candidates",
+      "description": "These comparisons help a reviewer inspect copied operations. They do not prescribe refactoring. The default filter misses two edited copies and flags intentional boilerplate.",
+      "columns": [
+        "Case",
+        "Set similarity",
+        "Interpretation"
+      ],
+      "rows": [
+        [
+          "Changed names and values",
+          "1.000",
+          "Useful copy candidate"
+        ],
+        [
+          "Added guard and call",
+          "0.723",
+          "Missed at 0.82"
+        ],
+        [
+          "Different implementation",
+          "0.290",
+          "Low similarity"
+        ],
+        [
+          "Unrelated behavior",
+          "0.292",
+          "Properties distinguish operations"
+        ],
+        [
+          "Intentional boilerplate",
+          "0.879",
+          "Keep duplication when appropriate"
+        ],
+        [
+          "45-line copy",
+          "0.774",
+          "Missed at 0.82; property erasure raises to 0.917"
+        ]
+      ]
+    },
+    {
+      "title": "Boundary tests",
+      "description": "The authored domain has eleven mutation sites. Six survivors expose behavior gaps that stronger tests correct. An equivalent zero-sign calculation remains.",
+      "source": "Original:  total >= 100\nMutation:  total > 100\n\nAdd the exact boundary assertion because the shipping rule promises it.\nKeep nearby values below and above the threshold as controls.",
+      "columns": [
+        "Tests",
+        "Killed",
+        "Survived"
+      ],
+      "rows": [
+        [
+          "Six ordinary tests",
+          "4",
+          "7"
+        ],
+        [
+          "Eighteen behavior tests",
+          "10",
+          "1"
+        ]
+      ]
+    },
+    {
+      "title": "T3 test selection",
+      "description": "The focused host module run completed 238 sites with 153 survivors. Broader browser tests already cover some of those behaviors. A finding caused by excluding those tests is a selection gap, not proof that T3 lacks a test."
+    },
+    {
+      "title": "SDK dogfooding",
+      "description": "Inspection of twenty SDK survivors identified eleven public-behavior test gaps. Direct controls confirmed that the old eleven tests pass every observed mutation and the strengthened eighteen tests fail each one. Ordinary exceptions remain runtime evidence under the conservative protocol.",
+      "columns": [
+        "Inspected survivors",
+        "Count"
+      ],
+      "rows": [
+        [
+          "Public test gaps",
+          "11"
+        ],
+        [
+          "Implementation details",
+          "7"
+        ],
+        [
+          "Equivalent under stated assumptions",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "validation": [
+    "Linux isolated pressure controls returned descriptors from 4 to 4 and threads from 2 to 2, with no remaining children, owned workspaces or active journal.",
+    "Package creation succeeded with 140 included files. Extracted-package executable validation remains pending.",
+    "Required checks and final mutation replays are still running. No CI or metric gates were added."
+  ],
+  "limitations": "Native macOS runtime testing is unavailable here. Oxc parsing and bindings do not provide compiler types. Mutation commands are explicitly trusted. Private copies protect the original source; they are not a hostile-code sandbox. Equivalent mutants, missing specifications, framework timeouts and incomplete commands require review.",
+  "handoff": {
+    "repository": "alundgren/irudd-ts",
+    "integrationBranch": "t3code/dryer-mutator-research",
+    "integrationHead": "54e98675b276069649b4c8d8fce71c7b6c20cdcf",
+    "coordinatorBranch": "feature/quality-cli-reviewed",
+    "coordinatorHead": "3f9f4e69285001c9f1a0d01ddd869313aee86182",
+    "finalPR": "https://github.com/alundgren/irudd-ts/pull/15",
+    "finalMergeAuthorized": false,
+    "status": "in progress"
+  }
+}
