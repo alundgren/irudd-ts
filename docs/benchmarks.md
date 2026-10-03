@@ -1,5 +1,7 @@
 # Historical reductions and local benchmarks
 
+[Persistent graph caching](cache.md) documents the opt-in cache, verified PR13151 and PR14389 edit replays, and fresh-versus-reused measurements. Cache reuse counts do not imply a latency improvement. The independent pre-implementation reduction measurements are retained in [the uncached baseline](../benchmarks/cache/uncached-baseline.json).
+
 ## Repository-role iteration
 
 [Repository structure](repository-structure.md) records the new structural experiment: ten deliberately invalid fixtures and their corrections, plus a complete scan of the pinned T3 server dependency closure. Those checks establish the selected structural policies, separate from the historical reductions below.

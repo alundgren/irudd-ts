@@ -26,12 +26,17 @@ enum Action {
         config: PathBuf,
         #[arg(long)]
         json: bool,
+        /// Reuse a persistent source graph after validating its inputs.
+        #[arg(long)]
+        cache: Option<PathBuf>,
     },
     Facts {
         #[arg(long, default_value = ".")]
         root: PathBuf,
         #[arg(long, default_value = "archguard.json")]
         config: PathBuf,
+        #[arg(long)]
+        cache: Option<PathBuf>,
     },
 }
 #[derive(Serialize)]
@@ -44,6 +49,8 @@ struct Report {
     elapsed_ms: f64,
     diagnostics: Vec<Diagnostic>,
     problems: Vec<Problem>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    cache: Option<archguard::cache::CacheStats>,
 }
 fn main() -> ExitCode {
     match execute() {
@@ -57,12 +64,26 @@ fn main() -> ExitCode {
 fn execute() -> Result<u8> {
     let started = Instant::now();
     let cli = Cli::parse();
-    let (root, path, json, facts) = match cli.command {
-        Action::Check { root, config, json } => (root, config, json, false),
-        Action::Facts { root, config } => (root, config, true, true),
+    let (root, path, json, facts, cache_path) = match cli.command {
+        Action::Check {
+            root,
+            config,
+            json,
+            cache,
+        } => (root, config, json, false, cache),
+        Action::Facts {
+            root,
+            config,
+            cache,
+        } => (root, config, true, true, cache),
     };
     let (config, cwd) = config::read(&path)?;
-    let mut project = project::analyze(&root, &config)?;
+    let (mut project, cache) = if let Some(path) = cache_path {
+        let analysis = project::analyze_cached(&root, &config, &path)?;
+        (analysis.project, Some(analysis.cache))
+    } else {
+        (project::analyze(&root, &config)?, None)
+    };
     if facts {
         serde_json::to_writer_pretty(std::io::stdout().lock(), &project)?;
         println!();
@@ -89,6 +110,7 @@ fn execute() -> Result<u8> {
         elapsed_ms: started.elapsed().as_secs_f64() * 1000.0,
         diagnostics,
         problems: project.problems.clone(),
+        cache,
     };
     if json {
         serde_json::to_writer_pretty(std::io::stdout().lock(), &report)?;
