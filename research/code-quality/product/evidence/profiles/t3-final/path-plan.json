@@ -1,8 +1,0 @@
-{
-  "schemaVersion": 1,
-  "selection": {
-    "include": [
-      "packages/shared/src/path.ts"
-    ]
-  }
-}

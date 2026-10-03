@@ -1,3 +1,0 @@
-# External pinned dryer checkout only. No upstream implementation is vendored.
-tree-sitter==0.26.0
-tree-sitter-language-pack==1.20.0

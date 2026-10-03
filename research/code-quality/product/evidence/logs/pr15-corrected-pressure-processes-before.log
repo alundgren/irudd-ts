@@ -1,3 +1,0 @@
-    PID    PPID STAT COMMAND
-      1       0 Ss   sleep
-   2664       0 Rs   ps

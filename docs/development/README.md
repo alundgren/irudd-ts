@@ -32,7 +32,7 @@ License inventories can be refreshed with `python3 scripts/licenses.py --write`,
 Optional actual Vitest compatibility controls use an explicitly installed target repository:
 
 ```sh
-node scripts/check_mutator_vitest.mjs /absolute/installed/t3code
+node scripts/check_mutator_vitest.mjs /absolute/installed/project
 ```
 
-This creates owned temporary fixtures and leaves the target source untouched. The Node SDK controls are part of `check.sh`. Focused T3 quality profiles and dependency-copy requirements are described in the [authored examples](../../examples/code-quality/README.md). Run those separately from validation when recording runtime or resource evidence.
+This creates owned temporary fixtures and leaves the target source untouched. The SDK and reporter unit tests run through `check.sh`.

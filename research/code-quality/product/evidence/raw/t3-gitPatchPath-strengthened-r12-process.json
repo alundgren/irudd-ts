@@ -1,1 +1,0 @@
-{"pid": 2455320, "command": ["/tmp/archguard-quality-product-cli-r10-replay", "mutator", "run", "--root", "/tmp/archguard-quality-product-t3code", "--config", "/tmp/archguard-quality-product-t3-profiles-r12/gitPatchPath-strengthened.json", "--json"], "started": "2026-10-03T18:28:46.206921+00:00"}

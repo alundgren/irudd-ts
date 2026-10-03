@@ -1,1 +1,0 @@
-{"pid": 2165996, "command": ["/tmp/archguard-quality-product-cli-final-replay", "mutator", "run", "--root", "/tmp/archguard-quality-product-t3code", "--config", "/tmp/archguard-quality-product-t3-profiles-final/delimitedPreview.json", "--json"], "started": "2026-10-03T15:44:08.336203+00:00"}

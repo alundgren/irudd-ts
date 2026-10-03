@@ -1,7 +1,0 @@
-{
-  "packageSha256": "37321aa45052bfeeaba44764ba35240d18156fee94a840baa07ccc98024f296a",
-  "coordinatorHead": "3f9f4e69285001c9f1a0d01ddd869313aee86182",
-  "entries": 140,
-  "validation": "source extraction only, executable validation pending",
-  "warnings": "Four research-only test targets are omitted by the package allowlist."
-}

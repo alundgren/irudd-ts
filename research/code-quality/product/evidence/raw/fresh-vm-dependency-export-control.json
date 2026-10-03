@@ -1,1 +1,0 @@
-{"destination": "/tmp/archguard-quality-product-fresh-vm-export-check", "roots": ["vite-plus", "effect", "@effect/vitest", "react", "react-test-renderer", "jose", "yaml", "@noble/hashes", "vitest"], "packageDirectories": 196, "files": 10247, "bytes": 286134017}

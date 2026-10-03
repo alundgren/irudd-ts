@@ -1,7 +1,0 @@
-
-running 1 test
-test repeated_linux_execution_resources_remain_bounded ... Linux repeated execution: start=(4, 2, 6940, []) end=(4, 2, 10228, []) peak(fd,threads,parent_rss_kib,children,child_rss_kib)=(20, 7, 10380, 2, 71760); intentional_records=5 bytes=8848; workspace_limit=65536 total_workspace_limit=196608; no surviving owned workspace or active journal
-ok
-
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 7 filtered out; finished in 20.53s
-

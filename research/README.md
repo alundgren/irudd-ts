@@ -6,7 +6,6 @@ Research is optional for using Archguard. Product builds, graph plugins, and sma
 | --- | --- |
 | T3 historical graph and compiler reproductions | [T3 research](t3code/README.md) |
 | Generic equivalent-work benchmarks | [Benchmark method and results](benchmarks/README.md) |
-| Structural duplication and mutation feedback experiments | [Code-quality research](code-quality/README.md) |
 | Tool choices and licensing research | [Tooling notes](notes/tooling.md) |
 | Possible future facts | [Fact research](notes/facts.md) |
 | Dated compiler API investigation | [TypeScript 7 notes](notes/typescript-7.md) |
