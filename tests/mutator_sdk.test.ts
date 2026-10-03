@@ -179,3 +179,26 @@ test("task and failed-test identities reject empty or NUL data while empty messa
   assert.throws(() => validateMutationResult({ ...failed, failures: [{ ...failed.failures[0]!, testId: "" }] }, request), /bounded well-formed string/);
   assert.deepEqual(validateMutationRequest(request), request);
 }));
+
+test("required protocol fields must be own data and cannot invoke inherited getters", () => withDirectory(directory => {
+  const request = fixture(directory);
+  const missing: Record<string, unknown> = { ...request };
+  delete missing.requestId;
+  const replaced = { ...missing, unexpected: "replacement field" };
+  const previous = Object.getOwnPropertyDescriptor(Object.prototype, "requestId");
+  let invoked = 0;
+  try {
+    Object.defineProperty(Object.prototype, "requestId", {
+      configurable: true,
+      get() { invoked++; return request.requestId; },
+    });
+    assert.throws(() => validateMutationRequest(missing), /missing or unknown fields/);
+    assert.equal(invoked, 0);
+    assert.throws(() => validateMutationRequest(replaced), /missing or unknown fields/);
+    assert.equal(invoked, 0);
+    assert.deepEqual(validateMutationRequest(request), request);
+  } finally {
+    if (previous) Object.defineProperty(Object.prototype, "requestId", previous);
+    else delete (Object.prototype as { requestId?: unknown }).requestId;
+  }
+}));
