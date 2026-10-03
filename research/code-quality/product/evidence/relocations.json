@@ -711,6 +711,114 @@
       "archived": "logs/archguard-quality-syntax-threshold-red.log"
     },
     {
+      "original": "research/local/pr15-acceptance/corrected-environment.log",
+      "archived": "logs/pr15-corrected-environment.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-extracted-domain-prepare.log",
+      "archived": "logs/pr15-corrected-extracted-domain-prepare.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-extracted-executable-identity.log",
+      "archived": "logs/pr15-corrected-extracted-executable-identity.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-extracted-node-tests.log",
+      "archived": "logs/pr15-corrected-extracted-node-tests.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-extracted-release-build.log",
+      "archived": "logs/pr15-corrected-extracted-release-build.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-extracted-rust-tests.log",
+      "archived": "logs/pr15-corrected-extracted-rust-tests.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-final-required-check.log",
+      "archived": "logs/pr15-corrected-final-required-check.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-package-copy.log",
+      "archived": "logs/pr15-corrected-package-copy.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-package-extract.log",
+      "archived": "logs/pr15-corrected-package-extract.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-package.log",
+      "archived": "logs/pr15-corrected-package.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-pressure-processes-after.log",
+      "archived": "logs/pr15-corrected-pressure-processes-after.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-pressure-processes-before.log",
+      "archived": "logs/pr15-corrected-pressure-processes-before.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-release-build.log",
+      "archived": "logs/pr15-corrected-release-build.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-release-executable-identities.log",
+      "archived": "logs/pr15-corrected-release-executable-identities.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-release-pressure-compile.log",
+      "archived": "logs/pr15-corrected-release-pressure-compile.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-release-pressure.log",
+      "archived": "logs/pr15-corrected-release-pressure.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/environment.log",
+      "archived": "logs/pr15-environment.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/final-required-check.log",
+      "archived": "logs/pr15-final-required-check.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/history-install.log",
+      "archived": "logs/pr15-history-install.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/native-compiler-cleanup-green.log",
+      "archived": "logs/pr15-native-compiler-cleanup-green.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/post-cleanup-monitor-green.log",
+      "archived": "logs/pr15-post-cleanup-monitor-green.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/post-cleanup-monitor-red-exact.log",
+      "archived": "logs/pr15-post-cleanup-monitor-red-exact.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/provider-install.log",
+      "archived": "logs/pr15-provider-install.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/release-build.log",
+      "archived": "logs/pr15-release-build.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/release-pressure-compile.log",
+      "archived": "logs/pr15-release-pressure-compile.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/release-pressure.log",
+      "archived": "logs/pr15-release-pressure.log"
+    },
+    {
+      "original": "research/local/pr15-acceptance/rust-components.log",
+      "archived": "logs/pr15-rust-components.log"
+    },
+    {
       "original": "/tmp/archguard-quality-product-cli-reviewed-worktree/LICENSE",
       "archived": "profiles/LICENSE.archguard"
     },
@@ -2855,6 +2963,22 @@
       "archived": "raw/pause-actions.json"
     },
     {
+      "original": "research/local/pr15-acceptance/corrected-packaged-domain-strong.log",
+      "archived": "raw/pr15-corrected-packaged-domain-strong.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-packaged-domain-weak.log",
+      "archived": "raw/pr15-corrected-packaged-domain-weak.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-packaged-dryer.log",
+      "archived": "raw/pr15-corrected-packaged-dryer.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-packaged-plan.log",
+      "archived": "raw/pr15-corrected-packaged-plan.json"
+    },
+    {
       "original": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/protocol-plan-config-r8.json",
       "archived": "raw/protocol-plan-config-r8.json"
     },
@@ -3671,6 +3795,18 @@
       "archived": "sources/product-replay/sdk/mutator.ts"
     },
     {
+      "original": "research/local/pr15-acceptance/Dockerfile",
+      "archived": "tools/pr15-Dockerfile"
+    },
+    {
+      "original": "research/local/pr15-acceptance/initial-run.py",
+      "archived": "tools/pr15-initial-run.py"
+    },
+    {
+      "original": "research/local/pr15-acceptance/run.py",
+      "archived": "tools/pr15-run.py"
+    },
+    {
       "original": "/tmp/archguard-quality-product-evidence-update.py",
       "archived": "tools/update.py"
     },
@@ -3685,6 +3821,42 @@
     {
       "original": "/tmp/archguard-quality-product-packaged-validation/package-provenance.json",
       "archived": "validation/package-provenance.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/acceptance-provenance.json",
+      "archived": "validation/pr15-acceptance-provenance.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/additional-commands.json",
+      "archived": "validation/pr15-additional-commands.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/commands.json",
+      "archived": "validation/pr15-commands.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-commands.json",
+      "archived": "validation/pr15-corrected-commands.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-package-inventory.json",
+      "archived": "validation/pr15-corrected-package-inventory.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/corrected-source-provenance.json",
+      "archived": "validation/pr15-corrected-source-provenance.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/initial-executable-hashes.txt",
+      "archived": "validation/pr15-initial-executable-hashes.txt"
+    },
+    {
+      "original": "research/local/pr15-acceptance/product-fix-source-provenance.json",
+      "archived": "validation/pr15-product-fix-source-provenance.json"
+    },
+    {
+      "original": "research/local/pr15-acceptance/source-provenance.json",
+      "archived": "validation/pr15-source-provenance.json"
     },
     {
       "original": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/report-wrap-up-browser-desktop.png",

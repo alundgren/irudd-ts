@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-10-03T18:53:23.599839+00:00",
+  "capturedAt": "2026-10-03T19:27:37.465003+00:00",
   "archivePurpose": "Product correctness and review evidence; no benchmark, full-repository coverage or final validation approval implied",
   "inventoryExclusions": [
     "manifest.json is covered by SHA256SUMS",
@@ -10,9 +10,10 @@
     {
       "path": "README.md",
       "category": "archiveMetadata",
-      "status": "authored archive documentation or derived inventory",
-      "bytes": 11446,
-      "sha256": "2f1502b7e3efad0b54bef3dabe0c1815936589b4c3712e10f09aed21d941db44"
+      "status": "Archive documentation updated with resumed acceptance; earlier bytes retained separately.",
+      "bytes": 12497,
+      "sha256": "89b56d071fe4f21d6122dd532a01d7410a66c3ef4727a48918f584b9af896813",
+      "capturedAt": "2026-10-03T19:24:37.535085+00:00"
     },
     {
       "path": "capture-context.json",
@@ -1336,6 +1337,14 @@
       "sha256": "2f6f004fdf0189b8bb19b500381586717f8467654797266a5043345e8ed8cd67"
     },
     {
+      "path": "earlier-snapshots/README.md.2f1502b7e3efad0b",
+      "category": "earlierSnapshot",
+      "capturedAt": "2026-10-03T19:24:37.535085+00:00",
+      "status": "Exact archive README before resumed acceptance metadata was added.",
+      "bytes": 11446,
+      "sha256": "2f1502b7e3efad0b54bef3dabe0c1815936589b4c3712e10f09aed21d941db44"
+    },
+    {
       "path": "earlier-snapshots/logs/archguard-quality-product-cleanup-final-required-check.log.045913e90a8d68d5",
       "source": "/tmp/archguard-quality-product-cleanup-final-required-check.log",
       "category": "earlierSnapshot",
@@ -1620,6 +1629,249 @@
       "status": "exact byte snapshot; completion requires the report and provenance",
       "bytes": 1035,
       "sha256": "75232e0cd79754948c9843ac54e19efa0115a413ad8da9e02e8805c610aa3a46"
+    },
+    {
+      "path": "logs/pr15-corrected-environment.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-environment.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 310,
+      "sha256": "3eee3a4d7e839cef0c0223bb45c2385ef61a06e8c77dc2c83f3e75fa71605e4a"
+    },
+    {
+      "path": "logs/pr15-corrected-extracted-domain-prepare.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-extracted-domain-prepare.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 83,
+      "sha256": "5e52ad5b7b2019890f6ce145aa0d9ef220c9fb22a037f388470abaccc1b39d17"
+    },
+    {
+      "path": "logs/pr15-corrected-extracted-executable-identity.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-extracted-executable-identity.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 107,
+      "sha256": "b7af191eff96ab71e304c4e4b11aed784bd41b9cbb39b752d704a1060fcba973"
+    },
+    {
+      "path": "logs/pr15-corrected-extracted-node-tests.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-extracted-node-tests.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 3079,
+      "sha256": "e2b773c3043a62948bff05495503137470b871c3d7fc7e2579fc172b2a011c07"
+    },
+    {
+      "path": "logs/pr15-corrected-extracted-release-build.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-extracted-release-build.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 127,
+      "sha256": "5ef08ab894f417c528618201b51f742fe41b9b9d84df8c2150bc526c3bb5b4e5"
+    },
+    {
+      "path": "logs/pr15-corrected-extracted-rust-tests.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-extracted-rust-tests.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 16768,
+      "sha256": "abe75ab04888b9e4b3e583e9a5dd7858aecdb019e8c113fc04fdb66e7f663bc0"
+    },
+    {
+      "path": "logs/pr15-corrected-final-required-check.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-final-required-check.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 23223,
+      "sha256": "72eb6194be3969de3ce03d02b8db8de612b0745ba3403d7763b3943d8a05dfa5"
+    },
+    {
+      "path": "logs/pr15-corrected-package-copy.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-package-copy.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/pr15-corrected-package-extract.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-package-extract.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/pr15-corrected-package.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-package.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 760,
+      "sha256": "11e02e1819eb83a1d96759c3c522f2b27ee2af10715af64ced0da8ec0509ab6c"
+    },
+    {
+      "path": "logs/pr15-corrected-pressure-processes-after.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-pressure-processes-after.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 80,
+      "sha256": "14dd184832398e0771b07026418f576c4e11f73262974cb735eafe4a0c560e54"
+    },
+    {
+      "path": "logs/pr15-corrected-pressure-processes-before.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-pressure-processes-before.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 80,
+      "sha256": "4e465043c02a1f089c6cb464bf9880d99f10e852d7fcd3ab9cc3bbca00cd414d"
+    },
+    {
+      "path": "logs/pr15-corrected-release-build.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-release-build.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 111,
+      "sha256": "d3a96e0f3b32e427d6b4e93d59b6aa3ccc96b4adb847d2072916defb38dd48e6"
+    },
+    {
+      "path": "logs/pr15-corrected-release-executable-identities.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-release-executable-identities.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 213,
+      "sha256": "9fff1d87f407206e1b5102d6c32e06b5241a06b51c9bc0dd78f4173efbcbf456"
+    },
+    {
+      "path": "logs/pr15-corrected-release-pressure-compile.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-release-pressure-compile.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 210,
+      "sha256": "6baac5d5b1fd30f71bd49a4525019ca27ac047995ba9a9b405a27142ce334cd0"
+    },
+    {
+      "path": "logs/pr15-corrected-release-pressure.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/corrected-release-pressure.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 618,
+      "sha256": "e7bcba2dc38128e960fb0a604a4e448e9193d1a38accecee7fcb460350ee7b0c"
+    },
+    {
+      "path": "logs/pr15-environment.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/environment.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 310,
+      "sha256": "c4c752907199a410b1746e41bfd5e18043b96cc74ffd19fb34281bfd08b70508"
+    },
+    {
+      "path": "logs/pr15-final-required-check.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/final-required-check.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 27345,
+      "sha256": "f0e400dd0ace5d55a00873845bf9283e4c288083c2e1ca5d1e60c9ec11820d29"
+    },
+    {
+      "path": "logs/pr15-history-install.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/history-install.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 24,
+      "sha256": "96257ee724afbdad43552ebf0379999a1234a2aa2f715848980d813a7d66dea1"
+    },
+    {
+      "path": "logs/pr15-native-compiler-cleanup-green.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/native-compiler-cleanup-green.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 392,
+      "sha256": "d8bbc4df1c2791f5662db5d0fd72fcca86aa88cfaa75ba1b2395e4021b450225"
+    },
+    {
+      "path": "logs/pr15-post-cleanup-monitor-green.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/post-cleanup-monitor-green.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 1317,
+      "sha256": "fb740483f10149c90a79c2c9da26efe8034f783a307bcbfa4ecda406c0fbd648"
+    },
+    {
+      "path": "logs/pr15-post-cleanup-monitor-red-exact.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/post-cleanup-monitor-red-exact.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 842,
+      "sha256": "a3fb22d3940b0b5980a8aef24727ee2a29a935fbf7325a98534434c0182196ac"
+    },
+    {
+      "path": "logs/pr15-provider-install.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/provider-install.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 236,
+      "sha256": "98b67ed2e732dd00eddb6532e4af8c287e2a2584e7e8a4e76371d2ab90885144"
+    },
+    {
+      "path": "logs/pr15-release-build.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/release-build.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 9841,
+      "sha256": "0d9dc21afd144592be95e5646616b14c0e006644f5a5bdc8e5ccf0f7d85b4e8b"
+    },
+    {
+      "path": "logs/pr15-release-pressure-compile.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/release-pressure-compile.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 210,
+      "sha256": "4c99a0ebf48863ec4d3ce7da047c63c2e85e1124ee3640dff29619f4303716d6"
+    },
+    {
+      "path": "logs/pr15-release-pressure.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/release-pressure.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 685,
+      "sha256": "6153ef243a2aef52a85390399bc4e0a0abf4069d6036e06c16be1296802a572c"
+    },
+    {
+      "path": "logs/pr15-rust-components.log",
+      "category": "validationLog",
+      "source": "research/local/pr15-acceptance/rust-components.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 71,
+      "sha256": "6859ec815af758659218d73e9eac116f76d191be3236663e4a6ed2800f25c095"
     },
     {
       "path": "profiles/LICENSE.archguard",
@@ -6446,6 +6698,42 @@
       "sha256": "7a594a4d21a0c89d608d9e3e26abf38bca1f1d1175b07d2534f0abd4ca02d246"
     },
     {
+      "path": "raw/pr15-corrected-packaged-domain-strong.json",
+      "category": "raw",
+      "source": "research/local/pr15-acceptance/corrected-packaged-domain-strong.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 7530,
+      "sha256": "cc3dd973dffcc5ae15787f4c6154b07fe4206f11cb893bd66eec881f1fb1eaae"
+    },
+    {
+      "path": "raw/pr15-corrected-packaged-domain-weak.json",
+      "category": "raw",
+      "source": "research/local/pr15-acceptance/corrected-packaged-domain-weak.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 7214,
+      "sha256": "833053a87d68e8e19f32c47236115bdfb9dc4a1e20c41b7d8412f05c419a682a"
+    },
+    {
+      "path": "raw/pr15-corrected-packaged-dryer.json",
+      "category": "raw",
+      "source": "research/local/pr15-acceptance/corrected-packaged-dryer.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 3486,
+      "sha256": "35fff27dc1897336dbee5571818786724ca69f24580754dd6285e1926ddd3650"
+    },
+    {
+      "path": "raw/pr15-corrected-packaged-plan.json",
+      "category": "raw",
+      "source": "research/local/pr15-acceptance/corrected-packaged-plan.log",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 6723,
+      "sha256": "9f7fdc40465621939ec5bb971492a1cf55e64eb000729ecf43c79a7664a2a88e"
+    },
+    {
       "path": "raw/protocol-plan-config-r8.json",
       "source": "/home/dev/.t3/worktrees/irudd-ts/t3code-dcd18ca5/research/local/code-quality-product/protocol-plan-config-r8.json",
       "category": "raw",
@@ -7680,15 +7968,15 @@
       "path": "relocations.json",
       "category": "archiveMetadata",
       "status": "authored archive documentation or derived inventory",
-      "bytes": 214885,
-      "sha256": "9c99892f833aa8b00b89e0cb193bb287e5dfc1ede4117959a869acf98b2d2251"
+      "bytes": 221483,
+      "sha256": "cdf47442a03e2dd593bef9d98d57d816ca5f73fb2876c1561c17151ffcc85bcf"
     },
     {
       "path": "report-summary.json",
       "category": "archiveMetadata",
       "status": "authored archive documentation or derived inventory",
-      "bytes": 166075,
-      "sha256": "e7cbf1c8482885a72b378d13353f547a48b33d3b33d35811a2d2d5ca3c24808e"
+      "bytes": 170819,
+      "sha256": "cd33fdaaa24e9a7ee517b9d576009662b39a979efb1fc2d0377ce89ddf510e47"
     },
     {
       "path": "reproduction/dependencies.json",
@@ -7718,11 +8006,18 @@
       "sha256": "60e12d9b30a5d61da0844438b30977a3ef887583d6d45b9d6e14cb6e9f8738f9"
     },
     {
+      "path": "reviews/pr15-acceptance-review.md",
+      "category": "archiveMetadata",
+      "status": "Authored archive documentation or derived inventory",
+      "bytes": 6700,
+      "sha256": "878b864606b676d4c0a144410a0a62d1b6766e8ccfd0897026bc5acbeea71fd4"
+    },
+    {
       "path": "run-index.md",
       "category": "archiveMetadata",
       "status": "authored archive documentation or derived inventory",
-      "bytes": 4235,
-      "sha256": "af2a6ff03f72ffded629ad718899d92daa3c6a6abce38e4e01124f4ec15ebe3d"
+      "bytes": 4525,
+      "sha256": "2fe344df0cc754f52cc5219d931f4c4ee3620172407435f2f6d64872595f09fc"
     },
     {
       "path": "sources/cleanup-e2f3d37/LICENSE",
@@ -8317,6 +8612,33 @@
       "sha256": "7b366200e57536e780041bfcc81f8e9871fd91241ed742ee7518dee0c748e206"
     },
     {
+      "path": "tools/pr15-Dockerfile",
+      "category": "reproductionTool",
+      "source": "research/local/pr15-acceptance/Dockerfile",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 388,
+      "sha256": "efdbef42fae73cd92baa657f7134e321c01f6c3ae2906e97cc187ec5f06857ec"
+    },
+    {
+      "path": "tools/pr15-initial-run.py",
+      "category": "reproductionTool",
+      "source": "research/local/pr15-acceptance/initial-run.py",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 4506,
+      "sha256": "071c61c22a0303e423ec63575d78c1562ba094e26b74654538a1c00da9cd87bd"
+    },
+    {
+      "path": "tools/pr15-run.py",
+      "category": "reproductionTool",
+      "source": "research/local/pr15-acceptance/run.py",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 4959,
+      "sha256": "bea28577009d50d264ef7023563390b83b239fdc6f929e1b60f6dd0e629568a6"
+    },
+    {
       "path": "tools/update.py",
       "source": "/tmp/archguard-quality-product-evidence-update.py",
       "category": "archiveTool",
@@ -8351,6 +8673,94 @@
       "status": "exact byte snapshot; completion requires the report and provenance",
       "bytes": 598,
       "sha256": "b2be1d47e944b28323bbea0db41ede98806a89b7b238e16f6aa3d7a0cd0125e6"
+    },
+    {
+      "path": "validation/pr15-acceptance-provenance.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/acceptance-provenance.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 14703,
+      "sha256": "f073d00eeeb9b2a4c6896ea52a4a308e0fdd40bc901937f8b83a02b0bebce79b"
+    },
+    {
+      "path": "validation/pr15-additional-commands.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/additional-commands.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 2363,
+      "sha256": "581818cee4d453e456168534b6138ceb1288f6de00fef02a90574a57e584b3ac"
+    },
+    {
+      "path": "validation/pr15-commands.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/commands.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 2723,
+      "sha256": "4bd644585b6fc1ea94fea965b382367f7feba7e5f34c34fda08414b830361a8a"
+    },
+    {
+      "path": "validation/pr15-corrected-commands.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/corrected-commands.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 12536,
+      "sha256": "4d274f2f702e2373dc01453314d486f6bfa9aa067e3eaab1c236dcb6e5ff8c32"
+    },
+    {
+      "path": "validation/pr15-corrected-package-inventory.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/corrected-package-inventory.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 11246,
+      "sha256": "df060dc2d3a63fd71fe7d5ae2324c3966ea1508f847d5849299aa8c7c412307e"
+    },
+    {
+      "path": "validation/pr15-corrected-source-provenance.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/corrected-source-provenance.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 16182,
+      "sha256": "5b74d8d0ad8bae00d60be9a93be40f0cf505007a853fd8d81ae4ccb961d14f9f"
+    },
+    {
+      "path": "validation/pr15-final-verification.json",
+      "category": "validationProof",
+      "status": "Recorded verification outcomes before this final capture-only update",
+      "bytes": 1246,
+      "sha256": "b7b24130ac9e57b5254ba52d0cb6679d3e94eff9990b265f50024bb1a2ae6316"
+    },
+    {
+      "path": "validation/pr15-initial-executable-hashes.txt",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/initial-executable-hashes.txt",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 213,
+      "sha256": "d345ba3060fcb4c1b816a6c8007376eb53bdb1307f39d537bff1c4d6e23753a4"
+    },
+    {
+      "path": "validation/pr15-product-fix-source-provenance.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/product-fix-source-provenance.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 16107,
+      "sha256": "dc857e9f5afec6012e88f456301af9605f24085d76a91909f3c3d9d54a714672"
+    },
+    {
+      "path": "validation/pr15-source-provenance.json",
+      "category": "validationProof",
+      "source": "research/local/pr15-acceptance/source-provenance.json",
+      "capturedAt": "2026-10-03T19:23:49.917048+00:00",
+      "status": "Exact bytes from resumed acceptance; source revision and enclosing command exits are in validation/pr15-acceptance-provenance.json and command records.",
+      "bytes": 15555,
+      "sha256": "d55babc663db00171686fb50f929ee522a95463bec6df22854c70024c988f492"
     },
     {
       "path": "verification-controls.json",

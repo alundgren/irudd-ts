@@ -1,0 +1,21 @@
+    Finished `release` profile [optimized] target(s) in 0.07s
+     Running unittests src/lib.rs (target/release/deps/archguard-672a0bd29c78b3eb)
+
+running 1 test
+test subprocess::tests::completed_commands_recheck_resources_after_child_cleanup ... FAILED
+
+failures:
+
+---- subprocess::tests::completed_commands_recheck_resources_after_child_cleanup stdout ----
+
+thread 'subprocess::tests::completed_commands_recheck_resources_after_child_cleanup' (5634) panicked at src/subprocess.rs:949:13:
+assertion failed: checked_after_cleanup
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    subprocess::tests::completed_commands_recheck_resources_after_child_cleanup
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 42 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

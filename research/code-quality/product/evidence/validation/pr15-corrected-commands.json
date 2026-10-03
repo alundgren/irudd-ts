@@ -1,0 +1,411 @@
+{
+  "sourceRevision": "211d387535e95418e31e8d56569827696d28676f",
+  "commands": [
+    {
+      "label": "corrected-environment",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "sh",
+        "-c",
+        "rustc --version; cargo --version; node --version; python3 --version; uname -a; cat /proc/meminfo | head -3; cat /sys/fs/cgroup/cpu.max; cat /sys/fs/cgroup/memory.max"
+      ],
+      "startedAt": "2026-10-03T19:17:54.098654+00:00",
+      "finishedAt": "2026-10-03T19:17:54.149001+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-environment.log",
+      "logSha256": "3eee3a4d7e839cef0c0223bb45c2385ef61a06e8c77dc2c83f3e75fa71605e4a"
+    },
+    {
+      "label": "corrected-release-build",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "cargo",
+        "build",
+        "--release",
+        "--locked",
+        "--bins",
+        "--examples"
+      ],
+      "startedAt": "2026-10-03T19:17:54.151660+00:00",
+      "finishedAt": "2026-10-03T19:18:34.211428+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-release-build.log",
+      "logSha256": "d3a96e0f3b32e427d6b4e93d59b6aa3ccc96b4adb847d2072916defb38dd48e6"
+    },
+    {
+      "label": "corrected-release-pressure-compile",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--test",
+        "mutation_execution",
+        "--no-run"
+      ],
+      "startedAt": "2026-10-03T19:18:34.212277+00:00",
+      "finishedAt": "2026-10-03T19:18:45.335796+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-release-pressure-compile.log",
+      "logSha256": "6baac5d5b1fd30f71bd49a4525019ca27ac047995ba9a9b405a27142ce334cd0"
+    },
+    {
+      "label": "corrected-release-executable-identities",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "sh",
+        "-c",
+        "sha256sum target/release/archguard target/release/deps/mutation_execution-* | grep -v \"\\.d$\""
+      ],
+      "startedAt": "2026-10-03T19:18:45.336262+00:00",
+      "finishedAt": "2026-10-03T19:18:45.397400+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-release-executable-identities.log",
+      "logSha256": "9fff1d87f407206e1b5102d6c32e06b5241a06b51c9bc0dd78f4173efbcbf456"
+    },
+    {
+      "label": "corrected-pressure-processes-before",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "ps",
+        "-eo",
+        "pid,ppid,stat,comm"
+      ],
+      "startedAt": "2026-10-03T19:18:45.397870+00:00",
+      "finishedAt": "2026-10-03T19:18:45.432887+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-pressure-processes-before.log",
+      "logSha256": "4e465043c02a1f089c6cb464bf9880d99f10e852d7fcd3ab9cc3bbca00cd414d"
+    },
+    {
+      "label": "corrected-release-pressure",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--test",
+        "mutation_execution",
+        "repeated_linux_execution_resources_remain_bounded",
+        "--",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "startedAt": "2026-10-03T19:18:45.433242+00:00",
+      "finishedAt": "2026-10-03T19:18:54.381467+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-release-pressure.log",
+      "logSha256": "e7bcba2dc38128e960fb0a604a4e448e9193d1a38accecee7fcb460350ee7b0c"
+    },
+    {
+      "label": "corrected-pressure-processes-after",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "ps",
+        "-eo",
+        "pid,ppid,stat,comm"
+      ],
+      "startedAt": "2026-10-03T19:18:54.382514+00:00",
+      "finishedAt": "2026-10-03T19:18:54.429485+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-pressure-processes-after.log",
+      "logSha256": "14dd184832398e0771b07026418f576c4e11f73262974cb735eafe4a0c560e54"
+    },
+    {
+      "label": "corrected-package",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "cargo",
+        "package",
+        "--locked",
+        "--allow-dirty",
+        "--no-verify"
+      ],
+      "startedAt": "2026-10-03T19:18:54.430062+00:00",
+      "finishedAt": "2026-10-03T19:18:55.316919+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-package.log",
+      "logSha256": "11e02e1819eb83a1d96759c3c522f2b27ee2af10715af64ced0da8ec0509ab6c"
+    },
+    {
+      "label": "corrected-package-copy",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "cp",
+        "target/package/archguard-0.1.0.crate",
+        "/evidence/archguard-0.1.0.crate"
+      ],
+      "startedAt": "2026-10-03T19:18:55.317619+00:00",
+      "finishedAt": "2026-10-03T19:18:55.359210+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-package-copy.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "corrected-package-extract",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/archguard",
+        "archguard-pr15-acceptance",
+        "sh",
+        "-c",
+        "mkdir /work/extracted && tar -xf /evidence/archguard-0.1.0.crate -C /work/extracted"
+      ],
+      "startedAt": "2026-10-03T19:18:55.364786+00:00",
+      "finishedAt": "2026-10-03T19:18:55.403334+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-package-extract.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "corrected-extracted-release-build",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "env",
+        "CARGO_TARGET_DIR=/work/archguard/target",
+        "cargo",
+        "build",
+        "--release",
+        "--locked",
+        "--bins",
+        "--examples"
+      ],
+      "startedAt": "2026-10-03T19:18:55.403759+00:00",
+      "finishedAt": "2026-10-03T19:19:36.838080+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-extracted-release-build.log",
+      "logSha256": "5ef08ab894f417c528618201b51f742fe41b9b9d84df8c2150bc526c3bb5b4e5"
+    },
+    {
+      "label": "corrected-extracted-executable-identity",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "sha256sum",
+        "/work/archguard/target/release/archguard"
+      ],
+      "startedAt": "2026-10-03T19:19:36.839310+00:00",
+      "finishedAt": "2026-10-03T19:19:36.891558+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-extracted-executable-identity.log",
+      "logSha256": "b7af191eff96ab71e304c4e4b11aed784bd41b9cbb39b752d704a1060fcba973"
+    },
+    {
+      "label": "corrected-extracted-rust-tests",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "env",
+        "CARGO_TARGET_DIR=/work/archguard/target",
+        "cargo",
+        "test",
+        "--locked"
+      ],
+      "startedAt": "2026-10-03T19:19:36.892250+00:00",
+      "finishedAt": "2026-10-03T19:22:20.075031+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-extracted-rust-tests.log",
+      "logSha256": "abe75ab04888b9e4b3e583e9a5dd7858aecdb019e8c113fc04fdb66e7f663bc0"
+    },
+    {
+      "label": "corrected-extracted-node-tests",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "node",
+        "--test",
+        "tests/mutator_sdk.test.ts",
+        "tests/mutator_reporter.test.ts",
+        "tests/quality_examples.test.ts"
+      ],
+      "startedAt": "2026-10-03T19:22:20.077280+00:00",
+      "finishedAt": "2026-10-03T19:22:23.205954+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-extracted-node-tests.log",
+      "logSha256": "e2b773c3043a62948bff05495503137470b871c3d7fc7e2579fc172b2a011c07"
+    },
+    {
+      "label": "corrected-extracted-domain-prepare",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "node",
+        "examples/code-quality/prepare-domain.ts",
+        "/work/domain-profiles"
+      ],
+      "startedAt": "2026-10-03T19:22:23.206832+00:00",
+      "finishedAt": "2026-10-03T19:22:23.281903+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-extracted-domain-prepare.log",
+      "logSha256": "5e52ad5b7b2019890f6ce145aa0d9ef220c9fb22a037f388470abaccc1b39d17"
+    },
+    {
+      "label": "corrected-packaged-dryer",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "/work/archguard/target/release/archguard",
+        "dryer",
+        "--root",
+        "/work/extracted/archguard-0.1.0",
+        "--config",
+        "examples/code-quality/dryer.json",
+        "--json"
+      ],
+      "startedAt": "2026-10-03T19:22:23.283080+00:00",
+      "finishedAt": "2026-10-03T19:22:23.328595+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-packaged-dryer.log",
+      "logSha256": "35fff27dc1897336dbee5571818786724ca69f24580754dd6285e1926ddd3650"
+    },
+    {
+      "label": "corrected-packaged-plan",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "/work/archguard/target/release/archguard",
+        "mutator",
+        "plan",
+        "--root",
+        "/work/extracted/archguard-0.1.0",
+        "--config",
+        "examples/code-quality/plan.json",
+        "--json"
+      ],
+      "startedAt": "2026-10-03T19:22:23.329179+00:00",
+      "finishedAt": "2026-10-03T19:22:23.360207+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-packaged-plan.log",
+      "logSha256": "9f7fdc40465621939ec5bb971492a1cf55e64eb000729ecf43c79a7664a2a88e"
+    },
+    {
+      "label": "corrected-packaged-domain-weak",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "/work/archguard/target/release/archguard",
+        "mutator",
+        "run",
+        "--root",
+        "/work/extracted/archguard-0.1.0",
+        "--config",
+        "/work/domain-profiles/weak.json",
+        "--json"
+      ],
+      "startedAt": "2026-10-03T19:22:23.360568+00:00",
+      "finishedAt": "2026-10-03T19:22:24.413348+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-packaged-domain-weak.log",
+      "logSha256": "833053a87d68e8e19f32c47236115bdfb9dc4a1e20c41b7d8412f05c419a682a"
+    },
+    {
+      "label": "corrected-packaged-domain-strong",
+      "command": [
+        "docker",
+        "exec",
+        "-w",
+        "/work/extracted/archguard-0.1.0",
+        "archguard-pr15-acceptance",
+        "/work/archguard/target/release/archguard",
+        "mutator",
+        "run",
+        "--root",
+        "/work/extracted/archguard-0.1.0",
+        "--config",
+        "/work/domain-profiles/strong.json",
+        "--json"
+      ],
+      "startedAt": "2026-10-03T19:22:24.414421+00:00",
+      "finishedAt": "2026-10-03T19:22:25.544027+00:00",
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "log": "corrected-packaged-domain-strong.log",
+      "logSha256": "cc3dd973dffcc5ae15787f4c6154b07fe4206f11cb893bd66eec881f1fb1eaae"
+    }
+  ]
+}

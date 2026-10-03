@@ -1,5 +1,7 @@
 # Independent final review
 
+This is the original delivery review at `e2f3d37`. Later corrections and Linux acceptance at `211d387` have a separate [acceptance record](ACCEPTANCE.md) and [independent review](evidence/reviews/pr15-acceptance-review.md). The original approval and pending-work statements below describe that earlier revision.
+
 Reviewed production and test source at `e2f3d3740253578d5d66e9bb847c4f8d8f19975a`, including the coordinator integration and the final change from `3f9f4e69285001c9f1a0d01ddd869313aee86182`. The original reviewer model snapshot was reused; no preferences were reread and no additional delegates were launched. This reviewer did not modify production source or start concurrent builds or mutation runs.
 
 ## Verdict

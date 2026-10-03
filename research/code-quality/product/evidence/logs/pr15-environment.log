@@ -1,0 +1,10 @@
+rustc 1.96.1 (31fca3adb 2026-06-26)
+cargo 1.96.1 (356927216 2026-06-26)
+v24.21.0
+Python 3.11.2
+Linux 7a7b1bcd2411 6.8.0-100-generic #100-Ubuntu SMP PREEMPT_DYNAMIC Tue Jan 13 16:39:21 UTC 2026 aarch64 GNU/Linux
+MemTotal:        8113548 kB
+MemFree:          437756 kB
+MemAvailable:    7442256 kB
+max 100000
+max

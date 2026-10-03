@@ -1,0 +1,3 @@
+   Compiling archguard v0.1.0 (/work/archguard)
+    Finished `release` profile [optimized] target(s) in 10.57s
+  Executable tests/mutation_execution.rs (target/release/deps/mutation_execution-f6fd9677e41c55a0)

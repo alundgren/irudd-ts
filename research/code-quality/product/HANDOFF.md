@@ -1,5 +1,7 @@
 # Fresh-VM handoff
 
+The later session completed Linux acceptance at `211d387`, including a newly found fast-command resource correction and an ARM64 compiler-test correction. Read [the resumed acceptance record](ACCEPTANCE.md) and its independent review for current readiness. The remainder of this handoff records the original delivery and its then-pending work. PR #15 remains unmerged.
+
 The user asked to stop today's work and retain everything needed to resume in one PR against `main`. [PR #15](https://github.com/alundgren/irudd-ts/pull/15) uses `t3code/dryer-mutator-research`. Leave it unmerged. Earlier child PRs are already merged into that branch; there is no additional branch or local worktree required for tomorrow.
 
 ## Delivery and review status
@@ -82,7 +84,9 @@ For later self-dogfooding, use generated `protocol.json` and `reporter.json` wit
 - Eleven protocol SDK public gaps are directly proved by old-test PASS/new-test FAIL controls. The full strengthened run detects five with assertions and six with ordinary runtime errors. Runtime errors do not become kills; nine remaining survivors have retained classifications.
 - Reporter retry reuses 151 complete results and reruns the three original timeouts after a fresh baseline. It completes with 66 kills and 88 survivors, classified as 46 useful public controls, 40 implementation details and two qualified equivalents. The original timeout report and why-unresolved notes remain intact. Eight before/after proof pairs support the selected new public tests.
 
-## Next acceptance work
+## Deferred acceptance work at original delivery
+
+The later session completed the acceptance work below. Its new source revisions, failed controls, final checks and package evidence are recorded in [resumed acceptance](ACCEPTANCE.md). The corrected historical Git run was verified rather than replayed on the later executable.
 
 The user explicitly stopped further checks and tests during delivery. The remaining items below are deferred work for a later session; they were not rerun to prepare this PR and handoff.
 

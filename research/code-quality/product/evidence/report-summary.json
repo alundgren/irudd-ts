@@ -4357,6 +4357,156 @@
       }
     },
     {
+      "path": "raw/pr15-corrected-packaged-domain-strong.json",
+      "complete": true,
+      "kind": "mutationRun",
+      "summary": {
+        "planned": 11,
+        "executed": 11,
+        "reused": 0,
+        "killed": 10,
+        "survived": 1,
+        "invalidMutants": 0,
+        "executionErrors": 0,
+        "timedOut": 0,
+        "cancelled": 0,
+        "notRun": 0,
+        "omittedResults": 0,
+        "omittedProblems": 0
+      },
+      "baseline": {
+        "outcome": "passed",
+        "tests": {
+          "passed": 18,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "elapsedMs": 76.98921899999999,
+        "message": null
+      },
+      "retainedResults": 11,
+      "retainedProblems": 0
+    },
+    {
+      "path": "raw/pr15-corrected-packaged-domain-weak.json",
+      "complete": true,
+      "kind": "mutationRun",
+      "summary": {
+        "planned": 11,
+        "executed": 11,
+        "reused": 0,
+        "killed": 4,
+        "survived": 7,
+        "invalidMutants": 0,
+        "executionErrors": 0,
+        "timedOut": 0,
+        "cancelled": 0,
+        "notRun": 0,
+        "omittedResults": 0,
+        "omittedProblems": 0
+      },
+      "baseline": {
+        "outcome": "passed",
+        "tests": {
+          "passed": 6,
+          "failed": 0,
+          "skipped": 0
+        },
+        "exitCode": 0,
+        "elapsedMs": 55.822421,
+        "message": null
+      },
+      "retainedResults": 11,
+      "retainedProblems": 0
+    },
+    {
+      "path": "raw/pr15-corrected-packaged-dryer.json",
+      "complete": true,
+      "kind": "duplicateReport",
+      "pairs": [
+        {
+          "left": {
+            "name": "invoiceSummary",
+            "kind": "functionDeclaration",
+            "location": {
+              "file": "examples/code-quality/clones.ts",
+              "start": 317,
+              "end": 1037,
+              "line": 9,
+              "endLine": 39
+            },
+            "nameTruncated": false
+          },
+          "right": {
+            "name": "orderSummary",
+            "kind": "functionDeclaration",
+            "location": {
+              "file": "examples/code-quality/clones.ts",
+              "start": 1046,
+              "end": 1782,
+              "line": 41,
+              "endLine": 71
+            },
+            "nameTruncated": false
+          },
+          "similarity": {
+            "set": 1.0,
+            "multiset": 1.0,
+            "weighted": 1.0
+          },
+          "exactNormalizedMatch": true,
+          "leftOpaqueNodes": 2,
+          "rightOpaqueNodes": 2
+        },
+        {
+          "left": {
+            "name": "readPort",
+            "kind": "functionDeclaration",
+            "location": {
+              "file": "examples/code-quality/clones.ts",
+              "start": 1868,
+              "end": 2083,
+              "line": 74,
+              "endLine": 79
+            },
+            "nameTruncated": false
+          },
+          "right": {
+            "name": "readRetryCount",
+            "kind": "functionDeclaration",
+            "location": {
+              "file": "examples/code-quality/clones.ts",
+              "start": 2091,
+              "end": 2326,
+              "line": 80,
+              "endLine": 85
+            },
+            "nameTruncated": false
+          },
+          "similarity": {
+            "set": 1.0,
+            "multiset": 1.0,
+            "weighted": 1.0
+          },
+          "exactNormalizedMatch": true,
+          "leftOpaqueNodes": 2,
+          "rightOpaqueNodes": 2
+        }
+      ],
+      "retainedFunctions": 4,
+      "retainedProblems": 0,
+      "omittedEvidence": {
+        "selectedSources": 0,
+        "skippedSources": 0,
+        "functions": 0,
+        "excluded": 0,
+        "pairs": 0,
+        "sites": 0,
+        "problems": 0
+      }
+    },
+    {
       "path": "raw/self-protocol-corrected.json",
       "complete": false,
       "kind": "mutationRun",
@@ -5726,6 +5876,24 @@
       "selectedPath": "packages/shared/src/path.ts",
       "archivedSource": "sources/frozen-t3/packages/shared/src/path.ts",
       "expectedSha256": "4c576bb8969bbafaec9fbc4993a5ca991c1140cea227bb4a4e05916468c31d99"
+    },
+    {
+      "report": "raw/pr15-corrected-packaged-domain-strong.json",
+      "selectedPath": "examples/code-quality/domain.ts",
+      "archivedSource": "sources/product-replay/examples/code-quality/domain.ts",
+      "expectedSha256": "290157051dea058a891763e9932eb2e10be43ebbe78592e3ab3437f3414771c0"
+    },
+    {
+      "report": "raw/pr15-corrected-packaged-domain-weak.json",
+      "selectedPath": "examples/code-quality/domain.ts",
+      "archivedSource": "sources/product-replay/examples/code-quality/domain.ts",
+      "expectedSha256": "290157051dea058a891763e9932eb2e10be43ebbe78592e3ab3437f3414771c0"
+    },
+    {
+      "report": "raw/pr15-corrected-packaged-dryer.json",
+      "selectedPath": "examples/code-quality/clones.ts",
+      "archivedSource": "sources/product-replay/examples/code-quality/clones.ts",
+      "expectedSha256": "8d738756c26f3ff440fe51fe3009b578f86ee4e88fb95d9ecbdfa8355fa0a4c7"
     }
   ]
 }

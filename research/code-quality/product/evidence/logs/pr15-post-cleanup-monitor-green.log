@@ -1,0 +1,20 @@
+   Compiling archguard v0.1.0 (/work/archguard)
+    Finished `release` profile [optimized] target(s) in 22.65s
+     Running unittests src/lib.rs (target/release/deps/archguard-672a0bd29c78b3eb)
+
+running 12 tests
+test subprocess::tests::auto_reap_dispositions_are_rejected_before_spawn ... ok
+test subprocess::tests::cancellation_after_spawn_reaps_the_command ... ok
+test subprocess::tests::cancellation_before_spawn_has_no_filesystem_effects ... ok
+test subprocess::tests::child_file_limit_restricts_generated_bytes ... ok
+test subprocess::tests::completed_commands_recheck_resources_after_child_cleanup ... ok
+test subprocess::tests::escaped_descendant_pipes_produce_bounded_cleanup_failure ... ok
+test subprocess::tests::independently_owned_commands_apply_current_resource_limits ... ok
+test subprocess::tests::monitor_failure_stops_the_command_without_becoming_success ... ok
+test subprocess::tests::raw_transport_closes_stdin_after_complete_delivery ... ok
+test subprocess::tests::raw_transport_preserves_nonzero_status_and_both_streams ... ok
+test subprocess::tests::stream_limits_stop_commands_and_keep_only_bounded_bytes ... ok
+test subprocess::tests::unread_stdin_deadline_does_not_leave_a_writer_thread ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 31 filtered out; finished in 0.64s
+

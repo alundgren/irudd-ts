@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "commands": [
+    {
+      "label": "initial-required-check",
+      "sourceRevision": "31fe686f3a4f3a995d4913e620b5d108fb57f265",
+      "command": [
+        "docker",
+        "exec",
+        "archguard-pr15-acceptance",
+        "scripts/check.sh"
+      ],
+      "exitCode": 101,
+      "log": "final-required-check.log",
+      "logSha256": "f0e400dd0ace5d55a00873845bf9283e4c288083c2e1ca5d1e60c9ec11820d29",
+      "exitEvidence": "Observed enclosing command result from this acceptance session"
+    },
+    {
+      "label": "final-required-check",
+      "sourceRevision": "211d387535e95418e31e8d56569827696d28676f",
+      "command": [
+        "docker",
+        "exec",
+        "archguard-pr15-acceptance",
+        "scripts/check.sh"
+      ],
+      "exitCode": 0,
+      "log": "corrected-final-required-check.log",
+      "logSha256": "72eb6194be3969de3ce03d02b8db8de612b0745ba3403d7763b3943d8a05dfa5",
+      "exitEvidence": "Observed enclosing command result from this acceptance session"
+    },
+    {
+      "label": "focused-subprocess-controls",
+      "sourceRevision": "31fe686f3a4f3a995d4913e620b5d108fb57f265",
+      "command": [
+        "docker",
+        "exec",
+        "archguard-pr15-acceptance",
+        "cargo",
+        "test",
+        "--release",
+        "--locked",
+        "--lib",
+        "subprocess::tests::",
+        "--",
+        "--test-threads=1"
+      ],
+      "exitCode": 0,
+      "log": "post-cleanup-monitor-green.log",
+      "logSha256": "fb740483f10149c90a79c2c9da26efe8034f783a307bcbfa4ecda406c0fbd648",
+      "exitEvidence": "Observed enclosing command result from this acceptance session"
+    },
+    {
+      "label": "focused-native-cleanup",
+      "sourceRevision": "211d387535e95418e31e8d56569827696d28676f",
+      "command": [
+        "docker",
+        "exec",
+        "archguard-pr15-acceptance",
+        "cargo",
+        "test",
+        "--locked",
+        "--features",
+        "semantic-tests",
+        "--test",
+        "semantic_provider",
+        "deadline_kills_a_waiting_native_compiler_descendant",
+        "--",
+        "--exact"
+      ],
+      "exitCode": 0,
+      "log": "native-compiler-cleanup-green.log",
+      "logSha256": "d8bbc4df1c2791f5662db5d0fd72fcca86aa88cfaa75ba1b2395e4021b450225",
+      "exitEvidence": "Observed enclosing command result from this acceptance session"
+    }
+  ]
+}

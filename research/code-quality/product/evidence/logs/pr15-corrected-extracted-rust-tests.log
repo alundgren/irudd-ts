@@ -1,0 +1,277 @@
+   Compiling archguard v0.1.0 (/work/extracted/archguard-0.1.0)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.78s
+     Running unittests src/lib.rs (/work/archguard/target/debug/deps/archguard-a64e231f56529fcd)
+
+running 43 tests
+test cache::tests::observations_changed_after_reuse_cannot_be_published ... ok
+test dryer::analyze::tests::hash_collisions_do_not_establish_exact_normalized_equality ... ok
+test dryer::analyze::tests::jaccard_formulas_preserve_distinct_counts_and_subtree_weights ... ok
+test mutator::config::tests::duplicate_and_reserved_environment_rejected_without_values ... ok
+test mutator::config::tests::explicit_commands_defaults_and_resource_corrections ... ok
+test cache::tests::executing_binary_identity_change_discards_a_valid_entry ... ok
+test mutator::plan::tests::guarded_regeneration_can_stop_during_source_traversal_and_recover ... ok
+test mutator::result::evidence_tests::report_count_and_aggregate_messages_are_reserved_before_retention ... ok
+test mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators ... ok
+test mutator::result::tests::only_matching_complete_assertions_kill ... ok
+test mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets ... ok
+test mutator::run::monitor_tests::command_excerpt_bounds_redacts_boundary_values_and_sanitizes_output ... ok
+test mutator::result::evidence_tests::capped_problems_count_omissions_and_preserve_terminal_recovery ... ok
+test mutator::run::monitor_tests::peer_failure_stop_is_distinct_from_requested_cancellation_and_deadline ... ok
+test mutator::state::publication_tests::failed_directory_sync_after_active_publication_still_allows_confirmed_cleanup ... ok
+test mutator::state::tests::durable_complete_records_require_identity_checksums_and_exclusive_lock ... ok
+test mutator::state::tests::unresolved_active_state_and_input_aliases_are_preserved ... ok
+test mutator::storage::tests::bounded_regular_io_and_atomic_replacement ... ok
+test mutator::workspace::bounded_queue_tests::cleanup_deadline_preserves_owned_tree_then_bounded_retry_removes_it ... ok
+test mutator::workspace::bounded_queue_tests::cleanup_unlinks_child_directory_links_without_touching_external_files_or_modes ... ok
+test mutator::workspace::bounded_queue_tests::declared_link_chain_root_modes_and_git_inputs_remain_in_identity ... ok
+test mutator::workspace::bounded_queue_tests::generated_queue_is_bounded_before_push_then_recovers ... ok
+test mutator::workspace::bounded_queue_tests::only_selected_parents_are_copied_with_declared_destinations ... ok
+test mutator::workspace::tests::budgets_external_links_and_excluded_targets_fail_then_correct ... ok
+test mutator::workspace::tests::cleanup_refuses_replaced_root_and_preserves_external_permissions ... ok
+test mutator::workspace::tests::isolated_copies_relocate_links_and_revalidate_membership_bytes_modes ... ok
+test subprocess::tests::auto_reap_dispositions_are_rejected_before_spawn ... ok
+test subprocess::tests::cancellation_after_spawn_reaps_the_command ... ok
+test subprocess::tests::cancellation_before_spawn_has_no_filesystem_effects ... ok
+test subprocess::tests::child_file_limit_restricts_generated_bytes ... ok
+test subprocess::tests::completed_commands_recheck_resources_after_child_cleanup ... ok
+test subprocess::tests::escaped_descendant_pipes_produce_bounded_cleanup_failure ... ok
+test subprocess::tests::independently_owned_commands_apply_current_resource_limits ... ok
+test subprocess::tests::monitor_failure_stops_the_command_without_becoming_success ... ok
+test subprocess::tests::raw_transport_closes_stdin_after_complete_delivery ... ok
+test subprocess::tests::raw_transport_preserves_nonzero_status_and_both_streams ... ok
+test subprocess::tests::stream_limits_stop_commands_and_keep_only_bounded_bytes ... ok
+test subprocess::tests::unread_stdin_deadline_does_not_leave_a_writer_thread ... ok
+test subprocess::unix::ownership_tests::delayed_group_observation_keeps_ownership_until_cleanup_settles ... ok
+test subprocess::unix::ownership_tests::lost_child_ownership_suppresses_finish_and_drop_signals ... ok
+test subprocess::unix::ownership_tests::persistent_or_uncertain_group_observation_fails_closed ... ok
+test subprocess::unix::ownership_tests::vanished_proc_descriptor_does_not_make_group_cleanup_uncertain ... ok
+test mutator::run::monitor_tests::interrupted_monitor_traversal_preserves_cancellation_and_resource_controls ... ok
+
+test result: ok. 43 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.95s
+
+     Running unittests src/main.rs (/work/archguard/target/debug/deps/archguard-cdbb4609c4ba6696)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/architecture.rs (/work/archguard/target/debug/deps/architecture-3a90d1de9ffa9b6a)
+
+running 1 test
+test own_import_contracts_reject_policy_and_research_dependencies ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.36s
+
+     Running tests/cache.rs (/work/archguard/target/debug/deps/cache-cfc8ea1f67584716)
+
+running 11 tests
+test cache_destination_cannot_replace_inherited_resolution_input ... ok
+test cache_destination_cannot_replace_selected_source_or_manifest ... ok
+test corrupt_entries_fail_once_recover_and_incompatible_versions_are_misses ... ok
+test discovery_parse_failure_correction_and_profile_changes_match_fresh ... ok
+test inherited_config_outside_root_and_new_nearest_config_invalidate_edges ... ok
+test installed_package_link_repointing_invalidates_resolution ... ok
+test negative_lookups_include_unselected_and_ignored_targets ... ok
+test rust_candidates_and_root_identity_are_validated ... ok
+test unchanged_graph_reuses_edges_but_source_bytes_override_timestamps ... ok
+test workspace_and_installed_manifests_and_missing_packages_are_inputs ... ok
+test cli_reused_graph_still_runs_plugins_and_reports_corruption ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.09s
+
+     Running tests/core.rs (/work/archguard/target/debug/deps/core-45db1d92de9f32ae)
+
+running 16 tests
+test exclusions_outside_root_dynamic_and_parse_errors_cannot_pass_clean ... ok
+test explicit_and_type_only_exports_do_not_become_service_values ... ok
+test function_results_do_not_inherit_imported_method_identity ... ok
+test exported_import_equals_and_array_fallbacks_preserve_dependencies ... ok
+test import_equals_cannot_bypass_dependency_policy ... ok
+test graph_tracks_workspace_exports_reexports_and_types ... ok
+test inherited_aliases_and_missing_alias_targets_are_internal ... ok
+test installed_source_requires_packages_and_preserves_host_endpoints ... ok
+test provenance_handles_aliases_shadowing_strings_and_require ... ok
+test local_export_aliases_keep_service_provenance ... ok
+test service_namespace_resolves_definitions_and_barrels ... ok
+test selected_null_export_is_blocked_and_namespace_exports_do_not_flatten ... ok
+test star_export_ambiguity_distinguishes_distinct_declarations_from_same_origin ... ok
+test transitive_rules_report_path_and_cycles_distinguish_types_and_dynamic_edges ... ok
+test workspace_export_cannot_escape_the_package ... ok
+test value_stars_and_declared_external_exports_preserve_public_names ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/mutation_execution.rs (/work/archguard/target/debug/deps/mutation_execution-6445eabd1c25eaa6)
+
+running 8 tests
+test completed_checkpoint_survives_cancel_and_resumes_after_fresh_baseline ... ok
+test cancelled_or_timed_out_commands_cleanup_and_allow_fresh_resume ... ok
+test earlier_deadline_prevents_commands_without_changing_config_identity ... ok
+test incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages ... ok
+test fresh_baseline_resume_invalidation_and_source_preservation ... ok
+test repeated_linux_execution_resources_remain_bounded ... ignored, requires a release build and an exclusive execution pressure window
+test parallel_workers_and_rewritten_copies_keep_independent_outcomes ... ok
+test runtime_protocol_failures_never_count_as_kills has been running for over 60 seconds
+test runtime_protocol_failures_never_count_as_kills ... ok
+
+test result: ok. 7 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 122.91s
+
+     Running tests/plugins.rs (/work/archguard/target/debug/deps/plugins-e476fef264437ead)
+
+running 5 tests
+test inherited_pipes_are_closed_by_process_group_cleanup ... ok
+test rust_and_typescript_plugins_use_the_same_transitive_graph ... ok
+test successful_plugin_and_source_range_validation ... ok
+test unread_large_stdin_times_out ... ok
+test plugin_failures_are_bounded_and_never_clean ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.66s
+
+     Running tests/policies.rs (/work/archguard/target/debug/deps/policies-24aace651a926200)
+
+running 4 tests
+test public_entry_distinguishes_package_import_from_private_file ... ok
+test platform_resolution_changes_the_actual_cycle ... ok
+test runtime_reachability_has_dependency_evidence_and_respects_shadowing ... ok
+test service_and_package_contracts_have_failure_and_correction_controls ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/quality_cli.rs (/work/archguard/target/debug/deps/quality_cli-c53d7cd9589ef1d3)
+
+running 6 tests
+test invalid_configuration_is_rejected_and_corrected_selection_is_explicit ... ok
+test configuration_links_and_fifos_fail_without_blocking ... ok
+test planning_never_executes_repository_commands_and_retains_runtime_sites ... ok
+test invalid_source_is_incomplete_and_correction_reports_clones_without_a_gate ... ok
+test run_cancellation_reports_incomplete_and_preserves_original_source ... ok
+test saved_plan_rejects_changed_bytes_and_tampering_before_running_tests ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.35s
+
+     Running tests/quality_contracts.rs (/work/archguard/target/debug/deps/quality_contracts-81c340d4f04542cc)
+
+running 13 tests
+test canonical_source_locations_preserve_ts_variants_and_reject_unsafe_or_unsupported_paths ... ok
+test every_resource_ceiling_is_enforced_and_lower_valid_settings_remain_available ... ok
+test invalid_configuration_is_correctable_without_weakening_negative_controls ... ok
+test mutation_json_fixture_round_trips_exact_public_fields_and_versions ... ok
+test aggregate_encoded_bytes_bound_repeated_evidence_and_json_escaping ... ok
+test operator_groups_accept_only_the_advertised_replacement_directions ... ok
+test partial_inventory_and_resource_failure_are_distinct_from_syntax_invalidity ... ok
+test node_and_rust_agree_on_utf8_source_hash_and_canonical_full_mutation_identity ... ok
+test selected_files_must_belong_to_requested_patterns_even_in_partial_reports ... ok
+test per_file_results_enforce_site_and_aggregate_budgets_with_small_controls ... ok
+test selection_and_configuration_failures_do_not_become_complete_empty_analysis ... ok
+test syntax_result_deserialization_rejects_unknown_and_contradictory_fields ... ok
+test source_or_edit_changes_invalidate_sites_but_display_names_do_not_define_identity ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/quality_pressure.rs (/work/archguard/target/debug/deps/quality_pressure-dd03a845308544ce)
+
+running 2 tests
+test parser_accepts_the_hard_envelope_and_rejects_excess_input ... ignored, run in the coordinated parser acceptance window, in debug and release
+test repeated_cached_analysis_and_failures_release_file_descriptors ... ignored, run in the coordinated parser acceptance window
+
+test result: ok. 0 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/quality_syntax.rs (/work/archguard/target/debug/deps/quality_syntax-02721b5f7ccfdbbf)
+
+running 31 tests
+test ambient_declarations_are_excluded_while_runtime_namespace_initializers_remain_present ... ok
+test binding_relationships_renames_shadowing_and_captures_are_distinct ... ok
+test aggregate_reports_omit_evidence_before_collection_and_keep_json_valid ... ok
+test called_operations_operators_order_and_optional_slots_are_preserved ... ok
+test candidate_limits_apply_before_size_filters_and_recovered_cache_trees_are_validated ... ok
+test comparison_counts_and_resource_limits_preserve_partial_results ... ok
+test computed_call_names_preserve_literal_descendants_in_both_property_modes ... ok
+test computed_property_keys_retain_runtime_mutations_while_static_keys_do_not ... ok
+test cache_validates_bytes_discovery_options_corruption_and_source_destination ... ok
+test configured_threshold_selects_unique_subtree_set_similarity ... ok
+test conservative_fallback_keeps_jsx_regex_and_unsupported_nodes_exact ... ok
+test discovery_parse_failure_correction_and_source_preservation_are_explicit ... ok
+test exact_utf8_crlf_edits_stale_inputs_and_syntax_classification_have_controls ... ok
+test final_plan_discovery_detects_added_sources_and_ignores_excluded_changes ... ok
+test guards_are_typed_incomplete_and_a_longer_comparison_edit_is_not_invalid_syntax ... ok
+test mutation_count_and_byte_limits_keep_distinct_problem_categories ... ok
+test mutation_sites_are_runtime_only_exact_and_cover_every_operator_group ... ok
+test parallel_batches_produce_the_same_order_and_facts_as_one_worker ... ok
+test property_and_literal_modes_have_explicit_controls ... ok
+test prospective_cache_paths_cannot_create_typescript_sources ... ok
+test prototype_setters_remain_distinct_from_shorthand_and_computed_data_properties ... ok
+test recursive_operator_guard_handles_punctuation_and_keyword_chains ... ok
+test selected_directory_links_do_not_claim_complete_descendant_coverage ... ok
+test selected_links_are_incomplete_and_cache_links_never_replace_input ... ok
+test selected_source_byte_file_node_and_encoding_failures_are_correctable ... ok
+test selection_excludes_callbacks_overloads_and_nested_candidates ... ok
+test shorthand_and_expanded_properties_preserve_keys_and_binding_relationships ... ok
+test dogfood_existing_sdk_and_ts_examples_with_explicit_scope ... ok
+test strict_dryer_configuration_and_bounded_names_remain_correctable ... ok
+test truncated_display_names_do_not_change_exact_internal_operation_keys ... ok
+
+running 1 test
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.00s
+
+
+running 1 test
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.00s
+
+
+running 1 test
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.00s
+
+
+running 1 test
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.00s
+
+
+running 1 test
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.73s
+
+
+running 1 test
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 30 filtered out; finished in 0.73s
+
+test source_and_cache_open_races_reject_fifo_replacements ... ok
+
+test result: ok. 31 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.51s
+
+     Running tests/roles.rs (/work/archguard/target/debug/deps/roles-d07cbe7a9b3e16d4)
+
+running 5 tests
+test malformed_role_configuration_and_path_mapping_fail_closed ... ok
+test registration_requires_static_value_edge_and_keeps_resolution_errors_visible ... ok
+test role_dependencies_cross_unassigned_modules_and_respect_type_and_role_exclusions ... ok
+test roles_do_not_hide_unknown_or_overlapping_assignments ... ok
+test repository_conventions_has_failure_correction_and_controls ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests/semantic.rs (/work/archguard/target/debug/deps/semantic-d3fa81818a1dc974)
+
+running 3 tests
+test legacy_payload_remains_strict_and_provider_version_is_pinned ... ok
+test independently_enumerates_public_sites_and_rejects_omissions ... ok
+test malformed_and_omitted_process_responses_are_errors ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests archguard
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

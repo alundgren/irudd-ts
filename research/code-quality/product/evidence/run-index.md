@@ -34,3 +34,5 @@ This index reflects report bytes. Runtime errors, timeouts and cancellation rema
 | [t3-path-final.json](raw/t3-path-final.json) | true | 6 | 21 | 21 | 0 | 15 | 6 | 0 | 0 | 0 | 0 |
 | [t3-path-initial.json](raw/t3-path-initial.json) | true | 6 | 21 | 21 | 0 | 15 | 6 | 0 | 0 | 0 | 0 |
 | [t3-path-strengthened-final.json](raw/t3-path-strengthened-final.json) | true | 8 | 21 | 21 | 0 | 17 | 4 | 0 | 0 | 0 | 0 |
+| [pr15-corrected-packaged-domain-strong.json](raw/pr15-corrected-packaged-domain-strong.json) | true | 18 | 11 | 11 | 0 | 10 | 1 | 0 | 0 | 0 | 0 |
+| [pr15-corrected-packaged-domain-weak.json](raw/pr15-corrected-packaged-domain-weak.json) | true | 6 | 11 | 11 | 0 | 4 | 7 | 0 | 0 | 0 | 0 |
