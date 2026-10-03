@@ -357,3 +357,121 @@ fn operator_groups_accept_only_the_advertised_replacement_directions() {
         assert!(!MutationOperator::ZeroOne.accepts(invalid, "1"));
     }
 }
+
+#[test]
+fn selected_files_must_belong_to_requested_patterns_even_in_partial_reports() {
+    let original = fixture();
+    original.validate().unwrap();
+    for selection in [
+        SourceSelection {
+            include: vec!["src/other.ts".into()],
+            exclude: vec![],
+        },
+        SourceSelection {
+            include: vec!["src/**".into()],
+            exclude: vec!["src/flag.ts".into()],
+        },
+    ] {
+        let mut forged = original.clone();
+        forged.configuration.selection = selection.clone();
+        forged.selection.requested = selection;
+        assert!(forged.selection.validate().is_err());
+        assert!(forged.validate().is_err());
+        forged.selection.complete_within_selection = false;
+        forged.complete = false;
+        assert!(forged.selection.validate().is_err());
+        assert!(forged.validate().is_err());
+        forged.configuration.selection = SourceSelection {
+            include: vec!["src/**".into()],
+            exclude: vec!["src/generated/**".into()],
+        };
+        forged.selection.requested = forged.configuration.selection.clone();
+        forged.validate().unwrap();
+    }
+}
+
+#[test]
+fn per_file_results_enforce_site_and_aggregate_budgets_with_small_controls() {
+    let mut limits = AnalysisLimits {
+        max_sites: 1,
+        max_report_bytes: 64 * 1024,
+        max_problem_bytes: 16 * 1024,
+        ..AnalysisLimits::default()
+    };
+    let mut inventory = MutationInventory {
+        sites: fixture().sites,
+        complete: true,
+        problems: vec![],
+        omitted_evidence: OmittedEvidence::default(),
+    };
+    inventory.validate_with_limits(&limits).unwrap();
+    let mut second = inventory.sites[0].clone();
+    second.location.start += 1;
+    second.location.end += 1;
+    second.owner = None;
+    second.id = second.identity();
+    inventory.sites.push(second);
+    assert!(inventory.validate_with_limits(&limits).is_err());
+    limits.max_sites = 2;
+    inventory.validate_with_limits(&limits).unwrap();
+    inventory.validate().unwrap();
+
+    let mut diagnostic = problem(ProblemKind::Parse, None);
+    diagnostic.message = "x".repeat(15_000);
+    let small = SyntaxValidation::InvalidSyntax {
+        diagnostics: vec![diagnostic.clone()],
+    };
+    small.validate_with_limits(&limits).unwrap();
+    let many = SyntaxValidation::InvalidSyntax {
+        diagnostics: vec![diagnostic.clone(); 5],
+    };
+    assert!(many.validate_with_limits(&limits).is_err());
+    let incomplete = SyntaxValidation::Incomplete {
+        problems: vec![diagnostic.clone(); 5],
+    };
+    assert!(incomplete.validate_with_limits(&limits).is_err());
+    inventory.complete = false;
+    inventory.problems = vec![diagnostic; 5];
+    assert!(inventory.validate_with_limits(&limits).is_err());
+    limits.max_report_bytes = 128 * 1024;
+    inventory.validate_with_limits(&limits).unwrap();
+    many.validate_with_limits(&limits).unwrap();
+    incomplete.validate_with_limits(&limits).unwrap();
+    inventory.validate().unwrap();
+    many.validate().unwrap();
+    incomplete.validate().unwrap();
+    small.validate_with_limits(&limits).unwrap();
+    limits.max_report_bytes = AnalysisLimits::hard_maximum().max_report_bytes + 1;
+    assert!(small.validate_with_limits(&limits).is_err());
+    assert!(inventory.validate_with_limits(&limits).is_err());
+}
+
+#[test]
+fn syntax_result_deserialization_rejects_unknown_and_contradictory_fields() {
+    let diagnostic = serde_json::to_value(problem(ProblemKind::Parse, None)).unwrap();
+    for invalid in [
+        json!({"status":"valid","extra":true}),
+        json!({"status":"valid","problems":[diagnostic.clone()]}),
+        json!({"status":"valid","diagnostics":[]}),
+        json!({"status":"invalidSyntax","diagnostics":[diagnostic.clone()],"extra":true}),
+        json!({"status":"invalidSyntax","diagnostics":[diagnostic.clone()],"problems":[]}),
+        json!({"status":"incomplete","problems":[diagnostic.clone()],"extra":true}),
+        json!({"status":"incomplete","problems":[diagnostic.clone()],"diagnostics":[]}),
+    ] {
+        assert!(serde_json::from_value::<SyntaxValidation>(invalid).is_err());
+    }
+    for valid in [
+        SyntaxValidation::Valid,
+        SyntaxValidation::InvalidSyntax {
+            diagnostics: vec![problem(ProblemKind::Parse, None)],
+        },
+        SyntaxValidation::Incomplete {
+            problems: vec![problem(ProblemKind::Read, None)],
+        },
+    ] {
+        let encoded = serde_json::to_value(&valid).unwrap();
+        let decoded: SyntaxValidation = serde_json::from_value(encoded).unwrap();
+        assert_eq!(decoded, valid);
+        decoded.validate().unwrap();
+    }
+}

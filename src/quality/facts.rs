@@ -202,10 +202,15 @@ pub struct SelectionReport {
 impl SelectionReport {
     pub fn validate(&self) -> Result<()> {
         self.requested.validate()?;
+        let include = crate::config::Matcher::new(&self.requested.include)?;
+        let exclude = crate::config::Matcher::new(&self.requested.exclude)?;
         let mut paths = BTreeSet::new();
         let mut previous: Option<&str> = None;
         for file in &self.selected {
             file.validate()?;
+            if !include.matches(&file.path) || exclude.matches(&file.path) {
+                bail!("selected source does not belong to the requested selection");
+            }
             if previous.is_some_and(|path| path >= file.path.as_str()) {
                 bail!("selected source inventory must be sorted and unique");
             }

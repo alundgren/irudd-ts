@@ -4,7 +4,7 @@ use crate::quality::{
     validate_configuration, validate_report_size, validate_sha256,
 };
 use anyhow::{Result, bail};
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 use sha2::{Digest, Sha256};
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -229,15 +229,30 @@ pub struct MutationInventory {
 
 impl MutationInventory {
     pub fn validate(&self) -> Result<()> {
+        self.validate_with_limits(&AnalysisLimits::hard_maximum())
+    }
+
+    pub fn validate_with_limits(&self, limits: &AnalysisLimits) -> Result<()> {
+        validate_report_size(self, limits)?;
+        if self.sites.len() > limits.max_sites {
+            bail!("mutation inventory exceeds its site limit");
+        }
         if self.complete && (!self.problems.is_empty() || !self.omitted_evidence.is_empty()) {
             bail!("partial mutation evidence cannot be complete");
         }
         let mut ids = BTreeSet::new();
         for problem in &self.problems {
-            problem.validate(&AnalysisLimits::hard_maximum())?;
+            problem.validate(limits)?;
         }
         for site in &self.sites {
             site.validate()?;
+            if site
+                .owner
+                .as_ref()
+                .is_some_and(|owner| owner.name.len() > limits.max_name_bytes)
+            {
+                bail!("mutation owner display name exceeds its evidence limit");
+            }
             if !ids.insert(&site.id) {
                 bail!("duplicate mutation ID");
             }
@@ -330,7 +345,7 @@ pub enum InvalidPlanKind {
     UnsafePath,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 #[serde(tag = "status", rename_all = "camelCase", deny_unknown_fields)]
 pub enum SyntaxValidation {
     Valid,
@@ -338,15 +353,40 @@ pub enum SyntaxValidation {
     Incomplete { problems: Vec<AnalysisProblem> },
 }
 
+#[derive(Deserialize)]
+#[serde(tag = "status", rename_all = "camelCase", deny_unknown_fields)]
+enum SyntaxValidationWire {
+    Valid {},
+    InvalidSyntax { diagnostics: Vec<AnalysisProblem> },
+    Incomplete { problems: Vec<AnalysisProblem> },
+}
+
+impl<'de> Deserialize<'de> for SyntaxValidation {
+    fn deserialize<D: Deserializer<'de>>(deserializer: D) -> std::result::Result<Self, D::Error> {
+        Ok(match SyntaxValidationWire::deserialize(deserializer)? {
+            SyntaxValidationWire::Valid {} => Self::Valid,
+            SyntaxValidationWire::InvalidSyntax { diagnostics } => {
+                Self::InvalidSyntax { diagnostics }
+            }
+            SyntaxValidationWire::Incomplete { problems } => Self::Incomplete { problems },
+        })
+    }
+}
+
 impl SyntaxValidation {
     pub fn validate(&self) -> Result<()> {
+        self.validate_with_limits(&AnalysisLimits::hard_maximum())
+    }
+
+    pub fn validate_with_limits(&self, limits: &AnalysisLimits) -> Result<()> {
+        validate_report_size(self, limits)?;
         let problems = match self {
             Self::Valid => return Ok(()),
             Self::InvalidSyntax { diagnostics } => diagnostics,
             Self::Incomplete { problems } => problems,
         };
         for problem in problems {
-            problem.validate(&AnalysisLimits::hard_maximum())?;
+            problem.validate(limits)?;
         }
         match self {
             Self::Valid => Ok(()),
