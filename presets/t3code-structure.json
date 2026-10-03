@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "include": ["apps/server/src/**/*.ts", "packages/contracts/src/**/*.ts", "packages/shared/src/**/*.ts"],
+  "include": ["apps/server/src/**/*.ts", "apps/server/integration/**/*.ts", "packages/contracts/src/**/*.ts", "packages/shared/src/**/*.ts", "packages/effect-acp/src/**/*.ts", "packages/effect-codex-app-server/src/**/*.ts", "packages/ssh/src/**/*.ts", "packages/tailscale/src/**/*.ts"],
   "exclude": ["**/node_modules/**", "**/.repos/**"],
   "rules": [
     {"id":"migration-default-export", "kind":"requiredExport", "files":["apps/server/src/persistence/Migrations/[0-9][0-9][0-9]_*.ts"], "exceptions":["**/*.test.ts"], "names":["default"]},
