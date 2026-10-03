@@ -28,3 +28,9 @@ export function sumAmounts(amounts: readonly number[]): number {
 export function displayedAmount(amount: number): number {
   return amount + 0;
 }
+
+// An empty import has no first amount. The normal nonempty example does not
+// exercise this fallback, so its zero/one mutation needs an empty-list test.
+export function firstAmount(amounts: readonly number[]): number {
+  return amounts.length === 0 ? 0 : amounts[0]!;
+}
