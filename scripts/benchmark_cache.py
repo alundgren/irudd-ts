@@ -130,10 +130,18 @@ def main():
             config = workload["configPath"] if workload.get("external") else root / workload["config"]
             cache.unlink(missing_ok=True)
             prime_complete = None
+            prime_states = []
             if case["mode"] in ["unchanged", "edited"]:
                 prior = case["step"] - int(case["mode"] == "edited")
-                restore(workload, root, prior)
+                restore(workload, root, 0)
                 prime = invoke(binary, root, config, cache)
+                prime_states.append({"step": 0, "complete": prime["report"]["complete"],
+                                     "cache": prime["report"]["cache"]})
+                for step_index in range(prior):
+                    apply_step(root, workload["fixed"], workload["steps"][step_index])
+                    prime = invoke(binary, root, config, cache)
+                    prime_states.append({"step": step_index + 1, "complete": prime["report"]["complete"],
+                                         "cache": prime["report"]["cache"]})
                 prime_complete = prime["report"]["complete"]
                 if case["mode"] == "edited":
                     apply_step(root, workload["fixed"], workload["steps"][prior])
@@ -163,6 +171,7 @@ def main():
                 if stats["parsedFiles"] or stats["resolvedEdges"] or (report["imports"] and not stats["reusedEdges"]):
                     raise AssertionError(f"unchanged graph was not reused: {case['id']}")
             measured["primeComplete"] = prime_complete
+            measured["primeStates"] = prime_states
             measured["input"] = input_record(root, config, fresh_facts["report"])
             if report["complete"]:
                 snapshot = json.loads(cache.read_text())["snapshot"]
@@ -194,6 +203,7 @@ def main():
     revision = subprocess.check_output(["git", "-C", str(repo), "rev-parse", "HEAD"], text=True).strip()
     local_diff = subprocess.check_output(["git", "-C", str(repo), "diff", "HEAD"])
     output = {"schemaVersion": 1, "description": "Fresh-process latency; empty persistent cache is not cold disk; serial randomized trials",
+              "primeProtocol": "Replay each preceding edit with one retained cache, including incomplete states; priming is outside measured latency",
               "sourceRevision": revision, "trackedDiffSha256": sha256(local_diff),
               "binary": str(binary), "executableSha256": sha256(binary.read_bytes()),
               "platform": platform.platform(), "repetitions": args.repetitions, "seed": 20261003,
