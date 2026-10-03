@@ -250,7 +250,7 @@ fn mutation_sites_are_runtime_only_exact_and_cover_every_operator_group() {
         inventory
             .sites
             .iter()
-            .all(|site| &source[site.location.start..site.location.end] == site.expected)
+            .all(|site| source[site.location.start..site.location.end] == site.expected)
     );
     for operator in MutationOperator::ALL {
         assert!(
@@ -331,10 +331,10 @@ fn exact_utf8_crlf_edits_stale_inputs_and_syntax_classification_have_controls() 
 fn guards_are_typed_incomplete_and_a_longer_comparison_edit_is_not_invalid_syntax() {
     let source = "const f=()=>a<b";
     let mut limits = AnalysisLimits {
-        max_delimiter_depth: 1,
+        max_delimiter_depth: 8,
         ..AnalysisLimits::default()
     };
-    let minimum = (1..100)
+    let minimum = (8..100)
         .find(|maximum| {
             limits.max_raw_units = *maximum;
             matches!(
@@ -554,4 +554,444 @@ fn strict_dryer_configuration_and_bounded_names_remain_correctable() {
         NormalizationOptions::default(),
     );
     assert!(report.pairs[0].exact_normalized_match);
+}
+
+#[test]
+fn aggregate_reports_omit_evidence_before_collection_and_keep_json_valid() {
+    let temp = TempDir::new().unwrap();
+    let source = (0..20)
+        .map(|i| format!("function name{i:03}{}(x){{return x+1}}\n", "a".repeat(220)))
+        .collect::<String>();
+    fs::write(temp.path().join("long.ts"), source).unwrap();
+    let limited = DryerConfig {
+        limits: AnalysisLimits {
+            max_report_bytes: 64 * 1024,
+            ..AnalysisLimits::default()
+        },
+        ..config()
+    };
+    let report = dryer::analyze(temp.path(), &limited).unwrap();
+    assert!(!report.complete);
+    assert!(report.omitted_evidence.pairs > 0);
+    assert!(
+        report
+            .problems
+            .iter()
+            .any(|p| p.kind == ProblemKind::ReportLimit)
+    );
+    let encoded = serde_json::to_vec(&report).unwrap();
+    assert!(encoded.len() <= limited.limits.max_report_bytes);
+    serde_json::from_slice::<dryer::DryerReport>(&encoded).unwrap();
+    let restored = dryer::analyze(temp.path(), &config()).unwrap();
+    assert!(restored.complete);
+    assert_eq!(restored.pairs.len(), 190);
+    let short = TempDir::new().unwrap();
+    fs::write(
+        short.path().join("small.ts"),
+        "function a(x){return x+1} function b(y){return y+2}",
+    )
+    .unwrap();
+    assert!(dryer::analyze(short.path(), &limited).unwrap().complete);
+    let mutants = MutationPlanConfig {
+        limits: AnalysisLimits {
+            max_sites: 1,
+            ..AnalysisLimits::default()
+        },
+        ..MutationPlanConfig::default()
+    };
+    let partial = mutator::plan(short.path(), &mutants).unwrap();
+    assert!(!partial.complete);
+    assert_eq!(partial.sites.len(), 1);
+    assert!(partial.omitted_evidence.sites > 0);
+    let complete = mutator::plan(short.path(), &MutationPlanConfig::default()).unwrap();
+    assert!(complete.complete);
+    assert!(complete.sites.len() > partial.sites.len());
+}
+
+#[test]
+fn truncated_display_names_do_not_change_exact_internal_operation_keys() {
+    let temp = TempDir::new().unwrap();
+    fs::write(temp.path().join("f.ts"),"function abcdef(x){return operationFirst(x)} function abcdeg(y){return operationSecond(y)}").unwrap();
+    let report = dryer::analyze(
+        temp.path(),
+        &DryerConfig {
+            limits: AnalysisLimits {
+                max_name_bytes: 4,
+                ..AnalysisLimits::default()
+            },
+            ..config()
+        },
+    )
+    .unwrap();
+    assert!(report.complete);
+    assert_eq!(report.pairs[0].left.name, report.pairs[0].right.name);
+    assert!(report.pairs[0].left.name_truncated);
+    assert!(!report.pairs[0].exact_normalized_match);
+    assert_ne!(
+        report.pairs[0].left.location.start,
+        report.pairs[0].right.location.start
+    );
+    assert!(!exact(
+        "const first={ [fetch()](){return true} }; const second={ [save()](){return true} };"
+    ));
+    assert!(!exact(
+        "class One{#a=1;method(){return this.#a}} class Two{#b=1;method(){return this.#b}}"
+    ));
+}
+
+#[test]
+fn parallel_batches_produce_the_same_order_and_facts_as_one_worker() {
+    let temp = TempDir::new().unwrap();
+    for name in ["c", "a", "b"] {
+        fs::write(
+            temp.path().join(format!("{name}.ts")),
+            format!("function {name}(x){{return x+1}}"),
+        )
+        .unwrap();
+    }
+    let single = dryer::analyze(temp.path(), &config()).unwrap();
+    let parallel = DryerConfig {
+        limits: AnalysisLimits {
+            workers: 3,
+            ..AnalysisLimits::default()
+        },
+        ..config()
+    };
+    let many = dryer::analyze(temp.path(), &parallel).unwrap();
+    assert!(many.complete);
+    assert_eq!(single.functions, many.functions);
+    assert_eq!(single.pairs, many.pairs);
+    let single = mutator::plan(temp.path(), &MutationPlanConfig::default()).unwrap();
+    let many = mutator::plan(
+        temp.path(),
+        &MutationPlanConfig {
+            limits: parallel.limits,
+            ..MutationPlanConfig::default()
+        },
+    )
+    .unwrap();
+    assert!(many.complete);
+    assert_eq!(single.sites, many.sites);
+    assert_eq!(single.files, many.files);
+}
+
+#[cfg(unix)]
+#[test]
+fn selected_links_are_incomplete_and_cache_links_never_replace_input() {
+    use std::os::unix::fs::symlink;
+    let temp = TempDir::new().unwrap();
+    let outside = TempDir::new().unwrap();
+    fs::write(outside.path().join("f.ts"), "const f=()=>true").unwrap();
+    symlink(outside.path().join("f.ts"), temp.path().join("f.ts")).unwrap();
+    let linked = mutator::plan(temp.path(), &MutationPlanConfig::default()).unwrap();
+    assert!(!linked.complete);
+    assert!(
+        linked
+            .problems
+            .iter()
+            .any(|p| p.message.contains("symbolic link"))
+    );
+    fs::remove_file(temp.path().join("f.ts")).unwrap();
+    fs::write(temp.path().join("f.ts"), "const f=()=>true").unwrap();
+    assert!(
+        mutator::plan(temp.path(), &MutationPlanConfig::default())
+            .unwrap()
+            .complete
+    );
+    let cache = temp.path().join("cache.json");
+    symlink(outside.path().join("f.ts"), &cache).unwrap();
+    let before = fs::read(outside.path().join("f.ts")).unwrap();
+    assert!(
+        !dryer::analyze_cached(temp.path(), &config(), &cache)
+            .unwrap()
+            .complete
+    );
+    assert_eq!(fs::read(outside.path().join("f.ts")).unwrap(), before);
+}
+
+#[test]
+fn dogfood_existing_sdk_and_ts_examples_with_explicit_scope() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let selection = SourceSelection {
+        include: vec!["sdk/**/*.ts".into(), "examples/**/*.ts".into()],
+        exclude: vec![],
+    };
+    let dryer = DryerConfig {
+        selection: selection.clone(),
+        ..DryerConfig::default()
+    };
+    let analysis = dryer::analyze(root, &dryer).unwrap();
+    assert!(analysis.complete, "{:?}", analysis.problems);
+    assert!(!analysis.functions.is_empty());
+    let plan = mutator::plan(
+        root,
+        &MutationPlanConfig {
+            selection,
+            ..MutationPlanConfig::default()
+        },
+    )
+    .unwrap();
+    assert!(plan.complete, "{:?}", plan.problems);
+    assert!(!plan.sites.is_empty());
+    assert!(plan.files.iter().all(|file| file.path.ends_with(".ts")));
+    assert!(plan.files.iter().any(|file| file.path == "sdk/index.ts"));
+    let original = fs::read(root.join("sdk/index.ts")).unwrap();
+    for site in plan
+        .sites
+        .iter()
+        .filter(|site| site.location.file == "sdk/index.ts")
+        .take(3)
+    {
+        let edited = mutator::apply_edit(std::str::from_utf8(&original).unwrap(), site).unwrap();
+        let _ = mutator::validate_mutant(&site.location.file, &edited, &plan.configuration.limits)
+            .unwrap();
+    }
+    assert_eq!(fs::read(root.join("sdk/index.ts")).unwrap(), original);
+}
+
+#[test]
+fn recursive_operator_guard_handles_punctuation_and_keyword_chains() {
+    let limits = AnalysisLimits {
+        max_delimiter_depth: 8,
+        ..AnalysisLimits::default()
+    };
+    for expression in [
+        "!!!!!!!!!!!true",
+        "typeof typeof typeof typeof typeof typeof typeof typeof typeof 1",
+        "0+0+0+0+0+0+0+0+0+0",
+    ] {
+        let source = format!("function f(){{return {expression};}}");
+        let SyntaxValidation::Incomplete { problems } =
+            mutator::validate_mutant("src/f.ts", &source, &limits).unwrap()
+        else {
+            panic!("unbounded recursive chain")
+        };
+        assert!(
+            problems
+                .iter()
+                .any(|p| p.kind == ProblemKind::SourceComplexityLimit
+                    && p.limit == Some(AnalysisLimitKind::DelimiterDepth))
+        );
+        assert!(matches!(
+            mutator::validate_mutant("src/f.ts", &source, &AnalysisLimits::default()).unwrap(),
+            SyntaxValidation::Valid
+        ));
+    }
+    assert!(matches!(
+        mutator::validate_mutant("src/f.ts", "function f(){return !!true;}", &limits).unwrap(),
+        SyntaxValidation::Valid
+    ));
+}
+
+#[cfg(unix)]
+#[test]
+fn selected_directory_links_do_not_claim_complete_descendant_coverage() {
+    use std::os::unix::fs::symlink;
+    let temp = TempDir::new().unwrap();
+    let outside = TempDir::new().unwrap();
+    fs::write(outside.path().join("f.ts"), "const f=()=>true").unwrap();
+    fs::write(temp.path().join("known.ts"), "const known=()=>true").unwrap();
+    symlink(outside.path(), temp.path().join("linked")).unwrap();
+    let partial = mutator::plan(temp.path(), &MutationPlanConfig::default()).unwrap();
+    assert!(!partial.complete);
+    assert!(
+        partial
+            .problems
+            .iter()
+            .any(|p| p.kind == ProblemKind::Traversal)
+    );
+    let explicit = MutationPlanConfig {
+        selection: SourceSelection {
+            include: vec!["known.ts".into()],
+            exclude: vec![],
+        },
+        ..MutationPlanConfig::default()
+    };
+    assert!(mutator::plan(temp.path(), &explicit).unwrap().complete);
+    let excluded = MutationPlanConfig {
+        selection: SourceSelection {
+            exclude: vec!["linked/**".into()],
+            ..SourceSelection::default()
+        },
+        ..MutationPlanConfig::default()
+    };
+    assert!(mutator::plan(temp.path(), &excluded).unwrap().complete);
+}
+
+#[test]
+fn selected_source_byte_file_node_and_encoding_failures_are_correctable() {
+    let temp = TempDir::new().unwrap();
+    fs::write(temp.path().join("a.ts"), "const a=()=>true").unwrap();
+    fs::write(temp.path().join("b.ts"), "const b=()=>true").unwrap();
+    for (limits, kind) in [
+        (
+            AnalysisLimits {
+                max_file_bytes: 5,
+                ..AnalysisLimits::default()
+            },
+            AnalysisLimitKind::FileBytes,
+        ),
+        (
+            AnalysisLimits {
+                max_file_bytes: 20,
+                max_total_bytes: 20,
+                ..AnalysisLimits::default()
+            },
+            AnalysisLimitKind::TotalBytes,
+        ),
+        (
+            AnalysisLimits {
+                max_files: 1,
+                ..AnalysisLimits::default()
+            },
+            AnalysisLimitKind::Files,
+        ),
+        (
+            AnalysisLimits {
+                max_files: 1,
+                max_discovery_entries: 2,
+                ..AnalysisLimits::default()
+            },
+            AnalysisLimitKind::DiscoveryEntries,
+        ),
+        (
+            AnalysisLimits {
+                max_nodes_per_file: 1,
+                ..AnalysisLimits::default()
+            },
+            AnalysisLimitKind::NodesPerFile,
+        ),
+    ] {
+        let config = MutationPlanConfig {
+            limits,
+            ..MutationPlanConfig::default()
+        };
+        let limited = mutator::plan(temp.path(), &config).unwrap();
+        assert!(!limited.complete);
+        assert!(
+            limited
+                .problems
+                .iter()
+                .any(|problem| problem.limit == Some(kind)),
+            "{kind:?}: {:?}",
+            limited.problems
+        );
+        assert!(
+            mutator::plan(temp.path(), &MutationPlanConfig::default())
+                .unwrap()
+                .complete
+        );
+    }
+    fs::write(temp.path().join("a.ts"), [0xff, 0xfe]).unwrap();
+    let invalid = mutator::plan(temp.path(), &MutationPlanConfig::default()).unwrap();
+    assert!(!invalid.complete);
+    assert!(
+        invalid
+            .problems
+            .iter()
+            .any(|problem| problem.kind == ProblemKind::InvalidUtf8)
+    );
+    fs::write(temp.path().join("a.ts"), "const a=()=>false").unwrap();
+    let repaired = mutator::plan(temp.path(), &MutationPlanConfig::default()).unwrap();
+    assert!(repaired.complete);
+    assert_eq!(repaired.sites.len(), 2);
+}
+
+#[test]
+fn candidate_limits_apply_before_size_filters_and_recovered_cache_trees_are_validated() {
+    use sha2::{Digest, Sha256};
+    let temp = TempDir::new().unwrap();
+    fs::write(temp.path().join("a.ts"), "const a=()=>true").unwrap();
+    fs::write(temp.path().join("b.ts"), "const b=()=>true").unwrap();
+    let limited = DryerConfig {
+        limits: AnalysisLimits {
+            max_candidates: 1,
+            ..AnalysisLimits::default()
+        },
+        ..DryerConfig::default()
+    };
+    let partial = dryer::analyze(temp.path(), &limited).unwrap();
+    assert!(!partial.complete);
+    assert!(
+        partial
+            .problems
+            .iter()
+            .any(|problem| problem.limit == Some(AnalysisLimitKind::Candidates))
+    );
+    assert!(
+        dryer::analyze(temp.path(), &DryerConfig::default())
+            .unwrap()
+            .complete
+    );
+    let cache = temp.path().join("cache.json");
+    assert!(
+        dryer::analyze_cached(temp.path(), &config(), &cache)
+            .unwrap()
+            .complete
+    );
+    let mut document: serde_json::Value =
+        serde_json::from_slice(&fs::read(&cache).unwrap()).unwrap();
+    document["payload"]["entries"][0]["functions"][0]["tree"][0]["children"] =
+        serde_json::json!([999999]);
+    document["sha256"] = serde_json::json!(
+        Sha256::digest(serde_json::to_vec(&document["payload"]).unwrap())
+            .iter()
+            .map(|b| format!("{b:02x}"))
+            .collect::<String>()
+    );
+    fs::write(&cache, serde_json::to_vec(&document).unwrap()).unwrap();
+    let rejected = dryer::analyze_cached(temp.path(), &config(), &cache).unwrap();
+    assert!(!rejected.complete);
+    assert!(
+        rejected
+            .problems
+            .iter()
+            .any(|problem| problem.message.contains("postorder"))
+    );
+    assert!(
+        dryer::analyze_cached(temp.path(), &config(), &cache)
+            .unwrap()
+            .complete
+    );
+    let mut document: serde_json::Value =
+        serde_json::from_slice(&fs::read(&cache).unwrap()).unwrap();
+    document["payload"]["version"] = serde_json::json!(2);
+    document["sha256"] = serde_json::json!(
+        Sha256::digest(serde_json::to_vec(&document["payload"]).unwrap())
+            .iter()
+            .map(|b| format!("{b:02x}"))
+            .collect::<String>()
+    );
+    fs::write(&cache, serde_json::to_vec(&document).unwrap()).unwrap();
+    let changed = dryer::analyze_cached(temp.path(), &config(), &cache).unwrap();
+    assert!(changed.complete);
+    assert_eq!(
+        changed.pairs,
+        dryer::analyze(temp.path(), &config()).unwrap().pairs
+    );
+}
+
+#[test]
+fn ambient_declarations_are_excluded_while_runtime_namespace_initializers_remain_present() {
+    let source = "declare const ambient=true; declare enum Ambient{First=1} namespace Active{export const flag=false;export enum Values{First=0}}";
+    let inventory =
+        mutator::inventory("src/ambient.ts", source, &MutationPlanConfig::default()).unwrap();
+    assert!(inventory.complete, "{:?}", inventory.problems);
+    assert_eq!(inventory.sites.len(), 2);
+    assert_eq!(
+        inventory
+            .sites
+            .iter()
+            .map(|site| site.expected.as_str())
+            .collect::<Vec<_>>(),
+        ["false", "0"]
+    );
+    let plain = mutator::inventory(
+        "src/plain.ts",
+        "const flag=true;enum Values{First=1}",
+        &MutationPlanConfig::default(),
+    )
+    .unwrap();
+    assert!(plain.complete);
+    assert_eq!(plain.sites.len(), 2);
 }

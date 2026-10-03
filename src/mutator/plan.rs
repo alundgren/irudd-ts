@@ -2,7 +2,7 @@ use crate::{
     mutator::*,
     quality::{
         functions::{candidates, runtime_node},
-        load::{digest, issue, load, location, push_evidence},
+        load::{digest, issue, load_guarded, location, push_evidence},
         syntax::parse,
         *,
     },
@@ -240,8 +240,17 @@ fn inventory_with_nodes(
 }
 
 pub fn plan(root: &Path, config: &MutationPlanConfig) -> Result<MutationPlan> {
+    crate::mutator::plan_guarded(root, config, &|| Ok(()))
+}
+
+pub(crate) fn plan_guarded(
+    root: &Path,
+    config: &MutationPlanConfig,
+    guard: &(impl Fn() -> Result<()> + Sync),
+) -> Result<MutationPlan> {
+    guard()?;
     config.validate()?;
-    let loaded = load(root, &config.selection, &config.limits)?;
+    let loaded = load_guarded(root, &config.selection, &config.limits, guard)?;
     let mut result = MutationPlan {
         schema_version: SCHEMA_VERSION,
         operator_version: OPERATOR_VERSION,
@@ -261,40 +270,51 @@ pub fn plan(root: &Path, config: &MutationPlanConfig) -> Result<MutationPlan> {
         .map(|p| serde_json::to_vec(p).expect("serializable problem").len() + 1)
         .sum();
     let mut nodes = 0usize;
-    for (file, source) in loaded.sources {
-        let (inventory, count) = inventory_with_nodes(&file.path, &source, config)?;
-        nodes = nodes.saturating_add(count);
-        if nodes > config.limits.max_nodes {
-            result.problems.push(issue(
-                ProblemKind::AnalysisLimit,
-                &file.path,
-                0,
-                "total syntax node limit reached",
-                Some(AnalysisLimitKind::Nodes),
-                &config.limits,
-            ));
-            break;
-        }
-        result.omitted_evidence.sites += inventory.omitted_evidence.sites;
-        for problem in inventory.problems {
-            if !push_evidence(
-                &mut result.problems,
-                problem,
-                &mut problem_used,
-                &config.limits,
-            ) {
-                result.omitted_evidence.problems += 1;
+    'files: for sources in loaded.sources.chunks(config.limits.workers) {
+        guard()?;
+        let inventories = crate::quality::workers::batch(sources, |file, source| {
+            guard()?;
+            let inventory = inventory_with_nodes(&file.path, source, config)?;
+            guard()?;
+            Ok::<_, anyhow::Error>(inventory)
+        })?;
+        for ((file, _), inventory) in sources.iter().zip(inventories) {
+            guard()?;
+            let (inventory, count) = inventory?;
+            nodes = nodes.saturating_add(count);
+            if nodes > config.limits.max_nodes {
+                result.problems.push(issue(
+                    ProblemKind::AnalysisLimit,
+                    &file.path,
+                    0,
+                    "total syntax node limit reached",
+                    Some(AnalysisLimitKind::Nodes),
+                    &config.limits,
+                ));
+                break 'files;
             }
-        }
-        for site in inventory.sites {
-            if result.sites.len() >= config.limits.max_sites
-                || !push_evidence(&mut result.sites, site, &mut sites_used, &config.limits)
-            {
-                result.omitted_evidence.sites += 1;
+            result.omitted_evidence.sites += inventory.omitted_evidence.sites;
+            for problem in inventory.problems {
+                if !push_evidence(
+                    &mut result.problems,
+                    problem,
+                    &mut problem_used,
+                    &config.limits,
+                ) {
+                    result.omitted_evidence.problems += 1;
+                }
+            }
+            for site in inventory.sites {
+                if result.sites.len() >= config.limits.max_sites
+                    || !push_evidence(&mut result.sites, site, &mut sites_used, &config.limits)
+                {
+                    result.omitted_evidence.sites += 1;
+                }
             }
         }
     }
     for file in &result.files {
+        guard()?;
         if !crate::quality::load::unchanged(&result.root, file, &config.limits) {
             result.problems.push(issue(
                 ProblemKind::ChangedSource,
@@ -410,4 +430,36 @@ pub fn validate_mutant(
     };
     result.validate_with_limits(limits)?;
     Ok(result)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    #[test]
+    fn guarded_regeneration_can_stop_during_source_traversal_and_recover() {
+        let root = tempfile::TempDir::new().unwrap();
+        for index in 0..8 {
+            std::fs::write(root.path().join(format!("{index}.ts")), "const f=()=>true").unwrap();
+        }
+        let calls = AtomicUsize::new(0);
+        let interrupted = plan_guarded(root.path(), &MutationPlanConfig::default(), &|| {
+            anyhow::ensure!(
+                calls.fetch_add(1, Ordering::Relaxed) < 5,
+                "cancelled regeneration"
+            );
+            Ok(())
+        });
+        assert!(interrupted.is_err());
+        assert!(calls.load(Ordering::Relaxed) >= 6);
+        let corrected =
+            plan_guarded(root.path(), &MutationPlanConfig::default(), &|| Ok(())).unwrap();
+        assert!(corrected.complete);
+        assert_eq!(corrected.sites.len(), 8);
+        assert!(
+            plan(root.path(), &MutationPlanConfig::default())
+                .unwrap()
+                .complete
+        );
+    }
 }

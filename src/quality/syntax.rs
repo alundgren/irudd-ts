@@ -49,14 +49,36 @@ pub(crate) fn preflight(
     let mut units = 0usize;
     let mut depth = 0usize;
     let mut run = false;
+    let mut recursive_operators = 0usize;
+    let mut identifier_start = 0usize;
+    let mut previous = 0u8;
     for (offset, byte) in source.bytes().enumerate() {
         let identifier = byte.is_ascii_alphanumeric() || byte == b'_' || byte == b'$';
         if identifier {
             if !run {
+                identifier_start = offset;
                 units += 1;
             }
         } else if !byte.is_ascii_whitespace() {
             units += 1;
+        }
+        if !identifier
+            && run
+            && matches!(
+                &source[identifier_start..offset],
+                "await"
+                    | "yield"
+                    | "typeof"
+                    | "void"
+                    | "delete"
+                    | "new"
+                    | "in"
+                    | "instanceof"
+                    | "as"
+                    | "satisfies"
+            )
+        {
+            recursive_operators += 1;
         }
         run = identifier;
         if units > limits.max_raw_units {
@@ -70,9 +92,36 @@ pub(crate) fn preflight(
             ));
         }
         match byte {
+            b';' | b'{' | b'}' | b',' => recursive_operators = 0,
+            b'!' | b'~' | b'=' | b'?' | b'+' | b'-' | b'*' | b'/' | b'%' | b'&' | b'|' | b'^'
+            | b'<' | b'>' | b':' | b'.' => recursive_operators += 1,
+            b'(' if previous.is_ascii_alphanumeric()
+                || matches!(previous, b')' | b']' | b'_' | b'$') =>
+            {
+                recursive_operators += 1
+            }
+            _ => {}
+        }
+        if recursive_operators > limits.max_delimiter_depth {
+            return Some(issue(
+                ProblemKind::SourceComplexityLimit,
+                path,
+                offset,
+                &format!(
+                    "conservative recursive operator depth budget {} reached",
+                    limits.max_delimiter_depth
+                ),
+                Some(AnalysisLimitKind::DelimiterDepth),
+                limits,
+            ));
+        }
+        match byte {
             b'(' | b'[' | b'{' => depth += 1,
             b')' | b']' | b'}' => depth = depth.saturating_sub(1),
             _ => {}
+        }
+        if !byte.is_ascii_whitespace() {
+            previous = byte;
         }
         if depth > limits.max_delimiter_depth {
             return Some(issue(

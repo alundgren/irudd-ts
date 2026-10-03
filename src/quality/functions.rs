@@ -21,6 +21,9 @@ pub(crate) fn candidates(
             AstKind::ArrowFunctionExpression(_) => true,
             _ => continue,
         };
+        if ambient(semantic, node.id()) {
+            continue;
+        }
         if nodes.ancestor_kinds(node.id()).any(|kind| {
             matches!(
                 kind,
@@ -106,7 +109,23 @@ pub(crate) fn candidates(
     result
 }
 
+fn ambient(semantic: &Semantic<'_>, id: NodeId) -> bool {
+    semantic.nodes().ancestor_kinds(id).any(|kind| {
+        matches!(kind, AstKind::VariableDeclaration(variable) if variable.declare)
+            || matches!(kind, AstKind::Class(class) if class.declare)
+            || matches!(kind, AstKind::TSEnumDeclaration(enumeration) if enumeration.declare)
+            || matches!(kind, AstKind::TSNamespaceDeclaration(namespace) if namespace.declare)
+            || matches!(
+                kind,
+                AstKind::TSExternalModuleDeclaration(_) | AstKind::TSGlobalDeclaration(_)
+            )
+    })
+}
+
 pub(crate) fn runtime_node(semantic: &Semantic<'_>, id: NodeId) -> bool {
+    if ambient(semantic, id) {
+        return false;
+    }
     let nodes = semantic.nodes();
     let span = nodes.kind(id).span();
     for kind in nodes.ancestor_kinds(id) {
@@ -122,6 +141,8 @@ pub(crate) fn runtime_node(semantic: &Semantic<'_>, id: NodeId) -> bool {
                     | AstKind::TSEnumDeclaration(_)
                     | AstKind::TSEnumBody(_)
                     | AstKind::TSEnumMember(_)
+                    | AstKind::TSNamespaceDeclaration(_)
+                    | AstKind::TSModuleBlock(_)
             )
         {
             return false;

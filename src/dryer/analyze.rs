@@ -18,7 +18,7 @@ use std::{
     io::{Read, Write},
     path::Path,
     sync::{
-        OnceLock,
+        Mutex, OnceLock,
         atomic::{AtomicU64, Ordering},
     },
     time::Instant,
@@ -47,6 +47,7 @@ struct CacheDocument {
 }
 static TEMP_ID: AtomicU64 = AtomicU64::new(0);
 static EXECUTABLE_ID: OnceLock<String> = OnceLock::new();
+static EXECUTABLE_ID_LOCK: Mutex<()> = Mutex::new(());
 
 pub fn analyze(root: &Path, config: &DryerConfig) -> Result<DryerReport> {
     analyze_inner(root, config, None)
@@ -56,6 +57,12 @@ pub fn analyze_cached(root: &Path, config: &DryerConfig, cache: &Path) -> Result
 }
 
 fn executable_digest() -> Result<String> {
+    if let Some(identity) = EXECUTABLE_ID.get() {
+        return Ok(identity.clone());
+    }
+    let _guard = EXECUTABLE_ID_LOCK
+        .lock()
+        .unwrap_or_else(|error| error.into_inner());
     if let Some(identity) = EXECUTABLE_ID.get() {
         return Ok(identity.clone());
     }
@@ -115,6 +122,8 @@ fn validate_entry(entry: &CacheEntry, limits: &AnalysisLimits) -> Result<()> {
             "cached function node counts disagree"
         );
         total_nodes = total_nodes.saturating_add(function.tree.len());
+        let mut parents = vec![0usize; function.tree.len()];
+        let mut opaque = 0usize;
         for (index, node) in function.tree.iter().enumerate() {
             total_scalars = total_scalars.saturating_add(node.scalar.len());
             ensure!(
@@ -123,7 +132,23 @@ fn validate_entry(entry: &CacheEntry, limits: &AnalysisLimits) -> Result<()> {
                     && node.children.iter().all(|child| *child < index),
                 "cached tree is not valid postorder data"
             );
+            if node.kind.starts_with("Opaque:") {
+                opaque += 1;
+                ensure!(
+                    node.children.is_empty(),
+                    "cached opaque nodes must be leaves"
+                );
+            }
+            for child in &node.children {
+                parents[*child] += 1;
+            }
         }
+        ensure!(
+            parents[..parents.len() - 1].iter().all(|count| *count == 1)
+                && parents[parents.len() - 1] == 0
+                && opaque == function.facts.opaque_nodes,
+            "cached tree is disconnected or its opaque count disagrees"
+        );
     }
     ensure!(
         total_nodes <= entry.nodes && total_scalars <= limits.max_file_bytes * 8,
@@ -223,9 +248,9 @@ struct Bag {
     root: usize,
     counts: BTreeMap<usize, u64>,
 }
-fn intern(
+fn intern<S: std::hash::BuildHasher>(
     function: NormalizedFunction,
-    interner: &mut HashMap<NodeKey, usize>,
+    interner: &mut HashMap<NodeKey, usize, S>,
     weights: &mut Vec<u64>,
 ) -> Bag {
     let mut local = vec![];
@@ -382,101 +407,123 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
     let mut bags = vec![];
     let mut nodes = 0usize;
     let mut facts_used = 0;
+    let mut considered = 0usize;
     let mut excluded_used = 0;
     let mut problem_used = result
         .problems
         .iter()
         .map(|p| serde_json::to_vec(p).unwrap().len() + 1)
         .sum();
-    for (file, source) in loaded.sources {
-        let cached = entries.get(&file.path).filter(|entry| entry.file == file);
-        let inventory = if let Some(entry) = cached {
-            FunctionInventory {
-                normalization: config.normalization.clone(),
-                functions: entry.functions.iter().map(|f| f.facts.clone()).collect(),
-                excluded: vec![],
-                complete: true,
-                problems: vec![],
-                omitted_evidence: OmittedEvidence::default(),
-                normalized: entry.functions.clone(),
-                nodes: entry.nodes,
+    'files: for sources in loaded.sources.chunks(config.limits.workers) {
+        let inventories = crate::quality::workers::batch(sources, |file, source| {
+            if let Some(entry) = entries.get(&file.path).filter(|entry| entry.file == *file) {
+                Ok(FunctionInventory {
+                    normalization: config.normalization.clone(),
+                    functions: entry
+                        .functions
+                        .iter()
+                        .map(|function| function.facts.clone())
+                        .collect(),
+                    excluded: vec![],
+                    complete: true,
+                    problems: vec![],
+                    omitted_evidence: OmittedEvidence::default(),
+                    normalized: entry.functions.clone(),
+                    nodes: entry.nodes,
+                })
+            } else {
+                extract(&file.path, source, &config.normalization, &config.limits)
             }
-        } else {
-            extract(&file.path, &source, &config.normalization, &config.limits)?
-        };
-        nodes = nodes.saturating_add(inventory.nodes);
-        if nodes > config.limits.max_nodes {
-            result.problems.push(issue(
-                ProblemKind::AnalysisLimit,
-                &file.path,
-                0,
-                "total syntax node limit reached",
-                Some(AnalysisLimitKind::Nodes),
-                &config.limits,
-            ));
-            break;
-        }
-        if cache.is_some() && inventory.complete {
-            let old_bytes = entries.get(&file.path).map_or(0, |entry| {
-                crate::quality::encoded_size(entry, config.limits.max_report_bytes).unwrap_or(0)
-            });
-            let entry = CacheEntry {
-                file: file.clone(),
-                functions: inventory.normalized.clone(),
-                nodes: inventory.nodes,
-            };
-            let remaining = (config.limits.max_report_bytes / 2)
-                .saturating_sub(cache_used.saturating_sub(old_bytes));
-            if let Ok(bytes) = crate::quality::encoded_size(&entry, remaining) {
-                cache_used = cache_used.saturating_sub(old_bytes) + bytes;
-                entries.insert(file.path.clone(), entry);
+        })?;
+        for ((file, _), inventory) in sources.iter().zip(inventories) {
+            let inventory = inventory?;
+            nodes = nodes.saturating_add(inventory.nodes);
+            if nodes > config.limits.max_nodes {
+                result.problems.push(issue(
+                    ProblemKind::AnalysisLimit,
+                    &file.path,
+                    0,
+                    "total syntax node limit reached",
+                    Some(AnalysisLimitKind::Nodes),
+                    &config.limits,
+                ));
+                break 'files;
             }
-        }
-        result.omitted_evidence.functions += inventory.omitted_evidence.functions;
-        result.omitted_evidence.problems += inventory.omitted_evidence.problems;
-        for problem in inventory.problems {
-            if !push_evidence(
-                &mut result.problems,
-                problem,
-                &mut problem_used,
-                &config.limits,
-            ) {
-                result.omitted_evidence.problems += 1;
-            }
-        }
-        for function in inventory.normalized {
-            let facts = &function.facts;
-            if facts.nodes < config.minimum_nodes
-                || facts.function.location.end_line - facts.function.location.line + 1
-                    < config.minimum_lines
-            {
-                let exclusion = FunctionExclusion {
-                    function: facts.function.clone(),
-                    reason: "minimumSize".into(),
-                    nodes: facts.nodes,
+            if cache.is_some() && inventory.complete {
+                let old_bytes = entries.get(&file.path).map_or(0, |entry| {
+                    crate::quality::encoded_size(entry, config.limits.max_report_bytes).unwrap_or(0)
+                });
+                let entry = CacheEntry {
+                    file: file.clone(),
+                    functions: inventory.normalized.clone(),
+                    nodes: inventory.nodes,
                 };
+                let remaining = (config.limits.max_report_bytes / 2)
+                    .saturating_sub(cache_used.saturating_sub(old_bytes));
+                if let Ok(bytes) = crate::quality::encoded_size(&entry, remaining) {
+                    cache_used = cache_used.saturating_sub(old_bytes) + bytes;
+                    entries.insert(file.path.clone(), entry);
+                }
+            }
+            result.omitted_evidence.functions += inventory.omitted_evidence.functions;
+            result.omitted_evidence.problems += inventory.omitted_evidence.problems;
+            for problem in inventory.problems {
                 if !push_evidence(
-                    &mut result.excluded,
-                    exclusion,
-                    &mut excluded_used,
+                    &mut result.problems,
+                    problem,
+                    &mut problem_used,
                     &config.limits,
                 ) {
-                    result.omitted_evidence.excluded += 1;
+                    result.omitted_evidence.problems += 1;
                 }
-                continue;
             }
-            if bags.len() >= config.limits.max_candidates
-                || !push_evidence(
-                    &mut result.functions,
-                    facts.clone(),
-                    &mut facts_used,
-                    &config.limits,
-                )
-            {
-                result.omitted_evidence.functions += 1;
-                continue;
+            for function in inventory.normalized {
+                if considered >= config.limits.max_candidates {
+                    result.omitted_evidence.functions += 1;
+                    result.problems.push(issue(
+                        ProblemKind::AnalysisLimit,
+                        &file.path,
+                        0,
+                        "total function candidate limit reached",
+                        Some(AnalysisLimitKind::Candidates),
+                        &config.limits,
+                    ));
+                    break 'files;
+                }
+                considered += 1;
+                let facts = &function.facts;
+                if facts.nodes < config.minimum_nodes
+                    || facts.function.location.end_line - facts.function.location.line + 1
+                        < config.minimum_lines
+                {
+                    let exclusion = FunctionExclusion {
+                        function: facts.function.clone(),
+                        reason: "minimumSize".into(),
+                        nodes: facts.nodes,
+                    };
+                    if !push_evidence(
+                        &mut result.excluded,
+                        exclusion,
+                        &mut excluded_used,
+                        &config.limits,
+                    ) {
+                        result.omitted_evidence.excluded += 1;
+                    }
+                    continue;
+                }
+                if bags.len() >= config.limits.max_candidates
+                    || !push_evidence(
+                        &mut result.functions,
+                        facts.clone(),
+                        &mut facts_used,
+                        &config.limits,
+                    )
+                {
+                    result.omitted_evidence.functions += 1;
+                    continue;
+                }
+                bags.push(intern(function, &mut interner, &mut weights));
             }
-            bags.push(intern(function, &mut interner, &mut weights));
         }
     }
     let mut comparisons = 0usize;
@@ -629,5 +676,106 @@ fn fit_report(result: &mut DryerReport) {
         } else {
             break;
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::hash::{BuildHasherDefault, Hasher};
+    #[derive(Default)]
+    struct ConstantHash;
+    impl Hasher for ConstantHash {
+        fn finish(&self) -> u64 {
+            0
+        }
+        fn write(&mut self, _: &[u8]) {}
+    }
+    fn facts() -> FunctionFacts {
+        FunctionFacts {
+            function: FunctionLocation {
+                name: "f".into(),
+                kind: FunctionKind::FunctionDeclaration,
+                location: SourceLocation {
+                    file: "src/f.ts".into(),
+                    start: 0,
+                    end: 10,
+                    line: 1,
+                    end_line: 1,
+                },
+                name_truncated: false,
+            },
+            nodes: 2,
+            opaque_nodes: 0,
+        }
+    }
+    fn function(operation: &str) -> NormalizedFunction {
+        NormalizedFunction {
+            facts: facts(),
+            tree: vec![
+                NodeKey {
+                    kind: "IdentifierReference".into(),
+                    scalar: operation.into(),
+                    children: vec![],
+                },
+                NodeKey {
+                    kind: "Function".into(),
+                    scalar: "flags".into(),
+                    children: vec![0],
+                },
+            ],
+        }
+    }
+    #[test]
+    fn hash_collisions_do_not_establish_exact_normalized_equality() {
+        let mut interner: HashMap<NodeKey, usize, BuildHasherDefault<ConstantHash>> =
+            HashMap::default();
+        let mut weights = vec![];
+        let fetch = intern(function("fetch"), &mut interner, &mut weights);
+        let save = intern(function("save"), &mut interner, &mut weights);
+        assert_ne!(fetch.root, save.root);
+        assert_eq!(interner.len(), 4);
+        let same = intern(function("fetch"), &mut interner, &mut weights);
+        assert_eq!(fetch.root, same.root);
+        assert_eq!(interner.len(), 4);
+    }
+    #[test]
+    fn jaccard_formulas_preserve_distinct_counts_and_subtree_weights() {
+        let left = Bag {
+            facts: facts(),
+            root: 0,
+            counts: BTreeMap::from([(0, 3), (1, 1)]),
+        };
+        let right = Bag {
+            facts: facts(),
+            root: 0,
+            counts: BTreeMap::from([(0, 1), (1, 2)]),
+        };
+        let actual = similarity(&left, &right, &[1, 4]);
+        assert_eq!(actual.set, 1.0);
+        assert_eq!(actual.multiset, 2.0 / 5.0);
+        assert_eq!(actual.weighted, 5.0 / 11.0);
+        let same = similarity(&left, &left, &[1, 4]);
+        assert_eq!(
+            same,
+            SimilarityValues {
+                set: 1.0,
+                multiset: 1.0,
+                weighted: 1.0
+            }
+        );
+        let disjoint = Bag {
+            facts: facts(),
+            root: 2,
+            counts: BTreeMap::from([(2, 1)]),
+        };
+        assert_eq!(
+            similarity(&left, &disjoint, &[1, 4, 1]),
+            SimilarityValues {
+                set: 0.0,
+                multiset: 0.0,
+                weighted: 0.0
+            }
+        );
     }
 }

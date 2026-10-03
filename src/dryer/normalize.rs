@@ -371,6 +371,18 @@ pub fn extract(
                         method.optional,
                         method.r#override,
                         format!("{:?}", method.accessibility),
+                        method.computed.then(|| {
+                            let span = method.key.span();
+                            &source[span.start as usize..span.end as usize]
+                        }),
+                        method
+                            .decorators
+                            .iter()
+                            .map(|decorator| {
+                                let span = decorator.span();
+                                &source[span.start as usize..span.end as usize]
+                            })
+                            .collect::<Vec<_>>(),
                     ))
                     .unwrap(),
                 ),
@@ -379,6 +391,10 @@ pub fn extract(
                         format!("{:?}", property.kind),
                         property.computed,
                         property.method,
+                        property.computed.then(|| {
+                            let span = property.key.span();
+                            &source[span.start as usize..span.end as usize]
+                        }),
                     ))
                     .unwrap(),
                 ),
@@ -392,6 +408,18 @@ pub fn extract(
                         property.definite,
                         property.r#override,
                         format!("{:?}", property.accessibility),
+                        property.computed.then(|| {
+                            let span = property.key.span();
+                            &source[span.start as usize..span.end as usize]
+                        }),
+                        property
+                            .decorators
+                            .iter()
+                            .map(|decorator| {
+                                let span = decorator.span();
+                                &source[span.start as usize..span.end as usize]
+                            })
+                            .collect::<Vec<_>>(),
                     ))
                     .unwrap(),
                 ),

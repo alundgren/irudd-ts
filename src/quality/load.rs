@@ -81,6 +81,16 @@ pub(crate) fn load(
     selection: &SourceSelection,
     limits: &AnalysisLimits,
 ) -> Result<LoadedSources> {
+    load_guarded(root, selection, limits, &|| Ok(()))
+}
+
+pub(crate) fn load_guarded(
+    root: &Path,
+    selection: &SourceSelection,
+    limits: &AnalysisLimits,
+    guard: &(impl Fn() -> Result<()> + Sync),
+) -> Result<LoadedSources> {
+    guard()?;
     selection.validate()?;
     limits.validate()?;
     let root = root.canonicalize()?;
@@ -127,9 +137,9 @@ pub(crate) fn load(
                     Some(".git" | "node_modules" | "target")
                 )
         })
-        .sort_by_file_path(|a, b| a.cmp(b))
         .build();
     for (count, entry) in walker.enumerate() {
+        guard()?;
         if count >= limits.max_discovery_entries {
             add_problem(
                 &mut result,
@@ -179,6 +189,38 @@ pub(crate) fn load(
             );
             continue;
         };
+        if entry.file_type().is_some_and(|kind| kind.is_symlink())
+            && std::fs::metadata(entry.path()).map_or(true, |metadata| metadata.is_dir())
+        {
+            let directory = format!("{path}/");
+            let may_select = selection.include.iter().any(|pattern| {
+                let prefix =
+                    &pattern[..pattern.find(['*', '?', '[', '{']).unwrap_or(pattern.len())];
+                prefix.starts_with(&directory) || directory.starts_with(prefix)
+            });
+            let excluded_subtree = selection
+                .exclude
+                .iter()
+                .filter(|pattern| pattern.ends_with("/**"))
+                .any(|pattern| {
+                    Matcher::new(std::slice::from_ref(pattern))
+                        .is_ok_and(|matcher| matcher.matches(&directory))
+                });
+            if may_select && !excluded_subtree {
+                add_problem(
+                    &mut result,
+                    issue(
+                        ProblemKind::Traversal,
+                        ".",
+                        0,
+                        "symbolic link may contain selected source descendants",
+                        None,
+                        limits,
+                    ),
+                );
+            }
+            continue;
+        }
         if !include.matches(path) {
             continue;
         }
@@ -267,8 +309,14 @@ pub(crate) fn load(
     paths.sort();
     let mut total = 0usize;
     for path in paths {
+        guard()?;
         let read = (|| -> std::io::Result<Vec<u8>> {
             let full = root.join(&path);
+            if full.canonicalize()? != full {
+                return Err(std::io::Error::other(
+                    "selected source path resolves through a symbolic link",
+                ));
+            }
             let metadata = std::fs::symlink_metadata(&full)?;
             if !metadata.is_file() {
                 return Err(std::io::Error::other(
@@ -386,7 +434,11 @@ pub(crate) fn unchanged(root: &str, file: &SourceFile, limits: &AnalysisLimits) 
     let Ok(metadata) = std::fs::symlink_metadata(&path) else {
         return false;
     };
-    if !metadata.is_file() {
+    if !metadata.is_file()
+        || path
+            .canonicalize()
+            .map_or(true, |canonical| canonical != path)
+    {
         return false;
     }
     let Ok(mut handle) = File::open(path) else {
