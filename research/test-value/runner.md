@@ -147,6 +147,11 @@ or uncertain group observation suppresses numeric signals and fails completion.
 Unconfirmed cleanup stops the matrix scheduler. Remaining columns stay `notRun`
 with unknown cells; the runner preserves the uncertain source and evidence.
 The CLI handles SIGINT and SIGTERM so command cleanup runs before it exits.
+On Darwin only, a denied group signal keeps the leader reserved while bounded
+observation continues. No further numeric signals follow that denial. Cleanup
+requires renewed owned exit and a positive empty-group observation before reaping.
+Unknown observation, other signal errors or a live group at the deadline remain
+incomplete. Successfully settled cleanup does not make a timed-out test complete.
 
 ## Controls
 
@@ -165,6 +170,9 @@ kill sets, duplicate names, skipped/missing/extra tests, assertion plus runtime,
 imports, assertion correction, late teardown and process exit, retries, source
 hash mismatch, workspace import ownership, and artifact-writing tests in both
 mutation orders. They create owned fixtures and never edit the installed source.
+Use `--ownership-only` for focused subprocess checks. Darwin checks include a
+real group that exits after an injected signal denial, retained live and unknown
+groups, non-Darwin denial and other signal errors, and timeout classification.
 Their durations are validation observations, not reserved benchmark measurements.
 Process controls also cover a live descendant after leader exit, deadlines,
 lost child ownership, delayed group observation and unavailable group inventory.
