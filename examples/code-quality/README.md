@@ -32,6 +32,7 @@ archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profile
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/path-strengthened.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/hostClassification.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/delimitedPreview.json
+archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/delimitedPreview-strengthened.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/gitPatchPath.json
 archguard mutator run --root /absolute/t3code --config /tmp/archguard-t3-profiles/gitPatchPath-strengthened.json
 ```
@@ -43,5 +44,7 @@ Generated profiles use the running Node binary directly. This avoids version-man
 The strengthened path profile adds two authored tests in the private worker copy. They cover `../repo` and `.\\repo` relative paths and trimming `x/` to `x`, with ordinary paths and root paths as controls. The original T3 checkout stays untouched. These examples follow existing call sites and trailing-separator expectations; they do not prescribe how dispatch should represent `C:/`.
 
 The strengthened Git patch-path profile checks one-character filename text next to escaped tab/newline characters, quoted and unquoted decoding, and round trips. Multi-character and ordinary filenames are negative controls. It leaves quoted-empty-token behavior as an API specification question. A nonadvancing parser-loop mutation can time out; the product reports that run as incomplete rather than counting a kill.
+
+The strengthened delimited-preview profile checks column and cell truncation independently. It includes exact-limit controls and an escaped quote that reaches the cell boundary. These tests prevent one truncation cause from hiding another, while following the existing preview limits and the UI's partial-content indicator.
 
 The native dryer profile compares three TSX editor implementations. Platform variants are an example of duplication that may be intentional. The separate exploratory profile lowers the threshold to 0.70 so a reviewer can inspect additional candidates. Another profile erases local identifiers while preserving property and call names. Comparing it with the default shows how binding relationships affect matches after declarations are inserted. None of these profiles establishes that an abstraction would improve the code.
