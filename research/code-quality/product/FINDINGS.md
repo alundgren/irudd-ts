@@ -53,7 +53,7 @@ The product runs a fresh baseline before mutation results or reuse. Each worker 
 
 Only failures attributed to executed assertions count as kills. Runtime/import/hook failures, missing or invalid result metadata, timeouts and cancellation remain distinct outcomes. This prevents a broken test runner from improving the apparent test quality. It can also leave a behavior-changing mutation classified as an execution error when that mutation throws an ordinary error inside a test. Review those errors alongside survivors.
 
-Changed-file/function selection bounds mutation planning. The current product does not skip sites by test coverage or map mutations to individual tests. Fresh test processes and full private dependency copies make large Vitest profiles expensive. A smaller explicitly declared installation can help, but writable links or undeclared inputs would weaken isolation and reuse validity. Stryker remains an established alternative when per-test mutation coverage is worth its separate integration and dependencies.
+Changed-file selection bounds mutation planning. The current product reports function ownership but does not select changed functions independently, skip sites by test coverage or map mutations to individual tests. Fresh test processes and full private dependency copies make large Vitest profiles expensive. A smaller explicitly declared installation can help, but writable links or undeclared inputs would weaken isolation and reuse validity. Stryker remains an established alternative when per-test mutation coverage is worth its separate integration and dependencies.
 
 ## Practical limits
 
