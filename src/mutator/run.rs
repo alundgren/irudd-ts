@@ -107,6 +107,150 @@ fn monitor_failure(
         )
     }
 }
+fn cancelled_command(
+    token: &CancellationToken,
+    deadline: Instant,
+    cleanup_unknown: bool,
+) -> (MutationOutcome, ExecutionProblemKind, &'static str) {
+    if token.is_cancelled() {
+        (
+            MutationOutcome::Cancelled,
+            ExecutionProblemKind::Cancellation,
+            "test command cancelled",
+        )
+    } else if Instant::now() >= deadline {
+        (
+            MutationOutcome::TimedOut,
+            ExecutionProblemKind::Limit,
+            "mutation run deadline reached",
+        )
+    } else {
+        (
+            MutationOutcome::ExecutionError,
+            if cleanup_unknown {
+                ExecutionProblemKind::Cleanup
+            } else {
+                ExecutionProblemKind::Command
+            },
+            "test command stopped after another worker encountered a shared execution failure",
+        )
+    }
+}
+fn sanitize_diagnostic(text: &str) -> String {
+    text.chars()
+        .filter(|character| {
+            (!character.is_control() || matches!(character, '\n' | '\t'))
+                && !matches!(character, '\u{202a}'..='\u{202e}' | '\u{2066}'..='\u{2069}')
+        })
+        .collect()
+}
+fn diagnostic_redactions<'a>(values: impl Iterator<Item = &'a String>) -> Result<Vec<String>> {
+    let mut patterns = std::collections::BTreeSet::new();
+    let mut bytes = 0usize;
+    for value in values {
+        let escaped = serde_json::to_string(value)?;
+        for representation in [
+            value.as_str(),
+            escaped.as_str(),
+            &escaped[1..escaped.len() - 1],
+        ] {
+            let normalized = sanitize_diagnostic(representation);
+            if !normalized.is_empty() && !patterns.contains(&normalized) {
+                bytes = bytes
+                    .checked_add(normalized.len())
+                    .context("diagnostic redaction budget overflow")?;
+                if bytes > 2 * 1024 * 1024 {
+                    return Err(WorkspaceLimit("diagnostic redaction budget exhausted").into());
+                }
+                patterns.insert(normalized);
+            }
+        }
+    }
+    Ok(patterns.into_iter().collect())
+}
+// Normalize a fixed input prefix before matching literal/escaped values. A
+// potentially clipped value suffix is redacted conservatively before display.
+fn output_excerpt(bytes: &[u8], redactions: &[impl AsRef<str>]) -> String {
+    const EXAMINED_BYTES: usize = 8192;
+    const COPIED_BYTES: usize = 2048;
+    const DISPLAY_BYTES: usize = 1536;
+    let mut examined = bytes.len().min(EXAMINED_BYTES);
+    if examined < bytes.len() {
+        // Drop an incomplete final UTF-8 sequence rather than converting its
+        // clipped prefix into a different character before redaction.
+        let mut cursor = 0;
+        while cursor < examined {
+            match std::str::from_utf8(&bytes[cursor..examined]) {
+                Ok(_) => break,
+                Err(error) => match error.error_len() {
+                    Some(length) => cursor += error.valid_up_to() + length,
+                    None => {
+                        examined = cursor + error.valid_up_to();
+                        break;
+                    }
+                },
+            }
+        }
+    }
+    let normalized = sanitize_diagnostic(&String::from_utf8_lossy(&bytes[..examined]));
+    let normalized_bytes = normalized.as_bytes();
+    let mut copied = Vec::with_capacity(COPIED_BYTES);
+    let mut cursor = 0;
+    while cursor < normalized_bytes.len() && copied.len() < COPIED_BYTES {
+        let remaining = &normalized_bytes[cursor..];
+        if let Some(value) = redactions
+            .iter()
+            .map(AsRef::as_ref)
+            .filter(|value| {
+                !value.is_empty()
+                    && (remaining.starts_with(value.as_bytes())
+                        || value.as_bytes().starts_with(remaining))
+            })
+            .max_by_key(|value| value.len())
+        {
+            const REPLACEMENT: &[u8] = b"[redacted]";
+            if copied.len() + REPLACEMENT.len() > COPIED_BYTES {
+                break;
+            }
+            copied.extend_from_slice(REPLACEMENT);
+            cursor += value.len().min(remaining.len());
+        } else {
+            copied.push(normalized_bytes[cursor]);
+            cursor += 1;
+        }
+    }
+    let decoded = String::from_utf8_lossy(&copied);
+    let mut displayed = String::with_capacity(DISPLAY_BYTES);
+    let mut display_truncated = false;
+    for character in decoded.chars() {
+        if displayed.len() + character.len_utf8() > DISPLAY_BYTES {
+            display_truncated = true;
+            break;
+        }
+        displayed.push(character);
+    }
+    if examined < bytes.len() || cursor < normalized_bytes.len() || display_truncated {
+        displayed.push_str("\n[output truncated]");
+    }
+    displayed
+}
+fn command_diagnostics(stdout: &[u8], stderr: &[u8], redactions: &[impl AsRef<str>]) -> String {
+    let mut diagnostics = String::new();
+    for (name, bytes) in [("stderr", stderr), ("stdout", stdout)] {
+        if !bytes.is_empty() {
+            diagnostics.push_str(&format!("\n{name}:\n"));
+            diagnostics.push_str(&output_excerpt(bytes, redactions));
+        }
+    }
+    diagnostics
+}
+fn diagnostic_message(reason: &str, diagnostics: &str) -> String {
+    let mut end = reason.len().min(4096);
+    while !reason.is_char_boundary(end) {
+        end -= 1;
+    }
+    bounded_message(&format!("{}{}", &reason[..end], diagnostics))
+}
 fn problem_kind(error: &anyhow::Error, fallback: ExecutionProblemKind) -> ExecutionProblemKind {
     if let Some(problem) = error.downcast_ref::<ClassifiedError>() {
         problem.kind
@@ -145,6 +289,7 @@ struct Prepared {
     program: PathBuf,
     invocation: PathBuf,
     environment: BTreeMap<String, String>,
+    redactions: Vec<String>,
     external: Vec<(PathBuf, String, u32)>,
     command_digest: String,
     environment_digest: String,
@@ -257,10 +402,12 @@ impl Prepared {
             .context("missing executable identity")?
             .1
             .clone();
+        let redactions = diagnostic_redactions(config.command.iter().chain(environment.values()))?;
         Ok(Self {
             program,
             invocation,
             environment,
+            redactions,
             external,
             command_digest: storage::digest(&storage::encode(&config.command, 65536)?),
             environment_digest: storage::digest(&environment_bytes),
@@ -507,6 +654,7 @@ impl TaskContext<'_> {
         let mut request = None;
         let mut response = None;
         let mut cleanup_complete = true;
+        let mut diagnostics = String::new();
         let mut kind = ExecutionProblemKind::Workspace;
         let task = storage::create_private_directory(self.parent, "task");
         let mut owned = match task {
@@ -655,15 +803,17 @@ impl TaskContext<'_> {
                     Ok(())
                 },
             )?;
+            diagnostics = command_diagnostics(&raw.stdout, &raw.stderr, &self.prepared.redactions);
             cleanup_complete = raw.cleanup_complete;
             owned.cleanup_allowed = cleanup_complete;
             if !cleanup_complete {
                 self.cleanup_unknown.store(true, Ordering::Relaxed);
                 kind = ExecutionProblemKind::Cleanup;
                 bail!(
-                    "test process cleanup is uncertain; workspace preserved for run {} at {}",
+                    "test process cleanup is uncertain; workspace preserved for run {} at {}; transport: {:?}",
                     self.run_id,
-                    owned.path.display()
+                    owned.path.display(),
+                    raw.stop
                 );
             }
             result.exit_code = raw.status.and_then(|status| status.code());
@@ -675,9 +825,14 @@ impl TaskContext<'_> {
                     bail!("test command deadline reached");
                 }
                 CommandStop::Cancelled => {
-                    result.outcome = MutationOutcome::Cancelled;
-                    kind = ExecutionProblemKind::Cancellation;
-                    bail!("test command cancelled");
+                    let (outcome, problem, message) = cancelled_command(
+                        self.token,
+                        self.deadline,
+                        self.cleanup_unknown.load(Ordering::Relaxed),
+                    );
+                    result.outcome = outcome;
+                    kind = problem;
+                    bail!(message);
                 }
                 CommandStop::Monitor(_) => {
                     let (outcome, problem, message) = monitor_failure(self.token, limits.deadline);
@@ -699,8 +854,6 @@ impl TaskContext<'_> {
             if !raw.stdin_complete {
                 bail!("test command did not consume the request");
             }
-            // Stream bytes are bounded by transport and discarded; protocol supplies actionable failures.
-            let _ = (raw.stdout, raw.stderr);
             kind = ExecutionProblemKind::Protocol;
             use std::os::unix::process::ExitStatusExt;
             let observed = result.exit_code.ok_or_else(|| {
@@ -730,7 +883,7 @@ impl TaskContext<'_> {
                     None => MutationOutcome::ExecutionError,
                 };
             }
-            let message = bounded_message(&error.to_string());
+            let message = diagnostic_message(&error.to_string(), &diagnostics);
             result.message = Some(message.clone());
             ExecutionProblem {
                 kind,
@@ -746,11 +899,13 @@ impl TaskContext<'_> {
             self.cleanup_unknown.store(true, Ordering::Relaxed);
             owned.cleanup_allowed = false;
             result.outcome = MutationOutcome::ExecutionError;
+            let message = diagnostic_message(&error.to_string(), &diagnostics);
+            result.message = Some(message.clone());
             problem = Some(ExecutionProblem {
                 kind: ExecutionProblemKind::Cleanup,
                 mutation_id: site.map(|site| site.id.clone()),
                 file: site.map(|site| site.location.file.clone()),
-                message: bounded_message(&error.to_string()),
+                message,
             });
         }
         TaskResult {
@@ -1170,6 +1325,65 @@ pub fn run_until(
 mod monitor_tests {
     use crate::mutator::run::*;
     use std::cell::Cell;
+
+    #[test]
+    fn peer_failure_stop_is_distinct_from_requested_cancellation_and_deadline() {
+        let token = CancellationToken::new();
+        let future = Instant::now() + Duration::from_secs(30);
+        let (outcome, kind, _) = cancelled_command(&token, future, true);
+        assert_eq!(outcome, MutationOutcome::ExecutionError);
+        assert_eq!(kind, ExecutionProblemKind::Cleanup);
+        let (outcome, kind, _) = cancelled_command(&token, future, false);
+        assert_eq!(outcome, MutationOutcome::ExecutionError);
+        assert_eq!(kind, ExecutionProblemKind::Command);
+        let (outcome, kind, _) = cancelled_command(&token, Instant::now(), false);
+        assert_eq!(outcome, MutationOutcome::TimedOut);
+        assert_eq!(kind, ExecutionProblemKind::Limit);
+        token.cancel();
+        let (outcome, kind, _) = cancelled_command(&token, future, true);
+        assert_eq!(outcome, MutationOutcome::Cancelled);
+        assert_eq!(kind, ExecutionProblemKind::Cancellation);
+    }
+
+    #[test]
+    fn command_excerpt_bounds_redacts_boundary_values_and_sanitizes_output() {
+        let secret = "literal-sensitive-value";
+        let mut bytes = vec![b'x'; 1528];
+        bytes.extend_from_slice(secret.as_bytes());
+        bytes.extend_from_slice(&vec![b'z'; 100_000]);
+        let excerpt = output_excerpt(&bytes, &["literal", secret]);
+        assert!(!excerpt.contains("sensitive"));
+        assert!(excerpt.contains("[output truncated]"));
+        assert!(excerpt.len() <= 1600);
+        let boundary = output_excerpt(b"prefix literal-sensitive", &[secret]);
+        assert_eq!(boundary, "prefix [redacted]");
+        let escaped_secret = "sensitive\n\"value\\tail".to_owned();
+        let patterns = diagnostic_redactions(std::iter::once(&escaped_secret)).unwrap();
+        let escaped = serde_json::to_string(&escaped_secret).unwrap();
+        assert_eq!(output_excerpt(escaped.as_bytes(), &patterns), "[redacted]");
+        let interrupted = escaped_secret.replace("value", "va\u{0}l\u{202e}ue");
+        assert_eq!(
+            output_excerpt(interrupted.as_bytes(), &patterns),
+            "[redacted]"
+        );
+        let long_secret = "q".repeat(20_000);
+        let long_patterns = diagnostic_redactions(std::iter::once(&long_secret)).unwrap();
+        let long_excerpt = output_excerpt(long_secret.as_bytes(), &long_patterns);
+        assert_eq!(long_excerpt, "[redacted]\n[output truncated]");
+        let controls = output_excerpt(b"normal\x1b[31m\x00\xff\nnext\tline", &[] as &[&str]);
+        assert!(!controls.contains(['\x1b', '\0']));
+        assert!(controls.contains("normal[31m"));
+        assert!(controls.contains('\u{fffd}'));
+        assert!(controls.contains("\nnext\tline"));
+        let message = diagnostic_message(
+            &"r".repeat(100_000),
+            &command_diagnostics(&vec![b'a'; 100_000], &vec![b'b'; 100_000], &[] as &[&str]),
+        );
+        assert!(message.len() <= MAX_MESSAGE_BYTES);
+        assert!(message.starts_with('r'));
+        assert!(message.contains("stderr:"));
+        assert!(message.contains("stdout:"));
+    }
 
     #[test]
     fn interrupted_monitor_traversal_preserves_cancellation_and_resource_controls() {

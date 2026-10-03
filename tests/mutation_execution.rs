@@ -139,6 +139,47 @@ fn fresh_baseline_resume_invalidation_and_source_preservation() {
     assert_eq!(fixture.calls().last().unwrap(), "baseline");
 }
 #[test]
+fn incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages() {
+    let mut fixture = Fixture::new();
+    let argument_secret = "diagnostic\n\"argument\\secret".to_owned();
+    let environment_secret = "diagnostic\n\"environment\\secret".to_owned();
+    fixture.config.command.push(argument_secret.clone());
+    fixture
+        .config
+        .environment
+        .insert("DIAGNOSTIC_SECRET".into(), environment_secret.clone());
+    fixture.mode("startupDiagnostics");
+    let failed = fixture.run();
+    assert!(!failed.complete);
+    assert_eq!(failed.baseline.outcome, BaselineOutcome::ExecutionError);
+    let message = failed.baseline.message.as_ref().unwrap();
+    assert!(message.contains("missing-startup-control.ts"), "{message}");
+    assert!(message.contains("stderr-control"));
+    assert!(message.contains("stdout-control"));
+    assert!(message.contains("[redacted]"));
+    assert!(!message.contains(['\u{1b}', '\0']));
+    let encoded = serde_json::to_string(&failed).unwrap();
+    for secret in [&argument_secret, &environment_secret] {
+        assert!(!message.contains(secret));
+        let escaped = serde_json::to_string(secret).unwrap();
+        assert!(!message.contains(&escaped[1..escaped.len() - 1]));
+        assert!(!encoded.contains(&escaped[1..escaped.len() - 1]));
+    }
+    assert!(encoded.len() <= fixture.config.limits.max_report_bytes as usize);
+    fixture.mode("diagnosticsPass");
+    let corrected = fixture.run();
+    assert!(corrected.complete, "{:?}", corrected.problems);
+    assert!(corrected.baseline.message.is_none());
+    assert!(
+        !serde_json::to_string(&corrected)
+            .unwrap()
+            .contains("stdout-control")
+    );
+    assert_eq!(corrected.summary.killed, 1);
+    assert_eq!(corrected.summary.survived, 1);
+}
+
+#[test]
 fn parallel_workers_and_rewritten_copies_keep_independent_outcomes() {
     let mut fixture = Fixture::new();
     fixture.config.limits.workers = 2;

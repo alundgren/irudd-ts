@@ -6,6 +6,14 @@ const request = JSON.parse(fs.readFileSync(process.env.ARCHGUARD_MUTATION_REQUES
 const control = JSON.parse(fs.readFileSync("control.json", "utf8"));
 const marker = process.argv[2];
 if (marker) fs.appendFileSync(marker, `${request.phase}\n`);
+if (control.mode === "startupDiagnostics" || control.mode === "diagnosticsPass") {
+  process.stdout.write(`stdout-control ${JSON.stringify(process.env.DIAGNOSTIC_SECRET)} ${JSON.stringify(process.argv[3])}\n`);
+  process.stderr.write(`stderr-control\u001b[31m\u0000 ${process.env.DIAGNOSTIC_SECRET.replace("environment", "envi\u0000ron\u202ement")}\n`);
+  if (control.mode === "startupDiagnostics") {
+    try { await import("./missing-startup-control.ts"); }
+    catch (error) { console.error(error); process.exit(1); }
+  }
+}
 const result = {
   schemaVersion: 1, requestId: request.requestId, runId: request.runId,
   inputDigest: request.inputDigest, complete: true, exitCode: 0,

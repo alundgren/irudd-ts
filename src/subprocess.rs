@@ -312,22 +312,37 @@ mod unix {
                 Err(error) if error.kind() == io::ErrorKind::NotFound => continue,
                 Err(error) => return Err(error).context("process-group member observation"),
             };
-            let mut text = String::new();
-            file.take(4097).read_to_string(&mut text)?;
-            if text.len() > 4096 {
-                bail!("process record exceeds cleanup limit");
-            }
-            let at = text.rfind(')').context("invalid process record")?;
-            let fields: Vec<_> = text[at + 1..].split_ascii_whitespace().take(3).collect();
-            if fields.len() != 3 {
-                bail!("incomplete process record");
-            }
-            let pgrp: i32 = fields[2].parse().context("invalid process group")?;
-            if pgrp == group.as_raw() && !matches!(fields[0], "Z" | "X") {
+            if member_stat_is_live(file, group)? {
                 return Ok(true);
             }
         }
         Ok(false)
+    }
+
+    #[cfg(target_os = "linux")]
+    fn member_stat_is_live(file: std::fs::File, group: Pid) -> Result<bool> {
+        let mut text = String::new();
+        if let Err(error) = file.take(4097).read_to_string(&mut text) {
+            // A process can vanish after its procfs descriptor was opened.
+            // The retained group leader still prevents group-ID reuse.
+            if matches!(
+                error.raw_os_error(),
+                Some(nix::libc::ESRCH | nix::libc::ENOENT)
+            ) {
+                return Ok(false);
+            }
+            return Err(error).context("process-group member observation");
+        }
+        if text.len() > 4096 {
+            bail!("process record exceeds cleanup limit");
+        }
+        let at = text.rfind(')').context("invalid process record")?;
+        let fields: Vec<_> = text[at + 1..].split_ascii_whitespace().take(3).collect();
+        if fields.len() != 3 {
+            bail!("incomplete process record");
+        }
+        let pgrp: i32 = fields[2].parse().context("invalid process group")?;
+        Ok(pgrp == group.as_raw() && !matches!(fields[0], "Z" | "X"))
     }
 
     #[cfg(target_os = "macos")]
@@ -639,6 +654,32 @@ mod unix {
     #[cfg(test)]
     mod ownership_tests {
         use crate::subprocess::unix::*;
+
+        #[cfg(target_os = "linux")]
+        #[test]
+        fn vanished_proc_descriptor_does_not_make_group_cleanup_uncertain() {
+            let mut command = Command::new("sh");
+            command.args(["-c", "exec sleep 30"]).process_group(0);
+            let mut child = command.spawn().unwrap();
+            let group = Pid::from_raw(child.id() as i32);
+            let path = format!("/proc/{}/stat", child.id());
+            let alive = std::fs::File::open(&path).unwrap();
+            let vanished = std::fs::File::open(&path).unwrap();
+            assert!(member_stat_is_live(alive, group).unwrap());
+            child.kill().unwrap();
+            child.wait().unwrap();
+            assert!(!member_stat_is_live(vanished, group).unwrap());
+            let fixture = tempfile::tempdir().unwrap();
+            let invalid = fixture.path().join("stat");
+            std::fs::write(&invalid, "not a process record").unwrap();
+            assert!(member_stat_is_live(std::fs::File::open(&invalid).unwrap(), group).is_err());
+            std::fs::write(
+                &invalid,
+                format!("{} (worker) Z 1 {}", group.as_raw(), group.as_raw()),
+            )
+            .unwrap();
+            assert!(!member_stat_is_live(std::fs::File::open(&invalid).unwrap(), group).unwrap());
+        }
 
         #[test]
         fn lost_child_ownership_suppresses_finish_and_drop_signals() {
