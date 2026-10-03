@@ -25,6 +25,8 @@ This is a labeled test-runner adaptation. The existing Node SDK and reporter tes
 
 Inspect every surviving mutation and every execution error. A mutated API can throw an ordinary error inside a test. The conservative protocol records that as a runtime error rather than automatically treating it as an assertion kill. Missing result metadata and failed setup remain incomplete evidence. Retain those outcomes alongside useful survivors.
 
+The authored configuration allows 15 seconds per test. Protocol commands have a 30-second deadline and a one-hour run limit. Reporter commands have 60 seconds and a two-hour run limit because each lifecycle test executes several isolated Node controls. These are explicit experiment bounds. Adjust them for the selected tests and retain timeout outcomes alongside assertion failures.
+
 The authored domain and unchanged focused T3 test profiles live in [examples/code-quality](../../../examples/code-quality/README.md). T3 scope is limited to the configured files and test commands. It does not establish whole-repository coverage.
 
 For the focused path profile, retain its source-only plan beside the run report and inspect concrete survivor counterexamples:

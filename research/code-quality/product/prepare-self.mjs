@@ -29,7 +29,7 @@ for (const name of ["mutator_sdk", "mutator_reporter"]) {
 }
 fs.writeFileSync(path.join(support, "vite.config.ts"), `import { defineConfig } from "vite-plus/test/config";
 export default defineConfig({ test: { include: ["quality-tests/*.test.ts"],
-  pool: "forks", maxWorkers: 1, fileParallelism: false,
+  pool: "forks", maxWorkers: 1, fileParallelism: false, testTimeout: 15000,
   reporters: ["./quality-support/mutator-vitest-reporter.ts"],
 }});
 `);
@@ -42,7 +42,8 @@ for (const [profile, source, test] of [
     workspace: { exclude: [".git/**", "**/node_modules/**", "node_modules/**", "target/**"], include: ["sdk/mutator.ts", "sdk/mutator-vitest-reporter.ts"], dependencies: [
       { source: dependencies, destination: "node_modules" }, { source: support, destination: "quality-support" },
       { source: tests, destination: "quality-tests" }, { source: packageManifest, destination: "package.json" }] },
-    limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: 30000, runTimeoutMs: 3600000 },
+    limits: { workers: 1, maxInventoryBytes: 67_108_864, commandTimeoutMs: profile === "reporter" ? 60000 : 30000,
+      runTimeoutMs: profile === "reporter" ? 7200000 : 3600000 },
   } };
   fs.writeFileSync(path.join(output, `${profile}.json`), JSON.stringify(config, null, 2) + "\n");
 }
