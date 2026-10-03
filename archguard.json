@@ -16,12 +16,19 @@
         "src/facts.rs"
       ],
       "specifiers": [
+        "crate::config",
         "crate::config::*",
+        "crate::project",
         "crate::project::*",
+        "crate::rules",
         "crate::rules::*",
+        "crate::plugin",
         "crate::plugin::*",
+        "crate::cache",
         "crate::cache::*",
+        "crate::semantic",
         "crate::semantic::*",
+        "crate::subprocess",
         "crate::subprocess::*"
       ]
     },
@@ -33,12 +40,19 @@
         "src/rust.rs"
       ],
       "specifiers": [
+        "crate::rules",
         "crate::rules::*",
+        "crate::plugin",
         "crate::plugin::*",
+        "crate::project",
         "crate::project::*",
+        "crate::config",
         "crate::config::*",
+        "crate::cache",
         "crate::cache::*",
+        "crate::semantic",
         "crate::semantic::*",
+        "crate::subprocess",
         "crate::subprocess::*"
       ]
     },
