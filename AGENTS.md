@@ -7,6 +7,7 @@ Modules:
 - `config`: JSON configuration, validation and file selectors.
 - `typescript` and `rust`: syntax providers; they produce facts without deciding policy.
 - `project`: file discovery, package inventory and module resolution.
+- `cache`: explicit persistent graph reuse with source and resolver-input validation.
 - `rules`: repository-wide policy over the immutable facts.
 - `roles`: explicit file-role classification and relationships over analyzed source files.
 - `plugin`: explicit trusted subprocess execution with bounded IO and deadlines.
