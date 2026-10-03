@@ -202,3 +202,112 @@ test("required protocol fields must be own data and cannot invoke inherited gett
     else delete (Object.prototype as { requestId?: unknown }).requestId;
   }
 }));
+
+function sdkAssignedRequest(
+  directory: string,
+  run: (request: TestExecutionRequest, requestFile: string) => void,
+): void {
+  const request = fixture(directory);
+  const requestFile = path.join(directory, "request.json");
+  const previousRequest = process.env.ARCHGUARD_MUTATION_REQUEST;
+  const previousResult = process.env.ARCHGUARD_MUTATION_RESULT;
+  try {
+    fs.writeFileSync(requestFile, JSON.stringify(request));
+    process.env.ARCHGUARD_MUTATION_REQUEST = requestFile;
+    process.env.ARCHGUARD_MUTATION_RESULT = request.resultPath;
+    run(request, requestFile);
+  } finally {
+    if (previousRequest === undefined) delete process.env.ARCHGUARD_MUTATION_REQUEST;
+    else process.env.ARCHGUARD_MUTATION_REQUEST = previousRequest;
+    if (previousResult === undefined) delete process.env.ARCHGUARD_MUTATION_RESULT;
+    else process.env.ARCHGUARD_MUTATION_RESULT = previousResult;
+  }
+}
+
+test("baseline and mutation requests enforce their distinct mutation identities", () => withDirectory(directory => {
+  const request = fixture(directory);
+  const baseline = { ...request, phase: "baseline" as const, mutationId: null };
+  assert.deepEqual(validateMutationRequest(baseline), baseline);
+  assert.deepEqual(validateMutationRequest(request), request);
+  for (const mutationId of [null, "", "g".repeat(64)]) {
+    assert.throws(() => validateMutationRequest({ ...request, mutationId }));
+  }
+  assert.throws(() => validateMutationRequest({ ...baseline, mutationId: request.mutationId }), /cannot name/);
+  assert.throws(() => validateMutationRequest({ ...request, phase: "other" }), /unknown phase/);
+  assert.deepEqual(validateMutationRequest(baseline), baseline);
+}));
+
+test("callable values cannot impersonate plain request data", () => withDirectory(directory => {
+  const request = fixture(directory);
+  const callable = () => undefined;
+  Reflect.deleteProperty(callable, "length");
+  Reflect.deleteProperty(callable, "name");
+  Object.setPrototypeOf(callable, Object.prototype);
+  Object.assign(callable, request);
+  assert.throws(() => validateMutationRequest(callable), /plain object/);
+  assert.deepEqual(validateMutationRequest(request), request);
+  assert.deepEqual(validateMutationRequest(Object.assign(Object.create(null), request)), request);
+  assert.throws(() => validateMutationRequest(Object.setPrototypeOf({ ...request }, { custom: true })), /plain data/);
+}));
+
+test("assigned request files require absolute paths even when a relative file exists", () => withDirectory(directory => {
+  sdkAssignedRequest(directory, (request, requestFile) => {
+    assert.deepEqual(readMutationRequest(), request);
+    const relative = path.relative(process.cwd(), requestFile);
+    assert.equal(path.isAbsolute(relative), false);
+    process.env.ARCHGUARD_MUTATION_REQUEST = relative;
+    assert.throws(readMutationRequest, /absolute file/);
+    process.env.ARCHGUARD_MUTATION_REQUEST = requestFile;
+    assert.deepEqual(readMutationRequest(), request);
+  });
+}));
+
+test("formatted request JSON is accepted while escaped duplicate keys remain rejected", () => withDirectory(directory => {
+  sdkAssignedRequest(directory, (request, requestFile) => {
+    fs.writeFileSync(requestFile, `\n\t${JSON.stringify(request, null, 2)} \r\n`);
+    assert.deepEqual(readMutationRequest(), request);
+    const duplicate = JSON.stringify(request).replace('"requestId":', '"request\\u0049d":"duplicate","requestId":');
+    fs.writeFileSync(requestFile, duplicate);
+    assert.throws(readMutationRequest, /duplicate fields/);
+    fs.writeFileSync(requestFile, JSON.stringify(request));
+    assert.deepEqual(readMutationRequest(), request);
+  });
+}));
+
+test("the request byte ceiling includes an exact-size valid JSON document", () => withDirectory(directory => {
+  sdkAssignedRequest(directory, (request, requestFile) => {
+    const encoded = JSON.stringify(request);
+    const padding = " ".repeat(mutationProtocolLimits.maxRequestBytes - Buffer.byteLength(encoded));
+    // Put the closing brace at the final byte so truncated reads cannot parse a valid prefix.
+    const exact = `${padding}${encoded}`;
+    assert.equal(Buffer.byteLength(exact), mutationProtocolLimits.maxRequestBytes);
+    fs.writeFileSync(requestFile, exact);
+    assert.deepEqual(readMutationRequest(), request);
+    fs.writeFileSync(requestFile, `${exact}\n`);
+    assert.throws(readMutationRequest, /bounded regular/);
+    fs.writeFileSync(requestFile, encoded);
+    assert.deepEqual(readMutationRequest(), request);
+  });
+}));
+
+test("result exit codes accept integer endpoints and reject values outside the process range", () => withDirectory(directory => {
+  const request = fixture(directory);
+  const result = passing(request);
+  for (const exitCode of [-1, 256, 1.5, Number.NaN, Number.POSITIVE_INFINITY, "0", null]) {
+    assert.throws(() => validateMutationResult({ ...result, exitCode }, request), /process exit code/);
+  }
+  for (const exitCode of [0, 1, 255]) {
+    assert.equal(validateMutationResult({ ...result, exitCode }, request).exitCode, exitCode);
+  }
+}));
+
+test("a completed hook-only failure cannot declare exit zero", () => withDirectory(directory => {
+  const request = fixture(directory);
+  const result = passing(request);
+  const hookFailure = { kind: "hook" as const, testId: null, file: null, message: "after-all failed" };
+  const bad = { ...result, failures: [hookFailure] };
+  assert.throws(() => validateMutationResult(bad, request), /exit zero/);
+  const corrected = { ...bad, exitCode: 1 };
+  assert.deepEqual(validateMutationResult(corrected, request), corrected);
+  assert.deepEqual(validateMutationResult(result, request), result);
+}));
