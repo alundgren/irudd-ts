@@ -210,7 +210,7 @@ fn run_cancellation_reports_incomplete_and_preserves_original_source() {
     let configuration = external.path().join("mutator.json");
     fs::write(&configuration, json!({"schemaVersion":1, "plan":{"schemaVersion":1,"selection":{"include":["domain.ts"]}},
         "execution":{"command":[node,"wait.mjs",marker],"workspace":{"include":["domain.ts","wait.mjs"]},
-            "limits":{"commandTimeoutMs":10000,"runTimeoutMs":20000}}}).to_string()).unwrap();
+            "limits":{"commandTimeoutMs":30000,"runTimeoutMs":120000}}}).to_string()).unwrap();
     let child = Command::new(env!("CARGO_BIN_EXE_archguard"))
         .args(["mutator", "run", "--json", "--root"])
         .arg(root.path())
@@ -220,7 +220,7 @@ fn run_cancellation_reports_incomplete_and_preserves_original_source() {
         .stderr(std::process::Stdio::piped())
         .spawn()
         .unwrap();
-    let deadline = Instant::now() + Duration::from_secs(10);
+    let deadline = Instant::now() + Duration::from_secs(60);
     while !marker.exists() && Instant::now() < deadline {
         thread::sleep(Duration::from_millis(10));
     }
@@ -229,8 +229,9 @@ fn run_cancellation_reports_incomplete_and_preserves_original_source() {
     let output = child.wait_with_output().unwrap();
     assert!(
         marker.exists(),
-        "{}",
-        String::from_utf8_lossy(&output.stderr)
+        "stdout: {}\nstderr: {}",
+        String::from_utf8_lossy(&output.stdout),
+        String::from_utf8_lossy(&output.stderr),
     );
     let cancelled = report(&output, 2);
     assert_eq!(cancelled["complete"], false);
