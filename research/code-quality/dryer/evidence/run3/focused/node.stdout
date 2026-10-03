@@ -1,0 +1,15 @@
+✔ renamed locals and literal changes still compare exactly (19.208202ms)
+✔ property erasure loses a meaningful difference and preserving members corrects it (5.991019ms)
+✔ called members remain different, and nested callbacks are not separate candidates (7.157867ms)
+✔ malformed input and unavailable input are incomplete, corrected input is complete (3.066813ms)
+✔ multiset notices repetitions that a set discards (0.39637ms)
+✔ prefix and postfix operators retain different behavior while local names can change (4.134515ms)
+✔ the retained earlier implementation demonstrates the unary regression (11.691876ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 676.904144

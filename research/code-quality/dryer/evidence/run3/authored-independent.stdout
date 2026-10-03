@@ -1,0 +1,1874 @@
+{
+  "status": "complete",
+  "tool": "independent-ts-5.9.3",
+  "config": {
+    "minLines": 4,
+    "minNodes": 20,
+    "thresholds": [
+      0.7,
+      0.75,
+      0.8,
+      0.82,
+      0.85,
+      0.9,
+      0.95
+    ]
+  },
+  "diagnostics": [],
+  "entries": [
+    {
+      "file": "A.ts",
+      "name": "invoiceTotal",
+      "start": 1,
+      "end": 7,
+      "nodes": 46
+    },
+    {
+      "file": "A.ts",
+      "name": "cartTotal",
+      "start": 9,
+      "end": 15,
+      "nodes": 46
+    },
+    {
+      "file": "B.ts",
+      "name": "invoiceTotal",
+      "start": 1,
+      "end": 7,
+      "nodes": 46
+    },
+    {
+      "file": "B.ts",
+      "name": "checkedInvoiceTotal",
+      "start": 9,
+      "end": 17,
+      "nodes": 59
+    },
+    {
+      "file": "C.ts",
+      "name": "invoiceTotal",
+      "start": 1,
+      "end": 7,
+      "nodes": 46
+    },
+    {
+      "file": "C.ts",
+      "name": "reducedInvoiceTotal",
+      "start": 9,
+      "end": 16,
+      "nodes": 57
+    },
+    {
+      "file": "D.ts",
+      "name": "outstandingBalance",
+      "start": 1,
+      "end": 5,
+      "nodes": 38
+    },
+    {
+      "file": "D.ts",
+      "name": "remainingBattery",
+      "start": 7,
+      "end": 11,
+      "nodes": 38
+    },
+    {
+      "file": "E.ts",
+      "name": "loadInvoice",
+      "start": 1,
+      "end": 5,
+      "nodes": 36
+    },
+    {
+      "file": "E.ts",
+      "name": "loadCustomer",
+      "start": 7,
+      "end": 11,
+      "nodes": 36
+    },
+    {
+      "file": "F.ts",
+      "name": "summarizeOrders",
+      "start": 1,
+      "end": 45,
+      "nodes": 227
+    },
+    {
+      "file": "F.ts",
+      "name": "summarizeCopiedOrders",
+      "start": 47,
+      "end": 91,
+      "nodes": 232
+    }
+  ],
+  "excluded": [],
+  "pairs": [
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      }
+    },
+    {
+      "left": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.8857142857142857,
+        "multiset": 0.9367088607594937,
+        "weighted": 0.365445499773858
+      },
+      "preserved": {
+        "set": 0.7379310344827587,
+        "multiset": 0.8433734939759037,
+        "weighted": 0.335249889429456
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "erased": {
+        "set": 0.6585365853658537,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      },
+      "preserved": {
+        "set": 0.6818181818181818,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "erased": {
+        "set": 0.6585365853658537,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      },
+      "preserved": {
+        "set": 0.6818181818181818,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "erased": {
+        "set": 0.6585365853658537,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      },
+      "preserved": {
+        "set": 0.6818181818181818,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "erased": {
+        "set": 0.6585365853658537,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      },
+      "preserved": {
+        "set": 0.6818181818181818,
+        "multiset": 0.7213114754098361,
+        "weighted": 0.40217391304347827
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "erased": {
+        "set": 0.2549019607843137,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      },
+      "preserved": {
+        "set": 0.2962962962962963,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "erased": {
+        "set": 0.2549019607843137,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      },
+      "preserved": {
+        "set": 0.2962962962962963,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "erased": {
+        "set": 0.2549019607843137,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      },
+      "preserved": {
+        "set": 0.2962962962962963,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "erased": {
+        "set": 0.2549019607843137,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      },
+      "preserved": {
+        "set": 0.2962962962962963,
+        "multiset": 0.410958904109589,
+        "weighted": 0.10392156862745099
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "erased": {
+        "set": 0.2542372881355932,
+        "multiset": 0.43209876543209874,
+        "weighted": 0.10854092526690391
+      },
+      "preserved": {
+        "set": 0.2903225806451613,
+        "multiset": 0.43209876543209874,
+        "weighted": 0.10854092526690391
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 1,
+        "multiset": 1,
+        "weighted": 1
+      },
+      "preserved": {
+        "set": 0.2727272727272727,
+        "multiset": 0.4074074074074074,
+        "weighted": 0.11239193083573487
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.18691588785046728,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      },
+      "preserved": {
+        "set": 0.17293233082706766,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.18691588785046728,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      },
+      "preserved": {
+        "set": 0.17293233082706766,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.18691588785046728,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      },
+      "preserved": {
+        "set": 0.17293233082706766,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.18691588785046728,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      },
+      "preserved": {
+        "set": 0.17293233082706766,
+        "multiset": 0.1518987341772152,
+        "weighted": 0.039951573849878935
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.1834862385321101,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      },
+      "preserved": {
+        "set": 0.1678832116788321,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.1834862385321101,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      },
+      "preserved": {
+        "set": 0.1678832116788321,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.1834862385321101,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      },
+      "preserved": {
+        "set": 0.1678832116788321,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.1834862385321101,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      },
+      "preserved": {
+        "set": 0.1678832116788321,
+        "multiset": 0.1487603305785124,
+        "weighted": 0.03903015966883501
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.17094017094017094,
+        "multiset": 0.15789473684210525,
+        "weighted": 0.0403744880046811
+      },
+      "preserved": {
+        "set": 0.16083916083916083,
+        "multiset": 0.15789473684210525,
+        "weighted": 0.0403744880046811
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.16806722689075632,
+        "multiset": 0.15476190476190477,
+        "weighted": 0.039473684210526314
+      },
+      "preserved": {
+        "set": 0.1564625850340136,
+        "multiset": 0.15476190476190477,
+        "weighted": 0.039473684210526314
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.20930232558139536,
+        "multiset": 0.3770491803278688,
+        "weighted": 0.07672634271099744
+      },
+      "preserved": {
+        "set": 0.15384615384615385,
+        "multiset": 0.2727272727272727,
+        "weighted": 0.0525
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.16981132075471697,
+        "multiset": 0.3108108108108108,
+        "weighted": 0.06651884700665188
+      },
+      "preserved": {
+        "set": 0.12903225806451613,
+        "multiset": 0.22784810126582278,
+        "weighted": 0.04565217391304348
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.16981132075471697,
+        "multiset": 0.3108108108108108,
+        "weighted": 0.06651884700665188
+      },
+      "preserved": {
+        "set": 0.12903225806451613,
+        "multiset": 0.22784810126582278,
+        "weighted": 0.04565217391304348
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.16,
+        "multiset": 0.3013698630136986,
+        "weighted": 0.05389221556886228
+      },
+      "preserved": {
+        "set": 0.11864406779661017,
+        "multiset": 0.21794871794871795,
+        "weighted": 0.03529411764705882
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "right": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "erased": {
+        "set": 0.16,
+        "multiset": 0.3013698630136986,
+        "weighted": 0.05389221556886228
+      },
+      "preserved": {
+        "set": 0.11864406779661017,
+        "multiset": 0.21794871794871795,
+        "weighted": 0.03529411764705882
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.10833333333333334,
+        "multiset": 0.13147410358565736,
+        "weighted": 0.02759009009009009
+      },
+      "preserved": {
+        "set": 0.1095890410958904,
+        "multiset": 0.13147410358565736,
+        "weighted": 0.02759009009009009
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.10655737704918032,
+        "multiset": 0.12890625,
+        "weighted": 0.02699724517906336
+      },
+      "preserved": {
+        "set": 0.10666666666666667,
+        "multiset": 0.12890625,
+        "weighted": 0.02699724517906336
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.09523809523809523,
+        "multiset": 0.27586206896551724,
+        "weighted": 0.05970149253731343
+      },
+      "preserved": {
+        "set": 0.08163265306122448,
+        "multiset": 0.23333333333333334,
+        "weighted": 0.05341246290801187
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.09523809523809523,
+        "multiset": 0.27586206896551724,
+        "weighted": 0.05970149253731343
+      },
+      "preserved": {
+        "set": 0.08163265306122448,
+        "multiset": 0.23333333333333334,
+        "weighted": 0.05341246290801187
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.09523809523809523,
+        "multiset": 0.27586206896551724,
+        "weighted": 0.05970149253731343
+      },
+      "preserved": {
+        "set": 0.08163265306122448,
+        "multiset": 0.23333333333333334,
+        "weighted": 0.05341246290801187
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.09523809523809523,
+        "multiset": 0.27586206896551724,
+        "weighted": 0.05970149253731343
+      },
+      "preserved": {
+        "set": 0.08163265306122448,
+        "multiset": 0.23333333333333334,
+        "weighted": 0.05341246290801187
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.07407407407407407,
+        "multiset": 0.2077922077922078,
+        "weighted": 0.037578288100208766
+      },
+      "preserved": {
+        "set": 0.06779661016949153,
+        "multiset": 0.17721518987341772,
+        "weighted": 0.033264033264033266
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "reducedInvoiceTotal",
+        "start": 9,
+        "end": 16,
+        "nodes": 57
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.07407407407407407,
+        "multiset": 0.2077922077922078,
+        "weighted": 0.037578288100208766
+      },
+      "preserved": {
+        "set": 0.06779661016949153,
+        "multiset": 0.17721518987341772,
+        "weighted": 0.033264033264033266
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.06896551724137931,
+        "multiset": 0.20253164556962025,
+        "weighted": 0.03926096997690531
+      },
+      "preserved": {
+        "set": 0.06349206349206349,
+        "multiset": 0.1728395061728395,
+        "weighted": 0.034482758620689655
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "checkedInvoiceTotal",
+        "start": 9,
+        "end": 17,
+        "nodes": 59
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.06896551724137931,
+        "multiset": 0.20253164556962025,
+        "weighted": 0.03926096997690531
+      },
+      "preserved": {
+        "set": 0.06349206349206349,
+        "multiset": 0.1728395061728395,
+        "weighted": 0.034482758620689655
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.09009009009009009,
+        "multiset": 0.10416666666666667,
+        "weighted": 0.020618556701030927
+      },
+      "preserved": {
+        "set": 0.06293706293706294,
+        "multiset": 0.07723577235772358,
+        "weighted": 0.013245033112582781
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.09009009009009009,
+        "multiset": 0.10416666666666667,
+        "weighted": 0.020618556701030927
+      },
+      "preserved": {
+        "set": 0.06293706293706294,
+        "multiset": 0.07723577235772358,
+        "weighted": 0.013245033112582781
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "outstandingBalance",
+        "start": 1,
+        "end": 5,
+        "nodes": 38
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.08849557522123894,
+        "multiset": 0.10204081632653061,
+        "weighted": 0.02014218009478673
+      },
+      "preserved": {
+        "set": 0.061224489795918366,
+        "multiset": 0.07569721115537849,
+        "weighted": 0.012941176470588235
+      }
+    },
+    {
+      "left": {
+        "file": "D.ts",
+        "name": "remainingBattery",
+        "start": 7,
+        "end": 11,
+        "nodes": 38
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.08849557522123894,
+        "multiset": 0.10204081632653061,
+        "weighted": 0.02014218009478673
+      },
+      "preserved": {
+        "set": 0.061224489795918366,
+        "multiset": 0.07569721115537849,
+        "weighted": 0.012941176470588235
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "A.ts",
+        "name": "cartTotal",
+        "start": 9,
+        "end": 15,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "B.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "C.ts",
+        "name": "invoiceTotal",
+        "start": 1,
+        "end": 7,
+        "nodes": 46
+      },
+      "right": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "erased": {
+        "set": 0.061224489795918366,
+        "multiset": 0.22388059701492538,
+        "weighted": 0.0427807486631016
+      },
+      "preserved": {
+        "set": 0.05555555555555555,
+        "multiset": 0.18840579710144928,
+        "weighted": 0.03723404255319149
+      }
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.04310344827586207,
+        "multiset": 0.07346938775510205,
+        "weighted": 0.012875536480686695
+      },
+      "preserved": {
+        "set": 0.034722222222222224,
+        "multiset": 0.06477732793522267,
+        "weighted": 0.011015911872705019
+      }
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeOrders",
+        "start": 1,
+        "end": 45,
+        "nodes": 227
+      },
+      "erased": {
+        "set": 0.04310344827586207,
+        "multiset": 0.07346938775510205,
+        "weighted": 0.012875536480686695
+      },
+      "preserved": {
+        "set": 0.034722222222222224,
+        "multiset": 0.06477732793522267,
+        "weighted": 0.011015911872705019
+      }
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "name": "loadInvoice",
+        "start": 1,
+        "end": 5,
+        "nodes": 36
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.0423728813559322,
+        "multiset": 0.072,
+        "weighted": 0.012574850299401197
+      },
+      "preserved": {
+        "set": 0.033783783783783786,
+        "multiset": 0.06349206349206349,
+        "weighted": 0.010759115361625823
+      }
+    },
+    {
+      "left": {
+        "file": "E.ts",
+        "name": "loadCustomer",
+        "start": 7,
+        "end": 11,
+        "nodes": 36
+      },
+      "right": {
+        "file": "F.ts",
+        "name": "summarizeCopiedOrders",
+        "start": 47,
+        "end": 91,
+        "nodes": 232
+      },
+      "erased": {
+        "set": 0.0423728813559322,
+        "multiset": 0.072,
+        "weighted": 0.012574850299401197
+      },
+      "preserved": {
+        "set": 0.033783783783783786,
+        "multiset": 0.06349206349206349,
+        "weighted": 0.010759115361625823
+      }
+    }
+  ],
+  "sensitivity": [
+    {
+      "threshold": 0.7,
+      "erasedSet": 9,
+      "preservedSet": 8,
+      "preservedMultiset": 12,
+      "preservedWeighted": 7
+    },
+    {
+      "threshold": 0.75,
+      "erasedSet": 9,
+      "preservedSet": 7,
+      "preservedMultiset": 8,
+      "preservedWeighted": 7
+    },
+    {
+      "threshold": 0.8,
+      "erasedSet": 9,
+      "preservedSet": 7,
+      "preservedMultiset": 8,
+      "preservedWeighted": 7
+    },
+    {
+      "threshold": 0.82,
+      "erasedSet": 9,
+      "preservedSet": 7,
+      "preservedMultiset": 8,
+      "preservedWeighted": 7
+    },
+    {
+      "threshold": 0.85,
+      "erasedSet": 9,
+      "preservedSet": 7,
+      "preservedMultiset": 7,
+      "preservedWeighted": 7
+    },
+    {
+      "threshold": 0.9,
+      "erasedSet": 8,
+      "preservedSet": 7,
+      "preservedMultiset": 7,
+      "preservedWeighted": 7
+    },
+    {
+      "threshold": 0.95,
+      "erasedSet": 8,
+      "preservedSet": 7,
+      "preservedMultiset": 7,
+      "preservedWeighted": 7
+    }
+  ]
+}

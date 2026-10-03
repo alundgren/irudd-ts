@@ -1,0 +1,56 @@
+{:candidates [
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/A.ts", :start-line 1, :end-line 7}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/A.ts", :start-line 9, :end-line 15}
+  :left-nodes 82
+  :right-nodes 82}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/A.ts", :start-line 1, :end-line 7}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/B.ts", :start-line 1, :end-line 7}
+  :left-nodes 82
+  :right-nodes 82}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/A.ts", :start-line 1, :end-line 7}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/C.ts", :start-line 1, :end-line 7}
+  :left-nodes 82
+  :right-nodes 82}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/A.ts", :start-line 9, :end-line 15}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/B.ts", :start-line 1, :end-line 7}
+  :left-nodes 82
+  :right-nodes 82}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/A.ts", :start-line 9, :end-line 15}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/C.ts", :start-line 1, :end-line 7}
+  :left-nodes 82
+  :right-nodes 82}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/B.ts", :start-line 1, :end-line 7}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/C.ts", :start-line 1, :end-line 7}
+  :left-nodes 82
+  :right-nodes 82}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/D.ts", :start-line 1, :end-line 5}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/D.ts", :start-line 7, :end-line 11}
+  :left-nodes 70
+  :right-nodes 70}
+ {:score 1.0
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/E.ts", :start-line 1, :end-line 5}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/E.ts", :start-line 7, :end-line 11}
+  :left-nodes 71
+  :right-nodes 71}
+ {:score 0.907142857143
+  :language "typescript"
+  :left {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/F.ts", :start-line 1, :end-line 45}
+  :right {:file "/tmp/archguard-quality-research/dryer-worktree/research/code-quality/dryer/fixtures/F.ts", :start-line 47, :end-line 91}
+  :left-nodes 403
+  :right-nodes 412}
+]}

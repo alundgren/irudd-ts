@@ -1,0 +1,8 @@
+{
+  "name": "archguard-dryer-research",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test detector.test.mjs", "scan": "node detector.mjs" },
+  "dependencies": { "jscpd": "4.3.0", "typescript": "5.9.3" }
+}
