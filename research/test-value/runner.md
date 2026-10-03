@@ -85,12 +85,14 @@ validates that result with the product SDK. The parent compares the actual exit
 status, aggregate counts, raw assertion IDs and individual records. Matching
 aggregate counts alone cannot establish a complete test inventory.
 
-Timeouts, invalid edits and infrastructure failures retain `unknown` for every
+Timeouts, rejected edits and infrastructure failures retain `unknown` for every
 baseline cell. Failed baselines produce evidence and `notRun` columns. They do
 not produce mutation-score evidence. `matrix.json` is the analysis input;
 `execution.json`, the raw result, inventory and process logs are the supporting
 evidence. An empty baseline remains recorded even when downstream analysis
 rejects its empty inventory.
+The runner reports stale hashes, unsafe paths and import mismatches as execution
+errors. It does not classify edits as compiler-invalid without compiler evidence.
 
 ## Owned copies and dependencies
 

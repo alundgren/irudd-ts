@@ -74,16 +74,19 @@ def ownership_controls(output):
     require(child.finish()[0] == 130 and not group_has_live_members(child_pid), "SIGTERM must clean the nested owned group before exiting")
 
     spawn_helper = directory / "spawn-interruption-helper.py"
-    spawn_helper.write_text('import os,pathlib,signal,subprocess,sys\nfrom unittest.mock import patch\n'
+    spawn_helper.write_text('import os,pathlib,signal,subprocess,sys,time\nfrom unittest.mock import patch\n'
         'sys.path.insert(0,' + repr(str(Path(__file__).resolve().parent)) + ')\n'
         'from runner import ResearchCancelled,group_has_live_members,private_environment,run_command\n'
         'root=pathlib.Path(sys.argv[1]);original=subprocess.Popen;captured=[]\n'
         'def spawn(*arguments,**keywords):\n'
-        ' child=original(*arguments,**keywords);captured.append(child);os.kill(os.getpid(),signal.SIGTERM);return child\n'
+        ' child=original(*arguments,**keywords);captured.append(child);deadline=time.monotonic()+3\n'
+        ' while keywords["stdout"].tell()==0:\n'
+        '  assert time.monotonic()<deadline;time.sleep(0.001)\n'
+        ' os.kill(os.getpid(),signal.SIGTERM);return child\n'
         'with patch("runner.subprocess.Popen",spawn):\n'
-        ' try:run_command(["/bin/sh","-c","exec sleep 30"],root,private_environment(root/"private"),root/"child")\n'
+        ' try:run_command([sys.executable,"-c",' + repr('import time;print("ready",flush=True);time.sleep(30)') + '],root,private_environment(root/"private"),root/"child")\n'
         ' except ResearchCancelled as error:\n'
-        '  assert error.command_result["cleanupComplete"] is True\n'
+        '  assert error.command_result["cleanupComplete"] is True,error.command_result\n'
         '  assert error.command_result["status"] == "cancelled"\n'
         '  assert not group_has_live_members(captured[0].pid)\n'
         ' else:raise AssertionError("Spawn interruption was ignored")\n'
@@ -258,7 +261,9 @@ def execute_controls(output, archguard, installed=None, node="node"):
     invalid = dict(mutation, sourceSha256="c" * 64)
     rejected = execute_case(ws_template, output / "workspace-hash-mismatch", command, baseline=ws_baseline["tests"],
                             dependencies=dependencies, mutation=invalid, node=node)
-    require(rejected["status"] == "invalid", "Wrong source hash must fail before executing tests")
+    require(rejected["status"] == "error" and all(cell == "unknown" for cell in rejected["outcomes"].values()),
+            "Wrong source hash must remain an execution error with unknown cells")
+    require(not (output / "workspace-hash-mismatch/stdout.txt").exists(), "Wrong source hash must reject the edit before test execution")
     records.append({"control": "owned-workspace-import-and-hash", "passed": True, "evidence": "workspace-mutated/execution.json"})
 
     if installed:

@@ -287,7 +287,7 @@ def group_has_live_members(group):
             if size != ctypes.sizeof(info):
                 if ctypes.get_errno() == errno.ESRCH:
                     continue
-                raise RuntimeError("Process-group member observation unavailable")
+                raise RuntimeError(f"Process-group member observation unavailable: {size} bytes, errno {ctypes.get_errno()}")
             if info.pgid == group and info.status != 5:
                 return True
         return False
@@ -633,7 +633,7 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     except (OSError, ValueError, RuntimeError) as error:
         evidence.update(getattr(error, "command_result", {}))
         evidence.update(complete=False, tests=[], outcomes={test["id"]: "unknown" for test in baseline or []},
-                        status="invalid" if mutation and isinstance(error, ValueError) else "error",
+                        status="error",
                         infrastructureErrors=[str(error)] + evidence.get("cleanupErrors", []))
     finally:
         for relative in captured_artifacts or []:
