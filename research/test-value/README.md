@@ -52,12 +52,13 @@ The native command requires explicit `--repository`, `--revision`, `--cargo`, `-
 
 ```sh
 python3 research/test-value/report.py --root research/local/EXPERIMENT \
-  --output research/local/EXPERIMENT/report.html
+  --output research/local/EXPERIMENT/report.html \
+  --secondary-root research/local/SEPARATE_POSTHOC_ANALYSIS
 ```
 
 The report verifies each retained analysis against its matrix digest. An optional `report-metadata.json` under the experiment root supplies `handoff`, `pullRequest`, `validation`, `evidenceRoot`, `disk`, and `review`. It cannot override measured subjects or historical results.
 
-All scripts stop at 12% free disk space, ahead of the requested 10% boundary. Unknown process ownership or cleanup preserves source copies and stops further execution. The runner supports Linux and macOS process-group observations. These experiment commands do not launch the desktop app.
+Execution scripts stop at 12% free disk space, ahead of the requested 10% boundary. Unknown process ownership or cleanup preserves source copies and stops further execution. The runner supports Linux and macOS process-group observations. These experiment commands do not launch the desktop app.
 
 ## Interpret the output
 

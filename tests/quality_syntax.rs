@@ -711,7 +711,56 @@ fn selected_links_are_incomplete_and_cache_links_never_replace_input() {
 
 #[test]
 fn dogfood_existing_sdk_and_ts_examples_with_explicit_scope() {
-    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    fn copy_inputs(
+        repository: &std::path::Path,
+        source: &std::path::Path,
+        destination: &std::path::Path,
+        originals: &mut Vec<(std::path::PathBuf, Vec<u8>)>,
+    ) {
+        let mut paths: Vec<_> = fs::read_dir(source)
+            .unwrap()
+            .map(|entry| entry.unwrap().path())
+            .collect();
+        paths.sort();
+        for path in paths {
+            if matches!(
+                path.file_name().and_then(|name| name.to_str()),
+                Some(".git" | "node_modules" | "target")
+            ) {
+                continue;
+            }
+            let kind = fs::symlink_metadata(&path).unwrap().file_type();
+            assert!(
+                !kind.is_symlink(),
+                "linked syntax input: {}",
+                path.display()
+            );
+            if kind.is_dir() {
+                copy_inputs(repository, &path, destination, originals);
+            } else if kind.is_file() && path.extension().is_some_and(|extension| extension == "ts")
+            {
+                let relative = path.strip_prefix(repository).unwrap();
+                let target = destination.join(relative);
+                fs::create_dir_all(target.parent().unwrap()).unwrap();
+                let bytes = fs::read(&path).unwrap();
+                fs::write(target, &bytes).unwrap();
+                originals.push((path, bytes));
+            }
+        }
+    }
+    let repository = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let temporary = TempDir::new().unwrap();
+    let root = temporary.path();
+    let mut originals = vec![];
+    for directory in ["sdk", "examples"] {
+        copy_inputs(
+            repository,
+            &repository.join(directory),
+            root,
+            &mut originals,
+        );
+    }
+    assert!(!originals.is_empty());
     let selection = SourceSelection {
         include: vec!["sdk/**/*.ts".into(), "examples/**/*.ts".into()],
         exclude: vec![],
@@ -735,6 +784,13 @@ fn dogfood_existing_sdk_and_ts_examples_with_explicit_scope() {
     assert!(!plan.sites.is_empty());
     assert!(plan.files.iter().all(|file| file.path.ends_with(".ts")));
     assert!(plan.files.iter().any(|file| file.path == "sdk/index.ts"));
+    let expected: std::collections::BTreeSet<_> = originals
+        .iter()
+        .map(|(path, _)| path.strip_prefix(repository).unwrap().to_str().unwrap())
+        .collect();
+    let observed: std::collections::BTreeSet<_> =
+        plan.files.iter().map(|file| file.path.as_str()).collect();
+    assert_eq!(observed, expected);
     let original = fs::read(root.join("sdk/index.ts")).unwrap();
     for site in plan
         .sites
@@ -747,6 +803,13 @@ fn dogfood_existing_sdk_and_ts_examples_with_explicit_scope() {
             .unwrap();
     }
     assert_eq!(fs::read(root.join("sdk/index.ts")).unwrap(), original);
+    for (path, bytes) in originals {
+        assert_eq!(fs::read(&path).unwrap(), bytes);
+        assert_eq!(
+            fs::read(root.join(path.strip_prefix(repository).unwrap())).unwrap(),
+            bytes
+        );
+    }
 }
 
 #[test]
