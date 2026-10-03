@@ -12,6 +12,7 @@ import sys
 import time
 from unittest.mock import patch
 
+import runner as execution_runner
 from runner import DependencyStore, OwnedChild, execute_case, group_has_live_members, install_signal_handlers, private_environment, run_command, run_matrix, write_json
 
 
@@ -44,7 +45,8 @@ def ownership_controls(output):
         current_group = None
     require(current_group is None or not group_has_live_members(current_group), "Late descendant must not remain alive")
     timeout = run_command(["/bin/sh", "-c", "exec sleep 30"], directory, environment, directory / "timeout", timeout=0.15)
-    require(timeout["status"] == "timeout", "Deadline must clean an owned live group")
+    write_json(directory / "timeout/execution.json", timeout)
+    require(timeout["status"] == "timeout", f"Deadline must clean an owned live group: {timeout}")
     oversized = run_command([sys.executable, "-c", "import sys;sys.stdout.buffer.write(b'x'*65536)"], directory, environment,
                             directory / "oversized", max_output=1024)
     require(oversized["status"] == "outputLimit", "Fast output must also meet the final output budget")
@@ -198,6 +200,42 @@ def execute_controls(output, archguard, installed=None, node="node"):
     baseline = matrix["completeness"]["baseline"]["tests"]
     records = [{"control": "process-ownership", "passed": True, "evidence": "ownership/controls.json"},
                {"control": "node-dual-kill", "passed": True, "evidence": "node-matrix/matrix.json"}]
+    retained = []
+    original_case = execution_runner.execute_case
+    original_finish = OwnedChild.finish
+    calls = []
+
+    def uncertain_column(template, evidence, arguments, **options):
+        calls.append(options.get("mutation"))
+        if not options.get("mutation"):
+            return original_case(template, evidence, arguments, **options)
+
+        def unavailable_finish(child, observe=group_has_live_members, grace=5):
+            retained.append(child.process)
+
+            def unavailable(_group):
+                raise RuntimeError("Injected unavailable mutant group inventory")
+
+            return original_finish(child, observe=unavailable, grace=grace)
+
+        options["timeout"] = 0.15
+        with patch.object(OwnedChild, "finish", unavailable_finish):
+            return original_case(template, evidence, [sys.executable, "-c", "import time;time.sleep(30)"], **options)
+
+    with patch("runner.execute_case", uncertain_column):
+        stopped = run_matrix(config, output / "scheduler-uncertain")
+    try:
+        require(len(calls) == 2 and stopped["mutants"][0]["status"] == "error" and stopped["mutants"][1]["status"] == "notRun",
+                "Unconfirmed mutant cleanup must stop the next execution")
+        require(stopped["completeness"]["cleanupConfirmed"] is False and all(cell == "unknown" for cell in stopped["mutants"][1]["outcomes"].values()),
+                "Remaining stopped columns must retain unknown cells and cleanup evidence")
+        require((output / "scheduler-uncertain/mutant-00000/source/case.test.mjs").is_file() and not (output / "scheduler-uncertain/mutant-00001").exists(),
+                "Uncertain source must remain and no subsequent source execution may start")
+        require(len(retained) == 1 and group_has_live_members(retained[0].pid), "Scheduler control must retain a real live child")
+    finally:
+        for process in retained:
+            require(OwnedChild(process).finish()[0] < 0, "Scheduler control restores real observation before cleanup")
+    records.append({"control": "uncertain-cleanup-stops-scheduler", "passed": True, "evidence": "scheduler-uncertain/matrix.json"})
     cases = {
         "missing": common + 'test("duplicate",()=>assert.equal(2,2));',
         "skipped": tests.replace('test("duplicate"', 'test.skip("duplicate"', 1),

@@ -453,7 +453,8 @@ def _run_command(command, cwd, environment, evidence, timeout, max_output):
             status = "cancelled"
     result = {"exitCode": exit_code, "status": status, "durationMs": (time.monotonic() - start) * 1000,
             "command": command, "cwd": str(cwd), "residualProcessGroup": residual_group, "cleanupErrors": cleanup_errors,
-            "stdoutBytes": stdout_bytes, "stderrBytes": stderr_bytes, "cleanupComplete": cleanup_complete}
+            "stdoutBytes": stdout_bytes, "stderrBytes": stderr_bytes, "cleanupComplete": cleanup_complete,
+            "capturedPid": process.pid if process is not None else None}
     if pending_error is not None:
         pending_error.command_result = result
         raise pending_error
@@ -713,6 +714,7 @@ def run_matrix(config, output):
     baseline = execute_case(template, output / "baseline", config["command"], **options)
     inventory = baseline["tests"]
     baseline_complete = baseline["complete"] and baseline["status"] == "survived"
+    cleanup_blocked = baseline.get("cleanupComplete") is not True or bool(baseline.get("cleanupErrors"))
     result = {"schemaVersion": 1, "subject": config["subject"], "baselineComplete": baseline_complete,
               "tests": [{key: test[key] for key in ["id", "name", "file", "project", "durationMs"] if key in test} for test in inventory],
               "mutants": [], "provenance": {"inputDigest": inputs_digest, "runnerSha256": runner_digest,
@@ -722,17 +724,20 @@ def run_matrix(config, output):
                                "selectedClosureOnly": True}}
     selected = plan["sites"][:config.get("mutantLimit", len(plan["sites"]))]
     for index, mutation in enumerate(selected):
-        if baseline_complete:
+        if baseline_complete and not cleanup_blocked:
             execution = execute_case(template, output / f"mutant-{index:05d}", config["command"], baseline=inventory, mutation=mutation, **options)
             result["mutants"].append({"id": mutation["id"], "status": execution["status"], "outcomes": execution["outcomes"],
                                        "infrastructureErrors": execution["infrastructureErrors"], "mutation": mutation,
                                        "durationMs": execution.get("durationMs"), "evidence": f"mutant-{index:05d}/execution.json"})
+            cleanup_blocked = execution.get("cleanupComplete") is not True or bool(execution.get("cleanupErrors"))
         else:
             result["mutants"].append({"id": mutation["id"], "status": "notRun", "outcomes": {test["id"]: "unknown" for test in inventory},
-                                       "infrastructureErrors": ["Fresh baseline did not pass completely"], "mutation": mutation})
+                                       "infrastructureErrors": ["Process cleanup is unconfirmed; further execution stopped" if cleanup_blocked else
+                                                                "Fresh baseline did not pass completely"], "mutation": mutation})
         write_json(output / "matrix.json", result)
         print(f"{index+1}/{len(selected)} {result['mutants'][-1]['status']}", file=sys.stderr, flush=True)
-    if dependencies:
+    result["completeness"]["cleanupConfirmed"] = not cleanup_blocked
+    if dependencies and not cleanup_blocked:
         final_digest = dependencies.current_digest()
         result["completeness"]["finalDependencySha256"] = final_digest
         if final_digest != dependencies.sha256:

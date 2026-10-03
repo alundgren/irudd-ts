@@ -128,6 +128,8 @@ timeout or output-budget failure also stops only that group. A process group
 left behind after the command exits makes the execution incomplete. The leader
 remains reserved through group observation and every signal. Unknown ownership
 or uncertain group observation suppresses numeric signals and fails completion.
+Unconfirmed cleanup stops the matrix scheduler. Remaining columns stay `notRun`
+with unknown cells; the runner preserves the uncertain source and evidence.
 The CLI handles SIGINT and SIGTERM so command cleanup runs before it exits.
 
 ## Controls
