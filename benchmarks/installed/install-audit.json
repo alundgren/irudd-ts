@@ -1,0 +1,132 @@
+{
+  "revision": "e0db2a5e58bcbe7d738bca7667d2440ddb83e30f",
+  "archguardRevision": "f3c34b4aa0aaad7879016e2f58610f6c7a3ef5f8",
+  "archguardExecutableSha256": "710dcb5b65e9625ba8c38a47c17ebd8794bd2e9a18baa48ce2a37d016c934b39",
+  "nodeVersion": "v24.21.0",
+  "pnpmVersion": "11.10.0",
+  "pnpmCommand": "node /tmp/archguard-next/tools/pnpm/bin/pnpm.cjs install --frozen-lockfile --ignore-scripts --ignore-pnpmfile --reporter=append-only",
+  "installExit": 0,
+  "installLogSha256": "50d0e76728c87f1fc6ca164ffd626372d5705a00b99beecbb03f084a736baa01",
+  "hashes": {
+    "pnpm-lock.yaml": "2a4aeb033e6b839ac4e041f1317825e3f3d632cbdfb355715802d19c503a7f14",
+    "pnpm-workspace.yaml": "447605d054dab97b574aa17224c4d7dd8b7a1518e0b262fbc7fbf4b9f9d8c897",
+    "package.json": "aedc7229c76a4b9ba6afb0ab54994579ec7ee7e500fe94ceda8f853fa829671c"
+  },
+  "trackedChanges": "",
+  "generatedInputs": {
+    "apps/mobile/.generated/device-stream": false,
+    "apps/mobile/.generated/third-party-licenses": false,
+    "apps/mobile/generated-uniwind-theme-names.json": true
+  },
+  "generatedInputsAudit": [
+    {
+      "kind": "licenses",
+      "files": [
+        {
+          "path": "apps/mobile/.generated/third-party-licenses/index.js",
+          "bytes": 1070570,
+          "sha256": "e0d76db3e10cb791c426050236ebedda29e827b892da3f6862ef386aa1fd591a"
+        },
+        {
+          "path": "apps/mobile/.generated/third-party-licenses/package.json",
+          "bytes": 20,
+          "sha256": "4bddcb8b1ce67acfe4ca04125acd828ed5e2671784a3fa5ab23b811c9e32b386"
+        }
+      ],
+      "entries": 661,
+      "allowMissingGeneratedNotices": true,
+      "ok": true
+    },
+    {
+      "kind": "device-stream",
+      "files": [
+        {
+          "path": "apps/mobile/.generated/device-stream/index.js",
+          "bytes": 83159,
+          "sha256": "53c7dca94757230237bc1721cf39d64229bc2e536973f5b513abadf510326319"
+        },
+        {
+          "path": "apps/mobile/.generated/device-stream/package.json",
+          "bytes": 20,
+          "sha256": "4bddcb8b1ce67acfe4ca04125acd828ed5e2671784a3fa5ab23b811c9e32b386"
+        }
+      ],
+      "ok": true
+    }
+  ],
+  "tools": [
+    {
+      "name": "pnpm",
+      "version": "11.10.0",
+      "license": "MIT",
+      "licenseSource": "https://github.com/pnpm/pnpm/blob/v11.10.0/LICENSE",
+      "registryIntegrity": "sha512-C3+LmAYAMZBMAX46QesYehbUDuuCm5XE+MsDaBdh/Eq1PdIZEVubRH9NzhoFohR2RGHn03AzkqnzL5URzoyGyA==",
+      "redistributed": false
+    },
+    {
+      "name": "vite-plus",
+      "version": "1.0.0",
+      "license": "MIT",
+      "licenseSource": "installed node_modules/vite-plus/LICENSE",
+      "usage": "inspected device-stream generator, external tool only",
+      "redistributed": false
+    }
+  ],
+  "historicalInstall": {
+    "initialRevision": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+    "reusedRevisions": [
+      "53830d413474b2a5749c040d4382c96002894b88",
+      "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c"
+    ],
+    "inputIdentity": {
+      "apps/desktop/package.json": "0880bf09940fc80001f4954c3672a22ed25612e8e85fb0520866d7ef053a9f2b",
+      "apps/desktop/tsconfig.json": "f38c80a9aec87dbd809ad62abe41fef93402642df7f1d3aa950c59493685c6e0",
+      "apps/marketing/package.json": "7228bca1a9cb9f695d63008f517544898f1f14f8af4d4d6862a42490d56da2b6",
+      "apps/marketing/tsconfig.json": "974b0a3b37e52f3649d9df63e72e374794e9e797c8ae61eca4812f844406f7ef",
+      "apps/mobile/modules/t3-markdown-text/package.json": "6317a2a14e741855dd4a6bcaf8920d3bfb876f95de8e8e5a0697de8342ebf01d",
+      "apps/mobile/modules/t3-review-diff/package.json": "f8069b984dd5468bc6018fe53172deed700fe28706ad345b5ce06da3535c9f9d",
+      "apps/mobile/modules/t3-terminal/package.json": "303ec2ceb7e22415e43570946a0e0fe2be71c36b33d07ae5e79e4f5930b30956",
+      "apps/mobile/package.json": "2de00eef191b44d6da5d687970a3602b375c244da85262479fed066831bd9fd5",
+      "apps/mobile/tsconfig.json": "6153e3656a8eb3f931e77b083d81cda0a63688c95af162e9a28adc6af8aa40bf",
+      "apps/server/package.json": "6d0815899db84a2fcd177655b6b8cfe11da0adef90ef35230bfda10b3b261578",
+      "apps/server/tsconfig.json": "56138da5a3d70f586c87726a1d5410a371b259ef663019faa44ace50ef70ea2d",
+      "apps/web/package.json": "e0c77087e04a733710894033532e584b2b9dcf1c9ac20b410a934510f6a378a0",
+      "apps/web/tsconfig.json": "d9f076d102c5bf6f1513e1104d94e8ee67af6079a039cde060968500d79a920f",
+      "infra/relay/package.json": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00",
+      "infra/relay/tsconfig.json": "445efd9c09836d90f9745de7ab2e03a7b9e87ad44281cc2445b44df6570be993",
+      "oxlint-plugin-t3code/package.json": "cbfb88a7e2ee955e742a5d086b6eb08394643bab05ea06314860d1d7bb2ecb38",
+      "oxlint-plugin-t3code/tsconfig.json": "8fb473f1832cee5c2d6731fe421bafa5371b9993771a6757a0d8d67324d071f2",
+      "package.json": "4d65467d19011349eb83666628a29f438c62e2f5b0b4be125dc3d586ea7d2503",
+      "packages/client-runtime/package.json": "e5fba8521e862910b392ba2a3e01f7b375ace0f241f0fedbeb6ca5c3dfeeccd9",
+      "packages/client-runtime/tsconfig.json": "8f6e85eeaa8025fe7b2f01763e03f32540d3e2869ae857490d685098460f4e3a",
+      "packages/contracts/package.json": "5c6df7c5b8f3397753d87d75f304d884f6a705b304e29aef0b978d40d389fcc8",
+      "packages/contracts/tsconfig.json": "e8c878fec5fb9cbd275620e44eece93c647b06aa7d7e2194c1fb480d56623443",
+      "packages/effect-acp/package.json": "088f8bac0f59e8bb5cd9fdd9156cd54bb0f229c487a3a3e46a3cecb082c48455",
+      "packages/effect-acp/tsconfig.json": "4358f9bbc1f67071d7aec987ffb7ce6c8468f6ad895dda130c505052faf4b46e",
+      "packages/effect-codex-app-server/package.json": "e784da0b6b877b4226437906c26f8418c3b7bbe8bb84cf4f5e3dee79b41b0e8a",
+      "packages/effect-codex-app-server/tsconfig.json": "4358f9bbc1f67071d7aec987ffb7ce6c8468f6ad895dda130c505052faf4b46e",
+      "packages/shared/package.json": "1533a10fd96be962b855a4d6f8b45523b5eea13e6615b58b2d89197bc9eceb4a",
+      "packages/shared/tsconfig.json": "6f57755bb4b70ddfc76a4d3e8d87e17e4730e9d1aa68efeaca01b33faf5be71c",
+      "packages/ssh/package.json": "90f0bc2eae26423bdc9ed379a908e9952456774aae88b54b0db6093d1dc35b51",
+      "packages/ssh/tsconfig.json": "6f57755bb4b70ddfc76a4d3e8d87e17e4730e9d1aa68efeaca01b33faf5be71c",
+      "packages/tailscale/package.json": "4b2c8cd475e874fd44fba7369471d58c3ee45019371bacf1264b2b0d1a837ab7",
+      "packages/tailscale/tsconfig.json": "6f57755bb4b70ddfc76a4d3e8d87e17e4730e9d1aa68efeaca01b33faf5be71c",
+      "pnpm-lock.yaml": "cdf7f23158631e7cb34b279a9792ef28eb3418c453ec58508e3d91919a4b5a12",
+      "pnpm-workspace.yaml": "65fc061386700e2e02c4402da79b0a696f2643f80c15b3ddd81de63cd65e86cb",
+      "scripts/package.json": "74f5fcc2d55c5f163f3764ea141bf093353ab3c59df1484c649f318bdeb68c83",
+      "scripts/tsconfig.json": "8fb473f1832cee5c2d6731fe421bafa5371b9993771a6757a0d8d67324d071f2",
+      "tsconfig.base.json": "230d669e7dd60016efc4115c0e6de91f4b88c64bd2bc28d2104401303438ccdb"
+    },
+    "installExit": 0,
+    "command": "node /tmp/archguard-next/tools/pnpm/bin/pnpm.cjs install --frozen-lockfile --ignore-scripts --ignore-pnpmfile --reporter=append-only",
+    "installLogSha256": "d04fa178988ef36270db2bf6b35938a450f87cb79453da7c675c1d2575b600ac",
+    "elapsedInstallSeconds": 22.8,
+    "generatedOutputsExecuted": false
+  },
+  "generatorSourceHashes": {
+    "apps/mobile/scripts/generate-device-stream.mts": "2b9998a52dd9c06c2a513e35fae1d91b042394c31d83819e0589758ce052f9c9",
+    "scripts/lib/third-party-licenses.ts": "7eb0365cb15d87e21f483926873f127bc0cb737ea417c81d5a6480d856d8e843",
+    "third-party-licenses.config.json": "250f485b9d6910d37b292786a47920d0256fd69d47e103383daa7559e8b056ad"
+  },
+  "generatedLicensePolicy": "allowMissingGeneratedNotices=true, development output, missing generated SPDX notices skipped"
+}

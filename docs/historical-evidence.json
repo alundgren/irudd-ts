@@ -201,6 +201,112 @@
           "line": 34
         }
       ]
+    },
+    {
+      "id": "12380",
+      "pr": "https://github.com/pingdotgg/t3code/pull/12380",
+      "before": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+      "fixed": "53830d413474b2a5749c040d4382c96002894b88",
+      "kind": "full selected mobile/workspace source replay with retained incomplete-analysis problems",
+      "category": "platform source resolution",
+      "measurementDirectory": "../benchmarks/installed/measurements",
+      "sources": [
+        {
+          "commit": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+          "path": "apps/mobile/src/features/agent-awareness/remoteRegistration.ts",
+          "verifiedText": "import { type LiveActivity } from \"expo-widgets\";",
+          "sourceSha256": "f5f3f05950788eee88dbd16e872c8e148bc9beff7b89ec616a1480a3c946547b",
+          "line": 1
+        },
+        {
+          "commit": "e0649ed7d8f8b5f21d114ff2b09ef803184f1d05",
+          "path": "apps/mobile/src/widgets/AgentActivity.tsx",
+          "verifiedText": "import { HStack, Image, Spacer, Text, VStack, ZStack } from \"@expo/ui/swift-ui\";",
+          "sourceSha256": "64134e303a2187108f95fa7d31ffc5229147c725a725e0f99e42acc61605adaa",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/agent-awareness/remoteRegistration.ts",
+          "verifiedText": "import { type LiveActivity } from \"expo-widgets\";",
+          "sourceSha256": "03ab5dc1fed9d8387aefc6bad47e08bf04949364eaf2056000ff863b256bbac2",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/agent-awareness/agentLiveActivity.ts",
+          "verifiedText": "import type { LiveActivity } from \"expo-widgets\";",
+          "sourceSha256": "76dd68ca622c6547843d690f6658445d85efd76452cd075a110ffd23bf34bdbf",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/agent-awareness/agentLiveActivity.ios.ts",
+          "verifiedText": "import AgentActivity, { type AgentActivityProps } from \"../../widgets/AgentActivity\";",
+          "sourceSha256": "ca63c0052b3abbeb54125c87fdcc3c1a28df2ab505f5d89f4f55e0dc15dd8f52",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/widgets/AgentActivity.tsx",
+          "verifiedText": "import { HStack, Image, Spacer, Text, VStack, ZStack } from \"@expo/ui/swift-ui\";",
+          "sourceSha256": "64134e303a2187108f95fa7d31ffc5229147c725a725e0f99e42acc61605adaa",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "12381",
+      "pr": "https://github.com/pingdotgg/t3code/pull/12381",
+      "before": "53830d413474b2a5749c040d4382c96002894b88",
+      "fixed": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+      "kind": "full selected mobile/workspace source replay with retained incomplete-analysis problems",
+      "category": "platform source resolution",
+      "measurementDirectory": "../benchmarks/installed/measurements",
+      "sources": [
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/home/HomeRouteScreen.tsx",
+          "verifiedText": "import * as Arr from \"effect/Array\";",
+          "sourceSha256": "861b02a081ed703f2c61fef4c8f9dc8357d90160a70858aa8159a55617ec6190",
+          "line": 1
+        },
+        {
+          "commit": "53830d413474b2a5749c040d4382c96002894b88",
+          "path": "apps/mobile/src/features/home/HomeHeader.tsx",
+          "verifiedText": "import type { EnvironmentId, SidebarThreadSortOrder } from \"@t3tools/contracts\";",
+          "sourceSha256": "3b7ec0633dc15d0f214d32c6f5ceb0294a5f9037a7fa4c15654ab841348642ed",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeRouteScreen.tsx",
+          "verifiedText": "import * as Arr from \"effect/Array\";",
+          "sourceSha256": "861b02a081ed703f2c61fef4c8f9dc8357d90160a70858aa8159a55617ec6190",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeHeader.tsx",
+          "verifiedText": "import { NativeHeaderToolbar, NativeStackScreenOptions } from \"../../native/StackHeader\";",
+          "sourceSha256": "afd319c6939e1e46829cd42c9c5ac14976f321e1bb0faa02bad45ae52b1e4e57",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeHeader.android.tsx",
+          "verifiedText": "import type { MenuAction } from \"@react-native-menu/menu\";",
+          "sourceSha256": "6aefb0b22816ff0a951078381700a6bdb34776ccf6ab441518fd8411d10b77c0",
+          "line": 1
+        },
+        {
+          "commit": "7e7cd32463b528838cb10ef6b89ef6ceac1f7a4c",
+          "path": "apps/mobile/src/features/home/HomeHeader.types.ts",
+          "verifiedText": "import type { EnvironmentId, SidebarThreadSortOrder } from \"@t3tools/contracts\";",
+          "sourceSha256": "3e07071ca35a030c97e1170921acddbbae131697c27f88fd3d3ac25c2464a4be",
+          "line": 1
+        }
+      ]
     }
   ],
   "counting": "Four PR reductions, two distinct architecture failure categories. The three namespace PRs apply one convention and must not be counted as three independent runtime bugs. None is a full upstream replay.",

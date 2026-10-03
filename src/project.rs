@@ -5,7 +5,7 @@ use crate::{
 };
 use anyhow::{Context, Result};
 use ignore::WalkBuilder;
-use oxc_resolver::{ResolveOptions, Resolver, TsconfigDiscovery};
+use oxc_resolver::{ResolveError, ResolveOptions, Resolver, TsconfigDiscovery};
 use std::{
     collections::{BTreeMap, BTreeSet},
     path::Path,
@@ -24,7 +24,11 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         packages: vec![],
         problems: vec![],
         resolution: ResolutionProfile {
-            mode: "source".into(),
+            mode: if config.require_external_resolution {
+                "installed-source".into()
+            } else {
+                "source".into()
+            },
             conditions: config.conditions.clone(),
             extensions: config.extensions.clone(),
             extension_aliases: config.extension_aliases.clone(),
@@ -140,6 +144,7 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         condition_names: config.conditions.clone(),
         extensions: config.extensions.clone(),
         extension_alias: config.extension_aliases.clone(),
+        builtin_modules: config.require_external_resolution,
         ..ResolveOptions::default()
     });
     let available: BTreeSet<_> = paths.keys().cloned().collect();
@@ -153,6 +158,7 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
                 &project.packages,
                 &resolver,
                 &available,
+                config.require_external_resolution,
             )?;
             if matches!(
                 edge.status,
@@ -209,6 +215,7 @@ fn resolve_edge(
     packages: &[PackageFacts],
     resolver: &Resolver,
     available: &BTreeSet<String>,
+    require_external_resolution: bool,
 ) -> Result<()> {
     let Some(specifier) = edge.specifier.as_deref() else {
         edge.status = ResolutionStatus::Unsupported;
@@ -284,6 +291,11 @@ fn resolve_edge(
     match result {
         Ok(target) => set_target(root, &target, edge, available)?,
         Err(error) => {
+            if matches!(error, ResolveError::Builtin { .. }) {
+                edge.status = ResolutionStatus::External;
+                edge.detail = Some(error.to_string());
+                return Ok(());
+            }
             let tsconfig = match resolver.find_tsconfig(source) {
                 Ok(config) => config,
                 Err(error) => {
@@ -309,7 +321,7 @@ fn resolve_edge(
                 || specifier.starts_with('#')
                 || specifier.starts_with("@/")
                 || specifier.starts_with("~/");
-            edge.status = if internal {
+            edge.status = if internal || require_external_resolution {
                 ResolutionStatus::Unresolved
             } else {
                 ResolutionStatus::External

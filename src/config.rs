@@ -17,6 +17,8 @@ pub struct Config {
     pub extensions: Vec<String>,
     #[serde(default = "default_extension_aliases")]
     pub extension_aliases: Vec<(String, Vec<String>)>,
+    #[serde(default)]
+    pub require_external_resolution: bool,
     #[serde(default = "default_packages")]
     pub package_manifests: Vec<String>,
     #[serde(default)]
