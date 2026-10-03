@@ -58,3 +58,15 @@ python3 scripts/benchmark_semantic.py --binary target/release/archguard --output
 ```
 
 The third measurement runs the provider directly on a request emitted by the Rust SDK example, excluding host graph discovery and site inventory from that measurement. Its process exit 0 means a valid protocol response; the response's complete flag still distinguishes the historical failure. CLI exit codes retain their usual meaning. Native executable hashing in this measurement script currently targets Linux x64. SemanticFacts.complete describes compiler capability completion; source graph problems are also printed and prevent a clean CLI exit.
+
+The recorded [seven-sample cost result](../benchmarks/results/compiler-semantic-provider.json) uses clean source revision `044caef1e431fbab485e81b76c5be5ff4bb906d6`, Linux x64 and Node 24.21.0. Each cell shows wall-time median and full range in milliseconds:
+
+| Selected source | Graph only | Compiler enabled | Direct provider |
+| --- | ---: | ---: | ---: |
+| PR11304 before | 6.34 (5.03–8.93) | 654.65 (616.35–787.93) | 635.57 (565.41–792.04) |
+| PR11304 fixed | 4.81 (3.82–5.78) | 646.32 (569.81–797.33) | 637.38 (610.22–728.96) |
+| Unrelated clean control | 4.00 (3.00–5.95) | 289.10 (270.19–369.73) | 288.96 (249.82–315.70) |
+
+The enabled check costs 72–134 times the graph-only median on these single-file sources. It adds compiler diagnostics and member/type/symbol queries, including transitive Effect declarations for the historical fixture; the graph-only check does not perform those checks. This comparison measures the cost of enabling the capability on the same selected source, not interchangeable checking implementations. Before remains incomplete with a known missing `auth` member, an error receiver and two compiler errors; fixed and control remain complete. The raw artifact retains every sample, requests, provider facts, normalized output hashes and executable/configuration/source hashes.
+
+Each sample starts fresh host/provider/native processes. Filesystem caches remain available; modes run in a fixed order without an explicit warmup. Other task owners paused heavy work during the reserved window, but background host activity can affect the ranges. Direct-provider and enabled ranges overlap, so subtracting their medians does not establish host overhead. No full-repository, incremental API or TypeScript 6 versus 7 performance conclusion follows from this reduced measurement.
