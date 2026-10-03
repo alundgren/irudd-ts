@@ -1,0 +1,703 @@
+{
+  "harness-error": {
+    "target": "src/account.ts",
+    "mutateAll": true,
+    "seconds": 0.1679214279865846,
+    "baselineFailed": false,
+    "baselineMessage": "",
+    "sites": [
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canShip",
+        "name": "canShip",
+        "line": 4,
+        "start": 107,
+        "end": 109,
+        "original": ">=",
+        "mutant": ">",
+        "category": "comparison",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canShip\",107,109,\">=\",\">\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canRelease",
+        "name": "canRelease",
+        "line": 8,
+        "start": 204,
+        "end": 206,
+        "original": "&&",
+        "mutant": "||",
+        "category": "logical",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canRelease\",204,206,\"&&\",\"||\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/addCredits",
+        "name": "addCredits",
+        "line": 12,
+        "start": 319,
+        "end": 320,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/addCredits\",319,320,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/initialEligibility",
+        "name": "initialEligibility",
+        "line": 16,
+        "start": 389,
+        "end": 393,
+        "original": "true",
+        "mutant": "false",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/initialEligibility\",389,393,\"true\",\"false\"]",
+        "upstreamStatus": "killed",
+        "observedStatus": "execution-error"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/serviceFee",
+        "name": "serviceFee",
+        "line": 20,
+        "start": 446,
+        "end": 447,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/serviceFee\",446,447,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 529,
+        "end": 530,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",529,530,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 531,
+        "end": 532,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",531,532,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/archivedPlanEnabled",
+        "name": "archivedPlanEnabled",
+        "line": 28,
+        "start": 595,
+        "end": 600,
+        "original": "false",
+        "mutant": "true",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/archivedPlanEnabled\",595,600,\"false\",\"true\"]",
+        "upstreamStatus": "not-selected"
+      }
+    ],
+    "calls": [
+      {
+        "command": "python3 -c \"import pathlib; exec('raise SystemExit(12)') if 'worker-' in str(pathlib.Path.cwd()) else None\"",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability",
+        "timeout": null,
+        "code": 0,
+        "timed_out": false,
+        "seconds": 0.062018333992455155,
+        "output": "",
+        "observedStatus": "execution-error"
+      },
+      {
+        "command": "python3 -c \"import pathlib; exec('raise SystemExit(12)') if 'worker-' in str(pathlib.Path.cwd()) else None\"",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-3501e9d0-7679-43e3-ad0a-11fc2a1bb9ac/worker-0",
+        "timeout": 2.0,
+        "code": 12,
+        "timed_out": false,
+        "seconds": 0.07551064097788185,
+        "output": "",
+        "observedStatus": "execution-error"
+      }
+    ],
+    "sourceHashesBefore": {
+      "src/account.test.ts": "71133656de9cd7acce7f22dfebfd36dfd977991aad0218a41ebcbfb6ad886456",
+      "src/account.ts": "1651b779575558c31457d362e859d74771cf5308291fcf4c0ebe9dc84c5c501a",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "98194c0aeb2efe85895fed0767387618e57f893149fd6b15ccd2acf155817557"
+    },
+    "sourceHashesAfter": {
+      "src/account.test.ts": "71133656de9cd7acce7f22dfebfd36dfd977991aad0218a41ebcbfb6ad886456",
+      "src/account.ts": "1651b779575558c31457d362e859d74771cf5308291fcf4c0ebe9dc84c5c501a",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "98194c0aeb2efe85895fed0767387618e57f893149fd6b15ccd2acf155817557"
+    },
+    "sourceRestored": true
+  },
+  "timeout": {
+    "target": "src/account.ts",
+    "mutateAll": true,
+    "seconds": 2.0878432979807258,
+    "baselineFailed": false,
+    "baselineMessage": "",
+    "sites": [
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canShip",
+        "name": "canShip",
+        "line": 4,
+        "start": 107,
+        "end": 109,
+        "original": ">=",
+        "mutant": ">",
+        "category": "comparison",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canShip\",107,109,\">=\",\">\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canRelease",
+        "name": "canRelease",
+        "line": 8,
+        "start": 204,
+        "end": 206,
+        "original": "&&",
+        "mutant": "||",
+        "category": "logical",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canRelease\",204,206,\"&&\",\"||\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/addCredits",
+        "name": "addCredits",
+        "line": 12,
+        "start": 319,
+        "end": 320,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/addCredits\",319,320,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/initialEligibility",
+        "name": "initialEligibility",
+        "line": 16,
+        "start": 389,
+        "end": 393,
+        "original": "true",
+        "mutant": "false",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/initialEligibility\",389,393,\"true\",\"false\"]",
+        "upstreamStatus": "killed",
+        "observedStatus": "timeout"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/serviceFee",
+        "name": "serviceFee",
+        "line": 20,
+        "start": 446,
+        "end": 447,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/serviceFee\",446,447,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 529,
+        "end": 530,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",529,530,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 531,
+        "end": 532,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",531,532,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/archivedPlanEnabled",
+        "name": "archivedPlanEnabled",
+        "line": 28,
+        "start": 595,
+        "end": 600,
+        "original": "false",
+        "mutant": "true",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/archivedPlanEnabled\",595,600,\"false\",\"true\"]",
+        "upstreamStatus": "not-selected"
+      }
+    ],
+    "calls": [
+      {
+        "command": "python3 -c \"import pathlib; exec('import time; time.sleep(5)') if 'worker-' in str(pathlib.Path.cwd()) else None\"",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability",
+        "timeout": null,
+        "code": 0,
+        "timed_out": false,
+        "seconds": 0.052506411040667444,
+        "output": "",
+        "observedStatus": "execution-error"
+      },
+      {
+        "command": "python3 -c \"import pathlib; exec('import time; time.sleep(5)') if 'worker-' in str(pathlib.Path.cwd()) else None\"",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-a89e7552-2eeb-4e2b-9978-cb52dfaa8426/worker-0",
+        "timeout": 2.0,
+        "code": 124,
+        "timed_out": true,
+        "seconds": 2.0092943400377408,
+        "output": "",
+        "observedStatus": "timeout"
+      }
+    ],
+    "sourceHashesBefore": {
+      "src/account.test.ts": "71133656de9cd7acce7f22dfebfd36dfd977991aad0218a41ebcbfb6ad886456",
+      "src/account.ts": "1651b779575558c31457d362e859d74771cf5308291fcf4c0ebe9dc84c5c501a",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "98194c0aeb2efe85895fed0767387618e57f893149fd6b15ccd2acf155817557"
+    },
+    "sourceHashesAfter": {
+      "src/account.test.ts": "71133656de9cd7acce7f22dfebfd36dfd977991aad0218a41ebcbfb6ad886456",
+      "src/account.ts": "1651b779575558c31457d362e859d74771cf5308291fcf4c0ebe9dc84c5c501a",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "98194c0aeb2efe85895fed0767387618e57f893149fd6b15ccd2acf155817557"
+    },
+    "sourceRestored": true
+  },
+  "invalid-mutant": {
+    "baseline": {
+      "code": 0,
+      "timed_out": false,
+      "seconds": 1.5087445030221716,
+      "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":3,\"numFailedTestSuites\":0,\"numPendingTestSuites\":0,\"numTotalTests\":9,\"numPassedTests\":9,\"numFailedTests\":0,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029369370,\"success\":true,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"ships at the minimum order and rejects an order below it\",\"status\":\"passed\",\"title\":\"ships at the minimum order and rejects an order below it\",\"duration\":3.5470559999999978,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"requires both payment and verification\",\"status\":\"passed\",\"title\":\"requires both payment and verification\",\"duration\":0.7120570000000157,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"adds positive credits and leaves zero credits unchanged\",\"status\":\"passed\",\"title\":\"adds positive credits and leaves zero credits unchanged\",\"duration\":1.1244570000000067,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"starts eligible\",\"status\":\"passed\",\"title\":\"starts eligible\",\"duration\":0.5110740000000078,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"charges no service fee\",\"status\":\"passed\",\"title\":\"charges no service fee\",\"duration\":0.418500999999992,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"retains positive and negative integer credits\",\"status\":\"passed\",\"title\":\"retains positive and negative integer credits\",\"duration\":0.3441620000000398,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029370116,\"endTime\":1791029370124.3442,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":4.520200999999986,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.730969000000016,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":1.0596570000000156,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029369767,\"endTime\":1791029369774.0596,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[],\"reason\":\"passed\"}\n"
+    },
+    "site": {
+      "file": "src/account.ts",
+      "namespace": "account",
+      "form_id": "defn/initialEligibility",
+      "name": "initialEligibility",
+      "line": 16,
+      "start": 389,
+      "end": 393,
+      "original": "true",
+      "mutant": "(",
+      "category": "deliberate-invalid-control",
+      "mutation_id": "[\"src/account.ts\",\"account\",\"defn/initialEligibility\",389,393,\"true\",\"false\"]"
+    },
+    "upstreamOutcomes": {
+      "[\"src/account.ts\",\"account\",\"defn/initialEligibility\",389,393,\"true\",\"false\"]": "killed"
+    },
+    "observedStatus": "invalid-mutant",
+    "calls": [
+      {
+        "command": "./node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability",
+        "timeout": null,
+        "code": 0,
+        "timed_out": false,
+        "seconds": 1.5087445030221716,
+        "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":3,\"numFailedTestSuites\":0,\"numPendingTestSuites\":0,\"numTotalTests\":9,\"numPassedTests\":9,\"numFailedTests\":0,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029369370,\"success\":true,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"ships at the minimum order and rejects an order below it\",\"status\":\"passed\",\"title\":\"ships at the minimum order and rejects an order below it\",\"duration\":3.5470559999999978,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"requires both payment and verification\",\"status\":\"passed\",\"title\":\"requires both payment and verification\",\"duration\":0.7120570000000157,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"adds positive credits and leaves zero credits unchanged\",\"status\":\"passed\",\"title\":\"adds positive credits and leaves zero credits unchanged\",\"duration\":1.1244570000000067,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"starts eligible\",\"status\":\"passed\",\"title\":\"starts eligible\",\"duration\":0.5110740000000078,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"charges no service fee\",\"status\":\"passed\",\"title\":\"charges no service fee\",\"duration\":0.418500999999992,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"retains positive and negative integer credits\",\"status\":\"passed\",\"title\":\"retains positive and negative integer credits\",\"duration\":0.3441620000000398,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029370116,\"endTime\":1791029370124.3442,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":4.520200999999986,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.730969000000016,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":1.0596570000000156,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029369767,\"endTime\":1791029369774.0596,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[],\"reason\":\"passed\"}\n",
+        "observedStatus": "survived"
+      },
+      {
+        "command": "./node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-15ec62f2-1a95-4bea-99be-5c289c2a2eee/worker-0",
+        "timeout": 5,
+        "code": 1,
+        "timed_out": false,
+        "seconds": 1.8424664620542899,
+        "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":2,\"numFailedTestSuites\":1,\"numPendingTestSuites\":0,\"numTotalTests\":3,\"numPassedTests\":3,\"numFailedTests\":0,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029371073,\"success\":false,\"testResults\":[{\"assertionResults\":[],\"startTime\":1791029371073,\"endTime\":1791029371073,\"status\":\"failed\",\"message\":\"Transform failed with 1 error:\\n\\n\\u001b[31m[PARSE_ERROR] \\u001b[0mUnexpected token\\n    \\u001b[38;5;246m\u256d\\u001b[0m\\u001b[38;5;246m\u2500\\u001b[0m\\u001b[38;5;246m[\\u001b[0m src/account.ts:16:11 \\u001b[38;5;246m]\\u001b[0m\\n    \\u001b[38;5;246m\u2502\\u001b[0m\\n \\u001b[38;5;246m16 \u2502\\u001b[0m \\u001b[38;5;249m \\u001b[0m\\u001b[38;5;249m \\u001b[0m\\u001b[38;5;249mr\\u001b[0m\\u001b[38;5;249me\\u001b[0m\\u001b[38;5;249mt\\u001b[0m\\u001b[38;5;249mu\\u001b[0m\\u001b[38;5;249mr\\u001b[0m\\u001b[38;5;249mn\\u001b[0m\\u001b[38;5;249m \\u001b[0m\\u001b[38;5;249m(\\u001b[0m;\\n \\u001b[38;5;240m   \u2502\\u001b[0m           \u252c  \\n \\u001b[38;5;240m   \u2502\\u001b[0m           \u2570\u2500\u2500 \\n\\u001b[38;5;246m\u2500\u2500\u2500\u2500\u256f\\u001b[0m\\n\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-15ec62f2-1a95-4bea-99be-5c289c2a2eee/worker-0/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":3.6660479999999893,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.2801079999999843,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":0.5177459999999883,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029371589,\"endTime\":1791029371594.5178,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-15ec62f2-1a95-4bea-99be-5c289c2a2eee/worker-0/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[{\"name\":\"Error\",\"message\":\"Transform failed with 1 error:\\n\\n\\u001b[31m[PARSE_ERROR] \\u001b[0mUnexpected token\\n    \\u001b[38;5;246m\u256d\\u001b[0m\\u001b[38;5;246m\u2500\\u001b[0m\\u001b[38;5;246m[\\u001b[0m src/account.ts:16:11 \\u001b[38;5;246m]\\u001b[0m\\n    \\u001b[38;5;246m\u2502\\u001b[0m\\n \\u001b[38;5;246m16 \u2502\\u001b[0m \\u001b[38;5;249m \\u001b[0m\\u001b[38;5;249m \\u001b[0m\\u001b[38;5;249mr\\u001b[0m\\u001b[38;5;249me\\u001b[0m\\u001b[38;5;249mt\\u001b[0m\\u001b[38;5;249mu\\u001b[0m\\u001b[38;5;249mr\\u001b[0m\\u001b[38;5;249mn\\u001b[0m\\u001b[38;5;249m \\u001b[0m\\u001b[38;5;249m(\\u001b[0m;\\n \\u001b[38;5;240m   \u2502\\u001b[0m           \u252c  \\n \\u001b[38;5;240m   \u2502\\u001b[0m           \u2570\u2500\u2500 \\n\\u001b[38;5;246m\u2500\u2500\u2500\u2500\u256f\\u001b[0m\\n\"}],\"reason\":\"failed\"}\n",
+        "observedStatus": "execution-error"
+      }
+    ]
+  },
+  "exception": {
+    "error": "deliberate runner exception",
+    "workersRemoved": true
+  },
+  "sourceRestored": true,
+  "baselineAfterExceptions": {
+    "command": [
+      "./node_modules/.bin/vitest",
+      "run",
+      "--reporter=json"
+    ],
+    "code": 0,
+    "seconds": 1.411431502958294,
+    "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":3,\"numFailedTestSuites\":0,\"numPendingTestSuites\":0,\"numTotalTests\":9,\"numPassedTests\":9,\"numFailedTests\":0,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029372706,\"success\":true,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"ships at the minimum order and rejects an order below it\",\"status\":\"passed\",\"title\":\"ships at the minimum order and rejects an order below it\",\"duration\":6.004800999999986,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"requires both payment and verification\",\"status\":\"passed\",\"title\":\"requires both payment and verification\",\"duration\":0.6107190000000173,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"adds positive credits and leaves zero credits unchanged\",\"status\":\"passed\",\"title\":\"adds positive credits and leaves zero credits unchanged\",\"duration\":1.3014870000000087,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"starts eligible\",\"status\":\"passed\",\"title\":\"starts eligible\",\"duration\":0.8713359999999852,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"charges no service fee\",\"status\":\"passed\",\"title\":\"charges no service fee\",\"duration\":0.379257999999993,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"retains positive and negative integer credits\",\"status\":\"passed\",\"title\":\"retains positive and negative integer credits\",\"duration\":0.8679889999999659,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029373059,\"endTime\":1791029373068.868,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":4.948931000000016,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.6006959999999708,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":0.6078340000000253,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029373412,\"endTime\":1791029373419.608,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/customSnoozeDate.test.ts\"}]}\n"
+  },
+  "changedTestFiles": [],
+  "changedHelperFiles": [
+    "src/helper.ts"
+  ],
+  "changedFunctionSeed": {
+    "target": "src/account.ts",
+    "mutateAll": true,
+    "seconds": 3.824696280003991,
+    "baselineFailed": false,
+    "baselineMessage": "",
+    "sites": [
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canShip",
+        "name": "canShip",
+        "line": 4,
+        "start": 107,
+        "end": 109,
+        "original": ">=",
+        "mutant": ">",
+        "category": "comparison",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canShip\",107,109,\">=\",\">\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canRelease",
+        "name": "canRelease",
+        "line": 8,
+        "start": 204,
+        "end": 206,
+        "original": "&&",
+        "mutant": "||",
+        "category": "logical",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canRelease\",204,206,\"&&\",\"||\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/addCredits",
+        "name": "addCredits",
+        "line": 12,
+        "start": 319,
+        "end": 320,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/addCredits\",319,320,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/initialEligibility",
+        "name": "initialEligibility",
+        "line": 16,
+        "start": 389,
+        "end": 393,
+        "original": "true",
+        "mutant": "false",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/initialEligibility\",389,393,\"true\",\"false\"]",
+        "upstreamStatus": "killed",
+        "observedStatus": "killed"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/serviceFee",
+        "name": "serviceFee",
+        "line": 20,
+        "start": 446,
+        "end": 447,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/serviceFee\",446,447,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 529,
+        "end": 530,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",529,530,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 531,
+        "end": 532,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",531,532,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/archivedPlanEnabled",
+        "name": "archivedPlanEnabled",
+        "line": 28,
+        "start": 595,
+        "end": 600,
+        "original": "false",
+        "mutant": "true",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/archivedPlanEnabled\",595,600,\"false\",\"true\"]",
+        "upstreamStatus": "not-selected"
+      }
+    ],
+    "calls": [
+      {
+        "command": "./node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability",
+        "timeout": null,
+        "code": 0,
+        "timed_out": false,
+        "seconds": 1.9443132010055706,
+        "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":3,\"numFailedTestSuites\":0,\"numPendingTestSuites\":0,\"numTotalTests\":9,\"numPassedTests\":9,\"numFailedTests\":0,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029374531,\"success\":true,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"ships at the minimum order and rejects an order below it\",\"status\":\"passed\",\"title\":\"ships at the minimum order and rejects an order below it\",\"duration\":2.9536599999999567,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"requires both payment and verification\",\"status\":\"passed\",\"title\":\"requires both payment and verification\",\"duration\":0.5305999999999926,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"adds positive credits and leaves zero credits unchanged\",\"status\":\"passed\",\"title\":\"adds positive credits and leaves zero credits unchanged\",\"duration\":0.6711920000000191,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"starts eligible\",\"status\":\"passed\",\"title\":\"starts eligible\",\"duration\":0.4530860000000416,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"charges no service fee\",\"status\":\"passed\",\"title\":\"charges no service fee\",\"duration\":3.6680820000000267,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"retains positive and negative integer credits\",\"status\":\"passed\",\"title\":\"retains positive and negative integer credits\",\"duration\":0.5843099999999595,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029374962,\"endTime\":1791029374970.668,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":2.824186999999995,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.195079000000021,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":0.5750120000000152,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029375420,\"endTime\":1791029375424.575,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[],\"reason\":\"passed\"}\n",
+        "observedStatus": "survived"
+      },
+      {
+        "command": "./node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-825638d7-e2a5-4f66-8137-45010b3dfa0f/worker-0",
+        "timeout": 19.443132010055706,
+        "code": 1,
+        "timed_out": false,
+        "seconds": 1.8373343989951536,
+        "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":2,\"numFailedTestSuites\":1,\"numPendingTestSuites\":0,\"numTotalTests\":9,\"numPassedTests\":8,\"numFailedTests\":1,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029376390,\"success\":false,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"ships at the minimum order and rejects an order below it\",\"status\":\"passed\",\"title\":\"ships at the minimum order and rejects an order below it\",\"duration\":3.5862089999999966,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"requires both payment and verification\",\"status\":\"passed\",\"title\":\"requires both payment and verification\",\"duration\":0.6158689999999751,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"adds positive credits and leaves zero credits unchanged\",\"status\":\"passed\",\"title\":\"adds positive credits and leaves zero credits unchanged\",\"duration\":0.6064409999999612,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"starts eligible\",\"status\":\"failed\",\"title\":\"starts eligible\",\"duration\":13.423699,\"failureMessages\":[\"AssertionError: expected false to be true // Object.is equality\\n    at /tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-825638d7-e2a5-4f66-8137-45010b3dfa0f/worker-0/src/account.test.ts:19:60\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\\n    at new Promise (<anonymous>)\\n    at runWithCancel (file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\\n    at new Promise (<anonymous>)\\n    at runWithTimeout (file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2956:64\"],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"charges no service fee\",\"status\":\"passed\",\"title\":\"charges no service fee\",\"duration\":0.5869450000000143,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[],\"fullName\":\"retains positive and negative integer credits\",\"status\":\"passed\",\"title\":\"retains positive and negative integer credits\",\"duration\":0.35684499999996433,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029376891,\"endTime\":1791029376910.357,\"status\":\"failed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-825638d7-e2a5-4f66-8137-45010b3dfa0f/worker-0/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":9.18022400000001,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.6868359999999711,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":0.5733989999999949,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029377261,\"endTime\":1791029377272.6868,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-825638d7-e2a5-4f66-8137-45010b3dfa0f/worker-0/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[],\"reason\":\"failed\"}\n",
+        "observedStatus": "killed"
+      }
+    ],
+    "sourceHashesBefore": {
+      "src/account.test.ts": "2d2bb4fad2a8fe41143db59017e8ef68f21590285b7e3c30439bded18db0ad17",
+      "src/account.ts": "1651b779575558c31457d362e859d74771cf5308291fcf4c0ebe9dc84c5c501a",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "0996d10bccf264ae57859c48794a2c5d5b95996d0d91daf29a0a16ff8d166267"
+    },
+    "sourceHashesAfter": {
+      "src/account.test.ts": "2d2bb4fad2a8fe41143db59017e8ef68f21590285b7e3c30439bded18db0ad17",
+      "src/account.ts": "1651b779575558c31457d362e859d74771cf5308291fcf4c0ebe9dc84c5c501a",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "0996d10bccf264ae57859c48794a2c5d5b95996d0d91daf29a0a16ff8d166267"
+    },
+    "sourceRestored": true
+  },
+  "changedFunctionRun": {
+    "target": "src/account.ts",
+    "mutateAll": false,
+    "seconds": 3.440780441975221,
+    "baselineFailed": false,
+    "baselineMessage": "",
+    "sites": [
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canShip",
+        "name": "canShip",
+        "line": 4,
+        "start": 107,
+        "end": 109,
+        "original": ">=",
+        "mutant": ">",
+        "category": "comparison",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canShip\",107,109,\">=\",\">\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/canRelease",
+        "name": "canRelease",
+        "line": 8,
+        "start": 204,
+        "end": 206,
+        "original": "&&",
+        "mutant": "||",
+        "category": "logical",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/canRelease\",204,206,\"&&\",\"||\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/addCredits",
+        "name": "addCredits",
+        "line": 12,
+        "start": 319,
+        "end": 320,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/addCredits\",319,320,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/initialEligibility",
+        "name": "initialEligibility",
+        "line": 16,
+        "start": 389,
+        "end": 394,
+        "original": "false",
+        "mutant": "true",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/initialEligibility\",389,394,\"false\",\"true\"]",
+        "upstreamStatus": "killed"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/serviceFee",
+        "name": "serviceFee",
+        "line": 20,
+        "start": 447,
+        "end": 448,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/serviceFee\",447,448,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 530,
+        "end": 531,
+        "original": "+",
+        "mutant": "-",
+        "category": "arithmetic",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",530,531,\"+\",\"-\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/normalizeCredits",
+        "name": "normalizeCredits",
+        "line": 24,
+        "start": 532,
+        "end": 533,
+        "original": "0",
+        "mutant": "1",
+        "category": "constant",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/normalizeCredits\",532,533,\"0\",\"1\"]",
+        "upstreamStatus": "not-selected"
+      },
+      {
+        "file": "src/account.ts",
+        "namespace": "account",
+        "form_id": "defn/archivedPlanEnabled",
+        "name": "archivedPlanEnabled",
+        "line": 28,
+        "start": 596,
+        "end": 601,
+        "original": "false",
+        "mutant": "true",
+        "category": "boolean",
+        "mutation_id": "[\"src/account.ts\",\"account\",\"defn/archivedPlanEnabled\",596,601,\"false\",\"true\"]",
+        "upstreamStatus": "not-selected"
+      }
+    ],
+    "calls": [
+      {
+        "command": "./node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability",
+        "timeout": null,
+        "code": 0,
+        "timed_out": false,
+        "seconds": 1.844112963997759,
+        "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":3,\"numFailedTestSuites\":0,\"numPendingTestSuites\":0,\"numTotalTests\":4,\"numPassedTests\":4,\"numFailedTests\":0,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029378237,\"success\":true,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"changed default\",\"status\":\"passed\",\"title\":\"changed default\",\"duration\":2.9752399999999852,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029378687,\"endTime\":1791029378689.9753,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":3.5555820000000153,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":12.790359000000024,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":0.931968999999981,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029379081,\"endTime\":1791029379098.932,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[],\"reason\":\"passed\"}\n",
+        "observedStatus": "survived"
+      },
+      {
+        "command": "./node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js",
+        "cwd": "/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-43d3ea47-a6ce-4dcb-a6ae-074361fa646e/worker-0",
+        "timeout": 18.44112963997759,
+        "code": 1,
+        "timed_out": false,
+        "seconds": 1.5604808179778047,
+        "output": "{\"numTotalTestSuites\":3,\"numPassedTestSuites\":2,\"numFailedTestSuites\":1,\"numPendingTestSuites\":0,\"numTotalTests\":4,\"numPassedTests\":3,\"numFailedTests\":1,\"numPendingTests\":0,\"numTodoTests\":0,\"snapshot\":{\"added\":0,\"failure\":false,\"filesAdded\":0,\"filesRemoved\":0,\"filesRemovedList\":[],\"filesUnmatched\":0,\"filesUpdated\":0,\"matched\":0,\"total\":0,\"unchecked\":0,\"uncheckedKeysByFile\":[],\"unmatched\":0,\"updated\":0,\"didUpdate\":false},\"startTime\":1791029379946,\"success\":false,\"testResults\":[{\"assertionResults\":[{\"ancestorTitles\":[],\"fullName\":\"changed default\",\"status\":\"failed\",\"title\":\"changed default\",\"duration\":16.62228600000003,\"failureMessages\":[\"AssertionError: expected true to be false // Object.is equality\\n    at /tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-43d3ea47-a6ce-4dcb-a6ae-074361fa646e/worker-0/src/account.test.ts:1:135\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\\n    at new Promise (<anonymous>)\\n    at runWithCancel (file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\\n    at new Promise (<anonymous>)\\n    at runWithTimeout (file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)\\n    at file:///tmp/archguard-quality-research/mutator-worktree/research/code-quality/mutator/node_modules/@vitest/runner/dist/chunk-artifact.js:2956:64\"],\"meta\":{},\"tags\":[]}],\"startTime\":1791029380714,\"endTime\":1791029380730.6223,\"status\":\"failed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-43d3ea47-a6ce-4dcb-a6ae-074361fa646e/worker-0/src/account.test.ts\"},{\"assertionResults\":[{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion passes the local calendar day to Compose without shifting it across time zones\",\"status\":\"passed\",\"title\":\"passes the local calendar day to Compose without shifting it across time zones\",\"duration\":3.3356529999999793,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies Compose's UTC calendar day while retaining the local time\",\"status\":\"passed\",\"title\":\"applies Compose's UTC calendar day while retaining the local time\",\"duration\":1.229914000000008,\"failureMessages\":[],\"meta\":{},\"tags\":[]},{\"ancestorTitles\":[\"custom snooze calendar conversion\"],\"fullName\":\"custom snooze calendar conversion applies a picked local time without changing the chosen calendar day\",\"status\":\"passed\",\"title\":\"applies a picked local time without changing the chosen calendar day\",\"duration\":0.46007800000001,\"failureMessages\":[],\"meta\":{},\"tags\":[]}],\"startTime\":1791029380394,\"endTime\":1791029380399.46,\"status\":\"passed\",\"message\":\"\",\"name\":\"/tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/reliability/target/mutation-workers/run-43d3ea47-a6ce-4dcb-a6ae-074361fa646e/worker-0/src/customSnoozeDate.test.ts\"}]}\nMUTATION_EXECUTION {\"unhandledErrors\":[],\"suiteErrors\":[],\"reason\":\"failed\"}\n",
+        "observedStatus": "killed"
+      }
+    ],
+    "sourceHashesBefore": {
+      "src/account.test.ts": "a9d5134ec382132ef3a1f5314123023c0caa28906014d0ef969065302cc5f7de",
+      "src/account.ts": "b49afb08158caadfd38dd0c6b3a1bd005169fd66a575be5ee4d57b07b91df4b3",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "0996d10bccf264ae57859c48794a2c5d5b95996d0d91daf29a0a16ff8d166267"
+    },
+    "sourceHashesAfter": {
+      "src/account.test.ts": "a9d5134ec382132ef3a1f5314123023c0caa28906014d0ef969065302cc5f7de",
+      "src/account.ts": "b49afb08158caadfd38dd0c6b3a1bd005169fd66a575be5ee4d57b07b91df4b3",
+      "src/customSnoozeDate.test.ts": "3fce49fbf5f5196064e20b2be51e6f1da6ac55f082e9104a9b392a1707497087",
+      "src/customSnoozeDate.ts": "737930e7d94d2ed590a9e5ddfd9457a7fe9f43a5870b90e42f4ba82dde518ded",
+      "src/helper.ts": "0996d10bccf264ae57859c48794a2c5d5b95996d0d91daf29a0a16ff8d166267"
+    },
+    "sourceRestored": true
+  }
+}

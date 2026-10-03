@@ -1,0 +1,262 @@
+#!/usr/bin/env python3
+"""Run a bounded research comparison using external, pinned upstream code."""
+from __future__ import annotations
+
+import argparse
+import dataclasses
+import hashlib
+import json
+import shutil
+import subprocess
+import time
+from pathlib import Path
+
+MUTATOR_REV = 'bb9262a7b1d884a446bc14dc56568151dab02d71'
+CRAPPER_REV = 'ce3895211e407e5d51d71da711d8a8670a05f7cf'
+T3_REV = '31a9da179ed0763335f05681c577474aec5d2309'
+HERE = Path(__file__).resolve().parent
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def write_json(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2) + '\n')
+
+
+def run(command, cwd):
+    started = time.monotonic()
+    result = subprocess.run(command, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return {'command': command, 'code': result.returncode, 'seconds': time.monotonic() - started, 'output': result.stdout}
+
+
+def verify_checkout(path, expected):
+    actual = subprocess.check_output(['git', '-C', str(path), 'rev-parse', 'HEAD'], text=True).strip()
+    if actual != expected:
+        raise ValueError(f'{path}: expected {expected}, got {actual}')
+    if subprocess.check_output(['git', '-C', str(path), 'status', '--porcelain'], text=True).strip():
+        raise ValueError(f'{path}: checkout must be clean')
+
+
+def source_hashes(root):
+    return {p.relative_to(root).as_posix(): digest(p.read_bytes()) for p in sorted((root / 'src').glob('*')) if p.is_file()}
+
+
+def vitest_status(result):
+    """Classify only the pinned JSON plus explicit execution reporter contract."""
+    if result.timed_out:
+        return 'timeout'
+    markers = [line[len('MUTATION_EXECUTION '):] for line in result.output.splitlines() if line.startswith('MUTATION_EXECUTION ')]
+    if len(markers) != 1:
+        return 'execution-error'
+    try:
+        execution = json.loads(markers[0])
+        output = '\n'.join(line for line in result.output.splitlines() if not line.startswith('MUTATION_EXECUTION '))
+        data = json.loads(output)
+        if not isinstance(execution, dict) or not isinstance(data, dict):
+            return 'execution-error'
+        if execution.get('unhandledErrors') != [] or execution.get('suiteErrors') != []:
+            return 'execution-error'
+        if execution.get('reason') not in {'passed', 'failed'}:
+            return 'execution-error'
+        tests = data['testResults']
+        if not isinstance(tests, list) or not tests:
+            return 'execution-error'
+        failures = []
+        for test in tests:
+            if test.get('message') or test.get('status') not in {'passed', 'failed'}:
+                return 'execution-error'
+            assertions = test['assertionResults']
+            if not isinstance(assertions, list):
+                return 'execution-error'
+            failed = [a for a in assertions if a.get('status') == 'failed']
+            if test['status'] == 'failed' and not failed:
+                return 'execution-error'
+            failures.extend(failed)
+        if result.code == 0:
+            return 'survived' if data.get('success') is True and not failures else 'execution-error'
+        if not failures or data.get('numFailedTests') != len(failures):
+            return 'execution-error'
+        for failure in failures:
+            messages = failure.get('failureMessages')
+            if not isinstance(messages, list) or not messages:
+                return 'execution-error'
+            if any(not isinstance(message, str) or not message.startswith('AssertionError:') for message in messages):
+                return 'execution-error'
+        return 'killed'
+    except (ValueError, KeyError, TypeError, AttributeError):
+        return 'execution-error'
+
+
+class RecordingRunner:
+    def __init__(self):
+        from mutator.runner import CommandRunner
+        self.delegate = CommandRunner()
+        self.verbose = False
+        self.calls = []
+
+    def run(self, command, cwd, timeout):
+        result = self.delegate.run(command, cwd, timeout)
+        self.calls.append({'command': command, 'cwd': str(cwd), 'timeout': timeout, **dataclasses.asdict(result), 'observedStatus': vitest_status(result)})
+        return result
+
+
+def upstream(root, target, *, all_sites=True, covered=None, lines=None, command=None):
+    from mutator.engine import mutate_file
+    before = source_hashes(root)
+    runner = RecordingRunner()
+    started = time.monotonic()
+    result = mutate_file(root / target, root, runner=runner, covered_lines=covered,
+        ignore_coverage=covered is None, mutate_all=all_sites, lines=lines,
+        test_command=command or './node_modules/.bin/vitest run --reporter=json --reporter=./execution-reporter.js',
+        timeout_factor=10, mutation_warning=100, baselines={}, max_workers=1)
+    after = source_hashes(root)
+    if before != after:
+        raise AssertionError('upstream changed original source bytes')
+    sites = [dataclasses.asdict(s) | {'upstreamStatus': result.statuses.get(s.mutation_id, 'not-selected')} for s in result.sites]
+    # Single-worker runs preserve site order; first command is the baseline.
+    executed = [c for c in runner.calls if '/worker-' in c['cwd']]
+    selected_sites = [s for s in sites if (covered is None or s['line'] in covered) and (lines is None or s['line'] in lines)]
+    if all_sites and len(executed) == len(selected_sites):
+        for site, call in zip(selected_sites, executed):
+            site['observedStatus'] = call['observedStatus']
+    return {'target': target, 'mutateAll': all_sites, 'seconds': time.monotonic()-started,
+        'baselineFailed': result.baseline_failed, 'baselineMessage': result.baseline_message,
+        'sites': sites, 'calls': runner.calls, 'sourceHashesBefore': before, 'sourceHashesAfter': after,
+        'sourceRestored': before == after}
+
+
+def setup(root, tests, t3):
+    root.mkdir(parents=True)
+    (root / 'src').mkdir()
+    for name in ['package.json', 'package-lock.json', 'vitest.config.js', 'stryker.config.json', 'execution-reporter.js']:
+        shutil.copy2(HERE / name, root / name)
+    (root / 'node_modules').symlink_to(HERE / 'node_modules', target_is_directory=True)
+    for name in ['account.ts', 'helper.ts']:
+        shutil.copy2(HERE / 'fixtures' / name, root / 'src' / name)
+    shutil.copy2(HERE / 'fixtures' / f'{tests}.test.ts', root / 'src' / 'account.test.ts')
+    path = t3 / 'apps/mobile/src/features/threads'
+    original = (path / 'customSnoozeDate.test.ts').read_bytes()
+    adapted = original.replace(b'"vite-plus/test"', b'"vitest"')
+    (root / 'src' / 'customSnoozeDate.ts').write_bytes((path / 'customSnoozeDate.ts').read_bytes())
+    (root / 'src' / 'customSnoozeDate.test.ts').write_bytes(adapted)
+    return {'source': 'apps/mobile/src/features/threads/customSnoozeDate.ts',
+        'sourceHash': digest((path / 'customSnoozeDate.ts').read_bytes()),
+        'testOriginalHash': digest(original), 'testAdaptedHash': digest(adapted),
+        'adaptation': 'only import vite-plus/test replaced by vitest; source bytes identical',
+        'scope': 'reduced reproduction in disposable standalone Vitest package; no T3 application replay'}
+
+
+def stryker(root, target):
+    config = json.loads((root / 'stryker.config.json').read_text())
+    config['mutate'] = [target]
+    (root / 'stryker.config.json').write_text(json.dumps(config))
+    result = run(['./node_modules/.bin/stryker', 'run'], root)
+    report = root / 'reports/mutation.json'
+    if report.exists():
+        result['report'] = json.loads(report.read_text())
+    return result
+
+
+def cache_probe(root, kind):
+    target = 'src/account.ts'
+    line = 16 if kind in {'tests', 'config', 'baseline'} else 12
+    if kind in {'helper', 'dependency'}:
+        (root / 'src/account.test.ts').write_text("import {expect,it} from 'vitest'; import {addCredits} from './account'; it('credits',()=>expect(addCredits(12,3)).toBe(15));\n")
+    seed = upstream(root, target, lines={line})
+    if kind == 'tests':
+        (root / 'src/account.test.ts').write_text("import {expect,it} from 'vitest'; import {initialEligibility} from './account'; it('type',()=>expect(typeof initialEligibility()).toBe('boolean'));\n")
+    elif kind in {'config', 'baseline'}:
+        if kind == 'config':
+            (root / 'vitest.config.js').write_text('throw new Error("deliberate config failure");\n')
+        else:
+            (root / 'src/account.test.ts').write_text("import {expect,it} from 'vitest'; it('broken baseline',()=>expect(1).toBe(2));\n")
+    elif kind == 'helper':
+        (root / 'src/helper.ts').write_text('export function roundCredits(value: number): number { return 15; }\n')
+    elif kind == 'dependency':
+        # An explicit local dependency lives outside the mutated function and test bytes.
+        (root / 'src/helper.ts').write_text("import {round} from 'local-credits'; export function roundCredits(value:number):number { return round(value); }\n")
+        dep = root / 'deps/local-credits'
+        dep.mkdir(parents=True)
+        (dep / 'package.json').write_text('{"name":"local-credits","version":"1.0.0","type":"module","exports":"./index.js"}')
+        (dep / 'index.js').write_text('export function round(value) { return Math.round(value); }\n')
+        # Private node_modules prevents writes to shared installation.
+        (root / 'node_modules').unlink()
+        (root / 'node_modules').mkdir()
+        for child in (HERE / 'node_modules').iterdir():
+            (root / 'node_modules' / child.name).symlink_to(child, target_is_directory=child.is_dir())
+        (root / 'node_modules/local-credits').symlink_to(dep, target_is_directory=True)
+        seed = upstream(root, target, lines={line})
+        (dep / 'index.js').write_text('export function round(value) { return 15; }\n')
+        (root / 'src/account.test.ts').write_text("import {expect,it} from 'vitest'; import {addCredits} from './account'; it('credits',()=>expect(addCredits(12,3)).toBe(15));\n")
+    differential = upstream(root, target, all_sites=False, lines={line})
+    forced = upstream(root, target, lines={line})
+    return {'seed': seed, 'differential': differential, 'forced': forced}
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--mutator', type=Path, required=True)
+    parser.add_argument('--crapper', type=Path, required=True)
+    parser.add_argument('--t3', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    for path, rev in [(args.mutator, MUTATOR_REV), (args.crapper, CRAPPER_REV), (args.t3, T3_REV)]:
+        verify_checkout(path, rev)
+    if args.output.exists():
+        raise ValueError('use a new output directory to preserve raw trials')
+    import sys
+    sys.path[:0] = [str(args.mutator / 'src'), str(args.crapper / 'src')]
+    output = args.output.resolve()
+    output.mkdir(parents=True)
+    provenance = {'mutator': MUTATOR_REV, 'crapper': CRAPPER_REV, 't3': T3_REV,
+        'python': sys.version, 'node': run(['node', '--version'], HERE),
+        'files': {p.relative_to(HERE).as_posix(): digest(p.read_bytes()) for p in sorted(HERE.rglob('*')) if p.is_file() and 'node_modules' not in p.parts and 'evidence' not in p.parts and '__pycache__' not in p.parts},
+        'externalPythonHashes': {str(path / f): digest((path / f).read_bytes()) for path in [args.mutator,args.crapper] for f in subprocess.check_output(['git','-C',str(path),'ls-files'],text=True).splitlines() if f.endswith('.py')},
+        'frozenTargets': ['src/account.ts: authored A-E, equivalent arithmetic control, untested archived plan', 'src/customSnoozeDate.ts: small pure T3 calendar helpers with existing tests']}
+    for phase in ['weak', 'corrected']:
+        root = output / phase
+        provenance['t3Copy'] = setup(root, phase, args.t3)
+        baseline = run(['./node_modules/.bin/vitest', 'run', '--reporter=json'], root)
+        write_json(output / f'{phase}-baseline.json', baseline)
+        if baseline['code'] != 0:
+            raise RuntimeError('baseline failed, halting')
+        coverage = run(['./node_modules/.bin/vitest', 'run', '--coverage'], root)
+        write_json(output / f'{phase}-coverage.json', coverage)
+        if coverage['code'] != 0:
+            raise RuntimeError('coverage command failed')
+        from mutator.coverage import covered_lines
+        lines = covered_lines(root, root / 'src/account.ts', 'typescript')
+        write_json(output / f'{phase}-upstream.json', upstream(root, 'src/account.ts', covered=lines))
+        write_json(output / f'{phase}-stryker.json', stryker(root, 'src/account.ts'))
+    root = output / 'real'
+    setup(root, 'corrected', args.t3)
+    write_json(output / 'real-upstream.json', upstream(root, 'src/customSnoozeDate.ts'))
+    write_json(output / 'real-stryker.json', stryker(root, 'src/customSnoozeDate.ts'))
+    root = output / 'real-corrected'
+    setup(root, 'corrected', args.t3)
+    test = root / 'src/customSnoozeDate.test.ts'
+    test.write_text(test.read_text() + '''
+it("resets picked seconds and milliseconds without changing the original date", () => {
+  const date = new Date(2026, 8, 20, 23, 45, 12, 987);
+  const next = applySnoozePickerTime(date, new Date(2026, 8, 16, 8, 15, 30, 321));
+  expect([next.getSeconds(), next.getMilliseconds()]).toEqual([0, 0]);
+  expect([date.getSeconds(), date.getMilliseconds()]).toEqual([12, 987]);
+});
+''')
+    write_json(output / 'real-corrected-upstream.json', upstream(root, 'src/customSnoozeDate.ts'))
+    write_json(output / 'real-corrected-stryker.json', stryker(root, 'src/customSnoozeDate.ts'))
+    for kind in ['tests', 'config', 'baseline', 'helper', 'dependency']:
+        root = output / f'cache-{kind}'
+        setup(root, 'corrected', args.t3)
+        write_json(output / f'cache-{kind}.json', cache_probe(root, kind))
+    from reliability import probe
+    write_json(output / 'reliability.json', probe(output / 'reliability', args.t3))
+    write_json(output / 'provenance.json', provenance)
+    print(output)
+
+
+if __name__ == '__main__':
+    main()

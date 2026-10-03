@@ -1,0 +1,16 @@
+{
+  "selectionFrozenBeforeTrials": true,
+  "authored": {
+    "source": "fixtures/account.ts",
+    "reason": "Five requested domain mutations; finite integer credit balances, minimum shipping amount 100, paid and verified conjunction, initially eligible, no service fee",
+    "controls": ["Equivalent add/subtract zero for integer credit balances; signed zero is not a distinct business value", "Archived plan function outside tested workflow remains uncovered", "Corrected cases include below/at/above minimum, both mixed payment flags, zero and positive addition, both signs of balances"]
+  },
+  "real": {
+    "revision": "31a9da179ed0763335f05681c577474aec5d2309",
+    "source": "apps/mobile/src/features/threads/customSnoozeDate.ts",
+    "tests": "apps/mobile/src/features/threads/customSnoozeDate.test.ts",
+    "reason": "Small pure calendar functions with existing focused tests and no package runtime imports",
+    "scope": "Source copied without edits into disposable standalone package; only test runner import changes; no full application execution",
+    "survivorSampling": "Inspect all upstream survivors and all Stryker survivors in this one selected source, with no population claim"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "recordedWindow": "2026-10-03 UTC, coordinator reserved exclusive slot after required release build and full repo check; unrelated host processes uncontrolled",
+  "samples": "one run for each condition; times are observations, not performance estimates",
+  "cacheScriptHash": "bd1523db216da5045743bd865d693d3cdf548003cc49fce3814f397ce8d269f4",
+  "derivedDependencyInputHashes": {
+    "seed": "8810c5021f498a1243c33eda54295c3ba9814d84ad5f0532412ce959c65af9a3",
+    "edited": "e62e3e03befa3bff26d15138cd75282bb0eac19d7e7e0ef0fff273f7723136d5"
+  },
+  "dependencyHashNote": "Seed content comes from the exact setup literal in evaluate.py; edited file hash read after trial. Dependency bytes were not included in upstream sourceHashes fields.",
+  "mainOutputFiles": {
+    "weak-baseline.json": "57f64b14bc88ac43ae4f0c5284b87658a427d45f0bce30ba19e4349a69930afd",
+    "corrected-coverage.json": "7147262e1e34493f7ea895b3be6fe2b62a27df8c7f8b7dd2c8309d9c4c28f8ab",
+    "real-corrected-stryker.json": "abce24624cb017e7f373c95b85c730d7125727e035d7545cd760322aa6d10718",
+    "cache-helper.json": "5ba962f8dd58295f80877e7ced09b5d78576a8b81ff46f759502aa60a4f66671",
+    "cache-baseline.json": "dc51eb3c7982e0d4c63c98bd9d678ed6ae010adc7a6dd2bff5506e8ce0356533",
+    "reliability.json": "4bd24258ee61df171f023d6e56ac178b6b503958a44494796a45635c7d7828ea",
+    "corrected-stryker.json": "50e8cabc80f1ce22d125711ac4ca966db4bf0f3f31d5702d1e92de3db3873f61",
+    "weak-coverage.json": "965763c91be3274237f7477a5f3ecd3696d089098b3da8ab9609e51806888588",
+    "corrected-upstream.json": "4f4ea29717d5123c2996e26a3c226d96417f476ed8d8088b2c1522b3f020ae08",
+    "weak-stryker.json": "1f273fb7ce84ce092a10e126b3718b584a6d9d4c75c3ff55eec2838ba94c37b6",
+    "real-stryker.json": "9319ae5babe2f1143c6b752c6bd4d4ace51db283881bc024a7b34c18396bb25e",
+    "provenance.json": "ac1278668382d9b13d1584bf0dfee32ebcb0857c74638ea62e43c6a3c00418e4",
+    "real-upstream.json": "c029335f707742a233d348d8a1a6b29ddf6ca15ae32ca43ade2873e3203e79f5",
+    "cache-dependency.json": "ef6f60d44fa3d3e5a19ff12b590d169d849fe66d1fb54d952d50386cf5ae1e6e",
+    "cache-tests.json": "47de72f64c14ef39c9234a85970af2c6fa4281d40a13f5fe840605179e88bafb",
+    "corrected-baseline.json": "5d717861a598aadea864cb7523eb6bfadc62b564ad0fa23c47fe27314b4a53c6",
+    "cache-config.json": "f08dc2e176ecc4241c483878118cda71d45897f5635f2bb7af54202784e2e28b",
+    "real-corrected-upstream.json": "da1c4df939f9beed980ff3c4751955df9f71375b6a990b42e2e4138045dce3b7",
+    "weak-upstream.json": "11a5f53171fb0d669b94555d49ab134f5d04114d9ac7406ea63e318ac4ddb6fd"
+  },
+  "parserArtifacts": {
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/manifest.json": "bad1eec2b1406c9d1359d53991249e99940dbfc5f36fd1bc7070874ca5d86a0f",
+    "/home/dev/.cache/tree-sitter-language-pack/v1.20.0/libs/libtree_sitter_typescript.so": "5afc27fbe28f53e72a43911085f7fd9c10820dd284bd2dc755b19589e1dcba6a",
+    "/tmp/archguard-quality-research/mutator-venv/lib/python3.14/site-packages/tree_sitter/_binding.cpython-314-x86_64-linux-gnu.so": "acfe00fcd79a5f567cb8ecb744ff33332eca2c55ac0a9e8a1070bc363a638d2c"
+  },
+  "derivedTextCorrection": {
+    "issue": "Stryker location columns are one-based UTF-16 units; initial derived source excerpts were shifted by one",
+    "correction": "Regenerated derived inventories, summary and review-input from unchanged raw reports with corrected source slicing",
+    "summarizeScriptHash": "391b0411ae250132cf5256c6e7e6a0da543191f3af44c6320e00d6765f823c82"
+  },
+  "finalTrial": "mutator-trial-02, complete rerun after explicit execution reporter and classifier correction",
+  "supersededTrial": "initial/ contains retained first trial bytes and original evaluator; current top-level comparison is final trial",
+  "windowLimit": "Coordinator reserved exclusive agent window; a brief local Python syntax check/text scan occurred during final window. Host unrelated processes uncontrolled; no benchmark inference."
+}

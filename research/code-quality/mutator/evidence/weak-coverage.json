@@ -1,0 +1,10 @@
+{
+  "command": [
+    "./node_modules/.bin/vitest",
+    "run",
+    "--coverage"
+  ],
+  "code": 0,
+  "seconds": 1.8217739279498346,
+  "output": "\n RUN  v4.1.11 /tmp/archguard-quality-research/mutator-worktree/research/local/mutator-trial-02/weak\n      Coverage enabled with v8\n\n\n Test Files  2 passed (2)\n      Tests  9 passed (9)\n   Start at  12:07:27\n   Duration  857ms (transform 81ms, setup 0ms, import 136ms, tests 25ms, environment 0ms)\n\n"
+}

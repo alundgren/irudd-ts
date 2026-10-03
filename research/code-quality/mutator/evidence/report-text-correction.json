@@ -1,0 +1,32 @@
+[
+  {
+    "operator": "EqualityOperator",
+    "location": {
+      "end": {
+        "column": 22,
+        "line": 4
+      },
+      "start": {
+        "column": 10,
+        "line": 4
+      }
+    },
+    "initialExcerpt": "otal >= 100;",
+    "correctedExcerpt": "total >= 100"
+  },
+  {
+    "operator": "BooleanLiteral",
+    "location": {
+      "end": {
+        "column": 14,
+        "line": 16
+      },
+      "start": {
+        "column": 10,
+        "line": 16
+      }
+    },
+    "initialExcerpt": "rue;",
+    "correctedExcerpt": "true"
+  }
+]
