@@ -72,4 +72,11 @@ it("trims a trailing separator after a single-character project name", () => {
 fs.writeFileSync(path.join(output, "dryer.json"), JSON.stringify({ schemaVersion: 1,
   selection: { include: modules.map(name => `packages/shared/src/${name}.ts`) },
 }, null, 2) + "\n");
+fs.writeFileSync(path.join(output, "dryer-native.json"), JSON.stringify({ schemaVersion: 1,
+  selection: { include: ["apps/mobile/src/native/T3ComposerEditor.tsx", "apps/mobile/src/native/T3ComposerEditor.ios.tsx", "apps/mobile/src/native/T3ComposerEditor.native.tsx"] },
+}, null, 2) + "\n");
+fs.writeFileSync(path.join(output, "dryer-native-exploratory.json"), JSON.stringify({ schemaVersion: 1,
+  selection: { include: ["apps/mobile/src/native/T3ComposerEditor.tsx", "apps/mobile/src/native/T3ComposerEditor.ios.tsx", "apps/mobile/src/native/T3ComposerEditor.native.tsx"] },
+  similarityThreshold: 0.7,
+}, null, 2) + "\n");
 console.log(`Profiles written to ${output}. Run archguard with --root ${checkout}.`);
