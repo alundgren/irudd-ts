@@ -1102,3 +1102,126 @@ fn configured_threshold_selects_unique_subtree_set_similarity() {
     assert!(lower.complete);
     assert_eq!(lower.pairs.len(), 1);
 }
+
+#[test]
+fn computed_call_names_preserve_literal_descendants_in_both_property_modes() {
+    for properties in [PropertyNames::Preserve, PropertyNames::Erase] {
+        let options = NormalizationOptions {
+            properties,
+            ..NormalizationOptions::default()
+        };
+        let different = compare(
+            "function first(x){return x['ma'+'p']()} function second(y){return y['fil'+'ter']()}",
+            options.clone(),
+        );
+        assert!(!different.pairs[0].exact_normalized_match);
+        assert!(different.pairs[0].similarity.set < 1.0);
+        let same = compare(
+            "function first(x){return x['ma'+'p']()} function second(y){return y['ma'+'p']()}",
+            options,
+        );
+        assert!(same.pairs[0].exact_normalized_match);
+    }
+}
+
+#[test]
+fn computed_property_keys_retain_runtime_mutations_while_static_keys_do_not() {
+    let config = MutationPlanConfig::default();
+    for source in [
+        "const value={ [true ? 0 : 1]:2 };",
+        "const { [true ? 0 : 1]:value }=input;",
+        "class Value { [true ? 0 : 1](){return 2} }",
+        "class Value { [true ? 0 : 1]=2 }",
+    ] {
+        let result = mutator::inventory("f.ts", source, &config).unwrap();
+        assert!(result.complete, "{:?}", result.problems);
+        assert_eq!(result.sites.len(), 3, "{source}");
+        for site in &result.sites {
+            let changed = mutator::apply_edit(source, site).unwrap();
+            assert!(matches!(
+                mutator::validate_mutant("f.ts", &changed, &config.limits).unwrap(),
+                SyntaxValidation::Valid
+            ));
+        }
+    }
+    let static_keys = mutator::inventory(
+        "f.ts",
+        "const value={true:2,0:2,1:2}; class Value { true=2; 0(){return 2} }",
+        &config,
+    )
+    .unwrap();
+    assert!(static_keys.complete);
+    assert!(static_keys.sites.is_empty());
+}
+
+#[test]
+fn final_plan_discovery_detects_added_sources_and_ignores_excluded_changes() {
+    use std::sync::atomic::{AtomicUsize, Ordering};
+    let root = TempDir::new().unwrap();
+    let original = "export const value=true;";
+    fs::write(root.path().join("a.ts"), original).unwrap();
+    let calls = AtomicUsize::new(0);
+    let changed = mutator::plan_with_guard(root.path(), &MutationPlanConfig::default(), &|| {
+        if calls.fetch_add(1, Ordering::Relaxed) == 7 {
+            fs::write(root.path().join("added.ts"), "export const other=false;")?;
+        }
+        Ok(())
+    })
+    .unwrap();
+    assert!(!changed.complete);
+    assert!(
+        changed
+            .problems
+            .iter()
+            .any(|p| p.kind == ProblemKind::ChangedSource)
+    );
+    let stable = mutator::plan(root.path(), &MutationPlanConfig::default()).unwrap();
+    assert!(stable.complete);
+    assert_eq!(stable.files.len(), 2);
+    assert_eq!(
+        fs::read_to_string(root.path().join("a.ts")).unwrap(),
+        original
+    );
+    fs::remove_file(root.path().join("added.ts")).unwrap();
+    let calls = AtomicUsize::new(0);
+    let config = MutationPlanConfig {
+        selection: SourceSelection {
+            exclude: vec!["added.ts".into()],
+            ..SourceSelection::default()
+        },
+        ..MutationPlanConfig::default()
+    };
+    let excluded = mutator::plan_with_guard(root.path(), &config, &|| {
+        if calls.fetch_add(1, Ordering::Relaxed) == 7 {
+            fs::write(root.path().join("added.ts"), "export const other=false;")?;
+        }
+        Ok(())
+    })
+    .unwrap();
+    assert!(excluded.complete, "{:?}", excluded.problems);
+    assert_eq!(excluded.files.len(), 1);
+}
+
+#[test]
+fn prospective_cache_paths_cannot_create_typescript_sources() {
+    let root = TempDir::new().unwrap();
+    let source = root.path().join("f.ts");
+    let original = "function f(){return true}";
+    fs::write(&source, original).unwrap();
+    let invalid = root.path().join("new/cache.ts");
+    assert!(dryer::analyze_cached(root.path(), &config(), &invalid).is_err());
+    assert!(!invalid.exists());
+    assert!(!root.path().join("new").exists());
+    let corrected = root.path().join("new/cache.json");
+    assert!(
+        dryer::analyze_cached(root.path(), &config(), &corrected)
+            .unwrap()
+            .complete
+    );
+    assert!(corrected.is_file());
+    assert!(
+        dryer::analyze_cached(root.path(), &config(), &root.path().join("absent/../f.ts")).is_err()
+    );
+    assert!(!root.path().join("absent").exists());
+    assert_eq!(fs::read_to_string(source).unwrap(), original);
+}

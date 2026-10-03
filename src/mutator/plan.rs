@@ -356,6 +356,15 @@ pub fn plan_with_guard(
             ));
         }
     }
+    if let Some(problem) = crate::quality::load::revalidate_selection(
+        &result.root,
+        &result.selection,
+        &config.limits,
+        guard,
+    )? {
+        result.problems.push(problem);
+        result.selection.complete_within_selection = false;
+    }
     result.complete = result.selection.complete_within_selection
         && result.problems.is_empty()
         && result.omitted_evidence.is_empty();

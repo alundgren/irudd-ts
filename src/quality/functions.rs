@@ -148,10 +148,12 @@ pub(crate) fn runtime_node(semantic: &Semantic<'_>, id: NodeId) -> bool {
             return false;
         }
         let key = match kind {
-            AstKind::ObjectProperty(property) => Some(property.key.span()),
-            AstKind::BindingProperty(property) => Some(property.key.span()),
-            AstKind::MethodDefinition(method) => Some(method.key.span()),
-            AstKind::PropertyDefinition(property) => Some(property.key.span()),
+            AstKind::ObjectProperty(property) if !property.computed => Some(property.key.span()),
+            AstKind::BindingProperty(property) if !property.computed => Some(property.key.span()),
+            AstKind::MethodDefinition(method) if !method.computed => Some(method.key.span()),
+            AstKind::PropertyDefinition(property) if !property.computed => {
+                Some(property.key.span())
+            }
             AstKind::TSEnumMember(member) => Some(member.id.span()),
             _ => None,
         };

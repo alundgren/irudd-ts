@@ -162,14 +162,7 @@ fn read_cache(
     root: &str,
     limits: &AnalysisLimits,
 ) -> Result<CachePayload> {
-    ensure!(
-        fs::symlink_metadata(path)?.is_file(),
-        "dryer cache must be a regular file"
-    );
-    let mut bytes = vec![];
-    File::open(path)?
-        .take((limits.max_report_bytes + 1) as u64)
-        .read_to_end(&mut bytes)?;
+    let bytes = crate::quality::load::read_regular(path, limits.max_report_bytes)?;
     ensure!(
         bytes.len() <= limits.max_report_bytes,
         "dryer cache exceeds its encoded byte limit"
@@ -355,25 +348,19 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
         } else {
             std::env::current_dir()?.join(path)
         };
-        let cache_parent = full.parent().unwrap_or_else(|| Path::new("/"));
-        if let Ok(parent) = cache_parent.canonicalize() {
-            let candidate = parent.join(
-                full.file_name()
-                    .ok_or_else(|| anyhow::anyhow!("cache requires a file name"))?,
-            );
+        let candidate = crate::quality::load::prospective_path(&full)?;
+        ensure!(
+            !result
+                .files
+                .iter()
+                .any(|file| Path::new(&result.root).join(&file.path) == candidate),
+            "dryer cache cannot replace a selected source"
+        );
+        if let Ok(relative) = candidate.strip_prefix(&result.root) {
             ensure!(
-                !result
-                    .files
-                    .iter()
-                    .any(|file| Path::new(&result.root).join(&file.path) == candidate),
-                "dryer cache cannot replace a selected source"
+                !relative.to_str().is_some_and(is_source_path),
+                "dryer cache cannot use a TypeScript source path"
             );
-            if let Ok(relative) = candidate.strip_prefix(&result.root) {
-                ensure!(
-                    !relative.to_str().is_some_and(is_source_path),
-                    "dryer cache cannot use a TypeScript source path"
-                );
-            }
         }
         cache_payload.identity = cache_identity(config)?;
         if path.exists() || path.is_symlink() {
@@ -634,6 +621,15 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
                 &config.limits,
             ));
         }
+    }
+    if let Some(problem) = crate::quality::load::revalidate_selection(
+        &result.root,
+        &result.selection,
+        &config.limits,
+        &|| Ok(()),
+    )? {
+        result.problems.push(problem);
+        result.selection.complete_within_selection = false;
     }
     result.complete = result.selection.complete_within_selection
         && result.problems.is_empty()

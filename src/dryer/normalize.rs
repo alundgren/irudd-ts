@@ -75,13 +75,15 @@ impl Context<'_, '_> {
     }
     fn property_key(&self, id: NodeId) -> bool {
         let span = self.semantic.nodes().kind(id).span();
-        let key = match self.semantic.nodes().parent_kind(id) {
-            AstKind::ObjectProperty(property) => Some(property.key.span()),
-            AstKind::BindingProperty(property) => Some(property.key.span()),
-            AstKind::ComputedMemberExpression(member) => Some(member.expression.span()),
-            _ => None,
-        };
-        key.is_some_and(|key| key.start <= span.start && key.end >= span.end)
+        self.semantic.nodes().ancestor_kinds(id).any(|kind| {
+            let key = match kind {
+                AstKind::ObjectProperty(property) => Some(property.key.span()),
+                AstKind::BindingProperty(property) => Some(property.key.span()),
+                AstKind::ComputedMemberExpression(member) => Some(member.expression.span()),
+                _ => None,
+            };
+            key.is_some_and(|key| key.start <= span.start && key.end >= span.end)
+        })
     }
     fn scalar(&mut self, id: NodeId) -> Option<String> {
         let kind = self.semantic.nodes().kind(id);

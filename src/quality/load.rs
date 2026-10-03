@@ -2,7 +2,13 @@ use crate::{config::Matcher, quality::*};
 use anyhow::Result;
 use ignore::WalkBuilder;
 use sha2::{Digest, Sha256};
-use std::{fs::File, io::Read, path::Path};
+#[cfg(unix)]
+use std::os::unix::fs::{MetadataExt, OpenOptionsExt};
+use std::{
+    fs::{Metadata, OpenOptions},
+    io::Read,
+    path::{Component, Path, PathBuf},
+};
 
 pub(crate) struct LoadedSources {
     pub root: String,
@@ -317,17 +323,7 @@ pub(crate) fn load_guarded(
                     "selected source path resolves through a symbolic link",
                 ));
             }
-            let metadata = std::fs::symlink_metadata(&full)?;
-            if !metadata.is_file() {
-                return Err(std::io::Error::other(
-                    "selected path is no longer a regular file",
-                ));
-            }
-            let mut bytes = vec![];
-            File::open(full)?
-                .take((limits.max_file_bytes + 1) as u64)
-                .read_to_end(&mut bytes)?;
-            Ok(bytes)
+            read_regular(&full, limits.max_file_bytes)
         })();
         let bytes = match read {
             Ok(bytes) => bytes,
@@ -429,28 +425,116 @@ pub(crate) fn load_guarded(
     Ok(result)
 }
 
+// Resolve existing ancestors before appending missing components. Parent traversal
+// follows resolved links, and a missing parent cannot bypass destination checks.
+pub(crate) fn prospective_path(path: &Path) -> Result<PathBuf> {
+    let full = if path.is_absolute() {
+        path.to_owned()
+    } else {
+        std::env::current_dir()?.join(path)
+    };
+    let mut resolved = PathBuf::new();
+    for component in full.components() {
+        match component {
+            Component::CurDir => continue,
+            Component::ParentDir => {
+                resolved.pop();
+            }
+            _ => resolved.push(component.as_os_str()),
+        }
+        match resolved.canonicalize() {
+            Ok(canonical) => resolved = canonical,
+            Err(error) if error.kind() == std::io::ErrorKind::NotFound => {}
+            Err(error) => return Err(error.into()),
+        }
+    }
+    Ok(resolved)
+}
+
+fn same_snapshot(left: &Metadata, right: &Metadata) -> bool {
+    #[cfg(unix)]
+    {
+        left.dev() == right.dev()
+            && left.ino() == right.ino()
+            && left.len() == right.len()
+            && left.mtime() == right.mtime()
+            && left.mtime_nsec() == right.mtime_nsec()
+            && left.ctime() == right.ctime()
+            && left.ctime_nsec() == right.ctime_nsec()
+    }
+    #[cfg(not(unix))]
+    {
+        left.len() == right.len() && left.modified().ok() == right.modified().ok()
+    }
+}
+
+// The descriptor checks cover a regular file replaced after its path check. On
+// Unix, opening a replacement FIFO cannot wait for a writer and leaf links fail.
+pub(crate) fn read_regular(path: &Path, maximum: usize) -> std::io::Result<Vec<u8>> {
+    let invalid = || std::io::Error::other("input is not a stable regular file");
+    let initial = std::fs::symlink_metadata(path)?;
+    if !initial.is_file() {
+        return Err(invalid());
+    }
+    let canonical = path.canonicalize()?;
+    let mut options = OpenOptions::new();
+    options.read(true);
+    #[cfg(unix)]
+    options.custom_flags(nix::libc::O_NONBLOCK | nix::libc::O_NOFOLLOW);
+    let mut handle = options.open(path)?;
+    let opened = handle.metadata()?;
+    if !opened.is_file() || !same_snapshot(&initial, &opened) {
+        return Err(invalid());
+    }
+    let mut bytes = vec![];
+    (&mut handle)
+        .take(maximum.saturating_add(1) as u64)
+        .read_to_end(&mut bytes)?;
+    let final_descriptor = handle.metadata()?;
+    let final_path = std::fs::symlink_metadata(path)?;
+    if !final_path.is_file()
+        || !same_snapshot(&opened, &final_descriptor)
+        || !same_snapshot(&final_descriptor, &final_path)
+        || path.canonicalize()? != canonical
+    {
+        return Err(invalid());
+    }
+    Ok(bytes)
+}
+
 pub(crate) fn unchanged(root: &str, file: &SourceFile, limits: &AnalysisLimits) -> bool {
     let path = Path::new(root).join(&file.path);
-    let Ok(metadata) = std::fs::symlink_metadata(&path) else {
-        return false;
-    };
-    if !metadata.is_file()
-        || path
-            .canonicalize()
-            .map_or(true, |canonical| canonical != path)
+    if path
+        .canonicalize()
+        .map_or(true, |canonical| canonical != path)
     {
         return false;
     }
-    let Ok(mut handle) = File::open(path) else {
+    let Ok(bytes) = read_regular(&path, limits.max_file_bytes) else {
         return false;
     };
-    let mut bytes = vec![];
-    if (&mut handle)
-        .take((limits.max_file_bytes + 1) as u64)
-        .read_to_end(&mut bytes)
-        .is_err()
-    {
-        return false;
-    }
     bytes.len() == file.bytes && digest(&bytes) == file.sha256
+}
+
+// Rewalk the configured selection, including current bytes and traversal status.
+// Configured exclusions may change without changing the analyzed source inventory.
+pub(crate) fn revalidate_selection(
+    root: &str,
+    before: &SelectionReport,
+    limits: &AnalysisLimits,
+    guard: &(impl Fn() -> Result<()> + Sync),
+) -> Result<Option<AnalysisProblem>> {
+    let current = load_guarded(Path::new(root), &before.requested, limits, guard)?;
+    let changed = current.selection.selected != before.selected
+        || current.selection.complete_within_selection != before.complete_within_selection;
+    Ok(changed.then(|| {
+        issue(
+            ProblemKind::ChangedSource,
+            ".",
+            0,
+            "selected source discovery or bytes changed during analysis",
+            None,
+            limits,
+        )
+    }))
 }
