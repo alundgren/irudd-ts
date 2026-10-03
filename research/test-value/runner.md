@@ -97,6 +97,9 @@ must agree with the selected Node identity or every baseline cell stays unknown.
 The selected executable's directory comes first in PATH, including for forked
 tests and configured import checks. Protocol validation uses that same absolute
 executable. Runtime identity and the resolved Vitest entry hash enter provenance.
+The standalone matrix freezes its initial runtime identity across all columns.
+A replacement after the baseline rejects subsequent columns even when their
+reporters agree with the replacement runtime.
 
 Timeouts, rejected edits and infrastructure failures retain `unknown` for every
 baseline cell. Failed baselines produce evidence and `notRun` columns. They do
@@ -180,6 +183,9 @@ and the explicit command. Its return contains `tests`, `complete`, `status`,
 `dependencies` accepts one reusable `DependencyStore(...).copy()` instance.
 Use `direct_vitest_command(config_path)` for the explicit direct command and
 pass `node=absolute_runtime_path` to `execute_case` for each subject's pin.
+Callers can freeze `node_fingerprint(node)` once and supply it as `expected_node`
+across multiple executions. Each execution records both selected and expected
+identities; a changed executable leaves every cell unknown.
 Standalone callers can use `install_signal_handlers()` to route interruption
 through owned subprocess cleanup. It returns previous handlers for restoration.
 The caller must record revision identities, classify the replay method and

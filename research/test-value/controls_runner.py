@@ -324,7 +324,9 @@ def execute_controls(output, archguard, installed=None, node="node", wrong_node=
                 files["setup.ts"] = setup
             template = fixture(output / f"vitest-{name}-template", files)
             for target in dependencies.workspace_links.values():
-                (template / target).mkdir(parents=True, exist_ok=True)
+                workspace = template / target
+                workspace.mkdir(parents=True, exist_ok=True)
+                (workspace / "control.txt").write_text("Owned workspace directory control.\n")
             return template
 
         vt_template = vt_fixture("passing")
@@ -353,6 +355,40 @@ def execute_controls(output, archguard, installed=None, node="node", wrong_node=
                     any("Reporter runtime disagrees" in error for error in wrong["infrastructureErrors"]),
                     "A real reporter on another runtime must invalidate every column cell")
             records.append({"control": "vitest-wrong-runtime-real-reporter", "passed": True, "evidence": "vitest-wrong-runtime/execution.json"})
+            pin = output / "owned-node-pin"
+            pin.symlink_to(Path(node).resolve())
+            switched_template = vt_fixture("runtime-switch")
+            switched_config = {"sourceRoot": str(switched_template), "dependencyRoot": str(installed), "archguard": str(archguard),
+                "node": str(pin), "subject": {"name": "authored-runtime-switch", "revision": "authored"}, "command": vt_command,
+                "planConfig": {"schemaVersion": 1, "selection": {"include": ["source.ts"]}}}
+            original_execute = execution_runner.execute_case
+
+            def switch_after_baseline(*arguments, **options):
+                execution = original_execute(*arguments, **options)
+                if options.get("baseline") is None:
+                    pin.unlink()
+                    pin.symlink_to(Path(wrong_node).resolve())
+                return execution
+
+            try:
+                with patch.object(DependencyStore, "copy", return_value=dependencies), patch.object(execution_runner, "execute_case", side_effect=switch_after_baseline):
+                    switched = run_matrix(switched_config, output / "vitest-runtime-switch")
+                require(switched["baselineComplete"], "Runtime switch baseline must pass on the original frozen pin")
+                for column in switched["mutants"]:
+                    detail = json.loads((output / "vitest-runtime-switch" / column["evidence"]).read_text())
+                    require(detail["protocol"]["complete"] and detail["protocol"]["tests"]["failed"] == 1 and detail["node"] != detail["expectedNode"],
+                            "Changed runtime must retain actual assertion evidence and the original frozen identity")
+                    require(column["status"] == "error" and all(cell == "unknown" for cell in column["outcomes"].values()) and
+                            any("frozen execution identity" in error for error in column["infrastructureErrors"]),
+                            "Changing the selected runtime after baseline must invalidate every cell")
+            finally:
+                pin.unlink()
+                pin.symlink_to(Path(node).resolve())
+            restored = execute_case(switched_template, output / "vitest-runtime-restored", vt_command, dependencies=dependencies,
+                                    baseline=vt_baseline["tests"], node=str(pin), expected_node=vt_baseline["node"], timeout=40)
+            require(restored["complete"] and restored["status"] == "survived", "Restoring the same frozen runtime must accept a passing execution")
+            records.append({"control": "vitest-runtime-switch-between-columns-and-restoration", "passed": True,
+                            "evidence": "vitest-runtime-switch/matrix.json"})
         for name, body, extra, setup in [
             ("skipped", vt_tests.replace('test("duplicate"', 'test.skip("duplicate"', 1), "", None),
             ("missing", vt_tests.replace('test("duplicate",()=>expect(upper(3)).toBe(false));', ""), "", None),

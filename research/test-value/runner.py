@@ -575,7 +575,7 @@ def validate_inventory(inventory, protocol, request, raw_exit, node_identity):
 
 def execute_case(template, output, command, *, dependencies=None, baseline=None, mutation=None,
                  cwd=".", environment=None, timeout=60, input_digest=None, run_id=None, node="node", keep_source=False,
-                 import_controls=None, captured_artifacts=None):
+                 import_controls=None, captured_artifacts=None, expected_node=None):
     """Run one explicit fresh copy. Returns records and complete/unknown classification.
 
     Historical callers can pass their fixed inventory as baseline and a separate
@@ -621,7 +621,8 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     inside(actual_cwd.resolve(), source)
     evidence = {"templateSha256": source_digest, "mutation": mutation, "request": request,
                 "baselineIds": [test["id"] for test in baseline] if baseline is not None else None,
-                "node": node_identity, "vitest": vitest, "runnerSha256": runner_digest,
+                "node": node_identity, "expectedNode": expected_node or node_identity,
+                "vitest": vitest, "runnerSha256": runner_digest,
                 "dependencySha256": dependencies.sha256 if dependencies else None, "cleanupComplete": True}
     try:
         if mutation:
@@ -666,7 +667,9 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
                     raise ValueError("Final SDK protocol validation failed")
                 protocol = json.loads(validation.stdout)
                 inventory = read_json(output / "inventory.json")
-                records, problems = validate_inventory(inventory, protocol, request, raw["exitCode"], node_identity)
+                records, problems = validate_inventory(inventory, protocol, request, raw["exitCode"], expected_node or node_identity)
+                if expected_node is not None and node_identity != expected_node:
+                    problems.append("Selected Node runtime changed from the frozen execution identity")
             except (OSError, ValueError, subprocess.SubprocessError) as error:
                 problems.append(str(error))
         if baseline is not None:
@@ -765,6 +768,7 @@ def run_matrix(config, output):
     options = dict(dependencies=dependencies, cwd=config.get("cwd", "."), environment=config.get("environment"),
                    timeout=config.get("timeoutSeconds", 60), input_digest=inputs_digest, run_id=uuid.uuid4().hex,
                    node=config.get("node", "node"), keep_source=config.get("keepSource", False),
+                   expected_node=node_identity,
                    import_controls=config.get("importControls"), captured_artifacts=config.get("capturedArtifacts"))
     baseline = execute_case(template, output / "baseline", config["command"], **options)
     inventory = baseline["tests"]
