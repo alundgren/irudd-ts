@@ -1,6 +1,6 @@
 # Research and design choices
 
-Checked on 2026-10-02. This is a source architecture checker. It does not replace TypeScript's type checker, Effect's semantic diagnostics or behavioral tests.
+Checked on 2026-10-02; compiler-provider status updated on 2026-10-03. Archguard combines source architecture checks with an optional separately versioned compiler fact provider. It does not replace Effect-specific diagnostics or behavioral tests.
 
 ## Oxc and Oxlint
 
@@ -14,7 +14,7 @@ The proposed value is a reusable project graph and repository facts for custom r
 
 TypeScript 7.0 shipped July 8, 2026 as a Go implementation. Microsoft reports substantial compiler speedups through native execution and parallel checking. Stable 7.0 does not ship the old programmatic compiler API. Projects needing it can retain TypeScript 6 alongside the native compiler. The stable registry version checked here is 7.0.2. [Release](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/).
 
-The 7.1 plan schedules beta on October 6 and stable on November 24; those are plans, not released features. API stabilization, language-service APIs and additional compiler optimizations are in progress. Current `next` builds offer experimental API work. Avoid pinning the CLI to internal Go implementation packages. Revisit compiler-backed symbol/type facts after the public API stabilizes. [Iteration plan](https://github.com/microsoft/TypeScript/issues/63703), [API roadmap](https://github.com/microsoft/TypeScript/issues/63875).
+The 7.1 plan schedules beta on October 6 and stable on November 24; those are plans, not released features. API stabilization, language-service APIs and additional compiler optimizations are in progress. Released 7.0.2 exposes experimental public JavaScript API entry points. The user selected these unstable APIs; the [semantic provider](semantic-provider.md) pins them and versions Archguard's contract separately. It uses no internal Go implementation packages. Updating the pin requires native replay and completion checks; planned 7.1 stabilization does not promise compatibility. [Iteration plan](https://github.com/microsoft/TypeScript/issues/63703), [API roadmap](https://github.com/microsoft/TypeScript/issues/63875).
 
 Effect's MIT `@effect/tsgo` 0.48.0 adds semantic diagnostics, including Effect error/context checks and duplicate package diagnostics. T3 already patches its compiler with this tool. The standalone diagnostics command can emit JSON but repeats checking; prefer its existing compiler integration for those rules. It does not document a reusable general module graph. [Effect integration](https://github.com/Effect-TS/tsgo), [license](https://github.com/Effect-TS/tsgo/blob/main/LICENSE).
 
@@ -22,7 +22,7 @@ Effect's MIT `@effect/tsgo` 0.48.0 adds semantic diagnostics, including Effect e
 
 Roslyn exposes the C#/VB compiler as reusable APIs. Syntax trees, compilations and symbols are immutable. A compilation combines source, references and options; a semantic model answers binding/type questions for a file. Workspaces represent solutions and projects and manage dependencies. Diagnostic analyzers run over these compiler objects and report findings through the build/editor diagnostic system. [Compiler model](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/compiler-api-model), [semantics](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/work-with-semantics), [immutable trees](https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/get-started/syntax-transformation).
 
-The useful design lesson is to build one project snapshot and let many analyzers query it. Archguard adopts that arrangement at a smaller scope: syntax facts, lexical imported-symbol provenance and resolved dependencies. Roslyn's type/data-flow guarantees do not transfer to Oxc facts. Incremental snapshots, cancellation and compiler-backed types are possible future work rather than implemented capabilities. Roslyn itself is MIT licensed. [Source/license](https://github.com/dotnet/roslyn).
+The useful design lesson is to build one project snapshot and let many analyzers query it. Archguard adopts that arrangement at a smaller scope: syntax facts, lexical imported-symbol provenance and resolved dependencies. Roslyn's type/data-flow guarantees do not transfer to Oxc facts. Archguard now has an [opt-in source graph cache](cache.md) and separate compiler-backed receiver/member/symbol facts. Compiler snapshot reuse and general data-flow queries remain future work. The measured graph cache is slower than fresh analysis and is not enabled by default. Roslyn itself is MIT licensed. [Source/license](https://github.com/dotnet/roslyn).
 
 ## Other tools
 
@@ -53,4 +53,4 @@ Scouts also verified MIT licensing for [tRPC](https://github.com/trpc/trpc) and 
 | TypeScript plugins only | Familiar rule authoring for target teams, Node 24 runs stripped TS | Node deployment/startup, JSON transfer, smaller typed fact vocabulary than a compiler API |
 | Both plugin languages | One analysis reused by fast native rules and accessible TS plugins | A versioned protocol and two SDK contracts need compatibility tests |
 
-The CLI host stays in Rust in all three choices. Recommend supporting both plugin languages. Use built-in Rust rules for common graph operations and TypeScript for project-specific contracts over the same facts. Start with one subprocess per plugin per project, not one per file. This keeps the implementation auditable and avoids tying third-party plugins to Rust's ABI. Benchmark startup and serialization separately before introducing a persistent worker. Keep type-heavy Effect rules with Effect's compiler integration until there is a stable semantic provider.
+The CLI host stays in Rust in all three choices. Recommend supporting both plugin languages. Use built-in Rust rules for common graph operations and TypeScript for project-specific contracts over the same facts. Start with one subprocess per plugin per project, not one per file. This keeps the implementation auditable and avoids tying third-party plugins to Rust's ABI. Benchmark startup and serialization separately before introducing a persistent worker. Keep Effect-specific diagnostics with Effect's compiler integration. Archguard's public member facts do not implement Effect's complete error/context analysis.

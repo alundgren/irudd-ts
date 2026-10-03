@@ -1,0 +1,762 @@
+{
+  "archguardRevision": "f3c34b4aa0aaad7879016e2f58610f6c7a3ef5f8",
+  "executableSha256": "710dcb5b65e9625ba8c38a47c17ebd8794bd2e9a18baa48ce2a37d016c934b39",
+  "upstreamRevision": "e0db2a5e58bcbe7d738bca7667d2440ddb83e30f",
+  "config": {
+    "schemaVersion": 1,
+    "include": [
+      "apps/**/*.ts",
+      "apps/**/*.tsx",
+      "apps/**/*.mts",
+      "apps/**/*.cts",
+      "apps/**/*.js",
+      "apps/**/*.jsx",
+      "apps/**/*.mjs",
+      "apps/**/*.cjs",
+      "packages/**/*.ts",
+      "packages/**/*.tsx",
+      "packages/**/*.mts",
+      "packages/**/*.cts",
+      "packages/**/*.js",
+      "packages/**/*.jsx",
+      "packages/**/*.mjs",
+      "packages/**/*.cjs",
+      "infra/**/*.ts",
+      "infra/**/*.tsx",
+      "infra/**/*.mts",
+      "infra/**/*.cts",
+      "infra/**/*.js",
+      "infra/**/*.jsx",
+      "infra/**/*.mjs",
+      "infra/**/*.cjs",
+      "scripts/**/*.ts",
+      "scripts/**/*.tsx",
+      "scripts/**/*.mts",
+      "scripts/**/*.cts",
+      "scripts/**/*.js",
+      "scripts/**/*.jsx",
+      "scripts/**/*.mjs",
+      "scripts/**/*.cjs",
+      "oxlint-plugin-t3code/**/*.ts",
+      "oxlint-plugin-t3code/**/*.tsx",
+      "oxlint-plugin-t3code/**/*.mts",
+      "oxlint-plugin-t3code/**/*.cts",
+      "oxlint-plugin-t3code/**/*.js",
+      "oxlint-plugin-t3code/**/*.jsx",
+      "oxlint-plugin-t3code/**/*.mjs",
+      "oxlint-plugin-t3code/**/*.cjs"
+    ],
+    "exclude": [
+      ".repos/**"
+    ],
+    "packageManifests": [
+      "package.json",
+      "apps/*/package.json",
+      "packages/*/package.json",
+      "infra/*/package.json",
+      "scripts/package.json",
+      "oxlint-plugin-t3code/package.json",
+      "apps/mobile/modules/*/package.json"
+    ],
+    "rules": []
+  },
+  "configSha256": "fcb3d3c6b7873e78596d0bacc64a5981630fb9b62e48d34f0bc40457afab0de7",
+  "factsSha256": "6c3dd1201645baa1fe7e06ad286e4219227d3f8762780968cdca50887e0d012c",
+  "files": 3971,
+  "imports": 29435,
+  "statuses": {
+    "external": 12954,
+    "internal": 16471,
+    "unresolved": 2,
+    "unsupported": 7,
+    "excluded": 1
+  },
+  "problems": [
+    {
+      "file": "apps/desktop/src/boot.ts",
+      "offset": 124,
+      "message": "Unresolved dependency ./compileCache.cjs: Cannot find module './compileCache.cjs'"
+    },
+    {
+      "file": "apps/desktop/src/boot.ts",
+      "offset": 155,
+      "message": "Unresolved dependency ./main.cjs: Cannot find module './main.cjs'"
+    },
+    {
+      "file": "apps/mobile/metro.config.js",
+      "offset": 3104,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    },
+    {
+      "file": "apps/mobile/metro.config.js",
+      "offset": 3999,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    },
+    {
+      "file": "apps/mobile/src/lib/uniwind-dev-refresh.test.ts",
+      "offset": 901,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    },
+    {
+      "file": "apps/mobile/src/lib/uniwind-platform-variants.fixture.cjs",
+      "offset": 6850,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    },
+    {
+      "file": "apps/server/vite.config.ts",
+      "offset": 88,
+      "message": "Excluded dependency ../../vite.config.ts: source target was ignored, excluded, unselected or failed parsing"
+    },
+    {
+      "file": "apps/web/src/components/files/fileEditorHighlight.test.ts",
+      "offset": 941,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    },
+    {
+      "file": "apps/web/src/components/files/fileEditorLanguageReadiness.test.ts",
+      "offset": 808,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    },
+    {
+      "file": "apps/web/src/components/files/fileEditorVirtualization.test.ts",
+      "offset": 428,
+      "message": "Unsupported dependency <nonliteral>: nonliteral dependency target"
+    }
+  ],
+  "complete": false,
+  "exit": 2,
+  "externalLookupFailures": [
+    {
+      "file": "apps/desktop/gnome-extension/captureFeedback.js",
+      "specifier": "gi://Clutter",
+      "detail": "Cannot find module 'gi://Clutter'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/captureFeedback.js",
+      "specifier": "gi://Gio",
+      "detail": "Cannot find module 'gi://Gio'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/captureFeedback.js",
+      "specifier": "gi://GLib",
+      "detail": "Cannot find module 'gi://GLib'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/captureFeedback.js",
+      "specifier": "gi://Meta",
+      "detail": "Cannot find module 'gi://Meta'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/captureFeedback.js",
+      "specifier": "gi://St",
+      "detail": "Cannot find module 'gi://St'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/captureFeedback.js",
+      "specifier": "resource:///org/gnome/shell/ui/main.js",
+      "detail": "Cannot find module 'resource:///org/gnome/shell/ui/main.js'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "gi://Gio",
+      "detail": "Cannot find module 'gi://Gio'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "gi://GLib",
+      "detail": "Cannot find module 'gi://GLib'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "gi://Meta",
+      "detail": "Cannot find module 'gi://Meta'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "gi://Shell",
+      "detail": "Cannot find module 'gi://Shell'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "gi://St",
+      "detail": "Cannot find module 'gi://St'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "resource:///org/gnome/shell/extensions/extension.js",
+      "detail": "Cannot find module 'resource:///org/gnome/shell/extensions/extension.js'"
+    },
+    {
+      "file": "apps/desktop/gnome-extension/extension.js",
+      "specifier": "resource:///org/gnome/shell/ui/main.js",
+      "detail": "Cannot find module 'resource:///org/gnome/shell/ui/main.js'"
+    },
+    {
+      "file": "apps/mobile/plugins/withShareExtensionDisplayName.cjs",
+      "specifier": "fs",
+      "detail": "Cannot find module 'fs'"
+    },
+    {
+      "file": "apps/mobile/plugins/withShareExtensionDisplayName.cjs",
+      "specifier": "path",
+      "detail": "Cannot find module 'path'"
+    },
+    {
+      "file": "apps/mobile/plugins/withWidgetLogoAsset.cjs",
+      "specifier": "path",
+      "detail": "Cannot find module 'path'"
+    },
+    {
+      "file": "apps/mobile/plugins/withWidgetLogoAsset.cjs",
+      "specifier": "fs",
+      "detail": "Cannot find module 'fs'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.ios.tsx",
+      "specifier": "@tabler/icons-react-native/IconGitPullRequest",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconGitPullRequest'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconAdjustmentsHorizontal",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconAdjustmentsHorizontal'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconAlignLeft",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconAlignLeft'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconAlertCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconAlertCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconAlertTriangle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconAlertTriangle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconApps",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconApps'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArchive",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArchive'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowBackUp",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowBackUp'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowDown",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowDown'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowForwardUp",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowForwardUp'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowLeft",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowLeft'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowDownCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowDownCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowRightCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowRightCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowUp",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowUp'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowUpCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowUpCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowUpRight",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowUpRight'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowUpRightCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowUpRightCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowsDiagonal2",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowsDiagonal2'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconArrowsMinimize",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconArrowsMinimize'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconBellRinging",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconBellRinging'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconBolt",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconBolt'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconBox",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconBox'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconBrain",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconBrain'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCamera",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCamera'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconChartBar",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconChartBar'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCheck",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCheck'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCloud",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCloud'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconChevronDown",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconChevronDown'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconChevronLeft",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconChevronLeft'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconChevronRight",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconChevronRight'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconChevronUp",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconChevronUp'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCircleCheck",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCircleCheck'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCircleXFilled",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCircleXFilled'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTicket",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTicket'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconClock",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconClock'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCode",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCode'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconCopy",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconCopy'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDatabase",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDatabase'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDeviceDesktop",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDeviceDesktop'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDeviceLaptop",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDeviceLaptop'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDeviceMobile",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDeviceMobile'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDots",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDots'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDotsVertical",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDotsVertical'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconDotsCircleHorizontal",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconDotsCircleHorizontal'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconEdit",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconEdit'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconExternalLink",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconExternalLink'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconEye",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconEye'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconFileText",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconFileText'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconFilter",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconFilter'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconFilterFilled",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconFilterFilled'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconFolder",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconFolder'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconFolderOpen",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconFolderOpen'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconFolderPlus",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconFolderPlus'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconGitBranch",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconGitBranch'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconGitMerge",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconGitMerge'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconGitPullRequest",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconGitPullRequest'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconHammer",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconHammer'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconHome",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconHome'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconInfoCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconInfoCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconKeyboard",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconKeyboard'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconKeyboardHide",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconKeyboardHide'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconLock",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconLock'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconLayoutColumns",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconLayoutColumns'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconLayoutSidebar",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconLayoutSidebar'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconLayoutSidebarRight",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconLayoutSidebarRight'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconLetterSpacing",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconLetterSpacing'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconMicrophone",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconMicrophone'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconLink",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconLink'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconMenu2",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconMenu2'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconMessage",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconMessage'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconMinus",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconMinus'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconMoon",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconMoon'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconNetwork",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconNetwork'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPalette",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPalette'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPencil",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPencil'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPhoto",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPhoto'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPin",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPin'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPinnedOff",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPinnedOff'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPlayerPlay",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPlayerPlay'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPlayerStopFilled",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPlayerStopFilled'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconPlus",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconPlus'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconQrcode",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconQrcode'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconRefresh",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconRefresh'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconSearch",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconSearch'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconServer",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconServer'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconSettings",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconSettings'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconSparkles",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconSparkles'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconStack2",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconStack2'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconStar",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconStar'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconStarFilled",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconStarFilled'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconStethoscope",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconStethoscope'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconSun",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconSun'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTerminal2",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTerminal2'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTextDecrease",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTextDecrease'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTextIncrease",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTextIncrease'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTool",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTool'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTrash",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTrash'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconTypography",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconTypography'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconUpload",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconUpload'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconUserCircle",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconUserCircle'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconWifiOff",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconWifiOff'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconWorld",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconWorld'"
+    },
+    {
+      "file": "apps/mobile/src/components/AppSymbol.tsx",
+      "specifier": "@tabler/icons-react-native/IconX",
+      "detail": "Cannot find module '@tabler/icons-react-native/IconX'"
+    },
+    {
+      "file": "apps/mobile/src/features/devices/DeviceStreamWebView.tsx",
+      "specifier": "@t3tools/mobile-device-stream",
+      "detail": "Cannot find module '@t3tools/mobile-device-stream'"
+    },
+    {
+      "file": "apps/mobile/src/features/settings/mobileThirdPartyLicenses.ts",
+      "specifier": "@t3tools/mobile-third-party-licenses",
+      "detail": "Cannot find module '@t3tools/mobile-third-party-licenses'"
+    },
+    {
+      "file": "apps/web/src/components/chat/MessagesTimeline.tsx",
+      "specifier": "mdast",
+      "detail": "Cannot find module 'mdast'"
+    },
+    {
+      "file": "apps/web/src/markdown-incremental.test.tsx",
+      "specifier": "mdast",
+      "detail": "Cannot find module 'mdast'"
+    },
+    {
+      "file": "apps/web/src/markdown-incremental.ts",
+      "specifier": "mdast",
+      "detail": "Cannot find module 'mdast'"
+    }
+  ],
+  "sourceCorpusSha256": "241ab88e024753be92374bbbcb7120c762898b0defc5b46712829943a3f01229",
+  "upstreamPullRequest": "https://github.com/pingdotgg/t3code/pull/13295"
+}

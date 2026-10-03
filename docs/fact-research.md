@@ -10,7 +10,7 @@ Roles are configured policy derived from paths. A path ending in `handlers.ts` e
 
 # Compiler analysis
 
-Archguard currently records file, import/export, lexical call, service, package, and resolved module-graph facts. These support repository policy, but do not imply TypeScript type checking or runtime behavior. The tools below show additional facts that can support stronger rules. Their analyses vary by language, build context, and configuration; each proposed fact should retain provenance and a completeness/status indicator so an unknown result cannot silently look clean.
+Archguard records file, import/export, lexical call, service, package, and resolved module-graph facts. These source facts do not imply compiler types or runtime behavior. The optional [TypeScript 7 provider](semantic-provider.md) now supplies separately versioned compiler contexts, receiver type states, named members, symbols and diagnostics for public dot accesses and JSX member tags. The broader analyses below remain distinct capabilities. The tools below show additional facts that can support stronger rules. Their analyses vary by language, build context, and configuration; each proposed fact should retain provenance and a completeness/status indicator so an unknown result cannot silently look clean.
 
 ## Fact inventory
 

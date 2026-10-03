@@ -8,10 +8,13 @@ Requires Rust 1.96 or newer. TypeScript plugin examples and local validation req
 cargo build --release --locked
 ./target/release/archguard check --root . --config archguard.json
 ./target/release/archguard facts --root . --config archguard.json > project-facts.json
+npm ci --prefix providers/typescript7 --ignore-scripts --no-audit --no-fund
 scripts/check.sh
 ```
 
 `check --json` emits a deterministic diagnostic order plus scan counts, completeness and elapsed time. Exit codes are 0 for a complete clean check, 1 for policy violations, and 2 for incomplete analysis or invalid configuration. A parser error, unsupported dynamic target, excluded source dependency or unresolved internal import cannot produce a clean result. Diagnostics may still identify violations in an incomplete project, but the result requires attention.
+
+`check` and `facts` accept an opt-in `--cache /path/to/cache.json`. It reuses syntax facts and resolved imports after validating source contents, configuration, package metadata and filesystem lookups. Policies and plugins still run each time. The measured historical reductions and complete server control were slower with caching. See [cache behavior and measurements](docs/cache.md).
 
 Configuration is explicit JSON with `schemaVersion: 1`. Unknown keys and duplicate rule IDs fail. `--root` is relative to the invoking directory. Plugin commands run in the configuration file's directory, with that directory as their working directory. Glob selectors use `/` and match paths relative to the analysis root.
 
@@ -31,6 +34,8 @@ Available built-in rule kinds are `forbiddenDependency`, `forbiddenImport`, `for
 
 The source graph uses Oxc Resolver with nearest-tsconfig path mappings and configured export conditions, which default to `types`, `import`, `default`. `extensions` controls extensionless lookup order; `extensionAliases` is an array of `[requestedSuffix, candidateSuffixes]` pairs. Defaults record `.js` to `.ts`/`.tsx`, `.mjs` to `.mts` and `.cjs` to `.cts` aliases. It is not a TypeScript type checker or a claim of compiler/runtime resolution parity. Uninstalled external packages remain external edges. Non-source assets are leaves. Workspace package manifests default to the root and immediate children of `apps`, `packages` and `infra`; set `packageManifests` explicitly for another layout. Packages must declare source exports to participate in workspace resolution. Scan selectors are not dependency closure: excluded or unselected source targets make analysis incomplete.
 
+Set `requireExternalResolution: true` after installing a project's dependencies to require package lookups to succeed. Missing packages, missing configured export targets and unsupported host module identifiers then remain unresolved problems, with exit 2. Node builtins remain external endpoints. The v1 facts contract records this choice as `resolution.mode: "installed-source"`; the default mode remains `"source"`. Installed dependency source is outside graph traversal. [Installed T3 coverage](docs/installed-resolution.md) records the full source inventory, merged platform-change replays and remaining generated-input requirements.
+
 TypeScript syntax facts use lexical bindings. An imported alias such as `E.runPromise()` can be attributed to Effect, while a locally shadowed `E` is not. Reassignment, dynamic property names, arbitrary object aliases, macros and inferred types are outside this release's analysis. Rust facts support direct `crate::module` use paths for local dogfooding; they do not expand macros, nested/inline modules or resolve Rust types.
 
 For TypeScript plugins, import `runPlugin`, `ProjectFacts`, `Diagnostic`, `dependencyPaths` and `createDependencyQuery` from [sdk/index.ts](sdk/index.ts). [examples/graph-plugin.ts](examples/graph-plugin.ts) follows client dependencies transitively. Rust rules implement `ProjectRule`; [examples/graph_plugin.rs](examples/graph_plugin.rs) uses the identical facts and policy. Rust extensions are statically linked or separate executables, avoiding a compiler-dependent dynamic ABI.
@@ -38,6 +43,8 @@ For TypeScript plugins, import `runPlugin`, `ProjectFacts`, `Diagnostic`, `depen
 Subprocess plugins are trusted local code. Archguard executes only commands you explicitly configure, passes one versioned JSON project on stdin, and requires one versioned JSON response on stdout. Logs belong on stderr. It bounds stdout and stderr, handles stdin concurrently and terminates the Unix process group on timeout or exit. Diagnostics must name known analyzed source files or package manifests and valid byte offsets. Repository diagnostics use `.` with offset zero. This is process management, not a sandbox.
 
 Licenses are checked against locked dependency manifests by `scripts/licenses.py`. The repository is MIT licensed. Preserve dependency license texts when distributing compiled binaries.
+
+An optional [TypeScript 7 semantic provider](docs/semantic-provider.md) exposes inferred public member facts through a separate versioned Rust and TypeScript contract. It pins the native compiler 7.0.2 and its experimental JavaScript API. Existing ProjectFacts v1 plugins keep their current payload. Local validation also checks the provider's pinned npm licenses and historical compiler fixtures.
 
 The optional `repository` section assigns file roles and checks companion files, registry imports, scoped classification and dependencies between roles. [Repository structure](docs/repository-structure.md) shows the Rust policy model, a runnable T3 simulation and its evidence limits. [Fact research](docs/fact-research.md) surveys additional compiler, build, schema and configuration facts used by other enforcement tools.
 

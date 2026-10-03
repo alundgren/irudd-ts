@@ -20,6 +20,7 @@ oxc_span = "=0.152.0"
 oxc_syntax = "=0.152.0"
 oxc_resolver = "=11.24.3"
 serde = { version = "1", features = ["derive"] }
+sha2 = "=0.11.0"
 serde_json = { version = "1", features = ["preserve_order"] }
 syn = { version = "2", features = ["full", "visit"] }
 

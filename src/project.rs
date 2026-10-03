@@ -1,17 +1,37 @@
 use crate::{
+    cache::{CacheRun, CachedAnalysis, RecordingFileSystem},
     config::{Config, Matcher},
     facts::*,
     rust, typescript,
 };
 use anyhow::{Context, Result};
 use ignore::WalkBuilder;
-use oxc_resolver::{ResolveOptions, Resolver, TsconfigDiscovery};
+use oxc_resolver::{FileSystem, ResolveError, ResolveOptions, ResolverGeneric, TsconfigDiscovery};
 use std::{
     collections::{BTreeMap, BTreeSet},
     path::Path,
 };
 
 pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
+    analyze_inner(root, config, None)
+}
+
+pub fn analyze_cached(root: &Path, config: &Config, cache_path: &Path) -> Result<CachedAnalysis> {
+    config.validate()?;
+    let mut cache = CacheRun::begin(root, config, cache_path)?;
+    let mut project = analyze_inner(root, config, Some(&mut cache))?;
+    let stats = cache.finish(&mut project, || input_digests(root, config));
+    Ok(CachedAnalysis {
+        project,
+        cache: stats,
+    })
+}
+
+fn analyze_inner(
+    root: &Path,
+    config: &Config,
+    mut cache: Option<&mut CacheRun>,
+) -> Result<ProjectFacts> {
     config.validate()?;
     let root = root.canonicalize()?;
     let include = Matcher::new(&config.include)?;
@@ -24,7 +44,11 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         packages: vec![],
         problems: vec![],
         resolution: ResolutionProfile {
-            mode: "source".into(),
+            mode: if config.require_external_resolution {
+                "installed-source".into()
+            } else {
+                "source".into()
+            },
             conditions: config.conditions.clone(),
             extensions: config.extensions.clone(),
             extension_aliases: config.extension_aliases.clone(),
@@ -33,20 +57,7 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         },
     };
     let mut paths = BTreeMap::new();
-    for entry in WalkBuilder::new(&root)
-        .hidden(false)
-        .git_ignore(true)
-        .require_git(false)
-        .follow_links(false)
-        .filter_entry(|e| {
-            !e.file_type().is_some_and(|t| t.is_dir())
-                || !matches!(
-                    e.file_name().to_str(),
-                    Some(".git" | "node_modules" | "target")
-                )
-        })
-        .build()
-    {
+    for entry in walk(&root) {
         let entry = match entry {
             Ok(entry) => entry,
             Err(error) => {
@@ -70,7 +81,7 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
             continue;
         }
         if manifests.matches(&path) {
-            match package(&path, entry.path()) {
+            match package(&path, entry.path(), cache.as_deref_mut()) {
                 Ok(Some(p)) => project.packages.push(p),
                 Ok(None) => {}
                 Err(e) => project.problems.push(Problem {
@@ -97,7 +108,9 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         let result = std::fs::read_to_string(entry.path())
             .map_err(anyhow::Error::from)
             .and_then(|source| {
-                if extension == "rs" {
+                if let Some(cache) = cache.as_deref_mut() {
+                    cache.parse(&path, &source, extension)
+                } else if extension == "rs" {
                     rust::parse(&path, &source)
                 } else {
                     typescript::parse(&path, &source)
@@ -134,26 +147,46 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
             });
         }
     }
-    let resolver = Resolver::new(ResolveOptions {
-        cwd: Some(root.clone()),
-        tsconfig: Some(TsconfigDiscovery::Auto),
-        condition_names: config.conditions.clone(),
-        extensions: config.extensions.clone(),
-        extension_alias: config.extension_aliases.clone(),
-        ..ResolveOptions::default()
-    });
+    let fs = cache
+        .as_ref()
+        .map(|cache| cache.filesystem())
+        .unwrap_or_default();
+    let resolver = ProjectResolver {
+        fs: fs.clone(),
+        resolver: ResolverGeneric::new_with_file_system(
+            fs,
+            ResolveOptions {
+                cwd: Some(root.clone()),
+                tsconfig: Some(TsconfigDiscovery::Auto),
+                condition_names: config.conditions.clone(),
+                extensions: config.extensions.clone(),
+                extension_alias: config.extension_aliases.clone(),
+                builtin_modules: config.require_external_resolution,
+                ..ResolveOptions::default()
+            },
+        ),
+    };
     let available: BTreeSet<_> = paths.keys().cloned().collect();
+    if let Some(cache) = cache.as_deref_mut() {
+        cache.prepare_graph(&available);
+    }
     for file in &mut project.files {
         let absolute = &paths[&file.path];
+        let reused = cache
+            .as_deref_mut()
+            .is_some_and(|cache| cache.reuse_graph(file));
         for edge in &mut file.imports {
-            resolve_edge(
-                &root,
-                absolute,
-                edge,
-                &project.packages,
-                &resolver,
-                &available,
-            )?;
+            if !reused {
+                resolve_edge(
+                    &root,
+                    absolute,
+                    edge,
+                    &project.packages,
+                    &resolver,
+                    &available,
+                    config.require_external_resolution,
+                )?;
+            }
             if matches!(
                 edge.status,
                 ResolutionStatus::Unresolved
@@ -179,8 +212,15 @@ pub fn analyze(root: &Path, config: &Config) -> Result<ProjectFacts> {
         .sort_by(|a, b| (&a.file, a.offset, &a.message).cmp(&(&b.file, b.offset, &b.message)));
     Ok(project)
 }
-fn package(path: &str, absolute: &Path) -> Result<Option<PackageFacts>> {
+fn package(
+    path: &str,
+    absolute: &Path,
+    cache: Option<&mut CacheRun>,
+) -> Result<Option<PackageFacts>> {
     let source = std::fs::read_to_string(absolute)?;
+    if let Some(cache) = cache {
+        cache.package_input(path, &source);
+    }
     let value: serde_json::Value = serde_json::from_str(&source)?;
     let Some(name) = value.get("name").and_then(|n| n.as_str()) else {
         return Ok(None);
@@ -207,8 +247,9 @@ fn resolve_edge(
     source: &Path,
     edge: &mut ImportFact,
     packages: &[PackageFacts],
-    resolver: &Resolver,
+    resolver: &ProjectResolver,
     available: &BTreeSet<String>,
+    require_external_resolution: bool,
 ) -> Result<()> {
     let Some(specifier) = edge.specifier.as_deref() else {
         edge.status = ResolutionStatus::Unsupported;
@@ -227,8 +268,8 @@ fn resolve_edge(
                 parent.join(format!("{module}.rs")),
                 parent.join(module).join("mod.rs"),
             ];
-            if let Some(target) = candidates.iter().find(|p| p.is_file()) {
-                set_target(root, target, edge, available)?;
+            if let Some(target) = candidates.iter().find(|p| resolver.fs.host_is_file(p)) {
+                set_target(root, target, edge, available, &resolver.fs)?;
             } else {
                 edge.status = ResolutionStatus::Unresolved;
                 edge.detail = Some(
@@ -263,8 +304,13 @@ fn resolve_edge(
             .parent()
             .context("package directory")?
             .to_owned();
-        match export_target(&p.exports, &subpath, &resolver.options().condition_names) {
+        match export_target(
+            &p.exports,
+            &subpath,
+            &resolver.resolver.options().condition_names,
+        ) {
             Some(target) if valid_export_target(&target) => resolver
+                .resolver
                 .resolve(&directory, &target)
                 .map(|r| r.path().to_owned()),
             _ => {
@@ -278,13 +324,19 @@ fn resolve_edge(
         }
     } else {
         resolver
+            .resolver
             .resolve_file(source, specifier)
             .map(|r| r.path().to_owned())
     };
     match result {
-        Ok(target) => set_target(root, &target, edge, available)?,
+        Ok(target) => set_target(root, &target, edge, available, &resolver.fs)?,
         Err(error) => {
-            let tsconfig = match resolver.find_tsconfig(source) {
+            if matches!(error, ResolveError::Builtin { .. }) {
+                edge.status = ResolutionStatus::External;
+                edge.detail = Some(error.to_string());
+                return Ok(());
+            }
+            let tsconfig = match resolver.resolver.find_tsconfig(source) {
                 Ok(config) => config,
                 Err(error) => {
                     edge.status = ResolutionStatus::Unsupported;
@@ -309,7 +361,7 @@ fn resolve_edge(
                 || specifier.starts_with('#')
                 || specifier.starts_with("@/")
                 || specifier.starts_with("~/");
-            edge.status = if internal {
+            edge.status = if internal || require_external_resolution {
                 ResolutionStatus::Unresolved
             } else {
                 ResolutionStatus::External
@@ -324,8 +376,11 @@ fn set_target(
     target: &Path,
     edge: &mut ImportFact,
     available: &BTreeSet<String>,
+    fs: &RecordingFileSystem,
 ) -> Result<()> {
-    let target = target.canonicalize().unwrap_or_else(|_| target.to_owned());
+    let target = fs
+        .canonicalize(target)
+        .unwrap_or_else(|_| target.to_owned());
     if target.components().any(|c| c.as_os_str() == "node_modules") {
         edge.status = ResolutionStatus::External;
         return Ok(());
@@ -439,4 +494,62 @@ pub fn relative(root: &Path, path: &Path) -> Option<String> {
     path.strip_prefix(root)
         .ok()
         .map(|p| p.to_string_lossy().replace('\\', "/"))
+}
+
+struct ProjectResolver {
+    resolver: ResolverGeneric<RecordingFileSystem>,
+    fs: RecordingFileSystem,
+}
+
+fn walk(root: &Path) -> ignore::Walk {
+    WalkBuilder::new(root)
+        .hidden(false)
+        .git_ignore(true)
+        .require_git(false)
+        .follow_links(false)
+        .filter_entry(|e| {
+            !e.file_type().is_some_and(|t| t.is_dir())
+                || !matches!(
+                    e.file_name().to_str(),
+                    Some(".git" | "node_modules" | "target")
+                )
+        })
+        .build()
+}
+
+fn input_digests(root: &Path, config: &Config) -> Result<BTreeMap<String, String>> {
+    let root = root.canonicalize()?;
+    let include = Matcher::new(&config.include)?;
+    let exclude = Matcher::new(&config.exclude)?;
+    let manifests = Matcher::new(&config.package_manifests)?;
+    let mut inputs = BTreeMap::new();
+    for entry in walk(&root) {
+        let entry = entry?;
+        if !entry.file_type().is_some_and(|t| t.is_file()) {
+            continue;
+        }
+        let path = relative(&root, entry.path()).context("file outside root")?;
+        if path
+            .split('/')
+            .any(|part| matches!(part, ".git" | "node_modules" | "target"))
+            || exclude.matches(&path)
+        {
+            continue;
+        }
+        let extension = entry
+            .path()
+            .extension()
+            .and_then(|e| e.to_str())
+            .unwrap_or_default();
+        if manifests.matches(&path)
+            || (include.matches(&path)
+                && matches!(
+                    extension,
+                    "ts" | "tsx" | "mts" | "cts" | "js" | "jsx" | "mjs" | "cjs" | "rs"
+                ))
+        {
+            inputs.insert(path, crate::cache::digest(&std::fs::read(entry.path())?));
+        }
+    }
+    Ok(inputs)
 }

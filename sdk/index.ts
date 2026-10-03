@@ -4,6 +4,7 @@ export type ResolutionStatus = "internal" | "external" | "unresolved" | "exclude
 export interface ImportBinding { local: string; imported: string; typeOnly: boolean }
 export interface ImportFact { specifier: string | null; kind: string; typeOnly: boolean; offset: number; bindings: readonly ImportBinding[]; status: ResolutionStatus; target: string | null; detail: string | null }
 export interface FileFacts { path: string; bytes: number; language: string; imports: readonly ImportFact[]; exports: readonly { name: string; typeOnly: boolean; local: string | null; offset: number }[]; calls: readonly { callee: string; origin: string | null; offset: number; stringArguments: readonly (string | null)[] }[]; services: readonly { name: string; identifier: string | null; offset: number }[] }
+// installed-source requires successful package lookup; source permits uninstalled external edges.
 export interface ProjectFacts { schemaVersion: 1; root: string; files: readonly FileFacts[]; packages: readonly { path: string; bytes: number; name: string; dependencies: readonly string[]; exports: unknown }[]; problems: readonly { file: string; offset: number; message: string }[]; resolution: { mode: string; conditions: readonly string[]; extensions: readonly string[]; extensionAliases: readonly [string, readonly string[]][]; tsconfig: string } }
 export interface Diagnostic { rule: string; file: string; offset: number; message: string; evidence?: readonly string[] }
 export type ProjectRule = (project: ProjectFacts) => readonly Diagnostic[];
@@ -44,3 +45,6 @@ export function createDependencyQuery(project: ProjectFacts): (start: string, in
 export function dependencyPaths(project: ProjectFacts, start: string, includeTypes = true): ReadonlyMap<string, readonly string[]> {
   return createDependencyQuery(project)(start, includeTypes);
 }
+
+export { readSemanticFacts, semanticFile, missingMemberDiagnostics } from "./semantic.ts";
+export type { SemanticFacts, SemanticFile, PropertyFact, SemanticRule, CompilerDiagnostic } from "./semantic.ts";
