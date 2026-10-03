@@ -39,7 +39,7 @@ The authored domain example deliberately starts with weak tests. The strengthene
 
 ## Bound execution and reuse
 
-Execution configuration sets worker count, per-command and whole-run deadlines, output/result/report budgets, workspace file and byte ceilings, open-file limits, CPU limits and generated-file limits. Linux can also enforce an address-space limit. The report records effective limits and selected workspace inputs. SIGINT and SIGTERM request cancellation and bounded cleanup.
+Execution configuration sets worker count, per-command and whole-run deadlines, output/result/report budgets, workspace file and byte ceilings, open-file limits, CPU limits and generated-file limits. Linux can also enforce an address-space limit. The report records effective limits and selected workspace inputs. SIGINT and SIGTERM request cancellation and bounded cleanup. Library callers must keep the default SIGCHLD disposition and must not reap Archguard-owned child processes. An incompatible SIGCHLD handler fails closed because Archguard must confirm process ownership and cleanup.
 
 The executable and declared external inputs are hashed without copying them into the worker workspace. Their read limits are one GiB per file and eight GiB in total, separate from copied and generated workspace bytes. The metadata budget and shared run deadline still apply.
 
@@ -51,7 +51,7 @@ Reuse invalidates the run's results when a declared input changes. It does not r
 
 Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections. macOS has different memory controls from Linux.
 
-Cleanup checks a separate thirty-second deadline while traversing owned workspaces. It preserves the workspace and reports its location when safe removal cannot finish. Individual kernel filesystem calls can still block; the traversal deadline is not a hard wall-clock guarantee for an unresponsive filesystem.
+Process-group cleanup allows five seconds after sending SIGKILL to confirm that the owned group has no live members. Pipe draining after executable exit has a separate 250 ms limit. Cleanup uncertainty preserves the workspace and stops the run, even when the command originally timed out. Cleanup checks a separate thirty-second deadline while traversing owned workspaces. Individual kernel filesystem calls can still block; these deadlines are not hard wall-clock guarantees for an unresponsive kernel or filesystem.
 
 ## Use the reports with an agent
 

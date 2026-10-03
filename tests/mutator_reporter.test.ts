@@ -6,6 +6,7 @@ import * as path from "node:path";
 import { spawnSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import type { TestExecutionResult } from "../sdk/mutator.ts";
+import { mutationProtocolLimits } from "../sdk/mutator.ts";
 
 const reporter = pathToFileURL(path.resolve("sdk/mutator-vitest-reporter.ts")).href;
 
@@ -20,9 +21,11 @@ function run(scenario: string): TestExecutionResult {
   const source = `
     import Reporter from ${JSON.stringify(reporter)};
     import fs from "node:fs";
+    import assert from "node:assert/strict";
     import {syncBuiltinESMExports} from "node:module";
     const scenario = ${JSON.stringify(scenario)};
     const reporter = new Reporter();
+    if(scenario === "repeatReporter") assert.throws(() => new Reporter(), /one one-shot runner/);
     if(scenario === "lateExit") process.on("exit",()=>{throw new Error("late exit control");});
     if(scenario === "failedPublication" || scenario === "failedPublicationTwo") process.on("exit",()=>{
       fs.openSync=()=>{throw new Error("ENOSPC control");};syncBuiltinESMExports();throw new Error("late exit control");
@@ -31,18 +34,30 @@ function run(scenario: string): TestExecutionResult {
     const pending = new Promise((resolve,reject)=>{resolveRun=resolve;rejectRun=reject;});
     const context = {
       config:{watch:scenario === "watch",mergeReports:scenario === "merge" ? "old-results" : undefined},
-      close: async () => {if(scenario === "cleanup") context.logger.error("error during close");},
+      close: async () => {
+        if(scenario === "cleanup") context.logger.error("error during close");
+        if(scenario === "pendingClose") await new Promise(() => {});
+      },
       waitForTestRunEnd: () => pending,
       state: {blobs:scenario === "replay" ? {} : undefined,getUnhandledErrors:()=>scenario === "unhandled" ? [{message:"unhandled control"}] : []},
       logger: {error:()=>{}},
     };
     if (scenario === "missingApi") delete context.waitForTestRunEnd;
     reporter.onInit(context);
-    const failed = !["pass", "pending", "missingApi", "replacedApi", "retry", "overflow"].includes(scenario);
+    if(scenario === "ordinaryLog") context.logger.error("ordinary runner diagnostic");
+    const failed = !["pass", "pending", "missingApi", "replacedApi", "retry", "overflow", "pendingClose", "ordinaryLog", "repeatReporter", "repeatRun"].includes(scenario);
     const test = {id:"case-1",type:"test",module:{moduleId:"case.test.ts"},result:()=>({
       state:failed ? "failed" : "passed",
-      errors:failed ? [{name:scenario === "runtime" ? "TypeError" : "AssertionError",message:scenario === "unicode" ? "x".repeat(3_999)+"🚀" : "boundary control"}] : scenario === "retry" ? [{name:"AssertionError",message:"retry control"}] : [],
+      errors:failed ? [{
+        name:scenario === "assertionAlias" ? "AssertionError [ERR_ASSERTION]" : scenario === "runtime" || scenario === "assertionCode" ? "TypeError" : "AssertionError",
+        code:scenario === "assertionCode" ? "ERR_ASSERTION" : undefined,
+        message:scenario === "unicode" ? "x".repeat(3_999)+"🚀" : scenario === "multibyte" ? "diagnostic prefix: "+"é".repeat(3_000) : "boundary control",
+      }] : scenario === "retry" ? [{name:"AssertionError",message:"retry control"}] : [],
     })};
+    if(scenario === "failureOverflow" || scenario === "failureBudget") test.result=()=>({
+      state:"failed",
+      errors:Array(${mutationProtocolLimits.maxFailures} + (scenario === "failureOverflow" ? 1 : 0)).fill({name:"AssertionError",message:"failure budget control"}),
+    });
     const module = {
       type:"module",moduleId:"case.test.ts",errors:()=>scenario === "import" ? [{message:"import control"}] : [],
       children:{allTests:()=>[test],allSuites:()=>scenario === "suite" ? [{type:"suite",errors:()=>[{message:"suite control"}],module:{moduleId:"case.test.ts"}}] : []},
@@ -51,13 +66,25 @@ function run(scenario: string): TestExecutionResult {
       name:"afterAll",entity:{task:{result:{hooks:{afterAll:scenario === "hook" ? "fail" : "pass"}}},moduleId:"case.test.ts"},
     });
     if (scenario === "unknownHook") reporter.onHookEnd({name:"afterAll",entity:{moduleId:"case.test.ts"}});
+    if (scenario === "startedHook" || scenario === "startedGoodHook" || scenario === "startedUnknownHook") {
+      const hook = {name:"beforeAll",entity:{task:{result:{
+        hooks:{beforeAll:scenario === "startedGoodHook" ? "pass" : "run"},
+        errors:scenario === "startedHook" ? [{message:"throwing hook control"}] : [],
+      }},moduleId:"case.test.ts"}};
+      reporter.onHookStart(hook);
+      if(scenario === "startedGoodHook") reporter.onHookEnd(hook);
+    }
     if (scenario === "overflow") module.errors=()=>Array(10_001).fill({message:"too many"});
     reporter.onTestRunEnd([module],[],scenario === "interrupted" ? "interrupted" : failed ? "failed" : "passed");
+    if(scenario === "processTimeout") reporter.onProcessTimeout();
+    if(scenario === "repeatRun") reporter.onTestRunEnd([module],[],"passed");
     if(scenario === "replacedApi") context.close=async()=>{};
     if(scenario === "pending") process.exit(1);
     if(scenario === "lateRun") rejectRun(new Error("late coverage control")); else resolveRun();
     await Promise.resolve();
-    await context.close();
+    if(scenario === "pendingClose") { void context.close(); await Promise.resolve(); }
+    else await context.close();
+    if(scenario === "ordinaryLog") context.logger.error("ordinary runner diagnostic after close");
     if(scenario === "postRenamePublication") {
       let opens=0;const originalOpen=fs.openSync;
       fs.openSync=(...args)=>{if(++opens>1)throw new Error("ENOSPC control");return originalOpen(...args);};
@@ -136,4 +163,80 @@ test("retained retry errors and oversized runner metadata fail conservatively", 
   assert.equal(unicode.complete, true);
   assert.ok(unicode.failures[0]?.message.endsWith("[truncated]"));
   assert.equal(Buffer.from(unicode.failures[0]!.message).toString("utf8"), unicode.failures[0]?.message);
+});
+
+
+test("reporter diagnostics preserve short messages and the beginning of truncated messages", () => {
+  const failed = run("assertion");
+  assert.equal(failed.failures[0]?.message, "boundary control");
+  const truncated = run("multibyte");
+  assert.equal(truncated.complete, true);
+  assert.ok(truncated.failures[0]?.message.startsWith("diagnostic prefix: "));
+  assert.ok(truncated.failures[0]?.message.endsWith("[truncated]"));
+  assert.equal(Buffer.from(truncated.failures[0]!.message).toString("utf8"), truncated.failures[0]?.message);
+  assert.deepEqual(run("pass").failures, []);
+});
+
+test("Node assertion names and codes remain assertion failures while runtime errors stay distinct", () => {
+  for (const scenario of ["assertionAlias", "assertionCode"]) {
+    const failed = run(scenario);
+    assert.equal(failed.complete, true, scenario);
+    assert.equal(failed.failures[0]?.kind, "assertion", scenario);
+    assert.equal(failed.failures[0]?.testId, "case-1", scenario);
+  }
+  assert.equal(run("runtime").failures[0]?.kind, "runtime");
+  assert.deepEqual(run("pass").failures, []);
+});
+
+test("pending runner close stays incomplete and ordinary logs do not become cleanup failures", () => {
+  assert.equal(run("pendingClose").complete, false);
+  const corrected = run("pass");
+  assert.equal(corrected.complete, true);
+  assert.deepEqual(corrected.failures, []);
+  const ordinary = run("ordinaryLog");
+  assert.equal(ordinary.complete, true);
+  assert.deepEqual(ordinary.failures, []);
+});
+
+test("a second reporter is rejected and repeated test runs stay incomplete", () => {
+  const rejected = run("repeatReporter");
+  assert.equal(rejected.complete, true);
+  assert.deepEqual(rejected.tests, { passed: 1, failed: 0, skipped: 0 });
+  assert.deepEqual(rejected.failures, []);
+  assert.equal(run("repeatRun").complete, false);
+  assert.equal(run("pass").complete, true);
+});
+
+test("a throwing hook reported only at start retains hook failure evidence", () => {
+  const failed = run("startedHook");
+  assert.equal(failed.complete, true);
+  assert.equal(failed.failures.filter(error => error.kind === "hook").length, 1);
+  assert.equal(run("startedUnknownHook").complete, false);
+  const corrected = run("startedGoodHook");
+  assert.equal(corrected.complete, true);
+  assert.equal(corrected.failures.some(error => error.kind === "hook"), false);
+  assert.equal(corrected.failures.every(error => error.kind === "assertion"), true);
+});
+
+
+test("runner cleanup timeout remains incomplete alongside assertion failures", () => {
+  const timedOut = run("processTimeout");
+  assert.equal(timedOut.complete, false);
+  assert.ok(timedOut.failures.some(error => error.kind === "runtime"));
+  assert.ok(timedOut.failures.some(error => error.kind === "assertion"));
+  const corrected = run("assertion");
+  assert.equal(corrected.complete, true);
+  assert.equal(corrected.failures.every(error => error.kind === "assertion"), true);
+  assert.deepEqual(run("pass").failures, []);
+});
+
+test("failure record overflow stays incomplete while the supported failure budget remains complete", () => {
+  const oversized = run("failureOverflow");
+  assert.equal(oversized.complete, false);
+  assert.ok(oversized.failures.length <= mutationProtocolLimits.maxFailures);
+  const corrected = run("failureBudget");
+  assert.equal(corrected.complete, true);
+  assert.equal(corrected.failures.length, mutationProtocolLimits.maxFailures);
+  assert.equal(corrected.failures.every(error => error.kind === "assertion" && error.testId === "case-1"), true);
+  assert.deepEqual(run("pass").failures, []);
 });

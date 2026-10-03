@@ -10,7 +10,8 @@ use std::{
 const STDOUT_LIMIT: usize = 8 * 1024 * 1024;
 const STDERR_LIMIT: usize = 64 * 1024;
 const INPUT_LIMIT: usize = 64 * 1024 * 1024;
-const CLEANUP_TIME: Duration = Duration::from_millis(250);
+const PIPE_DRAIN_TIME: Duration = Duration::from_millis(250);
+const PROCESS_CLEANUP_TIME: Duration = Duration::from_secs(5);
 
 #[derive(Debug, Clone, Default)]
 pub(crate) struct ChildLimits {
@@ -207,17 +208,25 @@ mod unix {
         }
 
         fn finish(&mut self) -> Result<ExitStatus> {
+            self.finish_with_grace(PROCESS_CLEANUP_TIME, group_has_live_members)
+        }
+
+        fn finish_with_grace(
+            &mut self,
+            grace: Duration,
+            mut observe_group: impl FnMut(Pid) -> Result<bool>,
+        ) -> Result<ExitStatus> {
             self.finished = true;
             let mut failure = self.kill_group().err();
             if !self.owned {
                 return Err(failure.unwrap_or_else(|| anyhow::anyhow!("child ownership lost")));
             }
             let _ = self.child.kill();
-            let deadline = Instant::now() + CLEANUP_TIME;
+            let deadline = Instant::now() + grace;
             loop {
                 let exited = self.exited()?;
                 if exited {
-                    match group_has_live_members(self.group) {
+                    match observe_group(self.group) {
                         Ok(false) => {
                             let status = self
                                 .child
@@ -577,7 +586,7 @@ mod unix {
                             output.stop = CommandStop::Cleanup(format!("{error:#}"));
                             break;
                         }
-                        drain_deadline = Some(Instant::now() + CLEANUP_TIME);
+                        drain_deadline = Some(Instant::now() + PIPE_DRAIN_TIME);
                     }
                     Ok(false) => {}
                     Err(error) => {
@@ -654,6 +663,91 @@ mod unix {
     #[cfg(test)]
     mod ownership_tests {
         use crate::subprocess::unix::*;
+
+        fn owned_terminated_child() -> ChildGuard {
+            let mut command = Command::new("sh");
+            command.args(["-c", "exec sleep 30"]).process_group(0);
+            let child = command.spawn().unwrap();
+            let group = Pid::from_raw(child.id() as i32);
+            let mut guard = ChildGuard {
+                child,
+                group,
+                owned: true,
+                finished: false,
+            };
+            guard.kill_group().unwrap();
+            let deadline = Instant::now() + Duration::from_secs(3);
+            while !guard.exited().unwrap() {
+                assert!(Instant::now() < deadline, "owned child did not exit");
+                thread::sleep(Duration::from_millis(2));
+            }
+            guard
+        }
+
+        fn assert_leader_reserved(group: Pid) {
+            let mut info: nix::libc::siginfo_t = unsafe { std::mem::zeroed() };
+            let result = unsafe {
+                nix::libc::waitid(
+                    nix::libc::P_PID,
+                    group.as_raw() as nix::libc::id_t,
+                    &mut info,
+                    nix::libc::WEXITED | nix::libc::WNOHANG | nix::libc::WNOWAIT,
+                )
+            };
+            assert_eq!(result, 0);
+            assert_eq!(unsafe { info.si_pid() }, group.as_raw());
+        }
+
+        #[test]
+        fn delayed_group_observation_keeps_ownership_until_cleanup_settles() {
+            for (grace, succeeds) in [(PIPE_DRAIN_TIME, false), (PROCESS_CLEANUP_TIME, true)] {
+                let mut guard = owned_terminated_child();
+                let mut first_observation = None;
+                let result = guard.finish_with_grace(grace, |group| {
+                    assert_leader_reserved(group);
+                    let started = first_observation.get_or_insert_with(Instant::now);
+                    if started.elapsed() < Duration::from_millis(350) {
+                        return Ok(true);
+                    }
+                    group_has_live_members(group)
+                });
+                assert_eq!(result.is_ok(), succeeds);
+                if let Err(error) = result {
+                    assert!(error.to_string().contains("cleanup deadline"));
+                }
+                assert!(!guard.owned && guard.finished);
+                assert!(guard.kill_group().is_err());
+            }
+        }
+
+        #[test]
+        fn persistent_or_uncertain_group_observation_fails_closed() {
+            let mut live = owned_terminated_child();
+            let started = Instant::now();
+            let error = live
+                .finish_with_grace(Duration::from_millis(75), |group| {
+                    assert_leader_reserved(group);
+                    Ok(true)
+                })
+                .unwrap_err();
+            assert!(error.to_string().contains("cleanup deadline"));
+            assert!(started.elapsed() >= Duration::from_millis(75));
+            assert!(!live.owned && live.finished);
+            assert!(live.kill_group().is_err());
+
+            let mut uncertain = owned_terminated_child();
+            let error = uncertain
+                .finish_with_grace(PROCESS_CLEANUP_TIME, |group| {
+                    assert_leader_reserved(group);
+                    bail!("inventory unavailable")
+                })
+                .unwrap_err();
+            assert!(
+                format!("{error:#}").contains("group cleanup uncertain: inventory unavailable")
+            );
+            assert!(!uncertain.owned && uncertain.finished);
+            assert!(uncertain.kill_group().is_err());
+        }
 
         #[cfg(target_os = "linux")]
         #[test]
