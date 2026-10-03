@@ -62,6 +62,93 @@ fn graph_tracks_workspace_exports_reexports_and_types() {
     );
 }
 #[test]
+fn installed_source_requires_packages_and_preserves_host_endpoints() {
+    let root = tempfile::tempdir().unwrap();
+    put(
+        root.path(),
+        "main.ts",
+        "import 'missing-package'; import 'fs'; import 'node:path'; import '@app/generated';",
+    );
+    let strict = config(json!({"schemaVersion":1,"requireExternalResolution":true}));
+    let facts = project::analyze(root.path(), &strict).unwrap();
+    assert_eq!(facts.resolution.mode, "installed-source");
+    assert_eq!(facts.problems.len(), 2);
+    let imports = &facts.file("main.ts").unwrap().imports;
+    assert_eq!(imports[0].status, ResolutionStatus::Unresolved);
+    assert!(
+        imports[0]
+            .detail
+            .as_deref()
+            .unwrap()
+            .contains("missing-package")
+    );
+    assert_eq!(imports[1].status, ResolutionStatus::External);
+    assert_eq!(imports[1].detail.as_deref(), Some("Builtin module node:fs"));
+    assert_eq!(imports[2].status, ResolutionStatus::External);
+    assert_eq!(imports[3].status, ResolutionStatus::Unresolved);
+
+    let legacy = project::analyze(root.path(), &config(json!({"schemaVersion":1}))).unwrap();
+    assert_eq!(legacy.resolution.mode, "source");
+    assert!(legacy.problems.is_empty());
+    assert_eq!(
+        legacy.file("main.ts").unwrap().imports[0].status,
+        ResolutionStatus::External
+    );
+    assert!(legacy.file("main.ts").unwrap().imports[0].detail.is_some());
+
+    put(
+        root.path(),
+        "node_modules/missing-package/package.json",
+        r#"{"name":"missing-package","exports":"./index.js"}"#,
+    );
+    put(
+        root.path(),
+        "node_modules/missing-package/index.js",
+        "export const value=1;",
+    );
+    put(
+        root.path(),
+        "node_modules/@app/generated/package.json",
+        r#"{"name":"@app/generated","exports":"./index.js"}"#,
+    );
+    put(
+        root.path(),
+        "node_modules/@app/generated/index.js",
+        "export const generated=1;",
+    );
+    let corrected = project::analyze(root.path(), &strict).unwrap();
+    assert!(corrected.problems.is_empty(), "{:?}", corrected.problems);
+    assert!(
+        corrected
+            .file("main.ts")
+            .unwrap()
+            .imports
+            .iter()
+            .all(|edge| edge.status == ResolutionStatus::External)
+    );
+    assert_eq!(corrected.schema_version, 1);
+    let wire = serde_json::to_value(&corrected).unwrap();
+    let decoded: archguard::facts::ProjectFacts = serde_json::from_value(wire).unwrap();
+    assert_eq!(decoded.resolution.mode, "installed-source");
+
+    put(
+        root.path(),
+        "main.ts",
+        "import 'gi://Gio'; import('./absent.ts');",
+    );
+    let missing = project::analyze(root.path(), &strict).unwrap();
+    assert_eq!(missing.problems.len(), 2);
+    assert!(
+        missing
+            .file("main.ts")
+            .unwrap()
+            .imports
+            .iter()
+            .all(|edge| edge.status == ResolutionStatus::Unresolved)
+    );
+}
+
+#[test]
 fn inherited_aliases_and_missing_alias_targets_are_internal() {
     let root = tempfile::tempdir().unwrap();
     put(

@@ -109,9 +109,14 @@ fn rust_and_typescript_plugins_use_the_same_transitive_graph() {
     }
     let facts = project::analyze(
         root.path(),
-        &serde_json::from_value::<Config>(json!({"schemaVersion":1})).unwrap(),
+        &serde_json::from_value::<Config>(
+            json!({"schemaVersion":1,"requireExternalResolution":true}),
+        )
+        .unwrap(),
     )
     .unwrap();
+    assert_eq!(facts.schema_version, 1);
+    assert_eq!(facts.resolution.mode, "installed-source");
     let rule:RuleConfig=serde_json::from_value(json!({"id":"client-server","kind":"forbiddenDependency","files":["client/**"],"targets":["server/**"],"transitive":true})).unwrap();
     let rust = rule.check(&facts).unwrap();
     let config = PluginConfig {
