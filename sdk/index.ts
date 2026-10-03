@@ -48,3 +48,6 @@ export function dependencyPaths(project: ProjectFacts, start: string, includeTyp
 
 export { readSemanticFacts, semanticFile, missingMemberDiagnostics } from "./semantic.ts";
 export type { SemanticFacts, SemanticFile, PropertyFact, SemanticRule, CompilerDiagnostic } from "./semantic.ts";
+export { readMutationRequest, validateMutationRequest, validateMutationResult, writeMutationResult, mutationProtocolLimits } from "./mutator.ts";
+export type { TestExecutionRequest, TestExecutionResult, TestCounts, TestFailure, TestFailureKind } from "./mutator.ts";
+export { default as MutationVitestReporter } from "./mutator-vitest-reporter.ts";

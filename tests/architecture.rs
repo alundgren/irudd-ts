@@ -31,7 +31,12 @@ fn own_import_contracts_reject_policy_and_research_dependencies() {
         write(root.path(), name, "");
     }
     write(root.path(), "research/probe.ts", "export const probe=1;");
-    for name in ["index.ts", "semantic.ts"] {
+    for name in [
+        "index.ts",
+        "semantic.ts",
+        "mutator.ts",
+        "mutator-vitest-reporter.ts",
+    ] {
         write(
             root.path(),
             &format!("sdk/{name}"),
