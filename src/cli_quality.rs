@@ -282,7 +282,6 @@ fn display(text: &str) -> String {
 pub(super) fn print_json<T: Serialize>(value: &T) -> Result<()> {
     // Compact output respects the library's aggregate encoded-byte budget.
     serde_json::to_writer(std::io::stdout().lock(), value)?;
-    println!();
     Ok(())
 }
 

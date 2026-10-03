@@ -209,7 +209,7 @@ fn run_cancellation_reports_incomplete_and_preserves_original_source() {
     let deadline = Instant::now() + Duration::from_secs(10);
     while !marker.exists() && Instant::now() < deadline { thread::sleep(Duration::from_millis(10)); }
     // Signal only the captured CLI process; it owns cleanup of its test group.
-    kill(Pid::from_raw(child.id() as i32), Signal::SIGTERM).unwrap();
+    let _ = kill(Pid::from_raw(child.id() as i32), Signal::SIGTERM);
     let output = child.wait_with_output().unwrap();
     assert!(marker.exists(), "{}", String::from_utf8_lossy(&output.stderr));
     let cancelled = report(&output, 2);
