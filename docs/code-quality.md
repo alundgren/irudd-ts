@@ -55,6 +55,10 @@ Cleanup checks a separate thirty-second deadline while traversing owned workspac
 
 ## Use the reports with an agent
 
+Run reports include bounded failure messages, source context and effective execution limits. Incomplete test commands retain short stderr/stdout excerpts; validated runtime/import/hook failures retain their kind, test identity and error text. Configured command/environment values are redacted from those messages. Output omissions are explicit and do not change an error into a kill.
+
+The report retains at most sixteen diagnostic problems. `summary.omittedProblems` counts additional problems, and terminal cleanup/stop diagnostics take priority so retained workspace locations remain visible. Individual mutation results still record their own outcomes and messages. A nonzero omission count means the problem list is a bounded summary, not a complete list of causes.
+
 Give the reviewer the selected scope, complete/incomplete status and concrete findings. For a similar pair, ask whether duplication is intentional or hides a reusable concept. For a survivor, ask which promised behavior changed without an assertion noticing. Keep equivalent mutations and intended parallel implementations as documented examples when they help explain a decision.
 
 Source normalization uses the pinned Oxc parser and binding analysis already in Archguard. These commands do not supply compiler types or prove runtime parity. Existing compiler-provider APIs remain separate. No new product dependency or automatic quality gate is required.

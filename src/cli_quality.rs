@@ -207,6 +207,12 @@ pub(super) fn run(
                 report.summary.omitted_results
             );
         }
+        if report.summary.omitted_problems != 0 {
+            println!(
+                "{} additional diagnostic problems omitted; inspect mutation results and retained cleanup locations.",
+                report.summary.omitted_problems
+            );
+        }
         println!(
             "Inspect survivors against the specification. Equivalent mutations can survive correct tests."
         );
