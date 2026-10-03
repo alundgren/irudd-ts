@@ -28,7 +28,7 @@ python3 research/test-value/analyze.py research/local/new-matrix/matrix.json \
   --output research/local/new-matrix/analysis.json
 ```
 
-Current TypeScript slices and historical source-reversion experiments can share owned dependency stores. First prepare them with `history.py --prepare-only` and the same explicit dependency arguments used below. Then run the declared current slices with `experiments.py --stores STORES --output NEW_OUTPUT --archguard CLI --t3-repository T3_SOURCE --scope-repository SCOPE_SOURCE`.
+Current TypeScript slices and historical source-reversion experiments can share owned dependency stores. First prepare them with `history.py --prepare-only` and the same explicit dependency and runtime arguments used below. Then run the declared current slices with `experiments.py --stores STORES --output NEW_OUTPUT --archguard CLI --t3-repository T3_SOURCE --scope-repository SCOPE_SOURCE --t3-node T3_NODE --scope-node SCOPE_NODE`. Each Node path must name the actual executable; a runtime-manager launcher is rejected. The copied Vite+ package selects its matching Vitest entrypoint, which runs directly under that pin. Reporter evidence must agree with the executable path, version and hash. This also avoids downloading a separate runtime in every private cache.
 
 ```sh
 python3 research/test-value/history.py \
@@ -37,6 +37,8 @@ python3 research/test-value/history.py \
   --archguard target/release/archguard \
   --t3-dependencies /absolute/installed-t3 \
   --scope-dependencies /absolute/installed-scope \
+  --t3-node /absolute/actual-t3-node \
+  --scope-node /absolute/actual-scope-node \
   --mutant-limit 50
 ```
 
@@ -60,5 +62,7 @@ The baseline retains all its own requirements by construction. The report calls 
 The historical runner requires fixed pass, parent-source reversion assertion failure, restored pass, and unaffected tests. It uses fixed-revision tests and modern installed dependencies, so its output is an adapted source-reversion replay. It records parent test-file availability and matching test identities, but equal identities do not establish unchanged test bodies. Fix-added or changed regressions make the cohort retrospective.
 
 Ranking trials simulate equal test-count subsets from the matrix and fault labels. They do not rerun those subsets. This assumes full-pool per-test failure outcomes remain applicable to the selected subsets; interactions and order effects can violate that assumption. Seeds are averaged within faults before aggregation. The bootstrap resamples related-fault groups, not seeds. No selector is claimed to be scientifically validated as a test-retention score.
+
+Historical trials retain selection counts and digests instead of repeating every test ID thousands of times. Digests bind the ordered selection to its budget, seed and strategy; matrix, test inventory and selector-code hashes are fixed alongside them. `reconstruct_selections(evaluation, matrix)` reproduces and checks the exact selections. Compact storage preserves the detection and retention outcomes and keeps large parameterized inventories within the JSON byte budget.
 
 Runtime fields exclude shared setup and startup. Repeated clean baselines do not prove zero flakiness. Historical churn and ownership cost were not measured. A minimal observed core remains exploratory until actual subsets, requirement coverage outside sampled mutants, and historical fault behavior are checked independently.

@@ -228,6 +228,46 @@ def evaluate_fault(matrix, fault, seeds=100):
     return {"schemaVersion": 1, "fault": fault, "tests": len(ids), "trials": trials}
 
 
+def selection_digest(selected, trial):
+    bound = {key: trial[key] for key in ["requestedTestFraction", "budget", "seed", "strategy"]}
+    bound["selected"] = selected
+    return hashlib.sha256(json.dumps(bound, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+
+
+def compact_evaluation(evaluation, matrix):
+    """Keep reproducible selections without repeating long test IDs in every trial."""
+    analysis = analyze(matrix)
+    trials = []
+    for trial in evaluation["trials"]:
+        selected = trial["selected"]
+        trials.append({**{key: value for key, value in trial.items() if key != "selected"},
+                       "selectedCount": len(selected), "selectedSha256": selection_digest(selected, trial)})
+    return {**evaluation, "trials": trials, "selectionProvenance": {
+        "baselineMatrixDigest": analysis["baselineMatrixDigest"],
+        "baselineTestInventoryDigest": analysis["baselineTestInventoryDigest"],
+        "selectorSha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "encoding": "SHA-256 of UTF-8 sorted-key compact JSON containing ordered selected IDs, fraction, budget, seed and strategy",
+    }}
+
+
+def reconstruct_selections(evaluation, matrix):
+    analysis = analyze(matrix)
+    provenance = evaluation["selectionProvenance"]
+    for key in ["baselineMatrixDigest", "baselineTestInventoryDigest"]:
+        if provenance[key] != analysis[key]:
+            raise ValueError("selection matrix or inventory identity changed")
+    if provenance["selectorSha256"] != hashlib.sha256(Path(__file__).read_bytes()).hexdigest():
+        raise ValueError("selection implementation identity changed")
+    trials = []
+    for trial in evaluation["trials"]:
+        selected = select(analysis, trial["budget"], trial["strategy"], trial["seed"])
+        if len(selected) != trial["selectedCount"] or selection_digest(selected, trial) != trial["selectedSha256"]:
+            raise ValueError("selection evidence disagrees with reconstructed trial")
+        trials.append({**{key: value for key, value in trial.items() if key not in {"selectedCount", "selectedSha256"}},
+                       "selected": selected})
+    return {key: value for key, value in {**evaluation, "trials": trials}.items() if key != "selectionProvenance"}
+
+
 def summarize_faults(evaluations, bootstrap_samples=1000):
     seen = set()
     observations = defaultdict(list)
