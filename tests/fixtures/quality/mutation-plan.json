@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "operatorVersion": 1,
+  "configuration": {
+    "schemaVersion": 1,
+    "selection": {
+      "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.mts",
+        "**/*.cts"
+      ],
+      "exclude": []
+    },
+    "limits": {
+      "maxFileBytes": 1048576,
+      "maxTotalBytes": 33554432,
+      "maxFiles": 2000,
+      "maxDiscoveryEntries": 100000,
+      "maxRawUnits": 8192,
+      "maxDelimiterDepth": 128,
+      "maxNodesPerFile": 50000,
+      "maxNodes": 500000,
+      "maxCandidates": 1000,
+      "maxComparisons": 250000,
+      "maxComparisonEntries": 20000000,
+      "maxPairs": 5000,
+      "maxSites": 10000,
+      "workers": 1,
+      "maxReportBytes": 8388608,
+      "maxNameBytes": 256,
+      "maxProblemBytes": 2048,
+      "maxExcerptBytes": 512
+    },
+    "operators": [
+      "comparison",
+      "equality",
+      "arithmetic",
+      "logical",
+      "update",
+      "boolean",
+      "zeroOne"
+    ]
+  },
+  "root": "/archguard-fixture",
+  "selection": {
+    "requested": {
+      "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.mts",
+        "**/*.cts"
+      ],
+      "exclude": []
+    },
+    "selected": [
+      {
+        "path": "src/flag.ts",
+        "bytes": 56,
+        "sha256": "8f14b365a399c6ad4aea04bf0712b643b4daba84f9a4cf17ffc85c28268a6b91"
+      }
+    ],
+    "skipped": [],
+    "completeWithinSelection": true
+  },
+  "files": [
+    {
+      "path": "src/flag.ts",
+      "bytes": 56,
+      "sha256": "8f14b365a399c6ad4aea04bf0712b643b4daba84f9a4cf17ffc85c28268a6b91"
+    }
+  ],
+  "sites": [
+    {
+      "id": "44fe87b05c005bafd1fc167c9ddf76fab8cc3cbdcc4c2da74b60936459e2a7c9",
+      "location": {
+        "file": "src/flag.ts",
+        "start": 49,
+        "end": 53,
+        "line": 2,
+        "endLine": 2
+      },
+      "owner": {
+        "name": "flag",
+        "kind": "variableArrow",
+        "location": {
+          "file": "src/flag.ts",
+          "start": 23,
+          "end": 54,
+          "line": 2,
+          "endLine": 2
+        },
+        "nameTruncated": false
+      },
+      "operator": "boolean",
+      "expected": "true",
+      "replacement": "false",
+      "sourceSha256": "8f14b365a399c6ad4aea04bf0712b643b4daba84f9a4cf17ffc85c28268a6b91"
+    }
+  ],
+  "complete": true,
+  "problems": [],
+  "omittedEvidence": {
+    "selectedSources": 0,
+    "skippedSources": 0,
+    "functions": 0,
+    "excluded": 0,
+    "pairs": 0,
+    "sites": 0,
+    "problems": 0
+  }
+}
