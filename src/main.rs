@@ -68,6 +68,18 @@ enum Action {
 }
 #[derive(Subcommand)]
 enum MutationAction {
+    /// Run explicitly configured trusted tests against isolated mutations.
+    Run {
+        #[arg(long, default_value = ".")]
+        root: PathBuf,
+        #[arg(long)]
+        config: PathBuf,
+        /// Execute a previously inspected plan after revalidating its source.
+        #[arg(long)]
+        plan: Option<PathBuf>,
+        #[arg(long)]
+        json: bool,
+    },
     /// Enumerate runtime mutation sites without executing commands.
     Plan {
         #[arg(long, default_value = ".")]
@@ -116,6 +128,17 @@ fn execute() -> Result<u8> {
             command: MutationAction::Plan { root, config, json },
         } => {
             return cli_quality::plan(&root, config.as_deref(), json);
+        }
+        Action::Mutator {
+            command:
+                MutationAction::Run {
+                    root,
+                    config,
+                    plan,
+                    json,
+                },
+        } => {
+            return cli_quality::run(&root, &config, plan.as_deref(), json);
         }
         Action::Check {
             root,

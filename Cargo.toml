@@ -9,7 +9,7 @@ readme = "README.md"
 autoexamples = false
 include = [
     "/src/**", "/sdk/**", "/tests/**", "/docs/**",
-    "/examples/README.md", "/examples/graph-plugin/**", "/examples/repository-rules/**", "/examples/semantic/**",
+    "/examples/README.md", "/examples/code-quality/**", "/examples/graph-plugin/**", "/examples/repository-rules/**", "/examples/semantic/**",
     "/examples/t3code/*.md", "/examples/t3code/profiles/*.json",
     "/providers/typescript7/provider.mjs", "/providers/typescript7/package*.json",
     "/providers/typescript7/README.md", "/Cargo.lock", "/README.md", "/LICENSE", "/archguard.json",

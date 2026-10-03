@@ -97,6 +97,159 @@ pub(super) fn plan(root: &Path, configuration: Option<&Path>, json: bool) -> Res
     Ok(if report.complete { 0 } else { 2 })
 }
 
+pub(super) fn run(
+    root: &Path,
+    configuration: &Path,
+    plan_path: Option<&Path>,
+    json: bool,
+) -> Result<u8> {
+    let (configuration, directory) = mutator::MutatorConfig::read(configuration)?;
+    let plan = match plan_path {
+        Some(path) => {
+            let plan: mutator::MutationPlan =
+                read_json(path, configuration.plan.limits.max_report_bytes)?;
+            plan.validate()?;
+            ensure!(
+                plan.configuration == configuration.plan,
+                "stored plan configuration disagrees with run configuration"
+            );
+            ensure!(
+                Path::new(&plan.root).canonicalize()? == root.canonicalize()?,
+                "stored plan root disagrees with selected root"
+            );
+            plan
+        }
+        None => mutator::plan(root, &configuration.plan)?,
+    };
+    let cancellation = CliCancellation::install()?;
+    let report = mutator::run(
+        &plan,
+        &configuration.execution,
+        &directory,
+        &cancellation.token,
+    )?;
+    if json {
+        print_json(&report)?;
+    } else {
+        println!(
+            "mutator: baseline {:?}; {}",
+            report.baseline.outcome,
+            completion(report.complete)
+        );
+        println!(
+            "{} planned, {} executed, {} reused, {} killed, {} survived",
+            report.summary.planned,
+            report.summary.executed,
+            report.summary.reused,
+            report.summary.killed,
+            report.summary.survived
+        );
+        for result in &report.results {
+            if matches!(result.outcome, mutator::MutationOutcome::Killed) {
+                continue;
+            }
+            println!(
+                "{:?} {}:{} bytes {}..{}  {} -> {}{}",
+                result.outcome,
+                display(&result.location.file),
+                result.location.line,
+                result.location.start,
+                result.location.end,
+                display(&result.expected),
+                display(&result.replacement),
+                if result.reused { " [reused]" } else { "" }
+            );
+            if let Some(context) = &result.context {
+                println!(
+                    "  original: {}{}{}",
+                    display(&context.before),
+                    display(&result.expected),
+                    display(&context.after)
+                );
+                println!(
+                    "  mutant:   {}{}{}",
+                    display(&context.before),
+                    display(&result.replacement),
+                    display(&context.after)
+                );
+                if context.truncated_before || context.truncated_after {
+                    println!(
+                        "  Source context is truncated; use byte offsets to inspect the file."
+                    );
+                }
+            }
+            if let Some(message) = &result.message {
+                println!("  {}", display(message));
+            }
+        }
+        for problem in &report.problems {
+            println!("{:?}: {}", problem.kind, display(&problem.message));
+        }
+        if report.summary.omitted_results != 0 {
+            println!(
+                "{} results exceeded the report limit.",
+                report.summary.omitted_results
+            );
+        }
+        println!(
+            "Inspect survivors against the specification. Equivalent mutations can survive correct tests."
+        );
+    }
+    Ok(if report.complete { 0 } else { 2 })
+}
+
+#[cfg(unix)]
+static CANCELLED: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+#[cfg(unix)]
+extern "C" fn cancel_run(_: nix::libc::c_int) {
+    CANCELLED.store(true, std::sync::atomic::Ordering::Relaxed);
+}
+struct CliCancellation {
+    token: mutator::CancellationToken,
+    #[cfg(unix)]
+    previous: Vec<(nix::sys::signal::Signal, nix::sys::signal::SigAction)>,
+}
+impl CliCancellation {
+    fn install() -> Result<Self> {
+        #[cfg(unix)]
+        {
+            use nix::sys::signal::{self, SaFlags, SigAction, SigHandler, SigSet, Signal};
+            CANCELLED.store(false, std::sync::atomic::Ordering::Relaxed);
+            let mut guard = Self {
+                token: mutator::CancellationToken::from_static_flag(&CANCELLED),
+                previous: vec![],
+            };
+            let action = SigAction::new(
+                SigHandler::Handler(cancel_run),
+                SaFlags::empty(),
+                SigSet::empty(),
+            );
+            for signal in [Signal::SIGINT, Signal::SIGTERM] {
+                // The handler only stores to a static atomic. The CLI owns signal
+                // setup; library callers keep control of their own handlers.
+                let previous = unsafe { signal::sigaction(signal, &action) }?;
+                guard.previous.push((signal, previous));
+            }
+            Ok(guard)
+        }
+        #[cfg(not(unix))]
+        {
+            Ok(Self {
+                token: mutator::CancellationToken::new(),
+            })
+        }
+    }
+}
+impl Drop for CliCancellation {
+    fn drop(&mut self) {
+        #[cfg(unix)]
+        for (signal, action) in self.previous.iter().rev() {
+            // Restore the process handlers installed before this CLI command.
+            let _ = unsafe { nix::sys::signal::sigaction(*signal, action) };
+        }
+    }
+}
+
 fn print_analysis_problems(problems: &[archguard::quality::AnalysisProblem]) {
     for problem in problems {
         println!(

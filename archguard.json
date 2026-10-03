@@ -10,7 +10,8 @@
     "examples/repository-rules/**/*.ts",
     "examples/semantic/**/*.rs",
     "examples/semantic/**/*.ts",
-    "providers/typescript7/provider.mjs"
+    "providers/typescript7/provider.mjs",
+    "examples/code-quality/**/*.ts"
   ],
   "rules": [
     {
@@ -177,7 +178,8 @@
         "providers/**",
         "examples/graph-plugin/**",
         "examples/repository-rules/**",
-        "examples/semantic/**"
+        "examples/semantic/**",
+        "examples/code-quality/**"
       ],
       "specifiers": [
         "research/**",
@@ -265,7 +267,8 @@
           "examples/repository-rules/**/*.ts",
           "examples/semantic/**/*.rs",
           "examples/semantic/**/*.ts",
-          "providers/typescript7/provider.mjs"
+          "providers/typescript7/provider.mjs",
+          "examples/code-quality/**/*.ts"
         ]
       },
       {
