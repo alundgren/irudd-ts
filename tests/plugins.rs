@@ -123,7 +123,10 @@ fn rust_and_typescript_plugins_use_the_same_transitive_graph() {
         name: "graph-parity".into(),
         command: vec![
             "node".into(),
-            format!("{}/examples/graph-plugin.ts", env!("CARGO_MANIFEST_DIR")),
+            format!(
+                "{}/examples/graph-plugin/plugin.ts",
+                env!("CARGO_MANIFEST_DIR")
+            ),
         ],
         timeout_ms: 3000,
     };

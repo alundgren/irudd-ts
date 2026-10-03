@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "include": [
+    "client/**/*.ts",
+    "shared/**/*.ts",
+    "server/**/*.ts"
+  ],
+  "plugins": [
+    {
+      "name": "client-server",
+      "command": [
+        "node",
+        "plugin.ts"
+      ]
+    }
+  ]
+}

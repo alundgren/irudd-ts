@@ -59,7 +59,7 @@ for package in sorted(metadata['packages'], key=lambda p: (p['name'], p['version
         raise SystemExit(f"License needs review: {package['name']} {package['version']} {expression!r}")
     records.append({'name': package['name'], 'version': package['version'], 'license': expression, 'selectedLicense': selected, 'repository': package.get('repository')})
 output = json.dumps({'source': 'locked Cargo package manifests; inspect upstream notices before binary redistribution', 'dependencies': records}, indent=2) + '\n'
-path = pathlib.Path('docs/dependency-licenses.json')
+path = pathlib.Path('docs/licenses/cargo.json')
 if args.write:
     path.write_text(output)
 elif not path.exists() or path.read_text() != output:

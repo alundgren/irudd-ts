@@ -1,6 +1,5 @@
 /target/
-/node_modules/
+node_modules/
 /research-checkouts/
-/benchmarks/local/
-
-/providers/typescript7/node_modules/
+/research/local/
+__pycache__/

@@ -1,19 +1,24 @@
 {
   "schemaVersion": 1,
   "include": [
-    "src/*.rs",
-    "tests/roles.rs",
-    "tests/cache.rs",
-    "tests/semantic.rs",
+    "src/**/*.rs",
+    "tests/**/*.rs",
     "sdk/**/*.ts",
-    "examples/**/*.ts"
+    "examples/graph-plugin/**/*.rs",
+    "examples/graph-plugin/**/*.ts",
+    "examples/repository-rules/**/*.rs",
+    "examples/repository-rules/**/*.ts",
+    "examples/semantic/**/*.rs",
+    "examples/semantic/**/*.ts",
+    "providers/typescript7/provider.mjs"
   ],
   "rules": [
     {
       "id": "facts-independent",
       "kind": "forbiddenImport",
       "files": [
-        "src/facts.rs"
+        "src/facts.rs",
+        "src/semantic/facts.rs"
       ],
       "specifiers": [
         "crate::config",
@@ -29,7 +34,10 @@
         "crate::semantic",
         "crate::semantic::*",
         "crate::subprocess",
-        "crate::subprocess::*"
+        "crate::subprocess::*",
+        "crate::roles",
+        "crate::roles::*",
+        "crate::semantic::*"
       ]
     },
     {
@@ -63,7 +71,9 @@
         "sdk/**"
       ],
       "targets": [
-        "examples/**"
+        "examples/**",
+        "providers/**",
+        "research/**"
       ],
       "transitive": true
     },
@@ -85,6 +95,83 @@
         "semanticFile",
         "missingMemberDiagnostics"
       ]
+    },
+    {
+      "id": "syntax-independent",
+      "kind": "forbiddenImport",
+      "files": [
+        "src/typescript.rs",
+        "src/rust.rs"
+      ],
+      "specifiers": [
+        "crate::roles",
+        "crate::roles::*"
+      ]
+    },
+    {
+      "id": "semantic-inventory-no-policy",
+      "kind": "forbiddenImport",
+      "files": [
+        "src/semantic/inventory.rs"
+      ],
+      "specifiers": [
+        "crate::rules",
+        "crate::rules::*",
+        "crate::roles",
+        "crate::roles::*",
+        "crate::plugin",
+        "crate::plugin::*",
+        "crate::project",
+        "crate::project::*",
+        "crate::cache",
+        "crate::cache::*",
+        "crate::subprocess",
+        "crate::subprocess::*",
+        "crate::semantic::check",
+        "crate::semantic::SemanticRule",
+        "crate::semantic::rules",
+        "crate::semantic::rules::*"
+      ]
+    },
+    {
+      "id": "semantic-validation-no-policy",
+      "kind": "forbiddenImport",
+      "files": [
+        "src/semantic/validation.rs"
+      ],
+      "specifiers": [
+        "crate::rules",
+        "crate::rules::*",
+        "crate::roles",
+        "crate::roles::*",
+        "crate::plugin",
+        "crate::plugin::*",
+        "crate::project",
+        "crate::project::*",
+        "crate::cache",
+        "crate::cache::*",
+        "crate::subprocess",
+        "crate::subprocess::*",
+        "crate::semantic::check",
+        "crate::semantic::SemanticRule",
+        "crate::semantic::rules",
+        "crate::semantic::rules::*"
+      ]
+    },
+    {
+      "id": "product-no-research-imports",
+      "kind": "forbiddenImport",
+      "files": [
+        "sdk/**",
+        "providers/**",
+        "examples/graph-plugin/**",
+        "examples/repository-rules/**",
+        "examples/semantic/**"
+      ],
+      "specifiers": [
+        "research/**",
+        "**/research/**"
+      ]
     }
   ],
   "repository": {
@@ -92,12 +179,12 @@
       {
         "id": "rust-module",
         "files": [
-          "src/*.rs"
+          "src/**/*.rs"
         ],
         "exclude": [
           "src/roles.rs",
           "src/cache.rs",
-          "src/semantic.rs"
+          "src/semantic/**"
         ]
       },
       {
@@ -115,13 +202,16 @@
       {
         "id": "compiler-semantics",
         "files": [
-          "src/semantic.rs"
+          "src/semantic/**"
+        ],
+        "exclude": [
+          "src/semantic/mod.rs"
         ]
       },
       {
         "id": "test",
         "files": [
-          "tests/*.rs"
+          "tests/**/*.rs"
         ]
       },
       {
@@ -133,7 +223,20 @@
       {
         "id": "example",
         "files": [
-          "examples/**/*.ts"
+          "examples/**/*.ts",
+          "examples/**/*.rs"
+        ]
+      },
+      {
+        "id": "semantic-provider",
+        "files": [
+          "providers/typescript7/provider.mjs"
+        ]
+      },
+      {
+        "id": "semantic-coordinator",
+        "files": [
+          "src/semantic/mod.rs"
         ]
       }
     ],
@@ -142,12 +245,16 @@
         "id": "own-source-role",
         "kind": "classified",
         "files": [
-          "src/*.rs",
-          "tests/roles.rs",
-          "tests/cache.rs",
-          "tests/semantic.rs",
+          "src/**/*.rs",
+          "tests/**/*.rs",
           "sdk/**/*.ts",
-          "examples/**/*.ts"
+          "examples/graph-plugin/**/*.rs",
+          "examples/graph-plugin/**/*.ts",
+          "examples/repository-rules/**/*.rs",
+          "examples/repository-rules/**/*.ts",
+          "examples/semantic/**/*.rs",
+          "examples/semantic/**/*.ts",
+          "providers/typescript7/provider.mjs"
         ]
       },
       {
@@ -171,10 +278,10 @@
       {
         "id": "compiler-semantics-test",
         "kind": "companion",
-        "role": "compiler-semantics",
+        "role": "semantic-coordinator",
         "replace": [
-          "src/",
-          "tests/"
+          "src/semantic/mod.rs",
+          "tests/semantic.rs"
         ]
       }
     ]

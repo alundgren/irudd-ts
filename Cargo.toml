@@ -5,6 +5,56 @@ edition = "2024"
 rust-version = "1.96"
 license = "MIT"
 description = "Repository architecture contracts with a shared module graph"
+readme = "README.md"
+autoexamples = false
+include = [
+    "/src/**", "/sdk/**", "/tests/**", "/docs/**",
+    "/examples/README.md", "/examples/graph-plugin/**", "/examples/repository-rules/**", "/examples/semantic/**",
+    "/examples/t3code/*.md", "/examples/t3code/profiles/*.json",
+    "/providers/typescript7/provider.mjs", "/providers/typescript7/package*.json",
+    "/providers/typescript7/README.md", "/Cargo.lock", "/README.md", "/LICENSE", "/archguard.json",
+]
+
+[features]
+semantic-tests = []
+research-tests = []
+
+[[example]]
+name = "graph_plugin"
+path = "examples/graph-plugin/main.rs"
+
+[[example]]
+name = "role_inventory"
+path = "examples/repository-rules/inventory.rs"
+
+[[example]]
+name = "semantic_request"
+path = "examples/semantic/request.rs"
+
+[[test]]
+name = "semantic_provider"
+path = "tests/semantic_provider.rs"
+required-features = ["semantic-tests"]
+
+[[test]]
+name = "t3_history"
+path = "research/t3code/tests/history.rs"
+required-features = ["research-tests"]
+
+[[test]]
+name = "t3_cache"
+path = "research/t3code/tests/cache.rs"
+required-features = ["research-tests"]
+
+[[test]]
+name = "t3_profiles"
+path = "research/t3code/tests/profiles.rs"
+required-features = ["research-tests"]
+
+[[test]]
+name = "t3_semantic"
+path = "research/t3code/tests/semantic.rs"
+required-features = ["research-tests", "semantic-tests"]
 
 [dependencies]
 anyhow = "1"
