@@ -11,7 +11,7 @@ import tarfile
 import tempfile
 
 from analyze import analyze, compact_evaluation, evaluate_fault, summarize_faults
-from runner import hash_tree
+from runner import MAX_JSON, hash_tree, parse_json, read_json as runner_read_json
 from sensitivity import POLICY, derive
 
 PLAN_SHA256 = '968d50cf0c0ec877b38f2d820fb44000b1a954a611311c034f70598acad7e712'
@@ -20,6 +20,7 @@ POLICY_FRACTIONS = [0.25, 0.5, 0.75, 1]
 POLICY_STRATEGIES = ['random', 'raw', 'subsuming', 'marginalRaw', 'marginalSubsuming', 'greedySubsuming']
 CORE_FIELDS = ['id', 'subject', 'repository', 'title', 'sourceFiles', 'testFiles', 'relatedGroup', 'fix', 'parent']
 DIGEST_REQUIRED = ['matrix.json', 'analysis.json', 'fixed-before/execution.json', 'faulty/execution.json', 'fixed-after/execution.json']
+ANALYSIS_MODULES = ['historical_sensitivity.py', 'analyze.py', 'sensitivity.py', 'runner.py', 'rust_slice.py']
 
 
 class EvidenceError(ValueError):
@@ -43,7 +44,12 @@ def canonical_sha(value):
 
 
 def read_json(path):
-    return json.loads(Path(path).read_text(encoding='utf-8'))
+    return runner_read_json(Path(path))
+
+
+def analysis_module_digests():
+    root = Path(__file__).resolve().parent
+    return {name: sha_file(root / name) for name in ANALYSIS_MODULES}
 
 
 def write_json_safe(path, value):
@@ -99,7 +105,7 @@ def archive_bytes(tf, members, expected, files):
     if member is None or not member.isfile():
         raise EvidenceError('required regular file is absent from archive: ' + expected)
     info = files[expected]
-    if member.size != info['bytes']:
+    if member.size != info['bytes'] or member.size > MAX_JSON:
         raise EvidenceError('archive member size disagrees with manifest: ' + expected)
     stream = tf.extractfile(member)
     if stream is None:
@@ -114,7 +120,9 @@ def load_archive_inputs(primary_root):
     """Read only the registered primary archive and return its manifest records."""
     primary_root = Path(primary_root).resolve(strict=True)
     manifest_path = primary_root / 'manifest.json'
-    archive_manifest = read_json(manifest_path)
+    manifest_bytes = manifest_path.read_bytes()
+    manifest_sha = sha_bytes(manifest_bytes)
+    archive_manifest = parse_json(manifest_bytes, manifest_path)
     archive_path_value = relative_name(archive_manifest.get('archive'))
     archive_path = (primary_root / archive_path_value).resolve(strict=True)
     if not archive_path.is_relative_to(primary_root):
@@ -146,13 +154,17 @@ def load_archive_inputs(primary_root):
             missing = sorted(set(files) - all_files)[:5]
             extra = sorted(all_files - set(files))[:5]
             raise EvidenceError(f'archive file inventory differs from manifest; missing={missing}, extra={extra}')
-        attempts = json.loads(archive_bytes(tf, members, 'attempts.json', files))
-        preregistration = json.loads(archive_bytes(tf, members, 'preregistration.json', files))
-    if not isinstance(attempts, list) or not isinstance(preregistration.get('candidates'), list):
+        attempts = parse_json(archive_bytes(tf, members, 'attempts.json', files), 'attempts.json')
+        preregistration = parse_json(archive_bytes(tf, members, 'preregistration.json', files), 'preregistration.json')
+    if not isinstance(attempts, list) or not isinstance(preregistration, dict) or not isinstance(preregistration.get('candidates'), list):
         raise EvidenceError('invalid attempt or candidate registration list')
+    if any(not isinstance(row, dict) or not isinstance(row.get('id'), str) or not row['id'] for row in attempts):
+        raise EvidenceError('invalid attempt identity')
+    if any(not isinstance(row, dict) or not isinstance(row.get('id'), str) or not row['id'] for row in preregistration['candidates']):
+        raise EvidenceError('invalid preregistered candidate identity')
     if len({row.get('id') for row in attempts}) != len(attempts) or len({row.get('id') for row in preregistration['candidates']}) != len(preregistration['candidates']):
         raise EvidenceError('duplicate attempt or registered candidate identity')
-    return primary_root, manifest_path, archive_path, archive_manifest, files, attempts, preregistration
+    return primary_root, manifest_path, manifest_bytes, manifest_sha, archive_path, archive_manifest, files, attempts, preregistration
 
 
 def extract_registered_roots(scratch, archive_path, files, attempts):
@@ -206,6 +218,17 @@ def extract_registered_roots(scratch, archive_path, files, attempts):
 
 def candidate_registration(preregistration):
     return {row['id']: row for row in preregistration['candidates']}
+
+
+def validate_attempt_registration(attempts, registered):
+    attempt_ids = [row.get('id') for row in attempts]
+    if any(not isinstance(identity, str) or not identity for identity in attempt_ids):
+        raise EvidenceError('invalid attempt identity')
+    if len(attempt_ids) != len(set(attempt_ids)):
+        raise EvidenceError('duplicate attempt identity')
+    orphaned = sorted(set(attempt_ids) - registered.keys())
+    if orphaned:
+        raise EvidenceError('attempt identity is absent from preregistration: ' + ', '.join(orphaned[:5]))
 
 
 def require_core_match(attempt, fault, registered):
@@ -348,17 +371,43 @@ def cohort_counts(evaluations):
     return {'faults': len(evaluations), 'relatedGroups': len(groups)}
 
 
+def verify_analysis_inputs(plan_path, plan_sha, manifest_path, manifest_sha, archive_path, archive_sha, module_digests):
+    checks = [
+        ('reviewed plan', plan_path, plan_sha),
+        ('primary manifest', manifest_path, manifest_sha),
+        ('primary archive', archive_path, archive_sha),
+    ]
+    for label, path, expected in checks:
+        if sha_file(path) != expected:
+            raise EvidenceError('analysis input changed during processing: ' + label)
+    if analysis_module_digests() != module_digests:
+        raise EvidenceError('analysis code changed during processing')
+
+
 def run_secondary(plan_path, primary_root, output_dir):
     plan_path = Path(plan_path).resolve(strict=True)
-    plan_digest = sha_file(plan_path)
-    plan = validate_plan(read_json(plan_path), plan_digest)
-    primary_root, manifest_path, archive_path, archive_manifest, files, attempts, preregistration = load_archive_inputs(primary_root)
+    module_digests = analysis_module_digests()
+    plan_bytes = plan_path.read_bytes()
+    plan_digest = sha_bytes(plan_bytes)
+    plan = validate_plan(parse_json(plan_bytes, plan_path), plan_digest)
+    (
+        primary_root,
+        manifest_path,
+        manifest_bytes,
+        manifest_digest,
+        archive_path,
+        archive_manifest,
+        files,
+        attempts,
+        preregistration,
+    ) = load_archive_inputs(primary_root)
+    registered = candidate_registration(preregistration)
+    validate_attempt_registration(attempts, registered)
     output_path = Path(output_dir)
     if output_path.exists() or output_path.is_symlink():
         raise EvidenceError('secondary output path already exists')
     output_dir = output_path.resolve()
     output_dir.mkdir(parents=True, exist_ok=False)
-    registered = candidate_registration(preregistration)
     with tempfile.TemporaryDirectory(prefix='test-value-secondary-') as scratch_name:
         scratch = Path(scratch_name)
         eligible_roots = extract_registered_roots(scratch, archive_path, files, attempts)
@@ -472,9 +521,18 @@ def run_secondary(plan_path, primary_root, output_dir):
         if 'aggregate.json' in files:
             with tarfile.open(archive_path, 'r:gz') as tf:
                 members = {member.name.rstrip('/'): member for member in tf.getmembers() if member.isfile()}
-                original_aggregate = json.loads(archive_bytes(tf, members, 'aggregate.json', files))
-            if primary_evaluations and aggregates['primary'] != original_aggregate:
+                original_aggregate = parse_json(archive_bytes(tf, members, 'aggregate.json', files), 'aggregate.json')
+            if aggregates['primary'] != original_aggregate:
                 raise EvidenceError('recomputed primary aggregate differs from retained assertion-only aggregate')
+        verify_analysis_inputs(
+            plan_path,
+            plan_digest,
+            manifest_path,
+            manifest_digest,
+            archive_path,
+            archive_manifest['archiveSha256'],
+            module_digests,
+        )
         for evaluation in primary_evaluations:
             write_json_safe(output_dir / 'primary-evaluations' / (evaluation['fault']['id'] + '.json'), evaluation)
         for evaluation in secondary_evaluations:
@@ -485,10 +543,11 @@ def run_secondary(plan_path, primary_root, output_dir):
             'artifactKind': 'offline historical test-failure sensitivity analysis',
             'policy': POLICY['id'],
             'registeredPlan': {'path': str(plan_path), 'sha256': plan_digest, 'candidateManifestSha256': plan['candidateManifest']['sha256']},
+            'analysisCodeSha256': module_digests,
             'primaryEvidence': {
                 'root': str(primary_root),
                 'manifestPath': str(manifest_path),
-                'manifestSha256': sha_file(manifest_path),
+                'manifestSha256': manifest_digest,
                 'archivePath': str(archive_path),
                 'archiveSha256': archive_manifest['archiveSha256'],
                 'attemptsSha256': files['attempts.json']['sha256'],
@@ -511,8 +570,15 @@ def run_secondary(plan_path, primary_root, output_dir):
             'limits': 'A test-bound exception may add an observed kill under the separate secondary policy. It does not strengthen assertions, change primary fault labels, or validate a test-retention score.',
         }
         write_json_safe(output_dir / 'manifest.json', result_manifest)
-        if sha_file(archive_path) != archive_manifest['archiveSha256'] or sha_file(manifest_path) != result_manifest['primaryEvidence']['manifestSha256']:
-            raise EvidenceError('registered primary files changed during analysis')
+        verify_analysis_inputs(
+            plan_path,
+            plan_digest,
+            manifest_path,
+            manifest_digest,
+            archive_path,
+            archive_manifest['archiveSha256'],
+            module_digests,
+        )
         return result_manifest
 
 

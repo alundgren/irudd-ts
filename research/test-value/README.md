@@ -100,6 +100,6 @@ python3 research/test-value/historical_sensitivity.py \
   --output research/local/new-historical-sensitivity
 ```
 
-For the archived original-history controls, set `TEST_VALUE_HISTORICAL_ROOT` and `TEST_VALUE_HISTORICAL_PLAN` to those same inputs, then run `python3 -m unittest discover -s research/test-value -p test_historical_sensitivity.py -v`. These controls inspect retained event records; they do not launch historical test runners. They check a real test-body failure, unchanged primary bytes and labels, stale fault/event/runtime rejection, and a shortened declared prefix.
+For the archived original-history controls, set `TEST_VALUE_HISTORICAL_ROOT` and `TEST_VALUE_HISTORICAL_PLAN` to those same inputs, then run `python3 -m unittest discover -s research/test-value -p test_historical_sensitivity.py -v`. These controls inspect retained event records; they do not launch historical test runners. They check a real test-body failure, unchanged primary bytes and labels, stale fault/event/runtime rejection, orphan attempt rejection, a shortened declared prefix, strict JSON limits, and changed plan/manifest rejection.
 
 Runtime fields exclude shared setup and startup. Repeated clean baselines do not prove zero flakiness. Historical churn and ownership cost were not measured. A minimal observed core remains exploratory until actual subsets, requirement coverage outside sampled mutants, and historical fault behavior are checked independently.

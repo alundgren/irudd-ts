@@ -2,8 +2,10 @@ import copy
 import json
 import os
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import historical_sensitivity as historical
 from sensitivity import derive, vitest_outcomes
@@ -25,6 +27,8 @@ class HistoricalSensitivityControls(unittest.TestCase):
         (
             cls.primary_root,
             cls.manifest_path,
+            cls.manifest_bytes,
+            cls.manifest_digest,
             cls.archive_path,
             cls.archive_manifest,
             cls.files,
@@ -37,6 +41,16 @@ class HistoricalSensitivityControls(unittest.TestCase):
             raise AssertionError('retained control candidate is absent')
         cls.archive_sha = historical.sha_file(cls.archive_path)
         cls.manifest_sha = historical.sha_file(cls.manifest_path)
+
+    def copy_primary_root(self, destination):
+        destination = Path(destination)
+        source_manifest = historical.parse_json(self.manifest_bytes, self.manifest_path)
+        archive_relative = historical.relative_name(source_manifest['archive'])
+        archive_copy = destination / archive_relative
+        archive_copy.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(self.archive_path, archive_copy)
+        (destination / 'manifest.json').write_bytes(self.manifest_bytes)
+        return destination
 
     def extract(self, scratch):
         roots = historical.extract_registered_roots(
@@ -123,6 +137,9 @@ class HistoricalSensitivityControls(unittest.TestCase):
             changed_fault['killedBy'] = list(changed_fault['killedBy']) + ['invented test label']
             with self.assertRaisesRegex(historical.EvidenceError, 'differ for killedBy'):
                 historical.require_core_match(attempt, changed_fault, registered)
+            orphaned_attempts = self.attempts + [{**self.attempts[0], 'id': 'not-preregistered'}]
+            with self.assertRaisesRegex(historical.EvidenceError, 'absent from preregistration'):
+                historical.validate_attempt_registration(orphaned_attempts, registered)
 
         with tempfile.TemporaryDirectory(prefix='historical-secondary-stale-event-') as scratch:
             candidate_root = self.extract(scratch)
@@ -215,6 +232,52 @@ class HistoricalSensitivityControls(unittest.TestCase):
                 historical.run_secondary(self.plan_path, self.primary_root, dangling)
             self.assertTrue(dangling.is_symlink())
             self.assertFalse((parent / 'missing').exists())
+
+    def test_plan_and_manifest_changes_during_analysis_are_rejected(self):
+        original_evaluate = historical.evaluate_fault
+        for changed_input in ('plan', 'manifest'):
+            with self.subTest(changed_input=changed_input), tempfile.TemporaryDirectory(
+                prefix='historical-secondary-input-change-'
+            ) as parent:
+                parent = Path(parent)
+                primary_copy = self.copy_primary_root(parent / 'primary')
+                plan_copy = parent / 'plan.json'
+                shutil.copyfile(self.plan_path, plan_copy)
+                if changed_input == 'plan':
+                    changed_path = plan_copy
+                else:
+                    changed_path = primary_copy / 'manifest.json'
+                changed = False
+
+                def change_input_after_start(*args, **kwargs):
+                    nonlocal changed
+                    if not changed:
+                        changed_path.write_bytes(changed_path.read_bytes() + b'\n')
+                        changed = True
+                    return original_evaluate(*args, **kwargs)
+
+                with patch.object(historical, 'evaluate_fault', side_effect=change_input_after_start):
+                    with self.assertRaisesRegex(
+                        historical.EvidenceError,
+                        'analysis input changed during processing',
+                    ):
+                        historical.run_secondary(
+                            plan_copy,
+                            primary_copy,
+                            parent / 'output',
+                        )
+
+
+class StrictJsonControls(unittest.TestCase):
+    def test_duplicate_fields_and_over_budget_json_are_rejected(self):
+        with tempfile.TemporaryDirectory(prefix='historical-secondary-json-') as directory:
+            path = Path(directory) / 'document.json'
+            path.write_text('{"value":1,"value":2}', encoding='utf-8')
+            with self.assertRaisesRegex(ValueError, 'Duplicate JSON field: value'):
+                historical.read_json(path)
+            path.write_bytes(b' ' * (historical.MAX_JSON + 1))
+            with self.assertRaisesRegex(ValueError, 'JSON exceeds byte budget'):
+                historical.read_json(path)
 
 
 if __name__ == '__main__':
