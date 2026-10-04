@@ -1,0 +1,27 @@
+{
+  "id": "t3code-d4d5d12e8ba0",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): keep the newest shared usage scan (#10315)",
+  "sourceFiles": [
+    "packages/shared/src/usageMerge.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/usageMerge.test.ts"
+  ],
+  "relatedGroup": "usage-scan-merge",
+  "fix": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+  "parent": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 46
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "7f3d334ceee79d4867df5bf3e2e44d0718b4cc91e94b370f40d4a7fd133e1c28"
+  }
+}

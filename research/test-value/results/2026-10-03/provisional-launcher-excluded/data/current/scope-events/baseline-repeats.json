@@ -1,0 +1,307 @@
+[
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+        "rawId": "-848354540_0",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "tabs communicate only within their group while the host observes all groups",
+        "hierarchy": [
+          "tabs communicate only within their group while the host observes all groups"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 2.253374999999977
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+        "rawId": "-848354540_1",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "one broken listener cannot block delivery and event input is validated",
+        "hierarchy": [
+          "one broken listener cannot block delivery and event input is validated"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.6528329999999869
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+        "rawId": "-848354540_2",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "moving a tab to another group invalidates its old event subscription",
+        "hierarchy": [
+          "moving a tab to another group invalidates its old event subscription"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.17829100000000153
+      }
+    ],
+    "evidence": "baseline-repeat-0/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+        "rawId": "-848354540_0",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "tabs communicate only within their group while the host observes all groups",
+        "hierarchy": [
+          "tabs communicate only within their group while the host observes all groups"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 2.2794580000000053
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+        "rawId": "-848354540_1",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "one broken listener cannot block delivery and event input is validated",
+        "hierarchy": [
+          "one broken listener cannot block delivery and event input is validated"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.635791999999995
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+        "rawId": "-848354540_2",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "moving a tab to another group invalidates its old event subscription",
+        "hierarchy": [
+          "moving a tab to another group invalidates its old event subscription"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.17804200000000492
+      }
+    ],
+    "evidence": "baseline-repeat-1/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+        "rawId": "-848354540_0",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "tabs communicate only within their group while the host observes all groups",
+        "hierarchy": [
+          "tabs communicate only within their group while the host observes all groups"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 2.255042000000003
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+        "rawId": "-848354540_1",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "one broken listener cannot block delivery and event input is validated",
+        "hierarchy": [
+          "one broken listener cannot block delivery and event input is validated"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.6592919999999935
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+        "rawId": "-848354540_2",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "moving a tab to another group invalidates its old event subscription",
+        "hierarchy": [
+          "moving a tab to another group invalidates its old event subscription"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.17995799999999917
+      }
+    ],
+    "evidence": "baseline-repeat-2/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+        "rawId": "-848354540_0",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "tabs communicate only within their group while the host observes all groups",
+        "hierarchy": [
+          "tabs communicate only within their group while the host observes all groups"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 2.2481250000000017
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+        "rawId": "-848354540_1",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "one broken listener cannot block delivery and event input is validated",
+        "hierarchy": [
+          "one broken listener cannot block delivery and event input is validated"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.6367499999999922
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+        "rawId": "-848354540_2",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "moving a tab to another group invalidates its old event subscription",
+        "hierarchy": [
+          "moving a tab to another group invalidates its old event subscription"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.1753749999999883
+      }
+    ],
+    "evidence": "baseline-repeat-3/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+        "rawId": "-848354540_0",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "tabs communicate only within their group while the host observes all groups",
+        "hierarchy": [
+          "tabs communicate only within their group while the host observes all groups"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 2.4862919999999917
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+        "rawId": "-848354540_1",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "one broken listener cannot block delivery and event input is validated",
+        "hierarchy": [
+          "one broken listener cannot block delivery and event input is validated"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.6403339999999957
+      },
+      {
+        "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+        "rawId": "-848354540_2",
+        "project": "",
+        "file": "tests/tab-events.test.ts",
+        "name": "moving a tab to another group invalidates its old event subscription",
+        "hierarchy": [
+          "moving a tab to another group invalidates its old event subscription"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.1769999999999925
+      }
+    ],
+    "evidence": "baseline-repeat-4/execution.json"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "factual Cursor SDK license-terms reference for the historical benchmark",
+  "createdAt": "2026-10-04",
+  "source": {
+    "url": "https://cursor.com/terms-of-service",
+    "sourceType": "official Cursor Terms of Service",
+    "pageUpdatedDate": "2026-09-03",
+    "reviewedDate": "2026-10-04",
+    "reviewEvidence": "Parent reports direct review of the official page on 2026-10-04."
+  },
+  "packageLicenseEvidence": {
+    "package": "@cursor/sdk@1.0.31",
+    "licenseDeclaration": "SEE LICENSE IN LICENSE.md",
+    "licenseText": "Cursor SDK License; © Anysphere Inc.; all rights reserved; use subject to the Terms of Service.",
+    "termsUrl": "https://cursor.com/terms-of-service",
+    "classification": "proprietary",
+    "handling": "Preserve the SDK notices with package files in private owned dependency stores."
+  },
+  "benchmarkScope": {
+    "tests": "Open-source T3 Code changed-source tests",
+    "usesCursorModelOrServiceCalls": false,
+    "modifiesCursorSDK": false,
+    "placesCursorSdkSourceOrBinariesInRepository": false,
+    "placesCursorSdkSourceOrBinariesInScopeEvidenceArchives": false,
+    "publishesReproducibleConfigurationsAndResults": true
+  },
+  "boundary": "This record identifies the package license and the referenced official terms. It does not claim unrestricted copying or distribution rights."
+}

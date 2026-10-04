@@ -1,0 +1,325 @@
+{
+  "t3code-43bd6677392b": {
+    "status": "error",
+    "tests": 9,
+    "infrastructureErrors": [
+      "Infrastructure failure: import: Cannot find module '@cursor/sdk'\nRequire stack:\n- /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43bd6677392b/fixed-before/source/apps/server/src/provider/cursorSdk.ts"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43bd6677392b/fixed-before/source/apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+        "message": "Cannot find module '@cursor/sdk'\nRequire stack:\n- /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43bd6677392b/fixed-before/source/apps/server/src/provider/cursorSdk.ts"
+      }
+    ]
+  },
+  "t3code-a9c9995352e5": {
+    "status": "error",
+    "tests": 5,
+    "infrastructureErrors": [
+      "Infrastructure failure: runtime: NotFound: FileSystem.readFile (/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-a9c9995352e5/fixed-before/source/apps/server/src/orchestration-v2/testkit/fixtures/kiro_unknown_model/kiro_transcript.ndjson)",
+      "Failed test lacks an SDK assertion"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "runtime",
+        "testId": "-1161471713_1_0",
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-a9c9995352e5/fixed-before/source/apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts",
+        "message": "NotFound: FileSystem.readFile (/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-a9c9995352e5/fixed-before/source/apps/server/src/orchestration-v2/testkit/fixtures/kiro_unknown_model/kiro_transcript.ndjson)"
+      }
+    ]
+  },
+  "t3code-cc1e634bfa62": {
+    "status": "error",
+    "tests": 16,
+    "infrastructureErrors": [
+      "Infrastructure failure: import: Cannot find module '@cursor/sdk'\nRequire stack:\n- /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-cc1e634bfa62/fixed-before/source/apps/server/src/provider/cursorSdk.ts"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-cc1e634bfa62/fixed-before/source/apps/server/src/provider/providerCompatibility.test.ts",
+        "message": "Cannot find module '@cursor/sdk'\nRequire stack:\n- /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-cc1e634bfa62/fixed-before/source/apps/server/src/provider/cursorSdk.ts"
+      }
+    ]
+  },
+  "t3code-b7a8b7f25b07": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-b7a8b7f25b07/fixed-before/source/apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts",
+        "message": "Cannot find module '@cursor/sdk'\nRequire stack:\n- /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-b7a8b7f25b07/fixed-before/source/apps/server/src/provider/cursorSdk.ts"
+      }
+    ]
+  },
+  "scope-c46613230e97": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c46613230e97/fixed-before/source/tests/pull-requests-scheduler.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c46613230e97/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-82c4e117a745": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-82c4e117a745/fixed-before/source/tests/pull-requests-scheduler.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-82c4e117a745/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-8cbf18bb51d4": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-8cbf18bb51d4/fixed-before/source/tests/pull-requests-scheduler.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-8cbf18bb51d4/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-e7c277798b3b": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e7c277798b3b/fixed-before/source/tests/pull-requests-scheduler.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e7c277798b3b/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-e65e8dd2c3af": {
+    "status": "error",
+    "tests": 16,
+    "infrastructureErrors": [
+      "Infrastructure failure: runtime: Server exited: node:internal/modules/cjs/loader:1595\n  throw err;\n  ^\n\nError: Cannot find module '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e65e8dd2c3af/fixed-before/source/apps/plan-web/dist/server/server-main.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1591:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1145:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1169:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1196:12)\n    at Module._load (node:internal/modules/cjs/loader:1368:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v26.10.0\n",
+      "Failed test lacks an SDK assertion"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "runtime",
+        "testId": "-125765656_0_10",
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e65e8dd2c3af/fixed-before/source/tests/plan-web-api.test.ts",
+        "message": "Server exited: node:internal/modules/cjs/loader:1595\n  throw err;\n  ^\n\nError: Cannot find module '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e65e8dd2c3af/fixed-before/source/apps/plan-web/dist/server/server-main.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1591:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1145:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1169:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1196:12)\n    at Module._load (node:internal/modules/cjs/loader:1368:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v26.10.0\n"
+      },
+      {
+        "kind": "assertion",
+        "testId": "-125765656_0_11",
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e65e8dd2c3af/fixed-before/source/tests/plan-web-api.test.ts",
+        "message": "expected 4 to be +0 // Object.is equality"
+      }
+    ]
+  },
+  "scope-c78a8c5f0fb1": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c78a8c5f0fb1/fixed-before/source/tests/hub-relay.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c78a8c5f0fb1/fixed-before/source/apps/hub/src/state.ts"
+      }
+    ]
+  },
+  "scope-c126ac6076af": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c126ac6076af/fixed-before/source/tests/publications.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c126ac6076af/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-c82b208701de": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c82b208701de/fixed-before/source/tests/publications.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c82b208701de/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-cef88d2b3b60": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-cef88d2b3b60/fixed-before/source/tests/publications.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-cef88d2b3b60/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-d993eb728ac3": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-d993eb728ac3/fixed-before/source/tests/publications.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-d993eb728ac3/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "scope-392d29f5779d": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-392d29f5779d/fixed-before/source/tests/hub-relay.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-392d29f5779d/fixed-before/source/apps/hub/src/state.ts"
+      }
+    ]
+  },
+  "scope-48708ad54e8b": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-48708ad54e8b/fixed-before/source/tests/pull-requests.test.ts",
+        "message": "Cannot find package '@irudd-scope/sqlite' imported from /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-48708ad54e8b/fixed-before/source/apps/desktop/src/library/store.ts"
+      }
+    ]
+  },
+  "t3code-421088c27367": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-421088c27367/fixed-before/source/packages/client-runtime/src/state/threadSearch.test.ts",
+        "message": "transformOrFail is not a function"
+      }
+    ]
+  },
+  "t3code-7980dfddb193": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-7980dfddb193/fixed-before/source/packages/client-runtime/src/state/threadSnoozed.test.ts",
+        "message": "transformOrFail is not a function"
+      }
+    ]
+  },
+  "t3code-8b3ddf51c59a": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8b3ddf51c59a/fixed-before/source/packages/shared/src/projectSettings.test.ts",
+        "message": "transformOrFail is not a function"
+      }
+    ]
+  },
+  "t3code-f87ecf0cc307": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f87ecf0cc307/fixed-before/source/packages/client-runtime/src/state/threads-atoms.test.ts",
+        "message": "transformOrFail is not a function"
+      }
+    ]
+  },
+  "t3code-d4d5d12e8ba0": {
+    "status": "error",
+    "tests": 0,
+    "infrastructureErrors": [
+      "Empty or invalid active test inventory"
+    ],
+    "protocolFailures": [
+      {
+        "kind": "import",
+        "testId": null,
+        "file": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-d4d5d12e8ba0/fixed-before/source/packages/shared/src/usageMerge.test.ts",
+        "message": "transformOrFail is not a function"
+      }
+    ]
+  }
+}

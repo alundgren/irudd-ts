@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "artifactPath": "/tmp/archguard-test-value-20261003/historical-dependency-license-inventory-lock-matched-78-v1.json.gz",
+  "artifactFormat": "gzip JSON",
+  "artifactBytes": 929907,
+  "artifactSha256": "c9b2f959f22a2992ae697659fff138fd38a3206c4e8fdf5fc9a03a8e7a9ce363",
+  "uncompressedBytes": 23414072,
+  "uncompressedSha256": "72ea54754a20bf42a340fdfa9045ef64e49dead0b2ee178be836e21c05c9b89d",
+  "helperPath": "/private/tmp/archguard-test-value-20261003/collect_final_dependency_licenses_v1.py",
+  "helperSha256": "c1cbd9ba1ce29c46fce9b053958740265620b7cf32f16e1d78cc7fe8d6e84a56",
+  "finalMapPath": "/tmp/archguard-test-value-20261003/dependency-installations-lock-matched-78.json",
+  "finalMapSha256": "81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0",
+  "outputPathPolicy": "exclusive create; existing targets are never overwritten"
+}

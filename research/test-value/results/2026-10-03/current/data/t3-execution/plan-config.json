@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "packages/client-runtime/src/state/threadExecution.ts",
+      "packages/client-runtime/src/state/subagentDisplay.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

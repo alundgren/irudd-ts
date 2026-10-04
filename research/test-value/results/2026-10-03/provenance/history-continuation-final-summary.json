@@ -1,0 +1,323 @@
+{
+  "exitCode": 0,
+  "candidateCount": 44,
+  "verifiedFaults": 5,
+  "completeMatrices": 3,
+  "partialMatrices": 2,
+  "exclusions": {
+    "faulty assertion regression, unaffected control, or restored pass not established": 4,
+    "fixed adapted baseline incomplete or failing": 21,
+    "historical mutation plan failed": 1,
+    "Preflight: tests/pull-requests-journey.test.ts requires Electron/Playwright desktop integration; outside the Node-only historical harness": 1,
+    "missing archived CLAUDE.md during source copy": 12
+  },
+  "verified": [
+    {
+      "id": "t3code-151c241cd2cc",
+      "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+      "complete": false,
+      "tests": 37,
+      "columns": {
+        "killed": 7,
+        "error": 10,
+        "survived": 7
+      },
+      "sourceSha256": "1541dec562b22caf940e9d44bb368e0adf7438cdd3ccfd4ec07f7b793ecc294b",
+      "faultySha256": "f460dbb266417a9ce998c7eadfbd74c92bd27ec2d921f6ba92ef2e8ddd7cfe41",
+      "matrixSha256": "8dd4da304037f8f3d0d86dfaba57f3b1b81bad009923d0ce0e05d2f443345c96"
+    },
+    {
+      "id": "t3code-8bc9b78f8270",
+      "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+      "complete": true,
+      "tests": 19,
+      "columns": {
+        "killed": 14,
+        "survived": 9
+      },
+      "sourceSha256": "0ff734e76228b0e0b4f9fc5722e26ae253bafea99ed52916da7d8db317bca9aa",
+      "faultySha256": "136575ee2f0377fcff4c965a11f479447d3f6e6dbe874624e1c79b874f2b8c8b",
+      "matrixSha256": "b0f01a1f46add1f52b2726b5682e3914a33df7a788b583371b33bc9df3767bd7"
+    },
+    {
+      "id": "t3code-263097a8da03",
+      "fix": "263097a8da038a143f2b7b7817250f0ad390ea32",
+      "complete": false,
+      "tests": 241,
+      "columns": {
+        "killed": 9,
+        "survived": 8,
+        "error": 7
+      },
+      "sourceSha256": "81d629db674d1c4b447dfb3c1d1875ea77c5795aab64a65ccac9c295fa6888cb",
+      "faultySha256": "c79c89a40705448682aa2d5388e6b156d7dd47787611fa0661da10410100940b",
+      "matrixSha256": "2f8d53605f1d297f91d1744d2cc9f1d329ae94726875e7735a76ad547daf1439"
+    },
+    {
+      "id": "t3code-f1add18ae156",
+      "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+      "complete": true,
+      "tests": 9,
+      "columns": {
+        "killed": 22,
+        "survived": 2
+      },
+      "sourceSha256": "84f41a56f5b3e914978d30aedd9baeef34c40bcb23d43ba2a8fc7d6acf7d2307",
+      "faultySha256": "b1d24372b99358d5a2d9c7ede2bbdf01e053eda9b6a748a572e9b04b41f97743",
+      "matrixSha256": "768b8c4d0e5cfdcb6eeb7e3e678b19af1c36af9bddcc8c8a3981caba70aa924f"
+    },
+    {
+      "id": "t3code-29a32660d3cb",
+      "fix": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+      "complete": true,
+      "tests": 19,
+      "columns": {
+        "killed": 20,
+        "survived": 3
+      },
+      "sourceSha256": "cb2aa28738721439622bf87486cd73c3e15ed95cacc4de90b6f9151d27b832a1",
+      "faultySha256": "fa156015004e532f1c31d720fa459aa468dfec57fcec6cae364754a7daf5928e",
+      "matrixSha256": "5085e3e97c9279f6eff17eb5bf5cc8770a382b30e227458f432bd185e7bdccbc"
+    }
+  ],
+  "unknownReasons": {
+    "Failed test lacks an SDK assertion": 17,
+    "Infrastructure failure: runtime: Cannot read properties of null (reading 'ordinal')": 2,
+    "Infrastructure failure: runtime: Cannot read properties of null (reading 'epochMilliseconds')": 3,
+    "Infrastructure failure: runtime: Cannot read properties of null (reading 'id')": 2,
+    "Infrastructure failure: runtime: Cannot read properties of null (reading 'status')": 2,
+    "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'status')": 1,
+    "Infrastructure failure: runtime: Resolved shortcut cannot be encoded to key string": 2,
+    "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'reasons')": 5,
+    "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'entries')": 1
+  },
+  "unknownColumns": [
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "a6cfde7f7c6ef7622598f861f063facafdb8826684fd4a46765cee37d6720f89",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0001/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'ordinal')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "47d3d78a9ff74f0c050badcc5f4bc0c022d0d190fda19175904cc46c252b6aff",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0002/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'ordinal')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "effe988f868f0e7463701f81655c69a0646a870507d2d9213430c471364c3801",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0004/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'epochMilliseconds')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "8599ff6e9f39a3736c639755b4e18289f519e9ce385d10f8ba93b278cfc43e24",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0005/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'epochMilliseconds')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "1c0ae53d53939cfa7d2b47e007125297d775bcb5f51dac870e70fe0c166bad83",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0011/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'id')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "138dfb03ce98c3bfe791fb6de43fa98719a542c71acfbac2b40c67a76159f7f3",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0012/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'id')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "d17915816fb018eb9cd99117ce72b4d85df9b3a2eb630a4958c3c2b283373a74",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0013/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'status')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "67d187024b8ed8e01ba8b4e5a38dca75271c437d4e65e417913c17ac20e6784b",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0014/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'status')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "490729f9c552a98b7198782bd8740cd099214c4e4795856d2337fe305dac799c",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0018/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'status')"
+      ]
+    },
+    {
+      "faultId": "t3code-151c241cd2cc",
+      "mutantId": "3ec999c700e47fe0b6f741367558baa75ff1ea0635f59df5572343f87138cd24",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/mutant-0020/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of null (reading 'epochMilliseconds')"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "6edc820de7c50be514e583ed16c833c88ac3af5d3a7c9600e6f9cc13a69c919e",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0010/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Resolved shortcut cannot be encoded to key string"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "fa13994884274f68d4f97232304af65464145cbf49c82fbeba6d898a2f004df4",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0011/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Resolved shortcut cannot be encoded to key string"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "69b44baac548ad159e3ed8ec9f3680789e7d398e1aee08b0b6b65ce3d7f8a346",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0014/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'reasons')"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "4fb56f868d21307652da535f05740a97094417dab0b104597fb8168f699dda95",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0015/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'reasons')"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "0f62188fb6190479b57466b074953c7da52ddccd3abb9ead549d326cc991bd32",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0016/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'entries')",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'reasons')"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "16a552f5283b7480c93d798ee968aab47768ba2043733adca4c27f267db581d5",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0017/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'reasons')"
+      ]
+    },
+    {
+      "faultId": "t3code-263097a8da03",
+      "mutantId": "854f541f6354589743d1861491e22e456affe4784796c67f76c9717e288bee2d",
+      "status": "error",
+      "evidence": "research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/mutant-0018/execution.json",
+      "errors": [
+        "Failed test lacks an SDK assertion",
+        "Infrastructure failure: runtime: Cannot read properties of undefined (reading 'reasons')"
+      ]
+    }
+  ],
+  "executionCount": 179,
+  "executionStatuses": {
+    "survived": 56,
+    "error": 42,
+    "killed": 80,
+    "timeout": 1
+  },
+  "cleanupConfirmedAll": true,
+  "frozenInputsVerified": true,
+  "originalFirst6RecordDigestsVerified": true,
+  "cohortScreened": 50,
+  "cohortUnique": 50,
+  "hashes": {
+    "preregistration.json": "fcfd570c7340c2065c09b0f08645e95029f4519985a72bcbf1d1316e78211d1b",
+    "attempts.json": "b75ec052474250eb8711253ba5211ce219f85193cd495320c806aebe26620635",
+    "aggregate.json": "22ef84004ec085a87af5783f5d66b542b1c89ebbbd99b1dc18d8de8ecdc0ecd0",
+    "original-preregistration.json": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93"
+  },
+  "rawLogSha256": "8d85cebe4711eed849c0bc460685182c1141cb738de04ff487caed03c85aa5ca",
+  "disk": {
+    "freeBytes": 610538401792,
+    "freeFraction": 0.6138469413403481
+  },
+  "launchIdentity": {
+    "runId": "history-continuation-20261004",
+    "recordedAt": "2026-10-03T23:27:34.210848+00:00",
+    "head": "b4d20712253096f262741d7b9f2cd83a1f100c8c",
+    "helperSha256": "58e25a33dea996007c0f05dccc394f95cbf7f7f8b30ff914a15f0bed1f25f2e5",
+    "sdkSha256": "f6db5dba5684d714a289d45d7ea5bdc543182e06f2def7c31284f3d317110633",
+    "archguardSha256": "d4487aaffc4b7ad37cc83afb486b6df1cfe1d709fdad3b78a4f0ce7aeb2200fc",
+    "candidateManifestSha256": "4ba1ac48250fd5309f1ac29b2327643c468ec5fb123a36111c0fd53260a98736",
+    "originalPreregistrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "candidateCount": 44,
+    "mutantPrefixLimit": 24,
+    "node": {
+      "t3code": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "version": "v24.21.0",
+        "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+      },
+      "scope": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+        "version": "v26.10.0",
+        "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+      }
+    },
+    "dependencies": {
+      "t3code": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+      "scope": "ee1e4ea74f91dd603abbc3d336cb0193ace32295ae0d035fee741ec64fd68dac"
+    },
+    "disk": {
+      "freeBytes": 629839376384,
+      "totalBytes": 994610155520,
+      "freeFraction": 0.6332525089236684
+    }
+  }
+}

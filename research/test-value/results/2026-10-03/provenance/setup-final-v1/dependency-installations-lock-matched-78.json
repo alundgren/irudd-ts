@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "installations": [
+    {
+      "id": "scope-install-2e2771120180",
+      "subject": "scope",
+      "root": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-2e2771120180/source",
+      "receiptPath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-2e2771120180/receipt.json",
+      "receiptSha256": "15e5442a3dc31b27e898243e29bad6d89801e2f4c039c1cae4f89bcb8ebbd66f"
+    },
+    {
+      "id": "scope-install-5a38c059371d",
+      "subject": "scope",
+      "root": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-5a38c059371d/source",
+      "receiptPath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-5a38c059371d/receipt.json",
+      "receiptSha256": "9f011210fcaa68d7025927ca9539c02dcdafc9d00e7fc77681af4fade59379f3"
+    },
+    {
+      "id": "scope-install-b5d129c1f532",
+      "subject": "scope",
+      "root": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-b5d129c1f532/source",
+      "receiptPath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-b5d129c1f532/receipt.json",
+      "receiptSha256": "bba71e0b5d5ae60e7555b1f93f1189c1465798e51b939bf2306b1835fc1e0ac8"
+    },
+    {
+      "id": "scope-install-d56f88acd0ae",
+      "subject": "scope",
+      "root": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-d56f88acd0ae/source",
+      "receiptPath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-d56f88acd0ae/receipt.json",
+      "receiptSha256": "0f2ea4429c8eaf8430a3457670e1abfe59c511b32af2178ca031547992bbc2ef"
+    },
+    {
+      "id": "scope-supp-install-60fd3fd8ce01",
+      "subject": "scope",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/scope-supp-install-60fd3fd8ce01/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/scope-supp-install-60fd3fd8ce01/receipt.json",
+      "receiptSha256": "7bc1ab9559a2472f603c387d8195a388a5f3f43f4a6501a444e332226c9a4ffc"
+    },
+    {
+      "id": "scope-supp-install-aed340460236",
+      "subject": "scope",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/scope-supp-install-aed340460236/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/scope-supp-install-aed340460236/receipt.json",
+      "receiptSha256": "b823d9913011c46fb04da77187effe778c62931923d039229857f2af79089594"
+    },
+    {
+      "id": "t3code-install-16858df93bbf",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-16858df93bbf/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-16858df93bbf/receipt.json",
+      "receiptSha256": "5c5bd6781e2656beccf898a7e58a125c14e74ba030ac0d65d2ad0a0f30031f18"
+    },
+    {
+      "id": "t3code-install-3f5a1597bcde",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-3f5a1597bcde/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-3f5a1597bcde/receipt.json",
+      "receiptSha256": "9921e45c297932bb8e006e35b5384480e1a651ddb8b9968f823dd7a1f8d9c568"
+    },
+    {
+      "id": "t3code-install-3f6293e594ec",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-3f6293e594ec/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-bundled-runner-corrected-receipts/t3code-install-3f6293e594ec/receipt.json",
+      "receiptSha256": "da1dd81b7511e02567e140332117a3320c8f8e0dd093c7e3681b2695a7c10e02"
+    },
+    {
+      "id": "t3code-install-418e9aba3903",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-418e9aba3903/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-418e9aba3903/receipt.json",
+      "receiptSha256": "bd02bbbf8ba89cf3f0dfd2e3fc7c929b97730b5f4ab67fe8bc96b1362406a8ae"
+    },
+    {
+      "id": "t3code-install-45cbc35fab04",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-45cbc35fab04/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-45cbc35fab04/receipt.json",
+      "receiptSha256": "22a17cecb1e79aec19b1333eb4478bee09aeb0991662bb48926f368f582fd9ae"
+    },
+    {
+      "id": "t3code-install-49a592f5503b",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-49a592f5503b/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-49a592f5503b/receipt.json",
+      "receiptSha256": "29c01c4530a9eea1bb600c6f76ea18e5a1dc8d4199fe011385a9fbc54aba98ab"
+    },
+    {
+      "id": "t3code-install-4bab1da110d5",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-4bab1da110d5/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-4bab1da110d5/receipt.json",
+      "receiptSha256": "17452047a11010fab33690cbe7ac3fcc3ab641fc4f6ccb1b1680d3c86cc64f89"
+    },
+    {
+      "id": "t3code-install-4d7ac4348ddc",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-4d7ac4348ddc/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-4d7ac4348ddc/receipt.json",
+      "receiptSha256": "85c5deddf16a08308d77fc1f113c8aed3ddb4c04c6ea77396b4fa11043bea755"
+    },
+    {
+      "id": "t3code-install-6c26501fdebc",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-6c26501fdebc/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-6c26501fdebc/receipt.json",
+      "receiptSha256": "825c5de8a9e43c533d2fadb8fa54131d50f94865691b3fe39bb3b56148b0307d"
+    },
+    {
+      "id": "t3code-install-745336e7263a",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-745336e7263a/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-745336e7263a/receipt.json",
+      "receiptSha256": "41837f14cec67e687390baa0330927cc52556139608fcdaac31a8532e8432370"
+    },
+    {
+      "id": "t3code-install-7ee3d847b90d",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-7ee3d847b90d/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-7ee3d847b90d/receipt.json",
+      "receiptSha256": "ce290ee03455a0569e35d3a48682fe324de665f7c794589795bb2e0c7d814487"
+    },
+    {
+      "id": "t3code-install-7f3efb59fb30",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-7f3efb59fb30/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-7f3efb59fb30/receipt.json",
+      "receiptSha256": "7052b57c5eea7842240d3e6a1fe855ed02a1e42c8a8f043573adab454dd8e4e2"
+    },
+    {
+      "id": "t3code-install-800215c134e2",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-800215c134e2/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-800215c134e2/receipt.json",
+      "receiptSha256": "271ff1889dec33cbad6963dba450dab0163948395fd90db4d01db046d10c0156"
+    },
+    {
+      "id": "t3code-install-834b0967522e",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-834b0967522e/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-834b0967522e/receipt.json",
+      "receiptSha256": "5119f83227d7f522cf2f8d1ce608a03d76df5d7d30fb741f8c524ca91a23b4a0"
+    },
+    {
+      "id": "t3code-install-aa20f3655ae3",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-aa20f3655ae3/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-aa20f3655ae3/receipt.json",
+      "receiptSha256": "fc7587d22db0b0740a26c55d0b15a520576d10325cc564aaed6e9b2eea9511c3"
+    },
+    {
+      "id": "t3code-install-c01c5f85dee6",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-c01c5f85dee6/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-c01c5f85dee6/receipt.json",
+      "receiptSha256": "527ba6fbb68e74bf4fbefdba7cf3565dc1cd9425d44e1c9b2de29be4b1864c1d"
+    },
+    {
+      "id": "t3code-install-c4a0237c4d7d",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-c4a0237c4d7d/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-c4a0237c4d7d/receipt.json",
+      "receiptSha256": "2f8dd05c5cf15cf8dd0c5f977bd8780ba0cd52497e27c55c2ad6535e5e3c79c0"
+    },
+    {
+      "id": "t3code-install-cda00b386774",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-cda00b386774/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-cda00b386774/receipt.json",
+      "receiptSha256": "71414915017185c39abb8eb390264881908f605c7e51a632b935ecaa1c04415c"
+    },
+    {
+      "id": "t3code-install-e01e4bdf3124",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-e01e4bdf3124/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-e01e4bdf3124/receipt.json",
+      "receiptSha256": "e5b2e058f1bfb70fb8498529bcaec85afbad8c40029f467410c42f12025bd016"
+    },
+    {
+      "id": "t3code-install-ee27f20fa50a",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-ee27f20fa50a/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-ee27f20fa50a/receipt.json",
+      "receiptSha256": "3540e973e76772e7214f82552827dd41f9cb21c962cc5a61c2bc26fa4bdc4788"
+    },
+    {
+      "id": "t3code-install-eebf736b5b58",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-eebf736b5b58/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-eebf736b5b58/receipt.json",
+      "receiptSha256": "afe4867250b11a8ba74656c8c7959d0f77ef6b247eeb54ff5ac49fafb7331adb"
+    },
+    {
+      "id": "t3code-supp-install-027d2efae574",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-027d2efae574/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-bundled-runner-corrected-receipts/t3code-supp-install-027d2efae574/receipt.json",
+      "receiptSha256": "534b652ed7d430cdbe0bbffada3131748838363e773eb3f0b07591c169bceddf"
+    },
+    {
+      "id": "t3code-supp-install-062a5bd2ecf5",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-062a5bd2ecf5/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-062a5bd2ecf5/receipt.json",
+      "receiptSha256": "cf53b3869e88db60325aeecc17c026ccd9698d9660807a9f1602a27ef63d444a"
+    },
+    {
+      "id": "t3code-supp-install-0d4ee075f7d7",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-0d4ee075f7d7/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-0d4ee075f7d7/receipt.json",
+      "receiptSha256": "7887a903ae655df81ed3c3bb8e8ae8995c770bd4aa4061d10898b162443265de"
+    },
+    {
+      "id": "t3code-supp-install-1a587b6c23b1",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-1a587b6c23b1/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-1a587b6c23b1/receipt.json",
+      "receiptSha256": "dd45af25ec2df3e43cadc5f6924147bbed23989df8b71604df60fa4723521444"
+    },
+    {
+      "id": "t3code-supp-install-3b359b2f1c7c",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-3b359b2f1c7c/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-3b359b2f1c7c/receipt.json",
+      "receiptSha256": "746e85bd4b1bb17710651ba0b09a2c81158d43018c8ae99b76a75b2ba23a2b30"
+    },
+    {
+      "id": "t3code-supp-install-479c6d67a116",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-479c6d67a116/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-479c6d67a116/receipt.json",
+      "receiptSha256": "a033857f9d8a54011cb2d27bfb1dbfae1e931772cd1a646202bdbcef9ac7718e"
+    },
+    {
+      "id": "t3code-supp-install-5751f3c2689a",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-5751f3c2689a/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-5751f3c2689a/receipt.json",
+      "receiptSha256": "0461bc193c7987104f28860ba9dde7539a6b7f684e0044241ef22219183a9905"
+    },
+    {
+      "id": "t3code-supp-install-6f6eae360f88",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-6f6eae360f88/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-6f6eae360f88/receipt.json",
+      "receiptSha256": "3918ca21d8c06e7d5c2d010a81a5df42beaefc2850ed4a74ddd77463f07e2efe"
+    },
+    {
+      "id": "t3code-supp-install-726cdb253f8a",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-726cdb253f8a/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-726cdb253f8a/receipt.json",
+      "receiptSha256": "817981d496332fd19c2bf922f91835f4032d5c3af62af6d59655826ebf20559d"
+    },
+    {
+      "id": "t3code-supp-install-8b4e0395ed16",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-8b4e0395ed16/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-8b4e0395ed16/receipt.json",
+      "receiptSha256": "be2a9cd4e87da88697d62823b38010c68efa24d796b20ac9bb4d2a12e4a45626"
+    },
+    {
+      "id": "t3code-supp-install-90b4e9ee927d",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-90b4e9ee927d/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-90b4e9ee927d/receipt.json",
+      "receiptSha256": "f14a44b1f5c69b6531de29907eac2a7cdb971010e61b59cbcf7036a035be56cc"
+    },
+    {
+      "id": "t3code-supp-install-9168995d892f",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-9168995d892f/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-9168995d892f/receipt.json",
+      "receiptSha256": "3ad8344567d7f5e2d394b434e8f7825548aae1c5c164708bd2618e34f868fe87"
+    },
+    {
+      "id": "t3code-supp-install-9bc18f158c61",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-9bc18f158c61/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-9bc18f158c61/receipt.json",
+      "receiptSha256": "72531e952557c6b59dde009abe24c13436b5f9c144a5e7d6b3fe77d84edffb5d"
+    },
+    {
+      "id": "t3code-supp-install-a18a47e7c515",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-a18a47e7c515/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-a18a47e7c515/receipt.json",
+      "receiptSha256": "732539e0688a71a99dc51d39f91fb360079176bfc1221db3c363c088a0b313ad"
+    },
+    {
+      "id": "t3code-supp-install-c2d582f9bf9b",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-c2d582f9bf9b/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-c2d582f9bf9b/receipt.json",
+      "receiptSha256": "52356afc5d5ab2dfb9dca622757e9646763fad93e80ee6178d551ea225ab9be0"
+    },
+    {
+      "id": "t3code-supp-install-d283272c954d",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-d283272c954d/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-d283272c954d/receipt.json",
+      "receiptSha256": "bf4392864810bb3f1cb0363bbe37c44b033a2a40dd5f65ad897ff540d6ed3084"
+    },
+    {
+      "id": "t3code-supp-install-eb3e3ecb1d4e",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-eb3e3ecb1d4e/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-eb3e3ecb1d4e/receipt.json",
+      "receiptSha256": "5102ed8a6c53ec2d03d0a249879691ad93f948a17308ebe0154dbd563c34751a"
+    },
+    {
+      "id": "t3code-supp-install-ee393b1fea4e",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-ee393b1fea4e/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-ee393b1fea4e/receipt.json",
+      "receiptSha256": "f454f77abb0c159e0455ff11a13e663f62ae3b823fa3c7aa310f56688036c3bf"
+    },
+    {
+      "id": "t3code-supp-install-eed256eac419",
+      "subject": "t3code",
+      "root": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-eed256eac419/source",
+      "receiptPath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-eed256eac419/receipt.json",
+      "receiptSha256": "bef22d052866a38366d3ea467b1b4b32dd19385f5563de5c383f1dfed9529762"
+    }
+  ],
+  "candidates": {
+    "t3code-f391794a35c6": "t3code-install-aa20f3655ae3",
+    "t3code-f68e24fb419c": "t3code-install-aa20f3655ae3",
+    "t3code-a5b34b25378f": "t3code-install-aa20f3655ae3",
+    "t3code-56914128c1ff": "t3code-install-aa20f3655ae3",
+    "t3code-63f74e209dc2": "t3code-install-aa20f3655ae3",
+    "t3code-736130c2fd39": "t3code-install-aa20f3655ae3",
+    "t3code-9333509c9180": "t3code-install-aa20f3655ae3",
+    "t3code-151c241cd2cc": "t3code-install-4bab1da110d5",
+    "t3code-5031b9ccebbb": "t3code-install-4bab1da110d5",
+    "t3code-43bd6677392b": "t3code-install-4bab1da110d5",
+    "t3code-a9c9995352e5": "t3code-install-45cbc35fab04",
+    "t3code-cc1e634bfa62": "t3code-install-4bab1da110d5",
+    "t3code-8bc9b78f8270": "t3code-install-ee27f20fa50a",
+    "t3code-dd8332da5735": "t3code-install-ee27f20fa50a",
+    "t3code-b7a8b7f25b07": "t3code-install-834b0967522e",
+    "t3code-263097a8da03": "t3code-install-aa20f3655ae3",
+    "t3code-db514607f402": "t3code-install-aa20f3655ae3",
+    "scope-c46613230e97": "scope-install-d56f88acd0ae",
+    "scope-82c4e117a745": "scope-install-d56f88acd0ae",
+    "scope-8cbf18bb51d4": "scope-install-d56f88acd0ae",
+    "scope-e7c277798b3b": "scope-install-d56f88acd0ae",
+    "scope-e65e8dd2c3af": "scope-install-b5d129c1f532",
+    "scope-c78a8c5f0fb1": "scope-install-5a38c059371d",
+    "scope-c126ac6076af": "scope-install-2e2771120180",
+    "scope-c82b208701de": "scope-install-2e2771120180",
+    "scope-cef88d2b3b60": "scope-install-2e2771120180",
+    "scope-d993eb728ac3": "scope-install-2e2771120180",
+    "scope-392d29f5779d": "scope-install-2e2771120180",
+    "scope-84ec1ad4e6a8": "scope-install-5a38c059371d",
+    "scope-48708ad54e8b": "scope-install-5a38c059371d",
+    "t3code-4abf8b46c591": "t3code-install-3f6293e594ec",
+    "t3code-43e2aeab3891": "t3code-install-cda00b386774",
+    "t3code-193e3c62e6d5": "t3code-install-e01e4bdf3124",
+    "t3code-32407df9c5ff": "t3code-install-eebf736b5b58",
+    "t3code-491219bf1f4d": "t3code-install-16858df93bbf",
+    "t3code-70de6e17860d": "t3code-install-7f3efb59fb30",
+    "t3code-062b4618c229": "t3code-install-745336e7263a",
+    "t3code-220e573b14ce": "t3code-install-4d7ac4348ddc",
+    "t3code-6befe42eb096": "t3code-install-4d7ac4348ddc",
+    "t3code-684d703b0a8a": "t3code-install-7ee3d847b90d",
+    "t3code-9bdd91293316": "t3code-install-7ee3d847b90d",
+    "t3code-178da6bc3210": "t3code-install-7ee3d847b90d",
+    "t3code-421088c27367": "t3code-install-418e9aba3903",
+    "t3code-7980dfddb193": "t3code-install-6c26501fdebc",
+    "t3code-8b3ddf51c59a": "t3code-install-c4a0237c4d7d",
+    "t3code-f87ecf0cc307": "t3code-install-800215c134e2",
+    "t3code-d4d5d12e8ba0": "t3code-install-49a592f5503b",
+    "t3code-f1add18ae156": "t3code-install-c01c5f85dee6",
+    "t3code-29a32660d3cb": "t3code-install-ee27f20fa50a",
+    "t3code-38f3c62304bf": "t3code-install-3f5a1597bcde",
+    "scope-59ed3a2a3ee4": "scope-supp-install-aed340460236",
+    "scope-c152601dfe9c": "scope-supp-install-60fd3fd8ce01",
+    "t3code-02297e3dbd89": "t3code-supp-install-c2d582f9bf9b",
+    "t3code-10dde452f90f": "t3code-supp-install-84619cce8094",
+    "t3code-1d77cec99197": "t3code-supp-install-d283272c954d",
+    "t3code-2274444e9227": "t3code-install-418e9aba3903",
+    "t3code-2971ec3209d7": "t3code-supp-install-8b4e0395ed16",
+    "t3code-47dfc6526521": "t3code-install-7f3efb59fb30",
+    "t3code-49c1b64687f8": "t3code-supp-install-027d2efae574",
+    "t3code-53042f47f85a": "t3code-supp-install-027d2efae574",
+    "t3code-65731f986ba2": "t3code-supp-install-a18a47e7c515",
+    "t3code-6ea01f8d2441": "t3code-supp-install-9bc18f158c61",
+    "t3code-7a08fcf2e832": "t3code-supp-install-c0adbe5978c1",
+    "t3code-82f64cd8d046": "t3code-supp-install-ee393b1fea4e",
+    "t3code-849bac8946c4": "t3code-supp-install-3b359b2f1c7c",
+    "t3code-87a12b53fdff": "t3code-supp-install-062a5bd2ecf5",
+    "t3code-87d842801921": "t3code-supp-install-479c6d67a116",
+    "t3code-94cc8152fff5": "t3code-supp-install-ee393b1fea4e",
+    "t3code-94f194816662": "t3code-supp-install-eed256eac419",
+    "t3code-95d99373b74e": "t3code-supp-install-5751f3c2689a",
+    "t3code-9b43123ba2a9": "t3code-supp-install-9168995d892f",
+    "t3code-a0eb23993a3b": "t3code-supp-install-ee393b1fea4e",
+    "t3code-b34ff8f56469": "t3code-supp-install-1a587b6c23b1",
+    "t3code-cfddb4201df8": "t3code-supp-install-90b4e9ee927d",
+    "t3code-d06f0ff1048d": "t3code-supp-install-eb3e3ecb1d4e",
+    "t3code-ead4ce52a162": "t3code-supp-install-0d4ee075f7d7",
+    "t3code-ebb9b9fda03d": "t3code-supp-install-726cdb253f8a",
+    "t3code-f21b47e52d98": "t3code-supp-install-6f6eae360f88"
+  },
+  "profile": "lock-matched-filtered-declared-runner-v1",
+  "sourceMaps": [
+    {
+      "path": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/dependency-installations.json",
+      "sha256": "eb3c32f31377a748aa3a1ae96624a260aabc122fdbfca78f4a59477ae49a027c"
+    },
+    {
+      "path": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/dependency-installations.json",
+      "sha256": "35bd7859459444056c869fd4b3a1ac100197087ab0c5018d8e8e27f3139dd00e"
+    }
+  ],
+  "correctedReceiptsRegistration": {
+    "path": "/private/tmp/archguard-test-value-20261003/historical-bundled-runner-corrected-receipts/registration.json",
+    "sha256": "e33c8dae4c16679221d63007c561cbcb5553fd731e56e33e1e0bfb87b22a2fc8"
+  },
+  "candidatesManifest": {
+    "path": "/private/tmp/archguard-test-value-20261003/history-lock-matched-78-final.json",
+    "sha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0"
+  },
+  "mapHelperSha256": "aff2aac65a4e385f3fbb66ed3ea2894f238db4b4dd64adcea581f11eff30f5bc",
+  "t3WorkspaceFilter": "!t3code-relay",
+  "baselineValidationReusedAsMeasurement": false
+}

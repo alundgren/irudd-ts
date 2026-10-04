@@ -1,0 +1,12 @@
+test_archived_subject_matrix_cannot_enter_the_report_as_a_measurement (test_report.ReportEvidenceControls.test_archived_subject_matrix_cannot_enter_the_report_as_a_measurement) ... ok
+test_embedded_payload_preserves_operator_and_script_text (test_report.ReportEvidenceControls.test_embedded_payload_preserves_operator_and_script_text) ... ok
+test_missing_analysis_remains_incomplete (test_report.ReportEvidenceControls.test_missing_analysis_remains_incomplete) ... ok
+test_reporting_profile_does_not_choose_each_faults_best_attempt (test_report.ReportEvidenceControls.test_reporting_profile_does_not_choose_each_faults_best_attempt) ... ok
+test_secondary_results_must_bind_to_retained_primary_bytes (test_report.ReportEvidenceControls.test_secondary_results_must_bind_to_retained_primary_bytes) ... ok
+test_stale_analysis_cannot_describe_changed_matrix_as_complete (test_report.ReportEvidenceControls.test_stale_analysis_cannot_describe_changed_matrix_as_complete) ... ok
+test_stale_historical_evaluation_cannot_enter_aggregate (test_report.ReportEvidenceControls.test_stale_historical_evaluation_cannot_enter_aggregate) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.024s
+
+OK

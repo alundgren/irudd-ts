@@ -1,0 +1,131 @@
+{
+  "id": "t3code-151c241cd2cc",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(client-runtime): format subagent descriptions as display names (#14999)",
+  "sourceFiles": [
+    "packages/client-runtime/src/state/threadExecution.ts"
+  ],
+  "testFiles": [
+    "packages/client-runtime/src/state/threadExecution.test.ts"
+  ],
+  "relatedGroup": "thread-runtime-presentation",
+  "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+  "parent": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 7
+  },
+  "verified": true,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "packages/client-runtime/src/state/threadExecution.ts"
+  ],
+  "killedBy": [
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]"
+  ],
+  "unaffected": [
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]"
+  ],
+  "fixedTemplateSha256": "1541dec562b22caf940e9d44bb368e0adf7438cdd3ccfd4ec07f7b793ecc294b",
+  "faultyTemplateSha256": "f460dbb266417a9ce998c7eadfbd74c92bd27ec2d921f6ba92ef2e8ddd7cfe41",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "packages/client-runtime/src/state/threadExecution.test.ts": "parent file existed; individual additions not classified"
+  },
+  "unchangedIdentityFromParentTests": [
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]"
+  ],
+  "fixAddedOrRenamedTestIdentities": [
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]"
+  ],
+  "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+  "rankingExcluded": "one or more mutation columns incomplete",
+  "recordDigests": {
+    "matrix.json": "8dd4da304037f8f3d0d86dfaba57f3b1b81bad009923d0ce0e05d2f443345c96",
+    "analysis.json": "076574c3b58a1ea42e2f8090faa72ec3ed26872116ab710c53860d7609d09043",
+    "fixed-before/execution.json": "8bd56d9cc4355c783f2823f1481df95784842dcd7530e54a999b5100dd852289",
+    "faulty/execution.json": "514ae9476df6fad242d8d42b77845bbb6f5f2b82f7e2ae3b396d5a061fff7c34",
+    "fixed-after/execution.json": "03ca9945713931d27ae098c4b2ba45896ee5170e06b33e1e7d8290cd8812fe92"
+  }
+}

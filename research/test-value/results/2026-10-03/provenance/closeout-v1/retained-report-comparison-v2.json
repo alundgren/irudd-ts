@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "restoredProfiles": 6,
+  "comparison": "PASS",
+  "measuredKeysCompared": [
+    "subjects",
+    "history",
+    "aggregate",
+    "secondarySubjects",
+    "archivedHistory",
+    "historicalProfile"
+  ],
+  "ignoredDisplayFields": "Only per-subject/per-attempt evidence directory and top-level presentation metadata. Matrix, analysis, history and comparison values compared exactly.",
+  "renderedJsonRoundTrip": "PASS",
+  "reportSourceSha256": "91e873fab050c85ab92fa53f8d715935cf0fe5abd88402389d157e58e5bd5354",
+  "htmlSha256": "fd3d85d6a647bf5381027da5f229142f2e408cdad59dc0a4dfce357141dcf8ee",
+  "subjects": 4,
+  "rankableFaults": 3,
+  "historicalBaselineJsonSha256": "4947dfdcc420943172bc34c8c79417d59976cfdbe1b65700bdec0e04db689797"
+}

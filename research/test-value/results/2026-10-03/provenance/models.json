@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "reviewer": {
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh"
+  },
+  "scout": {
+    "model": "gpt-6-luna",
+    "effort": "xhigh"
+  },
+  "planningMode": "current"
+}

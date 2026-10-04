@@ -1,0 +1,95 @@
+{
+  "id": "t3code-8bc9b78f8270",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(web): terminal links drop a trailing colon (#13408)",
+  "sourceFiles": [
+    "apps/web/src/terminal-links.ts"
+  ],
+  "testFiles": [
+    "apps/web/src/terminal-links.test.ts"
+  ],
+  "relatedGroup": "terminal-link-parsing",
+  "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+  "parent": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 12
+  },
+  "verified": true,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "apps/web/src/terminal-links.ts"
+  ],
+  "killedBy": [
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in ./main.go:10:5: undefined: x\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in /home/dev/app/src/main.c:10:5: error: expected ';'\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in C:\\\\dev\\\\app\\\\src\\\\main.c:10:5: error: expected ';'\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in wrote ./out/report.txt:\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps the line and column of a compiler diagnostic\"],1]"
+  ],
+  "unaffected": [
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds http urls and path tokens\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"classifies uppercase schemes as URLs at activation time too\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds URLs regardless of scheme casing\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from links\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds Windows absolute paths with forward slashes\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from Windows forward-slash paths\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"keeps a trailing colon on URLs\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"reconstructs a wrapped line from any physical row\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"preserves trailing spaces on continued segments for downstream offsets\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"resolves relative paths against cwd\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps absolute paths unchanged\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps Windows absolute paths with forward slashes unchanged\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires cmd on macOS\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires ctrl on non-macOS\"],1]"
+  ],
+  "fixedTemplateSha256": "0ff734e76228b0e0b4f9fc5722e26ae253bafea99ed52916da7d8db317bca9aa",
+  "faultyTemplateSha256": "136575ee2f0377fcff4c965a11f479447d3f6e6dbe874624e1c79b874f2b8c8b",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "apps/web/src/terminal-links.test.ts": "parent file existed; individual additions not classified"
+  },
+  "unchangedIdentityFromParentTests": [
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"preserves trailing spaces on continued segments for downstream offsets\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"reconstructs a wrapped line from any physical row\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"classifies uppercase schemes as URLs at activation time too\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds URLs regardless of scheme casing\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds Windows absolute paths with forward slashes\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds http urls and path tokens\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from Windows forward-slash paths\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from links\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires cmd on macOS\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires ctrl on non-macOS\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps Windows absolute paths with forward slashes unchanged\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps absolute paths unchanged\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"resolves relative paths against cwd\"],1]"
+  ],
+  "fixAddedOrRenamedTestIdentities": [
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in ./main.go:10:5: undefined: x\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in /home/dev/app/src/main.c:10:5: error: expected ';'\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in C:\\\\dev\\\\app\\\\src\\\\main.c:10:5: error: expected ';'\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in wrote ./out/report.txt:\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"keeps a trailing colon on URLs\"],1]",
+    "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps the line and column of a compiler diagnostic\"],1]"
+  ],
+  "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+  "recordDigests": {
+    "matrix.json": "b0f01a1f46add1f52b2726b5682e3914a33df7a788b583371b33bc9df3767bd7",
+    "analysis.json": "ab9a4662345f5b54591816d6135ac3d613c31cbe78ce024d0bc02455d264fcd0",
+    "evaluation.json": "7db8ca703f3b6f225a3304db222cace08f11f696f0c3904919ceb847070bf387",
+    "fixed-before/execution.json": "252400ade5a04b6dff551d8609af014e562a47ccb849d288cc07d7056ab49a46",
+    "faulty/execution.json": "f1df98e068d463ba611ec3166c3f90a582c0afccc777aba3a0543dd144888cd1",
+    "fixed-after/execution.json": "f2d3c163b24db720886b71157a19cb12524c839e887f2902b466661ea7e55d45"
+  }
+}

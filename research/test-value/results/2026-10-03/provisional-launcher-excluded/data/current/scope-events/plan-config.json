@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "apps/desktop/src/workspace/events.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

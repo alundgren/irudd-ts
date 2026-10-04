@@ -1,0 +1,1968 @@
+[
+  {
+    "id": "t3code-9333509c9180",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(client-runtime): reconnects back off with jitter and keep healthy sockets (#14897)",
+    "sourceFiles": [
+      "apps/server/src/telemetry/AnalyticsService.ts",
+      "packages/client-runtime/src/connection/supervisor.ts",
+      "packages/client-runtime/src/connection/wakeups.ts",
+      "packages/client-runtime/src/state/server.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/telemetry/AnalyticsService.test.ts",
+      "packages/client-runtime/src/connection/registry.test.ts",
+      "packages/client-runtime/src/connection/supervisor.test.ts"
+    ],
+    "relatedGroup": "connection-recovery",
+    "fix": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+    "parent": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 6
+    },
+    "verified": false,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "apps/server/src/telemetry/AnalyticsService.ts",
+      "packages/client-runtime/src/connection/supervisor.ts",
+      "packages/client-runtime/src/connection/wakeups.ts",
+      "packages/client-runtime/src/state/server.ts"
+    ],
+    "killedBy": [],
+    "unaffected": [],
+    "fixedTemplateSha256": "46e0602499b1e97641496e7980935dd5644d25a14c54343c538a85edc61d7095",
+    "faultyTemplateSha256": "1b8d16cd81d071d9d7c6db179e17f9e81bd7bf44c66fe0ee527e0d1f7b28e272",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "apps/server/src/telemetry/AnalyticsService.test.ts": "parent file existed; individual additions not classified",
+      "packages/client-runtime/src/connection/registry.test.ts": "parent file existed; individual additions not classified",
+      "packages/client-runtime/src/connection/supervisor.test.ts": "parent file existed; individual additions not classified"
+    },
+    "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+    "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+    "recordDigests": {
+      "fixed-before/execution.json": "4ca0f9046ee177d749a53e6b9d59da26c938799d99861bd9206907a587710ddd",
+      "faulty/execution.json": "622b81f04d355c962990d1b728d10c7de8927a750b8550bee076402dfdca83fb",
+      "fixed-after/execution.json": "6590c2b00b965d46a3cdb148f3b0dab6d3a46a62db1b6d5f9739fca981cfd02e"
+    }
+  },
+  {
+    "id": "t3code-151c241cd2cc",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(client-runtime): format subagent descriptions as display names (#14999)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadExecution.test.ts"
+    ],
+    "relatedGroup": "thread-runtime-presentation",
+    "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+    "parent": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 7
+    },
+    "verified": true,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ],
+    "killedBy": [
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]"
+    ],
+    "unaffected": [
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]"
+    ],
+    "fixedTemplateSha256": "1541dec562b22caf940e9d44bb368e0adf7438cdd3ccfd4ec07f7b793ecc294b",
+    "faultyTemplateSha256": "f460dbb266417a9ce998c7eadfbd74c92bd27ec2d921f6ba92ef2e8ddd7cfe41",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "packages/client-runtime/src/state/threadExecution.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "rankingExcluded": "one or more mutation columns incomplete",
+    "recordDigests": {
+      "matrix.json": "8dd4da304037f8f3d0d86dfaba57f3b1b81bad009923d0ce0e05d2f443345c96",
+      "analysis.json": "076574c3b58a1ea42e2f8090faa72ec3ed26872116ab710c53860d7609d09043",
+      "fixed-before/execution.json": "8bd56d9cc4355c783f2823f1481df95784842dcd7530e54a999b5100dd852289",
+      "faulty/execution.json": "514ae9476df6fad242d8d42b77845bbb6f5f2b82f7e2ae3b396d5a061fff7c34",
+      "fixed-after/execution.json": "03ca9945713931d27ae098c4b2ba45896ee5170e06b33e1e7d8290cd8812fe92"
+    }
+  },
+  {
+    "id": "t3code-5031b9ccebbb",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(client-runtime): track follow-up subagent status",
+    "sourceFiles": [
+      "apps/mobile/src/state/threads.ts",
+      "apps/web/src/components/ChatView.tsx",
+      "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+      "apps/web/src/state/threads.ts",
+      "packages/client-runtime/src/state/subagentRuntime.ts",
+      "packages/client-runtime/src/state/threadDetail.ts",
+      "packages/client-runtime/src/state/threadRelationships.ts",
+      "packages/client-runtime/src/state/threadShell.ts",
+      "packages/client-runtime/src/state/threadSubagents.ts"
+    ],
+    "testFiles": [
+      "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx",
+      "packages/client-runtime/src/state/threadDetail.test.ts",
+      "packages/client-runtime/src/state/threadShell.test.ts",
+      "packages/client-runtime/src/state/threadSubagents.test.ts"
+    ],
+    "relatedGroup": "subagent-status",
+    "fix": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+    "parent": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 8
+    },
+    "verified": false,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "apps/mobile/src/state/threads.ts",
+      "apps/web/src/components/ChatView.tsx",
+      "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+      "apps/web/src/state/threads.ts",
+      "packages/client-runtime/src/state/subagentRuntime.ts",
+      "packages/client-runtime/src/state/threadDetail.ts",
+      "packages/client-runtime/src/state/threadRelationships.ts",
+      "packages/client-runtime/src/state/threadShell.ts",
+      "packages/client-runtime/src/state/threadSubagents.ts"
+    ],
+    "killedBy": [],
+    "unaffected": [],
+    "fixedTemplateSha256": "110d546eab7b22eb45433713e0ad859b915d96e897b91a60527ba2aa607349b3",
+    "faultyTemplateSha256": "9c0284936db79a617808a32b2ae0241e1305dcbf0bd3b4ec3d1b3d7fb33fbf6b",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx": "parent file existed; individual additions not classified",
+      "packages/client-runtime/src/state/threadDetail.test.ts": "parent file existed; individual additions not classified",
+      "packages/client-runtime/src/state/threadShell.test.ts": "parent file existed; individual additions not classified",
+      "packages/client-runtime/src/state/threadSubagents.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows readable models and only differing workspace details in agent tooltips\"],1]",
+      "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows the matching child agent details and refreshes them when the agent settles\"],1]",
+      "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows the parent's own visible status as parent and child activity change\"],1]",
+      "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows transfer lifecycle states when viewing the source thread\"],1]",
+      "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows transfer lifecycle states when viewing the target thread\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"createEnvironmentThreadDetailAtoms\",\"adds environment scope while preserving the pristine projection\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"does not notify queue consumers for streaming text or execution nodes\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"does not notify the agents pill for unrelated projection updates\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"keeps worktree and pending requests stable during output updates, then reflects resolution\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"keeps navigation stable on hidden subagent updates and retains user forks\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"preserves ordered reference arrays when a middle thread changes\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"preserves project memberships on updates and keeps the same thread separate per environment\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"shares point and list values without retaining an atom for every listed thread\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"counts idle as neither working nor done\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"falls back to the most recently updated agent's run once the turn settles\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"returns null when the thread has never spawned an agent\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"scopes the roster to the active run and orders it by start time\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"hides itself once the turn is over and nothing is working\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"reports the finished roster while the turn is still running\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"shows how many of the turn's agents are still working\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"stays visible after the turn ends while an agent is still working\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"tracks resumed delegated children in the waiting roster through shell updates\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"includes a resumed agent from an earlier parent run and removes it after it settles\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"keeps provider-owned and unavailable children on their task status\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a preparing follow-up as live without changing its original result\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a queued follow-up as live without changing its original result\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a running follow-up as live without changing its original result\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a starting follow-up as live without changing its original result\"],1]",
+      "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a waiting follow-up as live without changing its original result\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+    "recordDigests": {
+      "fixed-before/execution.json": "43d07a840c75778672786e5cee94dc5e8d951c1a8cde2e23a6aab0c9071f8bc1",
+      "faulty/execution.json": "ce93ad3bed7e72055223c13b7d73a6e6ba983c2ff5bc52ae87189a380ee0be8f",
+      "fixed-after/execution.json": "ec3da1128901a25bce5646b898912439fcfa75f5a972760c4d870f16adcd0c29"
+    }
+  },
+  {
+    "id": "t3code-43bd6677392b",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(web): Claude skill calls show the skill name (#14980)",
+    "sourceFiles": [
+      "apps/mobile/src/lib/threadActivity.ts",
+      "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.ts",
+      "apps/server/src/orchestration-v2/Adapters/CodexAdapterV2.ts",
+      "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+      "apps/web/src/components/chat/MessagesTimeline.tsx",
+      "packages/shared/src/toolActivity.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+      "packages/shared/src/toolActivity.test.ts"
+    ],
+    "relatedGroup": "provider-tool-presentation",
+    "fix": "43bd6677392b80cd12742f865c277c9939239543",
+    "parent": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 9
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "7b1f0743930645857199efc057aca3133b0b653b994081f9ddeaa68d55e1d24d"
+    }
+  },
+  {
+    "id": "t3code-a9c9995352e5",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(server): Kiro never auto-grants beyond the thread or runs Autopilot under overrides",
+    "sourceFiles": [
+      "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.ts",
+      "apps/server/src/provider/acp/KiroAcpSupport.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts"
+    ],
+    "relatedGroup": "kiro-permission-policy",
+    "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+    "parent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 10
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "330c2bb8a1d4c0460de64119113f9bd4ac803bb43fcdb7379a2cf635fdfcd32d"
+    }
+  },
+  {
+    "id": "t3code-cc1e634bfa62",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(server): released builds keep the OpenCode policy for their own version (#14863)",
+    "sourceFiles": [
+      "apps/server/src/provider/ModelManifest.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/provider/ModelManifest.test.ts",
+      "apps/server/src/provider/providerCompatibility.test.ts"
+    ],
+    "relatedGroup": "provider-manifest-policy",
+    "fix": "cc1e634bfa62edd56ff792eea666e436fdef788f",
+    "parent": "1e7c8e0f24c217a3229615fa1de1e6ed85d7e835",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 11
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "466a19e07c4ba246d5bedce0ecf2d443c26710dc305be4188426212b650df2ed"
+    }
+  },
+  {
+    "id": "t3code-8bc9b78f8270",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(web): terminal links drop a trailing colon (#13408)",
+    "sourceFiles": [
+      "apps/web/src/terminal-links.ts"
+    ],
+    "testFiles": [
+      "apps/web/src/terminal-links.test.ts"
+    ],
+    "relatedGroup": "terminal-link-parsing",
+    "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+    "parent": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 12
+    },
+    "verified": true,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "apps/web/src/terminal-links.ts"
+    ],
+    "killedBy": [
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in ./main.go:10:5: undefined: x\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in /home/dev/app/src/main.c:10:5: error: expected ';'\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in C:\\\\dev\\\\app\\\\src\\\\main.c:10:5: error: expected ';'\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in wrote ./out/report.txt:\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps the line and column of a compiler diagnostic\"],1]"
+    ],
+    "unaffected": [
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds http urls and path tokens\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"classifies uppercase schemes as URLs at activation time too\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds URLs regardless of scheme casing\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from links\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds Windows absolute paths with forward slashes\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from Windows forward-slash paths\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"keeps a trailing colon on URLs\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"reconstructs a wrapped line from any physical row\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"preserves trailing spaces on continued segments for downstream offsets\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"resolves relative paths against cwd\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps absolute paths unchanged\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps Windows absolute paths with forward slashes unchanged\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires cmd on macOS\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires ctrl on non-macOS\"],1]"
+    ],
+    "fixedTemplateSha256": "0ff734e76228b0e0b4f9fc5722e26ae253bafea99ed52916da7d8db317bca9aa",
+    "faultyTemplateSha256": "136575ee2f0377fcff4c965a11f479447d3f6e6dbe874624e1c79b874f2b8c8b",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "apps/web/src/terminal-links.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"preserves trailing spaces on continued segments for downstream offsets\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"collectWrappedTerminalLinkLine\",\"reconstructs a wrapped line from any physical row\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"classifies uppercase schemes as URLs at activation time too\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds URLs regardless of scheme casing\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds Windows absolute paths with forward slashes\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"finds http urls and path tokens\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from Windows forward-slash paths\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"trims trailing punctuation from links\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires cmd on macOS\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"isTerminalLinkActivation\",\"requires ctrl on non-macOS\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps Windows absolute paths with forward slashes unchanged\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps absolute paths unchanged\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"resolves relative paths against cwd\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in ./main.go:10:5: undefined: x\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in /home/dev/app/src/main.c:10:5: error: expected ';'\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in C:\\\\dev\\\\app\\\\src\\\\main.c:10:5: error: expected ';'\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"drops the colon that ends a compiler diagnostic location in wrote ./out/report.txt:\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"extractTerminalLinks\",\"keeps a trailing colon on URLs\"],1]",
+      "[\"\",\"apps/web/src/terminal-links.test.ts\",[\"resolvePathLinkTarget\",\"keeps the line and column of a compiler diagnostic\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "recordDigests": {
+      "matrix.json": "b0f01a1f46add1f52b2726b5682e3914a33df7a788b583371b33bc9df3767bd7",
+      "analysis.json": "ab9a4662345f5b54591816d6135ac3d613c31cbe78ce024d0bc02455d264fcd0",
+      "evaluation.json": "7db8ca703f3b6f225a3304db222cace08f11f696f0c3904919ceb847070bf387",
+      "fixed-before/execution.json": "252400ade5a04b6dff551d8609af014e562a47ccb849d288cc07d7056ab49a46",
+      "faulty/execution.json": "f1df98e068d463ba611ec3166c3f90a582c0afccc777aba3a0543dd144888cd1",
+      "fixed-after/execution.json": "f2d3c163b24db720886b71157a19cb12524c839e887f2902b466661ea7e55d45"
+    }
+  },
+  {
+    "id": "t3code-dd8332da5735",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(server): installed editors no longer vanish when discovery is slow (#13669)",
+    "sourceFiles": [
+      "apps/server/src/process/externalLauncher.ts",
+      "packages/shared/src/shell.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/shell.test.ts"
+    ],
+    "relatedGroup": "editor-discovery",
+    "fix": "dd8332da57355bccd7e666289267f2c94597debd",
+    "parent": "eeea71a88108c375c04853f58c298a518a54acaf",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 13
+    },
+    "verified": false,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "apps/server/src/process/externalLauncher.ts",
+      "packages/shared/src/shell.ts"
+    ],
+    "killedBy": [],
+    "unaffected": [],
+    "fixedTemplateSha256": "31be848c0a7f349a11c8341e92fbf7165b153a5e138465c02f67ea0b3f413387",
+    "faultyTemplateSha256": "3f7a6bdd5652a10a7b9dd21caa126033f2fbd0c7a9a11949be2f84c4bb7561c1",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "packages/shared/src/shell.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"isCommandAvailable\",\"returns false when PATH is empty\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"listLoginShellCandidates\",\"falls back to the platform default when no shells are available\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"listLoginShellCandidates\",\"returns env shell, user shell, then the platform fallback without duplicates\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathEntries\",\"prefers login-shell PATH entries and keeps inherited extras\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathEntries\",\"uses the platform-specific delimiter\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathValues\",\"dedupes case-sensitively on POSIX\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathValues\",\"removes stray quotes from Windows entries\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathValues\",\"sanitizes and dedupes Windows entries while preserving preferred order\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromLoginShell\",\"extracts multiple environment variables from a login shell command\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromLoginShell\",\"omits environment variables that are missing or empty\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromLoginShell\",\"preserves surrounding whitespace in captured values\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"extracts environment variables from a PowerShell command\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"falls back to Windows PowerShell when pwsh.exe is unavailable\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"omits -NoProfile when loadProfile is enabled\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"strips CRLF delimiters from captured PowerShell values\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readPathFromLaunchctl\",\"returns a trimmed PATH value from launchctl\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readPathFromLaunchctl\",\"returns undefined when launchctl is unavailable\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"readPathFromLoginShell\",\"uses a shell-agnostic printenv PATH probe\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"fails when PATH is empty\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"keeps cached misses until expiry while allowing explicit paths\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"keeps upper and lowercase PATHEXT candidates\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"resolves lowercase executable files for audit-command in a case-sensitive Windows PATH directory\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"resolves lowercase executable files for audit-command.CMD in a case-sensitive Windows PATH directory\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"still visits a PATH entry that differs only in case\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"visits a repeated PATH directory only once\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveKnownWindowsCliDirs\",\"returns known Windows CLI install directories in priority order\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"does not fall back to a shell for unresolved Windows commands\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"escapes the executable and arguments for Windows command shims\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"resolves against the effective environment when extending host env\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"runs Windows executables directly without a shell\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveWindowsEnvironment\",\"keeps the baseline env when profiled probe still does not resolve node\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveWindowsEnvironment\",\"loads the PowerShell profile when baseline env cannot resolve node\"],1]",
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveWindowsEnvironment\",\"uses known CLI directories as a fallback without changing shell PATH priority\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"probes only listed PATH names and relists a directory that changes\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+    "recordDigests": {
+      "fixed-before/execution.json": "a58a8c40da733158b86f0f8408de1db9a288a0223d37c76bb67ffc82fea329aa",
+      "faulty/execution.json": "ad5cc9139b18926f64ded4b380a0126c95cf7d84ef5191f13ab0998d958cb878",
+      "fixed-after/execution.json": "e2573770b38eb99f5c8d4c0dc3598ca7bf2e82ade9bae516555b298345c04fa0"
+    }
+  },
+  {
+    "id": "t3code-b7a8b7f25b07",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(threads): keep the capped title failure reason at 500 characters",
+    "sourceFiles": [
+      "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts"
+    ],
+    "relatedGroup": "thread-title-error",
+    "fix": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+    "parent": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 14
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "de405a2870759526dec065f97d2795952af23eed6a93ddcc3bd10dddf1e887cd"
+    }
+  },
+  {
+    "id": "t3code-263097a8da03",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(web): mod+enter starts a new thread in the background again (#15060)",
+    "sourceFiles": [
+      "apps/server/src/keybindings.ts",
+      "packages/shared/src/keybindings.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/keybindings.test.ts",
+      "apps/web/src/composer-logic.test.ts",
+      "apps/web/src/keybindings.test.ts"
+    ],
+    "relatedGroup": "keybinding-dispatch",
+    "fix": "263097a8da038a143f2b7b7817250f0ad390ea32",
+    "parent": "f68e24fb419c985269cd0acb841e203af1419c43",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 15
+    },
+    "verified": true,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "apps/server/src/keybindings.ts",
+      "packages/shared/src/keybindings.ts"
+    ],
+    "killedBy": [
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"adds a late default to an existing command once\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"keeps a late default pending while the config is full\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"uses the configured actions on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"uses the configured actions on Win32\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"uses the configured actions on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"separates queued steering and background start on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"separates queued steering and background start on Win32\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"separates queued steering and background start on Linux\"],1]"
+    ],
+    "unaffected": [
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"parses shortcuts including plus key\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"compiles valid rule with parsed when AST\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"encodes resolved plus-key shortcuts\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"rejects invalid rules\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"formats invalid resolved keybinding rules with the custom message\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"bootstraps default keybindings when config file is missing\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"uses defaults in runtime when config is malformed without overriding file\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"ignores invalid entries in runtime and reports them as issues\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"upserts missing default keybindings on startup without overriding existing command rules\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"leaves a customized command without the late default\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"skips conflicting default keybindings on startup and logs a detailed warning\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"upserts custom keybindings to configured path\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"appends additional custom keybindings for the same command\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"replaces only the targeted custom keybinding\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"replacing with a rule that already exists elsewhere does not duplicate it\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"removes only the targeted custom keybinding\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"refuses to overwrite malformed keybindings config\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"reports non-array config parse errors without duplicate prefix\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"fails when config directory is not writable\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"caches loaded resolved config across repeated reads\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"updates cached resolved config after upsert\"],1]",
+      "[\"\",\"apps/server/src/keybindings.test.ts\",[\"keybindings\",\"serializes concurrent upserts to avoid lost updates\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"formatAssistantCitationForComposer\",\"keeps citation-only insertion for a blank comment undefined\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"formatAssistantCitationForComposer\",\"keeps citation-only insertion for a blank comment \\\"\\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"formatAssistantCitationForComposer\",\"keeps citation-only insertion for a blank comment \\\" \\\\n\\\\t \\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"formatAssistantCitationForComposer\",\"binds a multiline comment to its citation without adding standalone prompt text\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors enter for \\\"one line\\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors enter for \\\"two\\\\nlines\\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors mod-enter-multiline for \\\"one line\\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors mod-enter-multiline for \\\"two\\\\nlines\\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors mod-enter-multiline for \\\"two\\\\nlines\\\"\"],2]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors mod-enter for \\\"one line\\\"\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"honors mod-enter for \\\"one line\\\"\"],2]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"leaves queued-message steering on Mod+Shift+Enter outside a draft\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"does not start a background thread with the queued-message shortcut\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"accepts a remapped mod+arrowup action\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"accepts a remapped shift+tab action\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"uses remapped keys and removes the old action bindings\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"does not submit with {\\\"isMobileViewport\\\":true}\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"does not submit with {\\\"event\\\":{\\\"key\\\":\\\"Enter\\\",\\\"metaKey\\\":false,\\\"ctrlKey\\\":false,\\\"altKey\\\":false,\\\"shiftKey\\\":false,\\\"isComposing\\\":true}}\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"does not submit with {\\\"event\\\":{\\\"key\\\":\\\"Enter\\\",\\\"metaKey\\\":false,\\\"ctrlKey\\\":false,\\\"altKey\\\":false,\\\"shiftKey\\\":false,\\\"keyCode\\\":229}}\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerSubmissionIntentForKey\",\"does not submit with {\\\"event\\\":{\\\"key\\\":\\\"Enter\\\",\\\"metaKey\\\":false,\\\"ctrlKey\\\":false,\\\"altKey\\\":false,\\\"shiftKey\\\":false,\\\"repeat\\\":true}}\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects @path trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects slash command token while typing command name\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"keeps /model as a slash command item\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"does not keep a subcommand trigger active after /model arguments\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects non-model slash commands while typing\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"keeps slash command detection active for provider commands\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects $skill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \u20acskill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \u00a3skill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \u00a5skill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \u20b9skill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \u20a9skill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \u20bfskill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects \ud807\udfddskill trigger at cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects a pull request number at a token boundary\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"opens pull request completion from a bare hash\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects a one-word pull request search\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"supports hyphenated pull request search terms\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"does not keep pull request completion active for headings or embedded hashes\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects @path trigger in the middle of existing text\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects @path trigger with query typed mid-text\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"detectComposerTrigger\",\"detects trigger with true cursor even when regex-based mention detection would false-match\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"filterComposerPullRequestMatches\",\"matches and de-duplicates number fragments within one repository, exact match first\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"filterComposerPullRequestMatches\",\"keeps an older exact match when newer substring matches would fill the limit\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"filterComposerPullRequestMatches\",\"uses an empty query for a capped recent list\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"replaceTextRange\",\"replaces a text range and returns new cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"keeps cursor unchanged when no mention segment is present\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"maps collapsed mention cursor to expanded text cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"maps collapsed quoted mention cursor to expanded text cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"maps collapsed markdown file links to their expanded source offsets\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"allows path trigger detection to close after selecting a mention\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"maps collapsed $ skill cursor to expanded text cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"maps collapsed \u20ac skill cursor to expanded text cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"expandCollapsedComposerCursor\",\"maps collapsed \ud807\udfdd skill cursor to expanded text cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerStateAtPromptEnd\",\"puts the caret at the end of a restored parked draft\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerStateAtPromptEnd\",\"collapses mention chips so the next keystroke lands after the draft\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"composerStateAtPromptEnd\",\"keeps a trailing mention trigger when the restored draft ends with @\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"keeps cursor unchanged when no mention segment is present\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"maps expanded mention cursor back to collapsed cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"maps expanded quoted mention cursor back to collapsed cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"maps expanded markdown file link cursors back to collapsed offsets\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"keeps package-like text expanded when another mention already exists earlier\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"collapses only genuine mentions when package-like text exists earlier\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"maps expanded $ skill cursor back to collapsed cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"maps expanded \u20ac skill cursor back to collapsed cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"collapseExpandedComposerCursor\",\"maps expanded \ud807\udfdd skill cursor back to collapsed cursor\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"preserves the caret before trailing text after mixed-width skill chips\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"clampCollapsedComposerCursor\",\"clamps to collapsed prompt length when mentions are present\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"assistant citation cursor offsets\",\"roundtrips every collapsed offset across citations, mentions, skills, and Unicode\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"assistant citation cursor offsets\",\"snaps serialized offsets inside a citation to the end of its chip\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"assistant citation cursor offsets\",\"deletes one collapsed citation without changing its neighbor or surrounding punctuation\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"replaceTextRange trailing space consumption\",\"double space after insertion when replacement ends with space\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"isCollapsedCursorAdjacentToInlineToken\",\"returns false when no mention exists\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"isCollapsedCursorAdjacentToInlineToken\",\"keeps @query typing non-adjacent while no mention pill exists\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"isCollapsedCursorAdjacentToInlineToken\",\"detects left adjacency only when cursor is directly after a mention\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"isCollapsedCursorAdjacentToInlineToken\",\"detects right adjacency only when cursor is directly before a mention\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"isCollapsedCursorAdjacentToInlineToken\",\"treats context reference pills as inline tokens for adjacency checks\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"isCollapsedCursorAdjacentToInlineToken\",\"treats skill pills as inline tokens for adjacency checks\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"parseStandaloneComposerSlashCommand\",\"parses standalone /plan command\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"parseStandaloneComposerSlashCommand\",\"parses standalone /default command\"],1]",
+      "[\"\",\"apps/web/src/composer-logic.test.ts\",[\"parseStandaloneComposerSlashCommand\",\"ignores slash commands with extra message text\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isTerminalToggleShortcut\",\"matches Cmd+J on macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isTerminalToggleShortcut\",\"matches Ctrl+J on non-macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isTerminalToggleShortcut\",\"matches Ctrl+J on non-macOS while terminalFocus is true\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"settle thread shortcut\",\"resolves outside the terminal\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"settle thread shortcut\",\"does not intercept the terminal\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread undo shortcut\",\"resolves mod+z with nothing editable focused\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread undo shortcut\",\"leaves native undo alone inside text fields and terminals\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"copy thread reference shortcut\",\"resolves Cmd+Shift+C on macOS and Ctrl+Shift+C elsewhere\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"copy thread reference shortcut\",\"leaves terminal copy untouched\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"split/new/close terminal shortcuts\",\"requires terminalFocus for default split/new/close bindings\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"split/new/close terminal shortcuts\",\"matches split/new when terminalFocus is true\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"split/new/close terminal shortcuts\",\"supports when expressions\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"split/new/close terminal shortcuts\",\"supports when boolean literals\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"shortcutLabelForCommand\",\"returns the effective binding label\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"shortcutLabelForCommand\",\"returns effective labels for non-terminal commands\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"shortcutLabelForCommand\",\"returns null for commands shadowed by a later conflicting shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"shortcutLabelForCommand\",\"respects when-context while resolving labels\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread navigation helpers\",\"maps jump commands to visible thread indices\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread navigation helpers\",\"maps traversal commands to directions\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread navigation helpers\",\"shows jump hints only when configured modifiers match\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread navigation helpers\",\"never shows jump hints while the terminal is focused, even with an unrestricted binding\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"thread navigation helpers\",\"keeps default thread jumps off the web so the browser can switch tabs\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"model picker navigation helpers\",\"maps jump commands to visible model indices\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"model picker navigation helpers\",\"keeps default model jumps off the web even while the picker is open\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches chat.new shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches chat.newLocal shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches editor.openFavorite shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches commandPalette.toggle shortcut outside terminal focus\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"resolves a user-configured thread panel shortcut without assigning a default\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches themeEditor.toggle on macOS and Windows\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches filePicker.toggle shortcut outside terminal focus\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches projectSearch.toggle shortcut outside terminal focus\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"chat/editor shortcuts\",\"matches diff.toggle shortcut outside terminal focus\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"cross-command precedence\",\"uses when + order so a later focused rule overrides a global rule\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"cross-command precedence\",\"still lets a later global rule win when both rules match\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"resolves a custom stop-thread shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"honors preview conditions for a stop-thread shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"returns dynamic script commands\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"routes mod+w to the terminal while focused and to the right panel otherwise\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"resolves a custom right panel maximize binding\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"navigates history with mod+[ and mod+] outside the terminal\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"matches bracket shortcuts using the physical key code\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"matches punctuation shortcuts by physical key across keyboard layouts\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"does not let a punctuation position shadow a Latin layout key\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"matches Option-modified letters using the physical key code on macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"matches non-Latin layout letters using the physical key code\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"resolveShortcutCommand\",\"ignores the physical key code when the layout types a different Latin letter\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"formatShortcutLabel\",\"formats labels for macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"formatShortcutLabel\",\"formats labels for non-macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"formatShortcutLabel\",\"formats labels for plus key\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isTerminalClearShortcut\",\"matches Ctrl+L on all platforms\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isTerminalClearShortcut\",\"matches Cmd+K on macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isTerminalClearShortcut\",\"ignores non-keydown events\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isRichTextBoldShortcut\",\"matches Mod+B without extra modifiers\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isRichTextBoldShortcut\",\"matches the B key on non-Latin layouts, like the sidebar toggle does\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isRichTextBoldShortcut\",\"follows the letter a Latin layout types, not the physical key\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"isRichTextBoldShortcut\",\"ignores shifted, alted, bare, and non-keydown presses\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalDeleteShortcutData\",\"maps Cmd+Backspace on macOS to delete-to-line-start\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalDeleteShortcutData\",\"ignores non-macOS platforms and modified variants\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalDeleteShortcutData\",\"ignores non-keydown events\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalNavigationShortcutData\",\"maps Option+Arrow on macOS to word movement\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalNavigationShortcutData\",\"maps Cmd+Arrow on macOS to line movement\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalNavigationShortcutData\",\"maps Ctrl+Arrow on non-macOS to word movement\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalNavigationShortcutData\",\"rejects unsupported combinations\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"terminalNavigationShortcutData\",\"ignores non-keydown events\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"plus key parsing\",\"matches the plus key shortcut\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"fills missing number shortcuts without replacing the saved URL binding\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"honors custom PR shortcut conditions for terminalOpen\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"honors custom PR shortcut conditions for previewFocus\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"honors custom PR shortcut conditions for previewOpen\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"honors custom PR shortcut conditions for modelPickerOpen\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"honors custom PR shortcut conditions for isWeb\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"honors custom PR shortcut conditions for isDesktop\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves h on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves e on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves a on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves x on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves g on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves l on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves c on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves k on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves Enter on MacIntel and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves h on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves e on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves a on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves x on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves g on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves l on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves c on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves k on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves Enter on Win32 and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves h on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves e on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves a on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves x on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves g on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves l on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves c on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves k on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"resolves Enter on Linux and leaves terminal input alone\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"edits the last queued message with Alt+ArrowUp from the composer on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"edits the last queued message with Alt+ArrowUp from the composer on Win32\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"edits the last queued message with Alt+ArrowUp from the composer on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"preserves the existing s shortcut on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"preserves the existing p shortcut on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"preserves the existing s shortcut on Win32\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"preserves the existing p shortcut on Win32\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"preserves the existing s shortcut on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"preserves the existing p shortcut on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"leaves AltGr text entry alone with a custom Alt binding\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"keeps Firefox modifier reporting usable on Windows and macOS\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for h\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for e\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for a\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for x\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for g\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for l\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for c\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for k\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"uses a custom binding for Enter\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"limits ArrowUp to the model picker on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"limits ArrowDown to the model picker on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"limits ArrowUp to the model picker on Win32\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"limits ArrowDown to the model picker on Win32\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"limits ArrowUp to the model picker on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"composer and pull request shortcuts\",\"limits ArrowDown to the model picker on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"Usage shortcuts\",\"scopes letter shortcuts to Usage\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"Usage shortcuts\",\"preserves desktop numbered thread shortcuts on Usage on Linux\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"Usage shortcuts\",\"preserves desktop numbered thread shortcuts on Usage on MacIntel\"],1]",
+      "[\"\",\"apps/web/src/keybindings.test.ts\",[\"Usage shortcuts\",\"matches shifted number keys for periods and only on Usage\"],1]"
+    ],
+    "fixedTemplateSha256": "81d629db674d1c4b447dfb3c1d1875ea77c5795aab64a65ccac9c295fa6888cb",
+    "faultyTemplateSha256": "c79c89a40705448682aa2d5388e6b156d7dd47787611fa0661da10410100940b",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "apps/server/src/keybindings.test.ts": "parent file existed; individual additions not classified",
+      "apps/web/src/composer-logic.test.ts": "parent file existed; individual additions not classified",
+      "apps/web/src/keybindings.test.ts": "parent file existed; individual additions not classified"
+    },
+    "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+    "rankingExcluded": "one or more mutation columns incomplete",
+    "recordDigests": {
+      "matrix.json": "2f8d53605f1d297f91d1744d2cc9f1d329ae94726875e7735a76ad547daf1439",
+      "analysis.json": "68ebb0605251312f3973f88d0089a03a36566da1b4c8374af6240d6b273407fb",
+      "fixed-before/execution.json": "e9a78d85c5e1f4c397852398f25606a10012a60f8f7e340cd6cdedbc4167641c",
+      "faulty/execution.json": "7716e32bc23773d6e431f6f0cf5cf40c187362f6c0c573705a468e0b620f6821",
+      "fixed-after/execution.json": "aef52797f34ddb09dd380c7d43d673634781de023f216054bbc09bf590905a70"
+    }
+  },
+  {
+    "id": "t3code-db514607f402",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(chat): sending on an older thread no longer jumps to the top (#15059)",
+    "sourceFiles": [
+      "apps/mobile/src/lib/threadActivity.ts",
+      "apps/web/src/components/chat/MessagesTimeline.logic.ts"
+    ],
+    "testFiles": [
+      "apps/mobile/src/lib/threadActivity.test.ts",
+      "apps/web/src/components/chat/MessagesTimeline.logic.test.ts"
+    ],
+    "relatedGroup": "thread-list-ordering",
+    "fix": "db514607f4026cd2bbb7b96674168bb227ac043a",
+    "parent": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 16
+    },
+    "verified": false,
+    "exclusion": "historical mutation plan failed",
+    "recordDigests": {
+      "fixed-before/execution.json": "071ede3d817f1c813404ce0589fdb2539fd181d9a05d3e36f39caa121b73bc40",
+      "faulty/execution.json": "25c1a97c544874296d2c16be6f362d229403760f5001880e902a235e1e0e384e",
+      "fixed-after/execution.json": "b0b37fd80b2c7f4924d85c72742b231b8266792a880b67af6bb77ea38c616f33"
+    }
+  },
+  {
+    "id": "scope-c46613230e97",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: retain live discussion updates during detail loads",
+    "sourceFiles": [
+      "apps/desktop/src/plugins/pull-requests/sync.ts"
+    ],
+    "testFiles": [
+      "tests/pull-requests-scheduler.test.ts"
+    ],
+    "relatedGroup": "pull-request-discussion-sync",
+    "fix": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+    "parent": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 17
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "26e27d6297c4744b67124be1a61c6d8c119f7827ad5ec3329d991b333915baf9"
+    }
+  },
+  {
+    "id": "scope-82c4e117a745",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: apply live discussion updates at detail delivery",
+    "sourceFiles": [
+      "apps/desktop/src/plugins/pull-requests/sync.ts"
+    ],
+    "testFiles": [
+      "tests/pull-requests-scheduler.test.ts"
+    ],
+    "relatedGroup": "pull-request-discussion-sync",
+    "fix": "82c4e117a745c1a39bcea23b49814cedc7285fcf",
+    "parent": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 18
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "52d9dd13d512f0ccba989fa89a2425e045d2632a1cbdb07e0743dee71fb98348"
+    }
+  },
+  {
+    "id": "scope-8cbf18bb51d4",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: cancel full detail reads after their final owner leaves",
+    "sourceFiles": [
+      "apps/desktop/src/library/pull-request-store.ts",
+      "apps/desktop/src/plugins/pull-requests/sync.ts"
+    ],
+    "testFiles": [
+      "tests/pull-requests-scheduler.test.ts"
+    ],
+    "relatedGroup": "pull-request-refresh",
+    "fix": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+    "parent": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 19
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "62ce2407a4d41979744e54cd72295c2e988d43f04620ce21b2de2f0e488650f6"
+    }
+  },
+  {
+    "id": "scope-e7c277798b3b",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: validate detail batches against current comparisons",
+    "sourceFiles": [
+      "apps/desktop/src/library/pull-request-store.ts",
+      "apps/desktop/src/plugins/pull-requests/sync.ts"
+    ],
+    "testFiles": [
+      "tests/pull-requests-scheduler.test.ts"
+    ],
+    "relatedGroup": "pull-request-refresh",
+    "fix": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+    "parent": "f252740ebbc952510d2cbdfeaec42accec83e071",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 20
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "17f6c40898654c22fe7c94dad4716d2bbef2067473a1cc786e2403724e7320ca"
+    }
+  },
+  {
+    "id": "scope-e65e8dd2c3af",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix(plan-web): retry competing SQLite initialization asynchronously",
+    "sourceFiles": [
+      "apps/plan-web/src/backend/server.ts",
+      "apps/plan-web/src/backend/store.ts"
+    ],
+    "testFiles": [
+      "tests/plan-web-api.test.ts"
+    ],
+    "relatedGroup": "plan-web-database-init",
+    "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+    "parent": "9cc772a41f7a611a369a8b8d26c813c184ecc516",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 21
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "e08fe35b149630eaf37bbdb8cf04fca17f7cb657a3835434aca8966e8526a393"
+    }
+  },
+  {
+    "id": "scope-c78a8c5f0fb1",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix(hub): retire relay sessions after unstarted write timeouts",
+    "sourceFiles": [
+      "apps/hub/src/paired-server.ts"
+    ],
+    "testFiles": [
+      "tests/hub-relay.test.ts"
+    ],
+    "relatedGroup": "hub-relay-write",
+    "fix": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5",
+    "parent": "5bc1570e9daf284f391196d388fe148f6fcd60a7",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 22
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "acab7adace42fa8a1ef3931223d5c4c71147ef2e06178c14605b20852aec4542"
+    }
+  },
+  {
+    "id": "scope-c126ac6076af",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: reject approval of changed remote observations",
+    "sourceFiles": [
+      "apps/desktop/src/library/publication-store.ts"
+    ],
+    "testFiles": [
+      "tests/publications.test.ts"
+    ],
+    "relatedGroup": "publication-validation",
+    "fix": "c126ac6076afca5f5c38ea7d13360416af299deb",
+    "parent": "e26251e3f020527fdaa8d035ae7b6e91522a7014",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 23
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "4b6240b0e1f2a8426378cbd82cb62ca71a73eea5353992f5fb50dd3f6acd0edf"
+    }
+  },
+  {
+    "id": "scope-c82b208701de",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: keep expiry separate from destination privacy",
+    "sourceFiles": [
+      "apps/desktop/src/library/publication-store.ts",
+      "packages/protocol/src/publications.ts"
+    ],
+    "testFiles": [
+      "tests/publications.test.ts"
+    ],
+    "relatedGroup": "publication-validation",
+    "fix": "c82b208701de72215022674cc20902332219d325",
+    "parent": "daae85340b464ab62a865549b578ba3ca399d04e",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 24
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "f9e502f4b2271486c68d9372f6f7523dc17f261c7649d0afe5ed3d7d16da351b"
+    }
+  },
+  {
+    "id": "scope-cef88d2b3b60",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: validate publication progress and retained bytes",
+    "sourceFiles": [
+      "apps/desktop/src/library/publication-store.ts",
+      "apps/desktop/src/library/store.ts"
+    ],
+    "testFiles": [
+      "tests/publications.test.ts"
+    ],
+    "relatedGroup": "publication-validation",
+    "fix": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+    "parent": "c82b208701de72215022674cc20902332219d325",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 25
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "3c9d7a1c7503b325a4a0db683908e60f486e97d65f7d4f16ddcd6b370fb6fc23"
+    }
+  },
+  {
+    "id": "scope-d993eb728ac3",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix: retain confirmed publications with unknown remote dates",
+    "sourceFiles": [
+      "apps/desktop/src/library/publication-store.ts"
+    ],
+    "testFiles": [
+      "tests/publications.test.ts"
+    ],
+    "relatedGroup": "publication-validation",
+    "fix": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+    "parent": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 26
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "fd94879255398e33bae409044144951ae226bf71694c2d0f313d3a654361632c"
+    }
+  },
+  {
+    "id": "scope-392d29f5779d",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix(hub): preserve larger outbound publication commands",
+    "sourceFiles": [
+      "apps/hub/src/paired-server.ts"
+    ],
+    "testFiles": [
+      "tests/hub-relay.test.ts"
+    ],
+    "relatedGroup": "hub-relay-write",
+    "fix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+    "parent": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 27
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "b4c33b3a7c738ed9f3b6ec1cf71d940dcf125ad16f711cc0ec8d0ee6227c5113"
+    }
+  },
+  {
+    "id": "scope-84ec1ad4e6a8",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix(pull-requests): resolve repository aliases on initial sync",
+    "sourceFiles": [
+      "apps/desktop/src/library/pull-request-store.ts",
+      "apps/desktop/src/plugins/pull-requests/gh.ts",
+      "apps/desktop/src/plugins/pull-requests/sync.ts",
+      "packages/cli/src/pull-requests.ts"
+    ],
+    "testFiles": [
+      "tests/pull-requests-journey.test.ts",
+      "tests/pull-requests-sync.test.ts",
+      "tests/pull-requests.test.ts"
+    ],
+    "relatedGroup": "pull-request-refresh",
+    "fix": "84ec1ad4e6a8d999cf6234ca831cafb43a7052e3",
+    "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+    "preflightExclusion": "tests/pull-requests-journey.test.ts requires Electron/Playwright desktop integration; outside the Node-only historical harness",
+    "preflightEvidenceSha256": "54fd6c917f10f579b44de6005f4e3a903706847cf62b7b2800c1ddca6f00d5eb",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 28
+    },
+    "verified": false,
+    "executionAttempted": false,
+    "exclusion": "Preflight: tests/pull-requests-journey.test.ts requires Electron/Playwright desktop integration; outside the Node-only historical harness",
+    "recordDigests": {}
+  },
+  {
+    "id": "scope-48708ad54e8b",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "title": "fix(pull-requests): wake snoozed PRs on new commits",
+    "sourceFiles": [
+      "apps/desktop/src/library/pull-request-store.ts"
+    ],
+    "testFiles": [
+      "tests/pull-requests.test.ts"
+    ],
+    "relatedGroup": "pull-request-refresh",
+    "fix": "48708ad54e8b87d341e3bf18259c124fed2b0bce",
+    "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 29
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "0674fb4ee70d08cc02457f7a483184b7d6b202d9a2007bea6cb9de834fb02fe4"
+    }
+  },
+  {
+    "id": "t3code-4abf8b46c591",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "[codex] fix: ignore stale shell reducer events (#3517)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/shellReducer.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/shellReducer.test.ts"
+    ],
+    "relatedGroup": "shell-reducer-ordering",
+    "fix": "4abf8b46c591ae2b36aa29598c388100df651411",
+    "parent": "3083d712eefb8009f7366ba53040eb2d477bfa33",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 30
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-4abf8b46c591/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-4abf8b46c591/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-4abf8b46c591/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-43e2aeab3891",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "[codex] fix: tolerate invalid latest user message timestamps (#3521)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadSort.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadSort.test.ts"
+    ],
+    "relatedGroup": "thread-sort-timestamps",
+    "fix": "43e2aeab389199de115bb414f80db12b60cd85f4",
+    "parent": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 31
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-193e3c62e6d5",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(client-runtime): keep a warm thread un-settled despite a merged/closed PR (#4309)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadSettled.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadSettled.test.ts"
+    ],
+    "relatedGroup": "thread-settlement",
+    "fix": "193e3c62e6d52fcc200d823ca6d9061d13f81f23",
+    "parent": "91dfe60a99b7bf6cc44138a237e663ba158062b7",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 32
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-193e3c62e6d5/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-193e3c62e6d5/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-193e3c62e6d5/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-32407df9c5ff",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): lenient JSON parser deletes commas inside string values (#5025)",
+    "sourceFiles": [
+      "packages/shared/src/schemaJson.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/schemaJson.test.ts"
+    ],
+    "relatedGroup": "lenient-json-parsing",
+    "fix": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+    "parent": "162e774294f9e3dda15ca2f8083db019fe398837",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 33
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-32407df9c5ff/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-32407df9c5ff/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-32407df9c5ff/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-491219bf1f4d",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix: threads with open PRs no longer auto-settle (#5151)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadSettled.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadSettled.test.ts"
+    ],
+    "relatedGroup": "thread-settlement",
+    "fix": "491219bf1f4db7144b747fe02af0cbc075668b12",
+    "parent": "e5c75470678e33ca2bd1001d9d93493fe437972a",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 34
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-491219bf1f4d/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-491219bf1f4d/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-491219bf1f4d/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-70de6e17860d",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(mobile): prevent Android thread search crash (#5386)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadSearch.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadSearch.test.ts"
+    ],
+    "relatedGroup": "thread-search-keys",
+    "fix": "70de6e17860d7343a73e117e6e9e1ce41b1b633e",
+    "parent": "47dfc6526521866992f6b50beac4587b45114631",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 35
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-70de6e17860d/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-70de6e17860d/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-70de6e17860d/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-062b4618c229",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): bound the file-link label so bracket runs stop rescanning (#5782)",
+    "sourceFiles": [
+      "packages/shared/src/composerInlineTokens.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/composerInlineTokens.test.ts"
+    ],
+    "relatedGroup": "composer-inline-links",
+    "fix": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+    "parent": "deb901d6381e0c86ef326946c8fb45ee323db708",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 36
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-220e573b14ce",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): detect Azure DevOps SSH remotes (ssh.dev.azure.com) (#6187)",
+    "sourceFiles": [
+      "packages/shared/src/sourceControl.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/sourceControl.test.ts"
+    ],
+    "relatedGroup": "source-control-provider-detection",
+    "fix": "220e573b14cea84b6662a7d69047129047433b63",
+    "parent": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 37
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-220e573b14ce/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-220e573b14ce/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-220e573b14ce/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-6befe42eb096",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): normalize a bare Windows drive root the same as C:\\ / C:/ (#6189)",
+    "sourceFiles": [
+      "packages/shared/src/path.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/path.test.ts"
+    ],
+    "relatedGroup": "project-path-normalization",
+    "fix": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+    "parent": "b30a9bc4143910f12d9c990c221fb9bc20cbc293",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 38
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-6befe42eb096/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-6befe42eb096/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-6befe42eb096/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-684d703b0a8a",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): degrade an unknown system time zone to UTC in usage windows (#6670)",
+    "sourceFiles": [
+      "packages/shared/src/usageFormat.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/usageFormat.test.ts"
+    ],
+    "relatedGroup": "usage-window-time-zones",
+    "fix": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+    "parent": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 39
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-9bdd91293316",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(web): stop counting a workflow coordinator as a working agent (#6672)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/subagentRuntime.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/subagentRuntime.test.ts"
+    ],
+    "relatedGroup": "subagent-counting",
+    "fix": "9bdd91293316038d6a50f8bb19afcd73c25ad102",
+    "parent": "4db50757c0b618293997a7f81bcfe30b68356969",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 40
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-9bdd91293316/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-9bdd91293316/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-9bdd91293316/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-178da6bc3210",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): match source-control providers by DNS label (#6175)",
+    "sourceFiles": [
+      "packages/shared/src/sourceControl.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/sourceControl.test.ts"
+    ],
+    "relatedGroup": "source-control-provider-detection",
+    "fix": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+    "parent": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 41
+    },
+    "verified": false,
+    "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fixed-template/CLAUDE.md'\")]",
+    "recordDigests": {}
+  },
+  {
+    "id": "t3code-421088c27367",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(search): oversized thread queries no longer crash clients (#6633)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadSearch.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadSearch.test.ts"
+    ],
+    "relatedGroup": "thread-search-keys",
+    "fix": "421088c27367da227d922ce999c1637416a6d0f4",
+    "parent": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 42
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "67df1801d77967951768bdc2b91ec29cfd7d4fc43763257499c71cd791fc58dc"
+    }
+  },
+  {
+    "id": "t3code-7980dfddb193",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(web,mobile): snooze menu no longer offers the same wake time twice (#8741)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threadSettled.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadSnoozed.test.ts"
+    ],
+    "relatedGroup": "thread-snooze-presets",
+    "fix": "7980dfddb193864e07a5bcc013b0ccb93fb4300c",
+    "parent": "ac4aae101d060b5355a5de58e23c7387886d9021",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 43
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "f41028621f774552fc7a675b7acebecb4e26c04758053a99b86460d0400bd81c"
+    }
+  },
+  {
+    "id": "t3code-8b3ddf51c59a",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(mobile): stop crashing on launch before the shell snapshot arrives (#11537)",
+    "sourceFiles": [
+      "packages/shared/src/projectSettings.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/projectSettings.test.ts"
+    ],
+    "relatedGroup": "project-settings-defaults",
+    "fix": "8b3ddf51c59a54411cd02b321cb07f39c927df09",
+    "parent": "d7c71f91d61e68ae35fcc0032847cb42324a8b51",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 44
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "bfeaa0ecce7c16f15e759a3fec4cb681758147485b37cf4310b3ff346b3b3e73"
+    }
+  },
+  {
+    "id": "t3code-f87ecf0cc307",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(client): keep warm thread resumes live instead of flashing sync (#9913)",
+    "sourceFiles": [
+      "packages/client-runtime/src/state/threads.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threads-atoms.test.ts"
+    ],
+    "relatedGroup": "thread-state-resume",
+    "fix": "f87ecf0cc307f974745da8eea856fab5711023f3",
+    "parent": "fc1f543d6c67da9cf1edb25b647646faa0105b41",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 45
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "452ba2b58e74895e0af8f9d156f99375706d02a96c3bbf9cbfc41d81e51d746d"
+    }
+  },
+  {
+    "id": "t3code-d4d5d12e8ba0",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): keep the newest shared usage scan (#10315)",
+    "sourceFiles": [
+      "packages/shared/src/usageMerge.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/usageMerge.test.ts"
+    ],
+    "relatedGroup": "usage-scan-merge",
+    "fix": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+    "parent": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 46
+    },
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "7f3d334ceee79d4867df5bf3e2e44d0718b4cc91e94b370f40d4a7fd133e1c28"
+    }
+  },
+  {
+    "id": "t3code-f1add18ae156",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): preserve final quoted empty CSV records (#11425)",
+    "sourceFiles": [
+      "packages/shared/src/delimitedPreview.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/delimitedPreview.test.ts"
+    ],
+    "relatedGroup": "delimited-preview-parsing",
+    "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+    "parent": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 47
+    },
+    "verified": true,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "packages/shared/src/delimitedPreview.ts"
+    ],
+    "killedBy": [
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]"
+    ],
+    "unaffected": [
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]"
+    ],
+    "fixedTemplateSha256": "84f41a56f5b3e914978d30aedd9baeef34c40bcb23d43ba2a8fc7d6acf7d2307",
+    "faultyTemplateSha256": "b1d24372b99358d5a2d9c7ede2bbdf01e053eda9b6a748a572e9b04b41f97743",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "packages/shared/src/delimitedPreview.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+      "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "recordDigests": {
+      "matrix.json": "768b8c4d0e5cfdcb6eeb7e3e678b19af1c36af9bddcc8c8a3981caba70aa924f",
+      "analysis.json": "e2738b9dd1c43e8aea612cd203e09789fe543deaf173b2acdaaa15ead3cfbae7",
+      "evaluation.json": "da9430deff8c2d0005e15513aa417d41f8c9d246735e37e42f8fe1e774746ce2",
+      "fixed-before/execution.json": "fff181f93b475a0330e9de3013eff97f670c117f0f89d4843b11c39404758700",
+      "faulty/execution.json": "b199158e59eec8cb178c87c6005a1756ebb24dced151c38e11607a505dd2fa7d",
+      "fixed-after/execution.json": "e7ab177849cd79db476af00eb4d2b853b5754f29a3b21fed9a89ed465044d62a"
+    }
+  },
+  {
+    "id": "t3code-29a32660d3cb",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(git): exclude SSH ports from provider URLs (#12537)",
+    "sourceFiles": [
+      "packages/shared/src/sourceControl.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/sourceControl.test.ts"
+    ],
+    "relatedGroup": "source-control-url-normalization",
+    "fix": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+    "parent": "dd8332da57355bccd7e666289267f2c94597debd",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 48
+    },
+    "verified": true,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "packages/shared/src/sourceControl.ts"
+    ],
+    "killedBy": [
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]"
+    ],
+    "unaffected": [
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]"
+    ],
+    "fixedTemplateSha256": "cb2aa28738721439622bf87486cd73c3e15ed95cacc4de90b6f9151d27b832a1",
+    "faultyTemplateSha256": "fa156015004e532f1c31d720fa459aa468dfec57fcec6cae364754a7daf5928e",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "packages/shared/src/sourceControl.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "recordDigests": {
+      "matrix.json": "5085e3e97c9279f6eff17eb5bf5cc8770a382b30e227458f432bd185e7bdccbc",
+      "analysis.json": "c5e7915515b529eb1f34819ba01c4ee64afa2ab1bee0502dc7e18a0c93f130ca",
+      "evaluation.json": "2c3a11f202c931fcbe91261a75de75d563941af23f30694d0d21f16a3814a37c",
+      "fixed-before/execution.json": "fad2e4115863db749316e988ad8b240892a4d136080bea7f9120309db5d7121e",
+      "faulty/execution.json": "90e9f92c980d5354305f04741a71a467135da875041c98a4e49b6bae8f422c1c",
+      "fixed-after/execution.json": "51394358aade910ed67f72282fbe65d3736837e65e87507a06087429f441c6c1"
+    }
+  },
+  {
+    "id": "t3code-38f3c62304bf",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): local-path remotes no longer crash legacy PR link projection (#13463)",
+    "sourceFiles": [
+      "packages/shared/src/threadPullRequests.ts"
+    ],
+    "testFiles": [
+      "packages/shared/src/threadPullRequests.test.ts"
+    ],
+    "relatedGroup": "thread-pull-request-projection",
+    "fix": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+    "parent": "b21f3b71913370a1a650a61fd9082f992d40e657",
+    "continuationOf": {
+      "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+      "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+      "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+      "originalCandidateIndex": 49
+    },
+    "verified": false,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "packages/shared/src/threadPullRequests.ts"
+    ],
+    "killedBy": [],
+    "unaffected": [],
+    "fixedTemplateSha256": "28de297309359be3e14ae2503221592a9b9d559dc43f752a785ed75ddc22d182",
+    "faultyTemplateSha256": "c158c8577f797d738dffe873c9a4fc3ff9003f58d4e3f63f86b1b257975aa72f",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "packages/shared/src/threadPullRequests.test.ts": "parent file existed; individual additions not classified"
+    },
+    "unchangedIdentityFromParentTests": [
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates closed (draft false) and closed (draft false) as closed\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates closed (draft false) and open (draft true) as open\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates merged (draft false) and closed (draft true) as closed\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates merged (draft false) and merged (draft false) as merged\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates open (draft false) and open (draft false) as open\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates open (draft false) and open (draft true) as open\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates open (draft true) and open (draft true) as draft\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"does not guess a parent when a head branch was reused\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"keeps branch matching case-sensitive while ignoring repository case\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"keeps the top native layer after completion and treats an unsynced layer as open\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"preserves cyclic links without presenting a guessed stack order\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"targets the top of a derived closed chain despite a later bottom update and link\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"targets the top of a derived merged chain despite a later bottom update and link\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"targets the top of a derived open chain despite a later bottom update and link\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"uses aggregate state and distinguishes unrelated work from a stack\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"does not guess when the project identity is unavailable\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"omits an unsafe legacy route {\\\"host\\\":\\\"github.enterprise.test\\\",\\\"url\\\":\\\"https://github.enterprise.test/pingdotgg/t3code/pull/7\\\"}\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"omits an unsafe legacy route {\\\"repository\\\":\\\"acme/other\\\",\\\"url\\\":\\\"https://github.com/acme/other/pull/7\\\"}\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects Azure links through the legacy selector for dev.azure.com/org-a/project/_git/web\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects Azure links through the legacy selector for org-a.visualstudio.com/DefaultCollection/project/_git/web\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects Azure links through the legacy selector for ssh.dev.azure.com/v3/org-a/project/web\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects only links the owning project can route without a host\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"falls back to the most recently updated terminal link\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"orders an open set without stack data by most recent link\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"prefers the single open link over terminal ones\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"reports a stack when several links are open and puts the highest layer on top\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"returns null with no visible links\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"treats an unsynced link as open\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadPullRequestChains\",\"chains links by base \u2192 head within a repository, bottom to top\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadPullRequestChains\",\"uses the native stack order when the host provides one\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"searches the legacy projection when old environments decode to an empty links list\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"threadPullRequestKeysEqual\",\"ignores host and repository case\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"threadPullRequestKeysEqual\",\"recovers Forgejo ports from old stored URLs and keeps separate servers distinct\"],1]",
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"threadPullRequestSearchTerms\",\"includes completed and unsynced links but excludes dismissed links\"],1]"
+    ],
+    "fixAddedOrRenamedTestIdentities": [
+      "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"does not route links for a local-path remote with no host or provider\"],1]"
+    ],
+    "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+    "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+    "recordDigests": {
+      "fixed-before/execution.json": "cf05aa7276ab5fabeea5f32e35bfc1d00d8a0400c8b0283fead36acd7160ed2e",
+      "faulty/execution.json": "1ffd0b2087b90d1263adccbeac2499f11aac6d9110627a579afddb855f1b296d",
+      "fixed-after/execution.json": "7ee44ec2904451e728a039d9d216a4140e72e64aefe6109c0ed68279f7fe33f9"
+    }
+  }
+]

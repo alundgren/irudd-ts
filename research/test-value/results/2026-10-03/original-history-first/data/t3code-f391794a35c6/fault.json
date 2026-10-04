@@ -1,0 +1,45 @@
+{
+  "id": "t3code-f391794a35c6",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): classify workspace previews by literal filenames (#10311)",
+  "sourceFiles": [
+    "packages/shared/src/filePreview.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/assets/AssetAccess.test.ts",
+    "packages/shared/src/filePreview.test.ts"
+  ],
+  "relatedGroup": "preview-classification",
+  "fix": "f391794a35c604d57e166a3ab48d56fc6e4e469a",
+  "parent": "31a9da179ed0763335f05681c577474aec5d2309",
+  "verified": false,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "packages/shared/src/filePreview.ts"
+  ],
+  "killedBy": [],
+  "unaffected": [],
+  "fixedTemplateSha256": "f5cebfaabc3a55a2793c8d76371d8b3dbc1ba575225b94c44d1899e939af7289",
+  "faultyTemplateSha256": "6885577fe0c96654c10e3778160a8af2230d5dc86a8f1a582f5be4732dc583c9",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "apps/server/src/assets/AssetAccess.test.ts": "parent file existed; individual additions not classified",
+    "packages/shared/src/filePreview.test.ts": "parent file existed; individual additions not classified"
+  },
+  "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+  "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+  "recordDigests": {
+    "fixed-before/execution.json": "6b486944da2bf98e79300849211151b3e77a9a6cabf32a53126951d855907a46",
+    "faulty/execution.json": "f0e49f662d1c8f8fc620198355ee0efebdd355f676d0ff2f4535e1aefecb6ed2",
+    "fixed-after/execution.json": "f9df7be0a1ad233042d13cd0f14e67d85892c4812ecb4bfeac6c5bd25c5b0b1e"
+  }
+}

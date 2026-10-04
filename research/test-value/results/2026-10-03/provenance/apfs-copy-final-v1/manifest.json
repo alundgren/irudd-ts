@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "scope": "Reviewed private source-copy controls and combined validation before the new historical baseline-only run. Earlier failing controls are retained as earlier failures. Prepared dependency stores were copied and independently rehashed before this source-copy change. Six backend executions are authored validation controls, not historical measurements.",
+  "repositoryRevision": "82ecbc9f220aa8e09d818079d8edcfe7962c8040",
+  "reviewedChildRevision": "697a0d80bd29ad1cb0d366b854ddcfd3b3e67a74",
+  "runnerFingerprint": "6ea7bd34ee830feed10ebfb844797ee0488df79ef95470626c40187bdc9a3546",
+  "files": [
+    {
+      "file": "apfs-final-control-commands.txt",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-final-control-commands.txt",
+      "bytes": 1792,
+      "sha256": "439719e8b4253bf415b529b7682c8800ee6bad87097453df252a177f730bd120"
+    },
+    {
+      "file": "apfs-copy-controls-errno-final.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-copy-controls-errno-final.log",
+      "bytes": 37,
+      "sha256": "cda8594d39b3a532d9a6317d0552b23aaae8a5bc1c54826c6f59ab33b3f79e76"
+    },
+    {
+      "file": "apfs-owned-link-controls-errno-final.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final.log",
+      "bytes": 31,
+      "sha256": "feb26474f24500cff1cec6e61f0b0274fc33f141fb1a4595b5b80ea7146ff7fa"
+    },
+    {
+      "file": "apfs-declared-backend-controls-errno-frozen.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen.log",
+      "bytes": 26,
+      "sha256": "d405b86db62b7f8ee46798c9449a4123ca9d6e1f28e87a1f6949f30a54553492"
+    },
+    {
+      "file": "apfs-102-before-controls.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-102-before-controls.log",
+      "bytes": 621,
+      "sha256": "bd05fb761370892f551cbdcb0704aecc99e4b40f7235e4ca033d98b9c660e95e"
+    },
+    {
+      "file": "apfs-owned-link-controls.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-owned-link-controls.log",
+      "bytes": 2799,
+      "sha256": "e1b1e5d332bdcdf65e2b6535b843c05ce0682e0d97f5d327d60924907a8add47"
+    },
+    {
+      "file": "legacy-source-copy-control.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/legacy-source-copy-control.log",
+      "bytes": 97,
+      "sha256": "abebd71bec250fae79bf3d34bcbe29b995773671f7e2661fa59a19566e95f560"
+    },
+    {
+      "file": "legacy-source-copy-control/legacy-evidence.json",
+      "originalPath": "/tmp/archguard-test-value-20261003/legacy-source-copy-control/legacy-evidence.json",
+      "bytes": 459,
+      "sha256": "339a6ffbb1562490158aec730495afee4ac5e51ba8eae2dca8b610129c78775f"
+    },
+    {
+      "file": "apfs-copy-controls-errno-final/controls.json",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-copy-controls-errno-final/controls.json",
+      "bytes": 2600,
+      "sha256": "0947e4984f4258c166493f02645960d5169469dbd9ced9cec3c45fd5e2c25b4f"
+    },
+    {
+      "file": "apfs-owned-link-controls-errno-final/controls.json",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/controls.json",
+      "bytes": 2507,
+      "sha256": "0d6a6bfedda9b218560caa3def648a090575d3f3d8f713e811d5890ed1aa82af"
+    },
+    {
+      "file": "apfs-owned-link-controls-errno-final/source-controls/controls.json",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/controls.json",
+      "bytes": 2321,
+      "sha256": "0687acc8af3e22164eb58e95c611aa176456e2bd7e52412ac789db0382f0e89e"
+    },
+    {
+      "file": "apfs-declared-backend-controls-errno-frozen/controls.json",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen/controls.json",
+      "bytes": 5325,
+      "sha256": "8dd14fb978b7fa1e720ad1ee6b9f5cb83d8416278d4fd2650fe00c0a7ba6363e"
+    },
+    {
+      "file": "apfs-integration-fullcheck.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-integration-fullcheck.log",
+      "bytes": 21131,
+      "sha256": "ba83da7c694e43b10d99a21d364e0014406d6161707e27e08638046e4c301424"
+    },
+    {
+      "file": "apfs-integration-research-checks.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-integration-research-checks.log",
+      "bytes": 4009,
+      "sha256": "486004034929e46967fd419e6aeff955ba48b957a69023c3781659c6d8ea2a10"
+    },
+    {
+      "file": "apfs-integration-release-build.log",
+      "originalPath": "/tmp/archguard-test-value-20261003/apfs-integration-release-build.log",
+      "bytes": 62,
+      "sha256": "6b1c8cbe0bd9cb3b12baa322a9182419af04da4050d3affc7c9798b1b46e30b5"
+    },
+    {
+      "file": "preparation-verification.json",
+      "originalPath": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched/preparation-verification.json",
+      "bytes": 16939,
+      "sha256": "2354bdff02fd7a54b00f82eba781f90252a56d15d89696d9b4233b3e66d292da"
+    }
+  ]
+}

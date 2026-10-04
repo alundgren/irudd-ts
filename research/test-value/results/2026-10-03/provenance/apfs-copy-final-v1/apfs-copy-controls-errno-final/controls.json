@@ -1,0 +1,99 @@
+[
+  {
+    "control": "actual-copy",
+    "passed": true,
+    "sourceCopy": {
+      "policy": {
+        "name": "darwin-clone-or-bounded-stream-v1",
+        "darwin": "fclonefileat",
+        "streamFallbackErrnos": [
+          45,
+          18
+        ],
+        "metadata": "Bytes, mode and modification time retained; Darwin clones also retain source extended attributes"
+      },
+      "backends": {
+        "darwin-clonefile": 1
+      }
+    },
+    "distinctInodes": true,
+    "privateWritesInBothDirections": true,
+    "bytesModeAndModificationTimeMatched": true
+  },
+  {
+    "control": "unsupported-fallback",
+    "passed": true,
+    "sourceCopy": {
+      "policy": {
+        "name": "darwin-clone-or-bounded-stream-v1",
+        "darwin": "fclonefileat",
+        "streamFallbackErrnos": [
+          45,
+          18
+        ],
+        "metadata": "Bytes, mode and modification time retained; Darwin clones also retain source extended attributes"
+      },
+      "backends": {
+        "bounded-stream": 1
+      },
+      "fallbackErrnos": {
+        "45": 1
+      }
+    },
+    "distinctInodes": true,
+    "privateWritesInBothDirections": true,
+    "bytesModeAndModificationTimeMatched": true
+  },
+  {
+    "control": "cross-volume-fallback",
+    "passed": true,
+    "sourceCopy": {
+      "policy": {
+        "name": "darwin-clone-or-bounded-stream-v1",
+        "darwin": "fclonefileat",
+        "streamFallbackErrnos": [
+          45,
+          18
+        ],
+        "metadata": "Bytes, mode and modification time retained; Darwin clones also retain source extended attributes"
+      },
+      "backends": {
+        "bounded-stream": 1
+      },
+      "fallbackErrnos": {
+        "18": 1
+      }
+    },
+    "distinctInodes": true,
+    "privateWritesInBothDirections": true,
+    "bytesModeAndModificationTimeMatched": true
+  },
+  {
+    "control": "non-darwin-stream",
+    "passed": true,
+    "sourceCopy": {
+      "policy": {
+        "name": "darwin-clone-or-bounded-stream-v1",
+        "darwin": "fclonefileat",
+        "streamFallbackErrnos": [
+          45,
+          18
+        ],
+        "metadata": "Bytes, mode and modification time retained; Darwin clones also retain source extended attributes"
+      },
+      "backends": {
+        "bounded-stream": 1
+      }
+    },
+    "distinctInodes": true,
+    "privateWritesInBothDirections": true,
+    "bytesModeAndModificationTimeMatched": true
+  },
+  {
+    "control": "copy-negative-cases",
+    "passed": true,
+    "existingDestinationUnchanged": true,
+    "sourceAndDestinationLinksRejected": true,
+    "diskBoundaryAndCancellationRejected": true
+  }
+]

@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "controls": [
+    {
+      "control": "fresh-linked-target-order-0-1",
+      "passed": true
+    },
+    {
+      "control": "fresh-linked-target-order-1-0",
+      "passed": true
+    },
+    {
+      "control": "relative-escape",
+      "passed": true,
+      "error": "Source link leaves owned root: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/relative-escape/link"
+    },
+    {
+      "control": "absolute-escape",
+      "passed": true,
+      "error": "Path escapes configured root: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/outside/value.txt"
+    },
+    {
+      "control": "chained-escape",
+      "passed": true,
+      "error": "Source link leaves owned root: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/chained-escape/other"
+    },
+    {
+      "control": "directory-escape",
+      "passed": true,
+      "error": "Source link leaves owned root: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/directory-escape/diralias"
+    },
+    {
+      "control": "ancestor-escape-return",
+      "passed": true,
+      "error": "Source link leaves owned root: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/ancestor-escape-return/outside"
+    },
+    {
+      "control": "link-cycle",
+      "passed": true,
+      "error": "Source link cycle or traversal limit: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/link-cycle/one"
+    },
+    {
+      "control": "directory-ancestor-cycle",
+      "passed": true,
+      "error": "Source directory link cycle: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/directory-ancestor-cycle"
+    },
+    {
+      "control": "directory-sibling-cycle",
+      "passed": true,
+      "error": "Source directory link cycle: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/directory-sibling-cycle/left"
+    },
+    {
+      "control": "absolute-traversal-escape",
+      "passed": true,
+      "error": "Source link leaves owned root: /private/tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final/source-controls/absolute-traversal-escape/link"
+    },
+    {
+      "control": "bounded-copy-disk-boundary",
+      "passed": true
+    }
+  ],
+  "timingUse": "validation only"
+}

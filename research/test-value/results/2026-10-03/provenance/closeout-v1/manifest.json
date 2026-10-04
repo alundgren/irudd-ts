@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "scope": "Baseline-only validation, seven-failure diagnosis, final source checks, report fidelity controls and offline restoration. The larger historical fault and mutation experiment has not run.",
+  "files": [
+    {
+      "file": "lock-matched78-baseline-summary.json",
+      "bytes": 25589,
+      "sha256": "ed9f14cccb39dbaad1b10eade8a7a3e84493dae450dd3a8e29676e37952398e7",
+      "originalPath": "/tmp/archguard-test-value-20261003/lock-matched78-baseline-summary.json"
+    },
+    {
+      "file": "lock-matched78-baseline-validation.log",
+      "bytes": 3166,
+      "sha256": "706908194a613506622c011d1a94d84527927b3def81e0b77a05fb6c8bbebe15",
+      "originalPath": "/tmp/archguard-test-value-20261003/lock-matched78-baseline-validation.log"
+    },
+    {
+      "file": "before-historical-baselines-environment-v2.json",
+      "bytes": 4365,
+      "sha256": "35b7ba9b6e4e9b825552b912d0069324579bc6e44c21ec1fd25670d2f885d276",
+      "originalPath": "/tmp/archguard-test-value-20261003/before-historical-baselines-environment-v2.json"
+    },
+    {
+      "file": "retain-lock-matched-baseline-validation.log",
+      "bytes": 62,
+      "sha256": "899d59a86a47321f1bfef9979d03180697d21d63715ed146533532d17a8bb3b7",
+      "originalPath": "/tmp/archguard-test-value-20261003/retain-lock-matched-baseline-validation.log"
+    },
+    {
+      "file": "restore_retained_evidence_v2.py",
+      "bytes": 2204,
+      "sha256": "fec91fa8a21a86eb2ed79ddce041fbf99da1dda60e3d0246c4d1546cd7fec683",
+      "originalPath": "authored closeout helper, derived from byte-preserved restoration helper v1 with one additional baseline-only profile mapping"
+    },
+    {
+      "file": "historical-seven-failure-handoff.md",
+      "bytes": 4975,
+      "sha256": "bbe92494accfb14cb13d57f0063fabebe38f593bb4a5c73db2d56cfdf139d6b2",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-seven-failure-handoff.md"
+    },
+    {
+      "file": "historical-seven-failure-handoff.json",
+      "bytes": 20954,
+      "sha256": "c85f9f94136f82b1e2e2162c6167e824100e2db8f52bb4543091ff606cd9aaab",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-seven-failure-handoff.json"
+    },
+    {
+      "file": "closeout-integration-fullcheck.log",
+      "bytes": 21131,
+      "sha256": "fa740d7e906de1b35af923bd983f10fff4e43a89818d3de42312ccfb5d95da17",
+      "originalPath": "/tmp/archguard-test-value-20261003/closeout-integration-fullcheck.log"
+    },
+    {
+      "file": "closeout-integration-research-checks.log",
+      "bytes": 4167,
+      "sha256": "ccb8dd190b498ef1498b6f5ef78a51635e2e81a91f9808ec65b81ff1e5e5bfd0",
+      "originalPath": "/tmp/archguard-test-value-20261003/closeout-integration-research-checks.log"
+    },
+    {
+      "file": "report-json-before.log",
+      "bytes": 255,
+      "sha256": "73ccc6b73bc36bae6d3ac2a9e72e331f42aeb117d3fb5939e4f7500d0a594543",
+      "originalPath": "/tmp/archguard-test-value-20261003/report-json-before.log"
+    },
+    {
+      "file": "report-json-injected-negative-v2.log",
+      "bytes": 1084,
+      "sha256": "2c91d6729f45d917a6441ec7343f421e732aa2070600b4d47292166cee81fc7c",
+      "originalPath": "/tmp/archguard-test-value-20261003/report-json-injected-negative-v2.log"
+    },
+    {
+      "file": "report-json-node-roundtrip.log",
+      "bytes": 117,
+      "sha256": "bd8d6bd9bfba64555e1c049ffa840a3b008138b8e1ec5a231b78295af0e798a7",
+      "originalPath": "/tmp/archguard-test-value-20261003/report-json-node-roundtrip.log"
+    },
+    {
+      "file": "report-json-profile-controls-final.log",
+      "bytes": 1226,
+      "sha256": "5b0a2bcc7b5b1e547d801a5ba70c534b7998a5ca22c4a49888b5dcb8d0fcf800",
+      "originalPath": "/tmp/archguard-test-value-20261003/report-json-profile-controls-final.log"
+    },
+    {
+      "file": "retained-closeout-restoration-v2.log",
+      "bytes": 98,
+      "sha256": "1f9df8dcf2b46d1ee52115a8cfbc6a8ddebc11c9bc74f390a941217176670121",
+      "originalPath": "/tmp/archguard-test-value-20261003/retained-closeout-restoration-v2.log"
+    },
+    {
+      "file": "retained-report-comparison-v2.json",
+      "bytes": 760,
+      "sha256": "37182941963781c32ae4b685c019d4d5338756d557479e1116399ed9cc8da8e9",
+      "originalPath": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/results/2026-10-03/provenance/closeout-v1/retained-report-comparison-v2.json"
+    },
+    {
+      "file": "report-closeout-pre-pr.html",
+      "bytes": 4406348,
+      "sha256": "fd3d85d6a647bf5381027da5f229142f2e408cdad59dc0a4dfce357141dcf8ee",
+      "originalPath": "/private/tmp/archguard-test-value-20261003/report-closeout.html"
+    },
+    {
+      "file": "report-metadata-pre-pr.json",
+      "bytes": 1742,
+      "sha256": "2d36f293835c3539d5bdaa420260d3a667131594e97c56ddc848cde80357ec02",
+      "originalPath": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/report-metadata.json"
+    },
+    {
+      "file": "independent-closeout-review.json",
+      "bytes": 759,
+      "sha256": "45562c81905e7c188c1718cde13f902ac1409ef084979f2b8ef645ad0ccf29d1",
+      "originalPath": "review receipt recorded from independent reviewer messages in this session"
+    }
+  ]
+}

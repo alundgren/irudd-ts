@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "status": "Specified before the lock-matched historical mutation measurements; informed by earlier current-suite assertion-only exclusions.",
+  "primaryPolicy": "assertion-only, unchanged",
+  "secondaryPolicy": "posthoc-test-failures-v1, reused from the separate current-suite sensitivity analysis",
+  "candidateManifest": {
+    "path": "/tmp/archguard-test-value-20261003/history-lock-matched-78-final.json",
+    "sha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0"
+  },
+  "scope": "All primary verified historical replays with retained mutation matrices, including partial matrices. Derive a separate matrix from the retained complete test-body failure records; reject runner, hook, import, unhandled, identity, runtime identity/command and cleanup problems. No additional test executions.",
+  "faultLabels": "Keep the primary assertion-regression eligibility and detecting-test labels; do not add fault labels from exceptions or reclassify excluded historical changes as verified.",
+  "requirements": "Recompute dynamic minimal nonempty kill-signature classes for the secondary full test pool and hold them fixed for per-test removal and subset evaluation.",
+  "comparisons": {
+    "strategies": [
+      "random",
+      "raw",
+      "subsuming",
+      "marginalRaw",
+      "marginalSubsuming",
+      "greedySubsuming"
+    ],
+    "seedCount": 100,
+    "testFractions": [
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "aggregation": "Average seeds within faults, then resample related-fault groups. Complete secondary matrices only. Keep primary and secondary aggregates separate; never select each fault best result across profiles.",
+    "cohortCounts": "Show eligible fault and related-group counts for each aggregate. Any direct primary/secondary performance comparison uses their paired eligible intersection; added secondary-eligible faults are a separate aggregate."
+  },
+  "retention": "Bind every derived matrix to the exact primary matrix and event hashes; preserve primary bytes and every derivation exclusion.",
+  "interpretation": "This checks sensitivity to a conventional test-failure policy. Extra usable kills or a larger eligible ranking cohort do not establish stronger assertions or a validated test-retention score.",
+  "supersedesPlanSha256": "9b39cf852c5a165d16eb67a33192bfd04607d29ecb5ce1671e96f69a6500a1de",
+  "bindingControls": [
+    "Bind primary attempts, fault record, preregistration, recordDigests, matrix and every event SHA.",
+    "Reject orphan/interrupted records and incomplete declared prefixes against registered planning outputs/limit.",
+    "Exercise actual historical fixed-before baseline path and preregistration Node identity fallback.",
+    "Reject stale fault/event/runtime evidence and incomplete columns.",
+    "Assert unchanged primary bytes and unchanged primary assertion fault labels."
+  ]
+}

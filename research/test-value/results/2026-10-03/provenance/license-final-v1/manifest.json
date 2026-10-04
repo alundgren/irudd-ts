@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact reviewed final46 dependency inventory collector and authored controls. Inventory outcome retained separately after scan.",
+  "review": "Independent reviewer PASS on helper c1cbd9ba1ce29c46fce9b053958740265620b7cf32f16e1d78cc7fe8d6e84a56 and packet ce8f714f0bbc2116c5a48ddfbf65528e8ce981f181874b768ea6f4b7f9393704.",
+  "files": [
+    {
+      "file": "collect_final_dependency_licenses_v1.py",
+      "bytes": 50895,
+      "sha256": "c1cbd9ba1ce29c46fce9b053958740265620b7cf32f16e1d78cc7fe8d6e84a56",
+      "originalPath": "/tmp/archguard-test-value-20261003/collect_final_dependency_licenses_v1.py"
+    },
+    {
+      "file": "license-collector-review-packet-v5.json",
+      "bytes": 5940,
+      "sha256": "ce8f714f0bbc2116c5a48ddfbf65528e8ce981f181874b768ea6f4b7f9393704",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-collector-review-packet-v5.json"
+    },
+    {
+      "file": "license-collector-synthetic-controls-v2.py",
+      "bytes": 5526,
+      "sha256": "9452f725f92fb9ea4439b2ecd8f5866982b9c664fd42a1cbb7f9addefa354df2",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-collector-synthetic-controls-v2.py"
+    },
+    {
+      "file": "license-collector-synthetic-controls-v2.json",
+      "bytes": 564,
+      "sha256": "ff8eee824c7e2a65583b95c0dbda2ee35916abed2f969dcc1d0411a3cecb351e",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-collector-synthetic-controls-v2.json"
+    },
+    {
+      "file": "historical-dependency-license-inventory-lock-matched-78-v1.json.gz",
+      "bytes": 929907,
+      "sha256": "c9b2f959f22a2992ae697659fff138fd38a3206c4e8fdf5fc9a03a8e7a9ce363",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-dependency-license-inventory-lock-matched-78-v1.json.gz"
+    },
+    {
+      "file": "historical-dependency-license-inventory-lock-matched-78-v1.receipt.json",
+      "bytes": 881,
+      "sha256": "57fb2c0a436c6079630fc208ea48446ab7ffa139c919f96325d6f3e96a8a9a97",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-dependency-license-inventory-lock-matched-78-v1.receipt.json"
+    },
+    {
+      "file": "historical-dependency-license-resolution-lock-matched-78-v1.json",
+      "bytes": 110191,
+      "sha256": "dbe65fa569640ee7e77071e05e237c4ae981cd44129f24a5090e46742ef1b746",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-dependency-license-resolution-lock-matched-78-v1.json"
+    }
+  ]
+}

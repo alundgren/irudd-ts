@@ -115,6 +115,601 @@
       "original": "docs/t3-policy-scan-summary.json",
       "current": "research/t3code/results/policy-scan-summary.json",
       "sha256": "30922f5aeedd7aad41eba5999313f6991886cdad8f0896fae67e76d7f6ff6f39"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/preregistration.json",
+      "current": "research/test-value/results/2026-10-03/current/data/preregistration.json",
+      "sha256": "c0f36b4e67a2398bba8dfeaaacb6a749d3822445839ba72d3afd1e5187b10ea3"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/scope-events/analysis.json",
+      "current": "research/test-value/results/2026-10-03/current/data/scope-events/analysis.json",
+      "sha256": "b265447f35077ee0507ab96346afae003afe5a46e0075c786b7bd38c70fb3193"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/scope-events/baseline-repeats.json",
+      "current": "research/test-value/results/2026-10-03/current/data/scope-events/baseline-repeats.json",
+      "sha256": "bcd0c430ebb1d8e39385a54e70881d7f78776f88e736c7f6e84edd9b4a06f7b7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/scope-events/matrix.json",
+      "current": "research/test-value/results/2026-10-03/current/data/scope-events/matrix.json",
+      "sha256": "ae742672c12d0421f5793e928c30c9434446b0cd0f750f069c4a1b9cb5c52637"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/scope-events/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/current/data/scope-events/plan-config.json",
+      "sha256": "41ad86f28572fc9fc0bbb31353c612b587a697d407c9564e0a717b5702699f8a"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-execution/analysis.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-execution/analysis.json",
+      "sha256": "8690cfb8bde48686a60e76cb61729028e0086691a6e03df057a6d83798a26e0d"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-execution/baseline-repeats.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-execution/baseline-repeats.json",
+      "sha256": "26ccb1be36faf03aa09de96f8cae39155b464fbb1bccc18006be45fe8d1d19d3"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-execution/matrix.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-execution/matrix.json",
+      "sha256": "fcce80912d42c65bd422c290306496ffd704acf50b76af7d2fa516dd3c771313"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-execution/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-execution/plan-config.json",
+      "sha256": "fea63f2d7b212154655788394508a2907a71229d2075677ebc6f7147c29274b0"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-preview/analysis.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-preview/analysis.json",
+      "sha256": "830a7030c165b2267b466b92c9cb2befaadb8368895817655c175c73e2523c78"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-preview/baseline-repeats.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-preview/baseline-repeats.json",
+      "sha256": "05c5b18d2e3f4e7c5002ae7e3e1ccced942110ec36eafab12af2568578cfd89f"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-preview/matrix.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-preview/matrix.json",
+      "sha256": "77cf3a7610e9b1b132d3c48a882d159289e527aa748a87f35b2998fd7617c53b"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/current/t3-preview/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/current/data/t3-preview/plan-config.json",
+      "sha256": "4e76b0734eb783da25b418256b6277642703bbbe9b674f392369927c755063d6"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/native/analysis.json",
+      "current": "research/test-value/results/2026-10-03/native/data/analysis.json",
+      "sha256": "664c8dd1058a31badea047ddf8887d099c35cc9842145639ad111c227d201287"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/native/matrix.json",
+      "current": "research/test-value/results/2026-10-03/native/data/matrix.json",
+      "sha256": "54b973d14a19fde27cbe9e626df268e8206c9f34b21c8d2b7ab8b8c609039924"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/aggregate.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/aggregate.json",
+      "sha256": "22ef84004ec085a87af5783f5d66b542b1c89ebbbd99b1dc18d8de8ecdc0ecd0"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/attempts.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/attempts.json",
+      "sha256": "b75ec052474250eb8711253ba5211ce219f85193cd495320c806aebe26620635"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/preregistration.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/preregistration.json",
+      "sha256": "fcfd570c7340c2065c09b0f08645e95029f4519985a72bcbf1d1316e78211d1b"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-392d29f5779d/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-392d29f5779d/fault.json",
+      "sha256": "ded50c5d4c5312d630991dd1dabd912fe01a10864a124912ea6e0d3636d4c09a"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-48708ad54e8b/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-48708ad54e8b/fault.json",
+      "sha256": "eb83fb7591f15d687fdbf95d1adae095b37aa1c617c15b2dc8e9b1008ed3e207"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-82c4e117a745/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-82c4e117a745/fault.json",
+      "sha256": "30b06bce64ec7cc5c4a46910f83ccb5ae3ea6300beddfaef3de1d20a4b4bcba2"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-84ec1ad4e6a8/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-84ec1ad4e6a8/fault.json",
+      "sha256": "ef2c5b7b648b69af3d428a033188f8e1b2143904cafd0ae07c962de188bb7c38"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-8cbf18bb51d4/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-8cbf18bb51d4/fault.json",
+      "sha256": "dfffc1b716ca3d4ebbd192e8b823396fc3bf2519d7cfd909e8037e406a629830"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c126ac6076af/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-c126ac6076af/fault.json",
+      "sha256": "9dd617d5114b188df3fed3ac99af6be838f30b5a9c7a858803cd204ddba58fb7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c46613230e97/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-c46613230e97/fault.json",
+      "sha256": "acdb7c64a8d523c0d4269c2a33ff4e85a985a11e47d5934f9c30d9a4e3998854"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c78a8c5f0fb1/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-c78a8c5f0fb1/fault.json",
+      "sha256": "1df5a5f37a567927da682f4252e796009a98631ab413f5507c24cd38bafaa632"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-c82b208701de/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-c82b208701de/fault.json",
+      "sha256": "c103ef909fbabdf57981f2fee4085a015459d7a5a93e01039b4b2655fd47b98f"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-cef88d2b3b60/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-cef88d2b3b60/fault.json",
+      "sha256": "861c8fa2cd2e8ffb523b2aa9c4cd4e4a1b5147a06da68a5b8e97a259dff7694e"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-d993eb728ac3/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-d993eb728ac3/fault.json",
+      "sha256": "13b48cf972fef1e0d288bae0d08310e20f4348b37316600cf08802567d6934a8"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e65e8dd2c3af/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-e65e8dd2c3af/fault.json",
+      "sha256": "81f2bf68e9ddc4ea50f9c167e9e23c16c3ce087f2103c980b43bba4f0732951f"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/scope-e7c277798b3b/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/scope-e7c277798b3b/fault.json",
+      "sha256": "4fee04a89787041b80088466507c8a89cf4437ff4367d4ea6bcac061b2840ab8"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-062b4618c229/fault.json",
+      "sha256": "9543ef03a32102728cb9fc5af5fe16309eeaf5d847ba0f3955fd3c05b58bcb80"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/analysis.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-151c241cd2cc/analysis.json",
+      "sha256": "076574c3b58a1ea42e2f8090faa72ec3ed26872116ab710c53860d7609d09043"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-151c241cd2cc/fault.json",
+      "sha256": "8a1ae4261f251a3b0bca0cde62e2ca469a1a6cf547707b317b4d7f76c6934b77"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/matrix.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-151c241cd2cc/matrix.json",
+      "sha256": "8dd4da304037f8f3d0d86dfaba57f3b1b81bad009923d0ce0e05d2f443345c96"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-151c241cd2cc/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-151c241cd2cc/plan-config.json",
+      "sha256": "0406be0a22e74e7ad29e6ab235e232a71121c80bf5fe08321f10b0221953f1a6"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-178da6bc3210/fault.json",
+      "sha256": "a12d540d55b6319546f953c4e3251e6af9ab2f23afe4730f71c4922932fa2f6d"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-193e3c62e6d5/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-193e3c62e6d5/fault.json",
+      "sha256": "a6beeb21b57b458f8d4d8a6f0381806bc01e777c5d21841c3193b08c63bfff45"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-220e573b14ce/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-220e573b14ce/fault.json",
+      "sha256": "d4f31b101d5103c122108cf9fc230c80a784c8a3ad54d3ba22fc7d9cb1bf5fbe"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/analysis.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-263097a8da03/analysis.json",
+      "sha256": "68ebb0605251312f3973f88d0089a03a36566da1b4c8374af6240d6b273407fb"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-263097a8da03/fault.json",
+      "sha256": "8606bf5968b2d36f6e41a3bef9632aa2d8fce8abe884bf778fecc2cceb25d23b"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/matrix.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-263097a8da03/matrix.json",
+      "sha256": "2f8d53605f1d297f91d1744d2cc9f1d329ae94726875e7735a76ad547daf1439"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-263097a8da03/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-263097a8da03/plan-config.json",
+      "sha256": "7cef8837c1231a25d87ed088be335870e07d402e2bb6e0d22821d53e22526061"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-29a32660d3cb/analysis.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-29a32660d3cb/analysis.json",
+      "sha256": "c5e7915515b529eb1f34819ba01c4ee64afa2ab1bee0502dc7e18a0c93f130ca"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-29a32660d3cb/evaluation.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-29a32660d3cb/evaluation.json",
+      "sha256": "2c3a11f202c931fcbe91261a75de75d563941af23f30694d0d21f16a3814a37c"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-29a32660d3cb/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-29a32660d3cb/fault.json",
+      "sha256": "f58a6d2a5a223c17fd1f89509077077f83e0d207fc2f1ba4d9743941346c4941"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-29a32660d3cb/matrix.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-29a32660d3cb/matrix.json",
+      "sha256": "5085e3e97c9279f6eff17eb5bf5cc8770a382b30e227458f432bd185e7bdccbc"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-29a32660d3cb/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-29a32660d3cb/plan-config.json",
+      "sha256": "050fc4fd4557c6dc981f5129f01c0f4564befdf71628b13c0c00977c4b0e22e6"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-32407df9c5ff/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-32407df9c5ff/fault.json",
+      "sha256": "534cbac49043820427d6e7dce98e49b9c78b199f2229bdc2f87614c8c397feae"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-38f3c62304bf/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-38f3c62304bf/fault.json",
+      "sha256": "bd87d8e0315f0702c10cc3357267d00f7e5c8c11ba1045498f12bb9c0ee73498"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-421088c27367/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-421088c27367/fault.json",
+      "sha256": "bd401d6cacf0c5c617d06ee7568cf377f765bbf181fb567bc0abeaf2f618a119"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43bd6677392b/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-43bd6677392b/fault.json",
+      "sha256": "2f3e01b151196ad00744fa2093123c8609a8f33cab275d23d77b630d9f317988"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-43e2aeab3891/fault.json",
+      "sha256": "d826d75f566840ef5c8944b2804a8a17a8cd9a5c19037709c4c09a75b08d61a5"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-491219bf1f4d/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-491219bf1f4d/fault.json",
+      "sha256": "d1968a014241597d8a2d7d3a3aa0ae476cc06145fd373e869ec5dd7db88b1766"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-4abf8b46c591/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-4abf8b46c591/fault.json",
+      "sha256": "4f49e4664e8bea07eb1effd0abe4d67a2e36e161f206741796822f3483ae354b"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-5031b9ccebbb/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-5031b9ccebbb/fault.json",
+      "sha256": "74ffef3f99a10a525e8332486d76ad5ed02cf71d905573cc79d7af45717a7798"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-684d703b0a8a/fault.json",
+      "sha256": "521358c398242b8da1106cc67ebc3d24e7e5ec088324e0c67732540cb890ed52"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-6befe42eb096/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-6befe42eb096/fault.json",
+      "sha256": "db8512054267c03d64268726dae0f8cbb2f34853cffa8c6e8dbf283feb309e07"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-70de6e17860d/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-70de6e17860d/fault.json",
+      "sha256": "d2340470cd9596411e08dd1a1a188b609adc6dc1f785c7737dc5a27fc56e9cec"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-7980dfddb193/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-7980dfddb193/fault.json",
+      "sha256": "0616ad5b67c7e10e4dc2b0e6cdb5697c447fef3b31040d7cdd45289760e85864"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8b3ddf51c59a/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-8b3ddf51c59a/fault.json",
+      "sha256": "316cf87bf39e52b9be4084ad1f6625b18632c7ef4a366bca1f8d106dfd74b531"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8bc9b78f8270/analysis.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-8bc9b78f8270/analysis.json",
+      "sha256": "ab9a4662345f5b54591816d6135ac3d613c31cbe78ce024d0bc02455d264fcd0"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8bc9b78f8270/evaluation.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-8bc9b78f8270/evaluation.json",
+      "sha256": "7db8ca703f3b6f225a3304db222cace08f11f696f0c3904919ceb847070bf387"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8bc9b78f8270/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-8bc9b78f8270/fault.json",
+      "sha256": "fb3cf05897e1bb3172b7856dbd075306850e3c094b0beb7395833e56e156b0f6"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8bc9b78f8270/matrix.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-8bc9b78f8270/matrix.json",
+      "sha256": "b0f01a1f46add1f52b2726b5682e3914a33df7a788b583371b33bc9df3767bd7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-8bc9b78f8270/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-8bc9b78f8270/plan-config.json",
+      "sha256": "aac77ce63290d825ebf88c2586c393940926a2539ae42e877d8b404ca99b9987"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-9333509c9180/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-9333509c9180/fault.json",
+      "sha256": "00d88af30e799dea7126612860cf620cb1440d1be0da45666a2180fffa1143d7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-9bdd91293316/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-9bdd91293316/fault.json",
+      "sha256": "1263cdce8c168f0ed44b52034f5659030021e2d140ff29acc630a5b6cc1298fe"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-a9c9995352e5/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-a9c9995352e5/fault.json",
+      "sha256": "a1ac6406ee89f51fa03e1ebac7ae8a987da74e77a4309263da1f45fa75eefeaa"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-b7a8b7f25b07/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-b7a8b7f25b07/fault.json",
+      "sha256": "0bd564c6452339ea49859fe4ffb5dae26a9980aadbc48b7625ec366ba93b7d19"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-cc1e634bfa62/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-cc1e634bfa62/fault.json",
+      "sha256": "48f7535cfaf86cc521e588e3547aa0c2ecd322463940aa0b921730241ab21dd0"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-d4d5d12e8ba0/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-d4d5d12e8ba0/fault.json",
+      "sha256": "606c5a8ac8df1c189e5a42d22f604d853dd93b906b35351e036a85003f9f961a"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-db514607f402/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-db514607f402/fault.json",
+      "sha256": "1c29c5de85bb51c951ba34045b95947fdddc912c7e22c989d54572d58d2703f1"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-db514607f402/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-db514607f402/plan-config.json",
+      "sha256": "a01be6f373e1e7034a718ffd82e191de98ca471d6571a1cd450d1259fee7d650"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-dd8332da5735/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-dd8332da5735/fault.json",
+      "sha256": "d372f234537ecc1fff4e7d51f8e537115454aef6ed4abc719061427bbb87aec7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f1add18ae156/analysis.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-f1add18ae156/analysis.json",
+      "sha256": "e2738b9dd1c43e8aea612cd203e09789fe543deaf173b2acdaaa15ead3cfbae7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f1add18ae156/evaluation.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-f1add18ae156/evaluation.json",
+      "sha256": "da9430deff8c2d0005e15513aa417d41f8c9d246735e37e42f8fe1e774746ce2"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f1add18ae156/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-f1add18ae156/fault.json",
+      "sha256": "98fc1ad8b1732d6538659dd7500bb60735f549e16df964578ee5eddbb03e2b2e"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f1add18ae156/matrix.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-f1add18ae156/matrix.json",
+      "sha256": "768b8c4d0e5cfdcb6eeb7e3e678b19af1c36af9bddcc8c8a3981caba70aa924f"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f1add18ae156/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-f1add18ae156/plan-config.json",
+      "sha256": "a9aafb65ccc5276f468d81deae500f2bdfb38cce1af98a8092d5d79672f27033"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-f87ecf0cc307/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-continuation/data/t3code-f87ecf0cc307/fault.json",
+      "sha256": "ad61ff49863447f1251f78717bc473103942e70b608d8c3e8b954b71046fa897"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/aggregate.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/aggregate.json",
+      "sha256": "9695ffcf190f3bff324a98a536cec1ac9c0bf94abc6d410c5be42c6e26cf5c38"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/attempts.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/attempts.json",
+      "sha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/preregistration.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/preregistration.json",
+      "sha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-56914128c1ff/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-56914128c1ff/fault.json",
+      "sha256": "4cbb0a23bcd00b636c2f1806f1655c6935e13bf4a65eeba518c21769686cc4b3"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-63f74e209dc2/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-63f74e209dc2/fault.json",
+      "sha256": "0067ef07d17102bd96b21f965b6e87a1be403f87de5439c8e52173a12cfb0475"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-736130c2fd39/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-736130c2fd39/fault.json",
+      "sha256": "788552c508a2a35be502b7fa3cc569c48125ddc15d4a5515b6894a3993cf20e1"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-a5b34b25378f/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-a5b34b25378f/fault.json",
+      "sha256": "c889e8b9e9d433e7e84363061f66fb31c16839c0b68aad2cf410a4f8c6ff92db"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-a5b34b25378f/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-a5b34b25378f/plan-config.json",
+      "sha256": "501b427120634f6f33e3926457211a3ebab9c91b9b2195d5b449cd2cde51359c"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-f391794a35c6/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-f391794a35c6/fault.json",
+      "sha256": "ccaefde91ccdf3b1252a30d8bb1bf0ea51d721627cbaf1043e2a77242f39cbe9"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-f68e24fb419c/fault.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-f68e24fb419c/fault.json",
+      "sha256": "a077d17a20b328fe2d0dabada22154d6300d5bb8d6542e253b569623d8dab3c8"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history/t3code-f68e24fb419c/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/original-history-first/data/t3code-f68e24fb419c/plan-config.json",
+      "sha256": "79dc0b24a20a1d5123836b119bdf68350d8805e53bb6a1115196fd1e3ce21ac9"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/native/analysis.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/native/analysis.json",
+      "sha256": "ef71718d9d92517cf44cebebb9e0f923d65baecc226fdbd05786b10dfcc9ffd9"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/native/matrix.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/native/matrix.json",
+      "sha256": "fc18bf81397e2f1b61cc1a6eb9b6b20f1e2ea8fc7c494a46800e218568e62b95"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/native/policy-and-events.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/native/policy-and-events.json",
+      "sha256": "f609f81082ac8d2f73c510a2eee8d9925c7c3e3d49c55364f932a5af3cdc4069"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/scope-events/analysis.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/scope-events/analysis.json",
+      "sha256": "bb87c91f3d7e821b9ab4f212c042b6ea2b1daca85f332d2c45eea15f37d650fb"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/scope-events/matrix.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/scope-events/matrix.json",
+      "sha256": "8ba116e310a88afd7d139dbb3b1e8232b0c17fab491494e4b34f628542938fce"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/scope-events/policy-and-events.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/scope-events/policy-and-events.json",
+      "sha256": "784760e2945d95e487b982280ab223fc101fa93dc8ae454b117bf5c674af6d19"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/t3-execution/analysis.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/t3-execution/analysis.json",
+      "sha256": "9f94ac910fb4c6e1e92ecf5f92a184187d6131e4310a7cc31cd77e3a00a23c4f"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/t3-execution/matrix.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/t3-execution/matrix.json",
+      "sha256": "b4ba7a3c00851a8a4a281984c447d7645f85f575f2ba2b9a192fbb67eb5dc178"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/t3-execution/policy-and-events.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/t3-execution/policy-and-events.json",
+      "sha256": "6d919f3eb36446405a826cf882e9331872038ff6ecd64076b4fa1cde93caa567"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/t3-preview/analysis.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/t3-preview/analysis.json",
+      "sha256": "daaa272ac6bd1af3655c8f9672dcf46f63125219c3ce23966f8704eabe002b7f"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/t3-preview/matrix.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/t3-preview/matrix.json",
+      "sha256": "b53247fb12c6096856ffccf2268f9f839e43d643e5506d0eafd6146e3568b016"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity/t3-preview/policy-and-events.json",
+      "current": "research/test-value/results/2026-10-03/posthoc-current/data/t3-preview/policy-and-events.json",
+      "sha256": "0890330041fcb6165c7b1e54491f8cb5120efe8d35de4813a5d94c89bca296d9"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/preregistration.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/preregistration.json",
+      "sha256": "cfa40e82e6eae88ca88b9bf2c5694fab57b4908b37a8f4a73de46e3545b9f17d"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/scope-events/analysis.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/scope-events/analysis.json",
+      "sha256": "7a088ebeb2aaccc549280451e42714a0580d4e6ff5504db31785c4cbbde5502d"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/scope-events/baseline-repeats.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/scope-events/baseline-repeats.json",
+      "sha256": "fd895d92eb386c393a1830cd44239f56b24f7538ee326512185d15fc7e20f43c"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/scope-events/matrix.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/scope-events/matrix.json",
+      "sha256": "f0736602bb609d001a369247d25268c4af8991b1942e9cf508b8b36b2626cb3e"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/scope-events/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/scope-events/plan-config.json",
+      "sha256": "41ad86f28572fc9fc0bbb31353c612b587a697d407c9564e0a717b5702699f8a"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-execution/analysis.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-execution/analysis.json",
+      "sha256": "099e3a6c2cc38f0abab55266fa843d0b590919c398cc40f228d97edfefdfeab5"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-execution/baseline-repeats.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-execution/baseline-repeats.json",
+      "sha256": "4b386efba8095b0a65caabdef28dcb93dd2f56518e4c70d39b29bfdc055ebf8d"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-execution/matrix.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-execution/matrix.json",
+      "sha256": "7354ff74b0a2e79ded670771b98b059105c5e17ce3f2d6aa239387d8af1eb041"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-execution/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-execution/plan-config.json",
+      "sha256": "fea63f2d7b212154655788394508a2907a71229d2075677ebc6f7147c29274b0"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-preview/analysis.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-preview/analysis.json",
+      "sha256": "ed5b2d3cff19e2df197745aeaf83230c9268e1ca2711f60038d021937f27c802"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-preview/baseline-repeats.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-preview/baseline-repeats.json",
+      "sha256": "30ab8b947b697010d349dd8ffb8a12331990a3d944e83f66f407b4331748a078"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-preview/matrix.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-preview/matrix.json",
+      "sha256": "b3e1adfe0805bc377a09b3e0a779a47e97203a37a63315e15bbcc33158cb2ba7"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003/current/t3-preview/plan-config.json",
+      "current": "research/test-value/results/2026-10-03/provisional-launcher-excluded/data/current/t3-preview/plan-config.json",
+      "sha256": "4e76b0734eb783da25b418256b6277642703bbbe9b674f392369927c755063d6"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/results.json",
+      "current": "research/test-value/results/2026-10-03/lock-matched-baseline-validation/data/results.json",
+      "sha256": "4947dfdcc420943172bc34c8c79417d59976cfdbe1b65700bdec0e04db689797"
+    },
+    {
+      "original": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/registration.json",
+      "current": "research/test-value/results/2026-10-03/lock-matched-baseline-validation/data/registration.json",
+      "sha256": "4939d9399c48e8c3f1830800286056897bdb72adc7a1995ab26053289da28d56"
     }
   ]
 }

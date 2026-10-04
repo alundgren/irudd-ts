@@ -1,0 +1,333 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.26s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.12s
+     Running unittests src/lib.rs (target/debug/deps/archguard-8eabba39e1c2e2e3)
+
+running 47 tests
+test dryer::analyze::tests::jaccard_formulas_preserve_distinct_counts_and_subtree_weights ... ok
+test mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators ... ok
+test dryer::analyze::tests::hash_collisions_do_not_establish_exact_normalized_equality ... ok
+test mutator::result::tests::only_matching_complete_assertions_kill ... ok
+test mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets ... ok
+test mutator::run::monitor_tests::peer_failure_stop_is_distinct_from_requested_cancellation_and_deadline ... ok
+test mutator::config::tests::duplicate_and_reserved_environment_rejected_without_values ... ok
+test mutator::config::tests::explicit_commands_defaults_and_resource_corrections ... ok
+test mutator::run::monitor_tests::command_excerpt_bounds_redacts_boundary_values_and_sanitizes_output ... ok
+test mutator::result::evidence_tests::report_count_and_aggregate_messages_are_reserved_before_retention ... ok
+test mutator::state::tests::state_rejects_ancestor_links_and_accepts_corrected_directory ... ok
+test mutator::plan::tests::guarded_regeneration_can_stop_during_source_traversal_and_recover ... ok
+test mutator::result::evidence_tests::capped_problems_count_omissions_and_preserve_terminal_recovery ... ok
+test mutator::state::publication_tests::failed_directory_sync_after_active_publication_still_allows_confirmed_cleanup ... ok
+test mutator::state::tests::unresolved_active_state_and_input_aliases_are_preserved ... ok
+test mutator::workspace::bounded_queue_tests::cleanup_deadline_preserves_owned_tree_then_bounded_retry_removes_it ... ok
+test mutator::storage::tests::bounded_regular_io_and_atomic_replacement ... ok
+test mutator::workspace::bounded_queue_tests::cleanup_unlinks_child_directory_links_without_touching_external_files_or_modes ... ok
+test mutator::workspace::tests::cleanup_refuses_replaced_root_and_preserves_external_permissions ... ok
+test mutator::workspace::bounded_queue_tests::only_selected_parents_are_copied_with_declared_destinations ... ok
+test mutator::workspace::bounded_queue_tests::declared_link_chain_root_modes_and_git_inputs_remain_in_identity ... ok
+test mutator::state::tests::durable_complete_records_require_identity_checksums_and_exclusive_lock ... ok
+test subprocess::tests::cancellation_before_spawn_has_no_filesystem_effects ... ok
+test mutator::workspace::tests::budgets_external_links_and_excluded_targets_fail_then_correct ... ok
+test mutator::workspace::tests::unchanged_input_alias_verifies_and_retargeted_ancestor_is_rejected ... ok
+test mutator::workspace::bounded_queue_tests::generated_queue_is_bounded_before_push_then_recovers ... ok
+test subprocess::tests::auto_reap_dispositions_are_rejected_before_spawn ... ok
+test mutator::workspace::tests::isolated_copies_relocate_links_and_revalidate_membership_bytes_modes ... ok
+test subprocess::tests::cancellation_after_spawn_reaps_the_command ... ok
+test subprocess::tests::monitor_failure_stops_the_command_without_becoming_success ... ok
+test subprocess::tests::child_file_limit_restricts_generated_bytes ... ok
+test subprocess::tests::completed_commands_recheck_resources_after_child_cleanup ... ok
+test subprocess::tests::independently_owned_commands_apply_current_resource_limits ... ok
+test subprocess::unix::ownership_tests::earlier_signal_denial_requires_confirmed_owned_group_cleanup ... ok
+test subprocess::tests::raw_transport_preserves_nonzero_status_and_both_streams ... ok
+test subprocess::unix::ownership_tests::exited_leader_with_live_descendant_cleans_the_whole_group ... ok
+test subprocess::tests::raw_transport_closes_stdin_after_complete_delivery ... ok
+test subprocess::unix::ownership_tests::exited_reserved_leader_without_live_members_finishes_cleanly ... ok
+test subprocess::unix::ownership_tests::lost_child_ownership_suppresses_finish_and_drop_signals ... ok
+test subprocess::tests::stream_limits_stop_commands_and_keep_only_bounded_bytes ... ok
+test subprocess::unix::ownership_tests::persistent_or_uncertain_group_observation_fails_closed ... ok
+test cache::tests::observations_changed_after_reuse_cannot_be_published ... ok
+test cache::tests::executing_binary_identity_change_discards_a_valid_entry ... ok
+test subprocess::tests::unread_stdin_deadline_does_not_leave_a_writer_thread ... ok
+test subprocess::tests::escaped_descendant_pipes_produce_bounded_cleanup_failure ... ok
+test subprocess::unix::ownership_tests::delayed_group_observation_keeps_ownership_until_cleanup_settles ... ok
+test mutator::run::monitor_tests::interrupted_monitor_traversal_preserves_cancellation_and_resource_controls ... ok
+
+test result: ok. 47 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.03s
+
+     Running unittests src/main.rs (target/debug/deps/archguard-707a8b042efac164)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/architecture.rs (target/debug/deps/architecture-a0847752eaa2d508)
+
+running 1 test
+test own_import_contracts_reject_policy_and_research_dependencies ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s
+
+     Running tests/cache.rs (target/debug/deps/cache-daf7f4816a2aa80f)
+
+running 11 tests
+test cache_destination_cannot_replace_selected_source_or_manifest ... ok
+test cache_destination_cannot_replace_inherited_resolution_input ... ok
+test negative_lookups_include_unselected_and_ignored_targets ... ok
+test rust_candidates_and_root_identity_are_validated ... ok
+test installed_package_link_repointing_invalidates_resolution ... ok
+test unchanged_graph_reuses_edges_but_source_bytes_override_timestamps ... ok
+test inherited_config_outside_root_and_new_nearest_config_invalidate_edges ... ok
+test corrupt_entries_fail_once_recover_and_incompatible_versions_are_misses ... ok
+test discovery_parse_failure_correction_and_profile_changes_match_fresh ... ok
+test workspace_and_installed_manifests_and_missing_packages_are_inputs ... ok
+test cli_reused_graph_still_runs_plugins_and_reports_corruption ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.95s
+
+     Running tests/core.rs (target/debug/deps/core-1e97a554e6d923d0)
+
+running 16 tests
+test function_results_do_not_inherit_imported_method_identity ... ok
+test provenance_handles_aliases_shadowing_strings_and_require ... ok
+test import_equals_cannot_bypass_dependency_policy ... ok
+test exported_import_equals_and_array_fallbacks_preserve_dependencies ... ok
+test inherited_aliases_and_missing_alias_targets_are_internal ... ok
+test explicit_and_type_only_exports_do_not_become_service_values ... ok
+test local_export_aliases_keep_service_provenance ... ok
+test exclusions_outside_root_dynamic_and_parse_errors_cannot_pass_clean ... ok
+test service_namespace_resolves_definitions_and_barrels ... ok
+test graph_tracks_workspace_exports_reexports_and_types ... ok
+test installed_source_requires_packages_and_preserves_host_endpoints ... ok
+test star_export_ambiguity_distinguishes_distinct_declarations_from_same_origin ... ok
+test workspace_export_cannot_escape_the_package ... ok
+test selected_null_export_is_blocked_and_namespace_exports_do_not_flatten ... ok
+test transitive_rules_report_path_and_cycles_distinguish_types_and_dynamic_edges ... ok
+test value_stars_and_declared_external_exports_preserve_public_names ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/mutation_execution.rs (target/debug/deps/mutation_execution-02c0c8ac27837ac1)
+
+running 7 tests
+test earlier_deadline_prevents_commands_without_changing_config_identity ... ok
+test parallel_workers_and_rewritten_copies_keep_independent_outcomes ... ok
+test completed_checkpoint_survives_cancel_and_resumes_after_fresh_baseline ... ok
+test cancelled_or_timed_out_commands_cleanup_and_allow_fresh_resume ... ok
+test incomplete_commands_retain_diagnostics_and_success_keeps_protocol_messages ... ok
+test fresh_baseline_resume_invalidation_and_source_preservation ... ok
+test runtime_protocol_failures_never_count_as_kills ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 43.95s
+
+     Running tests/plugins.rs (target/debug/deps/plugins-2d244d9aacd297fb)
+
+running 5 tests
+test inherited_pipes_are_closed_by_process_group_cleanup ... ok
+test successful_plugin_and_source_range_validation ... ok
+test rust_and_typescript_plugins_use_the_same_transitive_graph ... ok
+test unread_large_stdin_times_out ... ok
+test plugin_failures_are_bounded_and_never_clean ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.70s
+
+     Running tests/policies.rs (target/debug/deps/policies-87c29a87ea073822)
+
+running 4 tests
+test public_entry_distinguishes_package_import_from_private_file ... ok
+test platform_resolution_changes_the_actual_cycle ... ok
+test runtime_reachability_has_dependency_evidence_and_respects_shadowing ... ok
+test service_and_package_contracts_have_failure_and_correction_controls ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/quality_cli.rs (target/debug/deps/quality_cli-f57e9259778cd82b)
+
+running 6 tests
+test configuration_links_and_fifos_fail_without_blocking ... ok
+test invalid_configuration_is_rejected_and_corrected_selection_is_explicit ... ok
+test planning_never_executes_repository_commands_and_retains_runtime_sites ... ok
+test invalid_source_is_incomplete_and_correction_reports_clones_without_a_gate ... ok
+test run_cancellation_reports_incomplete_and_preserves_original_source ... ok
+test saved_plan_rejects_changed_bytes_and_tampering_before_running_tests ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.32s
+
+     Running tests/quality_contracts.rs (target/debug/deps/quality_contracts-5cec33015a5e0fa9)
+
+running 13 tests
+test operator_groups_accept_only_the_advertised_replacement_directions ... ok
+test canonical_source_locations_preserve_ts_variants_and_reject_unsafe_or_unsupported_paths ... ok
+test every_resource_ceiling_is_enforced_and_lower_valid_settings_remain_available ... ok
+test syntax_result_deserialization_rejects_unknown_and_contradictory_fields ... ok
+test mutation_json_fixture_round_trips_exact_public_fields_and_versions ... ok
+test invalid_configuration_is_correctable_without_weakening_negative_controls ... ok
+test partial_inventory_and_resource_failure_are_distinct_from_syntax_invalidity ... ok
+test source_or_edit_changes_invalidate_sites_but_display_names_do_not_define_identity ... ok
+test selection_and_configuration_failures_do_not_become_complete_empty_analysis ... ok
+test selected_files_must_belong_to_requested_patterns_even_in_partial_reports ... ok
+test per_file_results_enforce_site_and_aggregate_budgets_with_small_controls ... ok
+test aggregate_encoded_bytes_bound_repeated_evidence_and_json_escaping ... ok
+test node_and_rust_agree_on_utf8_source_hash_and_canonical_full_mutation_identity ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/quality_pressure.rs (target/debug/deps/quality_pressure-6a0bb6c1afeafe2d)
+
+running 1 test
+test parser_accepts_the_hard_envelope_and_rejects_excess_input ... ignored, run in the coordinated parser acceptance window, in debug and release
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/quality_syntax.rs (target/debug/deps/quality_syntax-c4cf9383bec8cf0c)
+
+running 30 tests
+test ambient_declarations_are_excluded_while_runtime_namespace_initializers_remain_present ... ok
+test computed_property_keys_retain_runtime_mutations_while_static_keys_do_not ... ok
+test configured_threshold_selects_unique_subtree_set_similarity ... ok
+test computed_call_names_preserve_literal_descendants_in_both_property_modes ... ok
+test comparison_counts_and_resource_limits_preserve_partial_results ... ok
+test exact_utf8_crlf_edits_stale_inputs_and_syntax_classification_have_controls ... ok
+test guards_are_typed_incomplete_and_a_longer_comparison_edit_is_not_invalid_syntax ... ok
+test discovery_parse_failure_correction_and_source_preservation_are_explicit ... ok
+test conservative_fallback_keeps_jsx_regex_and_unsupported_nodes_exact ... ok
+test mutation_sites_are_runtime_only_exact_and_cover_every_operator_group ... ok
+test binding_relationships_renames_shadowing_and_captures_are_distinct ... ok
+test final_plan_discovery_detects_added_sources_and_ignores_excluded_changes ... ok
+test mutation_count_and_byte_limits_keep_distinct_problem_categories ... ok
+test recursive_operator_guard_handles_punctuation_and_keyword_chains ... ok
+test prototype_setters_remain_distinct_from_shorthand_and_computed_data_properties ... ok
+test parallel_batches_produce_the_same_order_and_facts_as_one_worker ... ok
+test aggregate_reports_omit_evidence_before_collection_and_keep_json_valid ... ok
+test selected_directory_links_do_not_claim_complete_descendant_coverage ... ok
+test property_and_literal_modes_have_explicit_controls ... ok
+test called_operations_operators_order_and_optional_slots_are_preserved ... ok
+test selection_excludes_callbacks_overloads_and_nested_candidates ... ok
+test strict_dryer_configuration_and_bounded_names_remain_correctable ... ok
+test truncated_display_names_do_not_change_exact_internal_operation_keys ... ok
+test shorthand_and_expanded_properties_preserve_keys_and_binding_relationships ... ok
+test selected_source_byte_file_node_and_encoding_failures_are_correctable ... ok
+test selected_links_are_incomplete_and_cache_links_never_replace_input ... ok
+test prospective_cache_paths_cannot_create_typescript_sources ... ok
+test dogfood_existing_sdk_and_ts_examples_with_explicit_scope ... ok
+test candidate_limits_apply_before_size_filters_and_recovered_cache_trees_are_validated ... ok
+test cache_validates_bytes_discovery_options_corruption_and_source_destination ... ok
+
+test result: ok. 30 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.31s
+
+     Running tests/roles.rs (target/debug/deps/roles-a1f111e31e5ae9c8)
+
+running 5 tests
+test malformed_role_configuration_and_path_mapping_fail_closed ... ok
+test roles_do_not_hide_unknown_or_overlapping_assignments ... ok
+test role_dependencies_cross_unassigned_modules_and_respect_type_and_role_exclusions ... ok
+test registration_requires_static_value_edge_and_keeps_resolution_errors_visible ... ok
+test repository_conventions_has_failure_correction_and_controls ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.15s
+
+     Running tests/semantic.rs (target/debug/deps/semantic-fbe28a9b6f192518)
+
+running 3 tests
+test legacy_payload_remains_strict_and_provider_version_is_pinned ... ok
+test independently_enumerates_public_sites_and_rejects_omissions ... ok
+test malformed_and_omitted_process_responses_are_errors ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/semantic_provider.rs (target/debug/deps/semantic_provider-6341c2d750bcaa3f)
+
+running 8 tests
+test native_nullable_optional_and_union_members_remain_present ... ok
+test index_signatures_without_named_symbols_do_not_prove_member_absence ... ok
+test member_rule_remains_useful_when_compiler_diagnostics_are_suppressed ... ok
+test native_provider_unicode_multicontext_and_unavailable_controls ... ok
+test native_clean_and_context_membership_failures ... ok
+test native_jsx_member_tags_have_independent_sites_and_facts ... ok
+test native_inherited_config_diagnostics_and_repository_plugins_are_inert ... ok
+test semantic_incompleteness_does_not_change_legacy_plugin_graph_payload ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.07s
+
+     Running research/t3code/tests/cache.rs (target/debug/deps/t3_cache-b71aee83110b9ac5)
+
+running 2 tests
+test merged_barrel_edit_reruns_policy_for_reused_consumer ... ok
+test merged_type_extraction_addition_missing_target_and_reverse_deletion ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.51s
+
+     Running research/t3code/tests/history.rs (target/debug/deps/t3_history-e92ce917ce7116fb)
+
+running 3 tests
+test type_only_cycles_and_dynamic_return_edges_have_distinct_policy ... ok
+test mobile_cycle_reduction_matches_both_upstream_platform_orders ... ok
+test upstream_reductions_fail_before_and_pass_after ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running research/t3code/tests/profiles.rs (target/debug/deps/t3_profiles-38cc0dccf3cbe00f)
+
+running 3 tests
+test published_profiles_validate ... ok
+test mobile_profiles_ignore_inactive_platform_cycles ... ok
+test t3_presets_match_resolved_retired_sources_and_react_subpaths ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running research/t3code/tests/semantic.rs (target/debug/deps/t3_semantic-6f0aaa9dd3348d26)
+
+running 1 test
+test merged_pr_11304_reduced_before_fixed_and_partial_correction ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.44s
+
+   Doc-tests archguard
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+✔ assertion failures retain IDs and passing controls finish cleanly (111.150167ms)
+✔ assertion plus late run or cleanup failure cannot be assertion-only (380.043875ms)
+✔ runtime, import, suite, hook and unhandled failures remain distinct (375.082833ms)
+✔ missing or replaced lifecycle APIs, interruption and early exit stay incomplete (429.855709ms)
+✔ retained retry errors and oversized runner metadata fail conservatively (216.523084ms)
+✔ reporter diagnostics preserve short messages and the beginning of truncated messages (171.579541ms)
+✔ Node assertion names and codes remain assertion failures while runtime errors stay distinct (225.426709ms)
+✔ pending runner close stays incomplete and ordinary logs do not become cleanup failures (165.912292ms)
+✔ a second reporter is rejected and repeated test runs stay incomplete (167.296833ms)
+✔ a throwing hook reported only at start retains hook failure evidence (165.5955ms)
+✔ runner cleanup timeout remains incomplete alongside assertion failures (166.764834ms)
+✔ failure record overflow stays incomplete while the supported failure budget remains complete (171.125625ms)
+✔ wrong task identity is rejected, corrected result writes atomically, old task stays rejected (6.988583ms)
+✔ assertion counts require executed test IDs; mixed hook failure stays distinct (0.344083ms)
+✔ assigned request refuses symlinks, excessive bytes and wrong result path (1.122792ms)
+✔ unknown fields, versions, accessor data and unsafe counts fail without coercion (0.3025ms)
+✔ encoding budget rejects escaped errors before replacing an existing good record (10.706833ms)
+✔ shared wire ceilings accept their boundary and reject one extra byte or failure (1.381375ms)
+✔ failure accessors, custom iteration and proxy traps are rejected without invoking code (0.30875ms)
+✔ null-prototype protocol records are accepted and custom prototypes remain rejected (0.208542ms)
+✔ proxy failure arrays cannot execute prototype traps during validation (0.187375ms)
+✔ task and failed-test identities reject empty or NUL data while empty messages remain valid (0.250709ms)
+✔ required protocol fields must be own data and cannot invoke inherited getters (0.233083ms)
+✔ baseline and mutation requests enforce their distinct mutation identities (0.227333ms)
+✔ callable values cannot impersonate plain request data (0.171875ms)
+✔ assigned request files require absolute paths even when a relative file exists (0.426167ms)
+✔ formatted request JSON is accepted while escaped duplicate keys remain rejected (0.55325ms)
+✔ the request byte ceiling includes an exact-size valid JSON document (1.792875ms)
+✔ result exit codes accept integer endpoints and reject values outside the process range (0.230292ms)
+✔ a completed hook-only failure cannot declare exit zero (0.171041ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2804.006167
+172 locked package licenses checked
+providers/typescript7: 21 locked npm licenses and upstream notice hashes checked
+research/t3code/semantic: 13 locked npm licenses and upstream notice hashes checked
+37 maintained Markdown files and preserved artifact hashes checked
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.22s
+     Running `target/debug/archguard check --config archguard.json`
+87 files, 872 imports, 0 violations, 0 analysis problems in 279.04 ms

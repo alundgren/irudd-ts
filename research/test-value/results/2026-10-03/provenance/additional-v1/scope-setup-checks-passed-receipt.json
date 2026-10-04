@@ -1,0 +1,19 @@
+{
+  "title": "Test value research: historical setup checks",
+  "kind": "html",
+  "blob": "6206843f579a1f7d1e9961c05e7a209126ac31116d4a34baaa1dafdbb37ff01d",
+  "fileName": "report-setup-checks-passed.html",
+  "mediaType": "text/html",
+  "source": {
+    "host": "andreass-MacBook-Air.local",
+    "repo": "/Users/alun/repos/irudd-ts",
+    "worktree": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3",
+    "branch": "t3code/test-value-benchmark",
+    "cwd": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3"
+  },
+  "id": "archguard-test-value-20261003",
+  "revision": 75,
+  "createdAt": "2026-10-03T23:21:59.036Z",
+  "updatedAt": "2026-10-04T02:08:50.099Z",
+  "size": 4405086
+}

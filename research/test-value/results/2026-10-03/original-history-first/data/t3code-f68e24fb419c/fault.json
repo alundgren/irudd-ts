@@ -1,0 +1,28 @@
+{
+  "id": "t3code-f68e24fb419c",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(web): a thread that left a shell running shows its unseen completion (#14910)",
+  "sourceFiles": [
+    "apps/mobile/src/features/threads/threadListV2.ts",
+    "apps/web/src/components/Sidebar.logic.ts",
+    "apps/web/src/components/ThreadNotificationCoordinator.tsx",
+    "packages/client-runtime/src/state/models.ts",
+    "packages/client-runtime/src/state/threadExecution.ts"
+  ],
+  "testFiles": [
+    "apps/mobile/src/features/threads/threadListV2.test.ts",
+    "apps/web/src/components/Sidebar.logic.test.ts",
+    "packages/client-runtime/src/state/entities.test.ts"
+  ],
+  "relatedGroup": "thread-runtime-presentation",
+  "fix": "f68e24fb419c985269cd0acb841e203af1419c43",
+  "parent": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+  "verified": false,
+  "exclusion": "historical mutation plan failed",
+  "recordDigests": {
+    "fixed-before/execution.json": "3b03becee66202314606c6ce3bed27e5cfdef4227fda31e6e5a6ca2e430c4a09",
+    "faulty/execution.json": "65000f5b6f533925dce459bee22192de2014290f51d4644ec55797db742878a9",
+    "fixed-after/execution.json": "2b99043ad3b91859e90fbdbbdfa6980e50578c774c7290fc41bd5128165daa49"
+  }
+}

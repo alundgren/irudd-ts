@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "method": "Stat each declared installation source archive, then count it once for each runnable candidate. Archive bytes include tar headers; this is space planning, not a measured allocation or upper bound.",
+  "mapSha256": "81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0",
+  "candidateManifestSha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0",
+  "runnableCandidates": 75,
+  "candidateArchiveBytes": 15164108800,
+  "illustrativeCopiesPerCandidate": 30,
+  "illustrativeThirtyCopiesBytes": 454923264000,
+  "disk": {
+    "freeBytes": 374618841088,
+    "totalBytes": 994610155520,
+    "stopFreeFraction": 0.12
+  },
+  "records": [
+    {
+      "installationId": "scope-install-2e2771120180",
+      "archivePath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-2e2771120180/source.tar",
+      "archiveBytes": 5416960
+    },
+    {
+      "installationId": "scope-install-5a38c059371d",
+      "archivePath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-5a38c059371d/source.tar",
+      "archiveBytes": 5314560
+    },
+    {
+      "installationId": "scope-install-b5d129c1f532",
+      "archivePath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-b5d129c1f532/source.tar",
+      "archiveBytes": 5959680
+    },
+    {
+      "installationId": "scope-install-d56f88acd0ae",
+      "archivePath": "/tmp/archguard-test-value-20261003/historical-installs/scope-install-d56f88acd0ae/source.tar",
+      "archiveBytes": 5949440
+    },
+    {
+      "installationId": "scope-supp-install-60fd3fd8ce01",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/scope-supp-install-60fd3fd8ce01/source.tar",
+      "archiveBytes": 4751360
+    },
+    {
+      "installationId": "scope-supp-install-aed340460236",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/scope-supp-install-aed340460236/source.tar",
+      "archiveBytes": 4597760
+    },
+    {
+      "installationId": "t3code-install-16858df93bbf",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-16858df93bbf/source.tar",
+      "archiveBytes": 213411840
+    },
+    {
+      "installationId": "t3code-install-3f5a1597bcde",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-3f5a1597bcde/source.tar",
+      "archiveBytes": 287457280
+    },
+    {
+      "installationId": "t3code-install-3f6293e594ec",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-3f6293e594ec/source.tar",
+      "archiveBytes": 175482880
+    },
+    {
+      "installationId": "t3code-install-418e9aba3903",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-418e9aba3903/source.tar",
+      "archiveBytes": 215633920
+    },
+    {
+      "installationId": "t3code-install-45cbc35fab04",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-45cbc35fab04/source.tar",
+      "archiveBytes": 302673920
+    },
+    {
+      "installationId": "t3code-install-49a592f5503b",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-49a592f5503b/source.tar",
+      "archiveBytes": 269240320
+    },
+    {
+      "installationId": "t3code-install-4bab1da110d5",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-4bab1da110d5/source.tar",
+      "archiveBytes": 302110720
+    },
+    {
+      "installationId": "t3code-install-4d7ac4348ddc",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-4d7ac4348ddc/source.tar",
+      "archiveBytes": 216299520
+    },
+    {
+      "installationId": "t3code-install-6c26501fdebc",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-6c26501fdebc/source.tar",
+      "archiveBytes": 217620480
+    },
+    {
+      "installationId": "t3code-install-745336e7263a",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-745336e7263a/source.tar",
+      "archiveBytes": 214763520
+    },
+    {
+      "installationId": "t3code-install-7ee3d847b90d",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-7ee3d847b90d/source.tar",
+      "archiveBytes": 217640960
+    },
+    {
+      "installationId": "t3code-install-7f3efb59fb30",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-7f3efb59fb30/source.tar",
+      "archiveBytes": 213227520
+    },
+    {
+      "installationId": "t3code-install-800215c134e2",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-800215c134e2/source.tar",
+      "archiveBytes": 225863680
+    },
+    {
+      "installationId": "t3code-install-834b0967522e",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-834b0967522e/source.tar",
+      "archiveBytes": 302264320
+    },
+    {
+      "installationId": "t3code-install-aa20f3655ae3",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-aa20f3655ae3/source.tar",
+      "archiveBytes": 302407680
+    },
+    {
+      "installationId": "t3code-install-c01c5f85dee6",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-c01c5f85dee6/source.tar",
+      "archiveBytes": 273408000
+    },
+    {
+      "installationId": "t3code-install-c4a0237c4d7d",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-c4a0237c4d7d/source.tar",
+      "archiveBytes": 266987520
+    },
+    {
+      "installationId": "t3code-install-cda00b386774",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-cda00b386774/source.tar",
+      "archiveBytes": 155258880
+    },
+    {
+      "installationId": "t3code-install-e01e4bdf3124",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-e01e4bdf3124/source.tar",
+      "archiveBytes": 156743680
+    },
+    {
+      "installationId": "t3code-install-ee27f20fa50a",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-ee27f20fa50a/source.tar",
+      "archiveBytes": 287262720
+    },
+    {
+      "installationId": "t3code-install-eebf736b5b58",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-eebf736b5b58/source.tar",
+      "archiveBytes": 211251200
+    },
+    {
+      "installationId": "t3code-supp-install-027d2efae574",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-027d2efae574/source.tar",
+      "archiveBytes": 170977280
+    },
+    {
+      "installationId": "t3code-supp-install-062a5bd2ecf5",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-062a5bd2ecf5/source.tar",
+      "archiveBytes": 268369920
+    },
+    {
+      "installationId": "t3code-supp-install-0d4ee075f7d7",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-0d4ee075f7d7/source.tar",
+      "archiveBytes": 216422400
+    },
+    {
+      "installationId": "t3code-supp-install-1a587b6c23b1",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-1a587b6c23b1/source.tar",
+      "archiveBytes": 224532480
+    },
+    {
+      "installationId": "t3code-supp-install-3b359b2f1c7c",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-3b359b2f1c7c/source.tar",
+      "archiveBytes": 216442880
+    },
+    {
+      "installationId": "t3code-supp-install-479c6d67a116",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-479c6d67a116/source.tar",
+      "archiveBytes": 282644480
+    },
+    {
+      "installationId": "t3code-supp-install-5751f3c2689a",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-5751f3c2689a/source.tar",
+      "archiveBytes": 229345280
+    },
+    {
+      "installationId": "t3code-supp-install-6f6eae360f88",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-6f6eae360f88/source.tar",
+      "archiveBytes": 215818240
+    },
+    {
+      "installationId": "t3code-supp-install-726cdb253f8a",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-726cdb253f8a/source.tar",
+      "archiveBytes": 217405440
+    },
+    {
+      "installationId": "t3code-supp-install-8b4e0395ed16",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-8b4e0395ed16/source.tar",
+      "archiveBytes": 222177280
+    },
+    {
+      "installationId": "t3code-supp-install-90b4e9ee927d",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-90b4e9ee927d/source.tar",
+      "archiveBytes": 223498240
+    },
+    {
+      "installationId": "t3code-supp-install-9168995d892f",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-9168995d892f/source.tar",
+      "archiveBytes": 173629440
+    },
+    {
+      "installationId": "t3code-supp-install-9bc18f158c61",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-9bc18f158c61/source.tar",
+      "archiveBytes": 288276480
+    },
+    {
+      "installationId": "t3code-supp-install-a18a47e7c515",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-a18a47e7c515/source.tar",
+      "archiveBytes": 302438400
+    },
+    {
+      "installationId": "t3code-supp-install-c2d582f9bf9b",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-c2d582f9bf9b/source.tar",
+      "archiveBytes": 265164800
+    },
+    {
+      "installationId": "t3code-supp-install-d283272c954d",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-d283272c954d/source.tar",
+      "archiveBytes": 211230720
+    },
+    {
+      "installationId": "t3code-supp-install-eb3e3ecb1d4e",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-eb3e3ecb1d4e/source.tar",
+      "archiveBytes": 287088640
+    },
+    {
+      "installationId": "t3code-supp-install-ee393b1fea4e",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-ee393b1fea4e/source.tar",
+      "archiveBytes": 225484800
+    },
+    {
+      "installationId": "t3code-supp-install-eed256eac419",
+      "archivePath": "/private/tmp/archguard-test-value-20261003/historical-installs-supplement-filtered-v3/t3code-supp-install-eed256eac419/source.tar",
+      "archiveBytes": 216821760
+    }
+  ],
+  "decision": "Verify private Darwin copy-on-write clones before baseline and mutation runs. Preserve full source bytes, existing fingerprints and the continuous12% guard; clone writes can still allocate new blocks."
+}

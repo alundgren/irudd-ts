@@ -1,0 +1,75 @@
+{
+  "id": "t3code-f1add18ae156",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): preserve final quoted empty CSV records (#11425)",
+  "sourceFiles": [
+    "packages/shared/src/delimitedPreview.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/delimitedPreview.test.ts"
+  ],
+  "relatedGroup": "delimited-preview-parsing",
+  "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+  "parent": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 47
+  },
+  "verified": true,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "packages/shared/src/delimitedPreview.ts"
+  ],
+  "killedBy": [
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]"
+  ],
+  "unaffected": [
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]"
+  ],
+  "fixedTemplateSha256": "84f41a56f5b3e914978d30aedd9baeef34c40bcb23d43ba2a8fc7d6acf7d2307",
+  "faultyTemplateSha256": "b1d24372b99358d5a2d9c7ede2bbdf01e053eda9b6a748a572e9b04b41f97743",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "packages/shared/src/delimitedPreview.test.ts": "parent file existed; individual additions not classified"
+  },
+  "unchangedIdentityFromParentTests": [
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]"
+  ],
+  "fixAddedOrRenamedTestIdentities": [
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]"
+  ],
+  "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+  "recordDigests": {
+    "matrix.json": "768b8c4d0e5cfdcb6eeb7e3e678b19af1c36af9bddcc8c8a3981caba70aa924f",
+    "analysis.json": "e2738b9dd1c43e8aea612cd203e09789fe543deaf173b2acdaaa15ead3cfbae7",
+    "evaluation.json": "da9430deff8c2d0005e15513aa417d41f8c9d246735e37e42f8fe1e774746ce2",
+    "fixed-before/execution.json": "fff181f93b475a0330e9de3013eff97f670c117f0f89d4843b11c39404758700",
+    "faulty/execution.json": "b199158e59eec8cb178c87c6005a1756ebb24dced151c38e11607a505dd2fa7d",
+    "fixed-after/execution.json": "e7ab177849cd79db476af00eb4d2b853b5754f29a3b21fed9a89ed465044d62a"
+  }
+}

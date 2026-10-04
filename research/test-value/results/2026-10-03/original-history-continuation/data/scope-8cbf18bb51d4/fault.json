@@ -1,0 +1,28 @@
+{
+  "id": "scope-8cbf18bb51d4",
+  "subject": "scope",
+  "repository": "/Users/alun/repos/irudd-scope",
+  "title": "fix: cancel full detail reads after their final owner leaves",
+  "sourceFiles": [
+    "apps/desktop/src/library/pull-request-store.ts",
+    "apps/desktop/src/plugins/pull-requests/sync.ts"
+  ],
+  "testFiles": [
+    "tests/pull-requests-scheduler.test.ts"
+  ],
+  "relatedGroup": "pull-request-refresh",
+  "fix": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+  "parent": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 19
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "62ce2407a4d41979744e54cd72295c2e988d43f04620ce21b2de2f0e488650f6"
+  }
+}

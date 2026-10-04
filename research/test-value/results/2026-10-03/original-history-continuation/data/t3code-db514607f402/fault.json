@@ -1,0 +1,30 @@
+{
+  "id": "t3code-db514607f402",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(chat): sending on an older thread no longer jumps to the top (#15059)",
+  "sourceFiles": [
+    "apps/mobile/src/lib/threadActivity.ts",
+    "apps/web/src/components/chat/MessagesTimeline.logic.ts"
+  ],
+  "testFiles": [
+    "apps/mobile/src/lib/threadActivity.test.ts",
+    "apps/web/src/components/chat/MessagesTimeline.logic.test.ts"
+  ],
+  "relatedGroup": "thread-list-ordering",
+  "fix": "db514607f4026cd2bbb7b96674168bb227ac043a",
+  "parent": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 16
+  },
+  "verified": false,
+  "exclusion": "historical mutation plan failed",
+  "recordDigests": {
+    "fixed-before/execution.json": "071ede3d817f1c813404ce0589fdb2539fd181d9a05d3e36f39caa121b73bc40",
+    "faulty/execution.json": "25c1a97c544874296d2c16be6f362d229403760f5001880e902a235e1e0e384e",
+    "fixed-after/execution.json": "b0b37fd80b2c7f4924d85c72742b231b8266792a880b67af6bb77ea38c616f33"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "scope-82c4e117a745",
+  "subject": "scope",
+  "repository": "/Users/alun/repos/irudd-scope",
+  "title": "fix: apply live discussion updates at detail delivery",
+  "sourceFiles": [
+    "apps/desktop/src/plugins/pull-requests/sync.ts"
+  ],
+  "testFiles": [
+    "tests/pull-requests-scheduler.test.ts"
+  ],
+  "relatedGroup": "pull-request-discussion-sync",
+  "fix": "82c4e117a745c1a39bcea23b49814cedc7285fcf",
+  "parent": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 18
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "52d9dd13d512f0ccba989fa89a2425e045d2632a1cbdb07e0743dee71fb98348"
+  }
+}

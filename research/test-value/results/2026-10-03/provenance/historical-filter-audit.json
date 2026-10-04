@@ -1,0 +1,3798 @@
+{
+  "candidateOutcomeDataUsed": false,
+  "candidates": [
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+      "fixRootTreeId": "dcb30a3a57e1db4af496fe06783f3b709c5a799b",
+      "id": "t3code-062b4618c229",
+      "parent": "deb901d6381e0c86ef326946c8fb45ee323db708",
+      "relatedGroup": "t3code-install-745336e7263a",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/composerInlineTokens.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/composerInlineTokens.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 145,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+      "fixRootTreeId": "939754ef198ae83e6f5899fdf325acf7ab832a72",
+      "id": "t3code-151c241cd2cc",
+      "parent": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+      "relatedGroup": "t3code-install-4bab1da110d5",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 567,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+      "fixRootTreeId": "72825d30e530ef7f1d507db74b4aa129a0d66fa0",
+      "id": "t3code-178da6bc3210",
+      "parent": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+      "relatedGroup": "t3code-install-7ee3d847b90d",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/sourceControl.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/sourceControl.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 150,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "193e3c62e6d52fcc200d823ca6d9061d13f81f23",
+      "fixRootTreeId": "3f89b680ee1e2b8e78e83bcda47fb9c559c684f5",
+      "id": "t3code-193e3c62e6d5",
+      "parent": "91dfe60a99b7bf6cc44138a237e663ba158062b7",
+      "relatedGroup": "t3code-install-e01e4bdf3124",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "17a4d52d3803155fd6a4a9e0050e4a13134875f9",
+        "bytes": 886,
+        "externalAlchemyDependencies": {
+          "alchemy": {
+            "section": "dependencies",
+            "specifier": "https://pkg.ing/alchemy/078ff00"
+          }
+        },
+        "path": "infra/relay/package.json",
+        "sha256": "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadSettled.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSettled.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 264,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "https://pkg.ing/alchemy/078ff00"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "220e573b14cea84b6662a7d69047129047433b63",
+      "fixRootTreeId": "002fa0ff1879d2fa26b707fe58fc29ebcb51f8d0",
+      "id": "t3code-220e573b14ce",
+      "parent": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "relatedGroup": "t3code-install-4d7ac4348ddc",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/sourceControl.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/sourceControl.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 149,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "263097a8da038a143f2b7b7817250f0ad390ea32",
+      "fixRootTreeId": "4473027cf8d4a55e56e19f8da42578ce01331f89",
+      "id": "t3code-263097a8da03",
+      "parent": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/keybindings.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/web/src/composer-logic.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/keybindings.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/server/src/keybindings.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/shared/src/keybindings.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3252,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+      "fixRootTreeId": "cbec1de02a65765ff1bb6799684364620aa2d94c",
+      "id": "t3code-29a32660d3cb",
+      "parent": "dd8332da57355bccd7e666289267f2c94597debd",
+      "relatedGroup": "t3code-install-ee27f20fa50a",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/sourceControl.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/sourceControl.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 228,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+      "fixRootTreeId": "daf2abf5312b3c8ba744ed5f97e0ac5cd08dd7e1",
+      "id": "t3code-32407df9c5ff",
+      "parent": "162e774294f9e3dda15ca2f8083db019fe398837",
+      "relatedGroup": "t3code-install-eebf736b5b58",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/schemaJson.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/schemaJson.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 139,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+      "fixRootTreeId": "009de3770c650ff5d213e873166c29364803e47e",
+      "id": "t3code-38f3c62304bf",
+      "parent": "b21f3b71913370a1a650a61fd9082f992d40e657",
+      "relatedGroup": "t3code-install-3f5a1597bcde",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/threadPullRequests.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/threadPullRequests.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 228,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "421088c27367da227d922ce999c1637416a6d0f4",
+      "fixRootTreeId": "fcbee70081971742e0dfc894cd5925321fd5bdb0",
+      "id": "t3code-421088c27367",
+      "parent": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+      "relatedGroup": "t3code-install-418e9aba3903",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadSearch.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSearch.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 302,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/mobile",
+          "path": "apps/mobile"
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 11,
+      "fix": "43bd6677392b80cd12742f865c277c9939239543",
+      "fixRootTreeId": "b8e1de2b6abdae14a551d01cf403a3b1733d9a0f",
+      "id": "t3code-43bd6677392b",
+      "parent": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+      "relatedGroup": "t3code-install-4bab1da110d5",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/shared/src/toolActivity.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "apps/mobile/src/lib/threadActivity.ts",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/CodexAdapterV2.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/components/chat/MessagesTimeline.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/shared/src/toolActivity.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 4151,
+      "workspaceDependencyEdgeCount": 19,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "43e2aeab389199de115bb414f80db12b60cd85f4",
+      "fixRootTreeId": "8094cbfb572c97bd458d292e39dd64cde17da825",
+      "id": "t3code-43e2aeab3891",
+      "parent": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+      "relatedGroup": "t3code-install-cda00b386774",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "17a4d52d3803155fd6a4a9e0050e4a13134875f9",
+        "bytes": 886,
+        "externalAlchemyDependencies": {
+          "alchemy": {
+            "section": "dependencies",
+            "specifier": "https://pkg.ing/alchemy/078ff00"
+          }
+        },
+        "path": "infra/relay/package.json",
+        "sha256": "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadSort.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSort.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 256,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "https://pkg.ing/alchemy/078ff00"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "491219bf1f4db7144b747fe02af0cbc075668b12",
+      "fixRootTreeId": "eee343d3f4404c6fe1c597438cc8d0be748ca19b",
+      "id": "t3code-491219bf1f4d",
+      "parent": "e5c75470678e33ca2bd1001d9d93493fe437972a",
+      "relatedGroup": "t3code-install-16858df93bbf",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadSettled.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSettled.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 277,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "4abf8b46c591ae2b36aa29598c388100df651411",
+      "fixRootTreeId": "58b522667a51675ce5e7c9dd2cecc94fa49877bb",
+      "id": "t3code-4abf8b46c591",
+      "parent": "3083d712eefb8009f7366ba53040eb2d477bfa33",
+      "relatedGroup": "t3code-install-3f6293e594ec",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "eebd9f4721aa5626b890ae9212140a91fd453142",
+        "bytes": 820,
+        "externalAlchemyDependencies": {
+          "alchemy": {
+            "section": "dependencies",
+            "specifier": "https://pkg.ing/alchemy/078ff00"
+          }
+        },
+        "path": "infra/relay/package.json",
+        "sha256": "74420ac2f183f006e6d6a6697c4e9b4c19f7a5a1a80cc0d6f5b17f092e6852d3"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/shellReducer.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/shellReducer.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 241,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "https://pkg.ing/alchemy/078ff00"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/mobile",
+          "path": "apps/mobile"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 6,
+      "fix": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+      "fixRootTreeId": "eefd5d0eab9d75671cd1278133fdcebcdfc5c971",
+      "id": "t3code-5031b9ccebbb",
+      "parent": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+      "relatedGroup": "t3code-install-4bab1da110d5",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadDetail.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadShell.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSubagents.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "apps/mobile/src/state/threads.ts",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/web/src/components/ChatView.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/state/threads.ts",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/subagentRuntime.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadDetail.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadRelationships.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadShell.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSubagents.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 2811,
+      "workspaceDependencyEdgeCount": 9,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "fixRootTreeId": "2550766bd43dee365c939b9c4e73a6a6f132395e",
+      "id": "t3code-56914128c1ff",
+      "parent": "6108ef3d3d0ef2a598088a1bb64980580e935830",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/usage/UsageService.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageAggregation.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usagePricing.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageScanCache.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageTranscriptReader.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageTranscriptStreaming.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageTranscripts.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/UsageService.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/antigravityUsageReader.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/cursorUsageReader.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/opencodeUsageReader.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usagePricing.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageScanCache.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageTranscriptReader.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/usage/usageTranscripts.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3252,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/mobile",
+          "path": "apps/mobile"
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 11,
+      "fix": "63f74e209dc27df1f8733535d6fd4a79d442add8",
+      "fixRootTreeId": "f64306708d999157bc61339c7639f9a242378579",
+      "id": "t3code-63f74e209dc2",
+      "parent": "ca4f84e702428656665d53635e16251112091657",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/web/src/components/chat/TraitsPicker.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/shared/src/model.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "apps/mobile/src/features/threads/ThreadComposer.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/mobile/src/features/threads/ThreadDetailScreen.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/mobile/src/features/threads/ThreadSettingsSheet.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/mobile/src/state/entities.ts",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/web/src/components/ChatView.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/components/chat/ChatComposer.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/components/chat/TraitsPicker.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/components/chat/composerProviderState.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/contracts/src/orchestrationV2.ts",
+          "kind": "source",
+          "packageName": "@t3tools/contracts",
+          "packagePath": "packages/contracts"
+        },
+        {
+          "file": "packages/shared/src/model.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 4155,
+      "workspaceDependencyEdgeCount": 19,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+      "fixRootTreeId": "a5321f402ba9e7504c4cda558f83fa61b19d99ac",
+      "id": "t3code-684d703b0a8a",
+      "parent": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+      "relatedGroup": "t3code-install-7ee3d847b90d",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/usageFormat.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/usageFormat.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 150,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "fixRootTreeId": "faec3e62eab38dce58e36c518170b5b4fa35821c",
+      "id": "t3code-6befe42eb096",
+      "parent": "b30a9bc4143910f12d9c990c221fb9bc20cbc293",
+      "relatedGroup": "t3code-install-4d7ac4348ddc",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/path.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/path.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 149,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "70de6e17860d7343a73e117e6e9e1ce41b1b633e",
+      "fixRootTreeId": "f70c457da944bf98c2fb482944a20b8a4e84aed8",
+      "id": "t3code-70de6e17860d",
+      "parent": "47dfc6526521866992f6b50beac4587b45114631",
+      "relatedGroup": "t3code-install-7f3efb59fb30",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadSearch.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSearch.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 278,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "736130c2fd39b85cd515fa2a41cd10c8a8a52630",
+      "fixRootTreeId": "8711cb01b83d3a765cc77d830c7d8e317ab7fdd0",
+      "id": "t3code-736130c2fd39",
+      "parent": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/orchestration-v2/ProjectionStore.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/runtimeLayer.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/Orchestrator.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/ProjectionStore.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/web/src/components/Sidebar.logic.ts",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/models.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/contracts/src/orchestrationV2.ts",
+          "kind": "source",
+          "packageName": "@t3tools/contracts",
+          "packagePath": "packages/contracts"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3251,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "7980dfddb193864e07a5bcc013b0ccb93fb4300c",
+      "fixRootTreeId": "a84c5c169162b1d3cda8fab9a78def6d3073565e",
+      "id": "t3code-7980dfddb193",
+      "parent": "ac4aae101d060b5355a5de58e23c7387886d9021",
+      "relatedGroup": "t3code-install-6c26501fdebc",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadSnoozed.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadSettled.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 315,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "8b3ddf51c59a54411cd02b321cb07f39c927df09",
+      "fixRootTreeId": "4659d34c0c96f8a022e16215b5dfc23c050e3faf",
+      "id": "t3code-8b3ddf51c59a",
+      "parent": "d7c71f91d61e68ae35fcc0032847cb42324a8b51",
+      "relatedGroup": "t3code-install-c4a0237c4d7d",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "94d1d5036a4a394612f4cf12aac9e089887a1389",
+        "bytes": 1011,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/projectSettings.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/projectSettings.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 214,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.76"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 5,
+      "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+      "fixRootTreeId": "94fded5f10f0152d6e5584bdc8dfa13b3736ae20",
+      "id": "t3code-8bc9b78f8270",
+      "parent": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+      "relatedGroup": "t3code-install-ee27f20fa50a",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/web/src/terminal-links.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/terminal-links.ts",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 1732,
+      "workspaceDependencyEdgeCount": 6,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "fixRootTreeId": "8618c345a1304bf50baea5cb0751ad7cf16a4e2f",
+      "id": "t3code-9333509c9180",
+      "parent": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/telemetry/AnalyticsService.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/client-runtime/src/connection/registry.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/connection/supervisor.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "apps/server/src/telemetry/AnalyticsService.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/client-runtime/src/connection/supervisor.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/connection/wakeups.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/server.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3251,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "9bdd91293316038d6a50f8bb19afcd73c25ad102",
+      "fixRootTreeId": "a10a9c9d061a149af2c1124a672b36db9728794a",
+      "id": "t3code-9bdd91293316",
+      "parent": "4db50757c0b618293997a7f81bcfe30b68356969",
+      "relatedGroup": "t3code-install-7ee3d847b90d",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/subagentRuntime.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/subagentRuntime.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 295,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 5,
+      "fix": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "fixRootTreeId": "6d273b1b36097c4315657da883fb8672c4d73449",
+      "id": "t3code-a5b34b25378f",
+      "parent": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "apps/web/src/components/ChatView.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 1911,
+      "workspaceDependencyEdgeCount": 6,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+      "fixRootTreeId": "3c17622d8d8badae52556e5d84d9a713e59f705e",
+      "id": "t3code-a9c9995352e5",
+      "parent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+      "relatedGroup": "t3code-install-45cbc35fab04",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/provider/acp/KiroAcpSupport.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3259,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+      "fixRootTreeId": "be48f3d72c1f51580ab40d70d3983fec10e1f1dd",
+      "id": "t3code-b7a8b7f25b07",
+      "parent": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+      "relatedGroup": "t3code-install-834b0967522e",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3255,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "cc1e634bfa62edd56ff792eea666e436fdef788f",
+      "fixRootTreeId": "a15c91f3d07ee631a65929d51390cc41fbc2d5a3",
+      "id": "t3code-cc1e634bfa62",
+      "parent": "1e7c8e0f24c217a3229615fa1de1e6ed85d7e835",
+      "relatedGroup": "t3code-install-4bab1da110d5",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/provider/ModelManifest.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/provider/providerCompatibility.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "apps/server/src/provider/ModelManifest.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3247,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+      "fixRootTreeId": "93c52ee87ffd140b5e46e236079f6d6709358018",
+      "id": "t3code-d4d5d12e8ba0",
+      "parent": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+      "relatedGroup": "t3code-install-49a592f5503b",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "94d1d5036a4a394612f4cf12aac9e089887a1389",
+        "bytes": 1011,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/usageMerge.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/usageMerge.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 223,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.76"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/mobile",
+          "path": "apps/mobile"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 6,
+      "fix": "db514607f4026cd2bbb7b96674168bb227ac043a",
+      "fixRootTreeId": "1b4b3b8fe6f364c8ed6f3a64124d6d07bc908bbc",
+      "id": "t3code-db514607f402",
+      "parent": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/mobile/src/lib/threadActivity.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/web/src/components/chat/MessagesTimeline.logic.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/mobile/src/lib/threadActivity.ts",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 2815,
+      "workspaceDependencyEdgeCount": 9,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "dd8332da57355bccd7e666289267f2c94597debd",
+      "fixRootTreeId": "cf48d755ac8f5048765aa9b24615be35497ca1a2",
+      "id": "t3code-dd8332da5735",
+      "parent": "eeea71a88108c375c04853f58c298a518a54acaf",
+      "relatedGroup": "t3code-install-ee27f20fa50a",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/shell.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "apps/server/src/process/externalLauncher.ts",
+          "kind": "source",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/shared/src/shell.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 2641,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 3,
+      "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+      "fixRootTreeId": "1c125133b75f8bab45be4196873ec0562a4c3c5b",
+      "id": "t3code-f1add18ae156",
+      "parent": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+      "relatedGroup": "t3code-install-c01c5f85dee6",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/shared/src/delimitedPreview.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/delimitedPreview.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 226,
+      "workspaceDependencyEdgeCount": 1,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "t3",
+          "path": "apps/server"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "effect-acp",
+          "path": "packages/effect-acp"
+        },
+        {
+          "name": "effect-codex-app-server",
+          "path": "packages/effect-codex-app-server"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        },
+        {
+          "name": "@t3tools/ssh",
+          "path": "packages/ssh"
+        },
+        {
+          "name": "@t3tools/tailscale",
+          "path": "packages/tailscale"
+        }
+      ],
+      "dependencyClosurePackageCount": 10,
+      "fix": "f391794a35c604d57e166a3ab48d56fc6e4e469a",
+      "fixRootTreeId": "eb9453546549f50ef401bef59323b88954c1e7a4",
+      "id": "t3code-f391794a35c6",
+      "parent": "31a9da179ed0763335f05681c577474aec5d2309",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/server/src/assets/AssetAccess.test.ts",
+          "kind": "test",
+          "packageName": "t3",
+          "packagePath": "apps/server"
+        },
+        {
+          "file": "packages/shared/src/filePreview.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        },
+        {
+          "file": "packages/shared/src/filePreview.ts",
+          "kind": "source",
+          "packageName": "@t3tools/shared",
+          "packagePath": "packages/shared"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 3257,
+      "workspaceDependencyEdgeCount": 16,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/mobile",
+          "path": "apps/mobile"
+        },
+        {
+          "name": "@t3tools/web",
+          "path": "apps/web"
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 6,
+      "fix": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "fixRootTreeId": "0b7e69fcdbbe758e1b8e7619fe9ca8e92f5866ef",
+      "id": "t3code-f68e24fb419c",
+      "parent": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "relatedGroup": "t3code-install-aa20f3655ae3",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "apps/mobile/src/features/threads/threadListV2.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/web/src/components/Sidebar.logic.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/entities.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "apps/mobile/src/features/threads/threadListV2.ts",
+          "kind": "source",
+          "packageName": "@t3tools/mobile",
+          "packagePath": "apps/mobile"
+        },
+        {
+          "file": "apps/web/src/components/Sidebar.logic.ts",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "apps/web/src/components/ThreadNotificationCoordinator.tsx",
+          "kind": "source",
+          "packageName": "@t3tools/web",
+          "packagePath": "apps/web"
+        },
+        {
+          "file": "packages/client-runtime/src/state/models.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threadExecution.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 2815,
+      "workspaceDependencyEdgeCount": 9,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.79"
+    },
+    {
+      "dependencyClosure": [
+        {
+          "name": "@t3tools/monorepo",
+          "path": "."
+        },
+        {
+          "name": "@t3tools/client-runtime",
+          "path": "packages/client-runtime"
+        },
+        {
+          "name": "@t3tools/contracts",
+          "path": "packages/contracts"
+        },
+        {
+          "name": "@t3tools/shared",
+          "path": "packages/shared"
+        }
+      ],
+      "dependencyClosurePackageCount": 4,
+      "fix": "f87ecf0cc307f974745da8eea856fab5711023f3",
+      "fixRootTreeId": "8922d65ce23c37f4cb6a63c7d84eff5ff72293ae",
+      "id": "t3code-f87ecf0cc307",
+      "parent": "fc1f543d6c67da9cf1edb25b647646faa0105b41",
+      "relatedGroup": "t3code-install-800215c134e2",
+      "relayInSelectedDependencyClosure": false,
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackageName": "t3code-relay",
+      "relayPackagePath": "infra/relay",
+      "relayPackagePresent": true,
+      "relayTargetingTsconfigAliases": [],
+      "rootWorkspaceGlobs": [
+        "apps/*",
+        "infra/*",
+        "oxlint-plugin-t3code",
+        "packages/*",
+        "scripts"
+      ],
+      "safeForNegativeRelayFilterByThisStaticAudit": true,
+      "selectedPackageRoots": [
+        {
+          "file": "packages/client-runtime/src/state/threads-atoms.test.ts",
+          "kind": "test",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        },
+        {
+          "file": "packages/client-runtime/src/state/threads.ts",
+          "kind": "source",
+          "packageName": "@t3tools/client-runtime",
+          "packagePath": "packages/client-runtime"
+        }
+      ],
+      "sourceImportHitsToRelay": [],
+      "sourceScannedFileCount": 371,
+      "workspaceDependencyEdgeCount": 3,
+      "workspaceEdgesToRelay": [],
+      "relayAlchemyDependencySpec": "2.0.0-beta.65"
+    }
+  ],
+  "filterUnderReview": "--filter=!t3code-relay",
+  "groups": [
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-491219bf1f4d"
+      ],
+      "id": "t3code-install-16858df93bbf",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "491219bf1f4db7144b747fe02af0cbc075668b12": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-38f3c62304bf"
+      ],
+      "id": "t3code-install-3f5a1597bcde",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      ],
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "38f3c62304bfe79ea6c9f75a17afb732b555f48d": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-4abf8b46c591"
+      ],
+      "id": "t3code-install-3f6293e594ec",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "74420ac2f183f006e6d6a6697c4e9b4c19f7a5a1a80cc0d6f5b17f092e6852d3"
+      ],
+      "relayPackageManifest": {
+        "blobId": "eebd9f4721aa5626b890ae9212140a91fd453142",
+        "bytes": 820,
+        "externalAlchemyDependencies": {
+          "alchemy": {
+            "section": "dependencies",
+            "specifier": "https://pkg.ing/alchemy/078ff00"
+          }
+        },
+        "path": "infra/relay/package.json",
+        "sha256": "74420ac2f183f006e6d6a6697c4e9b4c19f7a5a1a80cc0d6f5b17f092e6852d3"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "4abf8b46c591ae2b36aa29598c388100df651411": "https://pkg.ing/alchemy/078ff00"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-421088c27367"
+      ],
+      "id": "t3code-install-418e9aba3903",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "421088c27367da227d922ce999c1637416a6d0f4": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-a9c9995352e5"
+      ],
+      "id": "t3code-install-45cbc35fab04",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "a9c9995352e559079fd55ec5e9996687bb43ce94": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-d4d5d12e8ba0"
+      ],
+      "id": "t3code-install-49a592f5503b",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      ],
+      "relayPackageManifest": {
+        "blobId": "94d1d5036a4a394612f4cf12aac9e089887a1389",
+        "bytes": 1011,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665": "2.0.0-beta.76"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 4,
+      "candidateIds": [
+        "t3code-151c241cd2cc",
+        "t3code-5031b9ccebbb",
+        "t3code-43bd6677392b",
+        "t3code-cc1e634bfa62"
+      ],
+      "id": "t3code-install-4bab1da110d5",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "151c241cd2cc22c3b10ba8735e44f83fb723a511": "2.0.0-beta.79",
+        "5031b9ccebbb7dd91df1aa79608fa74347ee929b": "2.0.0-beta.79",
+        "43bd6677392b80cd12742f865c277c9939239543": "2.0.0-beta.79",
+        "cc1e634bfa62edd56ff792eea666e436fdef788f": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 2,
+      "candidateIds": [
+        "t3code-220e573b14ce",
+        "t3code-6befe42eb096"
+      ],
+      "id": "t3code-install-4d7ac4348ddc",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "220e573b14cea84b6662a7d69047129047433b63": "2.0.0-beta.65",
+        "6befe42eb09633f3adb500ae906a0e1da3f15f64": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-7980dfddb193"
+      ],
+      "id": "t3code-install-6c26501fdebc",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "7980dfddb193864e07a5bcc013b0ccb93fb4300c": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-062b4618c229"
+      ],
+      "id": "t3code-install-745336e7263a",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "062b4618c229f3e2f13e44efd8dab8c71ad33dae": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 3,
+      "candidateIds": [
+        "t3code-684d703b0a8a",
+        "t3code-9bdd91293316",
+        "t3code-178da6bc3210"
+      ],
+      "id": "t3code-install-7ee3d847b90d",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "684d703b0a8a0632a18c8453277f7e5e6312b200": "2.0.0-beta.65",
+        "9bdd91293316038d6a50f8bb19afcd73c25ad102": "2.0.0-beta.65",
+        "178da6bc3210b82c4a83f33c8b149f623a3375e1": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-70de6e17860d"
+      ],
+      "id": "t3code-install-7f3efb59fb30",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "70de6e17860d7343a73e117e6e9e1ce41b1b633e": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-f87ecf0cc307"
+      ],
+      "id": "t3code-install-800215c134e2",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "f87ecf0cc307f974745da8eea856fab5711023f3": "2.0.0-beta.65"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-b7a8b7f25b07"
+      ],
+      "id": "t3code-install-834b0967522e",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "b7a8b7f25b07ce171b5b9025aa896896680b3021": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 9,
+      "candidateIds": [
+        "t3code-f391794a35c6",
+        "t3code-f68e24fb419c",
+        "t3code-a5b34b25378f",
+        "t3code-56914128c1ff",
+        "t3code-63f74e209dc2",
+        "t3code-736130c2fd39",
+        "t3code-9333509c9180",
+        "t3code-263097a8da03",
+        "t3code-db514607f402"
+      ],
+      "id": "t3code-install-aa20f3655ae3",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "relayPackageManifest": {
+        "blobId": "d0649d73e3618a79608d785274c8fd0b281ee29d",
+        "bytes": 1068,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "f391794a35c604d57e166a3ab48d56fc6e4e469a": "2.0.0-beta.79",
+        "f68e24fb419c985269cd0acb841e203af1419c43": "2.0.0-beta.79",
+        "a5b34b25378fbbf90ce36ee101a11528ccf11c7e": "2.0.0-beta.79",
+        "56914128c1ff9dcf6585c380b7b25845d6ca5f98": "2.0.0-beta.79",
+        "63f74e209dc27df1f8733535d6fd4a79d442add8": "2.0.0-beta.79",
+        "736130c2fd39b85cd515fa2a41cd10c8a8a52630": "2.0.0-beta.79",
+        "9333509c918083cbfb7e66759ddbcbfa71a3a452": "2.0.0-beta.79",
+        "263097a8da038a143f2b7b7817250f0ad390ea32": "2.0.0-beta.79",
+        "db514607f4026cd2bbb7b96674168bb227ac043a": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-f1add18ae156"
+      ],
+      "id": "t3code-install-c01c5f85dee6",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      ],
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "f1add18ae1560f509405a5eece07f3cfb1cc850f": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-8b3ddf51c59a"
+      ],
+      "id": "t3code-install-c4a0237c4d7d",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      ],
+      "relayPackageManifest": {
+        "blobId": "94d1d5036a4a394612f4cf12aac9e089887a1389",
+        "bytes": 1011,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "8b3ddf51c59a54411cd02b321cb07f39c927df09": "2.0.0-beta.76"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-43e2aeab3891"
+      ],
+      "id": "t3code-install-cda00b386774",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      ],
+      "relayPackageManifest": {
+        "blobId": "17a4d52d3803155fd6a4a9e0050e4a13134875f9",
+        "bytes": 886,
+        "externalAlchemyDependencies": {
+          "alchemy": {
+            "section": "dependencies",
+            "specifier": "https://pkg.ing/alchemy/078ff00"
+          }
+        },
+        "path": "infra/relay/package.json",
+        "sha256": "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "43e2aeab389199de115bb414f80db12b60cd85f4": "https://pkg.ing/alchemy/078ff00"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-193e3c62e6d5"
+      ],
+      "id": "t3code-install-e01e4bdf3124",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      ],
+      "relayPackageManifest": {
+        "blobId": "17a4d52d3803155fd6a4a9e0050e4a13134875f9",
+        "bytes": 886,
+        "externalAlchemyDependencies": {
+          "alchemy": {
+            "section": "dependencies",
+            "specifier": "https://pkg.ing/alchemy/078ff00"
+          }
+        },
+        "path": "infra/relay/package.json",
+        "sha256": "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "193e3c62e6d52fcc200d823ca6d9061d13f81f23": "https://pkg.ing/alchemy/078ff00"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 3,
+      "candidateIds": [
+        "t3code-8bc9b78f8270",
+        "t3code-dd8332da5735",
+        "t3code-29a32660d3cb"
+      ],
+      "id": "t3code-install-ee27f20fa50a",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      ],
+      "relayPackageManifest": {
+        "blobId": "f10d00d8d52b27b65770d7178a216557ea593548",
+        "bytes": 1000,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "8bc9b78f827072a89707f6e4b577710e27263697": "2.0.0-beta.79",
+        "dd8332da57355bccd7e666289267f2c94597debd": "2.0.0-beta.79",
+        "29a32660d3cb2ade1f13283f889b519f73b24fbd": "2.0.0-beta.79"
+      }
+    },
+    {
+      "allCandidatesStaticFilterSafe": true,
+      "candidateCount": 1,
+      "candidateIds": [
+        "t3code-32407df9c5ff"
+      ],
+      "id": "t3code-install-eebf736b5b58",
+      "relayInAnySelectedClosure": false,
+      "relayManifestDistinctHashes": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "relayPackageManifest": {
+        "blobId": "4e9519671f22f7025fc2f2ccec846cab9d1a3f3e",
+        "bytes": 868,
+        "externalAlchemyDependencies": {},
+        "path": "infra/relay/package.json",
+        "sha256": "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      },
+      "relayPackagePresent": true,
+      "sourceImportHitsToRelay": 0,
+      "workspaceEdgesToRelay": 0,
+      "relayAlchemyDependencyAcrossCandidates": {
+        "32407df9c5ffd3c5dda2e745568997ac33c15ed1": "2.0.0-beta.65"
+      }
+    }
+  ],
+  "metadataOnly": true,
+  "method": {
+    "archiveSource": "each exact original50 T3 candidate fixed revision, read through Git object database",
+    "dependencyEdges": "for every selected test/source package and the root importer, follow any dependency whose name resolves to an active workspace package; this intentionally over-approximates workspace linking for same-name semver/catalog specs",
+    "limitations": "Static package/import analysis does not execute dynamic runtime loading or derive arbitrary computed import strings; complete root Git tree IDs bind all scanned candidate archives.",
+    "sourceImports": "scan TS/TSX/MTS/CTS/JS/JSX/MJS/CJS/Vue files in reachable workspace package roots plus all selected source/test paths; detect package-name imports, literal infra/relay paths, relative paths resolved against Git-tree paths, and tsconfig aliases targeting infra/relay",
+    "workspaceMembership": "parsed root pnpm-workspace.yaml package globs; nested .repos packages outside those configured globs are excluded from active workspace graph",
+    "workspaceFilterJustification": "For each candidate revision, the relay workspace manifest is present and its exact alchemy spec is recorded; selected source/test workspace dependency closures contain no t3code-relay edge; static source scans contain no imports into infra/relay. Excluding t3code-relay therefore removes a package outside every selected candidate package closure. The root manifest/workspace was not edited."
+  },
+  "noTestsBuildsInstallsOrSourceChanges": true,
+  "protectedPrimaryPlan": {
+    "candidateCount": 50,
+    "path": "/tmp/archguard-test-value-20261003/historical-install-plan.json",
+    "sha256": "b6c13206cd9bf6440177a42a048147f790510f33c98ea9fb5c17cf8fb39df17d",
+    "t3codeCandidateCount": 37,
+    "t3codeInputGroupCount": 21
+  },
+  "requestId": "historical-filter-audit",
+  "schemaVersion": 1,
+  "scope": "original-registered50-t3code-relay-filter-static-audit",
+  "summary": {
+    "candidateCount": 37,
+    "filterSafeAcrossAllCandidates": true,
+    "groupsWithRelayManifest": 21,
+    "inputGroupCount": 21,
+    "relayDependencyClosures": 0,
+    "safeCandidateCount": 37,
+    "sourceImportHitsToRelay": 0,
+    "workspaceEdgesToRelay": 0,
+    "directAlchemyURLCandidateCount": 3,
+    "relayAlchemySpecs": [
+      "2.0.0-beta.65",
+      "2.0.0-beta.76",
+      "2.0.0-beta.79",
+      "https://pkg.ing/alchemy/078ff00"
+    ]
+  },
+  "targetPackage": {
+    "manifestHashByGroup": {
+      "t3code-install-16858df93bbf": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-3f5a1597bcde": [
+        "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      ],
+      "t3code-install-3f6293e594ec": [
+        "74420ac2f183f006e6d6a6697c4e9b4c19f7a5a1a80cc0d6f5b17f092e6852d3"
+      ],
+      "t3code-install-418e9aba3903": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-45cbc35fab04": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "t3code-install-49a592f5503b": [
+        "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      ],
+      "t3code-install-4bab1da110d5": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "t3code-install-4d7ac4348ddc": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-6c26501fdebc": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-745336e7263a": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-7ee3d847b90d": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-7f3efb59fb30": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-800215c134e2": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ],
+      "t3code-install-834b0967522e": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "t3code-install-aa20f3655ae3": [
+        "fb4abb3a14bf0c4b134ad6ca70e85e2d79e535ba4976ea47ff6309ae9b171cc6"
+      ],
+      "t3code-install-c01c5f85dee6": [
+        "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      ],
+      "t3code-install-c4a0237c4d7d": [
+        "ab36e3320aba23106f4c057f515a6b0f8837d5ecc9bded10c85ad2647f04b54f"
+      ],
+      "t3code-install-cda00b386774": [
+        "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      ],
+      "t3code-install-e01e4bdf3124": [
+        "044b37b816d7eb843a10190c7df181353776510abb64734a66d37fd5e0db5483"
+      ],
+      "t3code-install-ee27f20fa50a": [
+        "e76b50d7c151b397fce3f2d6e0dd45d1b5776d0b01dadd067ad52381f1785a00"
+      ],
+      "t3code-install-eebf736b5b58": [
+        "3369744ccf6081d3fe88061ff164b28479450b1a3a8b02ec85523e90e42a13cd"
+      ]
+    },
+    "name": "t3code-relay",
+    "workspacePath": "infra/relay"
+  }
+}

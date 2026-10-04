@@ -1,0 +1,35 @@
+{
+  "validationOnly": true,
+  "setupStoppedBeforeInstaller": true,
+  "groupId": "t3code-install-eebf736b5b58",
+  "revision": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+  "archiveSha256": "3226717e53fad576c7bd9dd8d3de450895601aeecc7715c5ff4f909ae8283190",
+  "archiveBytes": 211240960,
+  "archiveProcess": {
+    "exitCode": 0,
+    "status": "finished",
+    "durationMs": 839.6594580262899,
+    "command": [
+      "git",
+      "-C",
+      "/Users/alun/repos/t3code",
+      "archive",
+      "32407df9c5ffd3c5dda2e745568997ac33c15ed1"
+    ],
+    "cwd": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered-v2/t3code-install-eebf736b5b58",
+    "residualProcessGroup": false,
+    "cleanupErrors": [],
+    "stdoutBytes": 211240960,
+    "stderrBytes": 0,
+    "cleanupComplete": true,
+    "capturedPid": 98532
+  },
+  "member": "apps/mobile/modules/t3-terminal/android/src/main/jniLibs/armeabi-v7a/libghostty-vt.so",
+  "expectedBlobBytes": 1249176,
+  "expectedBlobSha256": "7f475fb083b2fd8d6855e89494814c58b94cd68a35b794c1a760e4ff1112279e",
+  "capturedMemberSha256": "070dcb80e0615ade29c316d7bcfb36ca00eebc62b32c726a0f316266c1341331",
+  "firstMismatchWithinMember": 681984,
+  "capturedSequenceMatchesLaterBlobOffset": 692224,
+  "missingByteCountAtFirstMismatch": 10240,
+  "causeUnproven": true
+}

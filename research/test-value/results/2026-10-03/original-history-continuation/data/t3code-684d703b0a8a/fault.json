@@ -1,0 +1,24 @@
+{
+  "id": "t3code-684d703b0a8a",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): degrade an unknown system time zone to UTC in usage windows (#6670)",
+  "sourceFiles": [
+    "packages/shared/src/usageFormat.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/usageFormat.test.ts"
+  ],
+  "relatedGroup": "usage-window-time-zones",
+  "fix": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+  "parent": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 39
+  },
+  "verified": false,
+  "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-684d703b0a8a/fixed-template/CLAUDE.md'\")]",
+  "recordDigests": {}
+}

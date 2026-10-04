@@ -1,0 +1,1006 @@
+{
+  "candidates": [
+    {
+      "id": "t3code-9333509c9180",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): reconnects back off with jitter and keep healthy sockets (#14897)",
+      "sourceFiles": [
+        "apps/server/src/telemetry/AnalyticsService.ts",
+        "packages/client-runtime/src/connection/supervisor.ts",
+        "packages/client-runtime/src/connection/wakeups.ts",
+        "packages/client-runtime/src/state/server.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/telemetry/AnalyticsService.test.ts",
+        "packages/client-runtime/src/connection/registry.test.ts",
+        "packages/client-runtime/src/connection/supervisor.test.ts"
+      ],
+      "relatedGroup": "connection-recovery",
+      "fix": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "parent": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 6
+      }
+    },
+    {
+      "id": "t3code-151c241cd2cc",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): format subagent descriptions as display names (#14999)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadExecution.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadExecution.test.ts"
+      ],
+      "relatedGroup": "thread-runtime-presentation",
+      "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+      "parent": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 7
+      }
+    },
+    {
+      "id": "t3code-5031b9ccebbb",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): track follow-up subagent status",
+      "sourceFiles": [
+        "apps/mobile/src/state/threads.ts",
+        "apps/web/src/components/ChatView.tsx",
+        "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+        "apps/web/src/state/threads.ts",
+        "packages/client-runtime/src/state/subagentRuntime.ts",
+        "packages/client-runtime/src/state/threadDetail.ts",
+        "packages/client-runtime/src/state/threadRelationships.ts",
+        "packages/client-runtime/src/state/threadShell.ts",
+        "packages/client-runtime/src/state/threadSubagents.ts"
+      ],
+      "testFiles": [
+        "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx",
+        "packages/client-runtime/src/state/threadDetail.test.ts",
+        "packages/client-runtime/src/state/threadShell.test.ts",
+        "packages/client-runtime/src/state/threadSubagents.test.ts"
+      ],
+      "relatedGroup": "subagent-status",
+      "fix": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+      "parent": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 8
+      }
+    },
+    {
+      "id": "t3code-43bd6677392b",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): Claude skill calls show the skill name (#14980)",
+      "sourceFiles": [
+        "apps/mobile/src/lib/threadActivity.ts",
+        "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.ts",
+        "apps/server/src/orchestration-v2/Adapters/CodexAdapterV2.ts",
+        "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+        "apps/web/src/components/chat/MessagesTimeline.tsx",
+        "packages/shared/src/toolActivity.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+        "packages/shared/src/toolActivity.test.ts"
+      ],
+      "relatedGroup": "provider-tool-presentation",
+      "fix": "43bd6677392b80cd12742f865c277c9939239543",
+      "parent": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 9
+      }
+    },
+    {
+      "id": "t3code-a9c9995352e5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): Kiro never auto-grants beyond the thread or runs Autopilot under overrides",
+      "sourceFiles": [
+        "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.ts",
+        "apps/server/src/provider/acp/KiroAcpSupport.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts"
+      ],
+      "relatedGroup": "kiro-permission-policy",
+      "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+      "parent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 10
+      }
+    },
+    {
+      "id": "t3code-cc1e634bfa62",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): released builds keep the OpenCode policy for their own version (#14863)",
+      "sourceFiles": [
+        "apps/server/src/provider/ModelManifest.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/provider/ModelManifest.test.ts",
+        "apps/server/src/provider/providerCompatibility.test.ts"
+      ],
+      "relatedGroup": "provider-manifest-policy",
+      "fix": "cc1e634bfa62edd56ff792eea666e436fdef788f",
+      "parent": "1e7c8e0f24c217a3229615fa1de1e6ed85d7e835",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 11
+      }
+    },
+    {
+      "id": "t3code-8bc9b78f8270",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): terminal links drop a trailing colon (#13408)",
+      "sourceFiles": [
+        "apps/web/src/terminal-links.ts"
+      ],
+      "testFiles": [
+        "apps/web/src/terminal-links.test.ts"
+      ],
+      "relatedGroup": "terminal-link-parsing",
+      "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+      "parent": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 12
+      }
+    },
+    {
+      "id": "t3code-dd8332da5735",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): installed editors no longer vanish when discovery is slow (#13669)",
+      "sourceFiles": [
+        "apps/server/src/process/externalLauncher.ts",
+        "packages/shared/src/shell.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/shell.test.ts"
+      ],
+      "relatedGroup": "editor-discovery",
+      "fix": "dd8332da57355bccd7e666289267f2c94597debd",
+      "parent": "eeea71a88108c375c04853f58c298a518a54acaf",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 13
+      }
+    },
+    {
+      "id": "t3code-b7a8b7f25b07",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(threads): keep the capped title failure reason at 500 characters",
+      "sourceFiles": [
+        "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts"
+      ],
+      "relatedGroup": "thread-title-error",
+      "fix": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+      "parent": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 14
+      }
+    },
+    {
+      "id": "t3code-263097a8da03",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): mod+enter starts a new thread in the background again (#15060)",
+      "sourceFiles": [
+        "apps/server/src/keybindings.ts",
+        "packages/shared/src/keybindings.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/keybindings.test.ts",
+        "apps/web/src/composer-logic.test.ts",
+        "apps/web/src/keybindings.test.ts"
+      ],
+      "relatedGroup": "keybinding-dispatch",
+      "fix": "263097a8da038a143f2b7b7817250f0ad390ea32",
+      "parent": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 15
+      }
+    },
+    {
+      "id": "t3code-db514607f402",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(chat): sending on an older thread no longer jumps to the top (#15059)",
+      "sourceFiles": [
+        "apps/mobile/src/lib/threadActivity.ts",
+        "apps/web/src/components/chat/MessagesTimeline.logic.ts"
+      ],
+      "testFiles": [
+        "apps/mobile/src/lib/threadActivity.test.ts",
+        "apps/web/src/components/chat/MessagesTimeline.logic.test.ts"
+      ],
+      "relatedGroup": "thread-list-ordering",
+      "fix": "db514607f4026cd2bbb7b96674168bb227ac043a",
+      "parent": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 16
+      }
+    },
+    {
+      "id": "scope-c46613230e97",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: retain live discussion updates during detail loads",
+      "sourceFiles": [
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-discussion-sync",
+      "fix": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "parent": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 17
+      }
+    },
+    {
+      "id": "scope-82c4e117a745",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: apply live discussion updates at detail delivery",
+      "sourceFiles": [
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-discussion-sync",
+      "fix": "82c4e117a745c1a39bcea23b49814cedc7285fcf",
+      "parent": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 18
+      }
+    },
+    {
+      "id": "scope-8cbf18bb51d4",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: cancel full detail reads after their final owner leaves",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts",
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "parent": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 19
+      }
+    },
+    {
+      "id": "scope-e7c277798b3b",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: validate detail batches against current comparisons",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts",
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "parent": "f252740ebbc952510d2cbdfeaec42accec83e071",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 20
+      }
+    },
+    {
+      "id": "scope-e65e8dd2c3af",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(plan-web): retry competing SQLite initialization asynchronously",
+      "sourceFiles": [
+        "apps/plan-web/src/backend/server.ts",
+        "apps/plan-web/src/backend/store.ts"
+      ],
+      "testFiles": [
+        "tests/plan-web-api.test.ts"
+      ],
+      "relatedGroup": "plan-web-database-init",
+      "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+      "parent": "9cc772a41f7a611a369a8b8d26c813c184ecc516",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 21
+      }
+    },
+    {
+      "id": "scope-c78a8c5f0fb1",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(hub): retire relay sessions after unstarted write timeouts",
+      "sourceFiles": [
+        "apps/hub/src/paired-server.ts"
+      ],
+      "testFiles": [
+        "tests/hub-relay.test.ts"
+      ],
+      "relatedGroup": "hub-relay-write",
+      "fix": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5",
+      "parent": "5bc1570e9daf284f391196d388fe148f6fcd60a7",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 22
+      }
+    },
+    {
+      "id": "scope-c126ac6076af",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: reject approval of changed remote observations",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "c126ac6076afca5f5c38ea7d13360416af299deb",
+      "parent": "e26251e3f020527fdaa8d035ae7b6e91522a7014",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 23
+      }
+    },
+    {
+      "id": "scope-c82b208701de",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: keep expiry separate from destination privacy",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts",
+        "packages/protocol/src/publications.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "c82b208701de72215022674cc20902332219d325",
+      "parent": "daae85340b464ab62a865549b578ba3ca399d04e",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 24
+      }
+    },
+    {
+      "id": "scope-cef88d2b3b60",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: validate publication progress and retained bytes",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts",
+        "apps/desktop/src/library/store.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "parent": "c82b208701de72215022674cc20902332219d325",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 25
+      }
+    },
+    {
+      "id": "scope-d993eb728ac3",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: retain confirmed publications with unknown remote dates",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "parent": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 26
+      }
+    },
+    {
+      "id": "scope-392d29f5779d",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(hub): preserve larger outbound publication commands",
+      "sourceFiles": [
+        "apps/hub/src/paired-server.ts"
+      ],
+      "testFiles": [
+        "tests/hub-relay.test.ts"
+      ],
+      "relatedGroup": "hub-relay-write",
+      "fix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+      "parent": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 27
+      }
+    },
+    {
+      "id": "scope-84ec1ad4e6a8",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(pull-requests): resolve repository aliases on initial sync",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts",
+        "apps/desktop/src/plugins/pull-requests/gh.ts",
+        "apps/desktop/src/plugins/pull-requests/sync.ts",
+        "packages/cli/src/pull-requests.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-journey.test.ts",
+        "tests/pull-requests-sync.test.ts",
+        "tests/pull-requests.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "84ec1ad4e6a8d999cf6234ca831cafb43a7052e3",
+      "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "preflightExclusion": "tests/pull-requests-journey.test.ts requires Electron/Playwright desktop integration; outside the Node-only historical harness",
+      "preflightEvidenceSha256": "54fd6c917f10f579b44de6005f4e3a903706847cf62b7b2800c1ddca6f00d5eb",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 28
+      }
+    },
+    {
+      "id": "scope-48708ad54e8b",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(pull-requests): wake snoozed PRs on new commits",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "48708ad54e8b87d341e3bf18259c124fed2b0bce",
+      "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 29
+      }
+    },
+    {
+      "id": "t3code-4abf8b46c591",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "[codex] fix: ignore stale shell reducer events (#3517)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/shellReducer.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/shellReducer.test.ts"
+      ],
+      "relatedGroup": "shell-reducer-ordering",
+      "fix": "4abf8b46c591ae2b36aa29598c388100df651411",
+      "parent": "3083d712eefb8009f7366ba53040eb2d477bfa33",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 30
+      }
+    },
+    {
+      "id": "t3code-43e2aeab3891",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "[codex] fix: tolerate invalid latest user message timestamps (#3521)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSort.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSort.test.ts"
+      ],
+      "relatedGroup": "thread-sort-timestamps",
+      "fix": "43e2aeab389199de115bb414f80db12b60cd85f4",
+      "parent": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 31
+      }
+    },
+    {
+      "id": "t3code-193e3c62e6d5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): keep a warm thread un-settled despite a merged/closed PR (#4309)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSettled.test.ts"
+      ],
+      "relatedGroup": "thread-settlement",
+      "fix": "193e3c62e6d52fcc200d823ca6d9061d13f81f23",
+      "parent": "91dfe60a99b7bf6cc44138a237e663ba158062b7",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 32
+      }
+    },
+    {
+      "id": "t3code-32407df9c5ff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): lenient JSON parser deletes commas inside string values (#5025)",
+      "sourceFiles": [
+        "packages/shared/src/schemaJson.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/schemaJson.test.ts"
+      ],
+      "relatedGroup": "lenient-json-parsing",
+      "fix": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+      "parent": "162e774294f9e3dda15ca2f8083db019fe398837",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 33
+      }
+    },
+    {
+      "id": "t3code-491219bf1f4d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: threads with open PRs no longer auto-settle (#5151)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSettled.test.ts"
+      ],
+      "relatedGroup": "thread-settlement",
+      "fix": "491219bf1f4db7144b747fe02af0cbc075668b12",
+      "parent": "e5c75470678e33ca2bd1001d9d93493fe437972a",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 34
+      }
+    },
+    {
+      "id": "t3code-70de6e17860d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): prevent Android thread search crash (#5386)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSearch.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSearch.test.ts"
+      ],
+      "relatedGroup": "thread-search-keys",
+      "fix": "70de6e17860d7343a73e117e6e9e1ce41b1b633e",
+      "parent": "47dfc6526521866992f6b50beac4587b45114631",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 35
+      }
+    },
+    {
+      "id": "t3code-062b4618c229",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): bound the file-link label so bracket runs stop rescanning (#5782)",
+      "sourceFiles": [
+        "packages/shared/src/composerInlineTokens.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/composerInlineTokens.test.ts"
+      ],
+      "relatedGroup": "composer-inline-links",
+      "fix": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+      "parent": "deb901d6381e0c86ef326946c8fb45ee323db708",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 36
+      }
+    },
+    {
+      "id": "t3code-220e573b14ce",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): detect Azure DevOps SSH remotes (ssh.dev.azure.com) (#6187)",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "relatedGroup": "source-control-provider-detection",
+      "fix": "220e573b14cea84b6662a7d69047129047433b63",
+      "parent": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 37
+      }
+    },
+    {
+      "id": "t3code-6befe42eb096",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): normalize a bare Windows drive root the same as C:\\ / C:/ (#6189)",
+      "sourceFiles": [
+        "packages/shared/src/path.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/path.test.ts"
+      ],
+      "relatedGroup": "project-path-normalization",
+      "fix": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "parent": "b30a9bc4143910f12d9c990c221fb9bc20cbc293",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 38
+      }
+    },
+    {
+      "id": "t3code-684d703b0a8a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): degrade an unknown system time zone to UTC in usage windows (#6670)",
+      "sourceFiles": [
+        "packages/shared/src/usageFormat.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageFormat.test.ts"
+      ],
+      "relatedGroup": "usage-window-time-zones",
+      "fix": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+      "parent": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 39
+      }
+    },
+    {
+      "id": "t3code-9bdd91293316",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): stop counting a workflow coordinator as a working agent (#6672)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/subagentRuntime.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/subagentRuntime.test.ts"
+      ],
+      "relatedGroup": "subagent-counting",
+      "fix": "9bdd91293316038d6a50f8bb19afcd73c25ad102",
+      "parent": "4db50757c0b618293997a7f81bcfe30b68356969",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 40
+      }
+    },
+    {
+      "id": "t3code-178da6bc3210",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): match source-control providers by DNS label (#6175)",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "relatedGroup": "source-control-provider-detection",
+      "fix": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+      "parent": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 41
+      }
+    },
+    {
+      "id": "t3code-421088c27367",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(search): oversized thread queries no longer crash clients (#6633)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSearch.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSearch.test.ts"
+      ],
+      "relatedGroup": "thread-search-keys",
+      "fix": "421088c27367da227d922ce999c1637416a6d0f4",
+      "parent": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 42
+      }
+    },
+    {
+      "id": "t3code-7980dfddb193",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web,mobile): snooze menu no longer offers the same wake time twice (#8741)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSnoozed.test.ts"
+      ],
+      "relatedGroup": "thread-snooze-presets",
+      "fix": "7980dfddb193864e07a5bcc013b0ccb93fb4300c",
+      "parent": "ac4aae101d060b5355a5de58e23c7387886d9021",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 43
+      }
+    },
+    {
+      "id": "t3code-8b3ddf51c59a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): stop crashing on launch before the shell snapshot arrives (#11537)",
+      "sourceFiles": [
+        "packages/shared/src/projectSettings.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/projectSettings.test.ts"
+      ],
+      "relatedGroup": "project-settings-defaults",
+      "fix": "8b3ddf51c59a54411cd02b321cb07f39c927df09",
+      "parent": "d7c71f91d61e68ae35fcc0032847cb42324a8b51",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 44
+      }
+    },
+    {
+      "id": "t3code-f87ecf0cc307",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client): keep warm thread resumes live instead of flashing sync (#9913)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threads.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threads-atoms.test.ts"
+      ],
+      "relatedGroup": "thread-state-resume",
+      "fix": "f87ecf0cc307f974745da8eea856fab5711023f3",
+      "parent": "fc1f543d6c67da9cf1edb25b647646faa0105b41",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 45
+      }
+    },
+    {
+      "id": "t3code-d4d5d12e8ba0",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): keep the newest shared usage scan (#10315)",
+      "sourceFiles": [
+        "packages/shared/src/usageMerge.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageMerge.test.ts"
+      ],
+      "relatedGroup": "usage-scan-merge",
+      "fix": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+      "parent": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 46
+      }
+    },
+    {
+      "id": "t3code-f1add18ae156",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): preserve final quoted empty CSV records (#11425)",
+      "sourceFiles": [
+        "packages/shared/src/delimitedPreview.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/delimitedPreview.test.ts"
+      ],
+      "relatedGroup": "delimited-preview-parsing",
+      "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+      "parent": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 47
+      }
+    },
+    {
+      "id": "t3code-29a32660d3cb",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(git): exclude SSH ports from provider URLs (#12537)",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "relatedGroup": "source-control-url-normalization",
+      "fix": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+      "parent": "dd8332da57355bccd7e666289267f2c94597debd",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 48
+      }
+    },
+    {
+      "id": "t3code-38f3c62304bf",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): local-path remotes no longer crash legacy PR link projection (#13463)",
+      "sourceFiles": [
+        "packages/shared/src/threadPullRequests.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/threadPullRequests.test.ts"
+      ],
+      "relatedGroup": "thread-pull-request-projection",
+      "fix": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+      "parent": "b21f3b71913370a1a650a61fd9082f992d40e657",
+      "continuationOf": {
+        "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+        "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+        "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+        "originalCandidateIndex": 49
+      }
+    }
+  ],
+  "mutantPrefixLimit": 24,
+  "testPool": "fixed-revision tests; retrospective test changes remain a confounder",
+  "replay": "adapted fixed source + first-parent changed-source reversion + borrowed current dependencies",
+  "seedCount": 100,
+  "testFractions": [
+    0.25,
+    0.5,
+    0.75,
+    1
+  ],
+  "unit": "historical fault, clustered by relatedGroup",
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ],
+  "runnerSha256": "58e25a33dea996007c0f05dccc394f95cbf7f7f8b30ff914a15f0bed1f25f2e5",
+  "experimentSha256": "58e25a33dea996007c0f05dccc394f95cbf7f7f8b30ff914a15f0bed1f25f2e5",
+  "sdkSha256": "f6db5dba5684d714a289d45d7ea5bdc543182e06f2def7c31284f3d317110633",
+  "node": {
+    "t3code": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "scope": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+      "version": "v26.10.0",
+      "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+    }
+  },
+  "archguardSha256": "d4487aaffc4b7ad37cc83afb486b6df1cfe1d709fdad3b78a4f0ce7aeb2200fc",
+  "dependencySha256": {
+    "t3code": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "scope": "ee1e4ea74f91dd603abbc3d336cb0193ace32295ae0d035fee741ec64fd68dac"
+  }
+}

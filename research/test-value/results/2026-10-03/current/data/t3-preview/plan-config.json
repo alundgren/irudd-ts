@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "packages/shared/src/filePreview.ts",
+      "packages/shared/src/video.ts",
+      "packages/shared/src/image.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

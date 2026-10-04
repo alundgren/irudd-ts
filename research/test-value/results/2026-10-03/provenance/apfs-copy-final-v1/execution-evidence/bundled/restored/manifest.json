@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "sourceRoot": "/private/tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen/bundled/restored",
+  "archive": "raw-evidence.tar.gz",
+  "archiveSha256": "ec4b0515974f5a30c01bef1d654b9861b6586c0ced2b172f9e2463fbeb7f63b2",
+  "files": [
+    {
+      "path": "execution.json",
+      "sha256": "9031e3ccd854268fb31acdcf1ba27667e990836a227b5a2c83652863371bb95d",
+      "bytes": 5185
+    },
+    {
+      "path": "inventory.json",
+      "sha256": "0cac9741d79d158167cc61f82a2314e690d35e25f9bcc57d37a5a6441e13343d",
+      "bytes": 1130
+    },
+    {
+      "path": "protocol-validation.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "request.json",
+      "sha256": "696cf613f979ddda8ce29049698986c58e10abddd67069f42aef948ab812ad6e",
+      "bytes": 417
+    },
+    {
+      "path": "result.json",
+      "sha256": "09ca629b5a505833d0200c1ef005f7343489fd70bafcc2cb0bf2974365f1a023",
+      "bytes": 297
+    },
+    {
+      "path": "stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "excludedDirectories": [
+    ".git",
+    "__pycache__",
+    "active",
+    "cache",
+    "faulty-template",
+    "fixed-template",
+    "home",
+    "native-target",
+    "node_modules",
+    "parent-tests-template",
+    "private",
+    "shared-store",
+    "source",
+    "target",
+    "template",
+    "tmp"
+  ],
+  "exclusionRule": "Dependency stores, mutable source copies and private runtime/cache directories are not exported; their recorded digests remain in execution records. Raw Git tar stdout under archive/ is omitted with the source copies; archive execution receipts and payload hashes remain."
+}

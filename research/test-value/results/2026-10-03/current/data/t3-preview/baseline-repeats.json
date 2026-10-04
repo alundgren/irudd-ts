@@ -1,0 +1,4407 @@
+[
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.html\"],1]",
+        "rawId": "-176081626_0_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.html",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.5367499999999978
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.HTM\"],1]",
+        "rawId": "-176081626_0_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.HTM",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.HTM"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.06475000000000364
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path document#draft.pdf\"],1]",
+        "rawId": "-176081626_0_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path document#draft.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path document#draft.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.057332999999999856
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path reports?old/document.pdf\"],1]",
+        "rawId": "-176081626_0_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path reports?old/document.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path reports?old/document.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04454100000000949
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path icon.png\"],1]",
+        "rawId": "-176081626_0_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0629160000000013
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo.JPEG\"],1]",
+        "rawId": "-176081626_0_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04212500000001285
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path animation.gif\"],1]",
+        "rawId": "-176081626_0_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path animation.gif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path animation.gif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04374999999998863
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path vector#mark.svg\"],1]",
+        "rawId": "-176081626_0_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path vector#mark.svg",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path vector#mark.svg"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04666699999999935
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo?edited.JPEG\"],1]",
+        "rawId": "-176081626_0_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo?edited.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo?edited.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04929199999999412
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path images#archive/icon.png\"],1]",
+        "rawId": "-176081626_0_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path images#archive/icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path images#archive/icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.051208000000002585
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path texture.webp\"],1]",
+        "rawId": "-176081626_0_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path texture.webp",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path texture.webp"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.041833999999994376
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path image.avif\"],1]",
+        "rawId": "-176081626_0_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path image.avif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path image.avif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03179099999999835
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path README.md\"],1]",
+        "rawId": "-176081626_0_12",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path README.md",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path README.md"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0289590000000004
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path src/index.ts\"],1]",
+        "rawId": "-176081626_0_13",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path src/index.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path src/index.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.028416000000007102
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png.ts\"],1]",
+        "rawId": "-176081626_0_14",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.025083000000009292
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path png\"],1]",
+        "rawId": "-176081626_0_15",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path png",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.025416999999990253
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png#notes.txt\"],1]",
+        "rawId": "-176081626_0_16",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.021625000000000227
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.svg?notes.txt\"],1]",
+        "rawId": "-176081626_0_17",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.svg?notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.svg?notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014416999999994573
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path document.pdf?download=1\"],1]",
+        "rawId": "-176081626_0_18",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path document.pdf?download=1",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path document.pdf?download=1"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01608300000000895
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path report.html#notes.txt\"],1]",
+        "rawId": "-176081626_0_19",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path report.html#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path report.html#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013292000000006965
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image%2Epng\"],1]",
+        "rawId": "-176081626_0_20",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image%2Epng",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01720800000001077
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"serves audio in place from the host like video and browser documents\"],1]",
+        "rawId": "-176081626_0_21",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > serves audio in place from the host like video and browser documents",
+        "hierarchy": [
+          "workspace file previews",
+          "serves audio in place from the host like video and browser documents"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.19745799999999747
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2\"],1]",
+        "rawId": "-176081626_1_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.11783300000000452
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.com/download?name=recording.mp4\"],1]",
+        "rawId": "-176081626_1_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.com/download?name=recording.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.com/download?name=recording.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05708300000000577
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.png\"],1]",
+        "rawId": "-176081626_1_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.017209000000008245
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images%2Fresult%2Epng\"],1]",
+        "rawId": "-176081626_1_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images%2Fresult%2Epng",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images%2Fresult%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016542000000001167
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result%23v2.png\"],1]",
+        "rawId": "-176081626_1_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result%23v2.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result%23v2.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015124999999997613
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%23secret.txt\"],1]",
+        "rawId": "-176081626_1_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%23secret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%23secret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.018665999999996075
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%3Fsecret.txt\"],1]",
+        "rawId": "-176081626_1_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%3Fsecret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%3Fsecret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01604199999999878
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of /tmp/100%.png\"],1]",
+        "rawId": "-176081626_1_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of /tmp/100%.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of /tmp/100%.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01937499999999659
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording.mp4#t=2\"],1]",
+        "rawId": "-176081626_1_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording.mp4#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording.mp4#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.043209000000004494
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording%2Emp4\"],1]",
+        "rawId": "-176081626_1_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording%2Emp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording%2Emp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.034250000000000114
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording#take2.mp4\"],1]",
+        "rawId": "-176081626_1_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording#take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording#take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.030834000000012907
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording?take2.mp4\"],1]",
+        "rawId": "-176081626_1_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording?take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording?take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.022333000000003267
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies example.json (application/octet-stream) as text\"],1]",
+        "rawId": "-176081626_2_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies example.json (application/octet-stream) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies example.json (application/octet-stream) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.15054099999998982
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies README.md (text/plain) as markdown\"],1]",
+        "rawId": "-176081626_2_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies README.md (text/plain) as markdown",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies README.md (text/plain) as markdown"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03558400000000006
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies component.tsx () as text\"],1]",
+        "rawId": "-176081626_2_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies component.tsx () as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies component.tsx () as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.09291600000000244
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies report.pdf (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies report.pdf (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies report.pdf (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.017916999999997074
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies page.HTML () as html\"],1]",
+        "rawId": "-176081626_2_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies page.HTML () as html",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies page.HTML () as html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013958999999999833
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies recording.mp3 () as audio\"],1]",
+        "rawId": "-176081626_2_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies recording.mp3 () as audio",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies recording.mp3 () as audio"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014665999999991186
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies payload (application/problem+json) as text\"],1]",
+        "rawId": "-176081626_2_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies payload (application/problem+json) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies payload (application/problem+json) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04662500000000591
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies archive.zip (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies archive.zip (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies archive.zip (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.042999999999992156
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.json (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.json (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.json (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.017916999999997074
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.pdf (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.pdf (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.pdf (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02112499999999784
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"rejects binary and invalid UTF-8 data\"],1]",
+        "rawId": "-176081626_2_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > rejects binary and invalid UTF-8 data",
+        "hierarchy": [
+          "attachment preview classification",
+          "rejects binary and invalid UTF-8 data"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.31895799999999497
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"does not corrupt a multi-byte character at the preview boundary\"],1]",
+        "rawId": "-176081626_2_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > does not corrupt a multi-byte character at the preview boundary",
+        "hierarchy": [
+          "attachment preview classification",
+          "does not corrupt a multi-byte character at the preview boundary"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 3.682791000000009
+      }
+    ],
+    "evidence": "baseline-repeat-0/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.html\"],1]",
+        "rawId": "-176081626_0_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.html",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.5340830000000096
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.HTM\"],1]",
+        "rawId": "-176081626_0_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.HTM",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.HTM"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.057292000000003895
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path document#draft.pdf\"],1]",
+        "rawId": "-176081626_0_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path document#draft.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path document#draft.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05220800000000736
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path reports?old/document.pdf\"],1]",
+        "rawId": "-176081626_0_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path reports?old/document.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path reports?old/document.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0369580000000127
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path icon.png\"],1]",
+        "rawId": "-176081626_0_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0607079999999911
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo.JPEG\"],1]",
+        "rawId": "-176081626_0_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03679200000000549
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path animation.gif\"],1]",
+        "rawId": "-176081626_0_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path animation.gif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path animation.gif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03458299999999781
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path vector#mark.svg\"],1]",
+        "rawId": "-176081626_0_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path vector#mark.svg",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path vector#mark.svg"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.045875000000009436
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo?edited.JPEG\"],1]",
+        "rawId": "-176081626_0_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo?edited.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo?edited.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04799999999998761
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path images#archive/icon.png\"],1]",
+        "rawId": "-176081626_0_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path images#archive/icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path images#archive/icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05458300000000804
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path texture.webp\"],1]",
+        "rawId": "-176081626_0_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path texture.webp",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path texture.webp"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.040542000000002076
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path image.avif\"],1]",
+        "rawId": "-176081626_0_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path image.avif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path image.avif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.030875000000008868
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path README.md\"],1]",
+        "rawId": "-176081626_0_12",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path README.md",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path README.md"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.030082999999990534
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path src/index.ts\"],1]",
+        "rawId": "-176081626_0_13",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path src/index.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path src/index.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01720799999999656
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png.ts\"],1]",
+        "rawId": "-176081626_0_14",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03100000000000591
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path png\"],1]",
+        "rawId": "-176081626_0_15",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path png",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02574999999998795
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png#notes.txt\"],1]",
+        "rawId": "-176081626_0_16",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01579199999999048
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.svg?notes.txt\"],1]",
+        "rawId": "-176081626_0_17",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.svg?notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.svg?notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01387499999999875
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path document.pdf?download=1\"],1]",
+        "rawId": "-176081626_0_18",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path document.pdf?download=1",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path document.pdf?download=1"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012457999999995195
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path report.html#notes.txt\"],1]",
+        "rawId": "-176081626_0_19",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path report.html#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path report.html#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012333999999995626
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image%2Epng\"],1]",
+        "rawId": "-176081626_0_20",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image%2Epng",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012083000000004063
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"serves audio in place from the host like video and browser documents\"],1]",
+        "rawId": "-176081626_0_21",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > serves audio in place from the host like video and browser documents",
+        "hierarchy": [
+          "workspace file previews",
+          "serves audio in place from the host like video and browser documents"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.18870799999999122
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2\"],1]",
+        "rawId": "-176081626_1_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.11391700000000071
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.com/download?name=recording.mp4\"],1]",
+        "rawId": "-176081626_1_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.com/download?name=recording.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.com/download?name=recording.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05258299999999849
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.png\"],1]",
+        "rawId": "-176081626_1_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016708000000008383
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images%2Fresult%2Epng\"],1]",
+        "rawId": "-176081626_1_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images%2Fresult%2Epng",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images%2Fresult%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014874999999989313
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result%23v2.png\"],1]",
+        "rawId": "-176081626_1_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result%23v2.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result%23v2.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013958999999999833
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%23secret.txt\"],1]",
+        "rawId": "-176081626_1_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%23secret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%23secret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014874999999989313
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%3Fsecret.txt\"],1]",
+        "rawId": "-176081626_1_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%3Fsecret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%3Fsecret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014375000000001137
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of /tmp/100%.png\"],1]",
+        "rawId": "-176081626_1_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of /tmp/100%.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of /tmp/100%.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.018375000000006025
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording.mp4#t=2\"],1]",
+        "rawId": "-176081626_1_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording.mp4#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording.mp4#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03624999999999545
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording%2Emp4\"],1]",
+        "rawId": "-176081626_1_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording%2Emp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording%2Emp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03154100000000426
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording#take2.mp4\"],1]",
+        "rawId": "-176081626_1_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording#take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording#take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.020208000000010884
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording?take2.mp4\"],1]",
+        "rawId": "-176081626_1_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording?take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording?take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01870800000000372
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies example.json (application/octet-stream) as text\"],1]",
+        "rawId": "-176081626_2_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies example.json (application/octet-stream) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies example.json (application/octet-stream) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.1499589999999955
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies README.md (text/plain) as markdown\"],1]",
+        "rawId": "-176081626_2_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies README.md (text/plain) as markdown",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies README.md (text/plain) as markdown"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03491700000000719
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies component.tsx () as text\"],1]",
+        "rawId": "-176081626_2_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies component.tsx () as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies component.tsx () as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.08841699999999264
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies report.pdf (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies report.pdf (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies report.pdf (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013542000000001053
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies page.HTML () as html\"],1]",
+        "rawId": "-176081626_2_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies page.HTML () as html",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies page.HTML () as html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01316699999999571
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies recording.mp3 () as audio\"],1]",
+        "rawId": "-176081626_2_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies recording.mp3 () as audio",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies recording.mp3 () as audio"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013833000000005313
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies payload (application/problem+json) as text\"],1]",
+        "rawId": "-176081626_2_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies payload (application/problem+json) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies payload (application/problem+json) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04187499999999034
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies archive.zip (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies archive.zip (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies archive.zip (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.040207999999992694
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.json (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.json (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.json (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013249999999999318
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.pdf (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.pdf (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.pdf (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01920800000000611
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"rejects binary and invalid UTF-8 data\"],1]",
+        "rawId": "-176081626_2_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > rejects binary and invalid UTF-8 data",
+        "hierarchy": [
+          "attachment preview classification",
+          "rejects binary and invalid UTF-8 data"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.2984170000000006
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"does not corrupt a multi-byte character at the preview boundary\"],1]",
+        "rawId": "-176081626_2_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > does not corrupt a multi-byte character at the preview boundary",
+        "hierarchy": [
+          "attachment preview classification",
+          "does not corrupt a multi-byte character at the preview boundary"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 3.625416999999999
+      }
+    ],
+    "evidence": "baseline-repeat-1/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.html\"],1]",
+        "rawId": "-176081626_0_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.html",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.5380419999999901
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.HTM\"],1]",
+        "rawId": "-176081626_0_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.HTM",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.HTM"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.06554199999999355
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path document#draft.pdf\"],1]",
+        "rawId": "-176081626_0_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path document#draft.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path document#draft.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.06262499999999704
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path reports?old/document.pdf\"],1]",
+        "rawId": "-176081626_0_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path reports?old/document.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path reports?old/document.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.043666999999999234
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path icon.png\"],1]",
+        "rawId": "-176081626_0_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.06320900000000051
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo.JPEG\"],1]",
+        "rawId": "-176081626_0_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04225000000000989
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path animation.gif\"],1]",
+        "rawId": "-176081626_0_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path animation.gif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path animation.gif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04099999999999682
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path vector#mark.svg\"],1]",
+        "rawId": "-176081626_0_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path vector#mark.svg",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path vector#mark.svg"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.044124999999993975
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo?edited.JPEG\"],1]",
+        "rawId": "-176081626_0_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo?edited.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo?edited.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04683400000000404
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path images#archive/icon.png\"],1]",
+        "rawId": "-176081626_0_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path images#archive/icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path images#archive/icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05979200000000162
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path texture.webp\"],1]",
+        "rawId": "-176081626_0_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path texture.webp",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path texture.webp"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04250000000000398
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path image.avif\"],1]",
+        "rawId": "-176081626_0_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path image.avif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path image.avif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03725000000000023
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path README.md\"],1]",
+        "rawId": "-176081626_0_12",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path README.md",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path README.md"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.030499999999989313
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path src/index.ts\"],1]",
+        "rawId": "-176081626_0_13",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path src/index.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path src/index.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.023375000000001478
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png.ts\"],1]",
+        "rawId": "-176081626_0_14",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02641700000000924
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path png\"],1]",
+        "rawId": "-176081626_0_15",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path png",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02679200000000037
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png#notes.txt\"],1]",
+        "rawId": "-176081626_0_16",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015583000000006564
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.svg?notes.txt\"],1]",
+        "rawId": "-176081626_0_17",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.svg?notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.svg?notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013542000000001053
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path document.pdf?download=1\"],1]",
+        "rawId": "-176081626_0_18",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path document.pdf?download=1",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path document.pdf?download=1"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012500000000002842
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path report.html#notes.txt\"],1]",
+        "rawId": "-176081626_0_19",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path report.html#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path report.html#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012333000000012362
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image%2Epng\"],1]",
+        "rawId": "-176081626_0_20",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image%2Epng",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012291000000004715
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"serves audio in place from the host like video and browser documents\"],1]",
+        "rawId": "-176081626_0_21",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > serves audio in place from the host like video and browser documents",
+        "hierarchy": [
+          "workspace file previews",
+          "serves audio in place from the host like video and browser documents"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.18666699999999992
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2\"],1]",
+        "rawId": "-176081626_1_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.1147500000000008
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.com/download?name=recording.mp4\"],1]",
+        "rawId": "-176081626_1_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.com/download?name=recording.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.com/download?name=recording.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.06116699999999753
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.png\"],1]",
+        "rawId": "-176081626_1_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01666699999999821
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images%2Fresult%2Epng\"],1]",
+        "rawId": "-176081626_1_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images%2Fresult%2Epng",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images%2Fresult%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015124999999997613
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result%23v2.png\"],1]",
+        "rawId": "-176081626_1_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result%23v2.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result%23v2.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01387499999999875
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%23secret.txt\"],1]",
+        "rawId": "-176081626_1_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%23secret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%23secret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01475000000000648
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%3Fsecret.txt\"],1]",
+        "rawId": "-176081626_1_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%3Fsecret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%3Fsecret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014375000000001137
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of /tmp/100%.png\"],1]",
+        "rawId": "-176081626_1_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of /tmp/100%.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of /tmp/100%.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.018084000000001765
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording.mp4#t=2\"],1]",
+        "rawId": "-176081626_1_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording.mp4#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording.mp4#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03745800000000088
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording%2Emp4\"],1]",
+        "rawId": "-176081626_1_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording%2Emp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording%2Emp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03154099999999005
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording#take2.mp4\"],1]",
+        "rawId": "-176081626_1_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording#take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording#take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.021166999999991276
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording?take2.mp4\"],1]",
+        "rawId": "-176081626_1_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording?take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording?take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01937499999999659
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies example.json (application/octet-stream) as text\"],1]",
+        "rawId": "-176081626_2_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies example.json (application/octet-stream) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies example.json (application/octet-stream) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.14579200000000014
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies README.md (text/plain) as markdown\"],1]",
+        "rawId": "-176081626_2_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies README.md (text/plain) as markdown",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies README.md (text/plain) as markdown"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03499999999999659
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies component.tsx () as text\"],1]",
+        "rawId": "-176081626_2_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies component.tsx () as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies component.tsx () as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.08691699999999969
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies report.pdf (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies report.pdf (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies report.pdf (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013458999999997445
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies page.HTML () as html\"],1]",
+        "rawId": "-176081626_2_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies page.HTML () as html",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies page.HTML () as html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.012999999999991019
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies recording.mp3 () as audio\"],1]",
+        "rawId": "-176081626_2_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies recording.mp3 () as audio",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies recording.mp3 () as audio"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013750000000001705
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies payload (application/problem+json) as text\"],1]",
+        "rawId": "-176081626_2_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies payload (application/problem+json) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies payload (application/problem+json) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.041083000000000425
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies archive.zip (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies archive.zip (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies archive.zip (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03870799999999974
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.json (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.json (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.json (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013125000000002274
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.pdf (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.pdf (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.pdf (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01479099999998823
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"rejects binary and invalid UTF-8 data\"],1]",
+        "rawId": "-176081626_2_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > rejects binary and invalid UTF-8 data",
+        "hierarchy": [
+          "attachment preview classification",
+          "rejects binary and invalid UTF-8 data"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.3250419999999963
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"does not corrupt a multi-byte character at the preview boundary\"],1]",
+        "rawId": "-176081626_2_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > does not corrupt a multi-byte character at the preview boundary",
+        "hierarchy": [
+          "attachment preview classification",
+          "does not corrupt a multi-byte character at the preview boundary"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 3.584916000000007
+      }
+    ],
+    "evidence": "baseline-repeat-2/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.html\"],1]",
+        "rawId": "-176081626_0_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.html",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.5249170000000021
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.HTM\"],1]",
+        "rawId": "-176081626_0_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.HTM",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.HTM"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05908300000000111
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path document#draft.pdf\"],1]",
+        "rawId": "-176081626_0_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path document#draft.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path document#draft.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05416699999999253
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path reports?old/document.pdf\"],1]",
+        "rawId": "-176081626_0_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path reports?old/document.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path reports?old/document.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.039500000000003865
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path icon.png\"],1]",
+        "rawId": "-176081626_0_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.07079099999999983
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo.JPEG\"],1]",
+        "rawId": "-176081626_0_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04437499999998806
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path animation.gif\"],1]",
+        "rawId": "-176081626_0_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path animation.gif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path animation.gif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04362499999999159
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path vector#mark.svg\"],1]",
+        "rawId": "-176081626_0_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path vector#mark.svg",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path vector#mark.svg"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.039500000000003865
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo?edited.JPEG\"],1]",
+        "rawId": "-176081626_0_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo?edited.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo?edited.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04779200000000117
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path images#archive/icon.png\"],1]",
+        "rawId": "-176081626_0_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path images#archive/icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path images#archive/icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05216599999999971
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path texture.webp\"],1]",
+        "rawId": "-176081626_0_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path texture.webp",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path texture.webp"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03695799999999849
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path image.avif\"],1]",
+        "rawId": "-176081626_0_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path image.avif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path image.avif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03145800000000065
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path README.md\"],1]",
+        "rawId": "-176081626_0_12",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path README.md",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path README.md"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02400000000000091
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path src/index.ts\"],1]",
+        "rawId": "-176081626_0_13",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path src/index.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path src/index.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.018375000000006025
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png.ts\"],1]",
+        "rawId": "-176081626_0_14",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02049999999999841
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path png\"],1]",
+        "rawId": "-176081626_0_15",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path png",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.017416000000011422
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png#notes.txt\"],1]",
+        "rawId": "-176081626_0_16",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03175000000000239
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.svg?notes.txt\"],1]",
+        "rawId": "-176081626_0_17",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.svg?notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.svg?notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01954199999998707
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path document.pdf?download=1\"],1]",
+        "rawId": "-176081626_0_18",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path document.pdf?download=1",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path document.pdf?download=1"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014834000000007563
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path report.html#notes.txt\"],1]",
+        "rawId": "-176081626_0_19",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path report.html#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path report.html#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013917000000006396
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image%2Epng\"],1]",
+        "rawId": "-176081626_0_20",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image%2Epng",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.013958000000002357
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"serves audio in place from the host like video and browser documents\"],1]",
+        "rawId": "-176081626_0_21",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > serves audio in place from the host like video and browser documents",
+        "hierarchy": [
+          "workspace file previews",
+          "serves audio in place from the host like video and browser documents"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.1830839999999938
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2\"],1]",
+        "rawId": "-176081626_1_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.13420899999999847
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.com/download?name=recording.mp4\"],1]",
+        "rawId": "-176081626_1_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.com/download?name=recording.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.com/download?name=recording.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.053832999999997355
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.png\"],1]",
+        "rawId": "-176081626_1_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01808299999999008
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images%2Fresult%2Epng\"],1]",
+        "rawId": "-176081626_1_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images%2Fresult%2Epng",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images%2Fresult%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01645899999999756
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result%23v2.png\"],1]",
+        "rawId": "-176081626_1_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result%23v2.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result%23v2.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015833000000000652
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%23secret.txt\"],1]",
+        "rawId": "-176081626_1_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%23secret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%23secret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01579200000000469
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%3Fsecret.txt\"],1]",
+        "rawId": "-176081626_1_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%3Fsecret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%3Fsecret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016542000000001167
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of /tmp/100%.png\"],1]",
+        "rawId": "-176081626_1_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of /tmp/100%.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of /tmp/100%.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.026166000000003464
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording.mp4#t=2\"],1]",
+        "rawId": "-176081626_1_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording.mp4#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording.mp4#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03741699999999071
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording%2Emp4\"],1]",
+        "rawId": "-176081626_1_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording%2Emp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording%2Emp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03300000000000125
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording#take2.mp4\"],1]",
+        "rawId": "-176081626_1_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording#take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording#take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.023707999999999174
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording?take2.mp4\"],1]",
+        "rawId": "-176081626_1_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording?take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording?take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.021790999999993232
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies example.json (application/octet-stream) as text\"],1]",
+        "rawId": "-176081626_2_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies example.json (application/octet-stream) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies example.json (application/octet-stream) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.14537500000000136
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies README.md (text/plain) as markdown\"],1]",
+        "rawId": "-176081626_2_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies README.md (text/plain) as markdown",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies README.md (text/plain) as markdown"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.034874999999999545
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies component.tsx () as text\"],1]",
+        "rawId": "-176081626_2_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies component.tsx () as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies component.tsx () as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0968340000000012
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies report.pdf (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies report.pdf (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies report.pdf (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01741599999999721
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies page.HTML () as html\"],1]",
+        "rawId": "-176081626_2_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies page.HTML () as html",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies page.HTML () as html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05741700000000094
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies recording.mp3 () as audio\"],1]",
+        "rawId": "-176081626_2_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies recording.mp3 () as audio",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies recording.mp3 () as audio"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0277499999999975
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies payload (application/problem+json) as text\"],1]",
+        "rawId": "-176081626_2_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies payload (application/problem+json) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies payload (application/problem+json) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05541699999999139
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies archive.zip (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies archive.zip (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies archive.zip (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05104199999999537
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.json (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.json (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.json (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016124999999988177
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.pdf (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.pdf (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.pdf (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.018000000000000682
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"rejects binary and invalid UTF-8 data\"],1]",
+        "rawId": "-176081626_2_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > rejects binary and invalid UTF-8 data",
+        "hierarchy": [
+          "attachment preview classification",
+          "rejects binary and invalid UTF-8 data"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.34020900000000154
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"does not corrupt a multi-byte character at the preview boundary\"],1]",
+        "rawId": "-176081626_2_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > does not corrupt a multi-byte character at the preview boundary",
+        "hierarchy": [
+          "attachment preview classification",
+          "does not corrupt a multi-byte character at the preview boundary"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 3.6424579999999906
+      }
+    ],
+    "evidence": "baseline-repeat-3/execution.json"
+  },
+  {
+    "complete": true,
+    "status": "survived",
+    "tests": [
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.html\"],1]",
+        "rawId": "-176081626_0_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.html",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.5260839999999973
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path report.HTM\"],1]",
+        "rawId": "-176081626_0_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path report.HTM",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path report.HTM"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05674999999999386
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path document#draft.pdf\"],1]",
+        "rawId": "-176081626_0_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path document#draft.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path document#draft.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05245899999999892
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes browser preview path reports?old/document.pdf\"],1]",
+        "rawId": "-176081626_0_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes browser preview path reports?old/document.pdf",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes browser preview path reports?old/document.pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04016599999999926
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path icon.png\"],1]",
+        "rawId": "-176081626_0_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.06241699999999639
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo.JPEG\"],1]",
+        "rawId": "-176081626_0_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03870799999999974
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path animation.gif\"],1]",
+        "rawId": "-176081626_0_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path animation.gif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path animation.gif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03437500000001137
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path vector#mark.svg\"],1]",
+        "rawId": "-176081626_0_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path vector#mark.svg",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path vector#mark.svg"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0484170000000006
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path photo?edited.JPEG\"],1]",
+        "rawId": "-176081626_0_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path photo?edited.JPEG",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path photo?edited.JPEG"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04625000000000057
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path images#archive/icon.png\"],1]",
+        "rawId": "-176081626_0_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path images#archive/icon.png",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path images#archive/icon.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.05470900000000256
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path texture.webp\"],1]",
+        "rawId": "-176081626_0_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path texture.webp",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path texture.webp"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.043707999999995195
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"recognizes image preview path image.avif\"],1]",
+        "rawId": "-176081626_0_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > recognizes image preview path image.avif",
+        "hierarchy": [
+          "workspace file previews",
+          "recognizes image preview path image.avif"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.03270899999999699
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path README.md\"],1]",
+        "rawId": "-176081626_0_12",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path README.md",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path README.md"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.031041999999999348
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path src/index.ts\"],1]",
+        "rawId": "-176081626_0_13",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path src/index.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path src/index.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.024124999999997954
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png.ts\"],1]",
+        "rawId": "-176081626_0_14",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png.ts",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png.ts"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.024541999999996733
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path png\"],1]",
+        "rawId": "-176081626_0_15",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path png",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.026540999999994597
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.png#notes.txt\"],1]",
+        "rawId": "-176081626_0_16",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.png#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.png#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016916000000009035
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image.svg?notes.txt\"],1]",
+        "rawId": "-176081626_0_17",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image.svg?notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image.svg?notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014915999999999485
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path document.pdf?download=1\"],1]",
+        "rawId": "-176081626_0_18",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path document.pdf?download=1",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path document.pdf?download=1"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014624999999995225
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path report.html#notes.txt\"],1]",
+        "rawId": "-176081626_0_19",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path report.html#notes.txt",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path report.html#notes.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.014583999999999264
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"rejects non-preview path image%2Epng\"],1]",
+        "rawId": "-176081626_0_20",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > rejects non-preview path image%2Epng",
+        "hierarchy": [
+          "workspace file previews",
+          "rejects non-preview path image%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.0135840000000087
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"workspace file previews\",\"serves audio in place from the host like video and browser documents\"],1]",
+        "rawId": "-176081626_0_21",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "workspace file previews > serves audio in place from the host like video and browser documents",
+        "hierarchy": [
+          "workspace file previews",
+          "serves audio in place from the host like video and browser documents"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.20387499999999648
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2\"],1]",
+        "rawId": "-176081626_1_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://cdn.example/clip.webm?download=1#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.11587500000000261
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.com/download?name=recording.mp4\"],1]",
+        "rawId": "-176081626_1_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.com/download?name=recording.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.com/download?name=recording.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.054500000000004434
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of https://example.png\"],1]",
+        "rawId": "-176081626_1_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of https://example.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of https://example.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.021000000000000796
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images%2Fresult%2Epng\"],1]",
+        "rawId": "-176081626_1_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images%2Fresult%2Epng",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images%2Fresult%2Epng"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016000000000005343
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result%23v2.png\"],1]",
+        "rawId": "-176081626_1_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result%23v2.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result%23v2.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015750000000011255
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%23secret.txt\"],1]",
+        "rawId": "-176081626_1_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%23secret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%23secret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.021708000000003835
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of images/result.png%3Fsecret.txt\"],1]",
+        "rawId": "-176081626_1_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of images/result.png%3Fsecret.txt",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of images/result.png%3Fsecret.txt"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016207999999991785
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"classifies the decoded pathname of /tmp/100%.png\"],1]",
+        "rawId": "-176081626_1_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > classifies the decoded pathname of /tmp/100%.png",
+        "hierarchy": [
+          "media path parsing",
+          "classifies the decoded pathname of /tmp/100%.png"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.019834000000003016
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording.mp4#t=2\"],1]",
+        "rawId": "-176081626_1_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording.mp4#t=2",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording.mp4#t=2"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04045800000000099
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording%2Emp4\"],1]",
+        "rawId": "-176081626_1_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording%2Emp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording%2Emp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.035291999999998325
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording#take2.mp4\"],1]",
+        "rawId": "-176081626_1_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording#take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording#take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.022791000000012218
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"media path parsing\",\"distinguishes authored URLs from literal filenames in recording?take2.mp4\"],1]",
+        "rawId": "-176081626_1_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "media path parsing > distinguishes authored URLs from literal filenames in recording?take2.mp4",
+        "hierarchy": [
+          "media path parsing",
+          "distinguishes authored URLs from literal filenames in recording?take2.mp4"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.02095800000000736
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies example.json (application/octet-stream) as text\"],1]",
+        "rawId": "-176081626_2_0",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies example.json (application/octet-stream) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies example.json (application/octet-stream) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.1521669999999915
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies README.md (text/plain) as markdown\"],1]",
+        "rawId": "-176081626_2_1",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies README.md (text/plain) as markdown",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies README.md (text/plain) as markdown"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04004199999999969
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies component.tsx () as text\"],1]",
+        "rawId": "-176081626_2_2",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies component.tsx () as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies component.tsx () as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.08933299999999633
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies report.pdf (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_3",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies report.pdf (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies report.pdf (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015000000000000568
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies page.HTML () as html\"],1]",
+        "rawId": "-176081626_2_4",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies page.HTML () as html",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies page.HTML () as html"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01808299999999008
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies recording.mp3 () as audio\"],1]",
+        "rawId": "-176081626_2_5",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies recording.mp3 () as audio",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies recording.mp3 () as audio"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.01604199999999878
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies payload (application/problem+json) as text\"],1]",
+        "rawId": "-176081626_2_6",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies payload (application/problem+json) as text",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies payload (application/problem+json) as text"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04466700000000401
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies archive.zip (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_7",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies archive.zip (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies archive.zip (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.04120799999999747
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.json (application/pdf) as pdf\"],1]",
+        "rawId": "-176081626_2_8",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.json (application/pdf) as pdf",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.json (application/pdf) as pdf"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.015583000000006564
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"classifies misleading.pdf (application/zip) as unsupported\"],1]",
+        "rawId": "-176081626_2_9",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > classifies misleading.pdf (application/zip) as unsupported",
+        "hierarchy": [
+          "attachment preview classification",
+          "classifies misleading.pdf (application/zip) as unsupported"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.016291999999992868
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"rejects binary and invalid UTF-8 data\"],1]",
+        "rawId": "-176081626_2_10",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > rejects binary and invalid UTF-8 data",
+        "hierarchy": [
+          "attachment preview classification",
+          "rejects binary and invalid UTF-8 data"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 0.3038749999999908
+      },
+      {
+        "id": "[\"\",\"packages/shared/src/filePreview.test.ts\",[\"attachment preview classification\",\"does not corrupt a multi-byte character at the preview boundary\"],1]",
+        "rawId": "-176081626_2_11",
+        "project": "",
+        "file": "packages/shared/src/filePreview.test.ts",
+        "name": "attachment preview classification > does not corrupt a multi-byte character at the preview boundary",
+        "hierarchy": [
+          "attachment preview classification",
+          "does not corrupt a multi-byte character at the preview boundary"
+        ],
+        "occurrence": 1,
+        "state": "passed",
+        "readyCount": 1,
+        "resultCount": 1,
+        "errors": [],
+        "retryCount": 0,
+        "repeatCount": 0,
+        "durationMs": 3.603042000000002
+      }
+    ],
+    "evidence": "baseline-repeat-4/execution.json"
+  }
+]

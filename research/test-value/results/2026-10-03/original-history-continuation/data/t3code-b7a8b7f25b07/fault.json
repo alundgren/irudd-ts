@@ -1,0 +1,27 @@
+{
+  "id": "t3code-b7a8b7f25b07",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(threads): keep the capped title failure reason at 500 characters",
+  "sourceFiles": [
+    "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts"
+  ],
+  "relatedGroup": "thread-title-error",
+  "fix": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+  "parent": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 14
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "de405a2870759526dec065f97d2795952af23eed6a93ddcc3bd10dddf1e887cd"
+  }
+}

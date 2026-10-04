@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "apps/web/src/components/ChatView.tsx",
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

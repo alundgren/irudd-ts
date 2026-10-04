@@ -1,0 +1,59 @@
+{
+  "id": "t3code-9333509c9180",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(client-runtime): reconnects back off with jitter and keep healthy sockets (#14897)",
+  "sourceFiles": [
+    "apps/server/src/telemetry/AnalyticsService.ts",
+    "packages/client-runtime/src/connection/supervisor.ts",
+    "packages/client-runtime/src/connection/wakeups.ts",
+    "packages/client-runtime/src/state/server.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/telemetry/AnalyticsService.test.ts",
+    "packages/client-runtime/src/connection/registry.test.ts",
+    "packages/client-runtime/src/connection/supervisor.test.ts"
+  ],
+  "relatedGroup": "connection-recovery",
+  "fix": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+  "parent": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 6
+  },
+  "verified": false,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "apps/server/src/telemetry/AnalyticsService.ts",
+    "packages/client-runtime/src/connection/supervisor.ts",
+    "packages/client-runtime/src/connection/wakeups.ts",
+    "packages/client-runtime/src/state/server.ts"
+  ],
+  "killedBy": [],
+  "unaffected": [],
+  "fixedTemplateSha256": "46e0602499b1e97641496e7980935dd5644d25a14c54343c538a85edc61d7095",
+  "faultyTemplateSha256": "1b8d16cd81d071d9d7c6db179e17f9e81bd7bf44c66fe0ee527e0d1f7b28e272",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "apps/server/src/telemetry/AnalyticsService.test.ts": "parent file existed; individual additions not classified",
+    "packages/client-runtime/src/connection/registry.test.ts": "parent file existed; individual additions not classified",
+    "packages/client-runtime/src/connection/supervisor.test.ts": "parent file existed; individual additions not classified"
+  },
+  "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+  "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+  "recordDigests": {
+    "fixed-before/execution.json": "4ca0f9046ee177d749a53e6b9d59da26c938799d99861bd9206907a587710ddd",
+    "faulty/execution.json": "622b81f04d355c962990d1b728d10c7de8927a750b8550bee076402dfdca83fb",
+    "fixed-after/execution.json": "6590c2b00b965d46a3cdb148f3b0dab6d3a46a62db1b6d5f9739fca981cfd02e"
+  }
+}

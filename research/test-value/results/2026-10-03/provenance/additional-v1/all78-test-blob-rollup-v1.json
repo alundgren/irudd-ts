@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "scope": "combined read-only test-file blob comparison for the frozen original50 and supplemental28 cohorts",
+  "method": "Counts are candidate/test-file instances, compared by exact Git blob IDs between each fix and its recorded first parent. Unique paths are reported separately because candidate instances can target the same path at different commits.",
+  "sourceAudits": [
+    {
+      "path": "/tmp/archguard-test-value-20261003/scout-test-blob-audit.json",
+      "sha256": "1c387f0191252cc7ac712e85a97e2f0b5d8325acf4772198784d4ce50cb06a4d",
+      "candidateCount": 50,
+      "testFileInstances": 76
+    },
+    {
+      "path": "/tmp/archguard-test-value-20261003/supplement-test-blob-audit-v1.json",
+      "sha256": "ceb2be8352746cf88aebeb12331ef5ac9a64e63fd28f24459176be6d6f9fe01b",
+      "candidateCount": 28,
+      "testFileInstances": 28
+    }
+  ],
+  "candidateCount": 78,
+  "testFileInstances": 104,
+  "testFileInstancesByRelation": {
+    "changed": 98,
+    "new": 6,
+    "identical": 0
+  },
+  "bySubject": {
+    "scope": {
+      "testFileInstances": 17,
+      "testFileInstancesByRelation": {
+        "changed": 16,
+        "new": 1,
+        "identical": 0
+      }
+    },
+    "t3code": {
+      "testFileInstances": 87,
+      "testFileInstancesByRelation": {
+        "changed": 82,
+        "new": 5,
+        "identical": 0
+      }
+    }
+  },
+  "distinctRepositoryTestPaths": 82,
+  "originalDistinctRepositoryTestPaths": 61,
+  "supplementDistinctRepositoryTestPaths": 28,
+  "crossCohortPathOverlapCount": 7,
+  "crossCohortPathOverlap": [
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/client-runtime/src/state/threadSettled.test.ts"
+    },
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/client-runtime/src/state/threadSort.test.ts"
+    },
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/shared/src/composerInlineTokens.test.ts"
+    },
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/shared/src/model.test.ts"
+    },
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/shared/src/sourceControl.test.ts"
+    },
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/shared/src/threadPullRequests.test.ts"
+    },
+    {
+      "repository": "/Users/alun/repos/t3code",
+      "path": "packages/shared/src/usageMerge.test.ts"
+    }
+  ],
+  "classificationCaveat": "A path used by more than one candidate is classified separately for each candidate commit pair; unique-path counts do not imply unique tests or independent assertions."
+}

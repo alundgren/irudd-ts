@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_setup.py", line 82, in source_controls
+    copy_owned_source(large, partial)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/runner.py", line 341, in copy_owned_source
+    copy_entry(base / name)
+    ~~~~~~~~~~^^^^^^^^^^^^^
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/runner.py", line 306, in copy_entry
+    guarded_copy(path, target, copy_evidence)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/runner.py", line 197, in guarded_copy
+    disk_check(destination.parent)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alun/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/unittest/mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alun/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/unittest/mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/alun/.local/share/uv/python/cpython-3.14.7-macos-aarch64-none/lib/python3.14/unittest/mock.py", line 1247, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_setup.py", line 77, in stop_after_chunk
+    raise RuntimeError('Injected disk boundary after one copied chunk')
+RuntimeError: Injected disk boundary after one copied chunk
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_setup.py", line 280, in <module>
+    main()
+    ~~~~^^
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_setup.py", line 257, in main
+    records = source_controls(output)
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_setup.py", line 84, in source_controls
+    require((partial / 'large.bin').stat().st_size == 1024 * 1024, 'Disk boundary must stop copying at the next bounded chunk')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_runner.py", line 32, in require
+    raise AssertionError(message)
+AssertionError: Disk boundary must stop copying at the next bounded chunk

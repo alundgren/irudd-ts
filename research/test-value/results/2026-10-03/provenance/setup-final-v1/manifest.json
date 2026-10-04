@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "scope": "Final source checks and frozen setup declarations before historical baseline-only validation. No historical measurement outcomes.",
+  "files": [
+    {
+      "file": "history-lock-matched-78-final.json",
+      "bytes": 88809,
+      "sha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0",
+      "originalPath": "/tmp/archguard-test-value-20261003/history-lock-matched-78-final.json"
+    },
+    {
+      "file": "dependency-installations-lock-matched-78.json",
+      "bytes": 26698,
+      "sha256": "81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0",
+      "originalPath": "/tmp/archguard-test-value-20261003/dependency-installations-lock-matched-78.json"
+    },
+    {
+      "file": "derive_bundled_runner_receipts.py",
+      "bytes": 6422,
+      "sha256": "5108bb01fb7859a61d4c0cece2f8bb7139182436fb92dfe660ee2112d95a2fbe",
+      "originalPath": "/tmp/archguard-test-value-20261003/derive_bundled_runner_receipts.py"
+    },
+    {
+      "file": "validate_historical_baselines.py",
+      "bytes": 8635,
+      "sha256": "96e3d2c151dbcd16debd7d35748f5bb05413304b71bac2c362aff8d71bea57b1",
+      "originalPath": "/tmp/archguard-test-value-20261003/validate_historical_baselines.py"
+    },
+    {
+      "file": "historical-sensitivity-plan-v2.json",
+      "bytes": 2903,
+      "sha256": "968d50cf0c0ec877b38f2d820fb44000b1a954a611311c034f70598acad7e712",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-sensitivity-plan-v2.json"
+    },
+    {
+      "file": "before-historical-baselines-environment-v1.json",
+      "bytes": 2284,
+      "sha256": "b4d7012670c176e244ac35ec2c7bc83a184cae67d494c1dbc1a6b4c7472f49d1",
+      "originalPath": "/tmp/archguard-test-value-20261003/before-historical-baselines-environment-v1.json"
+    },
+    {
+      "file": "baseline-helper-controls.log",
+      "bytes": 83,
+      "sha256": "dfa4cd99159eccc3ef064cc52956664bb7447eb1da4844fa8102b260501b8904",
+      "originalPath": "/tmp/archguard-test-value-20261003/baseline-helper-controls.log"
+    },
+    {
+      "file": "bundled-integration-fullcheck.log",
+      "bytes": 21131,
+      "sha256": "1e5e65a54f77379ff984e9f24c6676ca4e13f713d10bfc91b4b05a0042610760",
+      "originalPath": "/tmp/archguard-test-value-20261003/bundled-integration-fullcheck.log"
+    },
+    {
+      "file": "bundled-integration-release-build.log",
+      "bytes": 62,
+      "sha256": "09f2b93c4bce5bfb43dca18ca8d9c1dca2831c7d2ffb73b00b96f8f73a607f86",
+      "originalPath": "/tmp/archguard-test-value-20261003/bundled-integration-release-build.log"
+    },
+    {
+      "file": "bundled-integration-research-checks-corrected.log",
+      "bytes": 4009,
+      "sha256": "439c6f89a3f7cc1cd552cb9f000a48acc268d2e59eb84fb02f3e8efc230bc4ce",
+      "originalPath": "/tmp/archguard-test-value-20261003/bundled-integration-research-checks-corrected.log"
+    },
+    {
+      "file": "bundled-integration-research-checks.log",
+      "bytes": 5523,
+      "sha256": "b953e5355eafd043353f42aca70519c4b59410ce1cc35cbc7e7b6741ecd38bf1",
+      "originalPath": "/tmp/archguard-test-value-20261003/bundled-integration-research-checks.log"
+    },
+    {
+      "file": "bundled-receipt-correction.log",
+      "bytes": 125,
+      "sha256": "4f98a9952d3c853ab7bfe6a9119c7917013e55a3f045a7515ba8634fd71dd940",
+      "originalPath": "/tmp/archguard-test-value-20261003/bundled-receipt-correction.log"
+    },
+    {
+      "file": "retained-preparation-verification-v1.json",
+      "bytes": 825,
+      "sha256": "66d2055d046fd1dfecbedd4ab090dba05236e22d46aaa61114dbc7b3ab5f824e",
+      "originalPath": "/tmp/archguard-test-value-20261003/retained-preparation-verification-v1.json"
+    },
+    {
+      "file": "collect_final_dependency_licenses_v1.py",
+      "bytes": 50952,
+      "sha256": "896d360ecedcc3511be3806663cad2827a2355ef82974cc58d80511792f8615a",
+      "originalPath": "/tmp/archguard-test-value-20261003/collect_final_dependency_licenses_v1.py"
+    },
+    {
+      "file": "license-collector-review-packet-v4.json",
+      "bytes": 6135,
+      "sha256": "48e996086e63b05c0d562ba2f8a263e1548d1a8ac0df4ef68daa4276124ecf54",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-collector-review-packet-v4.json"
+    },
+    {
+      "file": "license-collector-synthetic-controls-v1.py",
+      "bytes": 5526,
+      "sha256": "715e13c1f6fe9ade76386812b8d177e1b9248fac11e8415765b89b417ad98f86",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-collector-synthetic-controls-v1.py"
+    },
+    {
+      "file": "license-collector-synthetic-controls-v1.json",
+      "bytes": 564,
+      "sha256": "4d2fd1d03b0e4c0080a068609f833fc81200ec5d2c260e43a6de55b20dbe3210",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-collector-synthetic-controls-v1.json"
+    },
+    {
+      "file": "source-copy-disk-budget-v1.json",
+      "bytes": 12205,
+      "sha256": "18173be21bb1cb5e578a5e0721c7ea28bd71dc4bc408a2586f5bd76a2cf9e587",
+      "originalPath": "/tmp/archguard-test-value-20261003/source-copy-disk-budget-v1.json"
+    }
+  ]
+}

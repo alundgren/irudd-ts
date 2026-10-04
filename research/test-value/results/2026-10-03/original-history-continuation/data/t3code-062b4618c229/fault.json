@@ -1,0 +1,24 @@
+{
+  "id": "t3code-062b4618c229",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): bound the file-link label so bracket runs stop rescanning (#5782)",
+  "sourceFiles": [
+    "packages/shared/src/composerInlineTokens.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/composerInlineTokens.test.ts"
+  ],
+  "relatedGroup": "composer-inline-links",
+  "fix": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+  "parent": "deb901d6381e0c86ef326946c8fb45ee323db708",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 36
+  },
+  "verified": false,
+  "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-062b4618c229/fixed-template/CLAUDE.md'\")]",
+  "recordDigests": {}
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "controls": {
+    "helperSha256": "c1cbd9ba1ce29c46fce9b053958740265620b7cf32f16e1d78cc7fe8d6e84a56",
+    "syntheticStorePackagesInventoried": 2,
+    "resolvedNoticeFileHashed": true,
+    "externalPackageSymlinkNotRead": true,
+    "danglingPackageSymlinkMarkedUnreadable": true,
+    "externalProjectNoticeSymlinkNotRead": true,
+    "SEE_LICENSE_IN_requires_named_file": true,
+    "existingOutputFileRejected": true,
+    "existingOutputSymlinkRejected": true,
+    "packageCodeExecuted": false,
+    "historicalStoresTraversed": false
+  }
+}

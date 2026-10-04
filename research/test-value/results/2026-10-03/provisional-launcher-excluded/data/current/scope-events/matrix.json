@@ -1,0 +1,490 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "id": "scope-events",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "sources": [
+      "apps/desktop/src/workspace/events.ts"
+    ],
+    "tests": [
+      "tests/tab-events.test.ts"
+    ],
+    "limit": 200,
+    "revision": "8f8d6306179cca796c766243d402bacc96e5ffe3",
+    "scope": "selected tests and comparison/equality/logical operators"
+  },
+  "baselineComplete": true,
+  "tests": [
+    {
+      "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+      "name": "tabs communicate only within their group while the host observes all groups",
+      "file": "tests/tab-events.test.ts",
+      "durationMs": 2.277165999999994
+    },
+    {
+      "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+      "name": "one broken listener cannot block delivery and event input is validated",
+      "file": "tests/tab-events.test.ts",
+      "durationMs": 0.6370420000000081
+    },
+    {
+      "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+      "name": "moving a tab to another group invalidates its old event subscription",
+      "file": "tests/tab-events.test.ts",
+      "durationMs": 0.1722080000000119
+    }
+  ],
+  "mutants": [
+    {
+      "id": "cb5fbaefe1f4cae69b7898aa63955ab05ade58fa37b18d17c582b82f414cc148",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "cb5fbaefe1f4cae69b7898aa63955ab05ade58fa37b18d17c582b82f414cc148",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 798,
+          "end": 801,
+          "line": 21,
+          "endLine": 21
+        },
+        "owner": {
+          "name": "update",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 623,
+            "end": 1083,
+            "line": 16,
+            "endLine": 29
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "===",
+        "replacement": "!==",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0000/execution.json"
+    },
+    {
+      "id": "b6c638b0ebcff88cbab481eefe33678709bc7b1cb7a063c0d74928ad2217e343",
+      "status": "survived",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "notKilled"
+      },
+      "mutation": {
+        "id": "b6c638b0ebcff88cbab481eefe33678709bc7b1cb7a063c0d74928ad2217e343",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 972,
+          "end": 974,
+          "line": 27,
+          "endLine": 27
+        },
+        "owner": {
+          "name": "update",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 623,
+            "end": 1083,
+            "line": 16,
+            "endLine": 29
+          },
+          "nameTruncated": false
+        },
+        "operator": "logical",
+        "expected": "&&",
+        "replacement": "||",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0001/execution.json"
+    },
+    {
+      "id": "479c8ad01dd197909d2324bcf52dc88d532aa8afa6f72b87ac5ff74baa3d4dd4",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "479c8ad01dd197909d2324bcf52dc88d532aa8afa6f72b87ac5ff74baa3d4dd4",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 1004,
+          "end": 1007,
+          "line": 27,
+          "endLine": 27
+        },
+        "owner": {
+          "name": "update",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 623,
+            "end": 1083,
+            "line": 16,
+            "endLine": 29
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "!==",
+        "replacement": "===",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0002/execution.json"
+    },
+    {
+      "id": "fbe4c707047b54f7003ea6c5417970bcd35ffd645eec1113983d88e3f73c978c",
+      "status": "survived",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "notKilled"
+      },
+      "mutation": {
+        "id": "fbe4c707047b54f7003ea6c5417970bcd35ffd645eec1113983d88e3f73c978c",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 1479,
+          "end": 1481,
+          "line": 44,
+          "endLine": 44
+        },
+        "owner": {
+          "name": "forTab",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 1270,
+            "end": 2763,
+            "line": 39,
+            "endLine": 82
+          },
+          "nameTruncated": false
+        },
+        "operator": "logical",
+        "expected": "||",
+        "replacement": "&&",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0003/execution.json"
+    },
+    {
+      "id": "27dffc2eba3898eeaf3d3c530bf7c4c0855c5d8fbb72ae2bacac398d278fd487",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "27dffc2eba3898eeaf3d3c530bf7c4c0855c5d8fbb72ae2bacac398d278fd487",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 1503,
+          "end": 1506,
+          "line": 44,
+          "endLine": 44
+        },
+        "owner": {
+          "name": "forTab",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 1270,
+            "end": 2763,
+            "line": 39,
+            "endLine": 82
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "!==",
+        "replacement": "===",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0004/execution.json"
+    },
+    {
+      "id": "f804f0227875a6234404925fe22e0210c2562ee4f4f07a34999ee8e07409140c",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "f804f0227875a6234404925fe22e0210c2562ee4f4f07a34999ee8e07409140c",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 1959,
+          "end": 1962,
+          "line": 55,
+          "endLine": 55
+        },
+        "owner": {
+          "name": "forTab",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 1270,
+            "end": 2763,
+            "line": 39,
+            "endLine": 82
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "!==",
+        "replacement": "===",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0005/execution.json"
+    },
+    {
+      "id": "0d3087256954fddb55f5b7cfbae8b0d732e903e28bd147c73b91e2cb76fb9776",
+      "status": "survived",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "notKilled",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "notKilled"
+      },
+      "mutation": {
+        "id": "0d3087256954fddb55f5b7cfbae8b0d732e903e28bd147c73b91e2cb76fb9776",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 2159,
+          "end": 2161,
+          "line": 63,
+          "endLine": 63
+        },
+        "owner": {
+          "name": "forTab",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 1270,
+            "end": 2763,
+            "line": 39,
+            "endLine": 82
+          },
+          "nameTruncated": false
+        },
+        "operator": "logical",
+        "expected": "||",
+        "replacement": "&&",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0006/execution.json"
+    },
+    {
+      "id": "bdd6eace6360e20d180b9eaed281b777eb1977a4b216331e8e0b04140a75031b",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "bdd6eace6360e20d180b9eaed281b777eb1977a4b216331e8e0b04140a75031b",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 2183,
+          "end": 2186,
+          "line": 63,
+          "endLine": 63
+        },
+        "owner": {
+          "name": "forTab",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 1270,
+            "end": 2763,
+            "line": 39,
+            "endLine": 82
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "!==",
+        "replacement": "===",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0007/execution.json"
+    },
+    {
+      "id": "cb954ec4f826d34045a6ee9bda3b2a7a4fb67fdd0a56b7f6b326beedb3db5ab6",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "cb954ec4f826d34045a6ee9bda3b2a7a4fb67fdd0a56b7f6b326beedb3db5ab6",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 2341,
+          "end": 2344,
+          "line": 67,
+          "endLine": 67
+        },
+        "owner": {
+          "name": "forTab",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 1270,
+            "end": 2763,
+            "line": 39,
+            "endLine": 82
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "===",
+        "replacement": "!==",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0008/execution.json"
+    },
+    {
+      "id": "7e28673d8087b250b83c7882106b1077f16fbbfce2becef815fa7e9e1eec54f8",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "7e28673d8087b250b83c7882106b1077f16fbbfce2becef815fa7e9e1eec54f8",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 2978,
+          "end": 2981,
+          "line": 88,
+          "endLine": 88
+        },
+        "owner": {
+          "name": "deliver",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 2767,
+            "end": 3284,
+            "line": 84,
+            "endLine": 96
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "===",
+        "replacement": "!==",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0009/execution.json"
+    },
+    {
+      "id": "91008d7bbdcdf3820850bb24249cab04848358488588a808b84460e23a26d9b8",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "91008d7bbdcdf3820850bb24249cab04848358488588a808b84460e23a26d9b8",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 3033,
+          "end": 3035,
+          "line": 89,
+          "endLine": 89
+        },
+        "owner": {
+          "name": "deliver",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 2767,
+            "end": 3284,
+            "line": 84,
+            "endLine": 96
+          },
+          "nameTruncated": false
+        },
+        "operator": "logical",
+        "expected": "&&",
+        "replacement": "||",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0010/execution.json"
+    },
+    {
+      "id": "28e16a531028069710b76a827a68efd515339ba8e9cff192fe93d02c78b29769",
+      "status": "killed",
+      "outcomes": {
+        "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]": "killed",
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]": "killed"
+      },
+      "mutation": {
+        "id": "28e16a531028069710b76a827a68efd515339ba8e9cff192fe93d02c78b29769",
+        "location": {
+          "file": "apps/desktop/src/workspace/events.ts",
+          "start": 3075,
+          "end": 3078,
+          "line": 89,
+          "endLine": 89
+        },
+        "owner": {
+          "name": "deliver",
+          "kind": "method",
+          "location": {
+            "file": "apps/desktop/src/workspace/events.ts",
+            "start": 2767,
+            "end": 3284,
+            "line": 84,
+            "endLine": 96
+          },
+          "nameTruncated": false
+        },
+        "operator": "equality",
+        "expected": "!==",
+        "replacement": "===",
+        "sourceSha256": "4f85fe34dacab76541d0a3d327c88da812f78be89f39556fffd6d5e9b78e9b5e"
+      },
+      "infrastructureErrors": [],
+      "evidence": "mutant-0011/execution.json"
+    }
+  ],
+  "provenance": {
+    "sourceSha256": "9bcaa1266bd0c33aeb4bc8e3b1195de4493bf1907671a53c220909642b57b895",
+    "dependencySha256": "ee1e4ea74f91dd603abbc3d336cb0193ace32295ae0d035fee741ec64fd68dac",
+    "plannedMutants": 12,
+    "predeclaredPrefixLimit": 200
+  }
+}

@@ -1,0 +1,16 @@
+test_embedded_payload_preserves_operator_and_script_text (test_report.ReportEvidenceControls.test_embedded_payload_preserves_operator_and_script_text) ... FAIL
+
+======================================================================
+FAIL: test_embedded_payload_preserves_operator_and_script_text (test_report.ReportEvidenceControls.test_embedded_payload_preserves_operator_and_script_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/test_report.py", line 22, in test_embedded_payload_preserves_operator_and_script_text
+    self.assertEqual(decoded,data)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: {'sub[55 chars]d': '\\u003c', 'replacement': '\\u003c='}}, {'[110 chars]]}}]} != {'sub[55 chars]d': '<', 'replacement': '<='}}, {'name': 'lite[80 chars]]}}]}
+Diff is 1274 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)

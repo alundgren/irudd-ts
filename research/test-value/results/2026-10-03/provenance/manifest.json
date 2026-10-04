@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "scope": "Immutable source, candidate and validation provenance; preparation still underway",
+  "files": [
+    {
+      "file": "history-registered-50.json",
+      "sha256": "70a71103b24ad8b688e3603aaf89c2bfba0b801245bc4605eaa5decc4fb25b05",
+      "bytes": 32170,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-registered-50.json"
+    },
+    {
+      "file": "history-lock-matched-50.json",
+      "sha256": "b86b26da5d2a55ee19403dc4136b6ba2c6308525708790d417adc2f075594585",
+      "bytes": 45289,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-lock-matched-50.json"
+    },
+    {
+      "file": "history-lock-matched-supplement-28.json",
+      "sha256": "2643b439b9ce8b6acb41a9a87cba6846d66ff674b2e51b5d56f4877045630b01",
+      "bytes": 40875,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-lock-matched-supplement-28.json"
+    },
+    {
+      "file": "history-lock-matched-78.json",
+      "sha256": "5f8eaee75c84794117a1f34c86fd7a5bae24503c91ae8779d8113b2d47df2987",
+      "bytes": 88498,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-lock-matched-78.json"
+    },
+    {
+      "file": "history-lock-matched-78-final.json",
+      "sha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0",
+      "bytes": 88809,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-lock-matched-78-final.json"
+    },
+    {
+      "file": "historical-source-launch-gate.json",
+      "sha256": "2be0d2ef683a9062a71db7273d56c34bcf834385dfa61664971eade7a270d84a",
+      "bytes": 27996,
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-source-launch-gate.json"
+    },
+    {
+      "file": "supplement-source-binding-audit.json",
+      "sha256": "8068bc2bbcbbef985ca37ef059e029825937fcef01cf5ad9cc25efbffa981f11",
+      "bytes": 23018,
+      "originalPath": "/tmp/archguard-test-value-20261003/supplement-source-binding-audit.json"
+    },
+    {
+      "file": "supplement-relay-filter-audit.json",
+      "sha256": "7c65f12846d8472153495f0fccc348ed8b1b0b30ccc7aabf562b014715255fb3",
+      "bytes": 54449,
+      "originalPath": "/tmp/archguard-test-value-20261003/supplement-relay-filter-audit.json"
+    },
+    {
+      "file": "historical-filter-audit.json",
+      "sha256": "ec377caed3bf5545f3ddb42e311b59354da4f4a6e0370ddb57ff90fc533e8025",
+      "bytes": 124919,
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-filter-audit.json"
+    },
+    {
+      "file": "models.json",
+      "sha256": "9fac1d7b60265f5f72829c96ad09fd4158e91c0072f20ee3d4b5f2a7e36b808c",
+      "bytes": 192,
+      "originalPath": "/tmp/archguard-test-value-20261003/models.json"
+    },
+    {
+      "file": "requirements.json",
+      "sha256": "4a5afff839ea74b23fd60be9614fac7942cb78c31690639666fa7c216da301ac",
+      "bytes": 778,
+      "originalPath": "/tmp/archguard-test-value-20261003/requirements.json"
+    },
+    {
+      "file": "history-continuation-final-summary.json",
+      "sha256": "16aa274bdd1053988b39c34154332c44baee4d64ffabe7e7a109eb43b0958ffa",
+      "bytes": 14233,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-continuation-final-summary.json"
+    },
+    {
+      "file": "history-continuation-baseline-exclusions.json",
+      "sha256": "03a2d4171ccae5be09f91f289d6f00e8a3dbc6ec483d3e7d8362728d72b5d3d8",
+      "bytes": 17112,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-continuation-baseline-exclusions.json"
+    },
+    {
+      "file": "history-continuation-launch.json",
+      "sha256": "75a038f83a659d072ff25e3044e2b328949a3e4a6bf206060e0c2a563dcf617f",
+      "bytes": 1423,
+      "originalPath": "/tmp/archguard-test-value-20261003/history-continuation-launch.json"
+    },
+    {
+      "file": "source-setup-combined-fullcheck.log",
+      "sha256": "379bf9fc0efdaf49913428de0bcf213b7ff45cc5a1c79b84f872d34ff729b748",
+      "bytes": 21124,
+      "originalPath": "/tmp/archguard-test-value-20261003/source-setup-combined-fullcheck.log"
+    },
+    {
+      "file": "source-setup-combined-research-controls.log",
+      "sha256": "e62635d20cc99237f9db9c37a62f492ad39e7533d99b4b066d66df39efafa68c",
+      "bytes": 4009,
+      "originalPath": "/tmp/archguard-test-value-20261003/source-setup-combined-research-controls.log"
+    },
+    {
+      "file": "source-setup-release-build.log",
+      "sha256": "2d5694fb348541fae3d68a033b004800c9c79f8f6edb468d5763b1d8f389597a",
+      "bytes": 62,
+      "originalPath": "/tmp/archguard-test-value-20261003/source-setup-release-build.log"
+    },
+    {
+      "file": "historical-source-launch-gate.log",
+      "sha256": "44fbbe3ac74b0bce43a44899075be8ec707e1aa540fb981fb8cec38bd168f385",
+      "bytes": 4508,
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-source-launch-gate.log"
+    },
+    {
+      "file": "audit_fresh_archives.py",
+      "sha256": "5651830dcecbaf8d46cadd666be8265aac4e232790da531906d5fec3407542df",
+      "bytes": 3249,
+      "originalPath": "/tmp/archguard-test-value-20261003/audit_fresh_archives.py"
+    },
+    {
+      "file": "audit_supplement_archives.py",
+      "sha256": "bbe4aaa82b09f43e2d6f5e6ef2e12dba63e67f425877165823a04a1579e41a0b",
+      "bytes": 6148,
+      "originalPath": "/tmp/archguard-test-value-20261003/audit_supplement_archives.py"
+    },
+    {
+      "file": "prepare_historical_installs.py",
+      "sha256": "e0a0ac045546373a5c88716aabfcd67d548cb895bf4da5f967b04a9fac8099ba",
+      "bytes": 5994,
+      "originalPath": "/tmp/archguard-test-value-20261003/prepare_historical_installs.py"
+    },
+    {
+      "file": "prepare_scope_probe_3.py",
+      "sha256": "9998dad789728bf2eb456ebe06929bf28089a9f1c233ff1d5f88bb81c8996f6d",
+      "bytes": 3326,
+      "originalPath": "/tmp/archguard-test-value-20261003/prepare_scope_probe_3.py"
+    },
+    {
+      "file": "retain_profile.py",
+      "sha256": "be1b425d72bcffa6e8348d2c5497e97485ad7bc1f74037c9066db143b8f9b98a",
+      "bytes": 2378,
+      "originalPath": "/tmp/archguard-test-value-20261003/retain_profile.py"
+    },
+    {
+      "file": "historical-install-plan.json.gz",
+      "sha256": "acc408534c4eae1d621471bb818480ac184f7c9bf3d1fadc58df2cb50d0148e3",
+      "bytes": 1649083,
+      "decompressedSha256": "b6c13206cd9bf6440177a42a048147f790510f33c98ea9fb5c17cf8fb39df17d",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-install-plan.json"
+    },
+    {
+      "file": "supplement-install-input-plan.json.gz",
+      "sha256": "d728ec8185ea7fdc22e09e7ec51caf50b34af4a45b9fef5eaf134d753a014018",
+      "bytes": 907210,
+      "decompressedSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+      "originalPath": "/tmp/archguard-test-value-20261003/supplement-install-input-plan.json"
+    },
+    {
+      "file": "current-measurement-summary.json",
+      "bytes": 3941,
+      "sha256": "f9bf124eb30c6db584d369e0e7864759cb61056a402f525cb061b2876a3b7cab",
+      "originalPath": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/results/2026-10-03/provenance/current-measurement-summary.json"
+    }
+  ]
+}

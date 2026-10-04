@@ -1,0 +1,27 @@
+{
+  "id": "scope-392d29f5779d",
+  "subject": "scope",
+  "repository": "/Users/alun/repos/irudd-scope",
+  "title": "fix(hub): preserve larger outbound publication commands",
+  "sourceFiles": [
+    "apps/hub/src/paired-server.ts"
+  ],
+  "testFiles": [
+    "tests/hub-relay.test.ts"
+  ],
+  "relatedGroup": "hub-relay-write",
+  "fix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+  "parent": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 27
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "b4c33b3a7c738ed9f3b6ec1cf71d940dcf125ad16f711cc0ec8d0ee6227c5113"
+  }
+}

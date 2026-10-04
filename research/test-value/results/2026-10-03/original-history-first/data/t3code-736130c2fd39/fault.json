@@ -1,0 +1,28 @@
+{
+  "id": "t3code-736130c2fd39",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(server): working timers no longer reset on every background wake (#15029)",
+  "sourceFiles": [
+    "apps/server/src/orchestration-v2/Orchestrator.ts",
+    "apps/server/src/orchestration-v2/ProjectionStore.ts",
+    "apps/web/src/components/Sidebar.logic.ts",
+    "packages/client-runtime/src/state/models.ts",
+    "packages/client-runtime/src/state/threadExecution.ts",
+    "packages/contracts/src/orchestrationV2.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/orchestration-v2/ProjectionStore.test.ts",
+    "apps/server/src/orchestration-v2/runtimeLayer.test.ts",
+    "packages/client-runtime/src/state/threadExecution.test.ts"
+  ],
+  "relatedGroup": "thread-runtime-presentation",
+  "fix": "736130c2fd39b85cd515fa2a41cd10c8a8a52630",
+  "parent": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "57c6e960003e68f294785526ef55b9d010d21c526ce322feac85c4d8922b8f84"
+  }
+}

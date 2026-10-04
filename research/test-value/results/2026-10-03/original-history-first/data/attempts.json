@@ -1,0 +1,230 @@
+[
+  {
+    "id": "t3code-f391794a35c6",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(shared): classify workspace previews by literal filenames (#10311)",
+    "sourceFiles": [
+      "packages/shared/src/filePreview.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/assets/AssetAccess.test.ts",
+      "packages/shared/src/filePreview.test.ts"
+    ],
+    "relatedGroup": "preview-classification",
+    "fix": "f391794a35c604d57e166a3ab48d56fc6e4e469a",
+    "parent": "31a9da179ed0763335f05681c577474aec5d2309",
+    "verified": false,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "packages/shared/src/filePreview.ts"
+    ],
+    "killedBy": [],
+    "unaffected": [],
+    "fixedTemplateSha256": "f5cebfaabc3a55a2793c8d76371d8b3dbc1ba575225b94c44d1899e939af7289",
+    "faultyTemplateSha256": "6885577fe0c96654c10e3778160a8af2230d5dc86a8f1a582f5be4732dc583c9",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "apps/server/src/assets/AssetAccess.test.ts": "parent file existed; individual additions not classified",
+      "packages/shared/src/filePreview.test.ts": "parent file existed; individual additions not classified"
+    },
+    "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+    "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+    "recordDigests": {
+      "fixed-before/execution.json": "6b486944da2bf98e79300849211151b3e77a9a6cabf32a53126951d855907a46",
+      "faulty/execution.json": "f0e49f662d1c8f8fc620198355ee0efebdd355f676d0ff2f4535e1aefecb6ed2",
+      "fixed-after/execution.json": "f9df7be0a1ad233042d13cd0f14e67d85892c4812ecb4bfeac6c5bd25c5b0b1e"
+    }
+  },
+  {
+    "id": "t3code-f68e24fb419c",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(web): a thread that left a shell running shows its unseen completion (#14910)",
+    "sourceFiles": [
+      "apps/mobile/src/features/threads/threadListV2.ts",
+      "apps/web/src/components/Sidebar.logic.ts",
+      "apps/web/src/components/ThreadNotificationCoordinator.tsx",
+      "packages/client-runtime/src/state/models.ts",
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ],
+    "testFiles": [
+      "apps/mobile/src/features/threads/threadListV2.test.ts",
+      "apps/web/src/components/Sidebar.logic.test.ts",
+      "packages/client-runtime/src/state/entities.test.ts"
+    ],
+    "relatedGroup": "thread-runtime-presentation",
+    "fix": "f68e24fb419c985269cd0acb841e203af1419c43",
+    "parent": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+    "verified": false,
+    "exclusion": "historical mutation plan failed",
+    "recordDigests": {
+      "fixed-before/execution.json": "3b03becee66202314606c6ce3bed27e5cfdef4227fda31e6e5a6ca2e430c4a09",
+      "faulty/execution.json": "65000f5b6f533925dce459bee22192de2014290f51d4644ec55797db742878a9",
+      "fixed-after/execution.json": "2b99043ad3b91859e90fbdbbdfa6980e50578c774c7290fc41bd5128165daa49"
+    }
+  },
+  {
+    "id": "t3code-a5b34b25378f",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(clients): a dev server left running no longer says the thread is waiting (#15114)",
+    "sourceFiles": [
+      "apps/web/src/components/ChatView.tsx",
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ],
+    "testFiles": [
+      "packages/client-runtime/src/state/threadExecution.test.ts"
+    ],
+    "relatedGroup": "thread-runtime-presentation",
+    "fix": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+    "parent": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+    "verified": false,
+    "exclusion": "historical mutation plan failed",
+    "recordDigests": {
+      "fixed-before/execution.json": "c34d4bfa4ff78ca193848d2da0401ca78e3e2cd0757135ab3a855a6b723bc75c",
+      "faulty/execution.json": "f661aaeb874b85e77f086929f7b9ff0d32783c893771efe9120210a3cda06caa",
+      "fixed-after/execution.json": "4135737b519610114a9094b92e50f48030ef514a8fbb6c19f7f289bd9fae6fb2"
+    }
+  },
+  {
+    "id": "t3code-56914128c1ff",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(usage): Codex Fast and Ultrafast now cost what they bill (#15101)",
+    "sourceFiles": [
+      "apps/server/src/usage/UsageService.ts",
+      "apps/server/src/usage/antigravityUsageReader.ts",
+      "apps/server/src/usage/cursorUsageReader.ts",
+      "apps/server/src/usage/opencodeUsageReader.ts",
+      "apps/server/src/usage/usagePricing.ts",
+      "apps/server/src/usage/usageScanCache.ts",
+      "apps/server/src/usage/usageTranscriptReader.ts",
+      "apps/server/src/usage/usageTranscripts.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/usage/UsageService.test.ts",
+      "apps/server/src/usage/usageAggregation.test.ts",
+      "apps/server/src/usage/usagePricing.test.ts",
+      "apps/server/src/usage/usageScanCache.test.ts",
+      "apps/server/src/usage/usageTranscriptReader.test.ts",
+      "apps/server/src/usage/usageTranscriptStreaming.test.ts",
+      "apps/server/src/usage/usageTranscripts.test.ts"
+    ],
+    "relatedGroup": "usage-accounting",
+    "fix": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+    "parent": "6108ef3d3d0ef2a598088a1bb64980580e935830",
+    "verified": false,
+    "replay": "adapted source-reversion replay",
+    "revertedFiles": [
+      "apps/server/src/usage/UsageService.ts",
+      "apps/server/src/usage/antigravityUsageReader.ts",
+      "apps/server/src/usage/cursorUsageReader.ts",
+      "apps/server/src/usage/opencodeUsageReader.ts",
+      "apps/server/src/usage/usagePricing.ts",
+      "apps/server/src/usage/usageScanCache.ts",
+      "apps/server/src/usage/usageTranscriptReader.ts",
+      "apps/server/src/usage/usageTranscripts.ts"
+    ],
+    "killedBy": [],
+    "unaffected": [],
+    "fixedTemplateSha256": "1dd66b59d202985d5a0bf02c80117e2f484ebd939dad4d35ce223afb1a9eaf44",
+    "faultyTemplateSha256": "79e180d2f8b452e1295b7ff59f5ac7ca057ba82aa0611be7f4005cf0be6588ef",
+    "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "node": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "fixedBefore": "fixed-before/execution.json",
+    "faulty": "faulty/execution.json",
+    "fixedAfter": "fixed-after/execution.json",
+    "testFileOrigins": {
+      "apps/server/src/usage/UsageService.test.ts": "parent file existed; individual additions not classified",
+      "apps/server/src/usage/usageAggregation.test.ts": "parent file existed; individual additions not classified",
+      "apps/server/src/usage/usagePricing.test.ts": "parent file existed; individual additions not classified",
+      "apps/server/src/usage/usageScanCache.test.ts": "parent file existed; individual additions not classified",
+      "apps/server/src/usage/usageTranscriptReader.test.ts": "parent file existed; individual additions not classified",
+      "apps/server/src/usage/usageTranscriptStreaming.test.ts": "parent file existed; individual additions not classified",
+      "apps/server/src/usage/usageTranscripts.test.ts": "parent file existed; individual additions not classified"
+    },
+    "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+    "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+    "recordDigests": {
+      "fixed-before/execution.json": "8df4d8866c7c6d299686ad7ece15feaf81ecde4af58551d675e44bcfe1f9bc67",
+      "faulty/execution.json": "1793f433cebe72e54f1714c5d4bb5f2073368b470ecc319358bcdcb89a40c802",
+      "fixed-after/execution.json": "33c6b2d2e201f6b0b973c8940c46af6a0cdc6e036e4429c71910173c622f8656"
+    }
+  },
+  {
+    "id": "t3code-63f74e209dc2",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(opencode): fill blank reasoning labels (#14978)",
+    "sourceFiles": [
+      "apps/mobile/src/features/threads/ThreadComposer.tsx",
+      "apps/mobile/src/features/threads/ThreadDetailScreen.tsx",
+      "apps/mobile/src/features/threads/ThreadSettingsSheet.tsx",
+      "apps/mobile/src/state/entities.ts",
+      "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.ts",
+      "apps/web/src/components/ChatView.tsx",
+      "apps/web/src/components/chat/ChatComposer.tsx",
+      "apps/web/src/components/chat/TraitsPicker.tsx",
+      "apps/web/src/components/chat/composerProviderState.tsx",
+      "packages/client-runtime/src/state/threadExecution.ts",
+      "packages/contracts/src/orchestrationV2.ts",
+      "packages/shared/src/model.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.test.ts",
+      "apps/web/src/components/chat/TraitsPicker.test.ts",
+      "packages/client-runtime/src/state/threadExecution.test.ts",
+      "packages/shared/src/model.test.ts"
+    ],
+    "relatedGroup": "provider-trait-presentation",
+    "fix": "63f74e209dc27df1f8733535d6fd4a79d442add8",
+    "parent": "ca4f84e702428656665d53635e16251112091657",
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "85bdcc1472ee6bb05c87a10a2d1dbc87848a6c273a44584850fa92d4c49718fc"
+    }
+  },
+  {
+    "id": "t3code-736130c2fd39",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "title": "fix(server): working timers no longer reset on every background wake (#15029)",
+    "sourceFiles": [
+      "apps/server/src/orchestration-v2/Orchestrator.ts",
+      "apps/server/src/orchestration-v2/ProjectionStore.ts",
+      "apps/web/src/components/Sidebar.logic.ts",
+      "packages/client-runtime/src/state/models.ts",
+      "packages/client-runtime/src/state/threadExecution.ts",
+      "packages/contracts/src/orchestrationV2.ts"
+    ],
+    "testFiles": [
+      "apps/server/src/orchestration-v2/ProjectionStore.test.ts",
+      "apps/server/src/orchestration-v2/runtimeLayer.test.ts",
+      "packages/client-runtime/src/state/threadExecution.test.ts"
+    ],
+    "relatedGroup": "thread-runtime-presentation",
+    "fix": "736130c2fd39b85cd515fa2a41cd10c8a8a52630",
+    "parent": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+    "verified": false,
+    "exclusion": "fixed adapted baseline incomplete or failing",
+    "fixedEvidence": "fixed-before/execution.json",
+    "recordDigests": {
+      "fixed-before/execution.json": "57c6e960003e68f294785526ef55b9d010d21c526ce322feac85c4d8922b8f84"
+    }
+  }
+]

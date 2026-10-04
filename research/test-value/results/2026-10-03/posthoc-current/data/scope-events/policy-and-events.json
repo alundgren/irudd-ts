@@ -1,0 +1,127 @@
+{
+  "policy": {
+    "id": "posthoc-test-failures-v1",
+    "timing": "specified after observing assertion-only exclusions",
+    "vitest": "complete fixed inventory; SDK finished; failed test assertion or test-bound exception; no hook/global/import/unhandled failures",
+    "rust": "complete fixed libtest inventory; assertion or Result::unwrap failure at a frozen test-source unwrap site",
+    "limits": "failure origin is not instrumented; exceptions do not establish assertion strength; no timeout promotion"
+  },
+  "classifierModules": {
+    "sensitivity.py": "988865cc9b973955f3a8f56f49530e8fce768c7ab59217ed03b89762b19b0bc4",
+    "analyze.py": "091bdd58cd75f1fdca7b4bed4ddb22dcf61bb3b46d35bfead66803cb437c23c0",
+    "runner.py": "1f9e32fecf0daddb9a01fe888ceb16f3fcc12fdc2be941c3856a4e6e26ddd763",
+    "rust_slice.py": "075001c5c9adc4dd03e4cffdca24dc6c6206b965a78b2bafe42f9a8b8c337a84"
+  },
+  "primaryMatrixSha256": "ae742672c12d0421f5793e928c30c9434446b0cd0f750f069c4a1b9cb5c52637",
+  "events": {
+    "cb5fbaefe1f4cae69b7898aa63955ab05ade58fa37b18d17c582b82f414cc148": {
+      "execution.json": "cc505b593f5002df208ccca3b5e9c5cd4f5a83a2cce7d718559054c738cbf43c",
+      "request.json": "dc740568985b1499fa55c70e93e788846214020692f72db9876871fcfee03436",
+      "result.json": "386c5d8f7861a81e98f609288d24e184b7f0fbe331c84053353279f07d2ba35c",
+      "inventory.json": "888913b3c4c91d935999b739db2198384e215244fb746a0bdee9e7d6b015e062",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "b6c638b0ebcff88cbab481eefe33678709bc7b1cb7a063c0d74928ad2217e343": {
+      "execution.json": "97bccf4e6b584968b988ffcb308eabd21b2d6a4e807c325b6ef768c3de65c05d",
+      "request.json": "adb23596b869a5603d5e6c07aa2383f99fbbdbdab3d36a7cd15cbd28f3354fad",
+      "result.json": "38f9d40796104a91abf857ed936aff4eeac06a7c6d49d2d40c4f6d18dbd1320f",
+      "inventory.json": "ec029f36345dc85982e74f941198b82569dfe98655e245a01ae96fd63ecd3b3b",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "479c8ad01dd197909d2324bcf52dc88d532aa8afa6f72b87ac5ff74baa3d4dd4": {
+      "execution.json": "15c9f0fd8fa48ee894ea3819d763e0d4a70bc85ee0ca26d567c4d52031b6859c",
+      "request.json": "47631bddcaabd584b4d381f18f6c5513fd89baef25508beea0c2e077cd91cdc1",
+      "result.json": "5c490a445314727f9fb49ddce3f96399078b0701bf134cc680b58fc0106bcddb",
+      "inventory.json": "20b0687cc3509827dc0b26976c4f7f1de194a14a17d358bedcf5f139c18dab8c",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "fbe4c707047b54f7003ea6c5417970bcd35ffd645eec1113983d88e3f73c978c": {
+      "execution.json": "e262837b9dc933b6529456162860e11c09b17a7ed758de73652cc937796d6674",
+      "request.json": "1f671834b1799b03e3d9f550000cc61a4d13b70c9a148db65b01c72947c6d5f6",
+      "result.json": "9705d4d0e29bb80d85fe1a15d44a42bdf431131c3b6ec8f0378e2e869d8b79f7",
+      "inventory.json": "fb26fdf91460b8d2f6bcb40c51e72b6a2002c97f3e4876ccf4ee37abc32b7d1e",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "27dffc2eba3898eeaf3d3c530bf7c4c0855c5d8fbb72ae2bacac398d278fd487": {
+      "execution.json": "325cde475fd3b8879793d39cb76a936e72874648d60296dbf4afe7b8898b6628",
+      "request.json": "ef0397a974a3fbbafefc109c66b6e801f14117f5b1d5958fb08773ae01cd3240",
+      "result.json": "e0b282ebc7a091ada00da5294fc755664ccfe01aad880dcc97409f399fdf635e",
+      "inventory.json": "82ef659d8660000e3ab4d293455af3b90901a5bd260d542e0a0538ac467738b2",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "f804f0227875a6234404925fe22e0210c2562ee4f4f07a34999ee8e07409140c": {
+      "execution.json": "2ba76acfd2d05a5c1d5015915aae495a85702ab8c1f6563fb6e0870033ff0f3f",
+      "request.json": "24e398b655dfdd24cc31c1ea1a24e7192159c84c1b735be1d2c7d238c3f8ddfe",
+      "result.json": "3af4046ada28f0f261e46fed6cca8e7187f2f5d4bf4640ed0ad85dc21f268eb7",
+      "inventory.json": "e249cd502c350af37e7b9e4d28ac8a3f9d6414d39c695197a31b79b2c0cfc8a1",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "0d3087256954fddb55f5b7cfbae8b0d732e903e28bd147c73b91e2cb76fb9776": {
+      "execution.json": "089fdb33fb89d6e35f4825da602b251800463296d9f5c7aa5c3578d8ce648ac6",
+      "request.json": "bd57fdd02e069de3c8a8e2c0cd483725fbb3cc0aeee7e5a585da793a61e4578c",
+      "result.json": "25e2093b2ebc8b8efe479ed23e58f3554d00d36c39307bdc01eebeb23ae59538",
+      "inventory.json": "45658488e84499024785e94c4b08ad18a1268e1d81b372f048af3267b7030593",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "bdd6eace6360e20d180b9eaed281b777eb1977a4b216331e8e0b04140a75031b": {
+      "execution.json": "8442cca9012dacdd92057e05d0a8391df275c0116cb0469df364cca25188572b",
+      "request.json": "1459aae7dd4b4d9e88c081e87d772e156aaece7e5a6aa1a271efce244803ad4a",
+      "result.json": "2f776877e222c8d8aa9e1bc04f1af65e0afa4c31d920b568628cf44157429538",
+      "inventory.json": "1b27f51a6bb119d4fd01136308cb9e47f27e02d5d61c0254a44f25c6b5167e91",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "cb954ec4f826d34045a6ee9bda3b2a7a4fb67fdd0a56b7f6b326beedb3db5ab6": {
+      "execution.json": "a3ebf0fdd4c22b4ca5bdfb0fb9d35f3f0cd76da511bedb26dd63b39f00b3305b",
+      "request.json": "4259d0b6a432f4f31909dd4dec108fbfba46c0fbd43dd0be1d37c3587eb103cd",
+      "result.json": "0396bb08dd5e86b563646437c678c4b02fcdaa0c8af8d13bc67ee34f08789fdb",
+      "inventory.json": "cbcd1daeedc4e91f27be3663e0aa92db0769177c3b2cd584298be1524de8f727",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "7e28673d8087b250b83c7882106b1077f16fbbfce2becef815fa7e9e1eec54f8": {
+      "execution.json": "0e906cfc9baf39914bd6506926581aec6122e13a58704314b45fec327500d7aa",
+      "request.json": "f469feb526208cd65b5360eb0189884d57f3f25827a411443e951138f5ceeede",
+      "result.json": "49785c7c4b0be28ffa1b22bf7f9ee7858464c9f1470a52eb9a008835d602da19",
+      "inventory.json": "6a3f827f80db92cd9590404556a6487017474cb13a73ad8e978f71c75b9c1997",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "91008d7bbdcdf3820850bb24249cab04848358488588a808b84460e23a26d9b8": {
+      "execution.json": "f8db321ae93cb50bf4f143d457b3bce0cf23be8d4d5cb339e7250cce2c552c1e",
+      "request.json": "b1b84ce901fa45bf4aa388cb3d553cb25ae6800d895d3889dc8170d4908a0bb8",
+      "result.json": "2116512a7084c9208493f8fb9177dda70831c61f2d55602ab4efa4b14413e7c2",
+      "inventory.json": "3085b1be05b1de98dc80aeb75bb795b365177b68b1fcbee5c36bcfaa4d9fd9e8",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "28e16a531028069710b76a827a68efd515339ba8e9cff192fe93d02c78b29769": {
+      "execution.json": "7322c40e0aa5c95a5b1b7ca51fe6c759714f683d44c363104cd3680cedce0d57",
+      "request.json": "5bb7c50510e78baf3f203ae5a81f60ba55baf52f5ac30fde4d6e42db46c205eb",
+      "result.json": "970f67f78c6cf3cee7d8919299bf8cc374211b7cb970a7888d935a06fe8edb4e",
+      "inventory.json": "4f8d63cf2b831591a628d6cabec2409b586fa40cd51876bbfe43845e46a862ae",
+      "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "baselineEvents": {
+    "execution.json": "c647456e02ee81075d3d8d4db1198ca517a3e7a47b7bc8248f721091aebf09b3",
+    "request.json": "10722178bca10f41279f7450b4459d9ed522daf28b4816ee559763d9f3688e96",
+    "result.json": "6624be5f53401141065d376acc4f5557de9719355825f75d8df704dd3db13e77",
+    "inventory.json": "56888940687ad20106813481842e5be051c21de4876e6a2474be0a44821a0a4d",
+    "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "frozenNode": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+    "version": "v26.10.0",
+    "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+  }
+}

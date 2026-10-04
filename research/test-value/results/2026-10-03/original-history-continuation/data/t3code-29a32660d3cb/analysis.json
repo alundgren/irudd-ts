@@ -1,0 +1,1388 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "name": "t3code",
+    "revision": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+    "faultId": "t3code-29a32660d3cb"
+  },
+  "baselineTestInventoryDigest": "ab8fcaac795a2304c26b61ec860da8d08f913a9c7cd1ba17d77529310d24e3ce",
+  "baselineMatrixDigest": "c3f6409963b9be76f76cdcca789f3fdd692325719bb7be67ff4f7765a935fc6e",
+  "baselineComplete": true,
+  "complete": true,
+  "summary": {
+    "tests": 19,
+    "plannedMutants": 23,
+    "acceptedMutants": 23,
+    "killedMutants": 20,
+    "unexplainedSurvivors": 3,
+    "observedMutationScore": 0.8695652173913043,
+    "subsumingRequirements": 6,
+    "baselineRequirementRetention": 1.0,
+    "observedKillSignatures": 13,
+    "excludedMutants": 0,
+    "greedyCoreTests": 6
+  },
+  "requirements": [
+    {
+      "id": "1e68ee86e549cd3e537687d538fb3c39c9921d6a8443d93fec28c6607fb6675a",
+      "representative": "1f078f96c27a7fdd84239a61331cfa57f936fac6b06d48cdc5d567f67a0e49a9",
+      "mutants": [
+        "1f078f96c27a7fdd84239a61331cfa57f936fac6b06d48cdc5d567f67a0e49a9",
+        "7ed78d88ad9e43c1332bc3c5fc816e18199ed708c7e4cfcf1e6e69fdfd2e7272",
+        "c13fe3bc2ad8e19a3c9bc89e6a9a99db60c3a7b744f695ecb465417a8b29ce31"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]"
+      ]
+    },
+    {
+      "id": "52f268c1d2b0b9ec4c3b69bd10ac934115e2a0db3833deab6b181a7fe3ed13d5",
+      "representative": "aa1d27f07f86e5c84bad48a4bcdf67f0a284ef135a2c127be247449bf2b4021f",
+      "mutants": [
+        "aa1d27f07f86e5c84bad48a4bcdf67f0a284ef135a2c127be247449bf2b4021f",
+        "fcebc040e6fdbf37abdff93ba901deb5a7b5248547c4c2ef4cd5747e12b3249c"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]"
+      ]
+    },
+    {
+      "id": "5b6d27a6d59b282217351e804c1ce93ee1ad458df8646dfa8c22dcee5ed88f6d",
+      "representative": "071b9333d32b6b9910d71b91ef1e763d165f2aec32af4791322dea7bf360a094",
+      "mutants": [
+        "071b9333d32b6b9910d71b91ef1e763d165f2aec32af4791322dea7bf360a094"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]"
+      ]
+    },
+    {
+      "id": "b4e5d641fc716309dc30219536359debbd27c34e08badf89f71e1f112e86ee63",
+      "representative": "1facdc617b1c6786d8a24d55f3a6f73e99765122f3323bb3223cd485e27419bf",
+      "mutants": [
+        "1facdc617b1c6786d8a24d55f3a6f73e99765122f3323bb3223cd485e27419bf",
+        "76b0f9d2b3eb7f723eae49f55cf81bbcf4ca1dcfb5ea0f3c9d3a574bff15a525"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]"
+      ]
+    },
+    {
+      "id": "b6b4376bb8240c025e8d311c810608470e2aac5a79fd7b702b9b9cec4f16c076",
+      "representative": "8102848b5241c96095ea48585b4bcd41f6ef0caea45103f1b41dcfd0ac4d7f6a",
+      "mutants": [
+        "8102848b5241c96095ea48585b4bcd41f6ef0caea45103f1b41dcfd0ac4d7f6a"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]"
+      ]
+    },
+    {
+      "id": "db2bc3c92754144c1c1aab507a7a41588bb0cae27506d652456f107c7270486e",
+      "representative": "df507decfc18c9a7751a561fd74aef35fe8906b70cdcfc219b855989f41253fa",
+      "mutants": [
+        "df507decfc18c9a7751a561fd74aef35fe8906b70cdcfc219b855989f41253fa",
+        "f16547ed4df1e8e4a1ccbf75a7d0d9e8629e3dd0a5fe5ced9248e9d04240d366"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+      "name": "source control presentation > uses merge request terminology for GitLab",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.7231660000000062,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+      "name": "source control presentation > uses pull request terminology for GitHub-compatible providers",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.10887499999999761,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+      "name": "source control presentation > falls back to generic change request copy for unknown providers",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.12108299999999872,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > detects common source control hosts",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.23345799999999883,
+      "mutantsKilled": 6,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > detects Forgejo and Gitea hosts while preserving HTTP origins",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.15845899999999347,
+      "mutantsKilled": 4,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 2,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 2,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.08695652173913043,
+      "marginalBaselineRequirementRetention": 0.16666666666666666,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > detects Azure DevOps SSH remotes",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.071708000000001,
+      "mutantsKilled": 6,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 1,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 1,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.043478260869565216,
+      "marginalBaselineRequirementRetention": 0.16666666666666666,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > preserves ports while classifying by hostname",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.07066700000000026,
+      "mutantsKilled": 8,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > does not reuse SSH ports for HTTPS provider URLs",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.0696670000000097,
+      "mutantsKilled": 9,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > matches self-hosted providers by complete DNS labels",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.07858400000000643,
+      "mutantsKilled": 8,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 2,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 2,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.08695652173913043,
+      "marginalBaselineRequirementRetention": 0.16666666666666666,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > does not match provider names embedded in unrelated DNS labels",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.09300000000000352,
+      "mutantsKilled": 6,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+      "name": "detectSourceControlProviderFromRemoteUrl > detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.08304099999999437,
+      "mutantsKilled": 6,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+      "name": "isSshRemoteUrl > recognises SCP-like SSH URLs with any SSH user prefix",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.05620800000001225,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+      "name": "isSshRemoteUrl > recognises ssh:// URLs with any case",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.04366600000000176,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+      "name": "isSshRemoteUrl > returns false for HTTPS, local paths, and SCP-like paths without a colon",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.043250000000000455,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+      "name": "names an Azure DevOps repository by its own name, not its project path",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.04545899999999392,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+      "name": "falls back to the path's last segment where an Azure identity has no name",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.023375000000001478,
+      "mutantsKilled": 4,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 3,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 3,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.13043478260869565,
+      "marginalBaselineRequirementRetention": 0.16666666666666666,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects SSH remotes with non-git SSH users (e.g. gitlab@, deploy@)\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects common source control hosts\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not match provider names embedded in unrelated DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"returns false for HTTPS, local paths, and SCP-like paths without a colon\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names an Azure DevOps repository by its own name, not its project path\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"falls back to generic change request copy for unknown providers\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses merge request terminology for GitLab\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"source control presentation\",\"uses pull request terminology for GitHub-compatible providers\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"keeps a GitLab identity's whole path, because a nested group is part of the name\"],1]",
+      "name": "keeps a GitLab identity's whole path, because a nested group is part of the name",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.01999999999999602,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"puts owner and name back together for an identity recorded before displayName\"],1]",
+      "name": "puts owner and name back together for an identity recorded before displayName",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.02183300000000088,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"names nothing for a project with no remote to name it by\"],1]",
+      "name": "names nothing for a project with no remote to name it by",
+      "file": "packages/shared/src/sourceControl.test.ts",
+      "durationMs": 0.03362500000000068,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    }
+  ],
+  "redundancyGroups": [
+    {
+      "tests": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"preserves ports while classifying by hostname\"],1]"
+      ],
+      "requirements": [
+        "b4e5d641fc716309dc30219536359debbd27c34e08badf89f71e1f112e86ee63"
+      ]
+    },
+    {
+      "tests": [
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]",
+        "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises ssh:// URLs with any case\"],1]"
+      ],
+      "requirements": [
+        "b6b4376bb8240c025e8d311c810608470e2aac5a79fd7b702b9b9cec4f16c076"
+      ]
+    }
+  ],
+  "greedyCore": [
+    "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Azure DevOps SSH remotes\"],1]",
+    "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"detects Forgejo and Gitea hosts while preserving HTTP origins\"],1]",
+    "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"does not reuse SSH ports for HTTPS provider URLs\"],1]",
+    "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"detectSourceControlProviderFromRemoteUrl\",\"matches self-hosted providers by complete DNS labels\"],1]",
+    "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"falls back to the path's last segment where an Azure identity has no name\"],1]",
+    "[\"\",\"packages/shared/src/sourceControl.test.ts\",[\"isSshRemoteUrl\",\"recognises SCP-like SSH URLs with any SSH user prefix\"],1]"
+  ],
+  "unexplainedSurvivors": [
+    "0253db943a48e15f42d278458997f8507579180b4b429fa702067529f7b564ef",
+    "2aee099c8677816471e5473bee5421eb7e84a29bdc1b8856b1a4dbc9a6b7f824",
+    "3ebdfc5cfae5f21c3ee44210c1c6b6b4d80c6805f8c7899174109fbf2db6b061"
+  ],
+  "excluded": [],
+  "interpretation": {
+    "requirements": "Minimal nonempty observed kill-signature classes; fixed baseline pool.",
+    "retention": "The full baseline retains 100% by construction, when requirements exist.",
+    "mutationScore": "Completed killed / completed killed plus surviving mutants; equivalence unknown.",
+    "cost": "Per-test durations are descriptive and exclude shared setup and runner startup.",
+    "limits": "Observed redundancy does not authorize deleting tests or predict bug probability."
+  }
+}

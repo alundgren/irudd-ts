@@ -1,0 +1,1836 @@
+{
+  "schemaVersion": 1,
+  "scope": "lock-matched posthoc historical78",
+  "request_id": "posthoc-lock-matched78",
+  "candidateCount": 78,
+  "bySubject": {
+    "t3code": 63,
+    "scope": 15
+  },
+  "method": "Uniform lock-matched adapted installations; fixed-revision tests and first-parent changed-source reversion;24 comparison/equality/logical prefix mutants;16384 maxRawUnits;100seeds;no prospective claims",
+  "selectionChronology": "Original50 retained in original order; supplemental28 selected from metadata after observing original setup exclusions; source and installer audits frozen before this rerun. Original outcomes remain separately archived.",
+  "parts": [
+    {
+      "file": "history-lock-matched-50.json",
+      "sha256": "b86b26da5d2a55ee19403dc4136b6ba2c6308525708790d417adc2f075594585",
+      "metadata": {
+        "scope": "test-value-overnight",
+        "request_id": "lock-matched-posthoc-50",
+        "verifiedAgainst": "local git objects only",
+        "candidateCount": 50,
+        "bySubject": {
+          "t3code": 37,
+          "scope": 13
+        },
+        "sourceBindingAuditSha256": "2be0d2ef683a9062a71db7273d56c34bcf834385dfa61664971eade7a270d84a"
+      }
+    },
+    {
+      "file": "history-lock-matched-supplement-28.json",
+      "sha256": "2643b439b9ce8b6acb41a9a87cba6846d66ff674b2e51b5d56f4877045630b01",
+      "metadata": {
+        "scope": "historical lock-matched supplement 28; source and install inputs independently archive-bound",
+        "request_id": "history-lock-matched-supplement-28",
+        "candidateCount": 28,
+        "bySubject": {
+          "t3code": 26,
+          "scope": 2
+        },
+        "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+        "sourceBindingAuditSha256": "8068bc2bbcbbef985ca37ef059e029825937fcef01cf5ad9cc25efbffa981f11",
+        "sourceBindingAuditPath": "/tmp/archguard-test-value-20261003/supplement-source-binding-audit.json",
+        "auditHelperSha256": "bbe4aaa82b09f43e2d6f5e6ef2e12dba63e67f425877165823a04a1579e41a0b",
+        "supplementInstallPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+        "supplementCandidateFileSha256": "8432a39a85a9c553e2af7f02fea6c49ef2ace83aae7d6b9f50a71d4af3faeacd",
+        "preflightExclusions": [
+          "t3code-10dde452f90f",
+          "t3code-7a08fcf2e832"
+        ]
+      }
+    }
+  ],
+  "audits": [
+    {
+      "file": "historical-source-launch-gate.json",
+      "sha256": "2be0d2ef683a9062a71db7273d56c34bcf834385dfa61664971eade7a270d84a"
+    },
+    {
+      "file": "supplement-source-binding-audit.json",
+      "sha256": "8068bc2bbcbbef985ca37ef059e029825937fcef01cf5ad9cc25efbffa981f11"
+    },
+    {
+      "file": "historical-install-plan.json",
+      "sha256": "b6c13206cd9bf6440177a42a048147f790510f33c98ea9fb5c17cf8fb39df17d"
+    },
+    {
+      "file": "supplement-install-input-plan.json",
+      "sha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e"
+    },
+    {
+      "file": "historical-filter-audit.json",
+      "sha256": "ec377caed3bf5545f3ddb42e311b59354da4f4a6e0370ddb57ff90fc533e8025"
+    },
+    {
+      "file": "supplement-relay-filter-audit.json",
+      "sha256": "7c65f12846d8472153495f0fccc348ed8b1b0b30ccc7aabf562b014715255fb3"
+    }
+  ],
+  "preflightCount": 3,
+  "candidates": [
+    {
+      "id": "t3code-f391794a35c6",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): classify workspace previews by literal filenames (#10311)",
+      "sourceFiles": [
+        "packages/shared/src/filePreview.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/assets/AssetAccess.test.ts",
+        "packages/shared/src/filePreview.test.ts"
+      ],
+      "relatedGroup": "preview-classification",
+      "fix": "f391794a35c604d57e166a3ab48d56fc6e4e469a",
+      "parent": "31a9da179ed0763335f05681c577474aec5d2309",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "cb71e071e0c82b1d4aa48dcb28cdb8f52475f10db553f03be2e133f93adf15dd",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-f68e24fb419c",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): a thread that left a shell running shows its unseen completion (#14910)",
+      "sourceFiles": [
+        "apps/mobile/src/features/threads/threadListV2.ts",
+        "apps/web/src/components/Sidebar.logic.ts",
+        "apps/web/src/components/ThreadNotificationCoordinator.tsx",
+        "packages/client-runtime/src/state/models.ts",
+        "packages/client-runtime/src/state/threadExecution.ts"
+      ],
+      "testFiles": [
+        "apps/mobile/src/features/threads/threadListV2.test.ts",
+        "apps/web/src/components/Sidebar.logic.test.ts",
+        "packages/client-runtime/src/state/entities.test.ts"
+      ],
+      "relatedGroup": "thread-runtime-presentation",
+      "fix": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "parent": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "3c01b92798cdd2c09d0dc9aa77b931c07ea3eb9e6677b310b2d5089de997717b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-a5b34b25378f",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(clients): a dev server left running no longer says the thread is waiting (#15114)",
+      "sourceFiles": [
+        "apps/web/src/components/ChatView.tsx",
+        "packages/client-runtime/src/state/threadExecution.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadExecution.test.ts"
+      ],
+      "relatedGroup": "thread-runtime-presentation",
+      "fix": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "parent": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "14a84f195871602c2f2c2f0d308a2693a6f9143a9013bc967f25a85e4bd86c06",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-56914128c1ff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(usage): Codex Fast and Ultrafast now cost what they bill (#15101)",
+      "sourceFiles": [
+        "apps/server/src/usage/UsageService.ts",
+        "apps/server/src/usage/antigravityUsageReader.ts",
+        "apps/server/src/usage/cursorUsageReader.ts",
+        "apps/server/src/usage/opencodeUsageReader.ts",
+        "apps/server/src/usage/usagePricing.ts",
+        "apps/server/src/usage/usageScanCache.ts",
+        "apps/server/src/usage/usageTranscriptReader.ts",
+        "apps/server/src/usage/usageTranscripts.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/usage/UsageService.test.ts",
+        "apps/server/src/usage/usageAggregation.test.ts",
+        "apps/server/src/usage/usagePricing.test.ts",
+        "apps/server/src/usage/usageScanCache.test.ts",
+        "apps/server/src/usage/usageTranscriptReader.test.ts",
+        "apps/server/src/usage/usageTranscriptStreaming.test.ts",
+        "apps/server/src/usage/usageTranscripts.test.ts"
+      ],
+      "relatedGroup": "usage-accounting",
+      "fix": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "parent": "6108ef3d3d0ef2a598088a1bb64980580e935830",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "bbe0e700dceab743b5279c9b4d8d01d15f28dff8a4fc65c51bd16f689c30bfb3",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-63f74e209dc2",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(opencode): fill blank reasoning labels (#14978)",
+      "sourceFiles": [
+        "apps/mobile/src/features/threads/ThreadComposer.tsx",
+        "apps/mobile/src/features/threads/ThreadDetailScreen.tsx",
+        "apps/mobile/src/features/threads/ThreadSettingsSheet.tsx",
+        "apps/mobile/src/state/entities.ts",
+        "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.ts",
+        "apps/web/src/components/ChatView.tsx",
+        "apps/web/src/components/chat/ChatComposer.tsx",
+        "apps/web/src/components/chat/TraitsPicker.tsx",
+        "apps/web/src/components/chat/composerProviderState.tsx",
+        "packages/client-runtime/src/state/threadExecution.ts",
+        "packages/contracts/src/orchestrationV2.ts",
+        "packages/shared/src/model.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.test.ts",
+        "apps/web/src/components/chat/TraitsPicker.test.ts",
+        "packages/client-runtime/src/state/threadExecution.test.ts",
+        "packages/shared/src/model.test.ts"
+      ],
+      "relatedGroup": "provider-trait-presentation",
+      "fix": "63f74e209dc27df1f8733535d6fd4a79d442add8",
+      "parent": "ca4f84e702428656665d53635e16251112091657",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "f24571e2f87a502db9c83d72cc1415cb89987c716131554b54a308ff955882cf",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-736130c2fd39",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): working timers no longer reset on every background wake (#15029)",
+      "sourceFiles": [
+        "apps/server/src/orchestration-v2/Orchestrator.ts",
+        "apps/server/src/orchestration-v2/ProjectionStore.ts",
+        "apps/web/src/components/Sidebar.logic.ts",
+        "packages/client-runtime/src/state/models.ts",
+        "packages/client-runtime/src/state/threadExecution.ts",
+        "packages/contracts/src/orchestrationV2.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/ProjectionStore.test.ts",
+        "apps/server/src/orchestration-v2/runtimeLayer.test.ts",
+        "packages/client-runtime/src/state/threadExecution.test.ts"
+      ],
+      "relatedGroup": "thread-runtime-presentation",
+      "fix": "736130c2fd39b85cd515fa2a41cd10c8a8a52630",
+      "parent": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "820354413abbc810c2ff64ac8d011715d14275b9e07dbbc36c73d4aee0640dd6",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-9333509c9180",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): reconnects back off with jitter and keep healthy sockets (#14897)",
+      "sourceFiles": [
+        "apps/server/src/telemetry/AnalyticsService.ts",
+        "packages/client-runtime/src/connection/supervisor.ts",
+        "packages/client-runtime/src/connection/wakeups.ts",
+        "packages/client-runtime/src/state/server.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/telemetry/AnalyticsService.test.ts",
+        "packages/client-runtime/src/connection/registry.test.ts",
+        "packages/client-runtime/src/connection/supervisor.test.ts"
+      ],
+      "relatedGroup": "connection-recovery",
+      "fix": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "parent": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "fd2916453473f1eed2d35eadfd3b2c4bb7369c05c655795368f98e824ba9a9da",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-151c241cd2cc",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): format subagent descriptions as display names (#14999)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadExecution.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadExecution.test.ts"
+      ],
+      "relatedGroup": "thread-runtime-presentation",
+      "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+      "parent": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+      "installationInputSignature": "dfa908f29fb6730634f97b3eae40630fc2f4043afe23bedd6003931fef013abc",
+      "sourceArchiveTreeSha256": "c373f1098247eaded6a8a2b569775eebee1664262b2e44604119e0925c423367",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-5031b9ccebbb",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): track follow-up subagent status",
+      "sourceFiles": [
+        "apps/mobile/src/state/threads.ts",
+        "apps/web/src/components/ChatView.tsx",
+        "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+        "apps/web/src/state/threads.ts",
+        "packages/client-runtime/src/state/subagentRuntime.ts",
+        "packages/client-runtime/src/state/threadDetail.ts",
+        "packages/client-runtime/src/state/threadRelationships.ts",
+        "packages/client-runtime/src/state/threadShell.ts",
+        "packages/client-runtime/src/state/threadSubagents.ts"
+      ],
+      "testFiles": [
+        "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx",
+        "packages/client-runtime/src/state/threadDetail.test.ts",
+        "packages/client-runtime/src/state/threadShell.test.ts",
+        "packages/client-runtime/src/state/threadSubagents.test.ts"
+      ],
+      "relatedGroup": "subagent-status",
+      "fix": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+      "parent": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+      "installationInputSignature": "dfa908f29fb6730634f97b3eae40630fc2f4043afe23bedd6003931fef013abc",
+      "sourceArchiveTreeSha256": "0f57bafc8220506437281c884991c77f8c450dad8cdd404b64e25d9481156c39",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-43bd6677392b",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): Claude skill calls show the skill name (#14980)",
+      "sourceFiles": [
+        "apps/mobile/src/lib/threadActivity.ts",
+        "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.ts",
+        "apps/server/src/orchestration-v2/Adapters/CodexAdapterV2.ts",
+        "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+        "apps/web/src/components/chat/MessagesTimeline.tsx",
+        "packages/shared/src/toolActivity.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+        "packages/shared/src/toolActivity.test.ts"
+      ],
+      "relatedGroup": "provider-tool-presentation",
+      "fix": "43bd6677392b80cd12742f865c277c9939239543",
+      "parent": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+      "installationInputSignature": "dfa908f29fb6730634f97b3eae40630fc2f4043afe23bedd6003931fef013abc",
+      "sourceArchiveTreeSha256": "b830a234c5cbb4853b846f6f028cdb6acf4116263c6ac370d2946f26d544307b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-a9c9995352e5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): Kiro never auto-grants beyond the thread or runs Autopilot under overrides",
+      "sourceFiles": [
+        "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.ts",
+        "apps/server/src/provider/acp/KiroAcpSupport.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts"
+      ],
+      "relatedGroup": "kiro-permission-policy",
+      "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+      "parent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+      "installationInputSignature": "48765f7600fbaa1c35bfc6478269c39e7df710e8169ac6ea9cc1af62a3537c28",
+      "sourceArchiveTreeSha256": "9200c302361982ca47774a20151c1e49d6028f1300f2d57c2fd17f4b17c6ed74",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-cc1e634bfa62",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): released builds keep the OpenCode policy for their own version (#14863)",
+      "sourceFiles": [
+        "apps/server/src/provider/ModelManifest.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/provider/ModelManifest.test.ts",
+        "apps/server/src/provider/providerCompatibility.test.ts"
+      ],
+      "relatedGroup": "provider-manifest-policy",
+      "fix": "cc1e634bfa62edd56ff792eea666e436fdef788f",
+      "parent": "1e7c8e0f24c217a3229615fa1de1e6ed85d7e835",
+      "installationInputSignature": "dfa908f29fb6730634f97b3eae40630fc2f4043afe23bedd6003931fef013abc",
+      "sourceArchiveTreeSha256": "a11b8809ee6b03fcbb4dae1b60b09b66f5c8e9606b2313ff30c3990e4938edca",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-8bc9b78f8270",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): terminal links drop a trailing colon (#13408)",
+      "sourceFiles": [
+        "apps/web/src/terminal-links.ts"
+      ],
+      "testFiles": [
+        "apps/web/src/terminal-links.test.ts"
+      ],
+      "relatedGroup": "terminal-link-parsing",
+      "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+      "parent": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+      "installationInputSignature": "4b4b9aa4238842811b54de5dc3180938c46e97651e8cf73ec3e958b257f5de25",
+      "sourceArchiveTreeSha256": "31c50a701d5c2e1bb81b45081c559a3ed01675fc8b921da4eda331f299eb85e6",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-dd8332da5735",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): installed editors no longer vanish when discovery is slow (#13669)",
+      "sourceFiles": [
+        "apps/server/src/process/externalLauncher.ts",
+        "packages/shared/src/shell.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/shell.test.ts"
+      ],
+      "relatedGroup": "editor-discovery",
+      "fix": "dd8332da57355bccd7e666289267f2c94597debd",
+      "parent": "eeea71a88108c375c04853f58c298a518a54acaf",
+      "installationInputSignature": "4b4b9aa4238842811b54de5dc3180938c46e97651e8cf73ec3e958b257f5de25",
+      "sourceArchiveTreeSha256": "a4118c95befcb91b69e00d967d88eb1b31b742d429ac3b97e345429d68a1d9c2",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-b7a8b7f25b07",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(threads): keep the capped title failure reason at 500 characters",
+      "sourceFiles": [
+        "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts"
+      ],
+      "relatedGroup": "thread-title-error",
+      "fix": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+      "parent": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+      "installationInputSignature": "1b4b8cf27b93ce7c2a628f915e7b1c9e5eb84340fa89bbbb35d4df2599f125bd",
+      "sourceArchiveTreeSha256": "93aa9b945b697af39220bdfd07cb12a554ac01971ae5d6bad9795d914635e8b6",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-263097a8da03",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): mod+enter starts a new thread in the background again (#15060)",
+      "sourceFiles": [
+        "apps/server/src/keybindings.ts",
+        "packages/shared/src/keybindings.ts"
+      ],
+      "testFiles": [
+        "apps/server/src/keybindings.test.ts",
+        "apps/web/src/composer-logic.test.ts",
+        "apps/web/src/keybindings.test.ts"
+      ],
+      "relatedGroup": "keybinding-dispatch",
+      "fix": "263097a8da038a143f2b7b7817250f0ad390ea32",
+      "parent": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "994b4f1f97bf9b040cc196d391c7ffe5dd0b9f38d8aa92b147f354f314d4412e",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-db514607f402",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(chat): sending on an older thread no longer jumps to the top (#15059)",
+      "sourceFiles": [
+        "apps/mobile/src/lib/threadActivity.ts",
+        "apps/web/src/components/chat/MessagesTimeline.logic.ts"
+      ],
+      "testFiles": [
+        "apps/mobile/src/lib/threadActivity.test.ts",
+        "apps/web/src/components/chat/MessagesTimeline.logic.test.ts"
+      ],
+      "relatedGroup": "thread-list-ordering",
+      "fix": "db514607f4026cd2bbb7b96674168bb227ac043a",
+      "parent": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+      "installationInputSignature": "50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4",
+      "sourceArchiveTreeSha256": "af3583d90dc725f274c1fcf2f9adc21f669e0868c481846fdfab035b8591de42",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-c46613230e97",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: retain live discussion updates during detail loads",
+      "sourceFiles": [
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-discussion-sync",
+      "fix": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "parent": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "installationInputSignature": "dd016394ad560522b52a24347f39c39cccee6b758140c95a193c93d54d6ec9bd",
+      "sourceArchiveTreeSha256": "7e11459aac41e916bbbcc1e9b234141c54cb2f1799d9934c1638d06311afc636",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-82c4e117a745",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: apply live discussion updates at detail delivery",
+      "sourceFiles": [
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-discussion-sync",
+      "fix": "82c4e117a745c1a39bcea23b49814cedc7285fcf",
+      "parent": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "installationInputSignature": "dd016394ad560522b52a24347f39c39cccee6b758140c95a193c93d54d6ec9bd",
+      "sourceArchiveTreeSha256": "febaac45eff084e950199de6c91db0ae8546a4e740b9ea59e86490baf654c7e5",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-8cbf18bb51d4",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: cancel full detail reads after their final owner leaves",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts",
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "parent": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "installationInputSignature": "dd016394ad560522b52a24347f39c39cccee6b758140c95a193c93d54d6ec9bd",
+      "sourceArchiveTreeSha256": "076d9692945d584e343a10ea66a54f30e7d77bbc9c2821163d90ae4ce592aa12",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-e7c277798b3b",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: validate detail batches against current comparisons",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts",
+        "apps/desktop/src/plugins/pull-requests/sync.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-scheduler.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "parent": "f252740ebbc952510d2cbdfeaec42accec83e071",
+      "installationInputSignature": "dd016394ad560522b52a24347f39c39cccee6b758140c95a193c93d54d6ec9bd",
+      "sourceArchiveTreeSha256": "0547dd5913999aee200a76fb9cd9f6f1344c75e30034c049da8cd76d1a8d5399",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-e65e8dd2c3af",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(plan-web): retry competing SQLite initialization asynchronously",
+      "sourceFiles": [
+        "apps/plan-web/src/backend/server.ts",
+        "apps/plan-web/src/backend/store.ts"
+      ],
+      "testFiles": [
+        "tests/plan-web-api.test.ts"
+      ],
+      "relatedGroup": "plan-web-database-init",
+      "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+      "parent": "9cc772a41f7a611a369a8b8d26c813c184ecc516",
+      "installationInputSignature": "037e7fe99e1ef476576077dd95dcc7634cbcb51ff351d44a6471da6f77556d8a",
+      "sourceArchiveTreeSha256": "03c44ad943dc61a37834b569b7b2555665231acf0bb6114127de04325220a46a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-c78a8c5f0fb1",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(hub): retire relay sessions after unstarted write timeouts",
+      "sourceFiles": [
+        "apps/hub/src/paired-server.ts"
+      ],
+      "testFiles": [
+        "tests/hub-relay.test.ts"
+      ],
+      "relatedGroup": "hub-relay-write",
+      "fix": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5",
+      "parent": "5bc1570e9daf284f391196d388fe148f6fcd60a7",
+      "installationInputSignature": "a3e93238a1a4cfb3d290f817849eb98d90673c30fe3e24edda9b7faa380e8d6a",
+      "sourceArchiveTreeSha256": "c6a0456962cdb01dde94266e822fe4831b4a4f7f1cd68d05add5c1fc7339214c",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-c126ac6076af",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: reject approval of changed remote observations",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "c126ac6076afca5f5c38ea7d13360416af299deb",
+      "parent": "e26251e3f020527fdaa8d035ae7b6e91522a7014",
+      "installationInputSignature": "860343da8dfe1d1ff880629a1a7e932932bde4c498e6184fcdf72a0f5e7056f5",
+      "sourceArchiveTreeSha256": "953b77a82e01b76ee9333369215820acbb446b7acd3655581bf01a2d79829d6c",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-c82b208701de",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: keep expiry separate from destination privacy",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts",
+        "packages/protocol/src/publications.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "c82b208701de72215022674cc20902332219d325",
+      "parent": "daae85340b464ab62a865549b578ba3ca399d04e",
+      "installationInputSignature": "860343da8dfe1d1ff880629a1a7e932932bde4c498e6184fcdf72a0f5e7056f5",
+      "sourceArchiveTreeSha256": "c6b956131ea2b8e49a7262bb00dadf17b94fe703357b88f13d509a5c87e54eaf",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-cef88d2b3b60",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: validate publication progress and retained bytes",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts",
+        "apps/desktop/src/library/store.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "parent": "c82b208701de72215022674cc20902332219d325",
+      "installationInputSignature": "860343da8dfe1d1ff880629a1a7e932932bde4c498e6184fcdf72a0f5e7056f5",
+      "sourceArchiveTreeSha256": "a43ff31873eb7fdd9ad9b0131301c24fa6c1721088c0e6be83a8bcf442842552",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-d993eb728ac3",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: retain confirmed publications with unknown remote dates",
+      "sourceFiles": [
+        "apps/desktop/src/library/publication-store.ts"
+      ],
+      "testFiles": [
+        "tests/publications.test.ts"
+      ],
+      "relatedGroup": "publication-validation",
+      "fix": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "parent": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "installationInputSignature": "860343da8dfe1d1ff880629a1a7e932932bde4c498e6184fcdf72a0f5e7056f5",
+      "sourceArchiveTreeSha256": "9edf037191801f8501a6614835faedf72667903218e2239454379308bbeb31eb",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-392d29f5779d",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(hub): preserve larger outbound publication commands",
+      "sourceFiles": [
+        "apps/hub/src/paired-server.ts"
+      ],
+      "testFiles": [
+        "tests/hub-relay.test.ts"
+      ],
+      "relatedGroup": "hub-relay-write",
+      "fix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+      "parent": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "installationInputSignature": "860343da8dfe1d1ff880629a1a7e932932bde4c498e6184fcdf72a0f5e7056f5",
+      "sourceArchiveTreeSha256": "756a73e7496861e9010cc2f3e2733fbf9d6ba2032559efac842458702c721f5b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "scope-84ec1ad4e6a8",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(pull-requests): resolve repository aliases on initial sync",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts",
+        "apps/desktop/src/plugins/pull-requests/gh.ts",
+        "apps/desktop/src/plugins/pull-requests/sync.ts",
+        "packages/cli/src/pull-requests.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests-journey.test.ts",
+        "tests/pull-requests-sync.test.ts",
+        "tests/pull-requests.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "84ec1ad4e6a8d999cf6234ca831cafb43a7052e3",
+      "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "installationInputSignature": "a3e93238a1a4cfb3d290f817849eb98d90673c30fe3e24edda9b7faa380e8d6a",
+      "sourceArchiveTreeSha256": "1defb7a2b02f8648a7b2ad5529fc87e1ef10ba56cde607f35df80bb7b3da447a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "preflightExclusion": "tests/pull-requests-journey.test.ts requires Electron/Playwright desktop integration; outside the Node-only historical harness",
+      "preflightEvidenceSha256": "54fd6c917f10f579b44de6005f4e3a903706847cf62b7b2800c1ddca6f00d5eb"
+    },
+    {
+      "id": "scope-48708ad54e8b",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(pull-requests): wake snoozed PRs on new commits",
+      "sourceFiles": [
+        "apps/desktop/src/library/pull-request-store.ts"
+      ],
+      "testFiles": [
+        "tests/pull-requests.test.ts"
+      ],
+      "relatedGroup": "pull-request-refresh",
+      "fix": "48708ad54e8b87d341e3bf18259c124fed2b0bce",
+      "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "installationInputSignature": "a3e93238a1a4cfb3d290f817849eb98d90673c30fe3e24edda9b7faa380e8d6a",
+      "sourceArchiveTreeSha256": "dffb926dab0c1ec6758639d8c79647af5dcc0412483ebdb56b8001a7db474eb1",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-4abf8b46c591",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "[codex] fix: ignore stale shell reducer events (#3517)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/shellReducer.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/shellReducer.test.ts"
+      ],
+      "relatedGroup": "shell-reducer-ordering",
+      "fix": "4abf8b46c591ae2b36aa29598c388100df651411",
+      "parent": "3083d712eefb8009f7366ba53040eb2d477bfa33",
+      "installationInputSignature": "10db75f068e1b6a66d3a720fcb35eae68d4754ded9d4c79ed37c2a1f2a6cfeca",
+      "sourceArchiveTreeSha256": "8acb8399ae322e3527e258542d8bf60ced0a33c4ad3adff8f6f37bcd79b980fe",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-43e2aeab3891",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "[codex] fix: tolerate invalid latest user message timestamps (#3521)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSort.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSort.test.ts"
+      ],
+      "relatedGroup": "thread-sort-timestamps",
+      "fix": "43e2aeab389199de115bb414f80db12b60cd85f4",
+      "parent": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+      "installationInputSignature": "89dc906c1813851b158bb36af0ae2385d87adcfec3e48bcb44e666f8f8d04b82",
+      "sourceArchiveTreeSha256": "dfeb7a895c9bcb920874a22f88ebe1b80632dccdd6f08ab225b00d0ef415b643",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-193e3c62e6d5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): keep a warm thread un-settled despite a merged/closed PR (#4309)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSettled.test.ts"
+      ],
+      "relatedGroup": "thread-settlement",
+      "fix": "193e3c62e6d52fcc200d823ca6d9061d13f81f23",
+      "parent": "91dfe60a99b7bf6cc44138a237e663ba158062b7",
+      "installationInputSignature": "3b25fdc72d38fb791c5ebc792f3f5cbca4bb87860358f3f4cb61fa72b73c795a",
+      "sourceArchiveTreeSha256": "f8c1a1011e9183daf463a494b5e24579f155f53adad475561c4f4980fb092ec8",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-32407df9c5ff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): lenient JSON parser deletes commas inside string values (#5025)",
+      "sourceFiles": [
+        "packages/shared/src/schemaJson.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/schemaJson.test.ts"
+      ],
+      "relatedGroup": "lenient-json-parsing",
+      "fix": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+      "parent": "162e774294f9e3dda15ca2f8083db019fe398837",
+      "installationInputSignature": "76a2095df73a88ca09653d577eecd48b714778add01324f9bcc3221ac99ba07d",
+      "sourceArchiveTreeSha256": "5ddcfcae779871463b10e477fbcd4073b8a542ec0f463e57bd9306cc3d6492aa",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-491219bf1f4d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: threads with open PRs no longer auto-settle (#5151)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSettled.test.ts"
+      ],
+      "relatedGroup": "thread-settlement",
+      "fix": "491219bf1f4db7144b747fe02af0cbc075668b12",
+      "parent": "e5c75470678e33ca2bd1001d9d93493fe437972a",
+      "installationInputSignature": "9169183db4fd35fadbd77cd86b3991eeeb08a415cc4e98447b55531bc37fe17c",
+      "sourceArchiveTreeSha256": "25b970e949b19a6c7a3488ba023c596de9f7926c3befa861f0d25c08875ba740",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-70de6e17860d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): prevent Android thread search crash (#5386)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSearch.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSearch.test.ts"
+      ],
+      "relatedGroup": "thread-search-keys",
+      "fix": "70de6e17860d7343a73e117e6e9e1ce41b1b633e",
+      "parent": "47dfc6526521866992f6b50beac4587b45114631",
+      "installationInputSignature": "3d586e08d3a256a2d077d23d63872c50dcf683f5322d0fbd00a9a0754bd84e69",
+      "sourceArchiveTreeSha256": "3e27611d7968292e94370bfd3ce8bf8cb88911626a9da1f1d4a0c784f04cc19b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-062b4618c229",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): bound the file-link label so bracket runs stop rescanning (#5782)",
+      "sourceFiles": [
+        "packages/shared/src/composerInlineTokens.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/composerInlineTokens.test.ts"
+      ],
+      "relatedGroup": "composer-inline-links",
+      "fix": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+      "parent": "deb901d6381e0c86ef326946c8fb45ee323db708",
+      "installationInputSignature": "eb2f58c79b6612315c314c145c9f941da8ef4b112023e26df16eb8bfbfb3f434",
+      "sourceArchiveTreeSha256": "19089a7c3bd036ac94bab82bf14d3700d78247c6c5ed7916b9bae8444fd98cc6",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-220e573b14ce",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): detect Azure DevOps SSH remotes (ssh.dev.azure.com) (#6187)",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "relatedGroup": "source-control-provider-detection",
+      "fix": "220e573b14cea84b6662a7d69047129047433b63",
+      "parent": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "installationInputSignature": "62189c38c93f73d7804dca6a2e6771d8f0c098dfae878ba30c61ea8e4f9f335c",
+      "sourceArchiveTreeSha256": "ce1e2d36c3b8ac7b1391e1171b8319d3a73254c12ad06f1953d716466f04d053",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-6befe42eb096",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): normalize a bare Windows drive root the same as C:\\ / C:/ (#6189)",
+      "sourceFiles": [
+        "packages/shared/src/path.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/path.test.ts"
+      ],
+      "relatedGroup": "project-path-normalization",
+      "fix": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "parent": "b30a9bc4143910f12d9c990c221fb9bc20cbc293",
+      "installationInputSignature": "62189c38c93f73d7804dca6a2e6771d8f0c098dfae878ba30c61ea8e4f9f335c",
+      "sourceArchiveTreeSha256": "1b220b75a8f5a91ccc19ea50d211bfe845d99f5d514a1a7733135c28d6e99e2a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-684d703b0a8a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): degrade an unknown system time zone to UTC in usage windows (#6670)",
+      "sourceFiles": [
+        "packages/shared/src/usageFormat.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageFormat.test.ts"
+      ],
+      "relatedGroup": "usage-window-time-zones",
+      "fix": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+      "parent": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+      "installationInputSignature": "a2dc4e163a7f23205907677e6f0c5a52e0189228096e01122fbfb896279bf4b3",
+      "sourceArchiveTreeSha256": "14c2cc6639bb604816fbdf553f9e1678d553cd29ca85e5bf9eb9ad1a5f10934c",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-9bdd91293316",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): stop counting a workflow coordinator as a working agent (#6672)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/subagentRuntime.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/subagentRuntime.test.ts"
+      ],
+      "relatedGroup": "subagent-counting",
+      "fix": "9bdd91293316038d6a50f8bb19afcd73c25ad102",
+      "parent": "4db50757c0b618293997a7f81bcfe30b68356969",
+      "installationInputSignature": "a2dc4e163a7f23205907677e6f0c5a52e0189228096e01122fbfb896279bf4b3",
+      "sourceArchiveTreeSha256": "221b927982dd511fe6225721b2623732b4ede014eee4c4378a3b40baf8d943ec",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-178da6bc3210",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): match source-control providers by DNS label (#6175)",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "relatedGroup": "source-control-provider-detection",
+      "fix": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+      "parent": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+      "installationInputSignature": "a2dc4e163a7f23205907677e6f0c5a52e0189228096e01122fbfb896279bf4b3",
+      "sourceArchiveTreeSha256": "6871414443531d5224f564e04b7d56ce8c375422f7196e7f63da37391a209014",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-421088c27367",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(search): oversized thread queries no longer crash clients (#6633)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSearch.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSearch.test.ts"
+      ],
+      "relatedGroup": "thread-search-keys",
+      "fix": "421088c27367da227d922ce999c1637416a6d0f4",
+      "parent": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+      "installationInputSignature": "96233d40c739e454667627846f46e6aa3604e11cf3cd1e11dfdd414c3f39f071",
+      "sourceArchiveTreeSha256": "642f68e7522383d52dc5660ac68c68df51d133931adb8f602e218326d095b44e",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-7980dfddb193",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web,mobile): snooze menu no longer offers the same wake time twice (#8741)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSnoozed.test.ts"
+      ],
+      "relatedGroup": "thread-snooze-presets",
+      "fix": "7980dfddb193864e07a5bcc013b0ccb93fb4300c",
+      "parent": "ac4aae101d060b5355a5de58e23c7387886d9021",
+      "installationInputSignature": "8908b2f4225521e831320665b29326ab9df2d7ee400ea1fd941c37f070447961",
+      "sourceArchiveTreeSha256": "c9ed226c3abfb49e51b3c41bee7cbf546d22ba85f924cc7d8c16e759010f96c1",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-8b3ddf51c59a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): stop crashing on launch before the shell snapshot arrives (#11537)",
+      "sourceFiles": [
+        "packages/shared/src/projectSettings.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/projectSettings.test.ts"
+      ],
+      "relatedGroup": "project-settings-defaults",
+      "fix": "8b3ddf51c59a54411cd02b321cb07f39c927df09",
+      "parent": "d7c71f91d61e68ae35fcc0032847cb42324a8b51",
+      "installationInputSignature": "e4d9f81042f2e15dc83160821dee16c7fe7606a4f5a7c85eca72de5306071008",
+      "sourceArchiveTreeSha256": "37c4949fe65f38a123cd215ea02f4916f05540369ab25697daf9fee6e78c9fa8",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-f87ecf0cc307",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client): keep warm thread resumes live instead of flashing sync (#9913)",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threads.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threads-atoms.test.ts"
+      ],
+      "relatedGroup": "thread-state-resume",
+      "fix": "f87ecf0cc307f974745da8eea856fab5711023f3",
+      "parent": "fc1f543d6c67da9cf1edb25b647646faa0105b41",
+      "installationInputSignature": "b55dcf09816323a7f01af88f99c38bfd7e5a44c8fc74882f31de34bddf7f16e6",
+      "sourceArchiveTreeSha256": "ad69d4bde9542626ad7b9b8e07e8bfcb6d423a20de3bf81ba355522172f65e7b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-d4d5d12e8ba0",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): keep the newest shared usage scan (#10315)",
+      "sourceFiles": [
+        "packages/shared/src/usageMerge.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageMerge.test.ts"
+      ],
+      "relatedGroup": "usage-scan-merge",
+      "fix": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+      "parent": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+      "installationInputSignature": "fa5ea9c955dac903b3d8afd1c3dbe5d1ed1dd15330f67ce7d9906d9b36140956",
+      "sourceArchiveTreeSha256": "76a2d1a3a29ed7534e830f21dff7381573aa7f6a372157b5714d06012eb9510c",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-f1add18ae156",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): preserve final quoted empty CSV records (#11425)",
+      "sourceFiles": [
+        "packages/shared/src/delimitedPreview.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/delimitedPreview.test.ts"
+      ],
+      "relatedGroup": "delimited-preview-parsing",
+      "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+      "parent": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+      "installationInputSignature": "4bad4d4e9658a9ccde772e3c693de80da7e567aa453beaa3da6ddcb673f8adae",
+      "sourceArchiveTreeSha256": "4fff4f89bfb321d3834ad2aabf28051ad7fb2f72c928fc075788d4cb2e0cb98d",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-29a32660d3cb",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(git): exclude SSH ports from provider URLs (#12537)",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "relatedGroup": "source-control-url-normalization",
+      "fix": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+      "parent": "dd8332da57355bccd7e666289267f2c94597debd",
+      "installationInputSignature": "4b4b9aa4238842811b54de5dc3180938c46e97651e8cf73ec3e958b257f5de25",
+      "sourceArchiveTreeSha256": "8f8bda2e45b0acf94e75153a7ed8f2f2815bb180936c2bb0425c10a9e17214a6",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-38f3c62304bf",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(shared): local-path remotes no longer crash legacy PR link projection (#13463)",
+      "sourceFiles": [
+        "packages/shared/src/threadPullRequests.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/threadPullRequests.test.ts"
+      ],
+      "relatedGroup": "thread-pull-request-projection",
+      "fix": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+      "parent": "b21f3b71913370a1a650a61fd9082f992d40e657",
+      "installationInputSignature": "3b5abe2cad1a061fe75edeb5267026b45d14033a4f22458feaf44e2bd96a87e4",
+      "sourceArchiveTreeSha256": "5cb276b7f7b8ae29de898fb6f5594474565482530308a3fab6af4b65a75947ee",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1"
+    },
+    {
+      "id": "t3code-10dde452f90f",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: address core review findings",
+      "relatedGroup": "packages/shared/src/model.ts :: packages/shared/src/model.test.ts",
+      "fix": "10dde452f90fc3d4d1aea0add67d13cdfb2567ab",
+      "parent": "116c8c5e8e0db2fe7fad070c2f67738a62f93546",
+      "sourceFiles": [
+        "packages/shared/src/model.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/model.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-84619cce8094",
+      "installationInputSignature": "96a43dcaefd5b46b4e3f5b73e0fb3d6fbdd862709b9ab416257f81a15036ceaa",
+      "sourceArchiveTreeSha256": "c4c331987a1ad53918f84a38579ea4ab04fedbd80ce59a4e9afc4f641353a923",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "e60e5245a8b5dfeaa492733675be6eff36dcd847",
+      "firstParent": "116c8c5e8e0db2fe7fad070c2f67738a62f93546",
+      "preflightEligible": false,
+      "preflightExclusionReason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed.",
+      "exactPackageManager": "bun@1.3.9",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+      "sourceAndTestArchiveHashesVerified": true,
+      "preflightExclusion": "Exact pinned bun@1.3.9 is unavailable; candidate requires the literal historical package manager and no version substitution is allowed.",
+      "preflightEvidence": {
+        "schemaVersion": 1,
+        "candidateId": "t3code-10dde452f90f",
+        "fix": "10dde452f90fc3d4d1aea0add67d13cdfb2567ab",
+        "installInputGroupId": "t3code-supp-install-84619cce8094",
+        "supplementInstallPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+        "packageManager": {
+          "declared": "bun@1.3.9",
+          "declarationSource": "packageManager",
+          "name": "bun",
+          "exactVersion": "1.3.9",
+          "binaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+          "binaryAvailableAtAudit": false,
+          "noVersionSubstitution": true,
+          "availabilityNote": "Only current Vite+ bun shim is present; parent audit found it resolves to Vite+ and exposes Bun 1.4.2, while candidate pins bun@1.3.9. Exact candidate binary unavailable; no substitute."
+        }
+      },
+      "preflightEvidenceSha256": "8651a8dca745839676bbf0dd04c947b6380f5a68e0d4858759e34a0b9f877d41"
+    },
+    {
+      "id": "t3code-7a08fcf2e832",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): drop stale text generation options when resetting text-gen model selection (#2076)",
+      "relatedGroup": "packages/shared/src/serverSettings.ts :: packages/shared/src/serverSettings.test.ts",
+      "fix": "7a08fcf2e832da5969aeb373c46d5249b4e820b7",
+      "parent": "19d47408a53181446a02fac967846cc15d77d5b8",
+      "sourceFiles": [
+        "packages/shared/src/serverSettings.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/serverSettings.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-c0adbe5978c1",
+      "installationInputSignature": "71d065576a871e43af94f0525b371e443171fa3cb722c2b62f45d3eaea28e397",
+      "sourceArchiveTreeSha256": "7f2c611d419c74990ca83d93ccec9ced535dd08a30e05123b33d48fcd61d6769",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "c182dd50d087b546014d11037d32a3c7a16967a5",
+      "firstParent": "19d47408a53181446a02fac967846cc15d77d5b8",
+      "preflightEligible": false,
+      "preflightExclusionReason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed.",
+      "exactPackageManager": "bun@1.3.9",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+      "sourceAndTestArchiveHashesVerified": true,
+      "preflightExclusion": "Exact pinned bun@1.3.9 is unavailable; candidate requires the literal historical package manager and no version substitution is allowed.",
+      "preflightEvidence": {
+        "schemaVersion": 1,
+        "candidateId": "t3code-7a08fcf2e832",
+        "fix": "7a08fcf2e832da5969aeb373c46d5249b4e820b7",
+        "installInputGroupId": "t3code-supp-install-c0adbe5978c1",
+        "supplementInstallPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+        "packageManager": {
+          "declared": "bun@1.3.9",
+          "declarationSource": "packageManager",
+          "name": "bun",
+          "exactVersion": "1.3.9",
+          "binaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+          "binaryAvailableAtAudit": false,
+          "noVersionSubstitution": true,
+          "availabilityNote": "Only current Vite+ bun shim is present; parent audit found it resolves to Vite+ and exposes Bun 1.4.2, while candidate pins bun@1.3.9. Exact candidate binary unavailable; no substitute."
+        }
+      },
+      "preflightEvidenceSha256": "4590c6f2e4ef7679a9475a38f5cee3013c0ceb66f34fbc991adaffc0149764be"
+    },
+    {
+      "id": "t3code-49c1b64687f8",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(source-control): handle self-hosted GitLab, multi-account GitHub auth & azure devops web url (#2480)",
+      "relatedGroup": "packages/shared/src/sourceControl.ts :: packages/shared/src/sourceControl.test.ts",
+      "fix": "49c1b64687f8acdbe145f760988314e397170da6",
+      "parent": "dfdb5a46db30fb46db5c58d5fe047b32483e2ad5",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-027d2efae574",
+      "installationInputSignature": "94ad1a316ea3d19dcfe04a2ab91a30121d547dcace534bfed2e7fd0128e47206",
+      "sourceArchiveTreeSha256": "202a0784d6f715cf29fa4d9eecf74091feb4e941c0aaf063292b6ffe9465be85",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "ab35813e64be0b15f1f1f72abcd14f55da376a1c",
+      "firstParent": "dfdb5a46db30fb46db5c58d5fe047b32483e2ad5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@10.24.0",
+      "packageManagerBinaryPath": "/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-53042f47f85a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(composer): support spaces in file mentions (#2625)",
+      "relatedGroup": "packages/shared/src/composerTrigger.ts :: packages/shared/src/composerTrigger.test.ts",
+      "fix": "53042f47f85a986257573773d9854cf59b957514",
+      "parent": "6ce6f678b5d70a8d2b7230ec45cbde04d54f80dc",
+      "sourceFiles": [
+        "packages/shared/src/composerTrigger.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/composerTrigger.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-027d2efae574",
+      "installationInputSignature": "94ad1a316ea3d19dcfe04a2ab91a30121d547dcace534bfed2e7fd0128e47206",
+      "sourceArchiveTreeSha256": "e9633a073bd2f82f4b93021cb354e0ac14de414320b11c5b6e1192797a6c0f8e",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "3059cf9a7a943eafe656570a8ea7ae83b50d3449",
+      "firstParent": "6ce6f678b5d70a8d2b7230ec45cbde04d54f80dc",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@10.24.0",
+      "packageManagerBinaryPath": "/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-9b43123ba2a9",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(preview): port browser preview to current main",
+      "relatedGroup": "packages/shared/src/preview.ts :: packages/shared/src/preview.test.ts",
+      "fix": "9b43123ba2a90ecaaf2eac1f75b6aebcf181f253",
+      "parent": "17fb0e4a9a068f3ba6c55871dd44ed3c5d70aefe",
+      "sourceFiles": [
+        "packages/shared/src/preview.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/preview.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-9168995d892f",
+      "installationInputSignature": "cef7cecd7101c0dd3ed79ccd957af7721903592f623ce963d26b0c6dde4b5ee8",
+      "sourceArchiveTreeSha256": "6a9a314e8d0b4ca344ebb3645a8d8c499db0870b1adc73c3dfabeee68f82c315",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "40fd2cc58603d6ca9504bf3f36136e8bebb53e39",
+      "firstParent": "17fb0e4a9a068f3ba6c55871dd44ed3c5d70aefe",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@10.24.0",
+      "packageManagerBinaryPath": "/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-1d77cec99197",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: cache project favicons across web and mobile (#4767)",
+      "relatedGroup": "packages/shared/src/projectFavicon.ts :: packages/shared/src/projectFavicon.test.ts",
+      "fix": "1d77cec991971d3113918e896b1c871e8b044da7",
+      "parent": "4ba4871af76081f0e830a91b8f747ff2de53ba7d",
+      "sourceFiles": [
+        "packages/shared/src/projectFavicon.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/projectFavicon.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-d283272c954d",
+      "installationInputSignature": "b06b31c2b69bed72fa312edbd51a980549776aa0f737f1f4e3bbcb9985a4445a",
+      "sourceArchiveTreeSha256": "bd9567668b1c0769a2546220084fb8850bd5e8d5f89bfcba384bd780f7167eb1",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "99685a2dac59fd9b9f487e73c5df9c9bc5347e4e",
+      "firstParent": "4ba4871af76081f0e830a91b8f747ff2de53ba7d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-47dfc6526521",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): preserve grouped project workspaces (#4642)",
+      "relatedGroup": "packages/client-runtime/src/state/projectGrouping.ts :: packages/client-runtime/src/state/projectGrouping.test.ts",
+      "fix": "47dfc6526521866992f6b50beac4587b45114631",
+      "parent": "41ebf22eea64e177b11a0709a16d6716581cc78c",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/projectGrouping.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/projectGrouping.test.ts"
+      ],
+      "installInputGroupId": "t3code-install-7f3efb59fb30",
+      "installationInputSignature": "3d586e08d3a256a2d077d23d63872c50dcf683f5322d0fbd00a9a0754bd84e69",
+      "sourceArchiveTreeSha256": "6ab832bf0712726393d79a980dc2bf1bfc0ac5a7b19406b219071f08d1a17f28",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "1540e39d1b2e0a6b6f15b56d47f93fe56258770a",
+      "firstParent": "41ebf22eea64e177b11a0709a16d6716581cc78c",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-849bac8946c4",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(connect): preserve CLI OAuth parameters through browser sign-in (#6285)",
+      "relatedGroup": "packages/shared/src/connectAuth.ts :: packages/shared/src/connectAuth.test.ts",
+      "fix": "849bac8946c40420174b4187e36fcf17b5ea7cc4",
+      "parent": "6fd088af9f77933745c8ecb93dda98fa0938ea4d",
+      "sourceFiles": [
+        "packages/shared/src/connectAuth.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/connectAuth.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-3b359b2f1c7c",
+      "installationInputSignature": "8bbd1b1af2c15ffdc285dfbea40908bcc7581b1b0c274ed763bf2e6526868591",
+      "sourceArchiveTreeSha256": "31afd213429bfc21634e503bda421767dbfb0fdaaf82c2b48de4c99677018435",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "478f2f39269d637319a167aa5ba0b4b45a9ec890",
+      "firstParent": "6fd088af9f77933745c8ecb93dda98fa0938ea4d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-f21b47e52d98",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(threads): a merged PR settles its thread only once (#7454)",
+      "relatedGroup": "packages/client-runtime/src/state/threadSettled.ts :: packages/client-runtime/src/state/threadSettled.test.ts",
+      "fix": "f21b47e52d988839a4e488d9fa98344891a69b7f",
+      "parent": "efcf7d1ac03e784bdb26843d61ae0ff81c03cec6",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSettled.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-6f6eae360f88",
+      "installationInputSignature": "97f8eed1fd82c517eb72eb9be4cb7722bce31d2fb64fe846382bc77376d1f945",
+      "sourceArchiveTreeSha256": "672873b2feb16852a6c137132d4609e994a15e168263bf2c10d14ab46c760f54",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "b25e6785c91b24921c5630fec59ed80afb02666c",
+      "firstParent": "efcf7d1ac03e784bdb26843d61ae0ff81c03cec6",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-2274444e9227",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(chat): stop pushing follow-up messages to the top (#7897)",
+      "relatedGroup": "packages/shared/src/chatList.ts :: packages/shared/src/chatList.test.ts",
+      "fix": "2274444e92275fda2033de6636e3143ac3599ffb",
+      "parent": "f34b9d31b3ddbd53a553141fd769721fca4b8eb5",
+      "sourceFiles": [
+        "packages/shared/src/chatList.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/chatList.test.ts"
+      ],
+      "installInputGroupId": "t3code-install-418e9aba3903",
+      "installationInputSignature": "96233d40c739e454667627846f46e6aa3604e11cf3cd1e11dfdd414c3f39f071",
+      "sourceArchiveTreeSha256": "1e8b2fd4161409e8bf8ec36f7f55e60d75dffa920c4201eca7072364d2970c56",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "a3dacd1fd8a318a3e17bb5f27033578c0deef1a3",
+      "firstParent": "f34b9d31b3ddbd53a553141fd769721fca4b8eb5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-ead4ce52a162",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(grok): improve skills, plans, usage, and turn reliability (#8358)",
+      "relatedGroup": "packages/shared/src/usageMerge.ts :: packages/shared/src/usageMerge.test.ts",
+      "fix": "ead4ce52a1624d9c55461f61524580978fc8b719",
+      "parent": "d3c24a14b92ccd8d832466dc7f0f51d979a8a21d",
+      "sourceFiles": [
+        "packages/shared/src/usageMerge.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageMerge.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-0d4ee075f7d7",
+      "installationInputSignature": "531f8d3387de89089b72794f6753a6f3bd0d292de3159ae9f4171948e354bdbd",
+      "sourceArchiveTreeSha256": "e069562c69c1feb29f655f797e5ea1669a69dd1d90cd6df8889799dbc3514d6a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "fe89b8bc51157ff03f7e9371644411814b5425e3",
+      "firstParent": "d3c24a14b92ccd8d832466dc7f0f51d979a8a21d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-94f194816662",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(connect): explain DPoP connection failures (#8351)",
+      "relatedGroup": "packages/shared/src/dpop.ts :: packages/shared/src/dpop.test.ts",
+      "fix": "94f1948166620c804937f5548a68f5739d76c9fb",
+      "parent": "45c0dff8ec33a023c79ccb4e06494309253d1c25",
+      "sourceFiles": [
+        "packages/shared/src/dpop.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/dpop.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-eed256eac419",
+      "installationInputSignature": "a3bf3c88299251ebc84551cc19affeb6b2b0ba9c8214a401777f93d3458aafd4",
+      "sourceArchiveTreeSha256": "4473e1d566cb69b6dc2cb61e3388e5b59e252e8cd23946b37891a0f1000d14a0",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "49cf7cdcf1ece76695c741ffb7caaddc388caa26",
+      "firstParent": "45c0dff8ec33a023c79ccb4e06494309253d1c25",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-ebb9b9fda03d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): refresh edited pull request comments (#8094)",
+      "relatedGroup": "packages/client-runtime/src/state/pullRequests.ts :: packages/client-runtime/src/state/pullRequests.test.ts",
+      "fix": "ebb9b9fda03d33a81cad3ce7f4d1106adba3044b",
+      "parent": "fc262f1a28d8305951c751f2486da6ca72e6c1d1",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/pullRequests.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/pullRequests.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-726cdb253f8a",
+      "installationInputSignature": "dd83335fd88df79ecac5a07f60154a3252ad35e51106591fde883121cb5c7710",
+      "sourceArchiveTreeSha256": "1449dcbf5e4daff9fbdf31d7fdda8e9e90e2bcdb446b975d075092bbc5481de0",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "d9efb25f41d1f559c0b0b04a8121b775f64499c4",
+      "firstParent": "fc262f1a28d8305951c751f2486da6ca72e6c1d1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-2971ec3209d7",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): preserve automatic settlement timestamps (#9254)",
+      "relatedGroup": "packages/client-runtime/src/state/threadSort.ts :: packages/client-runtime/src/state/threadSort.test.ts",
+      "fix": "2971ec3209d7ef1b00d7ded70fe6342816b1539f",
+      "parent": "15fea6c5f40331c8325f33bd08b2dcbf924e935a",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSort.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSort.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-8b4e0395ed16",
+      "installationInputSignature": "5f1bfcd716d0039dbd028f0fdd7a806dd1fd129233552deddc885a6905cc6351",
+      "sourceArchiveTreeSha256": "1c654d4035ba026b2da0a151c868b1c5cd551bb1871e7a88de1f1953da392781",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "b279a4496a9e2cd20384ee63272c2f9e334b21f3",
+      "firstParent": "15fea6c5f40331c8325f33bd08b2dcbf924e935a",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-cfddb4201df8",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): skip unsupported shared settings targets (#9381)",
+      "relatedGroup": "packages/client-runtime/src/state/sharedSettings.ts :: packages/client-runtime/src/state/sharedSettings.test.ts",
+      "fix": "cfddb4201df8941bbfde008919da70fe5ec7552b",
+      "parent": "57626eb6eaa436b22260068d23f4e3df5f389cd1",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/sharedSettings.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/sharedSettings.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-90b4e9ee927d",
+      "installationInputSignature": "29f1adf82c713b67593853d3a3761fb72abd3461a3599dc1dfc45eaefe04ddc8",
+      "sourceArchiveTreeSha256": "c83567a3a0d5b41e25aeeb436535a18de92df42fa9f28f2ff03666f10513602f",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "d75d4518e6deb7303cdd7220b787a2f1ab3d715c",
+      "firstParent": "57626eb6eaa436b22260068d23f4e3df5f389cd1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-b34ff8f56469",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(usage): deduplicate CLI proxy subscription accounts (#9584)",
+      "relatedGroup": "packages/shared/src/usageLimits.ts :: packages/shared/src/usageLimits.test.ts",
+      "fix": "b34ff8f56469afa8f3f85d89894e1b4cf49b5213",
+      "parent": "09b81a34954c990f70257ae05efbb602c90aac97",
+      "sourceFiles": [
+        "packages/shared/src/usageLimits.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageLimits.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-1a587b6c23b1",
+      "installationInputSignature": "326236d099e251927166e04d9263532651048da61cd4b62cb7485c6b3a408fd7",
+      "sourceArchiveTreeSha256": "6e607977bc64131eb492d1d8174062b73879f1199f743280466a47e7f1139b0d",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "640e8555e46d0ccfc6915e4a25a59a1572e41f45",
+      "firstParent": "09b81a34954c990f70257ae05efbb602c90aac97",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-82f64cd8d046",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(skills): support names beginning with digits (#9244)",
+      "relatedGroup": "packages/shared/src/composerInlineTokens.ts :: packages/shared/src/composerInlineTokens.test.ts",
+      "fix": "82f64cd8d046ab4ee8588f7bcbc1e66a4a0c80fe",
+      "parent": "896fe82f2f191eb8ac0fd620e19c25dd48253592",
+      "sourceFiles": [
+        "packages/shared/src/composerInlineTokens.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/composerInlineTokens.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-ee393b1fea4e",
+      "installationInputSignature": "a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c",
+      "sourceArchiveTreeSha256": "cd3438c181dc13fec15c29a0e3a0f742cf4103bc545c93aab9c82732eea40715",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "e44af8be389d0e1acf9c0305c4160ad5b6bd090f",
+      "firstParent": "896fe82f2f191eb8ac0fd620e19c25dd48253592",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-a0eb23993a3b",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): prioritize open panel pull request when copying (#9877)",
+      "relatedGroup": "packages/shared/src/threadReference.ts :: packages/shared/src/threadReference.test.ts",
+      "fix": "a0eb23993a3bacf96d618918f43ea18f2da72390",
+      "parent": "b01771c2383bbcdf154b8c4e9f1a7d5e3867e2d0",
+      "sourceFiles": [
+        "packages/shared/src/threadReference.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/threadReference.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-ee393b1fea4e",
+      "installationInputSignature": "a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c",
+      "sourceArchiveTreeSha256": "5d9ecafc74db20a49a018e86212e9020582d3c87a51325b4336228fe181b930d",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "4309939c82fd383884061ecc330943906ca6dc1a",
+      "firstParent": "b01771c2383bbcdf154b8c4e9f1a7d5e3867e2d0",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-94cc8152fff5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(chat): show hours for long runs (#9894)",
+      "relatedGroup": "packages/shared/src/orchestrationTiming.ts :: packages/shared/src/orchestrationTiming.test.ts",
+      "fix": "94cc8152fff5fd06baafd25964f54d7ec1a34f8d",
+      "parent": "931d41f933b2536f699975412169f5318e6adad5",
+      "sourceFiles": [
+        "packages/shared/src/orchestrationTiming.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/orchestrationTiming.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-ee393b1fea4e",
+      "installationInputSignature": "a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c",
+      "sourceArchiveTreeSha256": "9342c0fcf9dc632930ed917d83a49ab6ac893788d0e5d6d22e6a44d436d6c2df",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "43fe83d0e6d9cbb9c49125b20c0ba60837feaae1",
+      "firstParent": "931d41f933b2536f699975412169f5318e6adad5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-95d99373b74e",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(clients): show feedback results in composer banners (#10398)",
+      "relatedGroup": "packages/client-runtime/src/state/threadFeedback.ts :: packages/client-runtime/src/state/threadFeedback.test.ts",
+      "fix": "95d99373b74edfb3bfd092c61a15999a95727423",
+      "parent": "98469159dd9e162a9c2f5cc4bbb2fbe89b3c4f67",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadFeedback.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadFeedback.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-5751f3c2689a",
+      "installationInputSignature": "a5edcb84125741f055b50cd5b047d13e4aea9a1d3f4139539c95e77556f606fa",
+      "sourceArchiveTreeSha256": "f67a23ad1f739d41b0a88c8f28aefbda68d8144e2d643af9fe08ef7700438ea4",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "7e9cbeee4d674c2aa9304f1a917fc8e481e0c22d",
+      "firstParent": "98469159dd9e162a9c2f5cc4bbb2fbe89b3c4f67",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-02297e3dbd89",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(ui): color linked pr counts by aggregate status (#11180)",
+      "relatedGroup": "packages/shared/src/threadPullRequests.ts :: packages/shared/src/threadPullRequests.test.ts",
+      "fix": "02297e3dbd896ef619d5c916938c751e343e76a8",
+      "parent": "0a37240a87bb2fed8f48cf20dc8312ee3b94eba6",
+      "sourceFiles": [
+        "packages/shared/src/threadPullRequests.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/threadPullRequests.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-c2d582f9bf9b",
+      "installationInputSignature": "4a6a1b0f2a9f39353bd5395e89d7a9b4f247346ca6f96ac4e2b426159592af67",
+      "sourceArchiveTreeSha256": "a3251b461a66e3198ca76418d0160f83feeeeb3b1907895a581e9201ccb9b2eb",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "716986153a4f5b32c171b2b43a9abc0ba38337b6",
+      "firstParent": "0a37240a87bb2fed8f48cf20dc8312ee3b94eba6",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-87a12b53fdff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(usage): refresh limits when the tab opens (#11928)",
+      "relatedGroup": "packages/client-runtime/src/state/usage.ts :: packages/client-runtime/src/state/usage.test.ts",
+      "fix": "87a12b53fdff7e2e0318af3edea54005557cea56",
+      "parent": "f4600d77dd7c2fa9f10e8f4500882e427fcc7e26",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/usage.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/usage.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-062a5bd2ecf5",
+      "installationInputSignature": "b67c82176521f2317f0c34779d36c617713f6d69fc8b3a9f27cebb3f1dc14e46",
+      "sourceArchiveTreeSha256": "bbc2966b18e6f1e212b3bd81ff3323b27048ac930eff453a8fe9f40a3276138a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "7b474403dbec666f87da5f3528f101774ac56285",
+      "firstParent": "f4600d77dd7c2fa9f10e8f4500882e427fcc7e26",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-87d842801921",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(observability): a malformed OTEL_RESOURCE_ATTRIBUTES no longer stops startup (#13469)",
+      "relatedGroup": "packages/shared/src/otelEnvironment.ts :: packages/shared/src/otelEnvironment.test.ts",
+      "fix": "87d84280192195b338e27acf2333771a13d04e61",
+      "parent": "3412097bff7ffa62ef79e735c65d1e5cff71c356",
+      "sourceFiles": [
+        "packages/shared/src/otelEnvironment.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/otelEnvironment.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-479c6d67a116",
+      "installationInputSignature": "6d12291892e59d9bd535c8a53e872e11f662557f9186be033e3ed9a60c404f7e",
+      "sourceArchiveTreeSha256": "a0bcd9f6728ba834a8a594838c5c4144cb3989a91e987f46d42f3a5b9ed25d5b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "008a412c649bfef81f313b2df209752ea4eaad83",
+      "firstParent": "3412097bff7ffa62ef79e735c65d1e5cff71c356",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-d06f0ff1048d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(sqlite): retry failed statement preparations (#10584)",
+      "relatedGroup": "packages/shared/src/nodeSqliteClient.ts :: packages/shared/src/nodeSqliteClient.test.ts",
+      "fix": "d06f0ff1048d42a156824765316c5a2dc54f5bca",
+      "parent": "e5a46d6c5d00b89afba5274a94d42428c8d79763",
+      "sourceFiles": [
+        "packages/shared/src/nodeSqliteClient.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/nodeSqliteClient.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-eb3e3ecb1d4e",
+      "installationInputSignature": "4111d370bbe7aaf4adcaf1c579afc80f0465ce83dc247e64f768eea39df2723d",
+      "sourceArchiveTreeSha256": "488d5aec83c9f0ec43238b654391057dd63b10e3d1a578b227d1b75fffeaa053",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "5a5f3ae0f10ca987c8df1c071a7091a541ca337a",
+      "firstParent": "e5a46d6c5d00b89afba5274a94d42428c8d79763",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-6ea01f8d2441",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: cloned projects show their favicon instead of a monogram (#14635)",
+      "relatedGroup": "packages/client-runtime/src/state/assets.ts :: packages/client-runtime/src/state/assets.test.ts",
+      "fix": "6ea01f8d24419019588f2be589681929d8e26b0c",
+      "parent": "a97a4a9d189f145afe79c3a6f8533bbf9a6b40b1",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/assets.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/assets.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-9bc18f158c61",
+      "installationInputSignature": "e39472f73d7420f7b60cce7bf1a11e3efed9b3ae4b126893579a292c7eb22f16",
+      "sourceArchiveTreeSha256": "8cc6beee1eade36fa6a34b1d0666a8f71d9cb24b12090b90d35fdd3c1c786fd8",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "5dbf96b592533f8483a036b35176f3446bc621b6",
+      "firstParent": "a97a4a9d189f145afe79c3a6f8533bbf9a6b40b1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-65731f986ba2",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): show complete subagent details (#15189)",
+      "relatedGroup": "packages/client-runtime/src/state/subagentDisplay.ts :: packages/client-runtime/src/state/subagentDisplay.test.ts",
+      "fix": "65731f986ba2175063b0182deb6a143f8f323b74",
+      "parent": "aad732901e4b7d485574eaef5a9c1fb388c4291a",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/subagentDisplay.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/subagentDisplay.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-a18a47e7c515",
+      "installationInputSignature": "ac7d9e5d974bc9ff4384d43001a523583d0c7a0ec08b8e3efcbfd1d9c8d73ba6",
+      "sourceArchiveTreeSha256": "7517afe0d437e5426612c2381d91e882ca47a787f1523d5bbc0cd7eeb71a23eb",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "b2c8a8544767f790f66987ce096c187b62ba5787",
+      "firstParent": "aad732901e4b7d485574eaef5a9c1fb388c4291a",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "scope-c152601dfe9c",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(voice): remove retained speech request count limit (#45)",
+      "relatedGroup": "scope-voice-retained-request-count",
+      "fix": "c152601dfe9c5e1077b2a34290979d4c5f8fad24",
+      "parent": "79aeb7f49874f7cd1530a16065df88b448bffc51",
+      "sourceFiles": [
+        "packages/protocol/src/voice.ts"
+      ],
+      "testFiles": [
+        "tests/voice.test.ts"
+      ],
+      "installInputGroupId": "scope-supp-install-60fd3fd8ce01",
+      "installationInputSignature": "fa76a922a052130f8e67ace87c08a4c7f3aa299cc6257ee3c6082dfb7447ddf7",
+      "sourceArchiveTreeSha256": "0474c62613df9f799fb455c87ee80eb1379718534449c49a8c2759d0956cea57",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "bc1a43d0cad90d9ecdfec94e3469c2f381f82725",
+      "firstParent": "79aeb7f49874f7cd1530a16065df88b448bffc51",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@12.6.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "scope-59ed3a2a3ee4",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: trace publication forwarding failures and timings",
+      "relatedGroup": "scope-remotes-forwarding-and-redaction",
+      "fix": "59ed3a2a3ee44dd525504dd449094c554232fc8e",
+      "parent": "e29c41a97657458ad7ae4a7d5031f71e87331342",
+      "sourceFiles": [
+        "apps/desktop/src/remotes.ts"
+      ],
+      "testFiles": [
+        "tests/remotes.test.ts"
+      ],
+      "installInputGroupId": "scope-supp-install-aed340460236",
+      "installationInputSignature": "4e5183ab84bc2525fd38c0357d7b1c3b44bd9b426b320f890643a4aba19239d5",
+      "sourceArchiveTreeSha256": "e1d1ad2ff174b369c5ed454b01b63b18f840b49330c4d8af6b0dd5542b77f7f9",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "79806c6693fa32e27d208e0e072b30332dc22678",
+      "firstParent": "e29c41a97657458ad7ae4a7d5031f71e87331342",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@12.6.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+      "sourceAndTestArchiveHashesVerified": true
+    }
+  ],
+  "supersedesUnlaunchedManifest": {
+    "file": "history-lock-matched-78.json",
+    "sha256": "5f8eaee75c84794117a1f34c86fd7a5bae24503c91ae8779d8113b2d47df2987",
+    "reason": "Supplemental relay audit metadata now binds the finalized per-candidate preflight exclusions; original manifest never launched."
+  }
+}

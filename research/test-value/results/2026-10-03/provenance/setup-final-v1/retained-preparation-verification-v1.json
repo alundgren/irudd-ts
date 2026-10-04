@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    {
+      "profile": "filtered-install-attempt-v1",
+      "files": 75,
+      "archiveSha256": "4ebd2a9e695251c4c9265bd57f96f908db2852140c9ae63b10567ebf6a0b7b8d",
+      "verified": true
+    },
+    {
+      "profile": "filtered-install-attempt-v2",
+      "files": 52,
+      "archiveSha256": "69380008cb0ba4d514ff50ace0c49668e5a4677c9c03aed9ddcec78e032c1386",
+      "verified": true
+    },
+    {
+      "profile": "filtered-install-attempt-v3",
+      "files": 253,
+      "archiveSha256": "78c8f2cfb6d1b2bf66ae0192e5b36cf1422a38b8319dddebf93730b2ff903e3c",
+      "verified": true
+    },
+    {
+      "profile": "supplement-install-attempt-v3",
+      "files": 253,
+      "archiveSha256": "655e2107aab1c2651381bc4ae71ab43677dcf4c4fa51739acd3e06a25611ca57",
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "scope-c46613230e97",
+  "subject": "scope",
+  "repository": "/Users/alun/repos/irudd-scope",
+  "title": "fix: retain live discussion updates during detail loads",
+  "sourceFiles": [
+    "apps/desktop/src/plugins/pull-requests/sync.ts"
+  ],
+  "testFiles": [
+    "tests/pull-requests-scheduler.test.ts"
+  ],
+  "relatedGroup": "pull-request-discussion-sync",
+  "fix": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+  "parent": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 17
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "26e27d6297c4744b67124be1a61c6d8c119f7827ad5ec3329d991b333915baf9"
+  }
+}

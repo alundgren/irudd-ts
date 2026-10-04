@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_runner.py", line 840, in <module>
+    main()
+    ~~~~^^
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_runner.py", line 816, in main
+    records = copy_controls(Path(arguments.output).resolve())
+  File "/private/tmp/archguard-test-value-20261003/runner-worktree/research/test-value/controls_runner.py", line 84, in copy_controls
+    raise AssertionError("Unexpected clone failure accepted")
+AssertionError: Unexpected clone failure accepted

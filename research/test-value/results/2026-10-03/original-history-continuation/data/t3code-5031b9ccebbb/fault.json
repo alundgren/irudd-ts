@@ -1,0 +1,104 @@
+{
+  "id": "t3code-5031b9ccebbb",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(client-runtime): track follow-up subagent status",
+  "sourceFiles": [
+    "apps/mobile/src/state/threads.ts",
+    "apps/web/src/components/ChatView.tsx",
+    "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+    "apps/web/src/state/threads.ts",
+    "packages/client-runtime/src/state/subagentRuntime.ts",
+    "packages/client-runtime/src/state/threadDetail.ts",
+    "packages/client-runtime/src/state/threadRelationships.ts",
+    "packages/client-runtime/src/state/threadShell.ts",
+    "packages/client-runtime/src/state/threadSubagents.ts"
+  ],
+  "testFiles": [
+    "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx",
+    "packages/client-runtime/src/state/threadDetail.test.ts",
+    "packages/client-runtime/src/state/threadShell.test.ts",
+    "packages/client-runtime/src/state/threadSubagents.test.ts"
+  ],
+  "relatedGroup": "subagent-status",
+  "fix": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+  "parent": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 8
+  },
+  "verified": false,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "apps/mobile/src/state/threads.ts",
+    "apps/web/src/components/ChatView.tsx",
+    "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+    "apps/web/src/state/threads.ts",
+    "packages/client-runtime/src/state/subagentRuntime.ts",
+    "packages/client-runtime/src/state/threadDetail.ts",
+    "packages/client-runtime/src/state/threadRelationships.ts",
+    "packages/client-runtime/src/state/threadShell.ts",
+    "packages/client-runtime/src/state/threadSubagents.ts"
+  ],
+  "killedBy": [],
+  "unaffected": [],
+  "fixedTemplateSha256": "110d546eab7b22eb45433713e0ad859b915d96e897b91a60527ba2aa607349b3",
+  "faultyTemplateSha256": "9c0284936db79a617808a32b2ae0241e1305dcbf0bd3b4ec3d1b3d7fb33fbf6b",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx": "parent file existed; individual additions not classified",
+    "packages/client-runtime/src/state/threadDetail.test.ts": "parent file existed; individual additions not classified",
+    "packages/client-runtime/src/state/threadShell.test.ts": "parent file existed; individual additions not classified",
+    "packages/client-runtime/src/state/threadSubagents.test.ts": "parent file existed; individual additions not classified"
+  },
+  "unchangedIdentityFromParentTests": [
+    "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows readable models and only differing workspace details in agent tooltips\"],1]",
+    "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows the matching child agent details and refreshes them when the agent settles\"],1]",
+    "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows the parent's own visible status as parent and child activity change\"],1]",
+    "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows transfer lifecycle states when viewing the source thread\"],1]",
+    "[\"\",\"apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx\",[\"shows transfer lifecycle states when viewing the target thread\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"createEnvironmentThreadDetailAtoms\",\"adds environment scope while preserving the pristine projection\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"does not notify queue consumers for streaming text or execution nodes\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"does not notify the agents pill for unrelated projection updates\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadDetail.test.ts\",[\"keeps worktree and pending requests stable during output updates, then reflects resolution\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"keeps navigation stable on hidden subagent updates and retains user forks\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"preserves ordered reference arrays when a middle thread changes\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"preserves project memberships on updates and keeps the same thread separate per environment\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"v2 thread shell lists\",\"shares point and list values without retaining an atom for every listed thread\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"counts idle as neither working nor done\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"falls back to the most recently updated agent's run once the turn settles\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"returns null when the thread has never spawned an agent\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"deriveThreadTurnSubagents\",\"scopes the roster to the active run and orders it by start time\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"hides itself once the turn is over and nothing is working\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"reports the finished roster while the turn is still running\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"shows how many of the turn's agents are still working\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"resolveSubagentPillSegment\",\"stays visible after the turn ends while an agent is still working\"],1]"
+  ],
+  "fixAddedOrRenamedTestIdentities": [
+    "[\"\",\"packages/client-runtime/src/state/threadShell.test.ts\",[\"tracks resumed delegated children in the waiting roster through shell updates\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"includes a resumed agent from an earlier parent run and removes it after it settles\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"keeps provider-owned and unavailable children on their task status\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a preparing follow-up as live without changing its original result\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a queued follow-up as live without changing its original result\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a running follow-up as live without changing its original result\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a starting follow-up as live without changing its original result\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadSubagents.test.ts\",[\"delegated child follow-ups\",\"shows a waiting follow-up as live without changing its original result\"],1]"
+  ],
+  "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+  "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+  "recordDigests": {
+    "fixed-before/execution.json": "43d07a840c75778672786e5cee94dc5e8d951c1a8cde2e23a6aab0c9071f8bc1",
+    "faulty/execution.json": "ce93ad3bed7e72055223c13b7d73a6e6ba983c2ff5bc52ae87189a380ee0be8f",
+    "fixed-after/execution.json": "ec3da1128901a25bce5646b898912439fcfa75f5a972760c4d870f16adcd0c29"
+  }
+}

@@ -1,0 +1,1681 @@
+{
+  "schemaVersion": 1,
+  "sourceRoot": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/native",
+  "archive": "raw-evidence.tar.gz",
+  "archiveSha256": "49672bada61e620e0a632dbf6b8c1be5f5511483d3599d8f4b6915339261a80d",
+  "files": [
+    {
+      "path": "analysis.json",
+      "sha256": "664c8dd1058a31badea047ddf8887d099c35cc9842145639ad111c227d201287",
+      "bytes": 11431
+    },
+    {
+      "path": "baseline/execution.json",
+      "sha256": "9dfc62ebebb7777d69f6637e35fec94b6aa0ce6a53c06e0f406ad689e88a2f04",
+      "bytes": 1461
+    },
+    {
+      "path": "baseline/stderr.txt",
+      "sha256": "b250a7a98350076623a9f62b062f2f69cb5d65034b441224f5a72cb327392bf2",
+      "bytes": 5209
+    },
+    {
+      "path": "baseline/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "matrix.json",
+      "sha256": "54b973d14a19fde27cbe9e626df268e8206c9f34b21c8d2b7ab8b8c609039924",
+      "bytes": 37701
+    },
+    {
+      "path": "mutant-0000/execution.json",
+      "sha256": "872158ed5361bab52d6b8c854285b3d1ba696aed946a905595e7e5723e6d439a",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0000/mutation.diff",
+      "sha256": "ba26ca7329c4ffd32c94346ab269220c11c26bd20c63513c04b859f4cd1c53b4",
+      "bytes": 864
+    },
+    {
+      "path": "mutant-0000/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0000/stderr.txt",
+      "sha256": "461f0c243014eda6a7a06d45f16c296fb393369a65eecebbdf1269312649a31c",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0000/stdout.txt",
+      "sha256": "f3027e2689be90a3711615c7f42aa136830fe5a55ea2a6aaf1701e57ef06d93e",
+      "bytes": 832
+    },
+    {
+      "path": "mutant-0001/execution.json",
+      "sha256": "26d272209e58eb8c624bd1848e44833872e26aee03b5273739816843745967de",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0001/mutation.diff",
+      "sha256": "ee59dfc31bc54133da6afedff96116820881346a3ea7268df02763c599cfc9bb",
+      "bytes": 864
+    },
+    {
+      "path": "mutant-0001/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0001/stderr.txt",
+      "sha256": "ad150c08ececfd7696be09f1075e6da5de9e9224767eff2496512ec2084b445c",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0001/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0002/execution.json",
+      "sha256": "23675396904fe001edddc2ab3b0cf1be044da8bab1c5b05c512b39e311e4a86e",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0002/mutation.diff",
+      "sha256": "b84ea811f3b2bed4dcb7d96bda80a4db97ee6ed0760bf6d0bca7a7248ebd7e92",
+      "bytes": 864
+    },
+    {
+      "path": "mutant-0002/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0002/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0002/stdout.txt",
+      "sha256": "20a60fc09e6b3e70755922f09bed8c58dbfcd701c1aca12e1a2bfdd27daef9cd",
+      "bytes": 1248
+    },
+    {
+      "path": "mutant-0003/execution.json",
+      "sha256": "8c1ad492f5757a6989818df7bdb544359b2ba4bcbc3c6345c6080041dbaf3dc8",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0003/mutation.diff",
+      "sha256": "766c6d55a8e4d3f9927077b711542cf01a46c8929c046a41995fa980789eff7e",
+      "bytes": 853
+    },
+    {
+      "path": "mutant-0003/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0003/stderr.txt",
+      "sha256": "ad150c08ececfd7696be09f1075e6da5de9e9224767eff2496512ec2084b445c",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0003/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0004/execution.json",
+      "sha256": "593596196aaf2143c6c5d34876b95aa65e6b59a60546e08f2a79ed8a8141638b",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0004/mutation.diff",
+      "sha256": "ba29b6207c9df6c439ca6a0cca38e8c73ae4cd3458de126a7236afdf82f98eb0",
+      "bytes": 864
+    },
+    {
+      "path": "mutant-0004/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0004/stderr.txt",
+      "sha256": "83ca706fbd7a12e61c35da6badfb8cc51663d2b6e1f8160ff08032bda4d12f42",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0004/stdout.txt",
+      "sha256": "4b7233849842913450522a9dcdba0040473df2cf87f1f33690baafa8d6d5052e",
+      "bytes": 832
+    },
+    {
+      "path": "mutant-0005/execution.json",
+      "sha256": "7bb2c2589d37403122bafb66df155a3540a9b4232bbe15d439566fb3b9606385",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0005/mutation.diff",
+      "sha256": "dde46a96664fc059134d85bf3464ff875e374289b7efb2d9015c8e19a2e3ad80",
+      "bytes": 862
+    },
+    {
+      "path": "mutant-0005/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0005/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0005/stdout.txt",
+      "sha256": "edfcd7ed9dc7ba03ddd60a0372646174ca707ad25b9938dea3376f8696fb8b5f",
+      "bytes": 1248
+    },
+    {
+      "path": "mutant-0006/execution.json",
+      "sha256": "77f6b1a55927859516575cc669c21eb94bb08d90a508b7ba9fab205599f529b4",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0006/mutation.diff",
+      "sha256": "9e6f9029df6bb2f1f8e09561540b66d1bb05f38f7cc42d97854d00a7a1f1ee0e",
+      "bytes": 864
+    },
+    {
+      "path": "mutant-0006/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0006/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0006/stdout.txt",
+      "sha256": "f8f665f8767ac0b11cc8a423f8ea1723491f9ad2ebb11985820fc1be2fdfc4a5",
+      "bytes": 874
+    },
+    {
+      "path": "mutant-0007/execution.json",
+      "sha256": "47771975d829fee4c9950571b6d0e87923ac003e49732e196b6cd9faea53c849",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0007/mutation.diff",
+      "sha256": "6c1f9126203ab612fc1fcf08f426f95f220963c13d1ab4cf48f9bc82c4ca55ba",
+      "bytes": 868
+    },
+    {
+      "path": "mutant-0007/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0007/stderr.txt",
+      "sha256": "532eed68805c612eb6b7e3f34b6b75b25f7d3a63fb0097683e499e3afa21ba6c",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0007/stdout.txt",
+      "sha256": "b185936c843155a6e89530c93c72c01a96d2727295624eb644bdc849c65e5f3f",
+      "bytes": 1220
+    },
+    {
+      "path": "mutant-0008/execution.json",
+      "sha256": "36fd0dbcf84cbc62836cfe19be716bf3e0fda6fbce68eeaf20576d4ecb4cc555",
+      "bytes": 1459
+    },
+    {
+      "path": "mutant-0008/mutation.diff",
+      "sha256": "68bda176017204811d7238dd190ef22914384b8744ff61afc56073dc8934c1ed",
+      "bytes": 777
+    },
+    {
+      "path": "mutant-0008/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0008/stderr.txt",
+      "sha256": "a8ffa6a0865efc23d2ca67b54b3d21ee2b245fb918dc5cc8e956fd34baf93084",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0008/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0009/execution.json",
+      "sha256": "a80a935a764ca83d182797d1ce7f8b752b287f4e73afdac636cdcee8b2bd3489",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0009/mutation.diff",
+      "sha256": "b84785fa7917d6046da0ee567638c1da53b970e5f713927458ed2f2ea0f8487e",
+      "bytes": 774
+    },
+    {
+      "path": "mutant-0009/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0009/stderr.txt",
+      "sha256": "02c1c64837a82a58acc2ae3adf52acb4d2a73b17e9b4384e58511c86e4f720cf",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0009/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0010/execution.json",
+      "sha256": "fdecb0f5458942e455523d507b78f0d02d16a8fb2e1348c7c4dddab0e14ff4ff",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0010/mutation.diff",
+      "sha256": "8c666f3597cf0cd3dd88496354fbb494d20ee9b74c692af18a6ea1dce5929a98",
+      "bytes": 834
+    },
+    {
+      "path": "mutant-0010/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0010/stderr.txt",
+      "sha256": "532eed68805c612eb6b7e3f34b6b75b25f7d3a63fb0097683e499e3afa21ba6c",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0010/stdout.txt",
+      "sha256": "18572d364ac1e391659740563eaada16d6c19c716306c354ab1086b9d7191a6b",
+      "bytes": 1224
+    },
+    {
+      "path": "mutant-0011/execution.json",
+      "sha256": "f357fe0a8856a75d2fe37d006d40f9268102f19f22c7ecfef3b44431d84dde71",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0011/mutation.diff",
+      "sha256": "d4af76b4c60ca6cce44752bff93ae370fd0f7ec1e3e755ce1a5762791d8333dc",
+      "bytes": 774
+    },
+    {
+      "path": "mutant-0011/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0011/stderr.txt",
+      "sha256": "ca1874d08f7ce6e3072a0e5dd4d75a71666f0fc97536da25464e0987ad03dbd2",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0011/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0012/execution.json",
+      "sha256": "0413cc567337ef6bf0b93e2b6499a9f7280abdb953e0b00c2a36115a1400b5cb",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0012/mutation.diff",
+      "sha256": "acbc9de6bf3029b15860c6ae7c17acad03ab612f75d12094f951d7d4f11300d0",
+      "bytes": 772
+    },
+    {
+      "path": "mutant-0012/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0012/stderr.txt",
+      "sha256": "a7a07de3761fe286df943b212e3f209f8a182179474f024763e51f3239c39809",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0012/stdout.txt",
+      "sha256": "4f2cb9b16ec1ed665bf74c2b91a93485cd48ce6a0bba019433302a1b1d493389",
+      "bytes": 1224
+    },
+    {
+      "path": "mutant-0013/execution.json",
+      "sha256": "2e0f90d49295d2366cc05793c201360dcb7a8e67c7e9dea480d22a8b111a51f9",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0013/mutation.diff",
+      "sha256": "9a7868f1259924f74d6b2fc8603db7e36958a80e8e06e31f03444c783a79d1e5",
+      "bytes": 774
+    },
+    {
+      "path": "mutant-0013/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0013/stderr.txt",
+      "sha256": "02c1c64837a82a58acc2ae3adf52acb4d2a73b17e9b4384e58511c86e4f720cf",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0013/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0014/execution.json",
+      "sha256": "75324ae1404419b391097e9127d3b2cc662906c05d757ab5c8db8a105dbc7e44",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0014/mutation.diff",
+      "sha256": "e9577411f243a3537307a07a969a3063ce5d7b9e40c0e244fd7f6f28501980d6",
+      "bytes": 777
+    },
+    {
+      "path": "mutant-0014/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0014/stderr.txt",
+      "sha256": "ad150c08ececfd7696be09f1075e6da5de9e9224767eff2496512ec2084b445c",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0014/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0015/execution.json",
+      "sha256": "a049043dd22ba4eb6725391f039f87e5d79d2269a625d7fd48fa8e23230ca690",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0015/mutation.diff",
+      "sha256": "64b703398812e48f7a3b5561fa37e83dca69292c01dec38463bc7e2268138e7a",
+      "bytes": 775
+    },
+    {
+      "path": "mutant-0015/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0015/stderr.txt",
+      "sha256": "a7a07de3761fe286df943b212e3f209f8a182179474f024763e51f3239c39809",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0015/stdout.txt",
+      "sha256": "ca43ce6485250b36c20f9cfd3f33c79875b0b0910ccc50acadb7f0c0bc2f89c8",
+      "bytes": 1224
+    },
+    {
+      "path": "mutant-0016/execution.json",
+      "sha256": "321c880c3d433b53ec29ccdd53b23c409f78687384e38f37ed10c91d0c309caa",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0016/mutation.diff",
+      "sha256": "d2e66b34ca1d426411415ba40f8e7af72a31340ffe55dcc12f770872299055ee",
+      "bytes": 777
+    },
+    {
+      "path": "mutant-0016/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0016/stderr.txt",
+      "sha256": "ca1874d08f7ce6e3072a0e5dd4d75a71666f0fc97536da25464e0987ad03dbd2",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0016/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0017/execution.json",
+      "sha256": "82818b67062be160183c0b13761f787db6c1b8b6fd80bc9401326d27ce805d4a",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0017/mutation.diff",
+      "sha256": "efe87bf999719d45a6c4be7566be022099be5035eaa99e160135d7e0d7e02be3",
+      "bytes": 693
+    },
+    {
+      "path": "mutant-0017/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0017/stderr.txt",
+      "sha256": "a8ffa6a0865efc23d2ca67b54b3d21ee2b245fb918dc5cc8e956fd34baf93084",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0017/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0018/execution.json",
+      "sha256": "37ccd774c12f6fb46a2319ca690c3bd423da5b17ddd61f4ceecd011acccf03cc",
+      "bytes": 664
+    },
+    {
+      "path": "mutant-0018/mutation.diff",
+      "sha256": "bbb86f2da7cc0102c14cde57314b4d11d6509e8ed9236eb63bb03b94ee6f2caf",
+      "bytes": 691
+    },
+    {
+      "path": "mutant-0018/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0018/stderr.txt",
+      "sha256": "143e4fbe9816a98985779519454317780be349553112cf995f469db49e7b2e4c",
+      "bytes": 711
+    },
+    {
+      "path": "mutant-0018/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "mutant-0019/execution.json",
+      "sha256": "ad292f9a8e86237d6a13707e6f8cf93357938cc450c83611f3ab952b6b54838e",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0019/mutation.diff",
+      "sha256": "d74bdf75504d1f53317f23dba224ef1df35a203dc8266e1617498fd169c31cfe",
+      "bytes": 693
+    },
+    {
+      "path": "mutant-0019/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0019/stderr.txt",
+      "sha256": "082fb5acd244259ee44f8b572fdb48ebb6990d714331b3c54cec42bc8fa70a6b",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0019/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0020/execution.json",
+      "sha256": "c543c3ffafbb07f1a00e22f399ef48cdb10cc487bfeb21b40318115b2514251f",
+      "bytes": 1459
+    },
+    {
+      "path": "mutant-0020/mutation.diff",
+      "sha256": "ca3bceb70ea2641bf5fa28d9c66f44600c134adb721cb0ee6ae726fa204e0a94",
+      "bytes": 891
+    },
+    {
+      "path": "mutant-0020/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0020/stderr.txt",
+      "sha256": "1dc823c453bad725722dea1bd3e6a830845f84d1af0bdb35faa573b8ae7e0bff",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0020/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0021/execution.json",
+      "sha256": "b00429702f107b3f8d4d91bd60ee2b16f4e43c8cd177722ce9798c0a2439afaf",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0021/mutation.diff",
+      "sha256": "02951117d642c9b5951feb5d3a0918256e1c65de6406663e9d27b64b57f58192",
+      "bytes": 963
+    },
+    {
+      "path": "mutant-0021/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0021/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0021/stdout.txt",
+      "sha256": "fbe8d248da061447dff2a0b718789c8c98dc3e87cc0c1b9935d542b646160106",
+      "bytes": 799
+    },
+    {
+      "path": "mutant-0022/execution.json",
+      "sha256": "c8891aa27d2fc38537b5afd7032c58d4216cdbc0511c2a5ec08269c1f376e281",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0022/mutation.diff",
+      "sha256": "5743cda407dd160cbd2c981fb2fd873e6eb28c9eff018da4979969fd59c1ba9c",
+      "bytes": 916
+    },
+    {
+      "path": "mutant-0022/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0022/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0022/stdout.txt",
+      "sha256": "cf8831806d4b4e807a47d919ccd1fe7809454979c3ff317734d97afde327c816",
+      "bytes": 799
+    },
+    {
+      "path": "mutant-0023/execution.json",
+      "sha256": "81d00c935c8ab259f084d6d1a73f1cce49b85e27e2dbb24c853049294986d961",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0023/mutation.diff",
+      "sha256": "23a6e2f4697e148619bc8e3f07d5e305e8e73161e5590aed3198d6725a75a30a",
+      "bytes": 968
+    },
+    {
+      "path": "mutant-0023/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0023/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0023/stdout.txt",
+      "sha256": "5ab48cc55076505fef510b9f8b48bf10703db873cfde6c0c6ec60247946b446c",
+      "bytes": 1246
+    },
+    {
+      "path": "mutant-0024/execution.json",
+      "sha256": "089cad2e4af5f6fff62c78e87b0139e1610ff4e4563d0f0eb429ccf015bec74c",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0024/mutation.diff",
+      "sha256": "764d64a778bf16e4c0eff8d3a5d9f3b0b488615e52ea661484bdd97f66a57fec",
+      "bytes": 916
+    },
+    {
+      "path": "mutant-0024/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0024/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0024/stdout.txt",
+      "sha256": "f6ff1dc27e68a99dc8534e5877c34bcada84963da8293cdb1fc93b634a2fc14f",
+      "bytes": 1246
+    },
+    {
+      "path": "mutant-0025/execution.json",
+      "sha256": "3907a2c4935c4ab34cf93f9e73865c81246e9a460ea8c1963da9079ef9364cde",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0025/mutation.diff",
+      "sha256": "056104e50ee4465ab152600bd9e0ad2f46299e483b9b66de8d996cb5ac1e8c43",
+      "bytes": 963
+    },
+    {
+      "path": "mutant-0025/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0025/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0025/stdout.txt",
+      "sha256": "beb4f73220b0ec48a0275277b07dbd8123a6ee64dfd57c0938b1440a74a78eea",
+      "bytes": 1246
+    },
+    {
+      "path": "mutant-0026/execution.json",
+      "sha256": "0a2de7cf95ed37ef96ae69454aba754aa8096fabbc1419eb0746addb042bdeef",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0026/mutation.diff",
+      "sha256": "cec82e1bda4a45d198283602b592438027f5348e216422b5f76460bb28f19279",
+      "bytes": 891
+    },
+    {
+      "path": "mutant-0026/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0026/stderr.txt",
+      "sha256": "b9e29f87a5331fc4c4a728644e5361ef4f87ce7a76be0f877bf13feb9fb053b5",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0026/stdout.txt",
+      "sha256": "d98a1db66cdfdb8b26cd4a82fd83b6eb8d204ae152c96c6db63e7008de07e575",
+      "bytes": 1246
+    },
+    {
+      "path": "mutant-0027/execution.json",
+      "sha256": "096f9557a2b85e40dd0d7646e4d2029ad675bb0fb22edf99bd72542989e6f09c",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0027/mutation.diff",
+      "sha256": "c4884c5af9a7cc765e06a76e38c45214901d12badeead03dfd64bf138ab99d0d",
+      "bytes": 938
+    },
+    {
+      "path": "mutant-0027/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0027/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0027/stdout.txt",
+      "sha256": "3300663c914ead0c22bc0f76f432dccb3f8ed5fea29be5fa45fec1856b97d726",
+      "bytes": 832
+    },
+    {
+      "path": "mutant-0028/execution.json",
+      "sha256": "504536656df3d2611d7c74ff14b2ef02d271fe79a2b30b8c10d1853c1b6f2eaa",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0028/mutation.diff",
+      "sha256": "a5bb6827e656647cc4d2d050614cfe7e5d97355238b89f18791db3f03cbd6fee",
+      "bytes": 882
+    },
+    {
+      "path": "mutant-0028/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0028/stderr.txt",
+      "sha256": "1650caceabefcba208056bc99fe7557f3265eb4d6e112c95fac502f5f5849d32",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0028/stdout.txt",
+      "sha256": "338a73ca3783b4e977e3456c740d4bda45b9d9ee0870568a3d41522b232d7a86",
+      "bytes": 1215
+    },
+    {
+      "path": "mutant-0029/execution.json",
+      "sha256": "8641ab527899dda42ac5e541bf7359573b90282acc9a05d8204cadf81e6de468",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0029/mutation.diff",
+      "sha256": "8a40514813727fa0ee23a746255544eeefe53ed5efca87fd8c87365d2e41a9ab",
+      "bytes": 938
+    },
+    {
+      "path": "mutant-0029/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0029/stderr.txt",
+      "sha256": "faddfeb7d8a3378aa37975a21572716c14a92dad7895908de2b2dd1b8ab3e9ea",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0029/stdout.txt",
+      "sha256": "23caee3aaafc52113fb6d43b210222d3595d03d73c7f40ec14ffce941d26ff8e",
+      "bytes": 1266
+    },
+    {
+      "path": "mutant-0030/execution.json",
+      "sha256": "d2c08f0421aa1d17d4caf4cf94b59a89c4757b2daa5879f7ac392373e4318282",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0030/mutation.diff",
+      "sha256": "03ccfb6e924007358e675ed049b8680c2844fed44739f83d0eb00169b69767b3",
+      "bytes": 938
+    },
+    {
+      "path": "mutant-0030/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0030/stderr.txt",
+      "sha256": "532eed68805c612eb6b7e3f34b6b75b25f7d3a63fb0097683e499e3afa21ba6c",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0030/stdout.txt",
+      "sha256": "e9d707650a972b08e538ffc08a3bfff45923a712c30b433221ddc4102f50260e",
+      "bytes": 1266
+    },
+    {
+      "path": "mutant-0031/execution.json",
+      "sha256": "00f8d0d05f8e9024700ed004950f9a9bf201d860cd544ada067cbb955f52885e",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0031/mutation.diff",
+      "sha256": "159774dcdfc274f550f7cc1afd4f143844a7ac81926fedc954d3ff8844e45257",
+      "bytes": 945
+    },
+    {
+      "path": "mutant-0031/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0031/stderr.txt",
+      "sha256": "02c1c64837a82a58acc2ae3adf52acb4d2a73b17e9b4384e58511c86e4f720cf",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0031/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0032/execution.json",
+      "sha256": "a1a6bc3f3ebfca473917ca1a9886d648e57037b20e297043fc5ecd32a4037bf1",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0032/mutation.diff",
+      "sha256": "614d06592a41d9ffbd4952cac661b1ae43da65ccf21735b6efe54e7d41fbff9a",
+      "bytes": 943
+    },
+    {
+      "path": "mutant-0032/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0032/stderr.txt",
+      "sha256": "b9e29f87a5331fc4c4a728644e5361ef4f87ce7a76be0f877bf13feb9fb053b5",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0032/stdout.txt",
+      "sha256": "5c0666ffbabff4083a5805a33005faf8185d1cefb15504675b5c91fc77b1c035",
+      "bytes": 1214
+    },
+    {
+      "path": "mutant-0033/execution.json",
+      "sha256": "3f369e1e65f32a62b52ba58d70c63d68dc2781fcf88cc2934ad48aa2d0312f67",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0033/mutation.diff",
+      "sha256": "83d165f63d090673b8bb42c0df85faa356c0b4ab53e681855d20a4013c301794",
+      "bytes": 945
+    },
+    {
+      "path": "mutant-0033/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0033/stderr.txt",
+      "sha256": "082fb5acd244259ee44f8b572fdb48ebb6990d714331b3c54cec42bc8fa70a6b",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0033/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0034/execution.json",
+      "sha256": "449f26534d3abc95ce06f31562acd25fae1534fa38f911e2bccfa3bb69cc420d",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0034/mutation.diff",
+      "sha256": "4f0db89d5f4ef87d6bd9c670d5cd1b396051d96651f0ae09f1c2624501e47592",
+      "bytes": 962
+    },
+    {
+      "path": "mutant-0034/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0034/stderr.txt",
+      "sha256": "a7a07de3761fe286df943b212e3f209f8a182179474f024763e51f3239c39809",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0034/stdout.txt",
+      "sha256": "d46e5bc71c0f24295b2690648c216733d693c804685c7f9a00a6e7685293f820",
+      "bytes": 1236
+    },
+    {
+      "path": "mutant-0035/execution.json",
+      "sha256": "9e39781094f382dd35cf4ad50f4b30753a617cb57e05fc5054f9eb043f90371f",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0035/mutation.diff",
+      "sha256": "0e357b38a454c7ced591663ff0cab0959b502e56366faed99fde8be1c04bc19d",
+      "bytes": 962
+    },
+    {
+      "path": "mutant-0035/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0035/stderr.txt",
+      "sha256": "4f3a10150a97e113ed9af482f69eea33a99fc7206d658b8df13b508f11de704e",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0035/stdout.txt",
+      "sha256": "dcfcb37a4ddf1a68f3e322615f5a7169861c073def56641bd2b439bbee0890cc",
+      "bytes": 835
+    },
+    {
+      "path": "mutant-0036/execution.json",
+      "sha256": "f139df1601179218056d167a2e9f08fbe7ed08f6c279772a8d1737e665297784",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0036/mutation.diff",
+      "sha256": "11739ab23e779894ff9c1d56b0924392b543d7abbd57ca8d3dd5b008f4baedc7",
+      "bytes": 888
+    },
+    {
+      "path": "mutant-0036/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0036/stderr.txt",
+      "sha256": "a0be262b49698029e1a71f6c0e1d4724e1e84138d1fce28c746db79dc567c437",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0036/stdout.txt",
+      "sha256": "bdbee66089dc47822a7892959df169d7c26d266b45a6314d456a142a34b5c539",
+      "bytes": 1234
+    },
+    {
+      "path": "mutant-0037/execution.json",
+      "sha256": "218e42fc4226e4ca6c7d242a624ba2d148bf7302b5e8a056705e620178b76c77",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0037/mutation.diff",
+      "sha256": "e5f80ea46a22809d6ef14f485bd9dc83deff7ee2707a74ffe7fbdba3d8289a02",
+      "bytes": 888
+    },
+    {
+      "path": "mutant-0037/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0037/stderr.txt",
+      "sha256": "faddfeb7d8a3378aa37975a21572716c14a92dad7895908de2b2dd1b8ab3e9ea",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0037/stdout.txt",
+      "sha256": "e6d7c7def06ecd4a9851feb683f121f728a3c136f60fff0c3c4e6e3619e97f8e",
+      "bytes": 1234
+    },
+    {
+      "path": "mutant-0038/execution.json",
+      "sha256": "fd06dde2ec5c36fe06adeddce4911ae75f9ebfb2e085934daebf687a6a160935",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0038/mutation.diff",
+      "sha256": "344147063c4dcf6f27b2dbed60a2fdf592471d9500951ce092b5264ca3292ab6",
+      "bytes": 855
+    },
+    {
+      "path": "mutant-0038/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0038/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0038/stdout.txt",
+      "sha256": "31993a6910429dc02d8dcdf8e3800beab9088f2768faa6eea660d30676d1dd77",
+      "bytes": 1226
+    },
+    {
+      "path": "mutant-0039/execution.json",
+      "sha256": "25a95b701adea1ce9e1a58008645079d41bc3f5909ed35dd782ab74a603311c8",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0039/mutation.diff",
+      "sha256": "834ae4866c5fd2822ea7bf57cbd09964a527b2bbb9a5133b64b364273e829004",
+      "bytes": 884
+    },
+    {
+      "path": "mutant-0039/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0039/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0039/stdout.txt",
+      "sha256": "a401004fafb5b1e1ef2924e9faaef01092337cdb21a2d9c697e9a74b43cd29f0",
+      "bytes": 1226
+    },
+    {
+      "path": "mutant-0040/execution.json",
+      "sha256": "d1e5ec15b64a64d955298ca9bcbd079753b5111e4b955d2e59912d2837d3f263",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0040/mutation.diff",
+      "sha256": "275a2bf1122e5fdbe9c55160fe86ac74c0f143506c9ed4a6d867583da500aca6",
+      "bytes": 884
+    },
+    {
+      "path": "mutant-0040/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0040/stderr.txt",
+      "sha256": "461f0c243014eda6a7a06d45f16c296fb393369a65eecebbdf1269312649a31c",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0040/stdout.txt",
+      "sha256": "8fd06d724a92bb7c667feec677d4980d726966f297c6b9cdd74b18aa1cdc940b",
+      "bytes": 1226
+    },
+    {
+      "path": "mutant-0041/execution.json",
+      "sha256": "4a0c551f7598ab5e2c7bf0b353790017434cee6a522a94461aa95e39b960b139",
+      "bytes": 1460
+    },
+    {
+      "path": "mutant-0041/mutation.diff",
+      "sha256": "c45111cf3ac3afef52337686ead17df8319361aa0d5253b971be9179e68ff425",
+      "bytes": 855
+    },
+    {
+      "path": "mutant-0041/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0041/stderr.txt",
+      "sha256": "02c1c64837a82a58acc2ae3adf52acb4d2a73b17e9b4384e58511c86e4f720cf",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0041/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0042/execution.json",
+      "sha256": "54aa0bb2c8478b3eeea6ef02a2e384dcddc23e5ca6e22020721c0bf49e4e7292",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0042/mutation.diff",
+      "sha256": "29bfbb29cb9387419116507d71245a3c0a6619e0be43b78b7d8d2f88fe2e243f",
+      "bytes": 855
+    },
+    {
+      "path": "mutant-0042/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0042/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0042/stdout.txt",
+      "sha256": "fc7c44713b3b64c7544415f474a1f10cc15882839b582b8e56e2f0e5ec5e9979",
+      "bytes": 830
+    },
+    {
+      "path": "mutant-0043/execution.json",
+      "sha256": "a3f650fbadc82ff4e8e94bf175aa90228c6f19389c4ffd5e2ae0db8b69d8da2e",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0043/mutation.diff",
+      "sha256": "09cb76b6e3491a66847734f060fe2ae9e103f109ea5959a8c4de7abd488cc904",
+      "bytes": 844
+    },
+    {
+      "path": "mutant-0043/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0043/stderr.txt",
+      "sha256": "a7a07de3761fe286df943b212e3f209f8a182179474f024763e51f3239c39809",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0043/stdout.txt",
+      "sha256": "0f14f9a8dbc966832563b6d14cd2d191d7518d90c60e78b702d7953bec1fdf6a",
+      "bytes": 830
+    },
+    {
+      "path": "mutant-0044/execution.json",
+      "sha256": "bafb449719708367410dbe3e6c15ca76181f6aa68e8b888ed03d2db26fb95b0e",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0044/mutation.diff",
+      "sha256": "7b1409dab0390a98ff6d9bbdc2e38c190409005b6e66761ded740c34b2bcc3e9",
+      "bytes": 845
+    },
+    {
+      "path": "mutant-0044/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0044/stderr.txt",
+      "sha256": "4f3a10150a97e113ed9af482f69eea33a99fc7206d658b8df13b508f11de704e",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0044/stdout.txt",
+      "sha256": "2c7a6cb5fa2814fe2ee0f92ad511dfdd9e7d1a2d3a9c7a0285a41093d2fd24ba",
+      "bytes": 790
+    },
+    {
+      "path": "mutant-0045/execution.json",
+      "sha256": "5fcc3b81be8d212165dfc26ef8da570f2b1cbaafb9503e8e11b1538077a0064e",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0045/mutation.diff",
+      "sha256": "85d4d4f23fb895b5ca5197d83df3f348ca74be1663c07f7a3a6344e5ebfe13c7",
+      "bytes": 870
+    },
+    {
+      "path": "mutant-0045/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0045/stderr.txt",
+      "sha256": "02c1c64837a82a58acc2ae3adf52acb4d2a73b17e9b4384e58511c86e4f720cf",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0045/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0046/execution.json",
+      "sha256": "20348e87eca5d43289a2dd552f8e870e47f41f13f21926c933fe8eefee1a4ee0",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0046/mutation.diff",
+      "sha256": "fe6b42e1778d0963a2356312872d6925b1e594b23032b381f5f2f7c3d078f8cd",
+      "bytes": 874
+    },
+    {
+      "path": "mutant-0046/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0046/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0046/stdout.txt",
+      "sha256": "bafbc7d9e334ed77e31b3486bc04b5bec83650bfd726f9ab3becd26cf39602af",
+      "bytes": 790
+    },
+    {
+      "path": "mutant-0047/execution.json",
+      "sha256": "8005c89dcfe688968b57f19fb59a5dfdab2e28e2bfe6753eb94abe979db1a06a",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0047/mutation.diff",
+      "sha256": "bc0670d0cfadf9f2cfa19b24e70f3f212e9949ea3fe4af161d8aafe02fd65c42",
+      "bytes": 887
+    },
+    {
+      "path": "mutant-0047/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0047/stderr.txt",
+      "sha256": "a0be262b49698029e1a71f6c0e1d4724e1e84138d1fce28c746db79dc567c437",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0047/stdout.txt",
+      "sha256": "3bc3ddb6534ed276f78d98be630782c94cfaeb60a7e9d30ac126c3616a6d39fc",
+      "bytes": 853
+    },
+    {
+      "path": "mutant-0048/execution.json",
+      "sha256": "c4a8220126826fbc602921d62183f779893b954da10c895141ab21a7aa1f55ab",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0048/mutation.diff",
+      "sha256": "53a459a0f94444db6851438c01054c5b04c4746fa310a5fff05ecea42fa3b71f",
+      "bytes": 874
+    },
+    {
+      "path": "mutant-0048/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0048/stderr.txt",
+      "sha256": "a0be262b49698029e1a71f6c0e1d4724e1e84138d1fce28c746db79dc567c437",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0048/stdout.txt",
+      "sha256": "eaf7a1b1226bec7cf044b4c573e83d9395bace127ca2e90082164cec11356514",
+      "bytes": 853
+    },
+    {
+      "path": "mutant-0049/execution.json",
+      "sha256": "db2610208518f9d1246aa91f9b129fb7f230c466534522a35a2b3edf09f4ee3c",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0049/mutation.diff",
+      "sha256": "44d55d968a2203a6c030aa7caa9b88cad1071fac175a56455fad80c25f861ef7",
+      "bytes": 870
+    },
+    {
+      "path": "mutant-0049/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0049/stderr.txt",
+      "sha256": "532eed68805c612eb6b7e3f34b6b75b25f7d3a63fb0097683e499e3afa21ba6c",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0049/stdout.txt",
+      "sha256": "0bfdc3c03a98c4cd9b3f9486276a2b2eec309950d406ace56a886f43c9fa5c75",
+      "bytes": 853
+    },
+    {
+      "path": "mutant-0050/execution.json",
+      "sha256": "f64cde44946a638906d115864ef1cf1e776616bb052315e706067def7c07d224",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0050/mutation.diff",
+      "sha256": "b0e192bd71153ca2253b2422a725161a1e280fcc70db56265d70434379d9745a",
+      "bytes": 845
+    },
+    {
+      "path": "mutant-0050/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0050/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0050/stdout.txt",
+      "sha256": "acccec02b6c1a54f77017f954d6803ecabf224fb08fccb787ded31e6516872de",
+      "bytes": 853
+    },
+    {
+      "path": "mutant-0051/execution.json",
+      "sha256": "30047bd685c3914b9d7be5c5659f3a4ea59ded5e4668c7a0d840e9af3ac2988e",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0051/mutation.diff",
+      "sha256": "59b17e754604e29f9cc7e7d1358b5481452667f298612fa43b1b93b93a9909e0",
+      "bytes": 906
+    },
+    {
+      "path": "mutant-0051/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0051/stderr.txt",
+      "sha256": "a8ffa6a0865efc23d2ca67b54b3d21ee2b245fb918dc5cc8e956fd34baf93084",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0051/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0052/execution.json",
+      "sha256": "164ce0f8de4f6c36e8a982879c4909410b93706e7d7d6906677f3dd92f7ba7bd",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0052/mutation.diff",
+      "sha256": "907c0bbe29e560d329b5bea2c311b81f33fc9328f92c33d9c965647aa99d5b9b",
+      "bytes": 906
+    },
+    {
+      "path": "mutant-0052/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0052/stderr.txt",
+      "sha256": "1dc823c453bad725722dea1bd3e6a830845f84d1af0bdb35faa573b8ae7e0bff",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0052/stdout.txt",
+      "sha256": "46cec45d73e91bc8e8c23bda99f476692224160522d7b95fa8ac6c98019d5d3e",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0053/execution.json",
+      "sha256": "d4638aa1e8d98072775af98894cece552cb5d41f70f85447d3fc80e25ab97f58",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0053/mutation.diff",
+      "sha256": "46ac31c9f9531f9c9fa7b13f762a7b1119c5cea6add5171d79efa62d8fd8d2ad",
+      "bytes": 906
+    },
+    {
+      "path": "mutant-0053/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0053/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0053/stdout.txt",
+      "sha256": "3b89b5b170c7e759b4bf23ef42935de17970274f19ee23fbdb1394db2668ee34",
+      "bytes": 840
+    },
+    {
+      "path": "mutant-0054/execution.json",
+      "sha256": "622f38e326a684983fa27a865b1de288e971599559ebd91804dc3807112d1dd5",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0054/mutation.diff",
+      "sha256": "4381df71d335a279b491aa30276da678e9f0a1b292b114fe4327590cf73d51b4",
+      "bytes": 906
+    },
+    {
+      "path": "mutant-0054/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0054/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0054/stdout.txt",
+      "sha256": "2e479f808533cebc204ed9c9879348922a2e621304fe295aa98bfabae6c1f024",
+      "bytes": 840
+    },
+    {
+      "path": "mutant-0055/execution.json",
+      "sha256": "97b00a16b6c68800a442840fecee905f8b961c720b3295c0c7fd7544e648d137",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0055/mutation.diff",
+      "sha256": "43231c59ab6e4cae895888abfd80379fe4276b4b437e46815c951035977bfa31",
+      "bytes": 813
+    },
+    {
+      "path": "mutant-0055/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0055/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0055/stdout.txt",
+      "sha256": "9d9098eca5bc42b26e71111235df6c6e6b453cdde384eba6e286713d1b4724ae",
+      "bytes": 790
+    },
+    {
+      "path": "mutant-0056/execution.json",
+      "sha256": "62e3a0990997a33455e3fb25044825970b3e5d9246303d75b22874b588e8a388",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0056/mutation.diff",
+      "sha256": "5da07eb39ebeccfbe43abe4debe75f7c04e667ea4005be2dbea9430db93a8312",
+      "bytes": 838
+    },
+    {
+      "path": "mutant-0056/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0056/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0056/stdout.txt",
+      "sha256": "70600b68d014fab2895585867eea3b653579c8a1dc29fdf63091042fcb55c085",
+      "bytes": 790
+    },
+    {
+      "path": "mutant-0057/execution.json",
+      "sha256": "b2b0873b18d3ef5fd744a227b2d8ef446058f989ba278a931670d0ce6eb5fb69",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0057/mutation.diff",
+      "sha256": "439426bfa0bc4775eb16cd4daeee1855a3d661eb2633e8b78eb417159e9848b8",
+      "bytes": 809
+    },
+    {
+      "path": "mutant-0057/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0057/stderr.txt",
+      "sha256": "f818bad2422617bc31077c5ebafb715b5b45f5b21a3b811061ac90f744bc15fe",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0057/stdout.txt",
+      "sha256": "01a105b5621911eb8c32e334c35932d4e1afd19c51fb39d8befe1970a06ef30e",
+      "bytes": 790
+    },
+    {
+      "path": "mutant-0058/execution.json",
+      "sha256": "933f4a27e5ce1090551c35aa4d077c09aca8cccae3df583186a9eaf30546530d",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0058/mutation.diff",
+      "sha256": "497ad599f71e48c62933694914942c17e86570cc9d753bb9d59f108f0ccd42f6",
+      "bytes": 829
+    },
+    {
+      "path": "mutant-0058/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0058/stderr.txt",
+      "sha256": "faddfeb7d8a3378aa37975a21572716c14a92dad7895908de2b2dd1b8ab3e9ea",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0058/stdout.txt",
+      "sha256": "bc46660ae2c4674d5e96f0959372b1a4a8702b0fbc20ef445bc24973c3f98ee5",
+      "bytes": 840
+    },
+    {
+      "path": "mutant-0059/execution.json",
+      "sha256": "dd41c964c731a756c2986daa23a233cb6360675dff565b2673cd9f98eebc1a5e",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0059/mutation.diff",
+      "sha256": "d97de91f6deae2699a0f21e7f97a206dd0fb46f06f020ceef1fece5824bf2d08",
+      "bytes": 809
+    },
+    {
+      "path": "mutant-0059/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0059/stderr.txt",
+      "sha256": "a0be262b49698029e1a71f6c0e1d4724e1e84138d1fce28c746db79dc567c437",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0059/stdout.txt",
+      "sha256": "eb8dfd07dd423e4fa103d88388e6fd6e58da3d086046830e96ed19f3209fcfa5",
+      "bytes": 840
+    },
+    {
+      "path": "mutant-0060/execution.json",
+      "sha256": "e238b365a2db2c1fcf72dde435f6187a58a62f8a0cc25d85f57e12ecf20a8d77",
+      "bytes": 1456
+    },
+    {
+      "path": "mutant-0060/mutation.diff",
+      "sha256": "1a40b686d1aa6e090d95491c58ecc037c3f5f61ea91bf887fc249db49d6aefa9",
+      "bytes": 807
+    },
+    {
+      "path": "mutant-0060/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0060/stderr.txt",
+      "sha256": "027505a492e02ee55ca032129e2a6f72615ee1decb924c3f9d6a2ea8655ed215",
+      "bytes": 796
+    },
+    {
+      "path": "mutant-0060/stdout.txt",
+      "sha256": "2fc406185a00707cbc89335591e66a52f1b19a50ef63228cc43b97df8f84cb45",
+      "bytes": 840
+    },
+    {
+      "path": "mutant-0061/execution.json",
+      "sha256": "0e1636d6e581fd2237ec96a7b6dfec9e0f2d1d002feea6cc60fe2cfc3a7a4234",
+      "bytes": 1458
+    },
+    {
+      "path": "mutant-0061/mutation.diff",
+      "sha256": "8cf7cc7a8207aedb6b0826786d304e9e3048baf731d08bf0c9aa88105a3c455f",
+      "bytes": 809
+    },
+    {
+      "path": "mutant-0061/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0061/stderr.txt",
+      "sha256": "71e1e75c94a2c0d0078a74794464cbc85d2b1ceb9156a8c62976e2256b33d64c",
+      "bytes": 756
+    },
+    {
+      "path": "mutant-0061/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0062/execution.json",
+      "sha256": "7599724bbfe645ce3ec672760f7d698f68d3628371aafece96301446419b21e6",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0062/mutation.diff",
+      "sha256": "25519133e2c94853b33db0a1dd9a65bb27786ad057ba199a13254e77b0f7bd32",
+      "bytes": 827
+    },
+    {
+      "path": "mutant-0062/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0062/stderr.txt",
+      "sha256": "a0be262b49698029e1a71f6c0e1d4724e1e84138d1fce28c746db79dc567c437",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0062/stdout.txt",
+      "sha256": "42e358cd4c4663210cd2e325333e176f8609ba57bbc1c5e3a5106c72805056d4",
+      "bytes": 840
+    },
+    {
+      "path": "mutant-0063/execution.json",
+      "sha256": "69a071baf8fd355e0323b645c05077e2ed9d5deb39c1d1ac001a24bf34bd8049",
+      "bytes": 1457
+    },
+    {
+      "path": "mutant-0063/mutation.diff",
+      "sha256": "7b90f46c90f0b0dedb374dfa5baf4d7af599a6df01b0ea726fd107a2add1e4e6",
+      "bytes": 754
+    },
+    {
+      "path": "mutant-0063/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0063/stderr.txt",
+      "sha256": "ca1874d08f7ce6e3072a0e5dd4d75a71666f0fc97536da25464e0987ad03dbd2",
+      "bytes": 391
+    },
+    {
+      "path": "mutant-0063/stdout.txt",
+      "sha256": "c5802e54565099f298ab218ab7271eede2c4c861e5ececf191c706e03a60d5b0",
+      "bytes": 362
+    },
+    {
+      "path": "mutant-0064/execution.json",
+      "sha256": "facaa0613135f8e3ce1a1173e6d8194a3d6c30aac0a7f2487796f4607b2ce77d",
+      "bytes": 1455
+    },
+    {
+      "path": "mutant-0064/mutation.diff",
+      "sha256": "120cc059a65675a2043898f0a42a4c8d6fc02dfcfd1fca4a9d0c05e18f77ac39",
+      "bytes": 754
+    },
+    {
+      "path": "mutant-0064/patch.log",
+      "sha256": "9381ade497cfc94d30e38f9f300622f80f7f2b7e30131cf4b8fc23e95b220328",
+      "bytes": 144
+    },
+    {
+      "path": "mutant-0064/stderr.txt",
+      "sha256": "a0be262b49698029e1a71f6c0e1d4724e1e84138d1fce28c746db79dc567c437",
+      "bytes": 433
+    },
+    {
+      "path": "mutant-0064/stdout.txt",
+      "sha256": "5db447f71429de73775279499f43afd64b1d4a9311d767867d3e6220a0d3ab1f",
+      "bytes": 840
+    },
+    {
+      "path": "plan.json",
+      "sha256": "bf7cb3a0b9a7ee2dba3eed00344a43f4343803662bc2cff3749faf83ec441b01",
+      "bytes": 105943
+    }
+  ],
+  "excludedDirectories": [
+    ".git",
+    "__pycache__",
+    "active",
+    "cache",
+    "faulty-template",
+    "fixed-template",
+    "home",
+    "native-target",
+    "node_modules",
+    "parent-tests-template",
+    "private",
+    "source",
+    "target",
+    "template",
+    "tmp"
+  ],
+  "exclusionRule": "Dependency stores, mutable source copies and private runtime/cache directories are not exported; their recorded digests remain in execution records."
+}

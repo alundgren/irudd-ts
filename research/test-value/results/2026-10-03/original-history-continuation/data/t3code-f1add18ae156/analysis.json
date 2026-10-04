@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "name": "t3code",
+    "revision": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+    "faultId": "t3code-f1add18ae156"
+  },
+  "baselineTestInventoryDigest": "46c4469511f4d7b0cf01f723a1ce359b5c08cdc3eea15059cf75ab10b7aa13b5",
+  "baselineMatrixDigest": "dc7bea50ff4dedfd2e342fcdf27441c7159ca555d8e1545386bf864dd316c290",
+  "baselineComplete": true,
+  "complete": true,
+  "summary": {
+    "tests": 9,
+    "plannedMutants": 24,
+    "acceptedMutants": 24,
+    "killedMutants": 22,
+    "unexplainedSurvivors": 2,
+    "observedMutationScore": 0.9166666666666666,
+    "subsumingRequirements": 3,
+    "baselineRequirementRetention": 1.0,
+    "observedKillSignatures": 6,
+    "excludedMutants": 0,
+    "greedyCoreTests": 3
+  },
+  "requirements": [
+    {
+      "id": "5f161bb3d0bc1341686e5222a352ef1fbaf3529e137b214d32f1b22e2e945ded",
+      "representative": "911929784a25ed0521f0b7da80f4141d131686b551537cc9d47abdd545e8f691",
+      "mutants": [
+        "911929784a25ed0521f0b7da80f4141d131686b551537cc9d47abdd545e8f691",
+        "fab7cbdc1aa78a871c53d4292dd1649dc85a82562b2200f92f452baec7fef6ee"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]"
+      ]
+    },
+    {
+      "id": "8c291a209d7f94d754ac45f96bda7c1181256ec946c055dc987aeb9b7795858c",
+      "representative": "02493068b4561e4b8c5c3b054288ad94c6a30a57495a3d5255662a890dd436da",
+      "mutants": [
+        "02493068b4561e4b8c5c3b054288ad94c6a30a57495a3d5255662a890dd436da",
+        "085e20f6d76be89df114cd9ca41b475f3f2c95ee77d8c53a6e13a38777207a89",
+        "65256760511a77b56eb23c07ba6f7fe8cfcbfdd80024196f13f027d6633f2dd0",
+        "ade2795cfe9b3c7f16060139a27ccaab91879348b817771243bef8b2b4f4ad65",
+        "d41b06a0ffb8d23ad5c320f0a8ee995975b22dfd21ab611eeef72d60e5fa35e9",
+        "f794b33e808d317fbce52e08765433ce613a6ab2416ac33bdc6555f3c143fc56"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]"
+      ]
+    },
+    {
+      "id": "ff0e103c84090096afd125b7bebd604c2112f77638f4e7161f3556dbf701ddbe",
+      "representative": "ad38023f9b7b75117d871d215c602b3d57050a6ba0563a8c183d2c82ffd21b98",
+      "mutants": [
+        "ad38023f9b7b75117d871d215c602b3d57050a6ba0563a8c183d2c82ffd21b98"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+      "name": "delimited file previews > respects a specific MIME type before the extension",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.5778749999999917,
+      "mutantsKilled": 6,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 6,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 6,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.25,
+      "marginalBaselineRequirementRetention": 0.3333333333333333,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+      "name": "delimited file previews > preserves quoted separators, escaped quotes, blank cells and line breaks",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.3486249999999984,
+      "mutantsKilled": 15,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+      "name": "delimited file previews > with delimiter \",\" > preserves a final quoted empty record without requiring a line ending",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.12241600000000119,
+      "mutantsKilled": 15,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+      "name": "delimited file previews > with delimiter \",\" > does not invent records for empty input or a trailing line ending",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.11516699999999958,
+      "mutantsKilled": 14,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+      "name": "delimited file previews > with delimiter \",\" > keeps a quoted empty record at the row limit",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.3548749999999927,
+      "mutantsKilled": 13,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+      "name": "delimited file previews > with delimiter \"\\t\" > preserves a final quoted empty record without requiring a line ending",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.08970800000000168,
+      "mutantsKilled": 15,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+      "name": "delimited file previews > with delimiter \"\\t\" > does not invent records for empty input or a trailing line ending",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.06712500000000432,
+      "mutantsKilled": 14,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+      "name": "delimited file previews > with delimiter \"\\t\" > keeps a quoted empty record at the row limit",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 0.11350000000000193,
+      "mutantsKilled": 13,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+      "name": "delimited file previews > bounds rows, columns and cell length and reports partial content",
+      "file": "packages/shared/src/delimitedPreview.test.ts",
+      "durationMs": 132.56575,
+      "mutantsKilled": 11,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 1,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 1,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.041666666666666664,
+      "marginalBaselineRequirementRetention": 0.3333333333333333,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"keeps a quoted empty record at the row limit\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    }
+  ],
+  "redundancyGroups": [
+    {
+      "tests": [
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\",\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"does not invent records for empty input or a trailing line ending\"],1]",
+        "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"with delimiter \\\"\\\\t\\\"\",\"preserves a final quoted empty record without requiring a line ending\"],1]"
+      ],
+      "requirements": [
+        "5f161bb3d0bc1341686e5222a352ef1fbaf3529e137b214d32f1b22e2e945ded"
+      ]
+    }
+  ],
+  "greedyCore": [
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"bounds rows, columns and cell length and reports partial content\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"preserves quoted separators, escaped quotes, blank cells and line breaks\"],1]",
+    "[\"\",\"packages/shared/src/delimitedPreview.test.ts\",[\"delimited file previews\",\"respects a specific MIME type before the extension\"],1]"
+  ],
+  "unexplainedSurvivors": [
+    "8b35095096471729292e074cbd9cb575f7c2fbbb764338a9214a8f5a567029a6",
+    "a9c3df139ab2a1e4a92db7a3280072f8756d3bef5b30439d4c78c305e7ec7e59"
+  ],
+  "excluded": [],
+  "interpretation": {
+    "requirements": "Minimal nonempty observed kill-signature classes; fixed baseline pool.",
+    "retention": "The full baseline retains 100% by construction, when requirements exist.",
+    "mutationScore": "Completed killed / completed killed plus surviving mutants; equivalence unknown.",
+    "cost": "Per-test durations are descriptive and exclude shared setup and runner startup.",
+    "limits": "Observed redundancy does not authorize deleting tests or predict bug probability."
+  }
+}

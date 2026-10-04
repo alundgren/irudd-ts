@@ -1,0 +1,88 @@
+{
+  "id": "t3code-38f3c62304bf",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): local-path remotes no longer crash legacy PR link projection (#13463)",
+  "sourceFiles": [
+    "packages/shared/src/threadPullRequests.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/threadPullRequests.test.ts"
+  ],
+  "relatedGroup": "thread-pull-request-projection",
+  "fix": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+  "parent": "b21f3b71913370a1a650a61fd9082f992d40e657",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 49
+  },
+  "verified": false,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "packages/shared/src/threadPullRequests.ts"
+  ],
+  "killedBy": [],
+  "unaffected": [],
+  "fixedTemplateSha256": "28de297309359be3e14ae2503221592a9b9d559dc43f752a785ed75ddc22d182",
+  "faultyTemplateSha256": "c158c8577f797d738dffe873c9a4fc3ff9003f58d4e3f63f86b1b257975aa72f",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "packages/shared/src/threadPullRequests.test.ts": "parent file existed; individual additions not classified"
+  },
+  "unchangedIdentityFromParentTests": [
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates closed (draft false) and closed (draft false) as closed\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates closed (draft false) and open (draft true) as open\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates merged (draft false) and closed (draft true) as closed\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates merged (draft false) and merged (draft false) as merged\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates open (draft false) and open (draft false) as open\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates open (draft false) and open (draft true) as open\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"aggregates open (draft true) and open (draft true) as draft\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"does not guess a parent when a head branch was reused\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"keeps branch matching case-sensitive while ignoring repository case\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"keeps the top native layer after completion and treats an unsynced layer as open\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"preserves cyclic links without presenting a guessed stack order\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"targets the top of a derived closed chain despite a later bottom update and link\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"targets the top of a derived merged chain despite a later bottom update and link\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"targets the top of a derived open chain despite a later bottom update and link\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"chain selection and badge state\",\"uses aggregate state and distinguishes unrelated work from a stack\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"does not guess when the project identity is unavailable\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"omits an unsafe legacy route {\\\"host\\\":\\\"github.enterprise.test\\\",\\\"url\\\":\\\"https://github.enterprise.test/pingdotgg/t3code/pull/7\\\"}\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"omits an unsafe legacy route {\\\"repository\\\":\\\"acme/other\\\",\\\"url\\\":\\\"https://github.com/acme/other/pull/7\\\"}\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects Azure links through the legacy selector for dev.azure.com/org-a/project/_git/web\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects Azure links through the legacy selector for org-a.visualstudio.com/DefaultCollection/project/_git/web\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects Azure links through the legacy selector for ssh.dev.azure.com/v3/org-a/project/web\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"projects only links the owning project can route without a host\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"falls back to the most recently updated terminal link\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"orders an open set without stack data by most recent link\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"prefers the single open link over terminal ones\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"reports a stack when several links are open and puts the highest layer on top\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"returns null with no visible links\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadCurrentPullRequest\",\"treats an unsynced link as open\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadPullRequestChains\",\"chains links by base \u2192 head within a repository, bottom to top\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"resolveThreadPullRequestChains\",\"uses the native stack order when the host provides one\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"searches the legacy projection when old environments decode to an empty links list\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"threadPullRequestKeysEqual\",\"ignores host and repository case\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"threadPullRequestKeysEqual\",\"recovers Forgejo ports from old stored URLs and keeps separate servers distinct\"],1]",
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"threadPullRequestSearchTerms\",\"includes completed and unsynced links but excludes dismissed links\"],1]"
+  ],
+  "fixAddedOrRenamedTestIdentities": [
+    "[\"\",\"packages/shared/src/threadPullRequests.test.ts\",[\"legacyLinkedPullRequestOf\",\"does not route links for a local-path remote with no host or provider\"],1]"
+  ],
+  "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+  "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+  "recordDigests": {
+    "fixed-before/execution.json": "cf05aa7276ab5fabeea5f32e35bfc1d00d8a0400c8b0283fead36acd7160ed2e",
+    "faulty/execution.json": "1ffd0b2087b90d1263adccbeac2499f11aac6d9110627a579afddb855f1b296d",
+    "fixed-after/execution.json": "7ee44ec2904451e728a039d9d216a4140e72e64aefe6109c0ed68279f7fe33f9"
+  }
+}

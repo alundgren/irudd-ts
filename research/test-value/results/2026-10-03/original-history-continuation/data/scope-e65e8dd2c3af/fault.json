@@ -1,0 +1,28 @@
+{
+  "id": "scope-e65e8dd2c3af",
+  "subject": "scope",
+  "repository": "/Users/alun/repos/irudd-scope",
+  "title": "fix(plan-web): retry competing SQLite initialization asynchronously",
+  "sourceFiles": [
+    "apps/plan-web/src/backend/server.ts",
+    "apps/plan-web/src/backend/store.ts"
+  ],
+  "testFiles": [
+    "tests/plan-web-api.test.ts"
+  ],
+  "relatedGroup": "plan-web-database-init",
+  "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+  "parent": "9cc772a41f7a611a369a8b8d26c813c184ecc516",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 21
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "e08fe35b149630eaf37bbdb8cf04fca17f7cb657a3835434aca8966e8526a393"
+  }
+}

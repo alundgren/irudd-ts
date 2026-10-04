@@ -1,0 +1,270 @@
+{
+  "faults": 3,
+  "comparisons": [
+    {
+      "testFraction": 0.25,
+      "strategy": "greedySubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.7733333333333333,
+      "clusterBootstrap95": [
+        0.47,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.25,
+      "strategy": "marginalRaw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.5,
+      "clusterBootstrap95": [
+        0.06,
+        0.92
+      ]
+    },
+    {
+      "testFraction": 0.25,
+      "strategy": "marginalSubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.5,
+      "clusterBootstrap95": [
+        0.06,
+        0.92
+      ]
+    },
+    {
+      "testFraction": 0.25,
+      "strategy": "random",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.6933333333333334,
+      "clusterBootstrap95": [
+        0.26,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.25,
+      "strategy": "raw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.25,
+      "strategy": "subsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.8166666666666668,
+      "clusterBootstrap95": [
+        0.59,
+        0.98
+      ]
+    },
+    {
+      "testFraction": 0.5,
+      "strategy": "greedySubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.8466666666666667,
+      "clusterBootstrap95": [
+        0.54,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.5,
+      "strategy": "marginalRaw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.7866666666666666,
+      "clusterBootstrap95": [
+        0.36999999999999994,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.5,
+      "strategy": "marginalSubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.7866666666666666,
+      "clusterBootstrap95": [
+        0.36999999999999994,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.5,
+      "strategy": "random",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.8266666666666667,
+      "clusterBootstrap95": [
+        0.48,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.5,
+      "strategy": "raw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.5,
+      "strategy": "subsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.75,
+      "strategy": "greedySubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.91,
+      "clusterBootstrap95": [
+        0.73,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.75,
+      "strategy": "marginalRaw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.9066666666666666,
+      "clusterBootstrap95": [
+        0.7200000000000001,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.75,
+      "strategy": "marginalSubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.9066666666666666,
+      "clusterBootstrap95": [
+        0.7200000000000001,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.75,
+      "strategy": "random",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 0.9266666666666667,
+      "clusterBootstrap95": [
+        0.7799999999999999,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.75,
+      "strategy": "raw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 0.75,
+      "strategy": "subsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 1,
+      "strategy": "greedySubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 1,
+      "strategy": "marginalRaw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 1,
+      "strategy": "marginalSubsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 1,
+      "strategy": "random",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 1,
+      "strategy": "raw",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "testFraction": 1,
+      "strategy": "subsuming",
+      "faults": 3,
+      "relatedGroups": 3,
+      "meanFaultDetection": 1.0,
+      "clusterBootstrap95": [
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "limits": "Descriptive retrospective cohort; uncertainty resamples related-fault groups, not random seeds."
+}

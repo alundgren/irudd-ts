@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "validationOnly": true,
+  "controls": [
+    {
+      "backend": "current",
+      "passed": true,
+      "runner": {
+        "path": "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/current/dependencies/node_modules/.pnpm/vitest@4.1.9_@types+node@24.12.4_@vitest+browser-preview@4.1.9_@voidzero-dev+vite-plus-_c7d0bcb158c80190ad8e8ed3163452ed/node_modules/vitest/vitest.mjs",
+        "packagePath": "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/current/dependencies/node_modules/.pnpm/vitest@4.1.9_@types+node@24.12.4_@vitest+browser-preview@4.1.9_@voidzero-dev+vite-plus-_c7d0bcb158c80190ad8e8ed3163452ed/node_modules/vitest/package.json",
+        "context": "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/current/dependencies/node_modules/.pnpm/vite-plus@0.2.2_@types+node@24.12.4_bufferutil@4.1.0_esbuild@0.28.1_jiti@2.7.0_msw@2.12_465d8f3ccf09c3dc13b7dda609ccff94/node_modules/vite-plus/package.json",
+        "version": "4.1.9",
+        "runnerPackage": "vitest",
+        "runnerPackageVersion": "4.1.9",
+        "vitePlusVersion": "0.2.2",
+        "sha256": "39db22f579acf5639bbb17a261408debbde03f4692c0c439e77e7f13aeba74d6"
+      },
+      "node": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "version": "v24.21.0",
+        "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+      },
+      "actualCliVersion": "vitest/4.1.9 darwin-arm64 node-v24.21.0",
+      "actualCliVersionProcess": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 103.0422078911215,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/current/dependencies/node_modules/.pnpm/vitest@4.1.9_@types+node@24.12.4_@vitest+browser-preview@4.1.9_@voidzero-dev+vite-plus-_c7d0bcb158c80190ad8e8ed3163452ed/node_modules/vitest/vitest.mjs",
+          "--version"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen/current/baseline/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 40,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 10208
+      },
+      "baseline": "current/baseline/execution.json",
+      "faulty": "current/faulty/execution.json",
+      "restored": "current/restored/execution.json",
+      "negativeControls": [
+        "missing-entry",
+        "undeclared-package"
+      ]
+    },
+    {
+      "backend": "bundled",
+      "passed": true,
+      "runner": {
+        "path": "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/bundled/dependencies/node_modules/.pnpm/@voidzero-dev+vite-plus-test@0.1.24_@types+node@24.12.4_@voidzero-dev+vite-plus-core@0._88d14256e6158ed6afe78863bf7c5717/node_modules/@voidzero-dev/vite-plus-test/vitest.mjs",
+        "packagePath": "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/bundled/dependencies/node_modules/.pnpm/@voidzero-dev+vite-plus-test@0.1.24_@types+node@24.12.4_@voidzero-dev+vite-plus-core@0._88d14256e6158ed6afe78863bf7c5717/node_modules/@voidzero-dev/vite-plus-test/package.json",
+        "context": "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/bundled/dependencies/node_modules/.pnpm/vite-plus@0.1.24_@types+node@24.12.4_bufferutil@4.1.0_esbuild@0.27.7_jiti@2.7.0_terser@_bb83ccff1e996843ca4e32cd6ce86dd8/node_modules/vite-plus/package.json",
+        "version": "4.1.8",
+        "runnerPackage": "@voidzero-dev/vite-plus-test",
+        "runnerPackageVersion": "0.1.24",
+        "vitePlusVersion": "0.1.24",
+        "sha256": "39db22f579acf5639bbb17a261408debbde03f4692c0c439e77e7f13aeba74d6"
+      },
+      "node": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "version": "v24.21.0",
+        "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+      },
+      "actualCliVersion": "vp test/4.1.8 darwin-arm64 node-v24.21.0",
+      "actualCliVersionProcess": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 106.66470788419247,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/private/tmp/archguard-test-value-20261003/declared-backend-controls-2/bundled/dependencies/node_modules/.pnpm/@voidzero-dev+vite-plus-test@0.1.24_@types+node@24.12.4_@voidzero-dev+vite-plus-core@0._88d14256e6158ed6afe78863bf7c5717/node_modules/@voidzero-dev/vite-plus-test/vitest.mjs",
+          "--version"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen/bundled/baseline/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 41,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 10579
+      },
+      "baseline": "bundled/baseline/execution.json",
+      "faulty": "bundled/faulty/execution.json",
+      "restored": "bundled/restored/execution.json",
+      "negativeControls": [
+        "missing-entry",
+        "undeclared-package"
+      ]
+    }
+  ]
+}

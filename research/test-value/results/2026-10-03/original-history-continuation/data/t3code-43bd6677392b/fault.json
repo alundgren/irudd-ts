@@ -1,0 +1,33 @@
+{
+  "id": "t3code-43bd6677392b",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(web): Claude skill calls show the skill name (#14980)",
+  "sourceFiles": [
+    "apps/mobile/src/lib/threadActivity.ts",
+    "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.ts",
+    "apps/server/src/orchestration-v2/Adapters/CodexAdapterV2.ts",
+    "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+    "apps/web/src/components/chat/MessagesTimeline.tsx",
+    "packages/shared/src/toolActivity.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+    "packages/shared/src/toolActivity.test.ts"
+  ],
+  "relatedGroup": "provider-tool-presentation",
+  "fix": "43bd6677392b80cd12742f865c277c9939239543",
+  "parent": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 9
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "7b1f0743930645857199efc057aca3133b0b653b994081f9ddeaa68d55e1d24d"
+  }
+}

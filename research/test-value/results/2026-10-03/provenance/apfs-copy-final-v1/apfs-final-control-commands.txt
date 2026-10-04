@@ -1,0 +1,11 @@
+Working directory: /tmp/archguard-test-value-20261003/runner-worktree
+Exact commit: 697a0d80bd29ad1cb0d366b854ddcfd3b3e67a74
+Runner fingerprint: 6ea7bd34ee830feed10ebfb844797ee0488df79ef95470626c40187bdc9a3546
+
+python3 /tmp/archguard-test-value-20261003/disk_guard.py -- python3 research/test-value/controls_runner.py --copy-only --archguard /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/target/release/archguard --output /tmp/archguard-test-value-20261003/apfs-copy-controls-errno-final > /tmp/archguard-test-value-20261003/apfs-copy-controls-errno-final.log 2>&1
+
+python3 /tmp/archguard-test-value-20261003/disk_guard.py -- python3 research/test-value/controls_setup.py --output /tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final > /tmp/archguard-test-value-20261003/apfs-owned-link-controls-errno-final.log 2>&1
+
+python3 /tmp/archguard-test-value-20261003/disk_guard.py -- python3 research/test-value/controls_runner.py --backend-only --archguard /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/target/release/archguard --installed /tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-745336e7263a/source --bundled-installed /tmp/archguard-test-value-20261003/historical-installs-filtered-v3/t3code-install-3f6293e594ec/source --backend-copied-stores /tmp/archguard-test-value-20261003/declared-backend-controls-2/owned-store-metadata.json --node /Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node --output /tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen > /tmp/archguard-test-value-20261003/apfs-declared-backend-controls-errno-frozen.log 2>&1
+
+These output directories already exist and retain the original evidence. A replay requires a new output directory and matching log name.

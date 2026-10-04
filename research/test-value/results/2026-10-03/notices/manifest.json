@@ -1,0 +1,1266 @@
+{
+  "schemaVersion": 1,
+  "scope": "Exact upstream source notices for each selected fix and first parent, retained alongside mutation snippets and source-reversion diffs. External dependency source and binaries are omitted.",
+  "documents": [
+    {
+      "file": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43.txt",
+      "bytes": 1070,
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "file": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9.txt",
+      "bytes": 1073,
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    }
+  ],
+  "revisions": [
+    {
+      "candidate": "t3code-f391794a35c6",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "f391794a35c604d57e166a3ab48d56fc6e4e469a",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f391794a35c6",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "31a9da179ed0763335f05681c577474aec5d2309",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f68e24fb419c",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f68e24fb419c",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-a5b34b25378f",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-a5b34b25378f",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-56914128c1ff",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-56914128c1ff",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "6108ef3d3d0ef2a598088a1bb64980580e935830",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-63f74e209dc2",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "63f74e209dc27df1f8733535d6fd4a79d442add8",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-63f74e209dc2",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "ca4f84e702428656665d53635e16251112091657",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-736130c2fd39",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "736130c2fd39b85cd515fa2a41cd10c8a8a52630",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-736130c2fd39",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-9333509c9180",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-9333509c9180",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-151c241cd2cc",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-151c241cd2cc",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-5031b9ccebbb",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-5031b9ccebbb",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-43bd6677392b",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "43bd6677392b80cd12742f865c277c9939239543",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-43bd6677392b",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-a9c9995352e5",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-a9c9995352e5",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "0ad39f780001eb1b4914815677e83ca701ce177c",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-cc1e634bfa62",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "cc1e634bfa62edd56ff792eea666e436fdef788f",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-cc1e634bfa62",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "1e7c8e0f24c217a3229615fa1de1e6ed85d7e835",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-8bc9b78f8270",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "8bc9b78f827072a89707f6e4b577710e27263697",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-8bc9b78f8270",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-dd8332da5735",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "dd8332da57355bccd7e666289267f2c94597debd",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-dd8332da5735",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "eeea71a88108c375c04853f58c298a518a54acaf",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-b7a8b7f25b07",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-b7a8b7f25b07",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-263097a8da03",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "263097a8da038a143f2b7b7817250f0ad390ea32",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-263097a8da03",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-db514607f402",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "db514607f4026cd2bbb7b96674168bb227ac043a",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-db514607f402",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "scope-c46613230e97",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c46613230e97",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-82c4e117a745",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "82c4e117a745c1a39bcea23b49814cedc7285fcf",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-82c4e117a745",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-8cbf18bb51d4",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-8cbf18bb51d4",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-e7c277798b3b",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-e7c277798b3b",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "f252740ebbc952510d2cbdfeaec42accec83e071",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-e65e8dd2c3af",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-e65e8dd2c3af",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "9cc772a41f7a611a369a8b8d26c813c184ecc516",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c78a8c5f0fb1",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c78a8c5f0fb1",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "5bc1570e9daf284f391196d388fe148f6fcd60a7",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c126ac6076af",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "c126ac6076afca5f5c38ea7d13360416af299deb",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c126ac6076af",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "e26251e3f020527fdaa8d035ae7b6e91522a7014",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c82b208701de",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "c82b208701de72215022674cc20902332219d325",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c82b208701de",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "daae85340b464ab62a865549b578ba3ca399d04e",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-cef88d2b3b60",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-cef88d2b3b60",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "c82b208701de72215022674cc20902332219d325",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-d993eb728ac3",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-d993eb728ac3",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-392d29f5779d",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-392d29f5779d",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-84ec1ad4e6a8",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "84ec1ad4e6a8d999cf6234ca831cafb43a7052e3",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-84ec1ad4e6a8",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-48708ad54e8b",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "48708ad54e8b87d341e3bf18259c124fed2b0bce",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-48708ad54e8b",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "t3code-4abf8b46c591",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "4abf8b46c591ae2b36aa29598c388100df651411",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-4abf8b46c591",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "3083d712eefb8009f7366ba53040eb2d477bfa33",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-43e2aeab3891",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "43e2aeab389199de115bb414f80db12b60cd85f4",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-43e2aeab3891",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-193e3c62e6d5",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "193e3c62e6d52fcc200d823ca6d9061d13f81f23",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-193e3c62e6d5",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "91dfe60a99b7bf6cc44138a237e663ba158062b7",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-32407df9c5ff",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-32407df9c5ff",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "162e774294f9e3dda15ca2f8083db019fe398837",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-491219bf1f4d",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "491219bf1f4db7144b747fe02af0cbc075668b12",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-491219bf1f4d",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "e5c75470678e33ca2bd1001d9d93493fe437972a",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-70de6e17860d",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "70de6e17860d7343a73e117e6e9e1ce41b1b633e",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-70de6e17860d",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "47dfc6526521866992f6b50beac4587b45114631",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-062b4618c229",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-062b4618c229",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "deb901d6381e0c86ef326946c8fb45ee323db708",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-220e573b14ce",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "220e573b14cea84b6662a7d69047129047433b63",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-220e573b14ce",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-6befe42eb096",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-6befe42eb096",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "b30a9bc4143910f12d9c990c221fb9bc20cbc293",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-684d703b0a8a",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-684d703b0a8a",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-9bdd91293316",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "9bdd91293316038d6a50f8bb19afcd73c25ad102",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-9bdd91293316",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "4db50757c0b618293997a7f81bcfe30b68356969",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-178da6bc3210",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-178da6bc3210",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-421088c27367",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "421088c27367da227d922ce999c1637416a6d0f4",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-421088c27367",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-7980dfddb193",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "7980dfddb193864e07a5bcc013b0ccb93fb4300c",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-7980dfddb193",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "ac4aae101d060b5355a5de58e23c7387886d9021",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-8b3ddf51c59a",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "8b3ddf51c59a54411cd02b321cb07f39c927df09",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-8b3ddf51c59a",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "d7c71f91d61e68ae35fcc0032847cb42324a8b51",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f87ecf0cc307",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "f87ecf0cc307f974745da8eea856fab5711023f3",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f87ecf0cc307",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "fc1f543d6c67da9cf1edb25b647646faa0105b41",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-d4d5d12e8ba0",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-d4d5d12e8ba0",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f1add18ae156",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f1add18ae156",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-29a32660d3cb",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-29a32660d3cb",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "dd8332da57355bccd7e666289267f2c94597debd",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-38f3c62304bf",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-38f3c62304bf",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "b21f3b71913370a1a650a61fd9082f992d40e657",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-10dde452f90f",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "10dde452f90fc3d4d1aea0add67d13cdfb2567ab",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-10dde452f90f",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "116c8c5e8e0db2fe7fad070c2f67738a62f93546",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-7a08fcf2e832",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "7a08fcf2e832da5969aeb373c46d5249b4e820b7",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-7a08fcf2e832",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "19d47408a53181446a02fac967846cc15d77d5b8",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-49c1b64687f8",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "49c1b64687f8acdbe145f760988314e397170da6",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-49c1b64687f8",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "dfdb5a46db30fb46db5c58d5fe047b32483e2ad5",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-53042f47f85a",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "53042f47f85a986257573773d9854cf59b957514",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-53042f47f85a",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "6ce6f678b5d70a8d2b7230ec45cbde04d54f80dc",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-9b43123ba2a9",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "9b43123ba2a90ecaaf2eac1f75b6aebcf181f253",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-9b43123ba2a9",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "17fb0e4a9a068f3ba6c55871dd44ed3c5d70aefe",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-1d77cec99197",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "1d77cec991971d3113918e896b1c871e8b044da7",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-1d77cec99197",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "4ba4871af76081f0e830a91b8f747ff2de53ba7d",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-47dfc6526521",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "47dfc6526521866992f6b50beac4587b45114631",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-47dfc6526521",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "41ebf22eea64e177b11a0709a16d6716581cc78c",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-849bac8946c4",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "849bac8946c40420174b4187e36fcf17b5ea7cc4",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-849bac8946c4",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "6fd088af9f77933745c8ecb93dda98fa0938ea4d",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f21b47e52d98",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "f21b47e52d988839a4e488d9fa98344891a69b7f",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-f21b47e52d98",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "efcf7d1ac03e784bdb26843d61ae0ff81c03cec6",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-2274444e9227",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "2274444e92275fda2033de6636e3143ac3599ffb",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-2274444e9227",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "f34b9d31b3ddbd53a553141fd769721fca4b8eb5",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-ead4ce52a162",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "ead4ce52a1624d9c55461f61524580978fc8b719",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-ead4ce52a162",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "d3c24a14b92ccd8d832466dc7f0f51d979a8a21d",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-94f194816662",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "94f1948166620c804937f5548a68f5739d76c9fb",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-94f194816662",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "45c0dff8ec33a023c79ccb4e06494309253d1c25",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-ebb9b9fda03d",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "ebb9b9fda03d33a81cad3ce7f4d1106adba3044b",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-ebb9b9fda03d",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "fc262f1a28d8305951c751f2486da6ca72e6c1d1",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-2971ec3209d7",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "2971ec3209d7ef1b00d7ded70fe6342816b1539f",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-2971ec3209d7",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "15fea6c5f40331c8325f33bd08b2dcbf924e935a",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-cfddb4201df8",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "cfddb4201df8941bbfde008919da70fe5ec7552b",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-cfddb4201df8",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "57626eb6eaa436b22260068d23f4e3df5f389cd1",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-b34ff8f56469",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "b34ff8f56469afa8f3f85d89894e1b4cf49b5213",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-b34ff8f56469",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "09b81a34954c990f70257ae05efbb602c90aac97",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-82f64cd8d046",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "82f64cd8d046ab4ee8588f7bcbc1e66a4a0c80fe",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-82f64cd8d046",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "896fe82f2f191eb8ac0fd620e19c25dd48253592",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-a0eb23993a3b",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "a0eb23993a3bacf96d618918f43ea18f2da72390",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-a0eb23993a3b",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "b01771c2383bbcdf154b8c4e9f1a7d5e3867e2d0",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-94cc8152fff5",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "94cc8152fff5fd06baafd25964f54d7ec1a34f8d",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-94cc8152fff5",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "931d41f933b2536f699975412169f5318e6adad5",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-95d99373b74e",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "95d99373b74edfb3bfd092c61a15999a95727423",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-95d99373b74e",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "98469159dd9e162a9c2f5cc4bbb2fbe89b3c4f67",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-02297e3dbd89",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "02297e3dbd896ef619d5c916938c751e343e76a8",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-02297e3dbd89",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "0a37240a87bb2fed8f48cf20dc8312ee3b94eba6",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-87a12b53fdff",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "87a12b53fdff7e2e0318af3edea54005557cea56",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-87a12b53fdff",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "f4600d77dd7c2fa9f10e8f4500882e427fcc7e26",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-87d842801921",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "87d84280192195b338e27acf2333771a13d04e61",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-87d842801921",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "3412097bff7ffa62ef79e735c65d1e5cff71c356",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-d06f0ff1048d",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "d06f0ff1048d42a156824765316c5a2dc54f5bca",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-d06f0ff1048d",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "e5a46d6c5d00b89afba5274a94d42428c8d79763",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-6ea01f8d2441",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "6ea01f8d24419019588f2be589681929d8e26b0c",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-6ea01f8d2441",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "a97a4a9d189f145afe79c3a6f8533bbf9a6b40b1",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-65731f986ba2",
+      "subject": "t3code",
+      "relation": "fix",
+      "revision": "65731f986ba2175063b0182deb6a143f8f323b74",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "t3code-65731f986ba2",
+      "subject": "t3code",
+      "relation": "parent",
+      "revision": "aad732901e4b7d485574eaef5a9c1fb388c4291a",
+      "sourcePath": "LICENSE",
+      "sha256": "935d8f2af0c703f9c39517ee57cc4930b19d02d533be930b63f0e82f93614b43"
+    },
+    {
+      "candidate": "scope-c152601dfe9c",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "c152601dfe9c5e1077b2a34290979d4c5f8fad24",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-c152601dfe9c",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "79aeb7f49874f7cd1530a16065df88b448bffc51",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-59ed3a2a3ee4",
+      "subject": "scope",
+      "relation": "fix",
+      "revision": "59ed3a2a3ee44dd525504dd449094c554232fc8e",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    },
+    {
+      "candidate": "scope-59ed3a2a3ee4",
+      "subject": "scope",
+      "relation": "parent",
+      "revision": "e29c41a97657458ad7ae4a7d5031f71e87331342",
+      "sourcePath": "LICENSE",
+      "sha256": "de90507c5ae9610954079a7ca0c48be8f76d0a09523955b19e1fca855f62acc9"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "policy": "Assertion-only primary; test-body exceptions and other panics remain unknown. All declared current-slice mutations executed.",
+  "slices": [
+    {
+      "id": "scope-events",
+      "summary": {
+        "tests": 3,
+        "plannedMutants": 12,
+        "acceptedMutants": 12,
+        "killedMutants": 9,
+        "unexplainedSurvivors": 3,
+        "observedMutationScore": 0.75,
+        "subsumingRequirements": 1,
+        "baselineRequirementRetention": 1.0,
+        "observedKillSignatures": 2,
+        "excludedMutants": 0,
+        "greedyCoreTests": 1
+      },
+      "executedMutantColumns": 12,
+      "analysisComplete": true,
+      "rootKillersWithZeroIndividualLoss": 0,
+      "identicalNonemptyProfileGroups": 0,
+      "statusCounts": {
+        "killed": 9,
+        "survived": 3
+      },
+      "matrixSha256": "ae742672c12d0421f5793e928c30c9434446b0cd0f750f069c4a1b9cb5c52637",
+      "analysisSha256": "b265447f35077ee0507ab96346afae003afe5a46e0075c786b7bd38c70fb3193"
+    },
+    {
+      "id": "t3-execution",
+      "summary": {
+        "tests": 52,
+        "plannedMutants": 90,
+        "acceptedMutants": 74,
+        "killedMutants": 54,
+        "unexplainedSurvivors": 20,
+        "observedMutationScore": 0.7297297297297297,
+        "subsumingRequirements": 18,
+        "baselineRequirementRetention": 1.0,
+        "observedKillSignatures": 33,
+        "excludedMutants": 16,
+        "greedyCoreTests": 15
+      },
+      "executedMutantColumns": 90,
+      "analysisComplete": false,
+      "rootKillersWithZeroIndividualLoss": 23,
+      "identicalNonemptyProfileGroups": 5,
+      "statusCounts": {
+        "killed": 54,
+        "survived": 20,
+        "error": 16
+      },
+      "matrixSha256": "fcce80912d42c65bd422c290306496ffd704acf50b76af7d2fa516dd3c771313",
+      "analysisSha256": "8690cfb8bde48686a60e76cb61729028e0086691a6e03df057a6d83798a26e0d"
+    },
+    {
+      "id": "t3-preview",
+      "summary": {
+        "tests": 46,
+        "plannedMutants": 32,
+        "acceptedMutants": 29,
+        "killedMutants": 19,
+        "unexplainedSurvivors": 10,
+        "observedMutationScore": 0.6551724137931034,
+        "subsumingRequirements": 9,
+        "baselineRequirementRetention": 1.0,
+        "observedKillSignatures": 16,
+        "excludedMutants": 3,
+        "greedyCoreTests": 7
+      },
+      "executedMutantColumns": 32,
+      "analysisComplete": false,
+      "rootKillersWithZeroIndividualLoss": 20,
+      "identicalNonemptyProfileGroups": 2,
+      "statusCounts": {
+        "killed": 19,
+        "survived": 10,
+        "error": 3
+      },
+      "matrixSha256": "77cf3a7610e9b1b132d3c48a882d159289e527aa748a87f35b2998fd7617c53b",
+      "analysisSha256": "830a7030c165b2267b466b92c9cb2befaadb8368895817655c175c73e2523c78"
+    },
+    {
+      "id": "native",
+      "summary": {
+        "tests": 3,
+        "plannedMutants": 65,
+        "acceptedMutants": 29,
+        "killedMutants": 10,
+        "unexplainedSurvivors": 19,
+        "observedMutationScore": 0.3448275862068966,
+        "subsumingRequirements": 2,
+        "baselineRequirementRetention": 1.0,
+        "observedKillSignatures": 2,
+        "excludedMutants": 36,
+        "greedyCoreTests": 2
+      },
+      "executedMutantColumns": 65,
+      "analysisComplete": false,
+      "rootKillersWithZeroIndividualLoss": 0,
+      "identicalNonemptyProfileGroups": 0,
+      "statusCounts": {
+        "killed": 10,
+        "survived": 19,
+        "error": 35,
+        "invalid": 1
+      },
+      "matrixSha256": "54b973d14a19fde27cbe9e626df268e8206c9f34b21c8d2b7ab8b8c609039924",
+      "analysisSha256": "664c8dd1058a31badea047ddf8887d099c35cc9842145639ad111c227d201287",
+      "nativeSelection": {
+        "broaderEngineInventory": 218,
+        "declaredSelectedMutants": 65,
+        "selection": "BinaryOperator and UnaryOperator in result.rs lines 1 through 211",
+        "allDeclaredMutantsExecuted": true
+      }
+    }
+  ]
+}

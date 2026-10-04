@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "name": "Archguard Rust protocol slice",
+    "revision": "e9018fbef3f2331445eab76eb8ce9b96895a3c6b",
+    "scope": "3 mutator::result::tests; selected binary/unary operators"
+  },
+  "baselineTestInventoryDigest": "d19738a4a5286875603c2be508b3477d6b505eeab1f7eab91077709e2c9c9d55",
+  "baselineMatrixDigest": "48d220f8e10615d1b37053b18c9b55c96b6f3ce70e870849a3137b9ebfed00a3",
+  "baselineComplete": true,
+  "complete": true,
+  "summary": {
+    "tests": 3,
+    "plannedMutants": 65,
+    "acceptedMutants": 64,
+    "killedMutants": 45,
+    "unexplainedSurvivors": 19,
+    "observedMutationScore": 0.703125,
+    "subsumingRequirements": 2,
+    "baselineRequirementRetention": 1.0,
+    "observedKillSignatures": 3,
+    "excludedMutants": 1,
+    "greedyCoreTests": 2
+  },
+  "requirements": [
+    {
+      "id": "1a4bb0cd015d034533023c3ad2c0af38a634b88e6b23ba3681fa669137f71127",
+      "representative": "9e6f9029df6bb2f1f8e09561540b66d1bb05f38f7cc42d97854d00a7a1f1ee0e",
+      "mutants": [
+        "9e6f9029df6bb2f1f8e09561540b66d1bb05f38f7cc42d97854d00a7a1f1ee0e",
+        "ba26ca7329c4ffd32c94346ab269220c11c26bd20c63513c04b859f4cd1c53b4",
+        "ba29b6207c9df6c439ca6a0cca38e8c73ae4cd3458de126a7236afdf82f98eb0",
+        "c4884c5af9a7cc765e06a76e38c45214901d12badeead03dfd64bf138ab99d0d"
+      ],
+      "killedBy": [
+        "rust-lib::mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets"
+      ]
+    },
+    {
+      "id": "4055cf10ab00099dee6cf2de6bf696956fc22f95843c256a892395e4bec52433",
+      "representative": "02951117d642c9b5951feb5d3a0918256e1c65de6406663e9d27b64b57f58192",
+      "mutants": [
+        "02951117d642c9b5951feb5d3a0918256e1c65de6406663e9d27b64b57f58192",
+        "09cb76b6e3491a66847734f060fe2ae9e103f109ea5959a8c4de7abd488cc904",
+        "0e357b38a454c7ced591663ff0cab0959b502e56366faed99fde8be1c04bc19d",
+        "120cc059a65675a2043898f0a42a4c8d6fc02dfcfd1fca4a9d0c05e18f77ac39",
+        "1a40b686d1aa6e090d95491c58ecc037c3f5f61ea91bf887fc249db49d6aefa9",
+        "25519133e2c94853b33db0a1dd9a65bb27786ad057ba199a13254e77b0f7bd32",
+        "29bfbb29cb9387419116507d71245a3c0a6619e0be43b78b7d8d2f88fe2e243f",
+        "43231c59ab6e4cae895888abfd80379fe4276b4b437e46815c951035977bfa31",
+        "4381df71d335a279b491aa30276da678e9f0a1b292b114fe4327590cf73d51b4",
+        "439426bfa0bc4775eb16cd4daeee1855a3d661eb2633e8b78eb417159e9848b8",
+        "44d55d968a2203a6c030aa7caa9b88cad1071fac175a56455fad80c25f861ef7",
+        "46ac31c9f9531f9c9fa7b13f762a7b1119c5cea6add5171d79efa62d8fd8d2ad",
+        "497ad599f71e48c62933694914942c17e86570cc9d753bb9d59f108f0ccd42f6",
+        "53a459a0f94444db6851438c01054c5b04c4746fa310a5fff05ecea42fa3b71f",
+        "5743cda407dd160cbd2c981fb2fd873e6eb28c9eff018da4979969fd59c1ba9c",
+        "5da07eb39ebeccfbe43abe4debe75f7c04e667ea4005be2dbea9430db93a8312",
+        "7b1409dab0390a98ff6d9bbdc2e38c190409005b6e66761ded740c34b2bcc3e9",
+        "b0e192bd71153ca2253b2422a725161a1e280fcc70db56265d70434379d9745a",
+        "bc0670d0cfadf9f2cfa19b24e70f3f212e9949ea3fe4af161d8aafe02fd65c42",
+        "d97de91f6deae2699a0f21e7f97a206dd0fb46f06f020ceef1fece5824bf2d08",
+        "fe6b42e1778d0963a2356312872d6925b1e594b23032b381f5f2f7c3d078f8cd"
+      ],
+      "killedBy": [
+        "rust-lib::mutator::result::tests::only_matching_complete_assertions_kill"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "rust-lib::mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators",
+      "name": "mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators",
+      "file": "src/mutator/result.rs",
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "rust-lib::mutator::result::tests::only_matching_complete_assertions_kill",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "rust-lib::mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "rust-lib::mutator::result::tests::only_matching_complete_assertions_kill",
+      "name": "mutator::result::tests::only_matching_complete_assertions_kill",
+      "file": "src/mutator/result.rs",
+      "mutantsKilled": 41,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 21,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 21,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.328125,
+      "marginalBaselineRequirementRetention": 0.5,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "rust-lib::mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "rust-lib::mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "rust-lib::mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets",
+      "name": "mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets",
+      "file": "src/mutator/result.rs",
+      "mutantsKilled": 24,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 4,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 4,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.0625,
+      "marginalBaselineRequirementRetention": 0.5,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "rust-lib::mutator::result::tests::context_preserves_unicode_crlf_and_exact_operators",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "rust-lib::mutator::result::tests::only_matching_complete_assertions_kill",
+          "jaccard": 0.0
+        }
+      ]
+    }
+  ],
+  "redundancyGroups": [],
+  "greedyCore": [
+    "rust-lib::mutator::result::tests::only_matching_complete_assertions_kill",
+    "rust-lib::mutator::result::tests::strict_wire_nullable_fields_exit_code_and_budgets"
+  ],
+  "unexplainedSurvivors": [
+    "ee59dfc31bc54133da6afedff96116820881346a3ea7268df02763c599cfc9bb",
+    "766c6d55a8e4d3f9927077b711542cf01a46c8929c046a41995fa980789eff7e",
+    "68bda176017204811d7238dd190ef22914384b8744ff61afc56073dc8934c1ed",
+    "b84785fa7917d6046da0ee567638c1da53b970e5f713927458ed2f2ea0f8487e",
+    "d4af76b4c60ca6cce44752bff93ae370fd0f7ec1e3e755ce1a5762791d8333dc",
+    "9a7868f1259924f74d6b2fc8603db7e36958a80e8e06e31f03444c783a79d1e5",
+    "e9577411f243a3537307a07a969a3063ce5d7b9e40c0e244fd7f6f28501980d6",
+    "d2e66b34ca1d426411415ba40f8e7af72a31340ffe55dcc12f770872299055ee",
+    "efe87bf999719d45a6c4be7566be022099be5035eaa99e160135d7e0d7e02be3",
+    "d74bdf75504d1f53317f23dba224ef1df35a203dc8266e1617498fd169c31cfe",
+    "ca3bceb70ea2641bf5fa28d9c66f44600c134adb721cb0ee6ae726fa204e0a94",
+    "159774dcdfc274f550f7cc1afd4f143844a7ac81926fedc954d3ff8844e45257",
+    "83d165f63d090673b8bb42c0df85faa356c0b4ab53e681855d20a4013c301794",
+    "c45111cf3ac3afef52337686ead17df8319361aa0d5253b971be9179e68ff425",
+    "85d4d4f23fb895b5ca5197d83df3f348ca74be1663c07f7a3a6344e5ebfe13c7",
+    "59b17e754604e29f9cc7e7d1358b5481452667f298612fa43b1b93b93a9909e0",
+    "907c0bbe29e560d329b5bea2c311b81f33fc9328f92c33d9c965647aa99d5b9b",
+    "8cf7cc7a8207aedb6b0826786d304e9e3048baf731d08bf0c9aa88105a3c455f",
+    "7b90f46c90f0b0dedb374dfa5baf4d7af599a6df01b0ea726fd107a2add1e4e6"
+  ],
+  "excluded": [
+    {
+      "id": "bbb86f2da7cc0102c14cde57314b4d11d6509e8ed9236eb63bb03b94ee6f2caf",
+      "reason": "compilerRejected"
+    }
+  ],
+  "interpretation": {
+    "requirements": "Minimal nonempty observed kill-signature classes; fixed baseline pool.",
+    "retention": "The full baseline retains 100% by construction, when requirements exist.",
+    "mutationScore": "Completed killed / completed killed plus surviving mutants; equivalence unknown.",
+    "cost": "Per-test durations are descriptive and exclude shared setup and runner startup.",
+    "limits": "Observed redundancy does not authorize deleting tests or predict bug probability."
+  }
+}

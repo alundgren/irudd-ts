@@ -1,0 +1,322 @@
+{
+  "passed": true,
+  "validationOnly": true,
+  "results": {
+    "10.24.0": {
+      "node": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "version": "v24.21.0",
+        "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+      },
+      "pmSha256": "b276da51dc8ca5b0d3ee3371695b50fc8b3244b281b091c63a3f082a88dadeb9",
+      "version": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 211.46008395589888,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/private/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+          "--version"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 8,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12025
+      },
+      "ignoreHooks": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 206.7504171282053,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/private/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+          "config",
+          "get",
+          "ignore-pnpmfile"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 5,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12026
+      },
+      "hookBefore": {
+        "exitCode": 1,
+        "status": "finished",
+        "durationMs": 214.9411670397967,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/private/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+          "--filter=!t3code-relay",
+          "list",
+          "--depth",
+          "-1",
+          "--json"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 0,
+        "stderrBytes": 235,
+        "cleanupComplete": true,
+        "capturedPid": 12033
+      },
+      "correctedInventory": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 208.32162513397634,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/private/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+          "--filter=!t3code-relay",
+          "list",
+          "--depth",
+          "-1",
+          "--json"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 382,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12034
+      },
+      "effectiveImporters": [
+        {
+          "name": "inventory-control-root",
+          "path": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/source",
+          "private": true
+        },
+        {
+          "name": "keep-control",
+          "version": "1.0.0",
+          "path": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/source/packages/keep",
+          "private": false
+        }
+      ],
+      "authoredInputsUnchanged": true,
+      "environmentPolicy": {
+        "npm_config_userconfig": "/dev/null",
+        "npm_config_ignore_pnpmfile": "true",
+        "pnpm_config_ignore_pnpmfile": "true",
+        "npm_config_cache": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/10.24.0/private/npm-cache",
+        "npm_config_manage_package_manager_versions": "false",
+        "npm_config_package_manager_strict_version": "true"
+      }
+    },
+    "11.10.0": {
+      "node": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+        "version": "v24.21.0",
+        "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+      },
+      "pmSha256": "67b035e322203961795e8e34ca63a08c37a4386eda94107fb3d28f3246d882ad",
+      "version": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 311.06341700069606,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+          "--version"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 8,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12036
+      },
+      "ignoreHooks": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 212.41366700269282,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+          "config",
+          "get",
+          "ignore-pnpmfile"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 5,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12037
+      },
+      "hookBefore": {
+        "exitCode": 1,
+        "status": "finished",
+        "durationMs": 212.13999995961785,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+          "--filter=!t3code-relay",
+          "list",
+          "--depth",
+          "-1",
+          "--json"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 0,
+        "stderrBytes": 231,
+        "cleanupComplete": true,
+        "capturedPid": 12038
+      },
+      "correctedInventory": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 211.55479177832603,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+          "--filter=!t3code-relay",
+          "list",
+          "--depth",
+          "-1",
+          "--json"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 382,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12039
+      },
+      "effectiveImporters": [
+        {
+          "name": "inventory-control-root",
+          "path": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/source",
+          "private": true
+        },
+        {
+          "name": "keep-control",
+          "version": "1.0.0",
+          "path": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/source/packages/keep",
+          "private": false
+        }
+      ],
+      "authoredInputsUnchanged": true,
+      "environmentPolicy": {
+        "npm_config_userconfig": "/dev/null",
+        "npm_config_ignore_pnpmfile": "true",
+        "pnpm_config_ignore_pnpmfile": "true",
+        "npm_config_cache": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/11.10.0/private/npm-cache"
+      }
+    },
+    "12.6.0": {
+      "node": {
+        "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+        "version": "v26.10.0",
+        "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+      },
+      "pmSha256": "3a4b2674fc12ff655113b32ea58ef25d83fff48fc9bb217789a50de316a822d4",
+      "version": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 830.8410418685526,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+          "--version"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 7,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12041
+      },
+      "ignoreHooks": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 101.86341707594693,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+          "config",
+          "get",
+          "ignore-pnpmfile"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 5,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12056
+      },
+      "hookBefore": {
+        "exitCode": 1,
+        "status": "finished",
+        "durationMs": 106.48466693237424,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+          "--filter=!t3code-relay",
+          "list",
+          "--depth",
+          "-1",
+          "--json"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 0,
+        "stderrBytes": 1092,
+        "cleanupComplete": true,
+        "capturedPid": 12057
+      },
+      "correctedInventory": {
+        "exitCode": 0,
+        "status": "finished",
+        "durationMs": 106.62858304567635,
+        "command": [
+          "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+          "--filter=!t3code-relay",
+          "list",
+          "--depth",
+          "-1",
+          "--json"
+        ],
+        "cwd": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/source",
+        "residualProcessGroup": false,
+        "cleanupErrors": [],
+        "stdoutBytes": 380,
+        "stderrBytes": 0,
+        "cleanupComplete": true,
+        "capturedPid": 12059
+      },
+      "effectiveImporters": [
+        {
+          "name": "inventory-control-root",
+          "path": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/source",
+          "private": true
+        },
+        {
+          "name": "keep-control",
+          "version": "1.0.0",
+          "path": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/source/packages/keep",
+          "private": false
+        }
+      ],
+      "authoredInputsUnchanged": true,
+      "environmentPolicy": {
+        "npm_config_userconfig": "/dev/null",
+        "npm_config_ignore_pnpmfile": "true",
+        "pnpm_config_ignore_pnpmfile": "true",
+        "npm_config_cache": "/private/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/12.6.0/private/npm-cache"
+      }
+    }
+  }
+}

@@ -1,0 +1,3321 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "name": "t3code",
+    "revision": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+    "faultId": "t3code-151c241cd2cc"
+  },
+  "baselineTestInventoryDigest": "ac78624bb0c812b228dcb0a232019c6e143bb7836643f8e03b0ae63fc4a35f3c",
+  "baselineMatrixDigest": "0eeb38847a7417305e822f9fc022e2534a0cc3779b81a7ecf593af8857b4fc9c",
+  "baselineComplete": true,
+  "complete": false,
+  "summary": {
+    "tests": 37,
+    "plannedMutants": 24,
+    "acceptedMutants": 14,
+    "killedMutants": 7,
+    "unexplainedSurvivors": 7,
+    "observedMutationScore": 0.5,
+    "subsumingRequirements": 4,
+    "baselineRequirementRetention": 1.0,
+    "observedKillSignatures": 6,
+    "excludedMutants": 10,
+    "greedyCoreTests": 4
+  },
+  "requirements": [
+    {
+      "id": "27e8c8d5fef193a794a83a2ebad6cba6d551f53776d57eea356dfef5b1a22a90",
+      "representative": "05328773fcdf9a39fb0546b78413b1055ccd767a1e07a65e559f1e5872dfbd25",
+      "mutants": [
+        "05328773fcdf9a39fb0546b78413b1055ccd767a1e07a65e559f1e5872dfbd25",
+        "b5db8c78284a0eb26705d62c6e3a4c2d3ad5760b3f8d69f67f313a3107df4f26"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]"
+      ]
+    },
+    {
+      "id": "49be11cede356aef8f63cb1c2092b64a6936be2c8a3c41ff54fc6420bb12fd82",
+      "representative": "8706a4907d6e0d4c8ca593206ebda3d3f14e9558139f4392f764e1a0c27e5a2d",
+      "mutants": [
+        "8706a4907d6e0d4c8ca593206ebda3d3f14e9558139f4392f764e1a0c27e5a2d"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]"
+      ]
+    },
+    {
+      "id": "53086d4cdd287de36fe4047a08f505835da076589101f1d495ee6497a6389ccb",
+      "representative": "2660d7666b8c25e0ffffe5a4174f8704e3062af48f41f897572e976c48425a0c",
+      "mutants": [
+        "2660d7666b8c25e0ffffe5a4174f8704e3062af48f41f897572e976c48425a0c"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]"
+      ]
+    },
+    {
+      "id": "717404353f8e6dbbd8d4404d22cf49d0063e469f0edfd31c8ef4f4649eeeb257",
+      "representative": "6c65cb2f572da4b3d151afb11ed332c9be49dcf588c3228cdd81861ea0fae4cc",
+      "mutants": [
+        "6c65cb2f572da4b3d151afb11ed332c9be49dcf588c3228cdd81861ea0fae4cc"
+      ],
+      "killedBy": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+      "name": "thread execution presentation > derives the current root failure without inheriting errors from children or previous runs",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 1.6591250000000173,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+      "name": "thread execution presentation > keeps a subscription limit visible while later messages stay queued",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.28899999999998727,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+      "name": "thread execution presentation > keeps live activity attached to an executing run when a newer run is queued",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.12466699999993125,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+      "name": "thread execution presentation > presents a held queue as the stopped run instead of queued work",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.15379199999995308,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+      "name": "thread execution presentation > does not expose a queued-only run as interruptible",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.09754199999997581,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+      "name": "thread execution presentation > keeps checkpoint-wait activity visible without exposing a non-functional interrupt",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.10004099999991922,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+      "name": "thread execution presentation > does not expose a stale active run after the runtime parks at idle",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.05199999999990723,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+      "name": "thread execution presentation > keeps an active preparing run interruptible",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.06358299999999417,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+      "name": "thread execution presentation > keeps an active starting run interruptible",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.042291999999974905,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+      "name": "deriveRunlessWorkStartedAt > times a provider-native subagent from its runless root turn while it works",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.12587500000006457,
+      "mutantsKilled": 3,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+      "name": "deriveRunlessWorkStartedAt > is idle once the subagent is completed",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.043541000000004715,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+      "name": "deriveRunlessWorkStartedAt > is idle once the subagent is cancelled",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.027916000000004715,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+      "name": "deriveRunlessWorkStartedAt > is idle once the subagent is failed",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.02287499999999909,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+      "name": "deriveRunlessWorkStartedAt > is idle once the subagent is interrupted",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.02141699999992852,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+      "name": "deriveRunlessWorkStartedAt > is idle once the subagent is idle",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.022249999999985448,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+      "name": "deriveRunlessWorkStartedAt > ignores root turns that belong to a run, and threads the provider does not run",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.03795900000000074,
+      "mutantsKilled": 2,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 1,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 1,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.07142857142857142,
+      "marginalBaselineRequirementRetention": 0.25,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+      "name": "deriveProviderSubagentStatus > reports the provider's own subagent from its runless root turn",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.07837499999993724,
+      "mutantsKilled": 3,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+      "name": "deriveProviderSubagentStatus > says how long the subagent has worked, or took",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.09587499999997817,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+      "name": "deriveProviderSubagentStatus > leaves T3 delegated tasks and ordinary threads alone",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.02987499999994725,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+      "name": "formatModelSelectionEffort > shows the model's default effort when the user never picked one",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.1366249999999809,
+      "mutantsKilled": 2,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+      "name": "formatModelSelectionEffort > names a stored effort the way the catalog does",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.03741700000000492,
+      "mutantsKilled": 2,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+      "name": "formatModelSelectionEffort > uses the descriptor's current value over the default",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.026583000000073298,
+      "mutantsKilled": 2,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": 1.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 1.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"leaves T3 delegated tasks and ordinary threads alone\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"says how long the subagent has worked, or took\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is cancelled\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is completed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is failed\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"is idle once the subagent is interrupted\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"derives the current root failure without inheriting errors from children or previous runs\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a stale active run after the runtime parks at idle\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active preparing run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps an active starting run interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps live activity attached to an executing run when a newer run is queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows nothing for a model the catalog does not describe\"],1]",
+      "name": "formatModelSelectionEffort > shows nothing for a model the catalog does not describe",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.030750000000011823,
+      "mutantsKilled": 1,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is preparing\"],1]",
+      "name": "threadRuntimeCanArchive > blocks archive while a provider is preparing",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.036958000000026914,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is starting\"],1]",
+      "name": "threadRuntimeCanArchive > blocks archive while a provider is starting",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.018457999999895947,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"blocks archive while a provider is running\"],1]",
+      "name": "threadRuntimeCanArchive > blocks archive while a provider is running",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.01737500000001546,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"only blocks a queued runtime when a provider run remains attached\"],1]",
+      "name": "threadRuntimeCanArchive > only blocks a queued runtime when a provider run remains attached",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.029917000000068583,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"threadRuntimeCanArchive\",\"allows waiting and idle threads\"],1]",
+      "name": "threadRuntimeCanArchive > allows waiting and idle threads",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.027916000000004715,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent: has no display name\"],1]",
+      "name": "presentPendingBackgroundWork > falls back to the subagent noun when Subagent: has no display name",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.12462500000003729,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"falls back to the subagent noun when Subagent:    has no display name\"],1]",
+      "name": "presentPendingBackgroundWork > falls back to the subagent noun when Subagent:    has no display name",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.05208300000003874,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/luna_window_properties\"],1]",
+      "name": "presentPendingBackgroundWork > uses the subagent display name for /root/luna_window_properties",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.08083400000009533,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for Subagent: /root/luna_window_properties\"],1]",
+      "name": "presentPendingBackgroundWork > uses the subagent display name for Subagent: /root/luna_window_properties",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.028999999999996362,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"uses the subagent display name for /root/parent/luna_window_properties\"],1]",
+      "name": "presentPendingBackgroundWork > uses the subagent display name for /root/parent/luna_window_properties",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.02641700000003766,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"formats subagent names in a mixed roster and preserves command descriptions\"],1]",
+      "name": "presentPendingBackgroundWork > formats subagent names in a mixed roster and preserves command descriptions",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.06595900000002075,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names a single piece of work by kind\"],1]",
+      "name": "presentPendingBackgroundWork > names a single piece of work by kind",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.04075000000000273,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"groups work by kind, subagents first, and keeps each name\"],1]",
+      "name": "presentPendingBackgroundWork > groups work by kind, subagents first, and keeps each name",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.05654200000003584,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"presentPendingBackgroundWork\",\"names generic work, including rosters from servers that predate kinds\"],1]",
+      "name": "presentPendingBackgroundWork > names generic work, including rosters from servers that predate kinds",
+      "file": "packages/client-runtime/src/state/threadExecution.test.ts",
+      "durationMs": 0.044125000000008185,
+      "mutantsKilled": 0,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    }
+  ],
+  "redundancyGroups": [
+    {
+      "tests": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps a subscription limit visible while later messages stay queued\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"keeps checkpoint-wait activity visible without exposing a non-functional interrupt\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"presents a held queue as the stopped run instead of queued work\"],1]"
+      ],
+      "requirements": [
+        "53086d4cdd287de36fe4047a08f505835da076589101f1d495ee6497a6389ccb"
+      ]
+    },
+    {
+      "tests": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"times a provider-native subagent from its runless root turn while it works\"],1]"
+      ],
+      "requirements": [
+        "27e8c8d5fef193a794a83a2ebad6cba6d551f53776d57eea356dfef5b1a22a90"
+      ]
+    },
+    {
+      "tests": [
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"shows the model's default effort when the user never picked one\"],1]",
+        "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"uses the descriptor's current value over the default\"],1]"
+      ],
+      "requirements": [
+        "717404353f8e6dbbd8d4404d22cf49d0063e469f0edfd31c8ef4f4649eeeb257"
+      ]
+    }
+  ],
+  "greedyCore": [
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveProviderSubagentStatus\",\"reports the provider's own subagent from its runless root turn\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"deriveRunlessWorkStartedAt\",\"ignores root turns that belong to a run, and threads the provider does not run\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"formatModelSelectionEffort\",\"names a stored effort the way the catalog does\"],1]",
+    "[\"\",\"packages/client-runtime/src/state/threadExecution.test.ts\",[\"thread execution presentation\",\"does not expose a queued-only run as interruptible\"],1]"
+  ],
+  "unexplainedSurvivors": [
+    "0e7cfdd58147b7b21b2305b2d40f39a2466aa04de7b49783a6b5d998a929168f",
+    "2add1d59053b1fe82f027e7f54e2863dcbb42cffd1aa7e8b116b79753e425fea",
+    "04d867910f2b9d91e4bb72854c2a61522e1e94c3daa44ad9061447b3f48f2275",
+    "d360631ea658c68ebe1811447bc25b530e80a8209459cb588485395d26f9ae0e",
+    "e355172376a3df4e86479f4adbf90baa84cb46afb08c5658621249ee7ca491a7",
+    "6925a75094180a3ba7dc2ec32cf38f9061ae802e42eb613e367ff54b0afd4856",
+    "a1d0d1bd5537b10db6a034979ede0833772952f365f04df127b9392aa546faf9"
+  ],
+  "excluded": [
+    {
+      "id": "a6cfde7f7c6ef7622598f861f063facafdb8826684fd4a46765cee37d6720f89",
+      "reason": "error"
+    },
+    {
+      "id": "47d3d78a9ff74f0c050badcc5f4bc0c022d0d190fda19175904cc46c252b6aff",
+      "reason": "error"
+    },
+    {
+      "id": "effe988f868f0e7463701f81655c69a0646a870507d2d9213430c471364c3801",
+      "reason": "error"
+    },
+    {
+      "id": "8599ff6e9f39a3736c639755b4e18289f519e9ce385d10f8ba93b278cfc43e24",
+      "reason": "error"
+    },
+    {
+      "id": "1c0ae53d53939cfa7d2b47e007125297d775bcb5f51dac870e70fe0c166bad83",
+      "reason": "error"
+    },
+    {
+      "id": "138dfb03ce98c3bfe791fb6de43fa98719a542c71acfbac2b40c67a76159f7f3",
+      "reason": "error"
+    },
+    {
+      "id": "d17915816fb018eb9cd99117ce72b4d85df9b3a2eb630a4958c3c2b283373a74",
+      "reason": "error"
+    },
+    {
+      "id": "67d187024b8ed8e01ba8b4e5a38dca75271c437d4e65e417913c17ac20e6784b",
+      "reason": "error"
+    },
+    {
+      "id": "490729f9c552a98b7198782bd8740cd099214c4e4795856d2337fe305dac799c",
+      "reason": "error"
+    },
+    {
+      "id": "3ec999c700e47fe0b6f741367558baa75ff1ea0635f59df5572343f87138cd24",
+      "reason": "error"
+    }
+  ],
+  "interpretation": {
+    "requirements": "Minimal nonempty observed kill-signature classes; fixed baseline pool.",
+    "retention": "The full baseline retains 100% by construction, when requirements exist.",
+    "mutationScore": "Completed killed / completed killed plus surviving mutants; equivalence unknown.",
+    "cost": "Per-test durations are descriptive and exclude shared setup and runner startup.",
+    "limits": "Observed redundancy does not authorize deleting tests or predict bug probability."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "verified": [
+    "subjects",
+    "history",
+    "aggregate",
+    "secondarySubjects",
+    "archivedHistory"
+  ],
+  "method": "Complete collected measured payloads equal after removing relocated evidence-directory fields. Optional handoff metadata is not a measurement.",
+  "renderedHtmlSha256": "71e31c70766b6d15e56ba77c20837d977629f5739e2eddcce79b9a2f6fcda3c8"
+}

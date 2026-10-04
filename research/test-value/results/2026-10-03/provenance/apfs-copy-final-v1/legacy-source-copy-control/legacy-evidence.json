@@ -1,0 +1,12 @@
+{
+  "sourceCopyPolicy": "legacy bounded byte stream",
+  "destinationWriterModes": [
+    "wb"
+  ],
+  "existingDestinationOverwritten": true,
+  "sourceBytesUnchanged": true,
+  "payloadBytes": 8388608,
+  "legacyRunnerSha256": "9d796075ce9376fd4b2a190c3ed6b1213d37d61992d76487304d53b05478faa5",
+  "legacyFunctionSha256": "1cf7696332e29a35888d597a034449927424974904d6797d10c1319ae307a07d",
+  "scope": "Owned authored files only; no timing or disk savings claim"
+}

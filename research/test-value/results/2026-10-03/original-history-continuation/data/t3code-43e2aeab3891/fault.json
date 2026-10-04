@@ -1,0 +1,24 @@
+{
+  "id": "t3code-43e2aeab3891",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "[codex] fix: tolerate invalid latest user message timestamps (#3521)",
+  "sourceFiles": [
+    "packages/client-runtime/src/state/threadSort.ts"
+  ],
+  "testFiles": [
+    "packages/client-runtime/src/state/threadSort.test.ts"
+  ],
+  "relatedGroup": "thread-sort-timestamps",
+  "fix": "43e2aeab389199de115bb414f80db12b60cd85f4",
+  "parent": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 31
+  },
+  "verified": false,
+  "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-43e2aeab3891/fixed-template/CLAUDE.md'\")]",
+  "recordDigests": {}
+}

@@ -1,0 +1,27 @@
+{
+  "id": "t3code-421088c27367",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(search): oversized thread queries no longer crash clients (#6633)",
+  "sourceFiles": [
+    "packages/client-runtime/src/state/threadSearch.ts"
+  ],
+  "testFiles": [
+    "packages/client-runtime/src/state/threadSearch.test.ts"
+  ],
+  "relatedGroup": "thread-search-keys",
+  "fix": "421088c27367da227d922ce999c1637416a6d0f4",
+  "parent": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 42
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "67df1801d77967951768bdc2b91ec29cfd7d4fc43763257499c71cd791fc58dc"
+  }
+}

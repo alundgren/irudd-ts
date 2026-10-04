@@ -1,0 +1,402 @@
+{
+  "schemaVersion": 1,
+  "sourceRoot": "/private/tmp/archguard-test-value-20261003/historical-installs-filtered",
+  "archive": "raw-evidence.tar.gz",
+  "archiveSha256": "4ebd2a9e695251c4c9265bd57f96f908db2852140c9ae63b10567ebf6a0b7b8d",
+  "files": [
+    {
+      "path": "dependency-installations.json",
+      "sha256": "8443ba1a8d496d3ad37d7ca89e1de040dd075214b9adebc8fbbb5a61dc6a14be",
+      "bytes": 7468
+    },
+    {
+      "path": "preparation-registration.json",
+      "sha256": "0136840cc989d5581770e9951e8bb8a73706cd4dfc8d16bd5eafc43fe2ad12a8",
+      "bytes": 5355
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/archive/execution.json",
+      "sha256": "8dd1ba51e9c07537c3e3f42bb723820c2428ce403ab937ba936cb8482c5a88fe",
+      "bytes": 481
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/effective-importers/execution.json",
+      "sha256": "8ac650ee77abf423dfeb9e14dcc878d308ad559bc92831ab50ca25dd9f867c8d",
+      "bytes": 636
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/effective-importers/stderr.txt",
+      "sha256": "cb3ccd7f41e0286347c1fbb8a5f2cecbfba14c3dedea1a39ce05278bdd723642",
+      "bytes": 162
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/effective-importers/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/install/stdout.txt",
+      "sha256": "483ee13c8ff38857d3ca2c44448e182d1f1fb81e82be88f246922734b67696e2",
+      "bytes": 1455
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/preparation.json",
+      "sha256": "d85ea5c6e2c133090b2b3cb5d34baa8443769780483ffc5ccef1e0314e39ef1f",
+      "bytes": 65406
+    },
+    {
+      "path": "t3code-install-3f5a1597bcde/receipt.json",
+      "sha256": "0e6f7071d448bd4f49d12ddd345b7bfbdf0dbd3a61f0c98cbf2c6b3f1be2a69b",
+      "bytes": 67208
+    },
+    {
+      "path": "t3code-install-418e9aba3903/archive/execution.json",
+      "sha256": "7b686260a3a4e56cbea45ad5fef1b8e8fedb5353973e3a6972a1b60587eada01",
+      "bytes": 481
+    },
+    {
+      "path": "t3code-install-418e9aba3903/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-418e9aba3903/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-418e9aba3903/install/stdout.txt",
+      "sha256": "4238145958d702dbfbac278d8fa242af0c7a58a284d1e654096773d0d891ec84",
+      "bytes": 853
+    },
+    {
+      "path": "t3code-install-418e9aba3903/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-418e9aba3903/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-418e9aba3903/preparation.json",
+      "sha256": "3be763e8e14ebcd8c2dce7ad1b5275420404d4e58ff80ebffb1400cbb328a340",
+      "bytes": 43517
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/archive/execution.json",
+      "sha256": "eadd81837c6c10e382bdcbe07c7066228d91336dabc1c1423597977c993a1f01",
+      "bytes": 482
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/effective-importers/execution.json",
+      "sha256": "c194966ed1d07489249462bc2c65228bee95c2b54884a96c25acaeb472f2d36b",
+      "bytes": 637
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/effective-importers/stderr.txt",
+      "sha256": "cb3ccd7f41e0286347c1fbb8a5f2cecbfba14c3dedea1a39ce05278bdd723642",
+      "bytes": 162
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/effective-importers/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/install/stdout.txt",
+      "sha256": "0de8daa318621f9a9ec06315d34eeb055b47c8e4b1b2bee39337ca8177474e30",
+      "bytes": 2537
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/preparation.json",
+      "sha256": "505b01ae6365fd8adfdec86a3e73ce8093357adfda73985f29dd614471a8f850",
+      "bytes": 65616
+    },
+    {
+      "path": "t3code-install-4bab1da110d5/receipt.json",
+      "sha256": "d8d1a1f055c1c1da69413b89fb4a0d7e3de3f8b425f8a75c78828de324765110",
+      "bytes": 67419
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/archive/execution.json",
+      "sha256": "90fecb21b9d77d4cc3bcf0db2b624f354ea6dcec726ff25a916e8c7c5d19febd",
+      "bytes": 481
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/effective-importers/execution.json",
+      "sha256": "d1f37b77a67748a088f611b4dd33787cb620ed66d131bc8ff9bb0c8f2e4a2a9c",
+      "bytes": 637
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/effective-importers/stderr.txt",
+      "sha256": "cb3ccd7f41e0286347c1fbb8a5f2cecbfba14c3dedea1a39ce05278bdd723642",
+      "bytes": 162
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/effective-importers/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/install/stdout.txt",
+      "sha256": "5987ce3eafa2c0f8f928b99a4171674a461eb8ba0ecb2c4fb35ac3b84877abb9",
+      "bytes": 1145
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/preparation.json",
+      "sha256": "18f3ef4eb9b584a1e8efe696db49c98d2ca92817b585a3d8ff4b18d8c48217e6",
+      "bytes": 43517
+    },
+    {
+      "path": "t3code-install-4d7ac4348ddc/receipt.json",
+      "sha256": "a8ec3bcdda5c65fe59fe2b8cb53876bd123e235815efda6434c3145581a111b2",
+      "bytes": 45320
+    },
+    {
+      "path": "t3code-install-745336e7263a/archive/execution.json",
+      "sha256": "e48819d6afce11a0cc24d7c47314652ebf2e96714d41a0ccb7f7d08d4747e030",
+      "bytes": 481
+    },
+    {
+      "path": "t3code-install-745336e7263a/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-745336e7263a/effective-importers/execution.json",
+      "sha256": "e9f8f5e2b56c465bb39bc828a952d0d0c3a1f15291de25e912672d9d47d603b9",
+      "bytes": 637
+    },
+    {
+      "path": "t3code-install-745336e7263a/effective-importers/stderr.txt",
+      "sha256": "cb3ccd7f41e0286347c1fbb8a5f2cecbfba14c3dedea1a39ce05278bdd723642",
+      "bytes": 162
+    },
+    {
+      "path": "t3code-install-745336e7263a/effective-importers/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-745336e7263a/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-745336e7263a/install/stdout.txt",
+      "sha256": "d14273035ea53cd6e023b06cc859fc6955e37bb3fc2b4bca7b3e4e7ff1ebb74e",
+      "bytes": 3243
+    },
+    {
+      "path": "t3code-install-745336e7263a/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-745336e7263a/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-745336e7263a/preparation.json",
+      "sha256": "536c4526c02c47c6fa1e17e85780a5abd9b8fca2d42e76a590cef93514e85d80",
+      "bytes": 43409
+    },
+    {
+      "path": "t3code-install-745336e7263a/receipt.json",
+      "sha256": "7d12f68722ac76d1c4eb8aed2fd2094a139b5310733cf588fd0dff0531a3bd1d",
+      "bytes": 45212
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/archive/execution.json",
+      "sha256": "1a2156210cbfd2b5ceb61618771d45329d52ca71ae628cc2c5a571dbf256fb1c",
+      "bytes": 481
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/effective-importers/execution.json",
+      "sha256": "3a4f376623fdec298b69b02b52ba28c18f6f0a2fd0c6317213644ae26e0015c7",
+      "bytes": 636
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/effective-importers/stderr.txt",
+      "sha256": "cb3ccd7f41e0286347c1fbb8a5f2cecbfba14c3dedea1a39ce05278bdd723642",
+      "bytes": 162
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/effective-importers/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/install/stdout.txt",
+      "sha256": "34a740ce97db6254b80e7e5942339ec8f6c68483155a2721f5463ed9e5853be1",
+      "bytes": 1220
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/preparation.json",
+      "sha256": "870f8773ae8d42d30651757d289826fbfa040f0d5eac0fae333b5ec53a8a3e4c",
+      "bytes": 45451
+    },
+    {
+      "path": "t3code-install-e01e4bdf3124/receipt.json",
+      "sha256": "102301cd283d4ed83447178111c4048a71229a0cf621a8d6636e8086bb212ee6",
+      "bytes": 47252
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/archive/execution.json",
+      "sha256": "3f78f2d3f45c0c3b94a9d0fb7434bd89f9cabb3b197d634ef72d0d6f8faf7fc9",
+      "bytes": 481
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/archive/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/effective-importers/execution.json",
+      "sha256": "62460f40f37d0519c1e4c3e8f76019975edd679d40bd406c0c5d55ebbbe3f4b1",
+      "bytes": 637
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/effective-importers/stderr.txt",
+      "sha256": "cb3ccd7f41e0286347c1fbb8a5f2cecbfba14c3dedea1a39ce05278bdd723642",
+      "bytes": 162
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/effective-importers/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/install/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/install/stdout.txt",
+      "sha256": "a32b8e3c1963781813d621d5c35381ab074ecc73c5dffde16c1c62124719dc07",
+      "bytes": 1156
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/pm-version/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/pm-version/stdout.txt",
+      "sha256": "4a5dc3d0a78f249f6e8b39d6b7b72c34945edde8becc0bdb3ed0da0ae671d3dd",
+      "bytes": 8
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/preparation.json",
+      "sha256": "9c7252103a6773178c29184218d90e414707640a62929a16463c00d5652b12b1",
+      "bytes": 48520
+    },
+    {
+      "path": "t3code-install-eebf736b5b58/receipt.json",
+      "sha256": "c126e6eda6da14f6532f82e5d843dd7729ec49ca156b1c2f976b8f8f0706027c",
+      "bytes": 50323
+    }
+  ],
+  "excludedDirectories": [
+    ".git",
+    "__pycache__",
+    "active",
+    "cache",
+    "faulty-template",
+    "fixed-template",
+    "home",
+    "native-target",
+    "node_modules",
+    "parent-tests-template",
+    "private",
+    "shared-store",
+    "source",
+    "target",
+    "template",
+    "tmp"
+  ],
+  "exclusionRule": "Dependency stores, mutable source copies and private runtime/cache directories are not exported; their recorded digests remain in execution records. Raw Git tar stdout under archive/ is omitted with the source copies; archive execution receipts and payload hashes remain."
+}

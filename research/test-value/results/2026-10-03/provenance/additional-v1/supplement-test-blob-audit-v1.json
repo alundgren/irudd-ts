@@ -1,0 +1,753 @@
+{
+  "schemaVersion": 1,
+  "scope": "read-only parent/fix test-blob identity audit for the frozen supplemental 28 candidate manifest",
+  "candidateManifestPath": "/tmp/archguard-test-value-20261003/history-lock-matched-supplement-28.json",
+  "candidateManifestSha256": "2643b439b9ce8b6acb41a9a87cba6846d66ff674b2e51b5d56f4877045630b01",
+  "method": "For each selected test path, resolve exact fix and first-parent blobs with local git metadata; compare Git blob IDs. No tests, checkouts, or writes in source repositories.",
+  "candidateCount": 28,
+  "preflightEligibleCandidates": 26,
+  "preflightExcludedCandidates": [
+    {
+      "id": "t3code-10dde452f90f",
+      "reason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed."
+    },
+    {
+      "id": "t3code-7a08fcf2e832",
+      "reason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed."
+    }
+  ],
+  "testFileInstances": 28,
+  "testFileInstancesByBlobRelation": {
+    "changed": 24,
+    "new": 4,
+    "identical": 0
+  },
+  "bySubject": {
+    "scope": {
+      "candidateCount": 2,
+      "testFileInstances": 2,
+      "testFileInstancesByBlobRelation": {
+        "changed": 2,
+        "new": 0,
+        "identical": 0
+      },
+      "preflightEligibleTestFileInstancesByBlobRelation": {
+        "changed": 2,
+        "new": 0,
+        "identical": 0
+      }
+    },
+    "t3code": {
+      "candidateCount": 26,
+      "testFileInstances": 26,
+      "testFileInstancesByBlobRelation": {
+        "changed": 22,
+        "new": 4,
+        "identical": 0
+      },
+      "preflightEligibleTestFileInstancesByBlobRelation": {
+        "changed": 20,
+        "new": 4,
+        "identical": 0
+      }
+    }
+  },
+  "preflightEligibleTestFileInstances": 26,
+  "preflightEligibleTestFileInstancesByBlobRelation": {
+    "changed": 22,
+    "new": 4,
+    "identical": 0
+  },
+  "distinctRepositoryTestPaths": 28,
+  "distinctRepositoryTestPathsByBlobRelation": {
+    "changed": 24,
+    "new": 4,
+    "identical": 0
+  },
+  "candidates": [
+    {
+      "id": "t3code-10dde452f90f",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "10dde452f90fc3d4d1aea0add67d13cdfb2567ab",
+      "parent": "116c8c5e8e0db2fe7fad070c2f67738a62f93546",
+      "preflightEligible": false,
+      "preflightExclusionReason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed.",
+      "testFiles": [
+        {
+          "path": "packages/shared/src/model.test.ts",
+          "parent": {
+            "blobId": "00fb0a77500587984f4af0e4760916b7d8fe6cf1",
+            "sha256": "7b7ef544c9e7857437ee9a072b000d1e47995f3782d2ca5eac683876e6467342",
+            "bytes": 2248
+          },
+          "fix": {
+            "blobId": "8771a24c1cfb5a95587d9b70f070cc0073ec0009",
+            "sha256": "6bb7bd2e3bbb07a8a6768f320fa3422a7a7d0ec8ad79453d3638a1b9044d63c0",
+            "bytes": 2445
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-7a08fcf2e832",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "7a08fcf2e832da5969aeb373c46d5249b4e820b7",
+      "parent": "19d47408a53181446a02fac967846cc15d77d5b8",
+      "preflightEligible": false,
+      "preflightExclusionReason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed.",
+      "testFiles": [
+        {
+          "path": "packages/shared/src/serverSettings.test.ts",
+          "parent": {
+            "blobId": "0ac5e415dff0c2e9491307877a3b5520ffd549c0",
+            "sha256": "4915801a3fb5fd18a6e644c495bf006ac67714d013981c760e9bbe054ed48606",
+            "bytes": 1755
+          },
+          "fix": {
+            "blobId": "3d4a0da0bb108968ca999419722fde23b2661f97",
+            "sha256": "86eb3e7fbfa2201741188a9ab2c858176b92434430e7c9209c18820917bb8f11",
+            "bytes": 3243
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-49c1b64687f8",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "49c1b64687f8acdbe145f760988314e397170da6",
+      "parent": "dfdb5a46db30fb46db5c58d5fe047b32483e2ad5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.test.ts",
+          "parent": {
+            "blobId": "5e42199052e0bc75cbac6a0af31304c6711c7086",
+            "sha256": "df667cd67d14e8d678f2b932cfc820fd4b3f67855c455c25677dd8d97fd7a2e9",
+            "bytes": 1915
+          },
+          "fix": {
+            "blobId": "368e8387ee6004f015808f7f2eca60521ffd0594",
+            "sha256": "ddadb2f4adbaaef6457c0d6bd94f49c9a9f8146e5ea58ac76594d42c5d15e528",
+            "bytes": 2477
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-53042f47f85a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "53042f47f85a986257573773d9854cf59b957514",
+      "parent": "6ce6f678b5d70a8d2b7230ec45cbde04d54f80dc",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/composerTrigger.test.ts",
+          "parent": null,
+          "fix": {
+            "blobId": "99c34a373142b65bac9395fb54321ce37ee820dd",
+            "sha256": "4637611d70f72b1694bf2b39e95d1d792dd0c452c647d85434052781aa4b4e07",
+            "bytes": 615
+          },
+          "classification": "new"
+        }
+      ]
+    },
+    {
+      "id": "t3code-9b43123ba2a9",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "9b43123ba2a90ecaaf2eac1f75b6aebcf181f253",
+      "parent": "17fb0e4a9a068f3ba6c55871dd44ed3c5d70aefe",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/preview.test.ts",
+          "parent": {
+            "blobId": "e9b7217247781e8a03e39ba189bc507d6f8e186b",
+            "sha256": "dcd02262973488e75f229cbb766b78d0f79f06f92adda65929637a119654879f",
+            "bytes": 2375
+          },
+          "fix": {
+            "blobId": "6030686d3ed90b5f905b8985464ce17179bb6517",
+            "sha256": "5337de71b4be41bb724a97b72e81efc1ae4d2c05ea2f8e7117eb7a43d2a631c7",
+            "bytes": 2383
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-1d77cec99197",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "1d77cec991971d3113918e896b1c871e8b044da7",
+      "parent": "4ba4871af76081f0e830a91b8f747ff2de53ba7d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/projectFavicon.test.ts",
+          "parent": {
+            "blobId": "0011b2fc7c9920ec5586c93f8075996980fa0e86",
+            "sha256": "ef221ec11ad215059d35f7d5fb70f3ffac417a46aeace2152f320f48e149bcc4",
+            "bytes": 1034
+          },
+          "fix": {
+            "blobId": "1df17cc7fe5e6893194ad32c29bd50b196962447",
+            "sha256": "55395d32af31d7fbc46074035b31e9cc36a688ea81272c503fd2dcf79cbf0cd1",
+            "bytes": 1984
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-47dfc6526521",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "47dfc6526521866992f6b50beac4587b45114631",
+      "parent": "41ebf22eea64e177b11a0709a16d6716581cc78c",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/projectGrouping.test.ts",
+          "parent": null,
+          "fix": {
+            "blobId": "1c2621b2a8305ee950d78be91fce6f4459e7709d",
+            "sha256": "6d2ab2597cb118f9b3818254a8c6788c8209a13147af81c1d17c01995a657027",
+            "bytes": 6623
+          },
+          "classification": "new"
+        }
+      ]
+    },
+    {
+      "id": "t3code-849bac8946c4",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "849bac8946c40420174b4187e36fcf17b5ea7cc4",
+      "parent": "6fd088af9f77933745c8ecb93dda98fa0938ea4d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/connectAuth.test.ts",
+          "parent": {
+            "blobId": "9ffef3936bbf76207ec569036ff18625e00cee66",
+            "sha256": "ea869ab46fc2c19f243a069baa91266116927369ff4900fdd7de0c55b63d401c",
+            "bytes": 3094
+          },
+          "fix": {
+            "blobId": "275a958f274dc7c63b18109fd8735ea31ea1b4a0",
+            "sha256": "93767cab3bac9b01278703d6594450c08ed8e2526e753f52fe4071f3bb01d5ee",
+            "bytes": 4016
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-f21b47e52d98",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "f21b47e52d988839a4e488d9fa98344891a69b7f",
+      "parent": "efcf7d1ac03e784bdb26843d61ae0ff81c03cec6",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSettled.test.ts",
+          "parent": {
+            "blobId": "97f397da3e800f101f2286835345e1d5b04debc6",
+            "sha256": "2851ef061645bf0db64761a37cfe00bbacb9e4aa518590c5f67debcb6fe03ec9",
+            "bytes": 15849
+          },
+          "fix": {
+            "blobId": "06a8bb32c79379b8f1c606b968b3b788b29d3a2b",
+            "sha256": "51e4846a0ac930637f23d7b702afaa9942fdb6e54e424c5250b5ea30cffe01a3",
+            "bytes": 19813
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-2274444e9227",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "2274444e92275fda2033de6636e3143ac3599ffb",
+      "parent": "f34b9d31b3ddbd53a553141fd769721fca4b8eb5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/chatList.test.ts",
+          "parent": {
+            "blobId": "58e0e03f02608693aaa9ee83beb7041d38294fa5",
+            "sha256": "48f5af49c8ad5aeaad3498b7460b9f9dfbed18194064085875fc75995b140c5e",
+            "bytes": 1335
+          },
+          "fix": {
+            "blobId": "78cf90f2aa88508500a376e03021f2ea03329758",
+            "sha256": "7533a65467e4177064b333987972dea2b12b8b8a2a1c465c538188d183df9385",
+            "bytes": 1718
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-ead4ce52a162",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "ead4ce52a1624d9c55461f61524580978fc8b719",
+      "parent": "d3c24a14b92ccd8d832466dc7f0f51d979a8a21d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/usageMerge.test.ts",
+          "parent": {
+            "blobId": "3bee4a9bdc0258c42c10b813e0d140979d170743",
+            "sha256": "c1f3777e593264a03ada7020090f7ff59f1f3ae77af1ed9a875fc138152bec5c",
+            "bytes": 9321
+          },
+          "fix": {
+            "blobId": "6c706395c6ffeb7cc96edf2a09df63eb3b261d98",
+            "sha256": "caa6e02c74d87967a0d6941ca4f47dfce51151443d071c35992a036d037e1cc5",
+            "bytes": 10071
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-94f194816662",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "94f1948166620c804937f5548a68f5739d76c9fb",
+      "parent": "45c0dff8ec33a023c79ccb4e06494309253d1c25",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/dpop.test.ts",
+          "parent": {
+            "blobId": "c4ba298f66c5464957ffc04873a6108b47e5479e",
+            "sha256": "a23dd402fcace8c1dde3c9dcf73f4ce9441634026e2d048a12e062b8f7dd0ccb",
+            "bytes": 7417
+          },
+          "fix": {
+            "blobId": "c7bc6ff3028dbc99424ac2bfc5f1aa188cfdbf17",
+            "sha256": "3e61f975168739ce3be6243f79aa5091e1e05ee6046aa55995330e15cf409c99",
+            "bytes": 8629
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-ebb9b9fda03d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "ebb9b9fda03d33a81cad3ce7f4d1106adba3044b",
+      "parent": "fc262f1a28d8305951c751f2486da6ca72e6c1d1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/pullRequests.test.ts",
+          "parent": null,
+          "fix": {
+            "blobId": "e5dde9d8427c8892c00ed72ea035eca4f3410b1c",
+            "sha256": "a06a7ab0572b76659dc7f6040d2f5468a8642fed4eaa809349bb7b0b98acf45a",
+            "bytes": 5508
+          },
+          "classification": "new"
+        }
+      ]
+    },
+    {
+      "id": "t3code-2971ec3209d7",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "2971ec3209d7ef1b00d7ded70fe6342816b1539f",
+      "parent": "15fea6c5f40331c8325f33bd08b2dcbf924e935a",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSort.test.ts",
+          "parent": {
+            "blobId": "f4ea270a001e1f99e96336f41a6435be7f694f9d",
+            "sha256": "060d9191107064e6041cef3718ce994e9ec314156c8e4e1533dff885bd5e7425",
+            "bytes": 4220
+          },
+          "fix": {
+            "blobId": "a51d4cfed09348a2bbea139f581b7799095d5e6e",
+            "sha256": "cb96d8079beabd740c37964ddf695e6bec8d1c36a9d8d34ca3258d86682bb4bb",
+            "bytes": 5255
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-cfddb4201df8",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "cfddb4201df8941bbfde008919da70fe5ec7552b",
+      "parent": "57626eb6eaa436b22260068d23f4e3df5f389cd1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/sharedSettings.test.ts",
+          "parent": {
+            "blobId": "dbdf651180d3237ac3e46d5cc6a71c6ac8de84c3",
+            "sha256": "9e510f491f5d25c3e8d80b2c5b94966e48b93e7fb8d5881e8152693b53fd6148",
+            "bytes": 3587
+          },
+          "fix": {
+            "blobId": "8c46a9f3357909d1f9f0799f047c953da91d03e1",
+            "sha256": "0ed0b80fc512f8352583508d9a71b87d69b40df92fcdb1731a67883f463c94c6",
+            "bytes": 4534
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-b34ff8f56469",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "b34ff8f56469afa8f3f85d89894e1b4cf49b5213",
+      "parent": "09b81a34954c990f70257ae05efbb602c90aac97",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/usageLimits.test.ts",
+          "parent": {
+            "blobId": "33f180ac9d6cbd34dcb6bb003913e38e9ad40267",
+            "sha256": "da7c509db8e04c3102759d7133ec00f9f7716f1a4f63fd871048d851d07a05b0",
+            "bytes": 5849
+          },
+          "fix": {
+            "blobId": "83ac6906c61e260cd12f0d6aceafdbf406808dd5",
+            "sha256": "e178d1a3a444ff7ccc787f9b80e7098d08a3c6d212fe75225c6266fe604d6b93",
+            "bytes": 10292
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-82f64cd8d046",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "82f64cd8d046ab4ee8588f7bcbc1e66a4a0c80fe",
+      "parent": "896fe82f2f191eb8ac0fd620e19c25dd48253592",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/composerInlineTokens.test.ts",
+          "parent": {
+            "blobId": "81fd6add20564011e7b24567ca2c4a1b88485c29",
+            "sha256": "fbb8c1bdfbb080a3bd71cd6e46366562493926e694ac13e3d6e9d18daaff4898",
+            "bytes": 4678
+          },
+          "fix": {
+            "blobId": "5ce8f6281184b7d0a61e340a79105f47fe32f0df",
+            "sha256": "e55e72a8310e08aed039c965702f095cfd4a1e20c6a98682ae0752e384d68734",
+            "bytes": 5434
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-a0eb23993a3b",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "a0eb23993a3bacf96d618918f43ea18f2da72390",
+      "parent": "b01771c2383bbcdf154b8c4e9f1a7d5e3867e2d0",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/threadReference.test.ts",
+          "parent": {
+            "blobId": "693fabc66b160aef41730d8caa72f1de5590d226",
+            "sha256": "1128a31b38675fad02e3dcd05b35262f5c3a7bfed2f8d128d397eab23820f7dd",
+            "bytes": 1248
+          },
+          "fix": {
+            "blobId": "60600c7e146564d10a39cbafcd68833fd35e6082",
+            "sha256": "fe6b320a00ac6d468717db83d9c23a164f95c1264510c445dca945772a0c50c3",
+            "bytes": 2136
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-94cc8152fff5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "94cc8152fff5fd06baafd25964f54d7ec1a34f8d",
+      "parent": "931d41f933b2536f699975412169f5318e6adad5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/orchestrationTiming.test.ts",
+          "parent": null,
+          "fix": {
+            "blobId": "7703421d5c2990f06340d2cfd4fe272c5ff58bbe",
+            "sha256": "56157403d31a3361f3bb1b8b1e78b016c9afba486e95f2047f8c5745dd825963",
+            "bytes": 1044
+          },
+          "classification": "new"
+        }
+      ]
+    },
+    {
+      "id": "t3code-95d99373b74e",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "95d99373b74edfb3bfd092c61a15999a95727423",
+      "parent": "98469159dd9e162a9c2f5cc4bbb2fbe89b3c4f67",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadFeedback.test.ts",
+          "parent": {
+            "blobId": "14ce5185f4ade7eef19e2cbab448f12ecfdf32f0",
+            "sha256": "cd54394b359345309d8fb6102c027ec0402c95a3b1e374ff98f9bcc0e754c63e",
+            "bytes": 5251
+          },
+          "fix": {
+            "blobId": "cd66961a597fd7ded0774f714a9353dfbd8b38ff",
+            "sha256": "1e4e43d10f5be93c0c7e8f1906f69bac803790eb225296c7f98cfabc231bf426",
+            "bytes": 5274
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-02297e3dbd89",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "02297e3dbd896ef619d5c916938c751e343e76a8",
+      "parent": "0a37240a87bb2fed8f48cf20dc8312ee3b94eba6",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/threadPullRequests.test.ts",
+          "parent": {
+            "blobId": "7369b526dad3b61de82feb50c3496b9c324b10ec",
+            "sha256": "4340b04042adeedb847c6fbb0e52f8dca9ce40777f932f6048f7eb520a91dde8",
+            "bytes": 13947
+          },
+          "fix": {
+            "blobId": "05fc7b12b021e9101b1b069fa950fe7dc325a0db",
+            "sha256": "bed0fd8d01a2465b9abf2de7cc2a4aa51b2e26aad05275a5c012155392de4288",
+            "bytes": 15166
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-87a12b53fdff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "87a12b53fdff7e2e0318af3edea54005557cea56",
+      "parent": "f4600d77dd7c2fa9f10e8f4500882e427fcc7e26",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/usage.test.ts",
+          "parent": {
+            "blobId": "29f029c9d86357d34df06b332ebee8fac9c3861a",
+            "sha256": "cc925553ab8be9dfcadb2d1808c4b08aa8339867f9cad3cfdba00f9c45215f09",
+            "bytes": 5824
+          },
+          "fix": {
+            "blobId": "98eb46e13ca8d2b6005d3bbd7b9ab2b57db3fba0",
+            "sha256": "9852b3dfad6b155acae33b5f3dab50755e3a8a5cb1cfde60d018f369faa98613",
+            "bytes": 7632
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-87d842801921",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "87d84280192195b338e27acf2333771a13d04e61",
+      "parent": "3412097bff7ffa62ef79e735c65d1e5cff71c356",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/otelEnvironment.test.ts",
+          "parent": {
+            "blobId": "3b6dac4b501be242ba907d1b5d8d52406e63b78a",
+            "sha256": "2d7876b3a2aa9fdc47535cb51695c108bd422a26eaefa778b71b8a0bf7ac4768",
+            "bytes": 3258
+          },
+          "fix": {
+            "blobId": "548f2a78b7764b1efe01338a7d8d3de653aa4afc",
+            "sha256": "9fa25ed2eed850ad6292f5ba3fab55ef03a370980ad255ce689039504713a937",
+            "bytes": 5213
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-d06f0ff1048d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "d06f0ff1048d42a156824765316c5a2dc54f5bca",
+      "parent": "e5a46d6c5d00b89afba5274a94d42428c8d79763",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/shared/src/nodeSqliteClient.test.ts",
+          "parent": {
+            "blobId": "25b0ba2d38e82ac1ebb8aa017c254061aef3298a",
+            "sha256": "7ab95ef27f8ca74d677145f3cd95aa26197eaaacc37fe6f423af9cf0c7ba9979",
+            "bytes": 2001
+          },
+          "fix": {
+            "blobId": "bbdaa4624901d521929affde8035f341e943fbbf",
+            "sha256": "c872145dee145efdfd58fb7a726161c9707968fe55332ffe5a2ce33daa821ed2",
+            "bytes": 4299
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-6ea01f8d2441",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "6ea01f8d24419019588f2be589681929d8e26b0c",
+      "parent": "a97a4a9d189f145afe79c3a6f8533bbf9a6b40b1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/assets.test.ts",
+          "parent": {
+            "blobId": "bd266f2616754cda32629f493d98b58ee045a439",
+            "sha256": "95b8576eeeff353c62c12ac05a497db008e153db8cf5535ca6892e533ae74529",
+            "bytes": 15884
+          },
+          "fix": {
+            "blobId": "e3190079afc1759790b30f18f98dd73b4f21c09b",
+            "sha256": "bb6241e2fd36152ef8faef6204bc7c6b15085e0c18a1b1ee1874001ced4be26c",
+            "bytes": 18975
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "t3code-65731f986ba2",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "65731f986ba2175063b0182deb6a143f8f323b74",
+      "parent": "aad732901e4b7d485574eaef5a9c1fb388c4291a",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/subagentDisplay.test.ts",
+          "parent": {
+            "blobId": "11184d369469dbe3aca6a5d166003b46aaba492b",
+            "sha256": "44c8e38aebe5a7822ed5abde4b566b7c472c37b3e7539fc4227eccfaf7327618",
+            "bytes": 1153
+          },
+          "fix": {
+            "blobId": "3485cd4f2da2dbc0c30a2937ae605a298166bc25",
+            "sha256": "b3758b31ec5d4c79019cb158ab4523dcb5bb1a61481c68e0bcf341c7bdcb20f4",
+            "bytes": 5395
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "scope-c152601dfe9c",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "c152601dfe9c5e1077b2a34290979d4c5f8fad24",
+      "parent": "79aeb7f49874f7cd1530a16065df88b448bffc51",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "tests/voice.test.ts",
+          "parent": {
+            "blobId": "187df24de1609eed46136c22a158a7432d3815f6",
+            "sha256": "11a77c362e5a4a6ba3559e0bef19c395f4df68dfe1367ed7a0ab75c0484203a2",
+            "bytes": 25765
+          },
+          "fix": {
+            "blobId": "ba8867e6f92fedd65a714b0e4f50ec28cc013538",
+            "sha256": "89a9565e8bb281cfa2f549a2bc770369d70f7ba9452efec1cb23b7c37322642e",
+            "bytes": 26274
+          },
+          "classification": "changed"
+        }
+      ]
+    },
+    {
+      "id": "scope-59ed3a2a3ee4",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "59ed3a2a3ee44dd525504dd449094c554232fc8e",
+      "parent": "e29c41a97657458ad7ae4a7d5031f71e87331342",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "testFiles": [
+        {
+          "path": "tests/remotes.test.ts",
+          "parent": {
+            "blobId": "4ca1c31cc6147b1289e83671e187d4cba2fd7614",
+            "sha256": "185db2284c83c1e3a99b0e0d9d89e3f6515d11cf831a07a38caff8c5d524ff77",
+            "bytes": 16206
+          },
+          "fix": {
+            "blobId": "6d0fd0771384540d36a8ca0da731943f1e70eca8",
+            "sha256": "02bcc1321c6054a951c07111bbdfc445d81b6ea8a70770078e74a70e811b91d3",
+            "bytes": 21202
+          },
+          "classification": "changed"
+        }
+      ]
+    }
+  ]
+}

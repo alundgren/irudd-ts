@@ -1,0 +1,28 @@
+{
+  "confirmed": true,
+  "repository": "alundgren/irudd-ts",
+  "integrationBranch": "t3code/test-value-benchmark",
+  "finalMerge": "leave-open",
+  "subjects": [
+    "archguard",
+    "t3code",
+    "irudd-scope"
+  ],
+  "historicalTarget": [
+    30,
+    50
+  ],
+  "historicalRules": [
+    "verified parent/fix revisions",
+    "fixed passes; buggy assertion fails; correction passes",
+    "freeze test pool and mutation requirements",
+    "separate full revision from source-reversion reduced replay",
+    "identify new regression tests",
+    "equal test-count budgets",
+    "retain exclusions and raw evidence"
+  ],
+  "diskStopFreeFraction": 0.12,
+  "guiOnMacAuthorized": true,
+  "report": "interactive HTML in Scope",
+  "publicProtocolChanges": "only if necessary after review"
+}

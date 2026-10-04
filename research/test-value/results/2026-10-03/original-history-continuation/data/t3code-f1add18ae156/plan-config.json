@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "packages/shared/src/delimitedPreview.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

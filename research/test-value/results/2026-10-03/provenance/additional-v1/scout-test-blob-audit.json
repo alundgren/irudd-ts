@@ -1,0 +1,4439 @@
+{
+  "schemaVersion": 1,
+  "scope": "original-registered-50-exact-tree-metadata",
+  "requestId": "scout-test-blob-audit",
+  "metadataOnly": true,
+  "candidatesVerifiedForIdentity": true,
+  "faultsNotVerifiedByThisFile": true,
+  "screenPolicy": {
+    "manifestPath": "/tmp/archguard-test-value-20261003/history-registered-50.json",
+    "manifestSha256": "70a71103b24ad8b688e3603aaf89c2bfba0b801245bc4605eaa5decc4fb25b05",
+    "candidateCount": 50,
+    "selectionPolicy": "Keep all 50 preregistered candidate identities unchanged. Add parent/fix Git blob IDs, bytes, and SHA-256 values only; do not filter candidates based on run outcomes.",
+    "candidateSourceScope": "The existing registered manifest supplies subject, source/test paths, and related groups."
+  },
+  "currentLocalLogRef": {
+    "measuredLogPath": "/tmp/archguard-test-value-20261003/history-continuation-measured.log",
+    "measuredLogSha256": "8d85cebe4711eed849c0bc460685182c1141cb738de04ff487caed03c85aa5ca",
+    "localGitRefs": {
+      "t3code": {
+        "ref": "origin/main",
+        "commit40": "70e5a40c20ddbaab7831ab36e17e64c9908269a5"
+      },
+      "scope": {
+        "ref": "origin/main",
+        "commit40": "8f8d6306179cca796c766243d402bacc96e5ffe3"
+      }
+    }
+  },
+  "counts": {
+    "candidateCount": 50,
+    "testFileInstances": 76,
+    "changedTestFileInstances": 74,
+    "newTestFileInstances": 2,
+    "identicalTestFileInstances": 0,
+    "changedLockfileInstances": 0,
+    "candidateLockfileBlobPairs": 50,
+    "rootPnpmLockPresentAtBothRevisions": 50,
+    "bySubject": {
+      "t3code": {
+        "candidateCount": 37,
+        "sourcePathInstances": 85,
+        "testPathInstances": 61,
+        "changedTestFileInstances": 60,
+        "newTestFileInstances": 1,
+        "identicalTestFileInstances": 0
+      },
+      "scope": {
+        "candidateCount": 13,
+        "sourcePathInstances": 21,
+        "testPathInstances": 15,
+        "changedTestFileInstances": 14,
+        "newTestFileInstances": 1,
+        "identicalTestFileInstances": 0
+      }
+    }
+  },
+  "candidates": [
+    {
+      "id": "t3code-f391794a35c6",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "f391794a35c604d57e166a3ab48d56fc6e4e469a",
+      "parent": "31a9da179ed0763335f05681c577474aec5d2309",
+      "title": "fix(shared): classify workspace previews by literal filenames (#10311)",
+      "relatedGroup": "preview-classification",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/filePreview.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "da62d2e689ec2a6fc5535d553ec6feb5c0e14b5e",
+            "sha256": "ffda73eddc45277fbabe0b2d0ba0686375a9974e545ae9a9ead529d63b5604be",
+            "bytes": 7289
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "04e285eff2245c5ef29d006bb32a14abb0f5f8f1",
+            "sha256": "e713b85410a6d6812a91b29573fceed7f796d083cc13b1151db03e70f775ad3b",
+            "bytes": 7252
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/assets/AssetAccess.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "71a2c769ef4ee98ee771c2344f40df419aaa7b0b",
+            "sha256": "30e775e0b5f607bacc606f613255a3d1bcda395d9fa4636eed830cfa33cf3dc2",
+            "bytes": 51294
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a596ca55c32a9ea40482ba85a9b41c7b7f1742e1",
+            "sha256": "4c8d506ffec3e9e2016f79f10bed38f2e7a8a463d88cec281fd159f7ed29775b",
+            "bytes": 53075
+          }
+        },
+        {
+          "path": "packages/shared/src/filePreview.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "34d619e7a78283c3a5de7812d06aa84e5082d23f",
+            "sha256": "0f5936db61c52a85b5ef02aa65b12a60a2b8b0c55d95e5726cac2e422c9b07f8",
+            "bytes": 3960
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "602fb8299cddd6903395340e92e9fd4c07d765ad",
+            "sha256": "0ba70405848f7213715eaa66132e0707f0cb5b91e5bf4f0615530c032d5d4548",
+            "bytes": 4176
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 4,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-f68e24fb419c",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "parent": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "title": "fix(web): a thread that left a shell running shows its unseen completion (#14910)",
+      "relatedGroup": "thread-runtime-presentation",
+      "sourceFiles": [
+        {
+          "path": "apps/mobile/src/features/threads/threadListV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "f0b2459301ae6c8454c181a1484e46ff9dd3e090",
+            "sha256": "fc290e9ed704bd4a7658e0253e7f1c9e7f1d15a857117751ce8586e3be9dcf91",
+            "bytes": 29876
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "48f13e348b08a077d539d22fc244fe6d73c6b1fe",
+            "sha256": "9a4e473efdd3780509f1405870511d308a4a3e48e816346f03db7e990c81a445",
+            "bytes": 29976
+          }
+        },
+        {
+          "path": "apps/web/src/components/Sidebar.logic.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4f504e286d0c36d90d68954f620df29643176068",
+            "sha256": "eb45bd8c2c543a0fc747757261b871e2a7055fe016bf5af4df5dd1a5fd71683e",
+            "bytes": 48979
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5a579bc503a410c195f8c4d5cf1866d3d4a90f3d",
+            "sha256": "e94261762cb98f2146fd0a981403d68b5b7ec71aecd17a20917f7f80fd7ae091",
+            "bytes": 49227
+          }
+        },
+        {
+          "path": "apps/web/src/components/ThreadNotificationCoordinator.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "e59099d62d4faacedb66dded219b44d95852c86e",
+            "sha256": "d62c5f89faeaadc65c0f6ec46a32fdea5534fa7ce5be3b1a4b8d275f8b7f440b",
+            "bytes": 8730
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "741e850ca0d6602b6f9e658038837c79294aba6f",
+            "sha256": "e5f272560766712518bb1f6b648abef7041c0053e733c8d5878faf370893d765",
+            "bytes": 8499
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/models.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "37b7b5b8e3036b41ed6d45d1b0f03365b65cddd8",
+            "sha256": "dd12c5f3447096c1e4169791450ccd3652f61951399ed3c4c4eaf91b1214c7f2",
+            "bytes": 12651
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "dc74aff6ff587a8ed85dbf17355d840f64cebd38",
+            "sha256": "761c07b6009962107751f1847dd7069cec899e78541ab098d59288c2515c9de2",
+            "bytes": 12929
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "51321d72267759ff36a41c5e9a8b413b8d72243e",
+            "sha256": "39ab1da5aa966d53be2c22529eaca595323428ea976a0944eb47e09611d8e333",
+            "bytes": 14645
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a7722af0391b0b22c5a79f1c5e9f36c3be793aa1",
+            "sha256": "9870884a7b898426ae71f3e1403b34888c70ab369f8a9290226e641bba808c2d",
+            "bytes": 14815
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/mobile/src/features/threads/threadListV2.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "166baa9d2e46d3b43ff50aba628e0484d60523b8",
+            "sha256": "a1de29a56e1c0120f6dae96bb27adff7c2b13054faae9a248d58b5b29a28705e",
+            "bytes": 76479
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3e60d44f73f50b836fef8c050c2d1a55de399129",
+            "sha256": "9f2263a415b7e44d8c0eba94495c38b069c527eb69ab39875530d9525ba958f5",
+            "bytes": 77377
+          }
+        },
+        {
+          "path": "apps/web/src/components/Sidebar.logic.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "33bdb2129bf97f4bb38c8767271db89b3e87fc69",
+            "sha256": "a534aa8f7b606e4f1a4140d3d2d09ff6b4504c0c1ccfe948240ed1060c449096",
+            "bytes": 70237
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5b8b7688953a823972079dafa6fdfe73f064f080",
+            "sha256": "c9bec1d705fdbd9dd26c5eff19792d1bf59828f3b6144ff5907d558d2de52b0d",
+            "bytes": 71776
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/entities.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "736e05c8356240771b47082208962e4b9b5c353a",
+            "sha256": "2629c8955b6dbc43f7629a19d7630a5dbd8cbaf568333151f8162f60afdd5b42",
+            "bytes": 20561
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "1a2581609bcdd401a730c816b401ce4dd11b60ca",
+            "sha256": "a50f13d0676da32a5f3aaed3465b3d1b5d4bcf38f02aa12fa49b88059409c217",
+            "bytes": 24193
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 8,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-a5b34b25378f",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+      "parent": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "title": "fix(clients): a dev server left running no longer says the thread is waiting (#15114)",
+      "relatedGroup": "thread-runtime-presentation",
+      "sourceFiles": [
+        {
+          "path": "apps/web/src/components/ChatView.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "8e105a49f37f49ee18f358e88c03716898f62206",
+            "sha256": "612245e3f1de3890496d9bcc21ae41bff18a5ac9af70955f30354546c179a190",
+            "bytes": 450213
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "fe72ec446d348c14dd6bfb4e4ae65e90c778be10",
+            "sha256": "aeaaaa576bbbf560f3f99b18136745ac1594e1cd2d3fabef5ce8b7d54f1749f9",
+            "bytes": 450416
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "962e508670eb82975d275b07d3a8849f7f4bd1d4",
+            "sha256": "806ba7364cd1ec8662dcf959c18053445bbf0fc5bdd0ce692afce3d7b9aa66e7",
+            "bytes": 14118
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "51321d72267759ff36a41c5e9a8b413b8d72243e",
+            "sha256": "39ab1da5aa966d53be2c22529eaca595323428ea976a0944eb47e09611d8e333",
+            "bytes": 14645
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "92745606d1eac1e7263423b3c1813c66f5225387",
+            "sha256": "659705d6862bba34de764d492f0e3b9603c82e126ff00f91932ab8662de540ff",
+            "bytes": 22420
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6ee64d2eaf66e227843e6fcf28080b498af6d691",
+            "sha256": "afe4b1c46a7fbf74239ba0374422517d04523d2348a6ccac24f7bda42b4599fe",
+            "bytes": 23537
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-56914128c1ff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+      "parent": "6108ef3d3d0ef2a598088a1bb64980580e935830",
+      "title": "fix(usage): Codex Fast and Ultrafast now cost what they bill (#15101)",
+      "relatedGroup": "usage-accounting",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/usage/UsageService.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "a3b07d64d71b6f92f699038b3cf4656ab9afa313",
+            "sha256": "7292fa5deb652ca0285e4a2e2d6ec8082963b37bb8800fd746f469e52e14ed61",
+            "bytes": 35633
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "026641ae4d070e08555772d8d2e77935fdee9aac",
+            "sha256": "80e8e190d51516f6501616d2ea9adb773ee917627a5c9bad3119ad9e1db72f6f",
+            "bytes": 36067
+          }
+        },
+        {
+          "path": "apps/server/src/usage/antigravityUsageReader.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "54c00b804b7a1a37071af1363805af514164afa2",
+            "sha256": "c90513d5d697a26cd5aaf45c838f814f96a4593fc4279775e900878f5ad54cf4",
+            "bytes": 13576
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "34a88114f42eab0595aa74782ded89482855c51c",
+            "sha256": "65f05c2eaa0e9865a552dc323a13d082d3a7a825bab2febb5c33a4fdac42f4f6",
+            "bytes": 13582
+          }
+        },
+        {
+          "path": "apps/server/src/usage/cursorUsageReader.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "31fae24c3cf5bca345ca446a36055af2af2098cb",
+            "sha256": "b53c63670fa572b0667f1b7203cecc79daf303c4c97ddd8a0f783685c6866165",
+            "bytes": 10755
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0931718cea647e3ac39b848091ee03c77a93f0be",
+            "sha256": "684f6324d792d02019f95f5fd397f6e1db51eb5037c2cbdf7c0751262af8449b",
+            "bytes": 10761
+          }
+        },
+        {
+          "path": "apps/server/src/usage/opencodeUsageReader.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "45d6ef33a58438abbe73e7bb1f243137372565a3",
+            "sha256": "7bbc5e15d4b1508bd6b46a2f9bd8c9dac71f93fabade19250a7b7efa8b3b2fe8",
+            "bytes": 7145
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d4414ac7b9a6ad3208aa6e90440ecbef4e12ef62",
+            "sha256": "1047b04c40cdd4af4a5d7dda1643d4b6253200cda78830b7184d663a4660296f",
+            "bytes": 7151
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usagePricing.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "78f6cf2c5cd9cd4abd174f744f346f411f9210ac",
+            "sha256": "f1ff7825aee2ef6898aacd4996b7eb5ee95d6ce0c30cc9db2d1ed3e039fa33a7",
+            "bytes": 8597
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "63190eebbf37dafc34a9aa94c3f11b89c1f7e131",
+            "sha256": "aa2a9cfa8e3a3ddcdf9b51b022ba928094e7d6383d793df04ccd00dcb455c2ef",
+            "bytes": 10340
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageScanCache.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "79cca5cff8e2a406546a216cc3ccce754a404608",
+            "sha256": "727650eb0ec72f6d78c61574d50b4ca1daf3d8d9b2e358fa9b4233ca9626be67",
+            "bytes": 11625
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3c6826a67986602b8f39a1da7ae97a89df7b9d11",
+            "sha256": "3eea3115e08fa056459ef08e242c7ee571902420fbf89c207330974c72827ea3",
+            "bytes": 13193
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageTranscriptReader.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "faa68699077776ca6ec3eaa1d96103cb1821933d",
+            "sha256": "6b8294638e9572fa571e50a3269ce407f86f3aaeefd333ffc3f4a002e5b99f49",
+            "bytes": 14306
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4d170237568da0589866ac22545b82175a9fb072",
+            "sha256": "fa194f189da133b5f728627af7718aae0d053446b4a492c290b849288685c81b",
+            "bytes": 14475
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageTranscripts.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c3903ef4719428b4916e579e21fee569274a4bdd",
+            "sha256": "ffe22d0b7dd61ce2504c59a8183b386fa5deedc038ad2eba51c4bb47bc987928",
+            "bytes": 19425
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "eb32e664f43656511b33b307c3df411c698e243c",
+            "sha256": "f209bc7f5ce594d22180f315f7520b4781f668a32b836de9c1dfe70eb1e579bb",
+            "bytes": 20495
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/usage/UsageService.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "29fcecdc234ecf3b425f490838b3fa6d748a969d",
+            "sha256": "f53bf93a8f034a446344ae7a29cc7867b795d07f7311a8b3aa6ac329a5d30b82",
+            "bytes": 44633
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "127679d0a449d0b0b45768ab5bca2b721896037f",
+            "sha256": "e0536fba352a8215ca2193b2a97fc83a4c73372fbe7384596024168c5b0ca809",
+            "bytes": 48559
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageAggregation.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "75435de08ff7782f723a2a985256bb0ddc4285a2",
+            "sha256": "98450b4a6bae34d78e7e75778f6841d963b1812cc38979b2a9ff39ef6920dd04",
+            "bytes": 6360
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "7ae0712c12ba66e78ca94e96417f1ca519dbf6d0",
+            "sha256": "198bad5a640636f8df0350c992cc8608b3c7a74e0634de0e152a7a41c6cd2a8b",
+            "bytes": 6382
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usagePricing.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "db4f68c2cb42f5ef89342418c84e90959ec11a2e",
+            "sha256": "7fc1ead5797e8dffd2413970a5549990cad337d617f91731cd492ddc8937d5a3",
+            "bytes": 6636
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "badd50a4901fd2346940c7795b8e2660dfe583ad",
+            "sha256": "aa9778893e44dc7a7a2e247d1d2be6007457ada197d7bebf413c34eccecf1f10",
+            "bytes": 7927
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageScanCache.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "6455b1eb7770a6ebf21dfbd315c1e946037d1e00",
+            "sha256": "2c9a2b47b5bff5b7e5ea3f5f0ef03d4b051561ce00b9c6ced7f5f1682fc71541",
+            "bytes": 8263
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "82ff1e36dfc10454bd786263a1f42370c9ecbb2d",
+            "sha256": "f30eca60280cae28a833891277445aae2d5ad7d77176463096650b53b39cb99c",
+            "bytes": 8345
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageTranscriptReader.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "6c95a36df19b81db2b7373f967104a2dfa4f92c8",
+            "sha256": "c13e8df944a9c534ee41c624ccdd52ea0ba3a59fb5729e414589bda799298790",
+            "bytes": 30368
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "e55c01ad491924d70af94cd184d9b64e99b1b517",
+            "sha256": "660a97744c73b82b3cac2061743dff48281f7432866ae600e0040a0bc84dd5c3",
+            "bytes": 30767
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageTranscriptStreaming.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "2187fd4aa4314794acb665458c0baef37f75ef3e",
+            "sha256": "0fe56ce80884f0e3233a01e6301820fe152d26b75c439c20cfad1122d2776a42",
+            "bytes": 11850
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "fd23593e55233bd9a7dce281549ad82b07eebc3e",
+            "sha256": "b3076887c71ef211b88dcbe26b0f765ffd68c93f983166046f319d0e1b55271f",
+            "bytes": 11853
+          }
+        },
+        {
+          "path": "apps/server/src/usage/usageTranscripts.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ace3b7d18cf7a88f621a33f4d2e29b1a08ade8c6",
+            "sha256": "9b7fcdda66e6480a6b4a1ece784004a9ce627890bc09bf496c0c79b83c9047a8",
+            "bytes": 19571
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "8d668a13982234e2ecb8a47acbf9909ca19e379a",
+            "sha256": "89779e5ccc55206f5e222cf211a28dbe3371e552bb10e04c6c950a4970f06a98",
+            "bytes": 20558
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 15,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-63f74e209dc2",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "63f74e209dc27df1f8733535d6fd4a79d442add8",
+      "parent": "ca4f84e702428656665d53635e16251112091657",
+      "title": "fix(opencode): fill blank reasoning labels (#14978)",
+      "relatedGroup": "provider-trait-presentation",
+      "sourceFiles": [
+        {
+          "path": "apps/mobile/src/features/threads/ThreadComposer.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "a0eaaaf855485cc2623190a5a8b1ebd378c1e8ee",
+            "sha256": "b56fb38bb8ca7447b103491189948bf3919276764a318b9981fb53e4f0b6ddd1",
+            "bytes": 48300
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "16b09e7c1b1ac99220bde2b2053c89c5fee43036",
+            "sha256": "28fab0f2864216c272ec00f2179c92d393a30be414891aadd578572671fdf483",
+            "bytes": 48455
+          }
+        },
+        {
+          "path": "apps/mobile/src/features/threads/ThreadDetailScreen.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "19dea22e9e667fa06c8cabfc4baed03498f4d0b1",
+            "sha256": "add95d8bf468c533167889750ccf3bf967269b30506df1ba2f98aab835849a67",
+            "bytes": 59356
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "623ae734053d4e9489add0e4b46668f5039ea984",
+            "sha256": "ae9903bcb19be62eca43844fbf0f31348b8abc9d5d221730aad228f47a95475a",
+            "bytes": 59698
+          }
+        },
+        {
+          "path": "apps/mobile/src/features/threads/ThreadSettingsSheet.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "f029bbabf258e45f8a902316337856da1ddbdf2f",
+            "sha256": "fe2b9089cb73163ca2ab6551ad5699729cddd776ebc7c4b500d6c6a20197a4d8",
+            "bytes": 50275
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "158b8d7efca9a2fcd10f13f2788372c5634b5769",
+            "sha256": "0045aeb2c50b9a9703496e27781376c1a34ef36a1dfa1c41232636044300a13f",
+            "bytes": 51001
+          }
+        },
+        {
+          "path": "apps/mobile/src/state/entities.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "649545b1f927cc1a55074972d677d17ec2ed1a1e",
+            "sha256": "81472ce67b0ee13439555547205940b69e8cc3f1c0aaab00b7f2800c03190656",
+            "bytes": 2985
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3bc9066a399e4671102bed8e952b37860f90629b",
+            "sha256": "749d0459245efd1ad92a523671b17ab2e673d36f21ca1f070b63e54226a218ff",
+            "bytes": 3449
+          }
+        },
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c972e060ad9108951a257129222d9f915e36292c",
+            "sha256": "6117ee0cd80029e12fdc39e00856208e8dccf159262ed9470d234996b1028b75",
+            "bytes": 175203
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d1e81eb725c45293cee539ee8d25a90949859c4b",
+            "sha256": "33df26f49f041565764e59a89003ab6d153e3069a871f89a9b081554b1003f42",
+            "bytes": 176817
+          }
+        },
+        {
+          "path": "apps/web/src/components/ChatView.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "e2037c2a0645a7f425adf63837fc230ad6e8aa32",
+            "sha256": "e5ffa2beac60726e06cbc41ad26ae4d4b3018889ce71c93d9e04b8d742cc82ec",
+            "bytes": 448507
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6f01da357d5fece6d3f6fc418b22cd7694fff05f",
+            "sha256": "8d669e88ea9f1a913e3d9204d7c2465cc7847c197fbd45176fc157f15579235f",
+            "bytes": 448797
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/ChatComposer.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "a5ca8d1d5a7c0c1739806ae43db744c410177260",
+            "sha256": "2a6242af07dd00b5203a2516206713005b6cf8b47fe9708c9311e5f8b067c305",
+            "bytes": 308202
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "8cd297925f31c31a5b492afa67afe86e585cab4c",
+            "sha256": "ae40fa14e62c255b89aff14f58f7c93d4017d2d78509363e725c517035cd1861",
+            "bytes": 308336
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/TraitsPicker.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "0dbfc3ad531d3810c0101e2229af3779ec557084",
+            "sha256": "b8d2d220a15c4b821acec40777c2de8c433d120ce1d3fc6e5e677e82e307a2f3",
+            "bytes": 23034
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2debe0ba0c707a27fda13cdf0b29069259deccf5",
+            "sha256": "6d9f1d554bc3fc861f596b66e5d282cad198309870b6a0fb9ba7db9c684ee18c",
+            "bytes": 23922
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/composerProviderState.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "1d53d498dbd83a08832dbc8b8a141a917154dff5",
+            "sha256": "be780cc33feb7c7c592fcdcfd0bd09b274be7a328664010ffca8627b6d360bd1",
+            "bytes": 7274
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4d887587e9355d5f7cc9f6df9e8db82969b25fc7",
+            "sha256": "6ff1f2a4c2dd06a58b082815bd95af290831d32e541e52b401f21d719d226fb9",
+            "bytes": 7441
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "707295891119add400c4c29a132f67e0a57eba44",
+            "sha256": "5ae4ab32611a6c48d38cb1c1f40469177a52337acc135c6691bb6c763ba53755",
+            "bytes": 13527
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "962e508670eb82975d275b07d3a8849f7f4bd1d4",
+            "sha256": "806ba7364cd1ec8662dcf959c18053445bbf0fc5bdd0ce692afce3d7b9aa66e7",
+            "bytes": 14118
+          }
+        },
+        {
+          "path": "packages/contracts/src/orchestrationV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "9d907c81785dd294c35e2e60f9e91b8b85e19384",
+            "sha256": "d11c4d5e566a5cab35077a9d38b694209cd4c8adaa50662c674b28d22a22c123",
+            "bytes": 125139
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "1820008b77ddd56a2da23414f95b9279bc363140",
+            "sha256": "d7631235e269b8158dccf64dc72b4babf542270a68d195268b7afdf47fc41b49",
+            "bytes": 125283
+          }
+        },
+        {
+          "path": "packages/shared/src/model.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "58973046b107bc8d20817137a674a18b19a37e11",
+            "sha256": "e0f252f09337328af5493fd47aff80345b9611cf544295ae509e238937da67f4",
+            "bytes": 16305
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0e05fb6926cf059d340b2483c012eb9329fc4220",
+            "sha256": "8e75ba0bdab6d59f7e498ec42235c7113974e521c31155dff5755492d1feff2e",
+            "bytes": 17502
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "b437ae9cf9267a93758cfab229fe81f6b76beafd",
+            "sha256": "cc7d4adb18027e23653e8ca22758917cc3ede0bd652de0e84ff7dffb942a18c0",
+            "bytes": 159647
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6df5f827fa767ce613d1b2145bc1b14cb7a87162",
+            "sha256": "736eb97c31f8ca661b3d0d7758e5c25bfe010f33f35279bfc3c9ce11dde9ae19",
+            "bytes": 161649
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/TraitsPicker.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "eae8d5a24fbb4e562932ba21ce95cafbf5c9dd12",
+            "sha256": "77396b6cbb10d1c0bcf967867564c04e0a291f183847fa426d45f0d032b2c9ce",
+            "bytes": 6926
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "885a1bd9d83d8c6bc73044c3971c55d2301e0919",
+            "sha256": "63781995f292fe3396ab56e6f8892e0f37a73ba5377fea5d182108e910ad39fe",
+            "bytes": 7794
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7a94233e34e95b165fa00193a6fbb77be9161931",
+            "sha256": "66753d737d74142cfd06dedf4d1f984e87986829ee9074d0a09fe35c59f732ae",
+            "bytes": 20107
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "92745606d1eac1e7263423b3c1813c66f5225387",
+            "sha256": "659705d6862bba34de764d492f0e3b9603c82e126ff00f91932ab8662de540ff",
+            "bytes": 22420
+          }
+        },
+        {
+          "path": "packages/shared/src/model.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c0c60620dc2a3aa49eb117960d471b4098347bca",
+            "sha256": "61d9e3cd516343289b7b579ab2ae10ddd067aabb1f4154745901f89656421798",
+            "bytes": 9871
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "32691d242e6e032b3800e173b2463182d8dc3a87",
+            "sha256": "8346f357eac69e00cbabb8d265022ce53bdcf58638fc3712a8a0a5cf54d9abc7",
+            "bytes": 12257
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 16,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-736130c2fd39",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "736130c2fd39b85cd515fa2a41cd10c8a8a52630",
+      "parent": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "title": "fix(server): working timers no longer reset on every background wake (#15029)",
+      "relatedGroup": "thread-runtime-presentation",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/Orchestrator.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c58dd46609ec3bd972e0cd9cdbfad4edf81f7eaf",
+            "sha256": "0a049c6267fe300b00d77bd2614a3ec9975a4bc1ca7832647806930233a2da31",
+            "bytes": 370314
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "c52087778d63d6c2bfb849342139aeac72418527",
+            "sha256": "5021304bc9f8dd1bae8e22c0ad30e1f9cd16af80b630b825207ea207ac413ebe",
+            "bytes": 371888
+          }
+        },
+        {
+          "path": "apps/server/src/orchestration-v2/ProjectionStore.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "6718240d9e7aa223820c14d131a764bb3aca4ee8",
+            "sha256": "27b22aa884aa9e1a2f8d4f5ffe2a2a64171ab684023e07df2081405a1f87fc2a",
+            "bytes": 258009
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b662a528b4dea5ab85d9af5af3bef90e569e8d16",
+            "sha256": "cdb25173a0da5ab6e82fbc8d31b0d9e7888ec440bf8a2a1391377d4428577e64",
+            "bytes": 258247
+          }
+        },
+        {
+          "path": "apps/web/src/components/Sidebar.logic.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ad2c9a1fedc8dfb5ed770916bcd1748a608d7b7c",
+            "sha256": "f5c766eb7ef2950e003d940c9ee2d6f1b9619069be1f7304184c7b6c020760f4",
+            "bytes": 49051
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4f504e286d0c36d90d68954f620df29643176068",
+            "sha256": "eb45bd8c2c543a0fc747757261b871e2a7055fe016bf5af4df5dd1a5fd71683e",
+            "bytes": 48979
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/models.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7163bd79a8205dbace244a56b0e129838f287f78",
+            "sha256": "66951a73aabe2038972865327ab8cfc95289e68695c378a26f24b2d34d10e0bf",
+            "bytes": 12575
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "37b7b5b8e3036b41ed6d45d1b0f03365b65cddd8",
+            "sha256": "dd12c5f3447096c1e4169791450ccd3652f61951399ed3c4c4eaf91b1214c7f2",
+            "bytes": 12651
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "5101acc062ef1f0a5ca0afc538122c0d72b77bbf",
+            "sha256": "b26158743a3cd578e63be5a1ee29b80cafbca88b781b3a796202d8e8bfbb7260",
+            "bytes": 13406
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "707295891119add400c4c29a132f67e0a57eba44",
+            "sha256": "5ae4ab32611a6c48d38cb1c1f40469177a52337acc135c6691bb6c763ba53755",
+            "bytes": 13527
+          }
+        },
+        {
+          "path": "packages/contracts/src/orchestrationV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "cb220a5b4ccd67da59b338477bfa3fa285512ae2",
+            "sha256": "3cdca572cc72142d4cccf6bc35e79c75dad60cd700b5758cb43790ff6b63cfbc",
+            "bytes": 124337
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "9d907c81785dd294c35e2e60f9e91b8b85e19384",
+            "sha256": "d11c4d5e566a5cab35077a9d38b694209cd4c8adaa50662c674b28d22a22c123",
+            "bytes": 125139
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/ProjectionStore.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "f3b6348c5d31c44d1f2d1cd993de33c65921038d",
+            "sha256": "ef481fd9fa8c73fab2ce63fad04d12f7448893993073225f1ea2053a9be3fa08",
+            "bytes": 157088
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "c64fece9db0700a0e6f71e70bc226babcad26a0f",
+            "sha256": "8bc2eb8e24bdf3784ebee715b513d730ffb2c92d35f4369ffdf1d4455f54f54f",
+            "bytes": 158101
+          }
+        },
+        {
+          "path": "apps/server/src/orchestration-v2/runtimeLayer.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7f66cebd27d1c7ba8f1b9556e4b5adfa85f8a641",
+            "sha256": "19c19d916ff842991ef3b3ffd817fd7f3bc191a74bd593fe2649a54fe8225b9f",
+            "bytes": 162653
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d077f7e209107a1d2d65aa7a386c9b931cbf37c5",
+            "sha256": "74a33ef6d456494f68bb855e5174b3d2867154a83338436d9f781c19cdeff180",
+            "bytes": 167722
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7ebd468400f8793b1ba5bdbb72d6771fd440887e",
+            "sha256": "87d1912120ff81617a97cfc9271affd5838ddbebf03564d80650642f4fe5bc67",
+            "bytes": 19536
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "7a94233e34e95b165fa00193a6fbb77be9161931",
+            "sha256": "66753d737d74142cfd06dedf4d1f984e87986829ee9074d0a09fe35c59f732ae",
+            "bytes": 20107
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 9,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-9333509c9180",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "9333509c918083cbfb7e66759ddbcbfa71a3a452",
+      "parent": "d668ffcd64d74daba16520cbbfb0fdb431983eac",
+      "title": "fix(client-runtime): reconnects back off with jitter and keep healthy sockets (#14897)",
+      "relatedGroup": "connection-recovery",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/telemetry/AnalyticsService.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d663a8f321e9723115963e10c9ace02f0b32c513",
+            "sha256": "369a0f3f775c53689b07d112d4d676568f9b565741fff98095eec9fe61d41ad8",
+            "bytes": 7137
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4d1db714eb969c35c7136b63ea978e31a299036d",
+            "sha256": "fa853fd314047145f2f6dc5089e9c0b878b5b847824b35e74d244c167cb299e3",
+            "bytes": 10460
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/connection/supervisor.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "b75413bbb7de409bfac7a1446332a9b151fcc82c",
+            "sha256": "8502dd0ef6401f475e2269df5b0c774e669885a8758cc2db42ac6785a1de084a",
+            "bytes": 26073
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a8e1a0831f90326075ee5d0411954a0d7bd7e9fe",
+            "sha256": "7c093b915e97bd13e21e017b2ce0c591106c9b7f3ddcf0e353d53ce538e462b1",
+            "bytes": 28841
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/connection/wakeups.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "721b941645c03ea66e2895668494b07c88b25678",
+            "sha256": "d661345809e4571fb802a436b596e7e90ee4234fd748742ed78dc2012711ff01",
+            "bytes": 1090
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5f19924c47a1b519ec822102a13f756219bd7f01",
+            "sha256": "3c1ffdffe30621ffc3701468e66eb78b58fc6d723a565454b46427862228f72e",
+            "bytes": 1172
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/server.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "f17fa59adcc9f453451de8e9b4dc92867af8b750",
+            "sha256": "e4ba6a63c270aecdc2a10ce4271cc1615f55839a1c9b637f8b673faa5cc591db",
+            "bytes": 49366
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0a0e3ca377aafff7b8ee0b06a2b1d2f31903359a",
+            "sha256": "0741f283ff8ab627ce41c234a51cf6912cb7db92acde73a58145f6bdd508d551",
+            "bytes": 49345
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/telemetry/AnalyticsService.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c135467efffa11dda811c419ef9a95b1690a4322",
+            "sha256": "0461b31fc2388d2d591cf016de02a0e8a6c01f7639ed2ec7ab0f4d60fa9c8505",
+            "bytes": 7047
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "e2966306329dda85f2517eb27b9a2aebd3483717",
+            "sha256": "9bcbea60726a9bea17b21f38891fef4bf1ff48293151b64e7ff1d1131e47ee3d",
+            "bytes": 10262
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/connection/registry.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "998cbe479f2afb3b0308748503701c1cbd342c25",
+            "sha256": "4bff730cf87a4c867fc5be233862b605ab5da4ce753777976a97b15817948a6c",
+            "bytes": 60280
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "7a4d581d3c8ea854b7ffdcd1fe89e0b0cf23f207",
+            "sha256": "00268bad536e28e9022a02e7ee86fbe375fbc21d4086864adcc213c4171fbfde",
+            "bytes": 61871
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/connection/supervisor.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d64863b9ffcf548521e4215d855132e96c838f0f",
+            "sha256": "f9867aea4cf10641985722e31ccf3bca98023227ebeeae9d6270b87a77b7d966",
+            "bytes": 54552
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "1d518f017d6d22746cf011746a0017f2791d3fe0",
+            "sha256": "d1c789795a8847e6a76dc4d2282d4a9b55a53b335be7a39c451284bef73045cb",
+            "bytes": 63509
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 9,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-151c241cd2cc",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "151c241cd2cc22c3b10ba8735e44f83fb723a511",
+      "parent": "4f7760e6a0037b06917adaae1b8a220e3ee6e5cc",
+      "title": "fix(client-runtime): format subagent descriptions as display names (#14999)",
+      "relatedGroup": "thread-runtime-presentation",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "0893fadb62c25df68e98998149d847d28774e50d",
+            "sha256": "2d5f37f6034ca2353c2567bb1ade4a4cad394c32eaf52e2be2116cf54a696f5c",
+            "bytes": 13191
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5101acc062ef1f0a5ca0afc538122c0d72b77bbf",
+            "sha256": "b26158743a3cd578e63be5a1ee29b80cafbca88b781b3a796202d8e8bfbb7260",
+            "bytes": 13406
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadExecution.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "70ed818cadc30c6f3f07409e74590c47830a9504",
+            "sha256": "1908a172270dd8ea0e40060e2b1bd6b7df8d9c47f5442446785896b41160a98d",
+            "bytes": 17881
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "7ebd468400f8793b1ba5bdbb72d6771fd440887e",
+            "sha256": "87d1912120ff81617a97cfc9271affd5838ddbebf03564d80650642f4fe5bc67",
+            "bytes": 19536
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-5031b9ccebbb",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "5031b9ccebbb7dd91df1aa79608fa74347ee929b",
+      "parent": "858b98b8fa618cf9b9528b5415493fcf0572ac88",
+      "title": "fix(client-runtime): track follow-up subagent status",
+      "relatedGroup": "subagent-status",
+      "sourceFiles": [
+        {
+          "path": "apps/mobile/src/state/threads.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "223c2646086902c6b5e5ed1540bcd74fa1004677",
+            "sha256": "d556ba7cf8bd431f9fa0c15363178266a98f6c6c5ba91ac54deb22cd0e051dca",
+            "bytes": 1798
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "14cfce920ad386450f2ccd0c410eea5a1738333f",
+            "sha256": "ddc65f618acd26584b41cb876e0c8e4afc4b69e37e386338ca8ed89f6f094e87",
+            "bytes": 1852
+          }
+        },
+        {
+          "path": "apps/web/src/components/ChatView.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "8fbe528b34b4def8e987d6bc63c272e60b6210be",
+            "sha256": "65fee5eac1f376e1147b533cfc69a0d6078bc046104112b384b1e31c734fef08",
+            "bytes": 448005
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "93f6184a9c8d97c06329570882f42a17211380c4",
+            "sha256": "9ab4c4d471cfc354bbfc2f9d3e139e7931860ea2ed491eecdf88f3a2d1141eb7",
+            "bytes": 448109
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/ThreadRelationshipsControl.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "ac0235f85d1c05d046f98638b46936d90c13c6d1",
+            "sha256": "eae30b170a68a4ac6c17cde9a09c0124f282a715282bd087b5606bab44538388",
+            "bytes": 19780
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "7d626968d63815a9e94e2f1e1e9fc4dcad462a45",
+            "sha256": "efd856185a763924b7c1b9ad7f9c091494923f6c5bf380ce2cbd60dd27ce3418",
+            "bytes": 20142
+          }
+        },
+        {
+          "path": "apps/web/src/state/threads.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "fc16affdab9a66244a8f51163dc547ba29858e67",
+            "sha256": "2fe335aecc9f61a04b1453302e2fa530b556b382d1131005acdb93bc8834252e",
+            "bytes": 5882
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3c3919e7df7382e9eece8aff7b9518b5fcf5585f",
+            "sha256": "02545ac8dc6ff56eb077bf689a6b76c49366e5966c59285d3c817142eca2d7f7",
+            "bytes": 5936
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/subagentRuntime.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "da222ecfef3d711fbc910a553a28ac9542bfb074",
+            "sha256": "c619262d40e445967ad7aa843f52e8851d3af6e538ebc3433301d333ed316be7",
+            "bytes": 4608
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "fa0c545cc6e6839e45e3a02e0a4871e29c1f6c49",
+            "sha256": "4688dcee6261e499f17d2f72aaba50babb703dccbc24731b1d1d5616f1c19a84",
+            "bytes": 6144
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadDetail.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "752867ab6b40031054904cc80ad5bcdb29f40d82",
+            "sha256": "39084a15bcd8167584519b1056dec48792b9c938b1821188763bd596efd49bff",
+            "bytes": 8818
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6c6bf8c3af14feb787e44be648275df98db106e2",
+            "sha256": "9a823ca4c7f211b29fa99bd6a905dbf434a794082ef5fc31f96a48c862a38176",
+            "bytes": 9517
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadRelationships.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "93ed8e9973f3e7971850f9ae8c21c6eda0dba424",
+            "sha256": "1f49045fae1e40293eb3813a67aaba33ef585378ebac210941841f606671c435",
+            "bytes": 8991
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d0c1512bd508451bcdb56c938f0922f68422a699",
+            "sha256": "3ee33f0722f15c90c3712733223845ec0e386a263301c74dc9b3612de9ebbf8a",
+            "bytes": 9138
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadShell.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ae5f6dff692f69a87208c57cc310a98ebdea461a",
+            "sha256": "d0198971eece5114c4741317748f742e83fce6b81c5ef6f9994134dfdf3a508e",
+            "bytes": 8707
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6faa28ac9fe376e80013f83e92d6964e65a787ef",
+            "sha256": "e53a7ae9eee44b4bb2111ff850f19315f88bb7ef1c7155dbbb5584c0119772a7",
+            "bytes": 11611
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadSubagents.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "bbb0535c84ace4fb039b9da986589dbc15b6a5d2",
+            "sha256": "944ea96868dfb0c1a79983c2cff89ef0b1a63ca65240c16ea2bd086ea1986feb",
+            "bytes": 3537
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "efd03f1bfff165df6b464aee6ea1c7ab109228ce",
+            "sha256": "91cec237fcd18e4b965e722b624565e39f544ed479ac27cf9d1bac356aa39dd0",
+            "bytes": 3934
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/web/src/components/chat/ThreadRelationshipsControl.agents.test.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "333bf325a2910cf5e4c4058a0a391f793fccb7d3",
+            "sha256": "68f4d3b7296a15d9d005410db93d93fc01bd8a174852d96158bc23dc6421ac99",
+            "bytes": 16839
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "aabb069f2c16fe5e4e157f84aada2e6a2cc579e6",
+            "sha256": "c60ae6a8001e641fed794846fb710fa5882961b545ab53d87032837f8345de18",
+            "bytes": 18025
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadDetail.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "51dcdd1c43111fde6a0125b3239fd7158bc22ab0",
+            "sha256": "004b1fcd69b954e3761a86db8f43c7f12a889e001a084960f3fbfa882a9b8903",
+            "bytes": 10712
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "77a63b3375e9ca615ee3b2a02125f632b477d63a",
+            "sha256": "48a058618fc9bcad776fdf7642bd2f1610134c1080101f6c8ba968498e74eb77",
+            "bytes": 12111
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadShell.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "0009f1a7aa33d4894fc3e89b1a9b1e3af946e66b",
+            "sha256": "d97ea8dc3bd65506867700d629e74e06164006f6f114e0419ec3016e25e3ca79",
+            "bytes": 7682
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "edf57cd4fb5758a897bc54eb2b47acbff9dd5af7",
+            "sha256": "e7e8c807d12f6fbdd04d38882c84555532aa5622e6315404c59bcb5a403850b1",
+            "bytes": 11006
+          }
+        },
+        {
+          "path": "packages/client-runtime/src/state/threadSubagents.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "788fa8609076bb9828e42a2dae03ca6092b81206",
+            "sha256": "6199843fee60828c1697dee5e299c4474a7e2fa449562dbc0c4eeed6e36b152e",
+            "bytes": 4828
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4fbcf65a0e3e0157516ccf01a65c167c1f743d33",
+            "sha256": "c283e0d7226269b39bf3cfaf1ca329e7564902e62d96bf6ff90a924ae06a8c27",
+            "bytes": 7307
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 13,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-43bd6677392b",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "43bd6677392b80cd12742f865c277c9939239543",
+      "parent": "bb7997709dd5ed91a3aa18c091286f5f5331b0ef",
+      "title": "fix(web): Claude skill calls show the skill name (#14980)",
+      "relatedGroup": "provider-tool-presentation",
+      "sourceFiles": [
+        {
+          "path": "apps/mobile/src/lib/threadActivity.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c453ebf2312d5c881666c1ca038a732d55f7b85d",
+            "sha256": "34082224a5a6fef5b4682f9999303696135ae0e6837465626cf077a69106762c",
+            "bytes": 60227
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "259b76c9b173a651375b04095bec07423aa20ff2",
+            "sha256": "c544a7c7fbe2cb961995cc6174a07637128800e4fe9b0132c262276b3ef69ae4",
+            "bytes": 60219
+          }
+        },
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "99f77ee0779ce20e2b8105260284636243f12528",
+            "sha256": "fc65e631cc82f499280286657a20fe758529f48d9aa6e557cfed61cf0bf7ad27",
+            "bytes": 318992
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2cf91c6195949544b6ad92f127e575760ef27a4f",
+            "sha256": "93715b5b1bd88e49ddb71e1eb5e5c7ebf60e9a16430964e1a8539760f00c2fab",
+            "bytes": 319124
+          }
+        },
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/CodexAdapterV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "88cd870f53c2cad33625f0a94293dc7f4d488646",
+            "sha256": "8efa88fcff430653f0a934c55f1242416c358008a1f6af27c287ba1ec6869408",
+            "bytes": 256848
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "19c3486f5af783dad1df32b1f14c443d287ee55e",
+            "sha256": "db6a4374392657eca2f3ce2317767ce50b05b94acaadc4ebb5d6fb2028595191",
+            "bytes": 256840
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "f7eb34f1b58487ed2b30920b3310432c8517dbe6",
+            "sha256": "445896d9a27e49c3fe1dc96235c767f1fdbc97e59baa7f4268a9d5ff34acacf5",
+            "bytes": 72057
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b035839c4ae47f82be96e242dca27f18241c0db2",
+            "sha256": "47ac9ce982e3f4348e23d055b8f26c2fbb72a95c078cf3bda62645ae323adcd1",
+            "bytes": 72037
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/MessagesTimeline.tsx",
+          "parent": {
+            "exists": true,
+            "blobId": "fd71d616bae9c0db2b652b92efc184a92ca96b6f",
+            "sha256": "d4b1f4bfd41ba012592d5301c9f78185aedde1428ca4d2979db1c7f7c0ae1438",
+            "bytes": 190317
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5dec1b6d411d98dfce6146f8f3c67ac131173fc9",
+            "sha256": "debe1fdf082abfac60e1199dbb606d77ba897982760040dcee5cdd8f85b2e801",
+            "bytes": 190852
+          }
+        },
+        {
+          "path": "packages/shared/src/toolActivity.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "04f746a01d1a6ca85d0c4596aa32097e4cba9860",
+            "sha256": "da00c40bb3f770414a6adf3d319a6c7731b93b7330846b2d3ba2bd3cb7bd500a",
+            "bytes": 11953
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d281462cb08d32a0bfab6b74ae82b2957abff83a",
+            "sha256": "56e55bb393452d466c8c6942a3589700e4d58abd48d2f2101fe00a94cfc58b92",
+            "bytes": 12593
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/ClaudeAdapterV2.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "95f8753ae68890ea103fcd6a59be72a24993918e",
+            "sha256": "beec5fdc85f6285371e1fb31a8c4e814885346a2b6d71b8b994d3e6fef51f58d",
+            "bytes": 300488
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a4164c936fdf9e3f02cbd37cad236db1a5335fa6",
+            "sha256": "7e78494e976ea7c84bc1692c6898c4ccfbed0e504bb4fe4d49a67b43ccd06e4b",
+            "bytes": 300697
+          }
+        },
+        {
+          "path": "packages/shared/src/toolActivity.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "9a9c67d2e36cf5f9699a0f3e69c83e049dab0dda",
+            "sha256": "02d34290250b78e5a23326ca78a1891e190105e01e8b679d60388f0c9cf4a961",
+            "bytes": 4112
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "fe19052fa5bc005aecaaf07213fb45cfce76293a",
+            "sha256": "a69485e7e7f91459c59fa0c0a6e88015ebe5f1375ea62bb5061e73f536f3d164",
+            "bytes": 4622
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 8,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-a9c9995352e5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+      "parent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+      "title": "fix(server): Kiro never auto-grants beyond the thread or runs Autopilot under overrides",
+      "relatedGroup": "kiro-permission-policy",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "047a5a82bac71b834bab256076cc19e0bac73385",
+            "sha256": "0e42f51c470149791ba58631d8e40ce0c628c6a11e8c675c765b15c4fb0eef3f",
+            "bytes": 8605
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "dff8a06d5a98b721295e1d7d762e5f3d61f13d1c",
+            "sha256": "558fa79f668ce1e909b4871da03326ccf47a46d2166bae0c1127b665bb03774d",
+            "bytes": 9362
+          }
+        },
+        {
+          "path": "apps/server/src/provider/acp/KiroAcpSupport.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ac7ac111ca15043afe35c87de8a405798158d508",
+            "sha256": "b96adf1dea5ef52816259d4042fece2b04c4d2f8d7ed894f4166d4d4bc869adf",
+            "bytes": 4394
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a329adc1713db76b189a3044d19adf3326d4476b",
+            "sha256": "e1f3a4e7defe34ea026c6d3ba6a7c090c4aae5ed8e4369c0d3351a436c93017c",
+            "bytes": 5751
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "aba21b29cbf73727c4b84710f4a500f4155c6ebc",
+            "sha256": "a26031badefd94a853812c17be5de29e662cb42a36bf8b7bfe3a0db88ae0014c",
+            "bytes": 13372
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ea843bd80bac702b706e2bf5c61113cd6da46826",
+            "sha256": "de1af4d103c6f8359e36877ad36c08494a8c4cfcc15fb388f0117953e5b9390e",
+            "bytes": 18374
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 8,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-cc1e634bfa62",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "cc1e634bfa62edd56ff792eea666e436fdef788f",
+      "parent": "1e7c8e0f24c217a3229615fa1de1e6ed85d7e835",
+      "title": "fix(server): released builds keep the OpenCode policy for their own version (#14863)",
+      "relatedGroup": "provider-manifest-policy",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/provider/ModelManifest.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "bdf65ab9dcf515d1287c3af944443ddcafa99180",
+            "sha256": "70951c99ba103ac508b07345819eac3c3d01f8ea255e76e6b2318e74a1bfb267",
+            "bytes": 18002
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d1af1086e75058b2c1d9e0407149bc94c93f3b4d",
+            "sha256": "b8e185d0fd7e3fcb2d1fa4709b70133fda27c99c8b216d5117ece26532178018",
+            "bytes": 16815
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/provider/ModelManifest.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ee513462c7dfa3db46f7387cdb45b96e68e4951b",
+            "sha256": "e40efe17e63708ccce217ef1baa5dc912d9d7deb343793b66a6ea303ce06a153",
+            "bytes": 23074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5bfd13a6947d77f0bc4444d4d859f2d0966c13fa",
+            "sha256": "df2852e49b80de958b50e4f08a47715b2f0a85cb953ec1cc7cbf0dfa3f5f5636",
+            "bytes": 20851
+          }
+        },
+        {
+          "path": "apps/server/src/provider/providerCompatibility.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "3254949ad3d9f374544a83f55f641a405da5492b",
+            "sha256": "49ef4302862d582b29c0eaf83ceec471e84e899c792297337579eaa65dc66f0a",
+            "bytes": 13741
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2dc30cdef25cc82c363e8bee4de537faa46bab59",
+            "sha256": "bb66cbdc57cf79a1d832d7c8035c3b8bc4de4615f0ce1d2a19ab713582a85409",
+            "bytes": 15159
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 4,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-8bc9b78f8270",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "8bc9b78f827072a89707f6e4b577710e27263697",
+      "parent": "a21b42cec478b093cdc50cc2105b5368ea8b3546",
+      "title": "fix(web): terminal links drop a trailing colon (#13408)",
+      "relatedGroup": "terminal-link-parsing",
+      "sourceFiles": [
+        {
+          "path": "apps/web/src/terminal-links.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "59e2082a735981af2264141c2287d4bbb0abb0dd",
+            "sha256": "9609f0c26aff0227dfc6cbbb4f02bfec18fb804ce9f9fdd7f7d0e79a8e3a76bd",
+            "bytes": 6367
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0f253588b700a91d8432e5191e1ab50a1af5a695",
+            "sha256": "8b9c21544eec87c4fc8769fc0645e26113a574f672575fa407c41b3536ccf875",
+            "bytes": 6598
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/web/src/terminal-links.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "3c466378ba8bbc2fd519282312e2ca8e29f5aa2c",
+            "sha256": "a8ae6f69e75a4bd4b0b90397479f77c3697f7595b663c5644847c0a119f02ffa",
+            "bytes": 6001
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "5cb2ad915827e46178987dff7ffce51227600d3a",
+            "sha256": "e4dede2015e155b8075ada7f9bb3182b71f22ddc9de08cfef34a0f40dee4042f",
+            "bytes": 7097
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "d512900e23bc4f4748890bdf2c6fb1c22c30a28e",
+            "sha256": "cb8b874972c5c23a1118d0eb9f359b1747329811e36ce8d4df49fb3812465d64",
+            "bytes": 865514
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d512900e23bc4f4748890bdf2c6fb1c22c30a28e",
+            "sha256": "cb8b874972c5c23a1118d0eb9f359b1747329811e36ce8d4df49fb3812465d64",
+            "bytes": 865514
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-dd8332da5735",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "dd8332da57355bccd7e666289267f2c94597debd",
+      "parent": "eeea71a88108c375c04853f58c298a518a54acaf",
+      "title": "fix(server): installed editors no longer vanish when discovery is slow (#13669)",
+      "relatedGroup": "editor-discovery",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/process/externalLauncher.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "29c25e790c6154705386b6ac788880c4b45418dc",
+            "sha256": "24305f24cde1f9a80c903b320cd6be5616608105d47371984d8741b97fdb25cb",
+            "bytes": 27771
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ab287e4d78ee4ec62e5624b4686a575ed62856e4",
+            "sha256": "2280e52bc54d0692ab22c0fe60d4f2f8e153e6e32a8f5a34dc2bb618c4c08475",
+            "bytes": 27837
+          }
+        },
+        {
+          "path": "packages/shared/src/shell.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "11a45907cc1d86dcf53cf97038ec82316e08aa17",
+            "sha256": "f1a23714bcb1e8ffc18baca89af52398f237c3bdc353d586751969a229fcf7f6",
+            "bytes": 24888
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0a25785d916d3d8b4fc4616fb3b01174fb670ec9",
+            "sha256": "11763cb032af0477c5626702e6b38dff1d6e184218915163cae184b9cf162f28",
+            "bytes": 27519
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/shell.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "621fe49b30876126942ade0f41d3e45765d78f0c",
+            "sha256": "cdc091ee56b87bbabe8c801bec002459a2135ff73acca83fb61277390f5835da",
+            "bytes": 24135
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6c89e49d017f6e1b83642fb19bbd43f8466801fb",
+            "sha256": "9e1dd5775355483b1ffc382421f20c3bfb8f079a418fdf196eb90a3ce29ed569",
+            "bytes": 25812
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "d512900e23bc4f4748890bdf2c6fb1c22c30a28e",
+            "sha256": "cb8b874972c5c23a1118d0eb9f359b1747329811e36ce8d4df49fb3812465d64",
+            "bytes": 865514
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d512900e23bc4f4748890bdf2c6fb1c22c30a28e",
+            "sha256": "cb8b874972c5c23a1118d0eb9f359b1747329811e36ce8d4df49fb3812465d64",
+            "bytes": 865514
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-b7a8b7f25b07",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "b7a8b7f25b07ce171b5b9025aa896896680b3021",
+      "parent": "99802a7ad3c1a764cbeb921f9931c12adcbe5467",
+      "title": "fix(threads): keep the capped title failure reason at 500 characters",
+      "relatedGroup": "thread-title-error",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "8f0478f01caf29b12cc22b01f2170d5d8e99196c",
+            "sha256": "1ddeb4655708329f1c7de83af1b1f56498f8260b1e45c87f68160c06cb652e9b",
+            "bytes": 6783
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "e52b893154bfb34695dd18eaae34797046aa2d0f",
+            "sha256": "5afd6655c32cb19999ff6efe25ed60cc4c651a732762e3f1d7365bd6ef68f51d",
+            "bytes": 6787
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/orchestration-v2/ThreadTitleRegenerationService.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "0e2e81f010c5d4deca7088b7c47e0174cdd33b04",
+            "sha256": "ef0fe2ec02a64808d9085cae9460d54c568a71358c312937c6e2c769dd8dca26",
+            "bytes": 23708
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "917112867e4d65617d6871049594e938d84ef957",
+            "sha256": "c01a6bfca9ce80dbde8f50a45c27d7dffb724c66dd30c1e0d76c2e91300a2657",
+            "bytes": 23708
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-263097a8da03",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "263097a8da038a143f2b7b7817250f0ad390ea32",
+      "parent": "f68e24fb419c985269cd0acb841e203af1419c43",
+      "title": "fix(web): mod+enter starts a new thread in the background again (#15060)",
+      "relatedGroup": "keybinding-dispatch",
+      "sourceFiles": [
+        {
+          "path": "apps/server/src/keybindings.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7a1bcd7f356a82698b49c0be2de37b46b4665ed7",
+            "sha256": "69cb682f1001b15fe494d64e5fe5e4f8f015f551a50e3c34f53ac9beaf25aa0b",
+            "bytes": 24217
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0484296edd7eae3a2b7dec891d4a1875df526715",
+            "sha256": "98eb366c931ce48786c04869c559b31d81ed8095e7db3db09bebd19a4a1daa66",
+            "bytes": 27088
+          }
+        },
+        {
+          "path": "packages/shared/src/keybindings.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "8cb3fee23e022ccdf937b9c6d6020262216d9942",
+            "sha256": "a8b2e9146517537bc1509bdc87c8136a23f6eb69098dfbe283ac308c608d6ca9",
+            "bytes": 11396
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "634945fe0e64aaee102f60506b76355f87c53aa9",
+            "sha256": "b43f0289de91e699c9badc17b9ffc3d65ad0db9dea330b989eb1db25d4d44e52",
+            "bytes": 11514
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/server/src/keybindings.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "fb256f25500a21db0f650b357a887d2ab4143d25",
+            "sha256": "201ed5f935bb9e4de63f86db14311f44c35e3b3cd58d5fd5736a01c00513090e",
+            "bytes": 22295
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "202b5de45c5bfe17b3fab54f251a44995ce3be97",
+            "sha256": "a3d725f85dcf3507f14a8264b1e94e17134d102c0254cbbd60a79be71c0e9c10",
+            "bytes": 25521
+          }
+        },
+        {
+          "path": "apps/web/src/composer-logic.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "6d81f3be8507556bfbabf0e8ee6d570082a254f0",
+            "sha256": "2ebfc6fba0d115bc211bd5cd44c76641e036d1b96a5fb5c30bc8399f620f21f3",
+            "bytes": 28781
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f931f9ebc37887d22f03f7308c211e3510ff920a",
+            "sha256": "5fa49564a6362477053cf2581f9e234588a2915bdb67f49d063f19c36691227b",
+            "bytes": 28781
+          }
+        },
+        {
+          "path": "apps/web/src/keybindings.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "18604e44e19dff9864a58c99ac763d7453350485",
+            "sha256": "a008bd324916549c1085bdd27fc3342fee9b0f936c7a08740b21d55ceb1a5ff9",
+            "bytes": 46974
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "c7d69443cdffd181a2f79c7985b9776877e18546",
+            "sha256": "b82861f108834bed608cce155f9b259a5ccc55b478f937d5b7905fc49b2f8d31",
+            "bytes": 46960
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 6,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-db514607f402",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "db514607f4026cd2bbb7b96674168bb227ac043a",
+      "parent": "5c0429b1578cff3307c35c51a305e2749a6dcb6e",
+      "title": "fix(chat): sending on an older thread no longer jumps to the top (#15059)",
+      "relatedGroup": "thread-list-ordering",
+      "sourceFiles": [
+        {
+          "path": "apps/mobile/src/lib/threadActivity.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "259b76c9b173a651375b04095bec07423aa20ff2",
+            "sha256": "c544a7c7fbe2cb961995cc6174a07637128800e4fe9b0132c262276b3ef69ae4",
+            "bytes": 60219
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3a77324a7ac887d6658ceb5c5233882ed863988f",
+            "sha256": "0b8f65186b7cce8a9a6e817299d3e29a27b7c28296ba33380dba2adea03b30c4",
+            "bytes": 60461
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/MessagesTimeline.logic.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "88da32d28fc374a9f6e174d3fa9cc1a717f4ee34",
+            "sha256": "b47a5e6a07fd06d76a62e9b6bc1cdd8ef8432473272c3f38c8e200668e79549f",
+            "bytes": 72279
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "09784aaf9dbd63ad4500d2e99e742949a194c4b1",
+            "sha256": "f90817b6276c64de9a0795022523b7742d52adfde75b435cc38828f0dacd9b34",
+            "bytes": 72674
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "apps/mobile/src/lib/threadActivity.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4f0c140ac2298bb0390e0d6a46f02f61d7525ee6",
+            "sha256": "a79036a95d28e6d9ede7febb772219feb7a211c97eff03632b6ceb1c833ee536",
+            "bytes": 76535
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "16fd407f537b12d298024c9bd1c0473f02650b8e",
+            "sha256": "636ae6b273e8009138325712a6c38dc455782ec3bc90ba223be87505950213b6",
+            "bytes": 78487
+          }
+        },
+        {
+          "path": "apps/web/src/components/chat/MessagesTimeline.logic.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7c2fb5bd88930972162f3250c6bff0e888d80d16",
+            "sha256": "6d774ec83430508f058b3f57e715eaa605c79232c653e5a6e0a1282a9fb65660",
+            "bytes": 158421
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f87cb75b34b8569de75d90811853d30b988a3353",
+            "sha256": "77766a4abde3ccfa25098f640db33710ff7e019188abea7e7a55b1adacbf03cc",
+            "bytes": 160651
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 4,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "092af1eaeeb7c7211cc1140816751ebe1fe4fdf0",
+            "sha256": "13eee876794cf1d2f1da9f3332ea678c8453d235f3594eca4f2fa176e90d8db5",
+            "bytes": 822074
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-c46613230e97",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "parent": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "title": "fix: retain live discussion updates during detail loads",
+      "relatedGroup": "pull-request-discussion-sync",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/plugins/pull-requests/sync.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "a390ec940c98e1226b0319305eac9c49c27a23b5",
+            "sha256": "f5de8e4c38d6c8e8c1ff9ff5bd1152fbcadb7195b7a10b9b7ece453285601e92",
+            "bytes": 30044
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "9e4ebcac80bf2a70aace4fda43a6895edaa9a807",
+            "sha256": "f521a030db5c6cabac348713a31b1d16d547650ae440f2af179fce0d8a3b4ace",
+            "bytes": 30430
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/pull-requests-scheduler.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "76e6954057f3a18517704c2c28764fd4e3bf920a",
+            "sha256": "b32fe102a414d952ca1c442813a823726d803c3b66b92eedcfe58157e3b8b486",
+            "bytes": 61247
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "7258d14cd434591c3f0d3bd090430613c3e92945",
+            "sha256": "f9f8e93937afc952a40fe4b04141276563cdef3da23aa3cf012159d379e9b749",
+            "bytes": 63230
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-82c4e117a745",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "82c4e117a745c1a39bcea23b49814cedc7285fcf",
+      "parent": "c46613230e97bf5a98866f8c44a2dd69c5ffbed8",
+      "title": "fix: apply live discussion updates at detail delivery",
+      "relatedGroup": "pull-request-discussion-sync",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/plugins/pull-requests/sync.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "9e4ebcac80bf2a70aace4fda43a6895edaa9a807",
+            "sha256": "f521a030db5c6cabac348713a31b1d16d547650ae440f2af179fce0d8a3b4ace",
+            "bytes": 30430
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f379120d69c2aecd5a464aed6c6f71ef7b1f6fad",
+            "sha256": "aff8faa39ca726324aa0a07d64d60e66dd185726cbbdd9bc52c6f002554fcfd7",
+            "bytes": 30663
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/pull-requests-scheduler.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7258d14cd434591c3f0d3bd090430613c3e92945",
+            "sha256": "f9f8e93937afc952a40fe4b04141276563cdef3da23aa3cf012159d379e9b749",
+            "bytes": 63230
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "764542909c13cece4d3c0feb0941c8318e90b735",
+            "sha256": "57d61b7fb92634879fd7644789b0f1fa8a49db84fab75d69f41eeb68f574afd2",
+            "bytes": 65671
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-8cbf18bb51d4",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "8cbf18bb51d4cd532953e5a03849b28ba900817b",
+      "parent": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "title": "fix: cancel full detail reads after their final owner leaves",
+      "relatedGroup": "pull-request-refresh",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/pull-request-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "43a134b5a2464f52ec9b6f097c8cffd9cf8a4d14",
+            "sha256": "de1d25651d2665dfadd7be235e979cb7787f8c45d428c132ebda1126f85d2cc4",
+            "bytes": 34876
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a57509267c9a5ab9333013675447cfdc3378c8cb",
+            "sha256": "c08fdd4d2ff4b53630a3ae553638438f9bfb07a1fb3f4537ab24c5977d031747",
+            "bytes": 34942
+          }
+        },
+        {
+          "path": "apps/desktop/src/plugins/pull-requests/sync.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "f4e812523eba14c43ac57518643c83fd9b894906",
+            "sha256": "be10422341ebd7594f9c633d2ca18e879881ee0e7f9f077f84e0bda4b7813c5a",
+            "bytes": 30493
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a390ec940c98e1226b0319305eac9c49c27a23b5",
+            "sha256": "f5de8e4c38d6c8e8c1ff9ff5bd1152fbcadb7195b7a10b9b7ece453285601e92",
+            "bytes": 30044
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/pull-requests-scheduler.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "b1124c8762f8960fcebdf4c266bb7dfbbe0acfdc",
+            "sha256": "845f84d57959b347e6cb4da596ea9cc87871c9e6194e28b50e2f25ab91ca2169",
+            "bytes": 58531
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "76e6954057f3a18517704c2c28764fd4e3bf920a",
+            "sha256": "b32fe102a414d952ca1c442813a823726d803c3b66b92eedcfe58157e3b8b486",
+            "bytes": 61247
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-e7c277798b3b",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+      "parent": "f252740ebbc952510d2cbdfeaec42accec83e071",
+      "title": "fix: validate detail batches against current comparisons",
+      "relatedGroup": "pull-request-refresh",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/pull-request-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "1f5662533e87903233a6eaac5601614837298055",
+            "sha256": "c3e86e9916a6d0417f71aa795a04196c1724557f5abfe6e0a7b4d574121183ae",
+            "bytes": 33830
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "43a134b5a2464f52ec9b6f097c8cffd9cf8a4d14",
+            "sha256": "de1d25651d2665dfadd7be235e979cb7787f8c45d428c132ebda1126f85d2cc4",
+            "bytes": 34876
+          }
+        },
+        {
+          "path": "apps/desktop/src/plugins/pull-requests/sync.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "8a3c4c52e3d3f80b32d4cea7f5050a6bcbfc35d1",
+            "sha256": "a3119963f025f4c79da7f9bde9d6e0428219f7b411ba1621b512c4e2b59a5a95",
+            "bytes": 30241
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f4e812523eba14c43ac57518643c83fd9b894906",
+            "sha256": "be10422341ebd7594f9c633d2ca18e879881ee0e7f9f077f84e0bda4b7813c5a",
+            "bytes": 30493
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/pull-requests-scheduler.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "8da768a0e996ca2780a630cdbbda7aaed457cdb6",
+            "sha256": "4c695a7cd58313fd86192f0be97b3d0f3c43bfb846196cf396ddc3e7d4864add",
+            "bytes": 56367
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b1124c8762f8960fcebdf4c266bb7dfbbe0acfdc",
+            "sha256": "845f84d57959b347e6cb4da596ea9cc87871c9e6194e28b50e2f25ab91ca2169",
+            "bytes": 58531
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "80c5d206b9034711c56dbe47b609b26ad9fbacef",
+            "sha256": "a7d96154202e8c153bc32d4fafba22b4fe1c332c81e8a830b138fe6c25fc2e6b",
+            "bytes": 289287
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-e65e8dd2c3af",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+      "parent": "9cc772a41f7a611a369a8b8d26c813c184ecc516",
+      "title": "fix(plan-web): retry competing SQLite initialization asynchronously",
+      "relatedGroup": "plan-web-database-init",
+      "sourceFiles": [
+        {
+          "path": "apps/plan-web/src/backend/server.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d7a7449d67387006efdfb9eb30cb20aa3a950f33",
+            "sha256": "ce100c9b9171b14bf35b79ab1ced32abbdf7b6609ea7be456ca1e09249c0dd0c",
+            "bytes": 7934
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "09106f15600df8b0e6862562d7fafc676650760a",
+            "sha256": "e3596363c75a0e6d7105debad75ef180bc5a1bd2498586ea76041ac50c305d87",
+            "bytes": 8493
+          }
+        },
+        {
+          "path": "apps/plan-web/src/backend/store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4efe313ef51e13bdd3a53fe4a71bb2e1b4e95ce0",
+            "sha256": "6b63bb0c824ae39857257e0cc261f877ab4ab838ca0ea8aa55e94396629c2cfd",
+            "bytes": 8478
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "32f36a92653a5e5711e57230e75ac515fdd101b0",
+            "sha256": "16eacdd25cf6710b2aea0634f9a623758470e0217e50f2fdc5ea840136328cfe",
+            "bytes": 8777
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/plan-web-api.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "6f805b16dc9a1870480473e7498877e09c84f883",
+            "sha256": "e54454f81c4fa0939152eed7142b66142680ff1180c9db2dd2c31c59a645e6fb",
+            "bytes": 18720
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "480ea5a6823ba929ed88b2df9021ce376019d217",
+            "sha256": "20fbdfff7219b1ca27391c35434655312d2af20d301a29bedb570b7d4d12b0a6",
+            "bytes": 20357
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "2b2b64c6ebed9f47d82489fac04e6002e456d8cd",
+            "sha256": "07d5e41f37fe6240cea48b28f6184212d3eacc8f24a7fe50edde55f564124d15",
+            "bytes": 289746
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2b2b64c6ebed9f47d82489fac04e6002e456d8cd",
+            "sha256": "07d5e41f37fe6240cea48b28f6184212d3eacc8f24a7fe50edde55f564124d15",
+            "bytes": 289746
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-c78a8c5f0fb1",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5",
+      "parent": "5bc1570e9daf284f391196d388fe148f6fcd60a7",
+      "title": "fix(hub): retire relay sessions after unstarted write timeouts",
+      "relatedGroup": "hub-relay-write",
+      "sourceFiles": [
+        {
+          "path": "apps/hub/src/paired-server.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "e84fb8d23ac0f0f09adf3c021bbf281b3d06b832",
+            "sha256": "4b21ef4c34e1296f8d470fea20a6f929f8f83a352030f6d3339d17676e1991a1",
+            "bytes": 19154
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "9c10557d80ed619f4ee70846a7b70d9234833658",
+            "sha256": "f7060351fbb158be4eea25d92184945433b36a115aa13e0fe37213707644186b",
+            "bytes": 19688
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/hub-relay.test.ts",
+          "parent": {
+            "exists": false,
+            "blobId": null,
+            "sha256": null,
+            "bytes": null
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "49ddf3e690d01d3a672bea3a28a4adf5a9ccf364",
+            "sha256": "29e88570daacd242da1a86d27af8b9902cd60cfa2e68f9d3182442b01d673c8e",
+            "bytes": 10592
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-c126ac6076af",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "c126ac6076afca5f5c38ea7d13360416af299deb",
+      "parent": "e26251e3f020527fdaa8d035ae7b6e91522a7014",
+      "title": "fix: reject approval of changed remote observations",
+      "relatedGroup": "publication-validation",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/publication-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "f85d3f28712f0b593eabee1ccb9b5801eb785ccc",
+            "sha256": "c0a53cd31f48081db6576ad29b02541bafdbb154012e087336f31c2148cf6846",
+            "bytes": 24696
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "57f5702e6e75ad2ada8a0a56d3461a398f9cf476",
+            "sha256": "1cd316d8c0880da13fc2df515a07ec99b6e50b0e953d51d45b60ddf87fff3ccf",
+            "bytes": 25060
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/publications.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "2bb5000c7c3f2646657a047906b740c27a99583c",
+            "sha256": "c949fc65573f017702e2856d0177443ee3860078570dfc38ee2e8da2ba752cd3",
+            "bytes": 19233
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4275460c5b0f0dd6e29688c8b10f73b78176fb97",
+            "sha256": "86e5eae38a45d3ffdd83cedd0e095362ec9f8647683807fc719260d4f5f4e5fe",
+            "bytes": 20740
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-c82b208701de",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "c82b208701de72215022674cc20902332219d325",
+      "parent": "daae85340b464ab62a865549b578ba3ca399d04e",
+      "title": "fix: keep expiry separate from destination privacy",
+      "relatedGroup": "publication-validation",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/publication-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "81033a6851513ff9f7909d1a468ecfbe77fea424",
+            "sha256": "a2eb02b259aa0785db14313459b92c6c03ebb5ae958aba973563237f6be73387",
+            "bytes": 24652
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6010e8e6fd4c17517565d5b34ee84022785c2aa2",
+            "sha256": "f73e4ea910776acb4b684c5d209d53d21e1eb2c87da7844ab63e4de111a7a367",
+            "bytes": 24692
+          }
+        },
+        {
+          "path": "packages/protocol/src/publications.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "adba74f0f29bd648849a07b3dc09f3b76f665da4",
+            "sha256": "820196509541956ceea76a64058286272e4ac596b4d79f7ec8917b9f3fae6d79",
+            "bytes": 5014
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3079d5262889440c1e4fdf6f74438ba7037c787f",
+            "sha256": "b58bb95640ad0a3796d164f91b31b78d5cdc3d61ac60336d878cc47a2f0b16a6",
+            "bytes": 4962
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/publications.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "7b304a980097ac0b3b01997226ff4eabd25a52c7",
+            "sha256": "4503d05e465f3f0bf586de8cb3ca8e972d145e7c7f23539d8b1487f33774c6e7",
+            "bytes": 17989
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "869a2730b79cfb229f550e6e962b169ec236f28c",
+            "sha256": "6bfc9ff540ca7c174c896fc2e35aacb1d61c9c428da10f739417844bdff916d1",
+            "bytes": 17950
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-cef88d2b3b60",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "parent": "c82b208701de72215022674cc20902332219d325",
+      "title": "fix: validate publication progress and retained bytes",
+      "relatedGroup": "publication-validation",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/publication-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "6010e8e6fd4c17517565d5b34ee84022785c2aa2",
+            "sha256": "f73e4ea910776acb4b684c5d209d53d21e1eb2c87da7844ab63e4de111a7a367",
+            "bytes": 24692
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b6fc0af0afb4b33a124b22ac9ed904ca84dda636",
+            "sha256": "634717090f0f740e7eea2e7620c7e9c0b7cef9ae47f8b697f51af64357d4571d",
+            "bytes": 24859
+          }
+        },
+        {
+          "path": "apps/desktop/src/library/store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "176c41f546f971b6f29d2665f2a8d6d94f10dec0",
+            "sha256": "821a52a0fcd0389f0f20bd7ada8d18b6e7c84b3c4b0400b2d0b72909e2959650",
+            "bytes": 34154
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "804107b66fd13b5d513145ec366361e1e6890ff6",
+            "sha256": "a373b4c030ccd933a1791fbd218e7f78ceb7e4be70e57c63051ab5dfc2f7362e",
+            "bytes": 34314
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/publications.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "869a2730b79cfb229f550e6e962b169ec236f28c",
+            "sha256": "6bfc9ff540ca7c174c896fc2e35aacb1d61c9c428da10f739417844bdff916d1",
+            "bytes": 17950
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "eff8586403530f212d8949ff1e4ec8de8e6a2cef",
+            "sha256": "098eb228b6bb8a07710cdd8a1985900e8fd7b797118c57727af4dc55d972fc57",
+            "bytes": 18165
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-d993eb728ac3",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "parent": "cef88d2b3b600e215d7c461b53abe5504bc7349e",
+      "title": "fix: retain confirmed publications with unknown remote dates",
+      "relatedGroup": "publication-validation",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/publication-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "b6fc0af0afb4b33a124b22ac9ed904ca84dda636",
+            "sha256": "634717090f0f740e7eea2e7620c7e9c0b7cef9ae47f8b697f51af64357d4571d",
+            "bytes": 24859
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f85d3f28712f0b593eabee1ccb9b5801eb785ccc",
+            "sha256": "c0a53cd31f48081db6576ad29b02541bafdbb154012e087336f31c2148cf6846",
+            "bytes": 24696
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/publications.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "eff8586403530f212d8949ff1e4ec8de8e6a2cef",
+            "sha256": "098eb228b6bb8a07710cdd8a1985900e8fd7b797118c57727af4dc55d972fc57",
+            "bytes": 18165
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2bb5000c7c3f2646657a047906b740c27a99583c",
+            "sha256": "c949fc65573f017702e2856d0177443ee3860078570dfc38ee2e8da2ba752cd3",
+            "bytes": 19233
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-392d29f5779d",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+      "parent": "d993eb728ac348c2e3fd6d77461aa2787bed8b56",
+      "title": "fix(hub): preserve larger outbound publication commands",
+      "relatedGroup": "hub-relay-write",
+      "sourceFiles": [
+        {
+          "path": "apps/hub/src/paired-server.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d684f6c860ea6bdfca7d78db929712673cada2b3",
+            "sha256": "c1606ff9210dbe3f027b1259a485107a1e97e8c3a6e32d41f82c85f92fba697c",
+            "bytes": 19867
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "55d9aee653e68af912a5b626aaa13d554e6a033d",
+            "sha256": "34672b3c38aeeaed794a12e6712c4305464304bf3e81fd8a8b1c3dec559b668c",
+            "bytes": 19979
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/hub-relay.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "02bd46f72a2f16ae63bc908f9a0ee7d662bffccd",
+            "sha256": "a49dd75705c10d06a4b90cda6c59675eaf6e715f8d4932c5ca83579dc9aeca3e",
+            "bytes": 11792
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "879476b36f3989c5c6d83e6310a41c76f0f3fa4d",
+            "sha256": "3760f1ad4bfd2bfe6e9df592fb081964d12e640e68e6be6fb7ae5218cbe08192",
+            "bytes": 11930
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-84ec1ad4e6a8",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "84ec1ad4e6a8d999cf6234ca831cafb43a7052e3",
+      "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "title": "fix(pull-requests): resolve repository aliases on initial sync",
+      "relatedGroup": "pull-request-refresh",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/pull-request-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "22acd520cd49752b8a95e5526572376651597491",
+            "sha256": "badc76a94eee0dab3057b1f18ad1195312600bdc1ac877564a2c863eaa8e014d",
+            "bytes": 21036
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a6957d79b7c31edd7257bce7580e756059d6a703",
+            "sha256": "d1add8efcb72d53f9b5c4743e227e6864aa2159b0e156961ee979bf231ca5a4c",
+            "bytes": 21902
+          }
+        },
+        {
+          "path": "apps/desktop/src/plugins/pull-requests/gh.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "20a0f4d6900d788d7c8cb41bb6836fff6c848f93",
+            "sha256": "a252d4fee5a0ce7af644cdd63c2077b305274ca7df8f5db8e509d76a64a08d66",
+            "bytes": 18188
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "813977bee3b75b7a85e6a1f87db2e17851d64542",
+            "sha256": "f3c499922d4ce06f77d83400dbeaa6333bb21d8ae9ba1b394e5b2a6dc5f933b1",
+            "bytes": 19825
+          }
+        },
+        {
+          "path": "apps/desktop/src/plugins/pull-requests/sync.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c908e69a10c719570b95e24277e6b24febb27451",
+            "sha256": "b519eb36ddf4a7ce5dd77d70f888bc93e5b6c674264c9f5da404d8857d6d4a67",
+            "bytes": 3755
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "63e33657d9f83c66b031cd641423213581dda9a5",
+            "sha256": "e300f1d2f422071f2e6846ea83326a74cd10517bed846f3709329ad01f4a5ede",
+            "bytes": 3713
+          }
+        },
+        {
+          "path": "packages/cli/src/pull-requests.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "872df578be53e8d4c3913d7ab9db292a65885fce",
+            "sha256": "4ac83842a54b89a66a199b0d84d457c7d0970eba1c469a34c97d8636e9e3871f",
+            "bytes": 4938
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f8aa67e0803ee6214a1250e39dc99491f5667864",
+            "sha256": "117987e83e8b4feb4149e33a4d70209c013a8c576e27d22d83212892569c5772",
+            "bytes": 5357
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/pull-requests-journey.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "5b03744a9104a3b60e7ab22a90f90837d047872b",
+            "sha256": "b52691ccb993d122f101f09c0a7a9f8514c636f627ad95c9f9ba3c3d24511586",
+            "bytes": 8185
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6a49a894a4a996b628d7de31ad2a19d1bb5e2d0e",
+            "sha256": "52361c59145cdeb191005e1aec7201748725405aac0f0176e22e26b60643eb6c",
+            "bytes": 8304
+          }
+        },
+        {
+          "path": "tests/pull-requests-sync.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "a68eb7e67bfb52fb9e070cea3348357da7a22b1b",
+            "sha256": "9fde8fecb72c035d837aabffd83373932f8c0f44fae87889da675f7538f4e1a8",
+            "bytes": 29243
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "47beb4263f1781d9ccdd0746245a91d08a1b865b",
+            "sha256": "f847a8dd1c65ec0c9c0a3daf3fd9065f0b091b81df31da1b3f5ba676b9fb3aed",
+            "bytes": 35395
+          }
+        },
+        {
+          "path": "tests/pull-requests.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "5c841ffea2bf23e28080ea7ffed78aee430af500",
+            "sha256": "e96d36302de0b03de888ffa49c57bf013e6e12923bc7589b1eb938d499036dc5",
+            "bytes": 25083
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d22940802abe2d1b580b3d4f5b44fac1ffd6c80d",
+            "sha256": "36a17b96ac308baa0591e8d5badb6cbf3c92555d8adebc9eb6b81aad3bc7b2d1",
+            "bytes": 27878
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 10,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "scope-48708ad54e8b",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "fix": "48708ad54e8b87d341e3bf18259c124fed2b0bce",
+      "parent": "e3fa2267a74bc95d2c0b9772cda6f49ca815fcbb",
+      "title": "fix(pull-requests): wake snoozed PRs on new commits",
+      "relatedGroup": "pull-request-refresh",
+      "sourceFiles": [
+        {
+          "path": "apps/desktop/src/library/pull-request-store.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "22acd520cd49752b8a95e5526572376651597491",
+            "sha256": "badc76a94eee0dab3057b1f18ad1195312600bdc1ac877564a2c863eaa8e014d",
+            "bytes": 21036
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "00f611b1e8a0e4b173c2a6a831ae9add5ecea236",
+            "sha256": "af94e11b095b8d641eae24f95bef9ce3dd582149f01be0458e1154372c54e6ba",
+            "bytes": 21605
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "tests/pull-requests.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "5c841ffea2bf23e28080ea7ffed78aee430af500",
+            "sha256": "e96d36302de0b03de888ffa49c57bf013e6e12923bc7589b1eb938d499036dc5",
+            "bytes": 25083
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4e39cf218fa598f411118cadafa92b53a40a379e",
+            "sha256": "f73c3a6c6dc4092caf00431d552706a3321aa2f007840391d81489cb3b3488dc",
+            "bytes": 32862
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 3,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "758531b3021ef0ad87771df6d5ae7d018f4aef2b",
+            "sha256": "6ffd7e2f83387d0687493a7c04ffa24b4a82a89aeb691e76f988f0e47659f575",
+            "bytes": 283055
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-4abf8b46c591",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "4abf8b46c591ae2b36aa29598c388100df651411",
+      "parent": "3083d712eefb8009f7366ba53040eb2d477bfa33",
+      "title": "[codex] fix: ignore stale shell reducer events (#3517)",
+      "relatedGroup": "shell-reducer-ordering",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/shellReducer.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "71c8a6b0eb30b07bdb4fe5b79df3f60463130e86",
+            "sha256": "f17ea01b168949efb8cc1fcbdf207b1fdf9c17e941829a08ce20044fe5408591",
+            "bytes": 1766
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3d3b22a1289ff76421bb1e854553c43fdc23ab77",
+            "sha256": "4553621b66057aabc5ae0206f971a1e7d18ac8db7c8ac4c8a4d1da927a42a8ca",
+            "bytes": 1835
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/shellReducer.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4689c1408f7eb6d6e366b395ba6dc084e3525aab",
+            "sha256": "b2d8a005b5ed3073049136874fd46d2fb8bdd6ba0b394d8acd2d6c7a2e6c1ece",
+            "bytes": 4832
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a069460e63ce4c02fc8da0046d5f0d08dbc81c3d",
+            "sha256": "68eceb7eb7528d546d6977366d4682ceee00e26ef245e22c7fa5551c8fa0a653",
+            "bytes": 5446
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "61fa9c92146de8d15f2e2d42d030db1bbff5f29d",
+            "sha256": "31a6853fb80c85acab5cc6ffc4428de4779f67936d8d0ebbf699a9a07db7474b",
+            "bytes": 767828
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "61fa9c92146de8d15f2e2d42d030db1bbff5f29d",
+            "sha256": "31a6853fb80c85acab5cc6ffc4428de4779f67936d8d0ebbf699a9a07db7474b",
+            "bytes": 767828
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-43e2aeab3891",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "43e2aeab389199de115bb414f80db12b60cd85f4",
+      "parent": "b655a9f183cc9f6b2fd54bf11ea28acb50d23cfd",
+      "title": "[codex] fix: tolerate invalid latest user message timestamps (#3521)",
+      "relatedGroup": "thread-sort-timestamps",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSort.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4da184962e6162da8222773d69a1ceec42c3be12",
+            "sha256": "d731706cb47b87c9812f8f304885ec6ef8276597ae4276805de139b4cd2044ab",
+            "bytes": 3023
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "aed63cd442d7caf33665e3ac055869ec272f2884",
+            "sha256": "44b68692fdb91f2786533bb6f9c9982fe5b983a450d2e733d3ad3ff7828103d8",
+            "bytes": 3117
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSort.test.ts",
+          "parent": {
+            "exists": false,
+            "blobId": null,
+            "sha256": null,
+            "bytes": null
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "dd6f8c3a295e985ede2b10021075c41551d7cbac",
+            "sha256": "958571f4dc30d019ce68baa2a60ae715b9ef503ad895d02f8a842e6997f24a86",
+            "bytes": 2231
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "e0271c378aedf8b37a6060c4a85ab084bcb151ad",
+            "sha256": "3ddeb353eab2348b186b83c1a9e9c26766294d086376f8b471b137106eefc026",
+            "bytes": 832371
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "e0271c378aedf8b37a6060c4a85ab084bcb151ad",
+            "sha256": "3ddeb353eab2348b186b83c1a9e9c26766294d086376f8b471b137106eefc026",
+            "bytes": 832371
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-193e3c62e6d5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "193e3c62e6d52fcc200d823ca6d9061d13f81f23",
+      "parent": "91dfe60a99b7bf6cc44138a237e663ba158062b7",
+      "title": "fix(client-runtime): keep a warm thread un-settled despite a merged/closed PR (#4309)",
+      "relatedGroup": "thread-settlement",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSettled.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "3cb4f7e65f7e5756d1440aa6654045bd0dbf4895",
+            "sha256": "ea061593df7ea46c6e7a8c3cc14b23288120699feef50d68a6d8a3ecc9d58db0",
+            "bytes": 6534
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "85d1649c2679145578df60f027dd3ec6a647cbbf",
+            "sha256": "e2d857894162c96579927472b35c39cf40ee3725d5ab41b46967a70b62c76dc3",
+            "bytes": 7989
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSettled.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "59f9f1d6f5539781ef6da0707f403f6a1d4abd44",
+            "sha256": "9de04f30a5bd7bfc0aa1fd80bd9861c16e5a8d5a1c02546979f41672d12dd198",
+            "bytes": 13303
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "421d95c6b1355e631f93b46137266f04afcd2712",
+            "sha256": "c507e69d9e785a4168cdda46eb57a2362e0c8f37d0bf9db5394c2a4d62409412",
+            "bytes": 15108
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "a1e116d95bc90707c12a67a45084201ed6d72faf",
+            "sha256": "5b4cff23e853e6ceddfcab7c333804672bee7535268923f14a530795f02ccf60",
+            "bytes": 832471
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a1e116d95bc90707c12a67a45084201ed6d72faf",
+            "sha256": "5b4cff23e853e6ceddfcab7c333804672bee7535268923f14a530795f02ccf60",
+            "bytes": 832471
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-32407df9c5ff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+      "parent": "162e774294f9e3dda15ca2f8083db019fe398837",
+      "title": "fix(shared): lenient JSON parser deletes commas inside string values (#5025)",
+      "relatedGroup": "lenient-json-parsing",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/schemaJson.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "04d26d9c2293f93f5ae1b1d419d84ce7f7e51d67",
+            "sha256": "4f5eb1555f33d216f0f6d73aa9bdf806bc71dddffcbe85666401ac6c141661f9",
+            "bytes": 8602
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "77b1fa5d548d59acb564098d74ef78fbfaf738db",
+            "sha256": "75995c87f576c7aefc0ccae243dc7dc82adb9a5c6868f295b1e1d7e23852e485",
+            "bytes": 8909
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/schemaJson.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "c808a9b7c515104f9cf63fc2e45aac3ede20b5be",
+            "sha256": "783c66863d29037ef4a86b030697ddb4d6edca60b6aa85fb472439ee37f19778",
+            "bytes": 5019
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "4a4d16da0b30440c17d02cc134ae5c097e7a713e",
+            "sha256": "674c0ddb030516bc817f75c04681458be87dd7f84b2cda2bf6042725cabdf2c1",
+            "bytes": 5509
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "f5c6c87895ca2d128c07d2c63c7d7cae28908248",
+            "sha256": "721be36ad96ffbaa2daeec7d89f1c2e7150bd1dc601587a87660d3c846356bd8",
+            "bytes": 842385
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f5c6c87895ca2d128c07d2c63c7d7cae28908248",
+            "sha256": "721be36ad96ffbaa2daeec7d89f1c2e7150bd1dc601587a87660d3c846356bd8",
+            "bytes": 842385
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-491219bf1f4d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "491219bf1f4db7144b747fe02af0cbc075668b12",
+      "parent": "e5c75470678e33ca2bd1001d9d93493fe437972a",
+      "title": "fix: threads with open PRs no longer auto-settle (#5151)",
+      "relatedGroup": "thread-settlement",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSettled.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "51a82339655312a7683548d4dfcd2d43b11b5052",
+            "sha256": "63cbbc5716ddee30e767b43bdf4f98784b3e1b0d6716eb627cdf4f8207558b4d",
+            "bytes": 15076
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "595b1303bea50b64bc486804ffb5cd29629fee20",
+            "sha256": "c10ccd827bda406916c5052b15aba2a010fd375d18ccd5eb1bc3034e98ea2190",
+            "bytes": 15449
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSettled.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "99d906c00fa367cb256c161633a7c773458e7a44",
+            "sha256": "c1b2bf133f9184de0b7b566290f90643702bf1b348299cc4e8b7425c060e2bce",
+            "bytes": 14078
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a7dd4b1eab835ab2a2d065a9df8a96cb8b9e07e2",
+            "sha256": "3fb10a98da6d2caa0812b65f691d48a52644d392945e22cc7f6133fe138281d3",
+            "bytes": 14875
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "85afdd75d7a697cb6f98ba46d2e72538f9408ee3",
+            "sha256": "14e507b860b5166426d8083cd616cce94478bc8098ba1c13abd1f3f93bd9c31e",
+            "bytes": 841871
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "85afdd75d7a697cb6f98ba46d2e72538f9408ee3",
+            "sha256": "14e507b860b5166426d8083cd616cce94478bc8098ba1c13abd1f3f93bd9c31e",
+            "bytes": 841871
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-70de6e17860d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "70de6e17860d7343a73e117e6e9e1ce41b1b633e",
+      "parent": "47dfc6526521866992f6b50beac4587b45114631",
+      "title": "fix(mobile): prevent Android thread search crash (#5386)",
+      "relatedGroup": "thread-search-keys",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSearch.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4011a91cd58c33d6d3e618bfa8e2de1d897892c3",
+            "sha256": "8d80a56078cb2a3027f6baa6aa6be4374b9c808d945d830343715669b470d2ab",
+            "bytes": 2553
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b71186421ca60576ede3aa6523dc47909228748e",
+            "sha256": "14f203c683eb219399ae80f4cdbcec3d60160a6d2aaa6a4716160aa30c556f30",
+            "bytes": 2549
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSearch.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "2f1430a51b6bba2daaea681df7ab302f51946b40",
+            "sha256": "38c8421be4971329981a875e739d7d0919282cc84a56abeacec702c6d27eeaed",
+            "bytes": 2192
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "9e6c682e72d5bb813ec147ddfbd4097acefa5a66",
+            "sha256": "72f975f3447b01882291cb462317448e41be039388f762b6e69bd1e05fa72770",
+            "bytes": 2640
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "f7c6f4cc1f5ed36ec5bf6da7ffaabad43423a263",
+            "sha256": "432605bf52de21a773b35e6f515a60d91dcde193e8071c92683404f9f7bdd262",
+            "bytes": 838568
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "f7c6f4cc1f5ed36ec5bf6da7ffaabad43423a263",
+            "sha256": "432605bf52de21a773b35e6f515a60d91dcde193e8071c92683404f9f7bdd262",
+            "bytes": 838568
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-062b4618c229",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "062b4618c229f3e2f13e44efd8dab8c71ad33dae",
+      "parent": "deb901d6381e0c86ef326946c8fb45ee323db708",
+      "title": "fix(shared): bound the file-link label so bracket runs stop rescanning (#5782)",
+      "relatedGroup": "composer-inline-links",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/composerInlineTokens.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "dda548059df7f258550a4b12471e6f55af86956e",
+            "sha256": "b567df5747ce2c3f01cb62b33e2c3852f63e0dfadd15067456d52b683a193b10",
+            "bytes": 3859
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "11a5accf37b71b5b23e3eb6751bd63c598c5fda5",
+            "sha256": "df1ae616e8f5fd99fcedfc1e2049aa5629ba1273560d370f3135dcb65a6e8236",
+            "bytes": 4480
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/composerInlineTokens.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "5a7c14f1725cdbfc4db642539839a4219cd7a440",
+            "sha256": "60c9b21f4de9259b56912410ae006271ca3e7289f91f5d1f5c16aa075628dbdf",
+            "bytes": 3816
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "81fd6add20564011e7b24567ca2c4a1b88485c29",
+            "sha256": "fbb8c1bdfbb080a3bd71cd6e46366562493926e694ac13e3d6e9d18daaff4898",
+            "bytes": 4678
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "9b999993183719989ef81c1e74766002b10d8ac3",
+            "sha256": "d95087747fa534f752790b4d56a79d112e69ddd5b44c35f1dde8cf8f506cf956",
+            "bytes": 841454
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "9b999993183719989ef81c1e74766002b10d8ac3",
+            "sha256": "d95087747fa534f752790b4d56a79d112e69ddd5b44c35f1dde8cf8f506cf956",
+            "bytes": 841454
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-220e573b14ce",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "220e573b14cea84b6662a7d69047129047433b63",
+      "parent": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "title": "fix(shared): detect Azure DevOps SSH remotes (ssh.dev.azure.com) (#6187)",
+      "relatedGroup": "source-control-provider-detection",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "15a98dc7355e3bdcd85d228b6ba55b44a2052f55",
+            "sha256": "051f002fd198be946fedec19108396d0759d8709306abbde63e1661c08021df8",
+            "bytes": 6457
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a29fe968e44d373877b854377f5cd8a1c3466cc6",
+            "sha256": "278745135e1558e9aaa5d2d76dbe30b34af59c6488b3c21567db8d0a8ed3021f",
+            "bytes": 6798
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "368e8387ee6004f015808f7f2eca60521ffd0594",
+            "sha256": "ddadb2f4adbaaef6457c0d6bd94f49c9a9f8146e5ea58ac76594d42c5d15e528",
+            "bytes": 2477
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "bfee883dd9f5707a63cf82656b7f5f94ca2f611e",
+            "sha256": "a41a33db4aaa1efafad0fc6c9322483f8b403372617c2f26717ab85e83f23340",
+            "bytes": 3124
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "8796302bab4c3554f18859764b4e7bf2e6d5f4c5",
+            "sha256": "1e887fe01c1a47fbe6e0627b561cb838da6d3d6c983eca12eb6d0c216fd36daa",
+            "bytes": 841773
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "8796302bab4c3554f18859764b4e7bf2e6d5f4c5",
+            "sha256": "1e887fe01c1a47fbe6e0627b561cb838da6d3d6c983eca12eb6d0c216fd36daa",
+            "bytes": 841773
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-6befe42eb096",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "6befe42eb09633f3adb500ae906a0e1da3f15f64",
+      "parent": "b30a9bc4143910f12d9c990c221fb9bc20cbc293",
+      "title": "fix(shared): normalize a bare Windows drive root the same as C:\\ / C:/ (#6189)",
+      "relatedGroup": "project-path-normalization",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/path.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "66887d3f2ec302b8ed4fdfc26efb964afff38fdc",
+            "sha256": "3eb0f61b40bd8868bf39f51a42f0ff7dce4588fa5470f2fcfae007ea4851c277",
+            "bytes": 1471
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b6758d814aa83eab9ec9fb1bfdb41c13ba6400cf",
+            "sha256": "df4d73ef6cff9b990e5c5d2eb23a127ba2464e705c80d45cdb50ec171fc21551",
+            "bytes": 1774
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/path.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "52a07aae7befb52ad32bd0ac6cbad63de7e9b2e6",
+            "sha256": "a796d1605623132705f5396173b9ea399a4171acd62c8f0a1a0ad7f4d0c912eb",
+            "bytes": 1145
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "799f225fb6e25cba3a265d24ae668b5b8ca588fd",
+            "sha256": "169aac65793955f2db9e9ec364d7063fa6e81cda15af6b7763f9abd6d6502f4b",
+            "bytes": 1884
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "8796302bab4c3554f18859764b4e7bf2e6d5f4c5",
+            "sha256": "1e887fe01c1a47fbe6e0627b561cb838da6d3d6c983eca12eb6d0c216fd36daa",
+            "bytes": 841773
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "8796302bab4c3554f18859764b4e7bf2e6d5f4c5",
+            "sha256": "1e887fe01c1a47fbe6e0627b561cb838da6d3d6c983eca12eb6d0c216fd36daa",
+            "bytes": 841773
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-684d703b0a8a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "684d703b0a8a0632a18c8453277f7e5e6312b200",
+      "parent": "40ab7bf32a81a66b20571ed280dc238c2276dc61",
+      "title": "fix(shared): degrade an unknown system time zone to UTC in usage windows (#6670)",
+      "relatedGroup": "usage-window-time-zones",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/usageFormat.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ef2b2bcf21a1afec74122e3c472b7545c92b9373",
+            "sha256": "837a077371c8b099aaa760531645cd7640e8146685d3ec100f1b9c6c788df3b9",
+            "bytes": 7401
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "bd751829dd87bd40797aa6666899321ba1d85cbe",
+            "sha256": "d6be32757fc4e24a118bfe320e75058a5ac5f593446ad4be25e371f278ab27ec",
+            "bytes": 7707
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/usageFormat.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "cecc07c6e67019a72d9199fde0c6429f36784fc2",
+            "sha256": "fd54b6a26bf5dc5768be44eb5a6fa7923154077bf2871086d21adccfb1f3b728",
+            "bytes": 2150
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "fb231fbacb20661efb6d4a66fe98879508a4f66d",
+            "sha256": "76d88cb03e5a9740d698bb1ae69ee07e8ecdbf20716b8e3b64f3aa251a0719b4",
+            "bytes": 2710
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "2c79aea36a0e359214bc961407e9a98bfe711365",
+            "sha256": "de949c43cd5a8944c5740f04f4a328dea076c23eef311f1be1e0da6e94580bec",
+            "bytes": 842402
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2c79aea36a0e359214bc961407e9a98bfe711365",
+            "sha256": "de949c43cd5a8944c5740f04f4a328dea076c23eef311f1be1e0da6e94580bec",
+            "bytes": 842402
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-9bdd91293316",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "9bdd91293316038d6a50f8bb19afcd73c25ad102",
+      "parent": "4db50757c0b618293997a7f81bcfe30b68356969",
+      "title": "fix(web): stop counting a workflow coordinator as a working agent (#6672)",
+      "relatedGroup": "subagent-counting",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/subagentRuntime.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "e5f2b586b8c40448dc05171f75bfc3fa46339169",
+            "sha256": "2d84ce34ea308d83c802a33ab35a7ac96c79a20289093191a31e95141fa1a3ca",
+            "bytes": 35656
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "c1ea1cc2b15dcd6764570e7e3bcd3863e2d420c4",
+            "sha256": "99f999356f223dd158da9c04e2d4722b00e32d7c8fdfc56193835c98ba6f6f84",
+            "bytes": 35797
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/subagentRuntime.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ceb40517550eb3a24dc25af61765f1981fc57c0d",
+            "sha256": "fbfea69c97333f4dca9c4bfca4d68ea655ee283c087f9a67a3d1c16d3c3c422d",
+            "bytes": 30432
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ff0aea7c8a5181fe1f1f85b60a13e33c0b115f4b",
+            "sha256": "0e7d2719e30c832493aec0f9fd259f9fd76d4717e8c0bc7c7e1710a3b8e00d0e",
+            "bytes": 31805
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "2c79aea36a0e359214bc961407e9a98bfe711365",
+            "sha256": "de949c43cd5a8944c5740f04f4a328dea076c23eef311f1be1e0da6e94580bec",
+            "bytes": 842402
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2c79aea36a0e359214bc961407e9a98bfe711365",
+            "sha256": "de949c43cd5a8944c5740f04f4a328dea076c23eef311f1be1e0da6e94580bec",
+            "bytes": 842402
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-178da6bc3210",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+      "parent": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+      "title": "fix(shared): match source-control providers by DNS label (#6175)",
+      "relatedGroup": "source-control-provider-detection",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "a29fe968e44d373877b854377f5cd8a1c3466cc6",
+            "sha256": "278745135e1558e9aaa5d2d76dbe30b34af59c6488b3c21567db8d0a8ed3021f",
+            "bytes": 6798
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ad6fa890bf2520d0f0f97034be21d95d42b62b88",
+            "sha256": "198903a1c124b65e23504867086994a528a8ac8ceafce46675b40cf3cbb71ff1",
+            "bytes": 6916
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "bfee883dd9f5707a63cf82656b7f5f94ca2f611e",
+            "sha256": "a41a33db4aaa1efafad0fc6c9322483f8b403372617c2f26717ab85e83f23340",
+            "bytes": 3124
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "3842fa84b5a78a6fea312c3a2c0f86349cd6667c",
+            "sha256": "f84b72c327947909ed4bc2adf1181ac474f7e13837bd18d74e2b099ca685adb0",
+            "bytes": 4157
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "2c79aea36a0e359214bc961407e9a98bfe711365",
+            "sha256": "de949c43cd5a8944c5740f04f4a328dea076c23eef311f1be1e0da6e94580bec",
+            "bytes": 842402
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "2c79aea36a0e359214bc961407e9a98bfe711365",
+            "sha256": "de949c43cd5a8944c5740f04f4a328dea076c23eef311f1be1e0da6e94580bec",
+            "bytes": 842402
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-421088c27367",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "421088c27367da227d922ce999c1637416a6d0f4",
+      "parent": "592c5983c14d248aa3cfddb8e6c7372f12cd1ab6",
+      "title": "fix(search): oversized thread queries no longer crash clients (#6633)",
+      "relatedGroup": "thread-search-keys",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSearch.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "b71186421ca60576ede3aa6523dc47909228748e",
+            "sha256": "14f203c683eb219399ae80f4cdbcec3d60160a6d2aaa6a4716160aa30c556f30",
+            "bytes": 2549
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "6dae630aab7ebbcf7de0263bdbbcaa12ed21798c",
+            "sha256": "f43de36b3a579cdb99dba8e07aa5326cfc3d88d21bdf61ccc1a7c5b553b3d292",
+            "bytes": 2729
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSearch.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "9e6c682e72d5bb813ec147ddfbd4097acefa5a66",
+            "sha256": "72f975f3447b01882291cb462317448e41be039388f762b6e69bd1e05fa72770",
+            "bytes": 2640
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ef4b401d474e80d091725d64f11d4e8ff5a30b0b",
+            "sha256": "88a46966ed89984f2fc6e234e2a9910bc1c9cd48497cca2e083fa854b8e1c1cc",
+            "bytes": 4027
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "0f66f69b87f047b3b3fcd6131a601dd402a166a1",
+            "sha256": "0857586308d8e097364909cd328b90025b0189d8812473ff00c6e45202ca3bb1",
+            "bytes": 842377
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0f66f69b87f047b3b3fcd6131a601dd402a166a1",
+            "sha256": "0857586308d8e097364909cd328b90025b0189d8812473ff00c6e45202ca3bb1",
+            "bytes": 842377
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-7980dfddb193",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "7980dfddb193864e07a5bcc013b0ccb93fb4300c",
+      "parent": "ac4aae101d060b5355a5de58e23c7387886d9021",
+      "title": "fix(web,mobile): snooze menu no longer offers the same wake time twice (#8741)",
+      "relatedGroup": "thread-snooze-presets",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSettled.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "8ccf0d230efdfd84bad15b99c222871d03fa7ef1",
+            "sha256": "1b57908302b55a91b4836ec1107cfea9446e65a1b699e168d37196cf9901858a",
+            "bytes": 18772
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "eb965c6afe2a23d6009e799e740658f8c26296b4",
+            "sha256": "3fb497c0a7923ba7a9c8810fa363c7544ebc741fecb4addf5152cf4409b04cb4",
+            "bytes": 18996
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threadSnoozed.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "ff0c7d5d8e56e34f3fc21fced6ad15eb06dc8bcf",
+            "sha256": "b58c870780e5ef39ed7283c113c0dfc505a8aa2aa7de63efee37a8c08d930b02",
+            "bytes": 10203
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ab4c7fb0784f441b00243c221129dba717610ef1",
+            "sha256": "70af2d2d6d3f58eddb5dd51310de9121f17a41cfbbe10757bb5f2693542b7162",
+            "bytes": 10723
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "522a701f5091c713a3874f3c2f546199bf67b30e",
+            "sha256": "4d363b7653c968d153d48f21749545a43b523857fa3530fb223e895c08a3b45f",
+            "bytes": 804972
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "522a701f5091c713a3874f3c2f546199bf67b30e",
+            "sha256": "4d363b7653c968d153d48f21749545a43b523857fa3530fb223e895c08a3b45f",
+            "bytes": 804972
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-8b3ddf51c59a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "8b3ddf51c59a54411cd02b321cb07f39c927df09",
+      "parent": "d7c71f91d61e68ae35fcc0032847cb42324a8b51",
+      "title": "fix(mobile): stop crashing on launch before the shell snapshot arrives (#11537)",
+      "relatedGroup": "project-settings-defaults",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/projectSettings.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "742e1cb8d140c82d0a202ca1602407ca8fb432db",
+            "sha256": "44a85e9738da0040f862b91d8e952b003ed247457c399dae53489e56f12a3ab9",
+            "bytes": 4886
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "edb56654f5d03f8313a78aea65d6c7c94ec66c2e",
+            "sha256": "b3c4520955577907789587a78e61cb491924c54a05017a57bfd40fbcc8cf3ae2",
+            "bytes": 5046
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/projectSettings.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "950867d36dc7c682375126592a1647e4a4bc220f",
+            "sha256": "24d69d41bf8e8eb93d0529c49d217860f786959da10fd0ccc9b5e908aae5a21d",
+            "bytes": 9266
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "8760433182d68200f607e89e96eb505344ee8182",
+            "sha256": "655b2d08c0b16a246472c29e38fedb0763099e5d72bc5300aca2d8463a1ea77e",
+            "bytes": 9651
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "a8dbaf39692448ac6ffda2c252ee57fb52e3dadd",
+            "sha256": "f9b6f62e2637a52b44e0ec6ac1bd76ba80a497231b599b2e1421af9959325144",
+            "bytes": 864362
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a8dbaf39692448ac6ffda2c252ee57fb52e3dadd",
+            "sha256": "f9b6f62e2637a52b44e0ec6ac1bd76ba80a497231b599b2e1421af9959325144",
+            "bytes": 864362
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-f87ecf0cc307",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "f87ecf0cc307f974745da8eea856fab5711023f3",
+      "parent": "fc1f543d6c67da9cf1edb25b647646faa0105b41",
+      "title": "fix(client): keep warm thread resumes live instead of flashing sync (#9913)",
+      "relatedGroup": "thread-state-resume",
+      "sourceFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threads.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "a0055b6cab3cb3bc712689b251ba16d3898c127d",
+            "sha256": "ff942a10df402f650ac91641fc80cabdd9f9674d069e5b9c34442c7ea76a09cf",
+            "bytes": 33809
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "cdd07087d06ae84c36dd42d638f71b1d9c10b60b",
+            "sha256": "4261b8e815c266e762f73d95e115ebf88005484edf1adba163cfa7952322dbad",
+            "bytes": 34703
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/client-runtime/src/state/threads-atoms.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d7a415b2999ddcb604a2c089f215d9d0c23fdf23",
+            "sha256": "a8c0ae9fbe192d151ecbd99c008d3554bd415fbb87ad90ad4b04087acb4dcb6f",
+            "bytes": 15924
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "27229a7aff61e2dee12c2ca84abb8bd36914f894",
+            "sha256": "1b0c3734b717bd401ac66557efbbe94b945248a5492fc6c49d698bc6515e89a6",
+            "bytes": 19499
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "595627a489ca2a20fb4a3e630393896f6bd2062f",
+            "sha256": "8a525fc24ecb4077a24d57f822032a87af6d63ae3ed995ccaf0937e5a26cd3be",
+            "bytes": 833611
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "595627a489ca2a20fb4a3e630393896f6bd2062f",
+            "sha256": "8a525fc24ecb4077a24d57f822032a87af6d63ae3ed995ccaf0937e5a26cd3be",
+            "bytes": 833611
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-d4d5d12e8ba0",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "d4d5d12e8ba086cfbf79ca3adeb4156b46ead665",
+      "parent": "1ab2dfb5a7bd2996f79407b5d02cae6132a7626c",
+      "title": "fix(shared): keep the newest shared usage scan (#10315)",
+      "relatedGroup": "usage-scan-merge",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/usageMerge.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "e0cb0510eb71a4b64a0cb2ab2df72d6ef806455e",
+            "sha256": "643e835a19a85209551ad5704f1e8a0f8069350d45984025d5fc2658a1d75b22",
+            "bytes": 14595
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "fee8e9c95666e803339f4aa6266b6705c29f4e56",
+            "sha256": "bdb2cd624df6003f29f5ac4f1998f26738f1611697a1612db38ca84766f47cda",
+            "bytes": 14698
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/usageMerge.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "24bbc3b7c2e8099aebec6ce461a55249ddf15c96",
+            "sha256": "ed30355c1abe519aade332d8c0763b44d1428ac6f9d7f9814e75125cdd8b4016",
+            "bytes": 11038
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "142d6922f0c4459c2f2b8f8f0c9b23a1fc3acb30",
+            "sha256": "652ca32ea2f63e443a7f68855bf5a01217895bfdf40e20a16ae967c460bbe435",
+            "bytes": 11883
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "a2a0d9a96339a8510d1dc54af582b375a754419b",
+            "sha256": "1d9119494547ffe523f5b8b46389fa35e35bd8d115e4e2bf095c736d932bd687",
+            "bytes": 877872
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a2a0d9a96339a8510d1dc54af582b375a754419b",
+            "sha256": "1d9119494547ffe523f5b8b46389fa35e35bd8d115e4e2bf095c736d932bd687",
+            "bytes": 877872
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-f1add18ae156",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "f1add18ae1560f509405a5eece07f3cfb1cc850f",
+      "parent": "21e2b7de0062a3c1dca7209ca48b736dd9a36c84",
+      "title": "fix(shared): preserve final quoted empty CSV records (#11425)",
+      "relatedGroup": "delimited-preview-parsing",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/delimitedPreview.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d4e24409a06af58e89ae58de3e9b804102656190",
+            "sha256": "660731adc6857c1f11ebdf236412fb35e2fd0d1aa6a3081fc8659162e70e476e",
+            "bytes": 1908
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "1cfbd41a781208e04fc108c9887505d5f9d640d9",
+            "sha256": "3871bc65931237038e63a94df7c72341b9d81f95a79108ac45c771533352c0fe",
+            "bytes": 1962
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/delimitedPreview.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "303e9042855c7b4f0e63b52d50354db1afce4d18",
+            "sha256": "730b8760a61c9f7e952a0dcd24fb1ad51feb105ac85d7f6fdfc691bda3ceefc1",
+            "bytes": 1456
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "0188f9da5023f5150227b7bda3cb2a103705cd02",
+            "sha256": "05fa40b0034516474947a357064695dfc36c88be3646ce114c7eb87123eb0dac",
+            "bytes": 2797
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "8922d32ff15131dc3bfa1dcca7df1b319cf62fce",
+            "sha256": "11c7e8f70187eef26e4aa3d5c040d012ed9df327b7e023f500de3f9403726e42",
+            "bytes": 863602
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "8922d32ff15131dc3bfa1dcca7df1b319cf62fce",
+            "sha256": "11c7e8f70187eef26e4aa3d5c040d012ed9df327b7e023f500de3f9403726e42",
+            "bytes": 863602
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-29a32660d3cb",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "29a32660d3cb2ade1f13283f889b519f73b24fbd",
+      "parent": "dd8332da57355bccd7e666289267f2c94597debd",
+      "title": "fix(git): exclude SSH ports from provider URLs (#12537)",
+      "relatedGroup": "source-control-url-normalization",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "0b2e0e2699c639724e467980dc6a790cb64314f1",
+            "sha256": "d8985238335dc50b7e32241059815389a5cdd04d334f28726d0b37de1ed1e26b",
+            "bytes": 9178
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "ddfa3bdf9b4659e12fdeba7a0d8b2f79f328db59",
+            "sha256": "09007f80015a0f4dd17880a745c0b6a222584ede2e63473536540306fa160ef4",
+            "bytes": 9443
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/sourceControl.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "d6c3bc5e1f8105893774ea7902b8118c867c552f",
+            "sha256": "4b0f03a40a7ca71f5d940d3fa7a36a02709cc40a51d5b5d3bbfe00c5c4f5d46b",
+            "bytes": 8151
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "b72f35793de5a2b80c00a30dac045eaa1effb71d",
+            "sha256": "5812c2d64e9899266e5d97fbf29718c9b8e1c73178dff8c4003c91b901be0ade",
+            "bytes": 8695
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "d512900e23bc4f4748890bdf2c6fb1c22c30a28e",
+            "sha256": "cb8b874972c5c23a1118d0eb9f359b1747329811e36ce8d4df49fb3812465d64",
+            "bytes": 865514
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d512900e23bc4f4748890bdf2c6fb1c22c30a28e",
+            "sha256": "cb8b874972c5c23a1118d0eb9f359b1747329811e36ce8d4df49fb3812465d64",
+            "bytes": 865514
+          }
+        }
+      ]
+    },
+    {
+      "id": "t3code-38f3c62304bf",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "fix": "38f3c62304bfe79ea6c9f75a17afb732b555f48d",
+      "parent": "b21f3b71913370a1a650a61fd9082f992d40e657",
+      "title": "fix(shared): local-path remotes no longer crash legacy PR link projection (#13463)",
+      "relatedGroup": "thread-pull-request-projection",
+      "sourceFiles": [
+        {
+          "path": "packages/shared/src/threadPullRequests.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "e747c151bd1c4cb7f79a2a78a6fd2a31d444357e",
+            "sha256": "73636951b4b85c7f389f78d9c2d4d49fd74328a48e3369d8ac79480e6e9726bb",
+            "bytes": 12861
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "15b5451adf0a3d813e6228d2c53d561b9bc5487b",
+            "sha256": "fe778a6bd83e10f70af692e0280f22f06d213301d635eb43ddbfcb94b130200a",
+            "bytes": 12998
+          }
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/shared/src/threadPullRequests.test.ts",
+          "parent": {
+            "exists": true,
+            "blobId": "4844df8f7786e3e2897f03b1eb10b3320e460892",
+            "sha256": "604d1f2636e5c7663b5285e92feffc03b05b00625b92d8fb088a763e32393769",
+            "bytes": 16482
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "a7042a7c8828f5e9200c206057a9e6bc8277c4ef",
+            "sha256": "c5e375e313104019808142ae6ba6d967159fa6f22eb0401c69903eaff1c46f3f",
+            "bytes": 16908
+          }
+        }
+      ],
+      "changedLockfileBlobs": [],
+      "changedPathCount": 2,
+      "sourceAndTestPathsPresentInFix": true,
+      "lockfileBlobs": [
+        {
+          "path": "pnpm-lock.yaml",
+          "parent": {
+            "exists": true,
+            "blobId": "d244cfee891c5dcbe54274ee413aadd463597e88",
+            "sha256": "feb819ef5a26be7ff2c44a74a5bebfdd58cf0baed28b4c1adbe82a463e382ef2",
+            "bytes": 877472
+          },
+          "fix": {
+            "exists": true,
+            "blobId": "d244cfee891c5dcbe54274ee413aadd463597e88",
+            "sha256": "feb819ef5a26be7ff2c44a74a5bebfdd58cf0baed28b4c1adbe82a463e382ef2",
+            "bytes": 877472
+          }
+        }
+      ]
+    }
+  ]
+}

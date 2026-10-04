@@ -1,0 +1,787 @@
+{
+  "scope": "historical lock-matched supplement 28; source and install inputs independently archive-bound",
+  "request_id": "history-lock-matched-supplement-28",
+  "candidateCount": 28,
+  "bySubject": {
+    "t3code": 26,
+    "scope": 2
+  },
+  "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+  "sourceBindingAuditSha256": "8068bc2bbcbbef985ca37ef059e029825937fcef01cf5ad9cc25efbffa981f11",
+  "sourceBindingAuditPath": "/tmp/archguard-test-value-20261003/supplement-source-binding-audit.json",
+  "auditHelperSha256": "bbe4aaa82b09f43e2d6f5e6ef2e12dba63e67f425877165823a04a1579e41a0b",
+  "supplementInstallPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+  "supplementCandidateFileSha256": "8432a39a85a9c553e2af7f02fea6c49ef2ace83aae7d6b9f50a71d4af3faeacd",
+  "preflightExclusions": [
+    "t3code-10dde452f90f",
+    "t3code-7a08fcf2e832"
+  ],
+  "candidates": [
+    {
+      "id": "t3code-10dde452f90f",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: address core review findings",
+      "relatedGroup": "packages/shared/src/model.ts :: packages/shared/src/model.test.ts",
+      "fix": "10dde452f90fc3d4d1aea0add67d13cdfb2567ab",
+      "parent": "116c8c5e8e0db2fe7fad070c2f67738a62f93546",
+      "sourceFiles": [
+        "packages/shared/src/model.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/model.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-84619cce8094",
+      "installationInputSignature": "96a43dcaefd5b46b4e3f5b73e0fb3d6fbdd862709b9ab416257f81a15036ceaa",
+      "sourceArchiveTreeSha256": "c4c331987a1ad53918f84a38579ea4ab04fedbd80ce59a4e9afc4f641353a923",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "e60e5245a8b5dfeaa492733675be6eff36dcd847",
+      "firstParent": "116c8c5e8e0db2fe7fad070c2f67738a62f93546",
+      "preflightEligible": false,
+      "preflightExclusionReason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed.",
+      "exactPackageManager": "bun@1.3.9",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+      "sourceAndTestArchiveHashesVerified": true,
+      "preflightExclusion": "Exact pinned bun@1.3.9 is unavailable; candidate requires the literal historical package manager and no version substitution is allowed.",
+      "preflightEvidence": {
+        "schemaVersion": 1,
+        "candidateId": "t3code-10dde452f90f",
+        "fix": "10dde452f90fc3d4d1aea0add67d13cdfb2567ab",
+        "installInputGroupId": "t3code-supp-install-84619cce8094",
+        "supplementInstallPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+        "packageManager": {
+          "declared": "bun@1.3.9",
+          "declarationSource": "packageManager",
+          "name": "bun",
+          "exactVersion": "1.3.9",
+          "binaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+          "binaryAvailableAtAudit": false,
+          "noVersionSubstitution": true,
+          "availabilityNote": "Only current Vite+ bun shim is present; parent audit found it resolves to Vite+ and exposes Bun 1.4.2, while candidate pins bun@1.3.9. Exact candidate binary unavailable; no substitute."
+        }
+      },
+      "preflightEvidenceSha256": "8651a8dca745839676bbf0dd04c947b6380f5a68e0d4858759e34a0b9f877d41"
+    },
+    {
+      "id": "t3code-7a08fcf2e832",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): drop stale text generation options when resetting text-gen model selection (#2076)",
+      "relatedGroup": "packages/shared/src/serverSettings.ts :: packages/shared/src/serverSettings.test.ts",
+      "fix": "7a08fcf2e832da5969aeb373c46d5249b4e820b7",
+      "parent": "19d47408a53181446a02fac967846cc15d77d5b8",
+      "sourceFiles": [
+        "packages/shared/src/serverSettings.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/serverSettings.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-c0adbe5978c1",
+      "installationInputSignature": "71d065576a871e43af94f0525b371e443171fa3cb722c2b62f45d3eaea28e397",
+      "sourceArchiveTreeSha256": "7f2c611d419c74990ca83d93ccec9ced535dd08a30e05123b33d48fcd61d6769",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "c182dd50d087b546014d11037d32a3c7a16967a5",
+      "firstParent": "19d47408a53181446a02fac967846cc15d77d5b8",
+      "preflightEligible": false,
+      "preflightExclusionReason": "Exact pinned bun@1.3.9 binary is unavailable; no version substitution is allowed.",
+      "exactPackageManager": "bun@1.3.9",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+      "sourceAndTestArchiveHashesVerified": true,
+      "preflightExclusion": "Exact pinned bun@1.3.9 is unavailable; candidate requires the literal historical package manager and no version substitution is allowed.",
+      "preflightEvidence": {
+        "schemaVersion": 1,
+        "candidateId": "t3code-7a08fcf2e832",
+        "fix": "7a08fcf2e832da5969aeb373c46d5249b4e820b7",
+        "installInputGroupId": "t3code-supp-install-c0adbe5978c1",
+        "supplementInstallPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+        "packageManager": {
+          "declared": "bun@1.3.9",
+          "declarationSource": "packageManager",
+          "name": "bun",
+          "exactVersion": "1.3.9",
+          "binaryPath": "/Users/alun/.local/share/vite-plus/bin/bun",
+          "binaryAvailableAtAudit": false,
+          "noVersionSubstitution": true,
+          "availabilityNote": "Only current Vite+ bun shim is present; parent audit found it resolves to Vite+ and exposes Bun 1.4.2, while candidate pins bun@1.3.9. Exact candidate binary unavailable; no substitute."
+        }
+      },
+      "preflightEvidenceSha256": "4590c6f2e4ef7679a9475a38f5cee3013c0ceb66f34fbc991adaffc0149764be"
+    },
+    {
+      "id": "t3code-49c1b64687f8",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(source-control): handle self-hosted GitLab, multi-account GitHub auth & azure devops web url (#2480)",
+      "relatedGroup": "packages/shared/src/sourceControl.ts :: packages/shared/src/sourceControl.test.ts",
+      "fix": "49c1b64687f8acdbe145f760988314e397170da6",
+      "parent": "dfdb5a46db30fb46db5c58d5fe047b32483e2ad5",
+      "sourceFiles": [
+        "packages/shared/src/sourceControl.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/sourceControl.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-027d2efae574",
+      "installationInputSignature": "94ad1a316ea3d19dcfe04a2ab91a30121d547dcace534bfed2e7fd0128e47206",
+      "sourceArchiveTreeSha256": "202a0784d6f715cf29fa4d9eecf74091feb4e941c0aaf063292b6ffe9465be85",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "ab35813e64be0b15f1f1f72abcd14f55da376a1c",
+      "firstParent": "dfdb5a46db30fb46db5c58d5fe047b32483e2ad5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@10.24.0",
+      "packageManagerBinaryPath": "/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-53042f47f85a",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(composer): support spaces in file mentions (#2625)",
+      "relatedGroup": "packages/shared/src/composerTrigger.ts :: packages/shared/src/composerTrigger.test.ts",
+      "fix": "53042f47f85a986257573773d9854cf59b957514",
+      "parent": "6ce6f678b5d70a8d2b7230ec45cbde04d54f80dc",
+      "sourceFiles": [
+        "packages/shared/src/composerTrigger.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/composerTrigger.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-027d2efae574",
+      "installationInputSignature": "94ad1a316ea3d19dcfe04a2ab91a30121d547dcace534bfed2e7fd0128e47206",
+      "sourceArchiveTreeSha256": "e9633a073bd2f82f4b93021cb354e0ac14de414320b11c5b6e1192797a6c0f8e",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "3059cf9a7a943eafe656570a8ea7ae83b50d3449",
+      "firstParent": "6ce6f678b5d70a8d2b7230ec45cbde04d54f80dc",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@10.24.0",
+      "packageManagerBinaryPath": "/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-9b43123ba2a9",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(preview): port browser preview to current main",
+      "relatedGroup": "packages/shared/src/preview.ts :: packages/shared/src/preview.test.ts",
+      "fix": "9b43123ba2a90ecaaf2eac1f75b6aebcf181f253",
+      "parent": "17fb0e4a9a068f3ba6c55871dd44ed3c5d70aefe",
+      "sourceFiles": [
+        "packages/shared/src/preview.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/preview.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-9168995d892f",
+      "installationInputSignature": "cef7cecd7101c0dd3ed79ccd957af7721903592f623ce963d26b0c6dde4b5ee8",
+      "sourceArchiveTreeSha256": "6a9a314e8d0b4ca344ebb3645a8d8c499db0870b1adc73c3dfabeee68f82c315",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "40fd2cc58603d6ca9504bf3f36136e8bebb53e39",
+      "firstParent": "17fb0e4a9a068f3ba6c55871dd44ed3c5d70aefe",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@10.24.0",
+      "packageManagerBinaryPath": "/tmp/archguard-test-value-20261003/tooling/pnpm-10.24.0/package/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-1d77cec99197",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: cache project favicons across web and mobile (#4767)",
+      "relatedGroup": "packages/shared/src/projectFavicon.ts :: packages/shared/src/projectFavicon.test.ts",
+      "fix": "1d77cec991971d3113918e896b1c871e8b044da7",
+      "parent": "4ba4871af76081f0e830a91b8f747ff2de53ba7d",
+      "sourceFiles": [
+        "packages/shared/src/projectFavicon.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/projectFavicon.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-d283272c954d",
+      "installationInputSignature": "b06b31c2b69bed72fa312edbd51a980549776aa0f737f1f4e3bbcb9985a4445a",
+      "sourceArchiveTreeSha256": "bd9567668b1c0769a2546220084fb8850bd5e8d5f89bfcba384bd780f7167eb1",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "99685a2dac59fd9b9f487e73c5df9c9bc5347e4e",
+      "firstParent": "4ba4871af76081f0e830a91b8f747ff2de53ba7d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-47dfc6526521",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): preserve grouped project workspaces (#4642)",
+      "relatedGroup": "packages/client-runtime/src/state/projectGrouping.ts :: packages/client-runtime/src/state/projectGrouping.test.ts",
+      "fix": "47dfc6526521866992f6b50beac4587b45114631",
+      "parent": "41ebf22eea64e177b11a0709a16d6716581cc78c",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/projectGrouping.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/projectGrouping.test.ts"
+      ],
+      "installInputGroupId": "t3code-install-7f3efb59fb30",
+      "installationInputSignature": "3d586e08d3a256a2d077d23d63872c50dcf683f5322d0fbd00a9a0754bd84e69",
+      "sourceArchiveTreeSha256": "6ab832bf0712726393d79a980dc2bf1bfc0ac5a7b19406b219071f08d1a17f28",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "1540e39d1b2e0a6b6f15b56d47f93fe56258770a",
+      "firstParent": "41ebf22eea64e177b11a0709a16d6716581cc78c",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-849bac8946c4",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(connect): preserve CLI OAuth parameters through browser sign-in (#6285)",
+      "relatedGroup": "packages/shared/src/connectAuth.ts :: packages/shared/src/connectAuth.test.ts",
+      "fix": "849bac8946c40420174b4187e36fcf17b5ea7cc4",
+      "parent": "6fd088af9f77933745c8ecb93dda98fa0938ea4d",
+      "sourceFiles": [
+        "packages/shared/src/connectAuth.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/connectAuth.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-3b359b2f1c7c",
+      "installationInputSignature": "8bbd1b1af2c15ffdc285dfbea40908bcc7581b1b0c274ed763bf2e6526868591",
+      "sourceArchiveTreeSha256": "31afd213429bfc21634e503bda421767dbfb0fdaaf82c2b48de4c99677018435",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "478f2f39269d637319a167aa5ba0b4b45a9ec890",
+      "firstParent": "6fd088af9f77933745c8ecb93dda98fa0938ea4d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-f21b47e52d98",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(threads): a merged PR settles its thread only once (#7454)",
+      "relatedGroup": "packages/client-runtime/src/state/threadSettled.ts :: packages/client-runtime/src/state/threadSettled.test.ts",
+      "fix": "f21b47e52d988839a4e488d9fa98344891a69b7f",
+      "parent": "efcf7d1ac03e784bdb26843d61ae0ff81c03cec6",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSettled.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSettled.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-6f6eae360f88",
+      "installationInputSignature": "97f8eed1fd82c517eb72eb9be4cb7722bce31d2fb64fe846382bc77376d1f945",
+      "sourceArchiveTreeSha256": "672873b2feb16852a6c137132d4609e994a15e168263bf2c10d14ab46c760f54",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "b25e6785c91b24921c5630fec59ed80afb02666c",
+      "firstParent": "efcf7d1ac03e784bdb26843d61ae0ff81c03cec6",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-2274444e9227",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(chat): stop pushing follow-up messages to the top (#7897)",
+      "relatedGroup": "packages/shared/src/chatList.ts :: packages/shared/src/chatList.test.ts",
+      "fix": "2274444e92275fda2033de6636e3143ac3599ffb",
+      "parent": "f34b9d31b3ddbd53a553141fd769721fca4b8eb5",
+      "sourceFiles": [
+        "packages/shared/src/chatList.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/chatList.test.ts"
+      ],
+      "installInputGroupId": "t3code-install-418e9aba3903",
+      "installationInputSignature": "96233d40c739e454667627846f46e6aa3604e11cf3cd1e11dfdd414c3f39f071",
+      "sourceArchiveTreeSha256": "1e8b2fd4161409e8bf8ec36f7f55e60d75dffa920c4201eca7072364d2970c56",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "a3dacd1fd8a318a3e17bb5f27033578c0deef1a3",
+      "firstParent": "f34b9d31b3ddbd53a553141fd769721fca4b8eb5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-ead4ce52a162",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(grok): improve skills, plans, usage, and turn reliability (#8358)",
+      "relatedGroup": "packages/shared/src/usageMerge.ts :: packages/shared/src/usageMerge.test.ts",
+      "fix": "ead4ce52a1624d9c55461f61524580978fc8b719",
+      "parent": "d3c24a14b92ccd8d832466dc7f0f51d979a8a21d",
+      "sourceFiles": [
+        "packages/shared/src/usageMerge.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageMerge.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-0d4ee075f7d7",
+      "installationInputSignature": "531f8d3387de89089b72794f6753a6f3bd0d292de3159ae9f4171948e354bdbd",
+      "sourceArchiveTreeSha256": "e069562c69c1feb29f655f797e5ea1669a69dd1d90cd6df8889799dbc3514d6a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "fe89b8bc51157ff03f7e9371644411814b5425e3",
+      "firstParent": "d3c24a14b92ccd8d832466dc7f0f51d979a8a21d",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-94f194816662",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(connect): explain DPoP connection failures (#8351)",
+      "relatedGroup": "packages/shared/src/dpop.ts :: packages/shared/src/dpop.test.ts",
+      "fix": "94f1948166620c804937f5548a68f5739d76c9fb",
+      "parent": "45c0dff8ec33a023c79ccb4e06494309253d1c25",
+      "sourceFiles": [
+        "packages/shared/src/dpop.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/dpop.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-eed256eac419",
+      "installationInputSignature": "a3bf3c88299251ebc84551cc19affeb6b2b0ba9c8214a401777f93d3458aafd4",
+      "sourceArchiveTreeSha256": "4473e1d566cb69b6dc2cb61e3388e5b59e252e8cd23946b37891a0f1000d14a0",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "49cf7cdcf1ece76695c741ffb7caaddc388caa26",
+      "firstParent": "45c0dff8ec33a023c79ccb4e06494309253d1c25",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-ebb9b9fda03d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(client-runtime): refresh edited pull request comments (#8094)",
+      "relatedGroup": "packages/client-runtime/src/state/pullRequests.ts :: packages/client-runtime/src/state/pullRequests.test.ts",
+      "fix": "ebb9b9fda03d33a81cad3ce7f4d1106adba3044b",
+      "parent": "fc262f1a28d8305951c751f2486da6ca72e6c1d1",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/pullRequests.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/pullRequests.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-726cdb253f8a",
+      "installationInputSignature": "dd83335fd88df79ecac5a07f60154a3252ad35e51106591fde883121cb5c7710",
+      "sourceArchiveTreeSha256": "1449dcbf5e4daff9fbdf31d7fdda8e9e90e2bcdb446b975d075092bbc5481de0",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "d9efb25f41d1f559c0b0b04a8121b775f64499c4",
+      "firstParent": "fc262f1a28d8305951c751f2486da6ca72e6c1d1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-2971ec3209d7",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(server): preserve automatic settlement timestamps (#9254)",
+      "relatedGroup": "packages/client-runtime/src/state/threadSort.ts :: packages/client-runtime/src/state/threadSort.test.ts",
+      "fix": "2971ec3209d7ef1b00d7ded70fe6342816b1539f",
+      "parent": "15fea6c5f40331c8325f33bd08b2dcbf924e935a",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadSort.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadSort.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-8b4e0395ed16",
+      "installationInputSignature": "5f1bfcd716d0039dbd028f0fdd7a806dd1fd129233552deddc885a6905cc6351",
+      "sourceArchiveTreeSha256": "1c654d4035ba026b2da0a151c868b1c5cd551bb1871e7a88de1f1953da392781",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "b279a4496a9e2cd20384ee63272c2f9e334b21f3",
+      "firstParent": "15fea6c5f40331c8325f33bd08b2dcbf924e935a",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-cfddb4201df8",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): skip unsupported shared settings targets (#9381)",
+      "relatedGroup": "packages/client-runtime/src/state/sharedSettings.ts :: packages/client-runtime/src/state/sharedSettings.test.ts",
+      "fix": "cfddb4201df8941bbfde008919da70fe5ec7552b",
+      "parent": "57626eb6eaa436b22260068d23f4e3df5f389cd1",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/sharedSettings.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/sharedSettings.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-90b4e9ee927d",
+      "installationInputSignature": "29f1adf82c713b67593853d3a3761fb72abd3461a3599dc1dfc45eaefe04ddc8",
+      "sourceArchiveTreeSha256": "c83567a3a0d5b41e25aeeb436535a18de92df42fa9f28f2ff03666f10513602f",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "d75d4518e6deb7303cdd7220b787a2f1ab3d715c",
+      "firstParent": "57626eb6eaa436b22260068d23f4e3df5f389cd1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-b34ff8f56469",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(usage): deduplicate CLI proxy subscription accounts (#9584)",
+      "relatedGroup": "packages/shared/src/usageLimits.ts :: packages/shared/src/usageLimits.test.ts",
+      "fix": "b34ff8f56469afa8f3f85d89894e1b4cf49b5213",
+      "parent": "09b81a34954c990f70257ae05efbb602c90aac97",
+      "sourceFiles": [
+        "packages/shared/src/usageLimits.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/usageLimits.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-1a587b6c23b1",
+      "installationInputSignature": "326236d099e251927166e04d9263532651048da61cd4b62cb7485c6b3a408fd7",
+      "sourceArchiveTreeSha256": "6e607977bc64131eb492d1d8174062b73879f1199f743280466a47e7f1139b0d",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "640e8555e46d0ccfc6915e4a25a59a1572e41f45",
+      "firstParent": "09b81a34954c990f70257ae05efbb602c90aac97",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-82f64cd8d046",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(skills): support names beginning with digits (#9244)",
+      "relatedGroup": "packages/shared/src/composerInlineTokens.ts :: packages/shared/src/composerInlineTokens.test.ts",
+      "fix": "82f64cd8d046ab4ee8588f7bcbc1e66a4a0c80fe",
+      "parent": "896fe82f2f191eb8ac0fd620e19c25dd48253592",
+      "sourceFiles": [
+        "packages/shared/src/composerInlineTokens.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/composerInlineTokens.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-ee393b1fea4e",
+      "installationInputSignature": "a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c",
+      "sourceArchiveTreeSha256": "cd3438c181dc13fec15c29a0e3a0f742cf4103bc545c93aab9c82732eea40715",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "e44af8be389d0e1acf9c0305c4160ad5b6bd090f",
+      "firstParent": "896fe82f2f191eb8ac0fd620e19c25dd48253592",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-a0eb23993a3b",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(web): prioritize open panel pull request when copying (#9877)",
+      "relatedGroup": "packages/shared/src/threadReference.ts :: packages/shared/src/threadReference.test.ts",
+      "fix": "a0eb23993a3bacf96d618918f43ea18f2da72390",
+      "parent": "b01771c2383bbcdf154b8c4e9f1a7d5e3867e2d0",
+      "sourceFiles": [
+        "packages/shared/src/threadReference.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/threadReference.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-ee393b1fea4e",
+      "installationInputSignature": "a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c",
+      "sourceArchiveTreeSha256": "5d9ecafc74db20a49a018e86212e9020582d3c87a51325b4336228fe181b930d",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "4309939c82fd383884061ecc330943906ca6dc1a",
+      "firstParent": "b01771c2383bbcdf154b8c4e9f1a7d5e3867e2d0",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-94cc8152fff5",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(chat): show hours for long runs (#9894)",
+      "relatedGroup": "packages/shared/src/orchestrationTiming.ts :: packages/shared/src/orchestrationTiming.test.ts",
+      "fix": "94cc8152fff5fd06baafd25964f54d7ec1a34f8d",
+      "parent": "931d41f933b2536f699975412169f5318e6adad5",
+      "sourceFiles": [
+        "packages/shared/src/orchestrationTiming.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/orchestrationTiming.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-ee393b1fea4e",
+      "installationInputSignature": "a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c",
+      "sourceArchiveTreeSha256": "9342c0fcf9dc632930ed917d83a49ab6ac893788d0e5d6d22e6a44d436d6c2df",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "43fe83d0e6d9cbb9c49125b20c0ba60837feaae1",
+      "firstParent": "931d41f933b2536f699975412169f5318e6adad5",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-95d99373b74e",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(clients): show feedback results in composer banners (#10398)",
+      "relatedGroup": "packages/client-runtime/src/state/threadFeedback.ts :: packages/client-runtime/src/state/threadFeedback.test.ts",
+      "fix": "95d99373b74edfb3bfd092c61a15999a95727423",
+      "parent": "98469159dd9e162a9c2f5cc4bbb2fbe89b3c4f67",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/threadFeedback.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/threadFeedback.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-5751f3c2689a",
+      "installationInputSignature": "a5edcb84125741f055b50cd5b047d13e4aea9a1d3f4139539c95e77556f606fa",
+      "sourceArchiveTreeSha256": "f67a23ad1f739d41b0a88c8f28aefbda68d8144e2d643af9fe08ef7700438ea4",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "7e9cbeee4d674c2aa9304f1a917fc8e481e0c22d",
+      "firstParent": "98469159dd9e162a9c2f5cc4bbb2fbe89b3c4f67",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-02297e3dbd89",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(ui): color linked pr counts by aggregate status (#11180)",
+      "relatedGroup": "packages/shared/src/threadPullRequests.ts :: packages/shared/src/threadPullRequests.test.ts",
+      "fix": "02297e3dbd896ef619d5c916938c751e343e76a8",
+      "parent": "0a37240a87bb2fed8f48cf20dc8312ee3b94eba6",
+      "sourceFiles": [
+        "packages/shared/src/threadPullRequests.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/threadPullRequests.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-c2d582f9bf9b",
+      "installationInputSignature": "4a6a1b0f2a9f39353bd5395e89d7a9b4f247346ca6f96ac4e2b426159592af67",
+      "sourceArchiveTreeSha256": "a3251b461a66e3198ca76418d0160f83feeeeb3b1907895a581e9201ccb9b2eb",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "716986153a4f5b32c171b2b43a9abc0ba38337b6",
+      "firstParent": "0a37240a87bb2fed8f48cf20dc8312ee3b94eba6",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-87a12b53fdff",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(usage): refresh limits when the tab opens (#11928)",
+      "relatedGroup": "packages/client-runtime/src/state/usage.ts :: packages/client-runtime/src/state/usage.test.ts",
+      "fix": "87a12b53fdff7e2e0318af3edea54005557cea56",
+      "parent": "f4600d77dd7c2fa9f10e8f4500882e427fcc7e26",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/usage.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/usage.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-062a5bd2ecf5",
+      "installationInputSignature": "b67c82176521f2317f0c34779d36c617713f6d69fc8b3a9f27cebb3f1dc14e46",
+      "sourceArchiveTreeSha256": "bbc2966b18e6f1e212b3bd81ff3323b27048ac930eff453a8fe9f40a3276138a",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "7b474403dbec666f87da5f3528f101774ac56285",
+      "firstParent": "f4600d77dd7c2fa9f10e8f4500882e427fcc7e26",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-87d842801921",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(observability): a malformed OTEL_RESOURCE_ATTRIBUTES no longer stops startup (#13469)",
+      "relatedGroup": "packages/shared/src/otelEnvironment.ts :: packages/shared/src/otelEnvironment.test.ts",
+      "fix": "87d84280192195b338e27acf2333771a13d04e61",
+      "parent": "3412097bff7ffa62ef79e735c65d1e5cff71c356",
+      "sourceFiles": [
+        "packages/shared/src/otelEnvironment.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/otelEnvironment.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-479c6d67a116",
+      "installationInputSignature": "6d12291892e59d9bd535c8a53e872e11f662557f9186be033e3ed9a60c404f7e",
+      "sourceArchiveTreeSha256": "a0bcd9f6728ba834a8a594838c5c4144cb3989a91e987f46d42f3a5b9ed25d5b",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "008a412c649bfef81f313b2df209752ea4eaad83",
+      "firstParent": "3412097bff7ffa62ef79e735c65d1e5cff71c356",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-d06f0ff1048d",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(sqlite): retry failed statement preparations (#10584)",
+      "relatedGroup": "packages/shared/src/nodeSqliteClient.ts :: packages/shared/src/nodeSqliteClient.test.ts",
+      "fix": "d06f0ff1048d42a156824765316c5a2dc54f5bca",
+      "parent": "e5a46d6c5d00b89afba5274a94d42428c8d79763",
+      "sourceFiles": [
+        "packages/shared/src/nodeSqliteClient.ts"
+      ],
+      "testFiles": [
+        "packages/shared/src/nodeSqliteClient.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-eb3e3ecb1d4e",
+      "installationInputSignature": "4111d370bbe7aaf4adcaf1c579afc80f0465ce83dc247e64f768eea39df2723d",
+      "sourceArchiveTreeSha256": "488d5aec83c9f0ec43238b654391057dd63b10e3d1a578b227d1b75fffeaa053",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "5a5f3ae0f10ca987c8df1c071a7091a541ca337a",
+      "firstParent": "e5a46d6c5d00b89afba5274a94d42428c8d79763",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-6ea01f8d2441",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix: cloned projects show their favicon instead of a monogram (#14635)",
+      "relatedGroup": "packages/client-runtime/src/state/assets.ts :: packages/client-runtime/src/state/assets.test.ts",
+      "fix": "6ea01f8d24419019588f2be589681929d8e26b0c",
+      "parent": "a97a4a9d189f145afe79c3a6f8533bbf9a6b40b1",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/assets.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/assets.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-9bc18f158c61",
+      "installationInputSignature": "e39472f73d7420f7b60cce7bf1a11e3efed9b3ae4b126893579a292c7eb22f16",
+      "sourceArchiveTreeSha256": "8cc6beee1eade36fa6a34b1d0666a8f71d9cb24b12090b90d35fdd3c1c786fd8",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "5dbf96b592533f8483a036b35176f3446bc621b6",
+      "firstParent": "a97a4a9d189f145afe79c3a6f8533bbf9a6b40b1",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "t3code-65731f986ba2",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "title": "fix(mobile): show complete subagent details (#15189)",
+      "relatedGroup": "packages/client-runtime/src/state/subagentDisplay.ts :: packages/client-runtime/src/state/subagentDisplay.test.ts",
+      "fix": "65731f986ba2175063b0182deb6a143f8f323b74",
+      "parent": "aad732901e4b7d485574eaef5a9c1fb388c4291a",
+      "sourceFiles": [
+        "packages/client-runtime/src/state/subagentDisplay.ts"
+      ],
+      "testFiles": [
+        "packages/client-runtime/src/state/subagentDisplay.test.ts"
+      ],
+      "installInputGroupId": "t3code-supp-install-a18a47e7c515",
+      "installationInputSignature": "ac7d9e5d974bc9ff4384d43001a523583d0c7a0ec08b8e3efcbfd1d9c8d73ba6",
+      "sourceArchiveTreeSha256": "7517afe0d437e5426612c2381d91e882ca47a787f1523d5bbc0cd7eeb71a23eb",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "b2c8a8544767f790f66987ce096c187b62ba5787",
+      "firstParent": "aad732901e4b7d485574eaef5a9c1fb388c4291a",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@11.10.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/11.10.0/pnpm/bin/pnpm.cjs",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "scope-c152601dfe9c",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix(voice): remove retained speech request count limit (#45)",
+      "relatedGroup": "scope-voice-retained-request-count",
+      "fix": "c152601dfe9c5e1077b2a34290979d4c5f8fad24",
+      "parent": "79aeb7f49874f7cd1530a16065df88b448bffc51",
+      "sourceFiles": [
+        "packages/protocol/src/voice.ts"
+      ],
+      "testFiles": [
+        "tests/voice.test.ts"
+      ],
+      "installInputGroupId": "scope-supp-install-60fd3fd8ce01",
+      "installationInputSignature": "fa76a922a052130f8e67ace87c08a4c7f3aa299cc6257ee3c6082dfb7447ddf7",
+      "sourceArchiveTreeSha256": "0474c62613df9f799fb455c87ee80eb1379718534449c49a8c2759d0956cea57",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "bc1a43d0cad90d9ecdfec94e3469c2f381f82725",
+      "firstParent": "79aeb7f49874f7cd1530a16065df88b448bffc51",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@12.6.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+      "sourceAndTestArchiveHashesVerified": true
+    },
+    {
+      "id": "scope-59ed3a2a3ee4",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "title": "fix: trace publication forwarding failures and timings",
+      "relatedGroup": "scope-remotes-forwarding-and-redaction",
+      "fix": "59ed3a2a3ee44dd525504dd449094c554232fc8e",
+      "parent": "e29c41a97657458ad7ae4a7d5031f71e87331342",
+      "sourceFiles": [
+        "apps/desktop/src/remotes.ts"
+      ],
+      "testFiles": [
+        "tests/remotes.test.ts"
+      ],
+      "installInputGroupId": "scope-supp-install-aed340460236",
+      "installationInputSignature": "4e5183ab84bc2525fd38c0357d7b1c3b44bd9b426b320f890643a4aba19239d5",
+      "sourceArchiveTreeSha256": "e1d1ad2ff174b369c5ed454b01b63b18f840b49330c4d8af6b0dd5542b77f7f9",
+      "sourceArchiveAlgorithm": "runner-hash-tree-v1",
+      "fixRootTreeId": "79806c6693fa32e27d208e0e072b30332dc22678",
+      "firstParent": "e29c41a97657458ad7ae4a7d5031f71e87331342",
+      "preflightEligible": true,
+      "preflightExclusionReason": null,
+      "exactPackageManager": "pnpm@12.6.0",
+      "packageManagerBinaryPath": "/Users/alun/.local/share/vite-plus/package_manager/pnpm/12.6.0/pnpm/bin/pnpm.native",
+      "sourceAndTestArchiveHashesVerified": true
+    }
+  ]
+}

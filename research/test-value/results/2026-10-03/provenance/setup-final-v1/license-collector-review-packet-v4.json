@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "supersedes": {
+    "path": "/tmp/archguard-test-value-20261003/license-collector-review-packet-v3.json",
+    "sha256": "2d1fc6b835299e8ff302fd4938213ebb0792981c7c7ea1c9c256a10ebd7a92a0",
+    "reason": "added named SEE LICENSE target resolution, corrected route wording, and retained synthetic symlink/output negatives"
+  },
+  "reviewScope": "Static review of a read-only dependency license collector. Do not run the final package-store scan.",
+  "helper": {
+    "path": "/tmp/archguard-test-value-20261003/collect_final_dependency_licenses_v1.py",
+    "sha256": "896d360ecedcc3511be3806663cad2827a2355ef82974cc58d80511792f8615a",
+    "bytes": 50952,
+    "stdlibOnly": true,
+    "astParse": "passed"
+  },
+  "syntheticControls": {
+    "script": {
+      "path": "/tmp/archguard-test-value-20261003/license-collector-synthetic-controls-v1.py",
+      "sha256": "715e13c1f6fe9ade76386812b8d177e1b9248fac11e8415765b89b417ad98f86"
+    },
+    "result": {
+      "path": "/tmp/archguard-test-value-20261003/license-collector-synthetic-controls-v1.json",
+      "sha256": "4d2fd1d03b0e4c0080a068609f833fc81200ec5d2c260e43a6de55b20dbe3210"
+    },
+    "controls": {
+      "helperSha256": "896d360ecedcc3511be3806663cad2827a2355ef82974cc58d80511792f8615a",
+      "syntheticStorePackagesInventoried": 2,
+      "resolvedNoticeFileHashed": true,
+      "externalPackageSymlinkNotRead": true,
+      "danglingPackageSymlinkMarkedUnreadable": true,
+      "externalProjectNoticeSymlinkNotRead": true,
+      "SEE_LICENSE_IN_requires_named_file": true,
+      "existingOutputFileRejected": true,
+      "existingOutputSymlinkRejected": true,
+      "packageCodeExecuted": false,
+      "historicalStoresTraversed": false
+    },
+    "fixtureRemoved": true,
+    "historicalStoresTraversed": false,
+    "packageCodeExecuted": false
+  },
+  "frozenInputs": {
+    "finalMap": {
+      "path": "/tmp/archguard-test-value-20261003/dependency-installations-lock-matched-78.json",
+      "sha256": "81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0"
+    },
+    "candidateManifest": {
+      "path": "/tmp/archguard-test-value-20261003/history-lock-matched-78-final.json",
+      "sha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0"
+    },
+    "originalPlan": {
+      "path": "/tmp/archguard-test-value-20261003/historical-install-plan.json",
+      "sha256": "b6c13206cd9bf6440177a42a048147f790510f33c98ea9fb5c17cf8fb39df17d"
+    },
+    "supplementPlan": {
+      "path": "/tmp/archguard-test-value-20261003/supplement-install-input-plan.json",
+      "sha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e"
+    },
+    "correctedReceiptRegistration": {
+      "path": "/tmp/archguard-test-value-20261003/historical-bundled-runner-corrected-receipts/registration.json",
+      "sha256": "e33c8dae4c16679221d63007c561cbcb5553fd731e56e33e1e0bfb87b22a2fc8"
+    },
+    "correctedReceipts": [
+      {
+        "path": "/tmp/archguard-test-value-20261003/historical-bundled-runner-corrected-receipts/t3code-install-3f6293e594ec/receipt.json",
+        "sha256": "da1dd81b7511e02567e140332117a3320c8f8e0dd093c7e3681b2695a7c10e02"
+      },
+      {
+        "path": "/tmp/archguard-test-value-20261003/historical-bundled-runner-corrected-receipts/t3code-supp-install-027d2efae574/receipt.json",
+        "sha256": "534b652ed7d430cdbe0bbffada3131748838363e773eb3f0b07591c169bceddf"
+      }
+    ],
+    "preservedFull22Inventory": {
+      "path": "/tmp/archguard-test-value-20261003/historical-dependency-license-inventory-full-22-v2.json",
+      "sha256": "b0fb4da4acd08faed984c049ad24daa5b892e4f4ec380b4fe24e7bbb8fe2d4ae"
+    }
+  },
+  "preflight": {
+    "command": [
+      "/Users/alun/.local/bin/python3",
+      "/tmp/archguard-test-value-20261003/collect_final_dependency_licenses_v1.py",
+      "--preflight-only"
+    ],
+    "result": {
+      "bunPreflightExclusions": 2,
+      "candidateRoutes": 78,
+      "correctedRunnerReceipts": 2,
+      "finalMapSha256": "81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0",
+      "installations": 46,
+      "installedRoutes": 76,
+      "originalPlanSha256": "b6c13206cd9bf6440177a42a048147f790510f33c98ea9fb5c17cf8fb39df17d",
+      "profile": "lock-matched-filtered-declared-runner-v1",
+      "status": "metadata-preflight-passed; package stores not inspected",
+      "supplementPlanSha256": "37215083110265f0606642fdf86bf72394ebd321d140c6d8257c2e3315c4ff2e",
+      "testExecutionExclusions": [
+        {
+          "candidateId": "scope-84ec1ad4e6a8",
+          "reason": "tests/pull-requests-journey.test.ts requires Electron/Playwright desktop integration; outside the Node-only historical harness",
+          "subject": "scope",
+          "testPath": "tests/pull-requests-journey.test.ts"
+        }
+      ]
+    },
+    "stderr": ""
+  },
+  "safetyBoundary": {
+    "packageStoreScanPerformed": false,
+    "packageCodeExecuted": false,
+    "packageOrLicenseContentsCopied": false,
+    "inventoryOutputCreated": false,
+    "repositoryFilesChanged": false,
+    "finalScanRequires": [
+      "--final-scan-confirmed",
+      "--expected-map-sha256 81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0"
+    ],
+    "finalScanNotAuthorizedByThisPacket": true,
+    "postReviewParentGate": "run only through /tmp/archguard-test-value-20261003/disk_guard.py with its 12% guard"
+  },
+  "reviewerSnapshot": {
+    "path": "/tmp/archguard-test-value-20261003/models.json",
+    "sha256": "9fac1d7b60265f5f72829c96ad09fd4158e91c0072f20ee3d4b5f2a7e36b808c",
+    "rolePair": "gpt-6.1-sol / xhigh; reuse existing /root/reviewer"
+  },
+  "reviewRequest": [
+    "Check the fixed-map / plan / receipt contract and the two corrected-runner receipt chains.",
+    "Check the named SEE LICENSE target and Scope file-level Electron exclusion in the retained manifest.",
+    "Check preflight does not traverse package stores, the exact map digest gate, symlink containment, and exclusive output creation.",
+    "Review the retained synthetic positives and negatives; do not run the final scan.",
+    "Final real-store scan remains held until PASS and parent release."
+  ]
+}

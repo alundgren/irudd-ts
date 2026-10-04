@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "subject": {
+    "id": "scope-events",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "sources": [
+      "apps/desktop/src/workspace/events.ts"
+    ],
+    "tests": [
+      "tests/tab-events.test.ts"
+    ],
+    "limit": 200,
+    "revision": "8f8d6306179cca796c766243d402bacc96e5ffe3",
+    "scope": "selected tests and comparison/equality/logical operators"
+  },
+  "baselineTestInventoryDigest": "543eaed39556c0ffc7cf290e41044b0f3dff34862bfa04529327626e6aa86da8",
+  "baselineMatrixDigest": "1986d6a13ad553675313de7f9227b5b06b2801dcd803243b672bfe60b05497a6",
+  "baselineComplete": true,
+  "complete": true,
+  "summary": {
+    "tests": 3,
+    "plannedMutants": 12,
+    "acceptedMutants": 12,
+    "killedMutants": 9,
+    "unexplainedSurvivors": 3,
+    "observedMutationScore": 0.75,
+    "subsumingRequirements": 1,
+    "baselineRequirementRetention": 1.0,
+    "observedKillSignatures": 2,
+    "excludedMutants": 0,
+    "greedyCoreTests": 1
+  },
+  "requirements": [
+    {
+      "id": "56a1fc3e9674ff5fad045e7e627f90f577aef1847e729c09afacf5750a41d853",
+      "representative": "479c8ad01dd197909d2324bcf52dc88d532aa8afa6f72b87ac5ff74baa3d4dd4",
+      "mutants": [
+        "479c8ad01dd197909d2324bcf52dc88d532aa8afa6f72b87ac5ff74baa3d4dd4"
+      ],
+      "killedBy": [
+        "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+      "name": "tabs communicate only within their group while the host observes all groups",
+      "file": "tests/tab-events.test.ts",
+      "durationMs": 2.604541999999981,
+      "mutantsKilled": 8,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+      "name": "one broken listener cannot block delivery and event input is validated",
+      "file": "tests/tab-events.test.ts",
+      "durationMs": 0.7448750000000075,
+      "mutantsKilled": 8,
+      "subsumingRequirementsKilled": 0,
+      "exclusiveMutantsKilled": 0,
+      "exclusiveSubsumingRequirementsKilled": 0,
+      "lostMutantKillsOnRemoval": 0,
+      "lostSubsumingRequirementsOnRemoval": 0,
+      "marginalObservedMutationScore": 0.0,
+      "marginalBaselineRequirementRetention": 0.0,
+      "redundancy": null,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    },
+    {
+      "id": "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]",
+      "name": "moving a tab to another group invalidates its old event subscription",
+      "file": "tests/tab-events.test.ts",
+      "durationMs": 0.19704099999998448,
+      "mutantsKilled": 9,
+      "subsumingRequirementsKilled": 1,
+      "exclusiveMutantsKilled": 1,
+      "exclusiveSubsumingRequirementsKilled": 1,
+      "lostMutantKillsOnRemoval": 1,
+      "lostSubsumingRequirementsOnRemoval": 1,
+      "marginalObservedMutationScore": 0.08333333333333333,
+      "marginalBaselineRequirementRetention": 1.0,
+      "redundancy": 0.0,
+      "overlaps": [
+        {
+          "testId": "[\"\",\"tests/tab-events.test.ts\",[\"one broken listener cannot block delivery and event input is validated\"],1]",
+          "jaccard": 0.0
+        },
+        {
+          "testId": "[\"\",\"tests/tab-events.test.ts\",[\"tabs communicate only within their group while the host observes all groups\"],1]",
+          "jaccard": 0.0
+        }
+      ]
+    }
+  ],
+  "redundancyGroups": [],
+  "greedyCore": [
+    "[\"\",\"tests/tab-events.test.ts\",[\"moving a tab to another group invalidates its old event subscription\"],1]"
+  ],
+  "unexplainedSurvivors": [
+    "b6c638b0ebcff88cbab481eefe33678709bc7b1cb7a063c0d74928ad2217e343",
+    "fbe4c707047b54f7003ea6c5417970bcd35ffd645eec1113983d88e3f73c978c",
+    "0d3087256954fddb55f5b7cfbae8b0d732e903e28bd147c73b91e2cb76fb9776"
+  ],
+  "excluded": [],
+  "interpretation": {
+    "requirements": "Minimal nonempty observed kill-signature classes; fixed baseline pool.",
+    "retention": "The full baseline retains 100% by construction, when requirements exist.",
+    "mutationScore": "Completed killed / completed killed plus surviving mutants; equivalence unknown.",
+    "cost": "Per-test durations are descriptive and exclude shared setup and runner startup.",
+    "limits": "Observed redundancy does not authorize deleting tests or predict bug probability."
+  }
+}

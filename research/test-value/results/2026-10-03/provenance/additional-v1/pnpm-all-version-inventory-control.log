@@ -1,0 +1,3 @@
+PASS 10.24.0 pinned runtime 24.21.0 hooks blocked, filtered root+keep importer inventory, unchanged inputs
+PASS 11.10.0 pinned runtime 24.21.0 hooks blocked, filtered root+keep importer inventory, unchanged inputs
+PASS 12.6.0 pinned runtime 26.10.0 hooks blocked, filtered root+keep importer inventory, unchanged inputs

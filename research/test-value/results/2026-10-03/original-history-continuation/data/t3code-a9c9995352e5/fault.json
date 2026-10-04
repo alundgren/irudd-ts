@@ -1,0 +1,28 @@
+{
+  "id": "t3code-a9c9995352e5",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(server): Kiro never auto-grants beyond the thread or runs Autopilot under overrides",
+  "sourceFiles": [
+    "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.ts",
+    "apps/server/src/provider/acp/KiroAcpSupport.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts"
+  ],
+  "relatedGroup": "kiro-permission-policy",
+  "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+  "parent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 10
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "330c2bb8a1d4c0460de64119113f9bd4ac803bb43fcdb7379a2cf635fdfcd32d"
+  }
+}

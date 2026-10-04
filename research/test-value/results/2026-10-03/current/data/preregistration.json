@@ -1,0 +1,66 @@
+{
+  "subjects": [
+    {
+      "id": "t3-preview",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "sources": [
+        "packages/shared/src/filePreview.ts",
+        "packages/shared/src/video.ts",
+        "packages/shared/src/image.ts"
+      ],
+      "tests": [
+        "packages/shared/src/filePreview.test.ts"
+      ],
+      "limit": 200,
+      "revision": "77823bd102ae50430d4acda9a553e5743d2aa5ba"
+    },
+    {
+      "id": "t3-execution",
+      "subject": "t3code",
+      "repository": "/Users/alun/repos/t3code",
+      "sources": [
+        "packages/client-runtime/src/state/threadExecution.ts",
+        "packages/client-runtime/src/state/subagentDisplay.ts"
+      ],
+      "tests": [
+        "packages/client-runtime/src/state/threadExecution.test.ts",
+        "packages/client-runtime/src/state/subagentDisplay.test.ts"
+      ],
+      "limit": 200,
+      "revision": "77823bd102ae50430d4acda9a553e5743d2aa5ba"
+    },
+    {
+      "id": "scope-events",
+      "subject": "scope",
+      "repository": "/Users/alun/repos/irudd-scope",
+      "sources": [
+        "apps/desktop/src/workspace/events.ts"
+      ],
+      "tests": [
+        "tests/tab-events.test.ts"
+      ],
+      "limit": 200,
+      "revision": "8f8d6306179cca796c766243d402bacc96e5ffe3"
+    }
+  ],
+  "node": {
+    "t3code": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "scope": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+      "version": "v26.10.0",
+      "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+    }
+  },
+  "runnerSha256": "71cb721e35c2d9332a1d58a0aab7d23e0a46e4c23322fc9c6762482e41c0fe4e",
+  "sdkSha256": "f6db5dba5684d714a289d45d7ea5bdc543182e06f2def7c31284f3d317110633",
+  "archguardSha256": "d4487aaffc4b7ad37cc83afb486b6df1cfe1d709fdad3b78a4f0ce7aeb2200fc",
+  "dependencySha256": {
+    "t3code": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "scope": "ee1e4ea74f91dd603abbc3d336cb0193ace32295ae0d035fee741ec64fd68dac"
+  }
+}

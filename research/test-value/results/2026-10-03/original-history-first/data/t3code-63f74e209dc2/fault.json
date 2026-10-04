@@ -1,0 +1,35 @@
+{
+  "id": "t3code-63f74e209dc2",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(opencode): fill blank reasoning labels (#14978)",
+  "sourceFiles": [
+    "apps/mobile/src/features/threads/ThreadComposer.tsx",
+    "apps/mobile/src/features/threads/ThreadDetailScreen.tsx",
+    "apps/mobile/src/features/threads/ThreadSettingsSheet.tsx",
+    "apps/mobile/src/state/entities.ts",
+    "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.ts",
+    "apps/web/src/components/ChatView.tsx",
+    "apps/web/src/components/chat/ChatComposer.tsx",
+    "apps/web/src/components/chat/TraitsPicker.tsx",
+    "apps/web/src/components/chat/composerProviderState.tsx",
+    "packages/client-runtime/src/state/threadExecution.ts",
+    "packages/contracts/src/orchestrationV2.ts",
+    "packages/shared/src/model.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/orchestration-v2/Adapters/OpenCode2AdapterV2.test.ts",
+    "apps/web/src/components/chat/TraitsPicker.test.ts",
+    "packages/client-runtime/src/state/threadExecution.test.ts",
+    "packages/shared/src/model.test.ts"
+  ],
+  "relatedGroup": "provider-trait-presentation",
+  "fix": "63f74e209dc27df1f8733535d6fd4a79d442add8",
+  "parent": "ca4f84e702428656665d53635e16251112091657",
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "85bdcc1472ee6bb05c87a10a2d1dbc87848a6c273a44584850fa92d4c49718fc"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "scope": "Actual source archive, pinned package-manager hook/inventory and offline report restoration controls",
+  "files": [
+    {
+      "file": "filtered-v3-exact-archive-controls.json",
+      "bytes": 1437,
+      "sha256": "3da2154ca49c57facc39e8d076fb2f91f1320d105cd770c02f7f2cc6f34ab862",
+      "originalPath": "/tmp/archguard-test-value-20261003/filtered-v3-exact-archive-control/controls.json"
+    },
+    {
+      "file": "pnpm-all-version-inventory-controls.json",
+      "bytes": 11861,
+      "sha256": "1f4398d7d567a2eab8061a5ed9911a13c336b22d4b8687e9e92fdfdf89813dab",
+      "originalPath": "/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control/controls.json"
+    },
+    {
+      "file": "retained-report-comparison-v1.json",
+      "bytes": 391,
+      "sha256": "156e99805c7213d7ca8230c36d10b379970c64fae43d2bb38103bca0e4517681",
+      "originalPath": "/tmp/archguard-test-value-20261003/retained-report-comparison-v1.json"
+    }
+  ]
+}

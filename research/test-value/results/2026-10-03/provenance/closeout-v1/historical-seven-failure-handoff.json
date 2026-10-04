@@ -1,0 +1,409 @@
+{
+  "baselineRoot": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation",
+  "evidenceSha256": [
+    {
+      "bytes": 3312732,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/results.json",
+      "sha256": "4947dfdcc420943172bc34c8c79417d59976cfdbe1b65700bdec0e04db689797"
+    },
+    {
+      "bytes": 9079,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/baseline/result.json",
+      "sha256": "ff4fe3400a2dc7d088881ca4257eb7ef125d5b7792b420b2e3414c19002d6b72"
+    },
+    {
+      "bytes": 34821,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/baseline/execution.json",
+      "sha256": "2a9ac7eca63440a2ac8588c14c7f971ec45dae9ef89f4612f34c8cb9ff3e64cb"
+    },
+    {
+      "bytes": 8722,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/baseline/inventory.json",
+      "sha256": "dc74afebe4ce48a8122dd42e732ede423e5009ca51138a568db13ff8716905d8"
+    },
+    {
+      "bytes": 1781,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/baseline/result.json",
+      "sha256": "6cebc67be63db2aa8d6cf238cf6527d4ece453ec8f07a6e7132d460f30818756"
+    },
+    {
+      "bytes": 22272,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/baseline/execution.json",
+      "sha256": "afe44939ac8cf41e88d3cce3ec7198844db55228ab4daa5cdce77ad8c261a6bf"
+    },
+    {
+      "bytes": 10434,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/baseline/inventory.json",
+      "sha256": "926e545d9d3f22fe31553f2f55641c8005065f88e7526ac6f92cee63997ad50e"
+    },
+    {
+      "bytes": 861,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/t3code-a9c9995352e5/baseline/result.json",
+      "sha256": "9bb1568a8090503a0c1c1068691d2301990a8c9a119131bc40140a653f1e7edc"
+    },
+    {
+      "bytes": 10355,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/t3code-a9c9995352e5/baseline/execution.json",
+      "sha256": "ff03378a9cc0f1f8608de9de55802a556920757f95a9145f8474219c3ebc0e88"
+    },
+    {
+      "bytes": 3695,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/t3code-a9c9995352e5/baseline/inventory.json",
+      "sha256": "9846331e1a5098c0e38539dd1ffdc25f48d69f3d237bdb1d95d8dd03e763ec80"
+    },
+    {
+      "bytes": 282,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/template/packages/cli/package.json",
+      "sha256": "4c64b09ce4e514ec6475468f6c7454c6f1768ea1fcbd663149e02b1796335472"
+    },
+    {
+      "bytes": 365,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/template/packages/cli/vite.config.ts",
+      "sha256": "d7edbff0a32d4f178495c09c6f2b708cb35bb015fbb3be256f2160513120b98e"
+    },
+    {
+      "bytes": 26274,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/template/tests/voice.test.ts",
+      "sha256": "89a9565e8bb281cfa2f549a2bc770369d70f7ba9452efec1cb23b7c37322642e"
+    },
+    {
+      "bytes": 122,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-c152601dfe9c/template/.gitignore",
+      "sha256": "ecdce6013b3f238b8c17e5107fa37df14036953fe6cecaf31161153466ed2be6"
+    },
+    {
+      "bytes": 277,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/template/apps/plan-web/package.json",
+      "sha256": "52b1af5426c092837d2d36108c1b9d0ea1a2e3fa709e7a4b1ad61d877356ff6a"
+    },
+    {
+      "bytes": 391,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/template/apps/plan-web/vite.config.ts",
+      "sha256": "de2d88874df41c200907fda78c356bbf35a234fd45c98aa2f47aabbf4e5aac79"
+    },
+    {
+      "bytes": 679,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/template/apps/plan-web/src/server-main.ts",
+      "sha256": "f7795325b166371c054a64db026fb887d7b5f19eeedd970fbf2fec0ccdbf9a51"
+    },
+    {
+      "bytes": 20357,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/scope-e65e8dd2c3af/template/tests/plan-web-api.test.ts",
+      "sha256": "20fbdfff7219b1ca27391c35434655312d2af20d301a29bedb570b7d4d12b0a6"
+    },
+    {
+      "bytes": 52995,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/runner.py",
+      "sha256": "4f2bd8d2d4b0fb35f4c6b029411c97b19362ac3ad29cb08f29423563d9aeb445"
+    },
+    {
+      "bytes": 39032,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/history.py",
+      "sha256": "8c64052da1ec91a5e7a0ae72f5e38eef66c67f632133ae3710e9de5758ade75f"
+    },
+    {
+      "bytes": 18374,
+      "path": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validation/t3code-a9c9995352e5/template/apps/server/src/orchestration-v2/Adapters/KiroAdapterV2.test.ts",
+      "sha256": "de1af4d103c6f8359e36877ad36c08494a8c4cfcc15fb388f0117953e5b9390e"
+    }
+  ],
+  "harness": {
+    "archive": "research/test-value/history.py:307 calls archive(repository, fix, template)",
+    "buildsRunByCurrentHarness": false,
+    "copy": "research/test-value/runner.py:772 copies the entire template to each execution source with no dist exclusion",
+    "desktop": "No GUI/Electron launch is required by these missing artifacts. The focused test suites use Node processes and local test services; keep Kiro fixture replay offline.",
+    "genericExclusion": "research/test-value/runner.py:23 defines **/dist/**, applied by run_matrix at runner.py:939-940 only; historical execute_case does not use it",
+    "hash": "research/test-value/runner.py:775 hashes the template; runner.py:366-380 hashes files including dist outputs",
+    "resumptionRule": "Generate each output inside the owned fresh source used for its test, after any source reversion or mutation; record exact command, cwd, tool/runtime identities and generated-output hashes. Never reuse a fixed build for a reverted source tree."
+  },
+  "schemaVersion": 1,
+  "scope": "read-only historical baseline failure diagnosis",
+  "scopeCliGroup": {
+    "assertionCascade": {
+      "candidate": "scope-c152601dfe9c",
+      "reason": "test polls f.calls == 1 after launching the missing dist/main.mjs; no CLI process means the local fake provider call count remains zero",
+      "test": "CLI timeout leaves generation running and recovers the result using its recorded ID"
+    },
+    "candidates": [
+      {
+        "baselineCounts": {
+          "failed": 1,
+          "passed": 7,
+          "skipped": 0
+        },
+        "failedTestRecords": [
+          {
+            "file": "tests/hub-relay.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "an unstarted write timeout retires the relay and the next CLI publication queues",
+            "testId": "819027272_0"
+          }
+        ],
+        "fix": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5",
+        "id": "scope-c78a8c5f0fb1",
+        "verifiedFix": "c78a8c5f0fb18922ae4be2da1c725381b75e1fd5"
+      },
+      {
+        "baselineCounts": {
+          "failed": 1,
+          "passed": 8,
+          "skipped": 0
+        },
+        "failedTestRecords": [
+          {
+            "file": "tests/hub-relay.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "an unstarted write timeout retires the relay and the next CLI publication queues",
+            "testId": "819027272_0"
+          }
+        ],
+        "fix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3",
+        "id": "scope-392d29f5779d",
+        "verifiedFix": "392d29f5779d1aeb88f8abc039eb1e828c7b99a3"
+      },
+      {
+        "baselineCounts": {
+          "failed": 1,
+          "passed": 14,
+          "skipped": 0
+        },
+        "failedTestRecords": [
+          {
+            "file": "tests/pull-requests.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "built CLI recovers an unconfigured publication and updates HTML without replacing local values",
+            "testId": "-33375787_3"
+          }
+        ],
+        "fix": "48708ad54e8b87d341e3bf18259c124fed2b0bce",
+        "id": "scope-48708ad54e8b",
+        "verifiedFix": "48708ad54e8b87d341e3bf18259c124fed2b0bce"
+      },
+      {
+        "baselineCounts": {
+          "failed": 4,
+          "passed": 12,
+          "skipped": 0
+        },
+        "failedTestRecords": [
+          {
+            "file": "tests/voice.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "built CLI generates E roles and the skill helper preserves PCM with a 180 ms turn gap",
+            "testId": "177810735_3"
+          },
+          {
+            "file": "tests/voice.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "built CLI exports playable WAV and a receipt, then refreshes delayed actual billing without speech",
+            "testId": "177810735_4"
+          },
+          {
+            "file": "tests/voice.test.ts",
+            "kind": "assertion",
+            "messageFirstLine": "expected +0 to be 1 // Object.is equality",
+            "name": "CLI timeout leaves generation running and recovers the result using its recorded ID",
+            "testId": "177810735_7"
+          },
+          {
+            "file": "tests/voice.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "paired hub uses short requests and recovers speech after relay disconnection",
+            "testId": "177810735_10"
+          },
+          {
+            "file": null,
+            "kind": "unhandled",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": null,
+            "testId": null
+          },
+          {
+            "file": null,
+            "kind": "unhandled",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": null,
+            "testId": null
+          }
+        ],
+        "fix": "c152601dfe9c5e1077b2a34290979d4c5f8fad24",
+        "id": "scope-c152601dfe9c",
+        "verifiedFix": "c152601dfe9c5e1077b2a34290979d4c5f8fad24"
+      },
+      {
+        "baselineCounts": {
+          "failed": 5,
+          "passed": 9,
+          "skipped": 0
+        },
+        "failedTestRecords": [
+          {
+            "file": "tests/remotes.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "a Mac pairs once, receives CLI publications over connections it opens, and disconnects without replay",
+            "testId": "-1765107948_0"
+          },
+          {
+            "file": "tests/remotes.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "saved connections reconnect after a desktop restart and explicit disconnect stays off",
+            "testId": "-1765107948_3"
+          },
+          {
+            "file": "tests/remotes.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "CLI deletion and desktop shrink cross the relay, while hub shrink works without the Mac",
+            "testId": "-1765107948_4"
+          },
+          {
+            "file": "tests/remotes.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "a remote CLI maintenance request can exceed thirty seconds while relay heartbeats continue",
+            "testId": "-1765107948_5"
+          },
+          {
+            "file": "tests/remotes.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Command failed: /Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node /Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-lock-matched-baseline-validati",
+            "name": "paired hubs forward named native edits larger than metadata and compact human events",
+            "testId": "-1765107948_7"
+          }
+        ],
+        "fix": "59ed3a2a3ee44dd525504dd449094c554232fc8e",
+        "id": "scope-59ed3a2a3ee4",
+        "verifiedFix": "59ed3a2a3ee44dd525504dd449094c554232fc8e"
+      },
+      {
+        "baselineCounts": {
+          "failed": 2,
+          "passed": 14,
+          "skipped": 0
+        },
+        "failedTestRecords": [
+          {
+            "file": "tests/plan-web-api.test.ts",
+            "kind": "runtime",
+            "messageFirstLine": "Server exited: node:internal/modules/cjs/loader:1595",
+            "name": "collaborative plan HTTP API > serializes competing server processes and deduplicates simultaneous retries",
+            "testId": "-125765656_0_10"
+          },
+          {
+            "file": "tests/plan-web-api.test.ts",
+            "kind": "assertion",
+            "messageFirstLine": "expected 4 to be +0 // Object.is equality",
+            "name": "collaborative plan HTTP API > starts competing services while the event loop releases a database journal lock",
+            "testId": "-125765656_0_11"
+          }
+        ],
+        "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+        "id": "scope-e65e8dd2c3af",
+        "verifiedFix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e"
+      }
+    ],
+    "histories": {
+      "packageJsonBlobSha256": "4c64b09ce4e514ec6475468f6c7454c6f1768ea1fcbd663149e02b1796335472",
+      "viteConfigBlobSha256": "d7edbff0a32d4f178495c09c6f2b708cb35bb015fbb3be256f2160513120b98e"
+    },
+    "missingOutput": "packages/cli/dist/main.mjs",
+    "ownedInstallationIds": {
+      "scope-392d29f5779d": "scope-install-2e2771120180",
+      "scope-48708ad54e8b": "scope-install-5a38c059371d",
+      "scope-59ed3a2a3ee4": "scope-supp-install-aed340460236",
+      "scope-c152601dfe9c": "scope-supp-install-60fd3fd8ce01",
+      "scope-c78a8c5f0fb1": "scope-install-5a38c059371d"
+    },
+    "packConfig": {
+      "bundled": [
+        "@irudd-scope/protocol",
+        "effect"
+      ],
+      "entry": "src/main.ts",
+      "output": "dist/main.mjs",
+      "path": "packages/cli/vite.config.ts",
+      "platform": "node",
+      "target": "node24"
+    },
+    "packageScript": {
+      "build": "vp pack",
+      "path": "packages/cli/package.json"
+    },
+    "versions": {
+      "cliOutputTarget": "node24",
+      "executionNode": "26.10.0",
+      "workspaceNode": "26.10.0",
+      "workspacePackageManager": "pnpm 12.6.0"
+    }
+  },
+  "scopePlanWeb": {
+    "assertionCascade": {
+      "reason": "four processServer() children load the absent dist/server/server-main.mjs and settle before the 300 ms check; the expected settled count of zero becomes four",
+      "test": "collaborative plan HTTP API > starts competing services while the event loop releases a database journal lock"
+    },
+    "candidate": "scope-e65e8dd2c3af",
+    "clientBuildNeededBySelectedTestFile": false,
+    "fix": "e65e8dd2c3afd2a98e3ccfe5d25486a8e74a1b8e",
+    "fullPackageBuildAlsoRunsClientBuild": true,
+    "missingOutput": "apps/plan-web/dist/server/server-main.mjs",
+    "ownedInstallationId": "scope-install-b5d129c1f532",
+    "packConfig": {
+      "bundled": [
+        "effect"
+      ],
+      "entry": "src/server-main.ts",
+      "output": "dist/server/server-main.mjs",
+      "path": "apps/plan-web/vite.config.ts",
+      "platform": "node",
+      "target": "node26"
+    },
+    "packageScript": {
+      "build": "vp pack && vp build",
+      "path": "apps/plan-web/package.json"
+    },
+    "versions": {
+      "executionNode": "26.10.0",
+      "workspaceNode": "26.10.0",
+      "workspacePackageManager": "pnpm 12.6.0"
+    },
+    "whyClientBuildNotNeeded": "the selected suite test that validates assets creates its own temporary index.html, JS, and WASM files; child server checks only exercise API endpoints"
+  },
+  "summary": {
+    "baselineUnavailable": 7,
+    "cleanupsConfirmed": true,
+    "completedPass": 68,
+    "eligibleBaselineCandidates": 75,
+    "preflightExcluded": 3
+  },
+  "t3Fixture": {
+    "candidate": "t3code-a9c9995352e5",
+    "canonicalLaterCommit": "4ddea52c8283cda3b8df9218ed24c3c6293fc1b3",
+    "executionRuntime": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b",
+      "version": "v24.21.0"
+    },
+    "firstParent": "0ad39f780001eb1b4914815677e83ca701ce177c",
+    "fix": "a9c9995352e559079fd55ec5e9996687bb43ce94",
+    "fixtureGitBlobSha1": "8e944bc546b4febb8741fb48f78ff182474657d6",
+    "fixtureSha256": "5dddae38b5778f5d660f1383ebe6d423071238dcd5b1541d0201c52fe127ec23",
+    "laterCommitAddsOnlyFixture": true,
+    "laterCommitIsDescendantOfFix": true,
+    "laterCommitTitle": "fix(server): a failed Kiro prompt shows Kiro's own error",
+    "path": "apps/server/src/orchestration-v2/testkit/fixtures/kiro_unknown_model/kiro_transcript.ndjson",
+    "presentAtFix": false,
+    "presentAtParent": false,
+    "provenanceNote": "The later commit supplies the canonical 41-line recorded transcript for the unchanged test. Using it requires a separately recorded fixture overlay; it is absent from the exact fixed and parent trees.",
+    "testBlobAtFix": "ea843bd80bac702b706e2bf5c61113cd6da46826",
+    "testBlobAtLaterCommit": "ea843bd80bac702b706e2bf5c61113cd6da46826",
+    "testBytesUnchanged": true
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "t3code-a5b34b25378f",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(clients): a dev server left running no longer says the thread is waiting (#15114)",
+  "sourceFiles": [
+    "apps/web/src/components/ChatView.tsx",
+    "packages/client-runtime/src/state/threadExecution.ts"
+  ],
+  "testFiles": [
+    "packages/client-runtime/src/state/threadExecution.test.ts"
+  ],
+  "relatedGroup": "thread-runtime-presentation",
+  "fix": "a5b34b25378fbbf90ce36ee101a11528ccf11c7e",
+  "parent": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+  "verified": false,
+  "exclusion": "historical mutation plan failed",
+  "recordDigests": {
+    "fixed-before/execution.json": "c34d4bfa4ff78ca193848d2da0401ca78e3e2cd0757135ab3a855a6b723bc75c",
+    "faulty/execution.json": "f661aaeb874b85e77f086929f7b9ff0d32783c893771efe9120210a3cda06caa",
+    "fixed-after/execution.json": "4135737b519610114a9094b92e50f48030ef514a8fbb6c19f7f289bd9fae6fb2"
+  }
+}

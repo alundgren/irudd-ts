@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "apps/mobile/src/features/threads/threadListV2.ts",
+      "apps/web/src/components/Sidebar.logic.ts",
+      "apps/web/src/components/ThreadNotificationCoordinator.tsx",
+      "packages/client-runtime/src/state/models.ts",
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

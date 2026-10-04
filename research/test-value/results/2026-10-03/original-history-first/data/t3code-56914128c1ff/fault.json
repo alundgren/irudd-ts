@@ -1,0 +1,69 @@
+{
+  "id": "t3code-56914128c1ff",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(usage): Codex Fast and Ultrafast now cost what they bill (#15101)",
+  "sourceFiles": [
+    "apps/server/src/usage/UsageService.ts",
+    "apps/server/src/usage/antigravityUsageReader.ts",
+    "apps/server/src/usage/cursorUsageReader.ts",
+    "apps/server/src/usage/opencodeUsageReader.ts",
+    "apps/server/src/usage/usagePricing.ts",
+    "apps/server/src/usage/usageScanCache.ts",
+    "apps/server/src/usage/usageTranscriptReader.ts",
+    "apps/server/src/usage/usageTranscripts.ts"
+  ],
+  "testFiles": [
+    "apps/server/src/usage/UsageService.test.ts",
+    "apps/server/src/usage/usageAggregation.test.ts",
+    "apps/server/src/usage/usagePricing.test.ts",
+    "apps/server/src/usage/usageScanCache.test.ts",
+    "apps/server/src/usage/usageTranscriptReader.test.ts",
+    "apps/server/src/usage/usageTranscriptStreaming.test.ts",
+    "apps/server/src/usage/usageTranscripts.test.ts"
+  ],
+  "relatedGroup": "usage-accounting",
+  "fix": "56914128c1ff9dcf6585c380b7b25845d6ca5f98",
+  "parent": "6108ef3d3d0ef2a598088a1bb64980580e935830",
+  "verified": false,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "apps/server/src/usage/UsageService.ts",
+    "apps/server/src/usage/antigravityUsageReader.ts",
+    "apps/server/src/usage/cursorUsageReader.ts",
+    "apps/server/src/usage/opencodeUsageReader.ts",
+    "apps/server/src/usage/usagePricing.ts",
+    "apps/server/src/usage/usageScanCache.ts",
+    "apps/server/src/usage/usageTranscriptReader.ts",
+    "apps/server/src/usage/usageTranscripts.ts"
+  ],
+  "killedBy": [],
+  "unaffected": [],
+  "fixedTemplateSha256": "1dd66b59d202985d5a0bf02c80117e2f484ebd939dad4d35ce223afb1a9eaf44",
+  "faultyTemplateSha256": "79e180d2f8b452e1295b7ff59f5ac7ca057ba82aa0611be7f4005cf0be6588ef",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "apps/server/src/usage/UsageService.test.ts": "parent file existed; individual additions not classified",
+    "apps/server/src/usage/usageAggregation.test.ts": "parent file existed; individual additions not classified",
+    "apps/server/src/usage/usagePricing.test.ts": "parent file existed; individual additions not classified",
+    "apps/server/src/usage/usageScanCache.test.ts": "parent file existed; individual additions not classified",
+    "apps/server/src/usage/usageTranscriptReader.test.ts": "parent file existed; individual additions not classified",
+    "apps/server/src/usage/usageTranscriptStreaming.test.ts": "parent file existed; individual additions not classified",
+    "apps/server/src/usage/usageTranscripts.test.ts": "parent file existed; individual additions not classified"
+  },
+  "parentTestInventoryUnavailable": "parent tests did not pass under adapted fixed source",
+  "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+  "recordDigests": {
+    "fixed-before/execution.json": "8df4d8866c7c6d299686ad7ece15feaf81ecde4af58551d675e44bcfe1f9bc67",
+    "faulty/execution.json": "1793f433cebe72e54f1714c5d4bb5f2073368b470ecc319358bcdcb89a40c802",
+    "fixed-after/execution.json": "33c6b2d2e201f6b0b973c8940c46af6a0cdc6e036e4429c71910173c622f8656"
+  }
+}

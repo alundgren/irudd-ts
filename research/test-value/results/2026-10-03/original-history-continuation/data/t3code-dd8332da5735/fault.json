@@ -1,0 +1,89 @@
+{
+  "id": "t3code-dd8332da5735",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(server): installed editors no longer vanish when discovery is slow (#13669)",
+  "sourceFiles": [
+    "apps/server/src/process/externalLauncher.ts",
+    "packages/shared/src/shell.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/shell.test.ts"
+  ],
+  "relatedGroup": "editor-discovery",
+  "fix": "dd8332da57355bccd7e666289267f2c94597debd",
+  "parent": "eeea71a88108c375c04853f58c298a518a54acaf",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 13
+  },
+  "verified": false,
+  "replay": "adapted source-reversion replay",
+  "revertedFiles": [
+    "apps/server/src/process/externalLauncher.ts",
+    "packages/shared/src/shell.ts"
+  ],
+  "killedBy": [],
+  "unaffected": [],
+  "fixedTemplateSha256": "31be848c0a7f349a11c8341e92fbf7165b153a5e138465c02f67ea0b3f413387",
+  "faultyTemplateSha256": "3f7a6bdd5652a10a7b9dd21caa126033f2fbd0c7a9a11949be2f84c4bb7561c1",
+  "dependencySha256": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+  "node": {
+    "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+    "version": "v24.21.0",
+    "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+  },
+  "fixedBefore": "fixed-before/execution.json",
+  "faulty": "faulty/execution.json",
+  "fixedAfter": "fixed-after/execution.json",
+  "testFileOrigins": {
+    "packages/shared/src/shell.test.ts": "parent file existed; individual additions not classified"
+  },
+  "unchangedIdentityFromParentTests": [
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"isCommandAvailable\",\"returns false when PATH is empty\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"listLoginShellCandidates\",\"falls back to the platform default when no shells are available\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"listLoginShellCandidates\",\"returns env shell, user shell, then the platform fallback without duplicates\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathEntries\",\"prefers login-shell PATH entries and keeps inherited extras\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathEntries\",\"uses the platform-specific delimiter\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathValues\",\"dedupes case-sensitively on POSIX\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathValues\",\"removes stray quotes from Windows entries\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"mergePathValues\",\"sanitizes and dedupes Windows entries while preserving preferred order\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromLoginShell\",\"extracts multiple environment variables from a login shell command\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromLoginShell\",\"omits environment variables that are missing or empty\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromLoginShell\",\"preserves surrounding whitespace in captured values\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"extracts environment variables from a PowerShell command\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"falls back to Windows PowerShell when pwsh.exe is unavailable\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"omits -NoProfile when loadProfile is enabled\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readEnvironmentFromWindowsShell\",\"strips CRLF delimiters from captured PowerShell values\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readPathFromLaunchctl\",\"returns a trimmed PATH value from launchctl\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readPathFromLaunchctl\",\"returns undefined when launchctl is unavailable\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"readPathFromLoginShell\",\"uses a shell-agnostic printenv PATH probe\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"fails when PATH is empty\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"keeps cached misses until expiry while allowing explicit paths\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"keeps upper and lowercase PATHEXT candidates\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"resolves lowercase executable files for audit-command in a case-sensitive Windows PATH directory\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"resolves lowercase executable files for audit-command.CMD in a case-sensitive Windows PATH directory\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"still visits a PATH entry that differs only in case\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"visits a repeated PATH directory only once\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveKnownWindowsCliDirs\",\"returns known Windows CLI install directories in priority order\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"does not fall back to a shell for unresolved Windows commands\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"escapes the executable and arguments for Windows command shims\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"resolves against the effective environment when extending host env\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveSpawnCommand\",\"runs Windows executables directly without a shell\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveWindowsEnvironment\",\"keeps the baseline env when profiled probe still does not resolve node\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveWindowsEnvironment\",\"loads the PowerShell profile when baseline env cannot resolve node\"],1]",
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveWindowsEnvironment\",\"uses known CLI directories as a fallback without changing shell PATH priority\"],1]"
+  ],
+  "fixAddedOrRenamedTestIdentities": [
+    "[\"\",\"packages/shared/src/shell.test.ts\",[\"resolveCommandPath\",\"probes only listed PATH names and relists a directory that changes\"],1]"
+  ],
+  "parentTestInventoryEvidence": "parent-tests-fixed-source/execution.json",
+  "exclusion": "faulty assertion regression, unaffected control, or restored pass not established",
+  "recordDigests": {
+    "fixed-before/execution.json": "a58a8c40da733158b86f0f8408de1db9a288a0223d37c76bb67ffc82fea329aa",
+    "faulty/execution.json": "ad5cc9139b18926f64ded4b380a0126c95cf7d84ef5191f13ab0998d958cb878",
+    "fixed-after/execution.json": "e2573770b38eb99f5c8d4c0dc3598ca7bf2e82ade9bae516555b298345c04fa0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "apps/server/src/keybindings.ts",
+      "packages/shared/src/keybindings.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

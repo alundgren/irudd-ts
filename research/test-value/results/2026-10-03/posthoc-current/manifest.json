@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "sourceRoot": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-sensitivity",
+  "archive": "raw-evidence.tar.gz",
+  "archiveSha256": "dcc613126dc05bb9eac5771911bb12f21f68395a1e93ee48100438e8f5a50563",
+  "files": [
+    {
+      "path": "native/analysis.json",
+      "sha256": "ef71718d9d92517cf44cebebb9e0f923d65baecc226fdbd05786b10dfcc9ffd9",
+      "bytes": 8445
+    },
+    {
+      "path": "native/matrix.json",
+      "sha256": "fc18bf81397e2f1b61cc1a6eb9b6b20f1e2ea8fc7c494a46800e218568e62b95",
+      "bytes": 55416
+    },
+    {
+      "path": "native/policy-and-events.json",
+      "sha256": "f609f81082ac8d2f73c510a2eee8d9925c7c3e3d49c55364f932a5af3cdc4069",
+      "bytes": 36925
+    },
+    {
+      "path": "scope-events/analysis.json",
+      "sha256": "bb87c91f3d7e821b9ab4f212c042b6ea2b1daca85f332d2c45eea15f37d650fb",
+      "bytes": 5268
+    },
+    {
+      "path": "scope-events/matrix.json",
+      "sha256": "8ba116e310a88afd7d139dbb3b1e8232b0c17fab491494e4b34f628542938fce",
+      "bytes": 24439
+    },
+    {
+      "path": "scope-events/policy-and-events.json",
+      "sha256": "784760e2945d95e487b982280ab223fc101fa93dc8ae454b117bf5c674af6d19",
+      "bytes": 9201
+    },
+    {
+      "path": "t3-execution/analysis.json",
+      "sha256": "9f94ac910fb4c6e1e92ecf5f92a184187d6131e4310a7cc31cd77e3a00a23c4f",
+      "bytes": 614716
+    },
+    {
+      "path": "t3-execution/matrix.json",
+      "sha256": "b4ba7a3c00851a8a4a281984c447d7645f85f575f2ba2b9a192fbb67eb5dc178",
+      "bytes": 1080600
+    },
+    {
+      "path": "t3-execution/policy-and-events.json",
+      "sha256": "6d919f3eb36446405a826cf882e9331872038ff6ecd64076b4fa1cde93caa567",
+      "bytes": 57483
+    },
+    {
+      "path": "t3-preview/analysis.json",
+      "sha256": "daaa272ac6bd1af3655c8f9672dcf46f63125219c3ce23966f8704eabe002b7f",
+      "bytes": 375424
+    },
+    {
+      "path": "t3-preview/matrix.json",
+      "sha256": "b53247fb12c6096856ffccf2268f9f839e43d643e5506d0eafd6146e3568b016",
+      "bytes": 313479
+    },
+    {
+      "path": "t3-preview/policy-and-events.json",
+      "sha256": "0890330041fcb6165c7b1e54491f8cb5120efe8d35de4813a5d94c89bca296d9",
+      "bytes": 21581
+    }
+  ],
+  "excludedDirectories": [
+    ".git",
+    "__pycache__",
+    "active",
+    "cache",
+    "faulty-template",
+    "fixed-template",
+    "home",
+    "native-target",
+    "node_modules",
+    "parent-tests-template",
+    "private",
+    "source",
+    "target",
+    "template",
+    "tmp"
+  ],
+  "exclusionRule": "Dependency stores, mutable source copies and private runtime/cache directories are not exported; their recorded digests remain in execution records."
+}

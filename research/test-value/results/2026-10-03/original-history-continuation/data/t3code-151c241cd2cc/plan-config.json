@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": [
+      "packages/client-runtime/src/state/threadExecution.ts"
+    ]
+  },
+  "operators": [
+    "comparison",
+    "equality",
+    "logical"
+  ]
+}

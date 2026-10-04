@@ -1,0 +1,268 @@
+{
+  "repositoryRevision": "fa34b0619a3dd79b14ffcb2f5fff60d4b3254979",
+  "runnerSha256": "9d796075ce9376fd4b2a190c3ed6b1213d37d61992d76487304d53b05478faa5",
+  "archguardSha256": "d4487aaffc4b7ad37cc83afb486b6df1cfe1d709fdad3b78a4f0ce7aeb2200fc",
+  "installationMapSha256": "81ed6f1a0048b5819212c8817e1d0a724a3365e66128e8d9d3985521b72416a0",
+  "candidatesManifestSha256": "2a01d9d364071b7bc1b315f89a117d698a03693f74f6c8c647ce92461cb5b0a0",
+  "node": {
+    "t3code": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "scope": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+      "version": "v26.10.0",
+      "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+    }
+  },
+  "preparationOnly": true,
+  "testExecutionPerformed": false,
+  "mutationExecutionPerformed": false,
+  "ownedStoresRehashed": 46,
+  "ownedStores": {
+    "t3code-50be718a6b0084d4d302c0c707945fe2a6482ec90d1306925a8f0fbad293e5e4": {
+      "sha256": "f6d8e03103df6a20e80c9cfaf69ad8d48c01d0300e53ff4409d57ee8fa61310f",
+      "sourceInstallationId": "t3code-install-aa20f3655ae3",
+      "sourceReceiptSha256": "fc7587d22db0b0740a26c55d0b15a520576d10325cc564aaed6e9b2eea9511c3"
+    },
+    "t3code-dfa908f29fb6730634f97b3eae40630fc2f4043afe23bedd6003931fef013abc": {
+      "sha256": "ccd98d3cefb3e22134009d2d1bcbff33f2d4898b773400cae9107fc574d836ae",
+      "sourceInstallationId": "t3code-install-4bab1da110d5",
+      "sourceReceiptSha256": "17452047a11010fab33690cbe7ac3fcc3ab641fc4f6ccb1b1680d3c86cc64f89"
+    },
+    "t3code-48765f7600fbaa1c35bfc6478269c39e7df710e8169ac6ea9cc1af62a3537c28": {
+      "sha256": "2ffb9a1504395a6cbe2ad2ae9544de78ad04e34fb94b14cb700172f93eb03004",
+      "sourceInstallationId": "t3code-install-45cbc35fab04",
+      "sourceReceiptSha256": "22a17cecb1e79aec19b1333eb4478bee09aeb0991662bb48926f368f582fd9ae"
+    },
+    "t3code-4b4b9aa4238842811b54de5dc3180938c46e97651e8cf73ec3e958b257f5de25": {
+      "sha256": "e6b77505e1e1bafc49b7873cf350e73fdff39f203c709e2fa96afcd630bc09d0",
+      "sourceInstallationId": "t3code-install-ee27f20fa50a",
+      "sourceReceiptSha256": "3540e973e76772e7214f82552827dd41f9cb21c962cc5a61c2bc26fa4bdc4788"
+    },
+    "t3code-1b4b8cf27b93ce7c2a628f915e7b1c9e5eb84340fa89bbbb35d4df2599f125bd": {
+      "sha256": "49c39c12ed3475988a9937d42778103f17c85e7736c5f313cdac29d4b1370521",
+      "sourceInstallationId": "t3code-install-834b0967522e",
+      "sourceReceiptSha256": "5119f83227d7f522cf2f8d1ce608a03d76df5d7d30fb741f8c524ca91a23b4a0"
+    },
+    "scope-dd016394ad560522b52a24347f39c39cccee6b758140c95a193c93d54d6ec9bd": {
+      "sha256": "f66b144930107b483a3d38f673e2fad04c71c614bb959573db12950ef5975b03",
+      "sourceInstallationId": "scope-install-d56f88acd0ae",
+      "sourceReceiptSha256": "0f2ea4429c8eaf8430a3457670e1abfe59c511b32af2178ca031547992bbc2ef"
+    },
+    "scope-037e7fe99e1ef476576077dd95dcc7634cbcb51ff351d44a6471da6f77556d8a": {
+      "sha256": "47f3c209bc374c3ca9476f612e40978225a94cf88f5fb0c0543a8e3c0350b3e1",
+      "sourceInstallationId": "scope-install-b5d129c1f532",
+      "sourceReceiptSha256": "bba71e0b5d5ae60e7555b1f93f1189c1465798e51b939bf2306b1835fc1e0ac8"
+    },
+    "scope-a3e93238a1a4cfb3d290f817849eb98d90673c30fe3e24edda9b7faa380e8d6a": {
+      "sha256": "132a2759ad4680b764364a8d4d3983499bd041d1e2c91b413cc595a743e5da47",
+      "sourceInstallationId": "scope-install-5a38c059371d",
+      "sourceReceiptSha256": "9f011210fcaa68d7025927ca9539c02dcdafc9d00e7fc77681af4fade59379f3"
+    },
+    "scope-860343da8dfe1d1ff880629a1a7e932932bde4c498e6184fcdf72a0f5e7056f5": {
+      "sha256": "d23e8a299ccd6e340032299871b1628801becacbe6acd30b5f64fc25758001ff",
+      "sourceInstallationId": "scope-install-2e2771120180",
+      "sourceReceiptSha256": "15e5442a3dc31b27e898243e29bad6d89801e2f4c039c1cae4f89bcb8ebbd66f"
+    },
+    "t3code-10db75f068e1b6a66d3a720fcb35eae68d4754ded9d4c79ed37c2a1f2a6cfeca": {
+      "sha256": "1ab2c79012a8dee1d680e0b8c2bc8248342f3e7124ef5be0ec5dc30574a6b597",
+      "sourceInstallationId": "t3code-install-3f6293e594ec",
+      "sourceReceiptSha256": "da1dd81b7511e02567e140332117a3320c8f8e0dd093c7e3681b2695a7c10e02"
+    },
+    "t3code-89dc906c1813851b158bb36af0ae2385d87adcfec3e48bcb44e666f8f8d04b82": {
+      "sha256": "a14b95b063b2ea28323099ef99cdba96ca3c8af095f66606c4162858c5a8d692",
+      "sourceInstallationId": "t3code-install-cda00b386774",
+      "sourceReceiptSha256": "71414915017185c39abb8eb390264881908f605c7e51a632b935ecaa1c04415c"
+    },
+    "t3code-3b25fdc72d38fb791c5ebc792f3f5cbca4bb87860358f3f4cb61fa72b73c795a": {
+      "sha256": "e013dddc690d689c37090b13bf56610a6f8dd46e45be77881bf950533933f740",
+      "sourceInstallationId": "t3code-install-e01e4bdf3124",
+      "sourceReceiptSha256": "e5b2e058f1bfb70fb8498529bcaec85afbad8c40029f467410c42f12025bd016"
+    },
+    "t3code-76a2095df73a88ca09653d577eecd48b714778add01324f9bcc3221ac99ba07d": {
+      "sha256": "3012f9cb8d9a8fc541a3377c3fe6fa2ee1decfa190aae11498766ac0fc8cfca0",
+      "sourceInstallationId": "t3code-install-eebf736b5b58",
+      "sourceReceiptSha256": "afe4867250b11a8ba74656c8c7959d0f77ef6b247eeb54ff5ac49fafb7331adb"
+    },
+    "t3code-9169183db4fd35fadbd77cd86b3991eeeb08a415cc4e98447b55531bc37fe17c": {
+      "sha256": "faae9e66e23c16c824438c6be0651be24369285b055c77bd8c3ed2c7c82e8a80",
+      "sourceInstallationId": "t3code-install-16858df93bbf",
+      "sourceReceiptSha256": "5c5bd6781e2656beccf898a7e58a125c14e74ba030ac0d65d2ad0a0f30031f18"
+    },
+    "t3code-3d586e08d3a256a2d077d23d63872c50dcf683f5322d0fbd00a9a0754bd84e69": {
+      "sha256": "3b918ed2d128ff67c19bbab0cf51287cd8c22734243101f7d968b057a64e2cd5",
+      "sourceInstallationId": "t3code-install-7f3efb59fb30",
+      "sourceReceiptSha256": "7052b57c5eea7842240d3e6a1fe855ed02a1e42c8a8f043573adab454dd8e4e2"
+    },
+    "t3code-eb2f58c79b6612315c314c145c9f941da8ef4b112023e26df16eb8bfbfb3f434": {
+      "sha256": "57be9063bd5f27127091fdbe9af0eb4c50685bd78321a8c81c38aed8ec35ed62",
+      "sourceInstallationId": "t3code-install-745336e7263a",
+      "sourceReceiptSha256": "41837f14cec67e687390baa0330927cc52556139608fcdaac31a8532e8432370"
+    },
+    "t3code-62189c38c93f73d7804dca6a2e6771d8f0c098dfae878ba30c61ea8e4f9f335c": {
+      "sha256": "d1a8f12af48c6f44e81b98c4930009b7adae3df1df79e8bbbacc66ff97cfbd5a",
+      "sourceInstallationId": "t3code-install-4d7ac4348ddc",
+      "sourceReceiptSha256": "85c5deddf16a08308d77fc1f113c8aed3ddb4c04c6ea77396b4fa11043bea755"
+    },
+    "t3code-a2dc4e163a7f23205907677e6f0c5a52e0189228096e01122fbfb896279bf4b3": {
+      "sha256": "9cd88551ca6012cddf7204e3398b5856ccbf58f5904d031387d9e29b919a945b",
+      "sourceInstallationId": "t3code-install-7ee3d847b90d",
+      "sourceReceiptSha256": "ce290ee03455a0569e35d3a48682fe324de665f7c794589795bb2e0c7d814487"
+    },
+    "t3code-96233d40c739e454667627846f46e6aa3604e11cf3cd1e11dfdd414c3f39f071": {
+      "sha256": "6809d42b77060f482a1eb7ef2eb8df6f313bbd258bcd5eda2cac54cad2dadeb7",
+      "sourceInstallationId": "t3code-install-418e9aba3903",
+      "sourceReceiptSha256": "bd02bbbf8ba89cf3f0dfd2e3fc7c929b97730b5f4ab67fe8bc96b1362406a8ae"
+    },
+    "t3code-8908b2f4225521e831320665b29326ab9df2d7ee400ea1fd941c37f070447961": {
+      "sha256": "79f0c9124922c174180921e002ac842b480725f2f9172326a7dbff617d30a27b",
+      "sourceInstallationId": "t3code-install-6c26501fdebc",
+      "sourceReceiptSha256": "825c5de8a9e43c533d2fadb8fa54131d50f94865691b3fe39bb3b56148b0307d"
+    },
+    "t3code-e4d9f81042f2e15dc83160821dee16c7fe7606a4f5a7c85eca72de5306071008": {
+      "sha256": "e0b9e48a8ac578447ae80fcc1b4bc808256bcef184b4f6e5d28c0973f200d014",
+      "sourceInstallationId": "t3code-install-c4a0237c4d7d",
+      "sourceReceiptSha256": "2f8dd05c5cf15cf8dd0c5f977bd8780ba0cd52497e27c55c2ad6535e5e3c79c0"
+    },
+    "t3code-b55dcf09816323a7f01af88f99c38bfd7e5a44c8fc74882f31de34bddf7f16e6": {
+      "sha256": "a4ddf499352dc40606fe66df0af36ca59f42effd3faf00bcbb7bff09ee82c821",
+      "sourceInstallationId": "t3code-install-800215c134e2",
+      "sourceReceiptSha256": "271ff1889dec33cbad6963dba450dab0163948395fd90db4d01db046d10c0156"
+    },
+    "t3code-fa5ea9c955dac903b3d8afd1c3dbe5d1ed1dd15330f67ce7d9906d9b36140956": {
+      "sha256": "7417044ae6d5346ab21e2d2265b006c26104bd814ec7b9d80569dc0e599ce642",
+      "sourceInstallationId": "t3code-install-49a592f5503b",
+      "sourceReceiptSha256": "29c01c4530a9eea1bb600c6f76ea18e5a1dc8d4199fe011385a9fbc54aba98ab"
+    },
+    "t3code-4bad4d4e9658a9ccde772e3c693de80da7e567aa453beaa3da6ddcb673f8adae": {
+      "sha256": "6e07109a4b946309de976e78f2be74c742301829a867a969b1e81005585d47d4",
+      "sourceInstallationId": "t3code-install-c01c5f85dee6",
+      "sourceReceiptSha256": "527ba6fbb68e74bf4fbefdba7cf3565dc1cd9425d44e1c9b2de29be4b1864c1d"
+    },
+    "t3code-3b5abe2cad1a061fe75edeb5267026b45d14033a4f22458feaf44e2bd96a87e4": {
+      "sha256": "58f52b18b1346146fbf471eb852b0213d807f5cdcf6c3e64ef872c4cc75c6e7f",
+      "sourceInstallationId": "t3code-install-3f5a1597bcde",
+      "sourceReceiptSha256": "9921e45c297932bb8e006e35b5384480e1a651ddb8b9968f823dd7a1f8d9c568"
+    },
+    "t3code-94ad1a316ea3d19dcfe04a2ab91a30121d547dcace534bfed2e7fd0128e47206": {
+      "sha256": "3bf9b16cbc1866b253b35895bcfdf9931b245df445f7cb5a388b8950c0b6274f",
+      "sourceInstallationId": "t3code-supp-install-027d2efae574",
+      "sourceReceiptSha256": "534b652ed7d430cdbe0bbffada3131748838363e773eb3f0b07591c169bceddf"
+    },
+    "t3code-cef7cecd7101c0dd3ed79ccd957af7721903592f623ce963d26b0c6dde4b5ee8": {
+      "sha256": "9cd9f5bbc4a62c6233b69d2b1a613c6b1c9642e5f86e57030fac17fd7d9707ab",
+      "sourceInstallationId": "t3code-supp-install-9168995d892f",
+      "sourceReceiptSha256": "3ad8344567d7f5e2d394b434e8f7825548aae1c5c164708bd2618e34f868fe87"
+    },
+    "t3code-b06b31c2b69bed72fa312edbd51a980549776aa0f737f1f4e3bbcb9985a4445a": {
+      "sha256": "bb1ff58e095fd14b7de871b039bb9f4b4796d43f08142a91f42befff4a7acdc7",
+      "sourceInstallationId": "t3code-supp-install-d283272c954d",
+      "sourceReceiptSha256": "bf4392864810bb3f1cb0363bbe37c44b033a2a40dd5f65ad897ff540d6ed3084"
+    },
+    "t3code-8bbd1b1af2c15ffdc285dfbea40908bcc7581b1b0c274ed763bf2e6526868591": {
+      "sha256": "c368e1eac8da819a2675711a97a4a6eff392a0cfdde42953e2738629ef1b2788",
+      "sourceInstallationId": "t3code-supp-install-3b359b2f1c7c",
+      "sourceReceiptSha256": "746e85bd4b1bb17710651ba0b09a2c81158d43018c8ae99b76a75b2ba23a2b30"
+    },
+    "t3code-97f8eed1fd82c517eb72eb9be4cb7722bce31d2fb64fe846382bc77376d1f945": {
+      "sha256": "3190145300439a720fcc9f6d9e6c44234c89a3f9daf1432a3030c304155cd1d0",
+      "sourceInstallationId": "t3code-supp-install-6f6eae360f88",
+      "sourceReceiptSha256": "3918ca21d8c06e7d5c2d010a81a5df42beaefc2850ed4a74ddd77463f07e2efe"
+    },
+    "t3code-531f8d3387de89089b72794f6753a6f3bd0d292de3159ae9f4171948e354bdbd": {
+      "sha256": "8234b7e794b6ecbcde11e5c8ed071652724e587309d2aba8a1ff1b13a92bd29f",
+      "sourceInstallationId": "t3code-supp-install-0d4ee075f7d7",
+      "sourceReceiptSha256": "7887a903ae655df81ed3c3bb8e8ae8995c770bd4aa4061d10898b162443265de"
+    },
+    "t3code-a3bf3c88299251ebc84551cc19affeb6b2b0ba9c8214a401777f93d3458aafd4": {
+      "sha256": "805e47e882d549406c5527414c8b8413f67ebd9fbf2e15f3046a7fc863cf6f53",
+      "sourceInstallationId": "t3code-supp-install-eed256eac419",
+      "sourceReceiptSha256": "bef22d052866a38366d3ea467b1b4b32dd19385f5563de5c383f1dfed9529762"
+    },
+    "t3code-dd83335fd88df79ecac5a07f60154a3252ad35e51106591fde883121cb5c7710": {
+      "sha256": "54798a503c7a21e6118280775c522022ea6200963143e73e874a43cc63323a32",
+      "sourceInstallationId": "t3code-supp-install-726cdb253f8a",
+      "sourceReceiptSha256": "817981d496332fd19c2bf922f91835f4032d5c3af62af6d59655826ebf20559d"
+    },
+    "t3code-5f1bfcd716d0039dbd028f0fdd7a806dd1fd129233552deddc885a6905cc6351": {
+      "sha256": "d88eefbba3d578b9e685778689074acf5b4c94c2bd9e93849401ebc1b275ea2a",
+      "sourceInstallationId": "t3code-supp-install-8b4e0395ed16",
+      "sourceReceiptSha256": "be2a9cd4e87da88697d62823b38010c68efa24d796b20ac9bb4d2a12e4a45626"
+    },
+    "t3code-29f1adf82c713b67593853d3a3761fb72abd3461a3599dc1dfc45eaefe04ddc8": {
+      "sha256": "52483c9bc1b998c9873f81a525e881034cf9a23f91249233d917a48e05cf9e7e",
+      "sourceInstallationId": "t3code-supp-install-90b4e9ee927d",
+      "sourceReceiptSha256": "f14a44b1f5c69b6531de29907eac2a7cdb971010e61b59cbcf7036a035be56cc"
+    },
+    "t3code-326236d099e251927166e04d9263532651048da61cd4b62cb7485c6b3a408fd7": {
+      "sha256": "775dbdf8df00fadf0fccfdbd43a98beb3a737233e997180a4ac4b17ad17dfd0b",
+      "sourceInstallationId": "t3code-supp-install-1a587b6c23b1",
+      "sourceReceiptSha256": "dd45af25ec2df3e43cadc5f6924147bbed23989df8b71604df60fa4723521444"
+    },
+    "t3code-a7eca3664465a229afee86c74607c715e0e27c7e680196630735f75b0543090c": {
+      "sha256": "1b365e523abcfc58808b11fe6a4947b679157e2917da44921c2e52b978e381ae",
+      "sourceInstallationId": "t3code-supp-install-ee393b1fea4e",
+      "sourceReceiptSha256": "f454f77abb0c159e0455ff11a13e663f62ae3b823fa3c7aa310f56688036c3bf"
+    },
+    "t3code-a5edcb84125741f055b50cd5b047d13e4aea9a1d3f4139539c95e77556f606fa": {
+      "sha256": "aea94b6a777b9b8f44158f9ca5f5676cf29ddfbedccc691853dcbb46d5ceac1d",
+      "sourceInstallationId": "t3code-supp-install-5751f3c2689a",
+      "sourceReceiptSha256": "0461bc193c7987104f28860ba9dde7539a6b7f684e0044241ef22219183a9905"
+    },
+    "t3code-4a6a1b0f2a9f39353bd5395e89d7a9b4f247346ca6f96ac4e2b426159592af67": {
+      "sha256": "1aeece8fb22d9592de6557b46e6a050be2e57782a7a603653ef8fb2e6f8d3d3f",
+      "sourceInstallationId": "t3code-supp-install-c2d582f9bf9b",
+      "sourceReceiptSha256": "52356afc5d5ab2dfb9dca622757e9646763fad93e80ee6178d551ea225ab9be0"
+    },
+    "t3code-b67c82176521f2317f0c34779d36c617713f6d69fc8b3a9f27cebb3f1dc14e46": {
+      "sha256": "c870363d86586078c2591d3410c3a3ee52752a4a927d7fb6eaf1291db02e53c0",
+      "sourceInstallationId": "t3code-supp-install-062a5bd2ecf5",
+      "sourceReceiptSha256": "cf53b3869e88db60325aeecc17c026ccd9698d9660807a9f1602a27ef63d444a"
+    },
+    "t3code-6d12291892e59d9bd535c8a53e872e11f662557f9186be033e3ed9a60c404f7e": {
+      "sha256": "bba7aa9fa27f77f0baa6cb1ad64ce5df72da9f2a746e56a4bab6330f8f299070",
+      "sourceInstallationId": "t3code-supp-install-479c6d67a116",
+      "sourceReceiptSha256": "a033857f9d8a54011cb2d27bfb1dbfae1e931772cd1a646202bdbcef9ac7718e"
+    },
+    "t3code-4111d370bbe7aaf4adcaf1c579afc80f0465ce83dc247e64f768eea39df2723d": {
+      "sha256": "45fdbabf8300ff7623a6449b459bd995c09cbaa90e8dc167f2d1101a729bea47",
+      "sourceInstallationId": "t3code-supp-install-eb3e3ecb1d4e",
+      "sourceReceiptSha256": "5102ed8a6c53ec2d03d0a249879691ad93f948a17308ebe0154dbd563c34751a"
+    },
+    "t3code-e39472f73d7420f7b60cce7bf1a11e3efed9b3ae4b126893579a292c7eb22f16": {
+      "sha256": "f8f2090a55372497520125029b1740d277d2f059290dc7fb3b693ab6bc6d259b",
+      "sourceInstallationId": "t3code-supp-install-9bc18f158c61",
+      "sourceReceiptSha256": "72531e952557c6b59dde009abe24c13436b5f9c144a5e7d6b3fe77d84edffb5d"
+    },
+    "t3code-ac7d9e5d974bc9ff4384d43001a523583d0c7a0ec08b8e3efcbfd1d9c8d73ba6": {
+      "sha256": "7617693b27ad7eb981512ca4fcc8c226a1e95385baeb3e1aa006f4a741a8b3c1",
+      "sourceInstallationId": "t3code-supp-install-a18a47e7c515",
+      "sourceReceiptSha256": "732539e0688a71a99dc51d39f91fb360079176bfc1221db3c363c088a0b313ad"
+    },
+    "scope-fa76a922a052130f8e67ace87c08a4c7f3aa299cc6257ee3c6082dfb7447ddf7": {
+      "sha256": "287791e334e4e6e36e959ff0226b714b03e68787e75adbc94c60878afaa9ea61",
+      "sourceInstallationId": "scope-supp-install-60fd3fd8ce01",
+      "sourceReceiptSha256": "7bc1ab9559a2472f603c387d8195a388a5f3f43f4a6501a444e332226c9a4ffc"
+    },
+    "scope-4e5183ab84bc2525fd38c0357d7b1c3b44bd9b426b320f890643a4aba19239d5": {
+      "sha256": "2df484a608b83e0950a69e64e648954354ce26a6fcd8ce4860b1c112f6654031",
+      "sourceInstallationId": "scope-supp-install-aed340460236",
+      "sourceReceiptSha256": "b823d9913011c46fb04da77187effe778c62931923d039229857f2af79089594"
+    }
+  },
+  "preparedRegistrationSha256": "d38f65dd893ad4db947b4659002f9d5bd73cd1c33eff86b017593f1fc854e085",
+  "preparedMetadataSha256": "64362a16f9e9b34e87a4f0088e0480f91c6e42b330be98d6956c2ded059484fb",
+  "dependencyCopyImplementation": {
+    "policy": "legacy bounded byte stream",
+    "runnerSha256": "9d796075ce9376fd4b2a190c3ed6b1213d37d61992d76487304d53b05478faa5",
+    "functionSha256": "1cf7696332e29a35888d597a034449927424974904d6797d10c1319ae307a07d"
+  },
+  "verifierSha256": "ae003adc0cc003c8e970a280ce85c4fc6c41041484feaf178666ddbd792ad40b",
+  "disk": {
+    "freeBytes": 317145513984,
+    "totalBytes": 994610155520,
+    "freeFraction": 0.3188641421202769
+  }
+}

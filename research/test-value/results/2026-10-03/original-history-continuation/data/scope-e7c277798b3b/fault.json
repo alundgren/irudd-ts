@@ -1,0 +1,28 @@
+{
+  "id": "scope-e7c277798b3b",
+  "subject": "scope",
+  "repository": "/Users/alun/repos/irudd-scope",
+  "title": "fix: validate detail batches against current comparisons",
+  "sourceFiles": [
+    "apps/desktop/src/library/pull-request-store.ts",
+    "apps/desktop/src/plugins/pull-requests/sync.ts"
+  ],
+  "testFiles": [
+    "tests/pull-requests-scheduler.test.ts"
+  ],
+  "relatedGroup": "pull-request-refresh",
+  "fix": "e7c277798b3bde32a32d78ecf8ee8e6910b12027",
+  "parent": "f252740ebbc952510d2cbdfeaec42accec83e071",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 20
+  },
+  "verified": false,
+  "exclusion": "fixed adapted baseline incomplete or failing",
+  "fixedEvidence": "fixed-before/execution.json",
+  "recordDigests": {
+    "fixed-before/execution.json": "17f6c40898654c22fe7c94dad4716d2bbef2067473a1cc786e2403724e7320ca"
+  }
+}

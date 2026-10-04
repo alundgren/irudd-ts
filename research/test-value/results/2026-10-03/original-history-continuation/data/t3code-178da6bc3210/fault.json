@@ -1,0 +1,24 @@
+{
+  "id": "t3code-178da6bc3210",
+  "subject": "t3code",
+  "repository": "/Users/alun/repos/t3code",
+  "title": "fix(shared): match source-control providers by DNS label (#6175)",
+  "sourceFiles": [
+    "packages/shared/src/sourceControl.ts"
+  ],
+  "testFiles": [
+    "packages/shared/src/sourceControl.test.ts"
+  ],
+  "relatedGroup": "source-control-provider-detection",
+  "fix": "178da6bc3210b82c4a83f33c8b149f623a3375e1",
+  "parent": "ddee418a8d6d3e242ca26a8053a886ecc3b56b53",
+  "continuationOf": {
+    "registrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+    "completedLedgerSha256": "cdda84283bac0c3c7d67381813da4bef3669746ac5fb1b64d895d8ccc50fe33b",
+    "interruptedExecutionSha256": "ab110bc3b745352aea1cf0ad470f2d5fa636d27510e526e2eba7e27a8243a02c",
+    "originalCandidateIndex": 41
+  },
+  "verified": false,
+  "exclusion": "[('/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fixed-template/CLAUDE.md', '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fixed-before/source/CLAUDE.md', \"[Errno 2] No such file or directory: '/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/local/test-value-20261003-final/history-continuation/t3code-178da6bc3210/fixed-template/CLAUDE.md'\")]",
+  "recordDigests": {}
+}

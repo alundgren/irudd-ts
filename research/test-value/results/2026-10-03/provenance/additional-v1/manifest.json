@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "scope": "Supplemental provenance recorded during historical installation preparation. No new historical measurements.",
+  "files": [
+    {
+      "file": "all78-test-blob-rollup-v1.json",
+      "bytes": 2634,
+      "sha256": "a5d7245f88cbdaf936bf9adca0d03d499f3280c50abeda90f6d39676b1c046ab",
+      "originalPath": "/tmp/archguard-test-value-20261003/all78-test-blob-rollup-v1.json"
+    },
+    {
+      "file": "scout-test-blob-audit.json",
+      "bytes": 162660,
+      "sha256": "1c387f0191252cc7ac712e85a97e2f0b5d8325acf4772198784d4ce50cb06a4d",
+      "originalPath": "/tmp/archguard-test-value-20261003/scout-test-blob-audit.json"
+    },
+    {
+      "file": "supplement-test-blob-audit-v1.json",
+      "bytes": 26535,
+      "sha256": "ceb2be8352746cf88aebeb12331ef5ac9a64e63fd28f24459176be6d6f9fe01b",
+      "originalPath": "/tmp/archguard-test-value-20261003/supplement-test-blob-audit-v1.json"
+    },
+    {
+      "file": "license-resolution-v1.json",
+      "bytes": 479484,
+      "sha256": "4a37bf435bd452fb6c9a1a18320e7faf19b6c377164361a6e70afa2c7c6be5c2",
+      "originalPath": "/tmp/archguard-test-value-20261003/license-resolution-v1.json"
+    },
+    {
+      "file": "cursor-sdk-terms-reference-v1.json",
+      "bytes": 1369,
+      "sha256": "201f7f00df7737cf8d3f5e4ddf4ddb36b8242afb8ca41d72f044009ed65eb893",
+      "originalPath": "/tmp/archguard-test-value-20261003/cursor-sdk-terms-reference-v1.json"
+    },
+    {
+      "file": "historical-dependency-license-inventory-full-22-v2.json",
+      "bytes": 13494441,
+      "sha256": "b0fb4da4acd08faed984c049ad24daa5b892e4f4ec380b4fe24e7bbb8fe2d4ae",
+      "originalPath": "/tmp/archguard-test-value-20261003/historical-dependency-license-inventory-full-22-v2.json"
+    },
+    {
+      "file": "audit_dependency_licenses.py",
+      "bytes": 19734,
+      "sha256": "61d7e6c709d4a2f850d71a5859b58b2fd66ffae2e6ed45e6b3f790b962a0b4f6",
+      "originalPath": "/tmp/archguard-test-value-20261003/audit_dependency_licenses.py"
+    },
+    {
+      "file": "filtered-v2-archive-failure-diagnostic.json",
+      "bytes": 1306,
+      "sha256": "fcc77f7e2733d0f0e76b0fddcbe271a2d23c621b627f12f47a664f477de3dcac",
+      "originalPath": "/tmp/archguard-test-value-20261003/filtered-v2-archive-failure-diagnostic.json"
+    },
+    {
+      "file": "prepare_historical_installs_filtered.py",
+      "bytes": 13479,
+      "sha256": "fecb041c449666a107191ce8ab53661263bdb4657eaa154cb1ca33de3b313aa4",
+      "originalPath": "/tmp/archguard-test-value-20261003/prepare_historical_installs_filtered.py"
+    },
+    {
+      "file": "prepare_historical_installs_filtered_v2.py",
+      "bytes": 13518,
+      "sha256": "58398a512fefaebafdb825463cd083a25e026e97ab8cd1c31469568e032b8541",
+      "originalPath": "/tmp/archguard-test-value-20261003/prepare_historical_installs_filtered_v2.py"
+    },
+    {
+      "file": "prepare_historical_installs_filtered_v3.py",
+      "bytes": 14778,
+      "sha256": "d51641595da2751ac80236b8a7523399e67bc23045b0bf8c49387cb8ca6b9474",
+      "originalPath": "/tmp/archguard-test-value-20261003/prepare_historical_installs_filtered_v3.py"
+    },
+    {
+      "file": "filtered-v3-exact-archive-control.log",
+      "bytes": 116,
+      "sha256": "bd458f2bc7ff030c7a5c8bd2415058165f27e54e26709f1d3a52dbfbac19b193",
+      "originalPath": "/tmp/archguard-test-value-20261003/filtered-v3-exact-archive-control.log"
+    },
+    {
+      "file": "pnpm-all-version-inventory-control.log",
+      "bytes": 320,
+      "sha256": "410400b1df9fa51e756dae28a1f7286b012f81b6c7848a3d3a026a99bad70378",
+      "originalPath": "/tmp/archguard-test-value-20261003/pnpm-all-version-inventory-control.log"
+    },
+    {
+      "file": "installation-map-strict-manifest-controls.log",
+      "bytes": 38,
+      "sha256": "3861c01613fa5696d671a2c3a9a6679388118e42662064c160099833c3781c61",
+      "originalPath": "/tmp/archguard-test-value-20261003/installation-map-strict-manifest-controls.log"
+    },
+    {
+      "file": "planning-budget-controls.log",
+      "bytes": 40,
+      "sha256": "84ea16030557ded5a5205ee158a5fb22ae1daddf0176921a77b3baeb4de601d1",
+      "originalPath": "/tmp/archguard-test-value-20261003/planning-budget-controls.log"
+    },
+    {
+      "file": "retained-evidence-verification-v1.json",
+      "bytes": 1510,
+      "sha256": "f5e9e1fd7d96346da504f7ef4ef4975057d345762cefd5786517f3d862efc13e",
+      "originalPath": "/tmp/archguard-test-value-20261003/retained-evidence-verification-v1.json"
+    },
+    {
+      "file": "restore_retained_evidence_v1.py",
+      "bytes": 2129,
+      "sha256": "b215641d2f58d34747765b3adc6f64c2b8cd31f60648fb3f458fe5a5b739448e",
+      "originalPath": "/tmp/archguard-test-value-20261003/restore_retained_evidence_v1.py"
+    },
+    {
+      "file": "retain_profile.py",
+      "bytes": 2569,
+      "sha256": "4fed610cb1b360b8748536740d10c2fa8b5b8298860a2a5df63e7975b37aa72d",
+      "originalPath": "/tmp/archguard-test-value-20261003/retain_profile.py"
+    },
+    {
+      "file": "scope-setup-checks-passed-receipt.json",
+      "bytes": 681,
+      "sha256": "92534f612f4fda839a27c0dab4254c93dfe4eaf58ac8f96cb94595ac8c29b3d0",
+      "originalPath": "/tmp/archguard-test-value-20261003/scope-setup-checks-passed-receipt.json"
+    },
+    {
+      "file": "current-measurement-summary.json",
+      "bytes": 3941,
+      "sha256": "f9bf124eb30c6db584d369e0e7864759cb61056a402f525cb061b2876a3b7cab",
+      "originalPath": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/results/2026-10-03/provenance/current-measurement-summary.json"
+    }
+  ],
+  "notFoundAtCollection": []
+}

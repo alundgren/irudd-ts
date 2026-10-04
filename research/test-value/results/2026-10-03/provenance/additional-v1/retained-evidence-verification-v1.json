@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "verification": "Archive byte digest, exact member inventory, regular relative paths, each member byte size/SHA256 and every exported loose data copy",
+  "profiles": [
+    {
+      "profile": "current",
+      "files": 1086,
+      "archiveSha256": "fde74a393afb8dce75c476fc040d9e993759cf7b98b6639662157645c439cb87",
+      "verified": true
+    },
+    {
+      "profile": "native",
+      "files": 331,
+      "archiveSha256": "49672bada61e620e0a632dbf6b8c1be5f5511483d3599d8f4b6915339261a80d",
+      "verified": true
+    },
+    {
+      "profile": "original-history-continuation",
+      "files": 1336,
+      "archiveSha256": "88f13d4516c3d0ba38b49304a164fb91e574e690de497f678b48c4441fd917eb",
+      "verified": true
+    },
+    {
+      "profile": "original-history-first",
+      "files": 154,
+      "archiveSha256": "e08759d1bd6f549a92ca2e403bd7a4168e1069fff79dbfaf205cb8b58ab4bf85",
+      "verified": true
+    },
+    {
+      "profile": "original-install-attempts",
+      "files": 171,
+      "archiveSha256": "c9be0281d141743c0e3fb1d5499a74973084201d5a9894d799f072d154174f80",
+      "verified": true
+    },
+    {
+      "profile": "posthoc-current",
+      "files": 12,
+      "archiveSha256": "dcc613126dc05bb9eac5771911bb12f21f68395a1e93ee48100438e8f5a50563",
+      "verified": true
+    },
+    {
+      "profile": "provisional-launcher-excluded",
+      "files": 1091,
+      "archiveSha256": "37637e2be5d5a80d74f6677eaedc07e871182aea25adc3a7583a9b3b610950a3",
+      "verified": true
+    }
+  ]
+}

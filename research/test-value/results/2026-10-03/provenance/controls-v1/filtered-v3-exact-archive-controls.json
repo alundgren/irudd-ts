@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "validationOnly": true,
+  "helperSha256": "d51641595da2751ac80236b8a7523399e67bc23045b0bf8c49387cb8ca6b9474",
+  "groupId": "t3code-install-eebf736b5b58",
+  "revision": "32407df9c5ffd3c5dda2e745568997ac33c15ed1",
+  "sourceBindingManifestSha256": "b86b26da5d2a55ee19403dc4136b6ba2c6308525708790d417adc2f075594585",
+  "beforeError": "Fresh full archive disagrees with frozen source binding",
+  "archiveProcess": {
+    "exitCode": 0,
+    "status": "finished",
+    "durationMs": 413.73925004154444,
+    "command": [
+      "git",
+      "-C",
+      "/Users/alun/repos/t3code",
+      "archive",
+      "--output=/private/tmp/archguard-test-value-20261003/filtered-v3-exact-archive-control/source.tar",
+      "32407df9c5ffd3c5dda2e745568997ac33c15ed1"
+    ],
+    "cwd": "/private/tmp/archguard-test-value-20261003/filtered-v3-exact-archive-control",
+    "residualProcessGroup": false,
+    "cleanupErrors": [],
+    "stdoutBytes": 0,
+    "stderrBytes": 0,
+    "cleanupComplete": true,
+    "capturedPid": 7396
+  },
+  "archivePayloadBytes": 211251200,
+  "archiveSha256": "0ee65298b8b4eb80dc2612db84c602b971e639da93768d569e6a570d5b949b62",
+  "sourceSha256": "5ddcfcae779871463b10e477fbcd4073b8a542ec0f463e57bd9306cc3d6492aa",
+  "allAuditedInputBytesMatch": true,
+  "nonInputCorruptionError": "Fresh full archive disagrees with frozen source binding",
+  "restoredFullSourceMatches": true,
+  "causeOfPriorCorruptionProven": false
+}

@@ -1,0 +1,33 @@
+{
+  "runId": "history-continuation-20261004",
+  "recordedAt": "2026-10-03T23:27:34.210848+00:00",
+  "head": "b4d20712253096f262741d7b9f2cd83a1f100c8c",
+  "helperSha256": "58e25a33dea996007c0f05dccc394f95cbf7f7f8b30ff914a15f0bed1f25f2e5",
+  "sdkSha256": "f6db5dba5684d714a289d45d7ea5bdc543182e06f2def7c31284f3d317110633",
+  "archguardSha256": "d4487aaffc4b7ad37cc83afb486b6df1cfe1d709fdad3b78a4f0ce7aeb2200fc",
+  "candidateManifestSha256": "4ba1ac48250fd5309f1ac29b2327643c468ec5fb123a36111c0fd53260a98736",
+  "originalPreregistrationSha256": "1f10c6f6cda5e7733cfd79b45ad6ea048d00a9cd19d3af8bc5b889586c0efe93",
+  "candidateCount": 44,
+  "mutantPrefixLimit": 24,
+  "node": {
+    "t3code": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/24.21.0/bin/node",
+      "version": "v24.21.0",
+      "sha256": "e4b5a3af0e05c75de2eae013904145f40fe7fc2a6e6f17510128bf45cca4e79b"
+    },
+    "scope": {
+      "path": "/Users/alun/.local/share/vite-plus/js_runtime/node/26.10.0/bin/node",
+      "version": "v26.10.0",
+      "sha256": "56d28b39a8048f0cd1af7ad7e09f6cbe1c04439b6dfeb6c8d9090c082af60861"
+    }
+  },
+  "dependencies": {
+    "t3code": "2dad8952ba6f34eab6f3fe3834af154400d068c685e0dd956136f7e66c239adf",
+    "scope": "ee1e4ea74f91dd603abbc3d336cb0193ace32295ae0d035fee741ec64fd68dac"
+  },
+  "disk": {
+    "freeBytes": 629839376384,
+    "totalBytes": 994610155520,
+    "freeFraction": 0.6332525089236684
+  }
+}

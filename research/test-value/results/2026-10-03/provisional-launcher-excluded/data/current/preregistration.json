@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t3-preview",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "sources": [
+      "packages/shared/src/filePreview.ts",
+      "packages/shared/src/video.ts",
+      "packages/shared/src/image.ts"
+    ],
+    "tests": [
+      "packages/shared/src/filePreview.test.ts"
+    ],
+    "limit": 200
+  },
+  {
+    "id": "t3-execution",
+    "subject": "t3code",
+    "repository": "/Users/alun/repos/t3code",
+    "sources": [
+      "packages/client-runtime/src/state/threadExecution.ts",
+      "packages/client-runtime/src/state/subagentDisplay.ts"
+    ],
+    "tests": [
+      "packages/client-runtime/src/state/threadExecution.test.ts",
+      "packages/client-runtime/src/state/subagentDisplay.test.ts"
+    ],
+    "limit": 200
+  },
+  {
+    "id": "scope-events",
+    "subject": "scope",
+    "repository": "/Users/alun/repos/irudd-scope",
+    "sources": [
+      "apps/desktop/src/workspace/events.ts"
+    ],
+    "tests": [
+      "tests/tab-events.test.ts"
+    ],
+    "limit": 200
+  }
+]
