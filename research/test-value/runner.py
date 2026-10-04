@@ -96,13 +96,25 @@ def vitest_entrypoint(source, dependencies, node, environment):
     script = ('import {createRequire} from "node:module";import fs from "node:fs";import path from "node:path";'
               'const root=createRequire(path.join(process.cwd(),"package.json"));'
               'const context=root.resolve("vite-plus/package.json");'
-              'const packagePath=createRequire(context).resolve("vitest/package.json");'
+              'const plus=JSON.parse(fs.readFileSync(context,"utf8"));'
+              'if(plus.name!=="vite-plus")throw new Error("Resolved vite-plus package identity disagrees");'
+              'const declared=plus.dependencies??{};'
+              'const names=["vitest","@voidzero-dev/vite-plus-test"].filter(name=>typeof declared[name]==="string");'
+              'if(names.length!==1)throw new Error("vite-plus must declare exactly one supported test package");'
+              'const runnerPackage=names[0];'
+              'const exact=/^\\d+\\.\\d+\\.\\d+(?:-[A-Za-z0-9.-]+)?$/;'
+              'if(!exact.test(declared[runnerPackage]))throw new Error("Test package declaration is not an exact version");'
+              'const packagePath=createRequire(context).resolve(runnerPackage+"/package.json");'
               'const info=JSON.parse(fs.readFileSync(packagePath,"utf8"));'
-              'const bin=typeof info.bin==="string"?info.bin:info.bin?.vitest;'
-              'if(typeof bin!=="string")throw new Error("Vitest package has no declared entrypoint");'
+              'if(info.name!==runnerPackage||info.version!==declared[runnerPackage])throw new Error("Declared test package identity disagrees");'
+              'const bundled=runnerPackage==="@voidzero-dev/vite-plus-test";'
+              'const bin=bundled?"vitest.mjs":typeof info.bin==="string"?info.bin:info.bin?.vitest;'
+              'const version=bundled?info.bundledVersions?.vitest:info.version;'
+              'if(typeof bin!=="string"||!exact.test(version))throw new Error("Test package has no supported entrypoint or Vitest version");'
+              'if(bundled&&!info.files?.includes("*.mjs"))throw new Error("Bundled test package does not distribute its entrypoint");'
               'console.log(JSON.stringify({path:fs.realpathSync(path.resolve(path.dirname(packagePath),bin)),'
               'packagePath:fs.realpathSync(packagePath),context:fs.realpathSync(context),'
-              'version:info.version,vitePlusVersion:JSON.parse(fs.readFileSync(context,"utf8")).version}));')
+              'version,runnerPackage,runnerPackageVersion:info.version,vitePlusVersion:plus.version}));')
     probe = subprocess.run([node, "--input-type=module", "-e", script], cwd=source,
                            env=environment, capture_output=True, timeout=15)
     if probe.returncode:
