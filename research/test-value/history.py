@@ -88,6 +88,12 @@ class HistoricalInstallations:
                     raise ValueError('Complete dependency preparation has incomplete process evidence')
                 verify_installation_inputs(row, receipt)
             self.rows[row['id']], self.receipts[row['id']] = row, receipt
+        declared_inputs = set()
+        for row in self.rows.values():
+            signature = row['subject'], self.receipts[row['id']]['inputSignature']
+            if signature in declared_inputs:
+                raise ValueError('Duplicate prepared input signature; map matching candidates to one declared installation')
+            declared_inputs.add(signature)
         for candidate in candidates:
             identity = candidate['id']
             installation_id = manifest['candidates'].get(identity)
@@ -124,7 +130,8 @@ class HistoricalInstallations:
                     source_id = info.get('sourceInstallationId')
                     source_row, source_receipt = self.rows.get(source_id), self.receipts.get(source_id)
                     if (not source_row or not source_receipt['complete'] or source_receipt['inputSignature'] != profile['inputSignature'] or
-                            source_row['subject'] != row['subject'] or Path(info['installedRoot']).resolve() != Path(source_row['root']).resolve()):
+                            source_row['subject'] != row['subject'] or info.get('sourceReceiptSha256') != source_row['receiptSha256'] or
+                            Path(info['installedRoot']).resolve() != Path(source_row['root']).resolve()):
                         raise ValueError('Resumed store source installation is absent or disagrees with its receipt')
                     store.modules, store.workspace_links, store.owned_directories = info['modules'], info['workspaceLinks'], set(info['ownedDirectories'])
                     store.sha256 = info['sha256']
@@ -135,6 +142,7 @@ class HistoricalInstallations:
                     info = {'modules': store.modules, 'workspaceLinks': store.workspace_links,
                             'ownedDirectories': sorted(store.owned_directories), 'sha256': store.sha256,
                             'installedRoot': str(Path(row['root']).resolve()), 'sourceInstallationId': row['id'],
+                            'sourceReceiptSha256': row['receiptSha256'],
                             'subject': row['subject'], 'inputSignature': profile['inputSignature']}
                     write_json(metadata, info)
                     write_json(metadata.with_name(key + '-files.json'), store.manifest)
@@ -148,12 +156,21 @@ class HistoricalInstallations:
                 'receipts': {key: {'receiptSha256': self.rows[key]['receiptSha256'], 'complete': receipt['complete'],
                                    'inputSignature': receipt['inputSignature']} for key, receipt in self.receipts.items()},
                 'candidateProfiles': self.profiles,
-                'ownedStores': {key: {'sha256': store.sha256, 'sourceInstallationId': installation_id}
+                'ownedStores': {key: {'sha256': store.sha256, 'sourceInstallationId': installation_id,
+                                     'sourceReceiptSha256': self.rows[installation_id]['receiptSha256']}
                                 for key, (store, installation_id) in self.stores.items()}}
 
     def dependency(self, candidate):
         key = self.profiles[candidate['id']].get('storeKey')
         return self.stores[key][0] if key else None
+
+    def verify_source(self, candidate, template):
+        receipt = self.receipts[self.profiles[candidate['id']]['installationId']]
+        try:
+            verify_installation_inputs({'root': str(template)}, receipt)
+        except (ValueError, OSError) as error:
+            raise ValueError('Setup: archived candidate inputs disagree with the mapped installation: ' + str(error)) from error
+        return {'inputSignature': receipt['inputSignature'], 'inputFiles': receipt['inputFiles']}
 
     def verify(self, candidate):
         if hashlib.sha256(self.path.read_bytes()).hexdigest() != self.manifest_sha256:
@@ -265,7 +282,7 @@ def plan(template, files, cli, output, max_raw_units=None):
     return value
 
 
-def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None, max_raw_units=None):
+def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None, max_raw_units=None, verify_source=None):
     output.mkdir(parents=True)
     preflight=candidate.get('preflightExclusion')
     if preflight is not None:
@@ -279,6 +296,12 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
     if fix != candidate['fix'] or parent != candidate['parent']:
         raise ValueError('historical commit identity disagrees with manifest')
     archive(repository, fix, template)
+    if verify_source is not None:
+        try:
+            candidate_inputs = verify_source(template)
+        except ValueError as error:
+            return {**candidate, 'verified': False, 'executionAttempted': False, 'exclusion': str(error)}
+        write_json(output / 'candidate-installation-inputs.json', candidate_inputs)
     adapters = configure(template, candidate['testFiles'], reporter)
     write_json(output / 'workspace-adapters.json', adapters)
     options = dict(dependencies=dependencies, timeout=90, node=str(node), expected_runtime=runtime_identity,
@@ -354,6 +377,8 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
                              'planningMaxRawUnits': max_raw_units if max_raw_units is not None else 8192}}
     if dependency_installation is not None:
         matrix['provenance']['dependencyInstallation'] = dependency_installation
+    if verify_source is not None:
+        matrix['provenance']['candidateInstallationInputs'] = read_json(output / 'candidate-installation-inputs.json')
     for index, mutation in enumerate(sites):
         run = execute_case(template, output / f'mutant-{index:04d}', COMMAND, baseline=fixed['tests'], mutation=mutation, **options)
         matrix['mutants'].append({'id': mutation['id'], 'status': run['status'], 'outcomes': run['outcomes'], 'mutation': mutation,
@@ -487,7 +512,8 @@ def main():
                     store = installations.dependency(candidate) if installations else dependencies[candidate['subject']]
                     result = run_fault(candidate, store, args.archguard.resolve(), directory, reporter, args.mutant_limit,
                                        runtimes[candidate['subject']], registration['node'][candidate['subject']],
-                                       lambda:verify_candidate(candidate), dependency_installation=profile, max_raw_units=args.max_raw_units)
+                                       lambda:verify_candidate(candidate), dependency_installation=profile, max_raw_units=args.max_raw_units,
+                                       verify_source=(lambda template:installations.verify_source(candidate, template)) if installations else None)
             except (ValueError, OSError, subprocess.SubprocessError) as error:
                 result = {**candidate, 'verified': False, 'exclusion': str(error)}
             verify_candidate(candidate)
@@ -495,8 +521,10 @@ def main():
                 result['dependencyInstallation'] = installations.profiles[candidate['id']]
             if (directory / 'workspace-adapters.json').exists():
                 result['workspaceAdapters'] = read_json(directory / 'workspace-adapters.json')
+            if (directory / 'candidate-installation-inputs.json').exists():
+                result['candidateInstallationInputs'] = read_json(directory / 'candidate-installation-inputs.json')
             result['recordDigests'] = {file:hashlib.sha256((directory/file).read_bytes()).hexdigest() for file in
-                 ['matrix.json','analysis.json','evaluation.json','workspace-adapters.json','fixed-before/execution.json','faulty/execution.json','fixed-after/execution.json'] if (directory/file).exists()}
+                 ['matrix.json','analysis.json','evaluation.json','workspace-adapters.json','candidate-installation-inputs.json','fixed-before/execution.json','faulty/execution.json','fixed-after/execution.json'] if (directory/file).exists()}
             write_json(directory / 'fault.json', result)
         results.append(result)
         write_json(output / 'attempts.json', results)

@@ -56,15 +56,65 @@ def import_package(output, store, expected, node):
     return result, resolution
 
 
+def archive_binding_control(output, registry, rows, node):
+    output.mkdir()
+    repository = fixture(output / 'repository', {'package.json': '{"name":"control-installation","type":"module"}',
+                         'pnpm-lock.yaml': 'lock-control: 2\n', 'pnpm-workspace.yaml': 'packages: []\n',
+                         'subject.ts': 'export const value=1;\n', 'subject.test.ts': 'throw new Error("must not execute");\n'})
+    environment = private_environment(output / 'private')
+    steps = []
+
+    def git(*arguments):
+        directory = output / ('git-' + str(len(steps)))
+        result = run_command(['git', '-c', 'core.hooksPath=/dev/null', '-c', 'commit.gpgsign=false',
+                              '-c', 'user.name=Research control', '-c', 'user.email=research@example.invalid', *arguments],
+                             repository, environment, directory, timeout=15)
+        steps.append(result)
+        require(result['exitCode'] == 0 and result['cleanupComplete'], 'Owned control Git archive preparation must complete')
+        return (directory / 'stdout.txt').read_text().strip()
+
+    git('init', '-q')
+    git('add', '.')
+    git('commit', '-qm', 'parent')
+    parent = git('rev-parse', 'HEAD')
+    (repository / 'subject.ts').write_text('export const value=2;\n')
+    git('add', '.')
+    git('commit', '-qm', 'fixed')
+    fix = git('rev-parse', 'HEAD')
+    candidate = {'id': 'archive-probe', 'subject': 't3code', 'repository': str(repository), 'fix': fix, 'parent': parent,
+                 'sourceFiles': ['subject.ts'], 'testFiles': ['subject.test.ts'], 'relatedGroup': 'authored-archive-binding-control'}
+    manifest = output / 'candidates.json'
+    mapping = output / 'map.json'
+    write_json(manifest, [candidate])
+    write_json(mapping, {'schemaVersion': 1, 'installations': rows, 'candidates': {'archive-probe': 'first'}})
+    destination = output / 'experiment'
+    command = [sys.executable, str(Path(__file__).with_name('history.py')), '--candidates', str(manifest), '--output', str(destination),
+               '--dependency-installations', str(mapping), '--archguard', sys.executable, '--t3-node', node, '--scope-node', node]
+    process = run_command(command, output, environment, output / 'process', timeout=30)
+    require(process['exitCode'] == 0 and process['cleanupComplete'], 'CLI must preserve an explicit archived-input setup exclusion')
+    excluded = read_json(destination / 'attempts.json')
+    require(len(excluded) == 1 and not excluded[0]['verified'] and excluded[0].get('executionAttempted') is False and
+            excluded[0]['exclusion'].startswith('Setup: archived candidate inputs disagree'),
+            'Wrong declared installation must be rejected even while its receipt, source installation and owned store remain unchanged')
+    archived = destination / candidate['id'] / 'fixed-template'
+    require(archived.exists() and not (archived / 'research-test-value.config.ts').exists() and not list(destination.glob('*/*/execution.json')),
+            'Archive mismatch must stop before configuration adaptation and any baseline execution')
+    corrected = registry.verify_source({'id': 'two'}, archived)
+    registry.verify({'id': 'one'})
+    registry.verify({'id': 'two'})
+    require(corrected['inputSignature'] == registry.receipts['second']['inputSignature'], 'Same actual archive must match its declared second installation inputs')
+    return {'control': 'actual-archive-wrong-installation-rejected-before-baseline-and-correct-binding', 'passed': True,
+            'exclusion': excluded[0]['exclusion'], 'correctInputSignature': corrected['inputSignature']}
+
+
 def controls(output, node):
     output.mkdir(parents=True, exist_ok=False)
     prepared = output / 'prepared'
     prepared.mkdir()
-    rows = [receipt(prepared, 'first', 1), receipt(prepared, 'second', 2), receipt(prepared, 'second-same-inputs', 2),
-            receipt(prepared, 'failed', 3, False)]
+    rows = [receipt(prepared, 'first', 1), receipt(prepared, 'second', 2), receipt(prepared, 'failed', 3, False)]
     candidates = [{'id': name, 'subject': 't3code'} for name in ['one', 'two', 'also-two', 'failed', 'unmapped', 'missing-installation']]
     manifest = {'schemaVersion': 1, 'installations': rows,
-                'candidates': {'one': 'first', 'two': 'second', 'also-two': 'second-same-inputs',
+                'candidates': {'one': 'first', 'two': 'second', 'also-two': 'second',
                                'failed': 'failed', 'missing-installation': 'not-declared'}}
     path = output / 'installation-map.json'
     write_json(path, manifest)
@@ -77,7 +127,7 @@ def controls(output, node):
 
     with patch.object(DependencyStore, 'copy', counted_copy):
         registry = HistoricalInstallations(path, candidates, output / 'owned')
-    require(len(copied) == 2, 'Three complete installations with two input signatures must copy exactly two stores')
+    require(len(copied) == 2, 'Three candidates mapped to two complete installations must copy exactly two stores')
     require(registry.dependency(candidates[1]) is registry.dependency(candidates[2]), 'Identical dependency inputs must reuse one owned store')
     for candidate in candidates[3:]:
         require(registry.dependency(candidate) is None and registry.profiles[candidate['id']].get('setupExclusion'),
@@ -92,11 +142,12 @@ def controls(output, node):
         require(result['exitCode'] == 0 and result['status'] == 'finished' and result['cleanupComplete'], 'Explicit per-candidate installation must satisfy the actual import assertion')
         actual.append(resolution)
     registration = registry.registration()
-    require(len(registration['ownedStores']) == 2 and len(registration['candidateProfiles']) == 6 and len(registration['receipts']) == 4,
+    require(len(registration['ownedStores']) == 2 and len(registration['candidateProfiles']) == 6 and len(registration['receipts']) == 3,
             'Registration must retain complete, incomplete and absent route provenance')
     write_json(output / 'registered.json', registration)
     records = [{'control': 'real-wrong-global-donor-before-and-explicit-two-store-correction', 'passed': True,
                 'beforeResolution': before_resolution, 'correctResolutions': actual, 'copiedStores': copied}]
+    records.append(archive_binding_control(output / 'archive-binding', registry, rows, node))
 
     def reject(name, value, selected=candidates):
         target = output / (name + '.json')
@@ -111,6 +162,25 @@ def controls(output, node):
                 raise AssertionError('Invalid dependency map accepted: ' + name)
 
     reject('duplicate-installation', {**manifest, 'installations': rows + [rows[0]]})
+    duplicate_inputs = receipt(prepared, 'second-same-inputs-different-bytes', 2)
+    (Path(duplicate_inputs['root']) / 'node_modules/control-pkg/index.mjs').write_text('export const value=999;\n')
+    reject('same-inputs-different-prepared-dependencies', {**manifest, 'installations': rows + [duplicate_inputs]})
+    replaced_receipt = output / 'different-command-receipt.json'
+    write_json(replaced_receipt, {**read_json(rows[0]['receiptPath']), 'command': ['different-preparation-command']})
+    replaced_map = output / 'different-command-map.json'
+    write_json(replaced_map, {**manifest, 'installations': [{**rows[0], 'receiptPath': str(replaced_receipt),
+                              'receiptSha256': checksum(replaced_receipt)}] + rows[1:]})
+    with patch.object(DependencyStore, 'copy') as copying:
+        try:
+            HistoricalInstallations(replaced_map, candidates, output / 'owned')
+        except ValueError as error:
+            require(copying.call_count == 0 and 'Resumed store source installation' in str(error), 'Changed preparation receipt must reject pre-registration copied stores')
+            records.append({'control': 'resumed-store-changed-preparation-receipt', 'passed': True, 'error': str(error)})
+        else:
+            raise AssertionError('Changed preparation receipt accepted with previous copied store')
+    with patch.object(DependencyStore, 'copy') as copying:
+        restored_registry = HistoricalInstallations(path, candidates, output / 'owned')
+        require(copying.call_count == 0 and restored_registry.registration() == registry.registration(), 'Unchanged receipt must resume exactly the registered owned stores')
     reject('duplicate-candidate', manifest, candidates + [candidates[0]])
     reject('extra-candidate', {**manifest, 'candidates': {**manifest['candidates'], 'undeclared': 'first'}})
     reject('candidate-subject-mismatch', manifest, [{**candidates[0], 'subject': 'scope'}] + candidates[1:])

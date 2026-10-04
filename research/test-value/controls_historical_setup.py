@@ -25,6 +25,7 @@ def controls(output, candidate, installation_map, node):
     require(fix == candidate['fix'] and parent == candidate['parent'], 'Selected historical revision and parent must match the manifest')
     template = output / 'fixed-template'
     archive(repository, fix, template)
+    write_json(output / 'candidate-installation-inputs.json', registry.verify_source(candidate, template))
     adapters = configure(template, candidate['testFiles'], Path(__file__).with_name('vitest-reporter.ts'))
     write_json(output / 'workspace-adapters.json', adapters)
     options = {'dependencies': dependencies, 'node': node, 'expected_node': runtime, 'timeout': 90,
@@ -63,7 +64,7 @@ def controls(output, candidate, installation_map, node):
     write_json(output / 'controls.json', {**identity, 'passed': passed, 'workspaceAdapters': adapters, 'revertedFiles': reverted,
                'killedBy': killed, 'unaffected': unaffected, 'fixedTemplateSha256': hash_tree(template)[0],
                'faultyTemplateSha256': hash_tree(faulty)[0], 'recordDigests': {name: hashlib.sha256((output / name).read_bytes()).hexdigest()
-               for name in ['validation-registration.json', 'workspace-adapters.json', 'fixed-before/execution.json', 'faulty/execution.json', 'fixed-after/execution.json']}})
+               for name in ['validation-registration.json', 'candidate-installation-inputs.json', 'workspace-adapters.json', 'fixed-before/execution.json', 'faulty/execution.json', 'fixed-after/execution.json']}})
     require(passed, 'Source reversion must fail by assertion with unaffected tests, then restored source must pass')
     print('Passed historical installation setup validation', flush=True)
 
