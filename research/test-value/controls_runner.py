@@ -73,7 +73,7 @@ def copy_controls(output):
     if sys.platform == "darwin":
         isolation("unsupported-fallback", errno.ENOTSUP)
         isolation("cross-volume-fallback", errno.EXDEV)
-        for number in [errno.EINVAL, errno.EPERM, errno.EIO, errno.ENOSPC]:
+        for number in [errno.EOPNOTSUPP, errno.EINVAL, errno.EPERM, errno.EIO, errno.ENOSPC]:
             target = output / ("error-" + str(number))
             try:
                 with patch.object(execution_runner, "clone_regular_file", side_effect=OSError(number, "Authored clone failure")):

@@ -190,7 +190,7 @@ def guarded_copy(source, destination, copy_evidence=None):
                     clone_regular_file(source_fd, destination_fd, destination.name)
                     backend = "darwin-clonefile"
                 except OSError as error:
-                    if error.errno not in {errno.ENOTSUP, errno.EOPNOTSUPP, errno.EXDEV}:
+                    if error.errno not in {errno.ENOTSUP, errno.EXDEV}:
                         raise
                     fallback_errno = error.errno
                 check_cancelled()
