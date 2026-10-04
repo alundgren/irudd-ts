@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import sys
@@ -565,6 +566,112 @@ def execute_controls(output, archguard, installed=None, node="node", wrong_node=
     return records
 
 
+def backend_controls(output, installed, bundled_installed, node, copied_stores=None):
+    output.mkdir(parents=True, exist_ok=False)
+    records = []
+    reporter = Path(__file__).resolve().parent / "vitest-reporter.ts"
+    pin = ('const expected=JSON.parse(process.env.ARCHGUARD_RESEARCH_NODE);'
+           'expect({path:fs.realpathSync(process.execPath),version:process.version,'
+           'sha256:createHash("sha256").update(fs.readFileSync(process.execPath)).digest("hex")}).toEqual(expected);')
+    tests = ('import {test,expect,describe} from "vite-plus/test";import {lower,upper} from "./source.ts";'
+             'import fs from "node:fs";import {createHash} from "node:crypto";'
+             'describe("bounds",()=>{test("duplicate",()=>{' + pin + 'expect(lower(2)).toBe(false)});'
+             'test("duplicate",()=>expect(upper(3)).toBe(false));});')
+    config = ('import {defineConfig} from "vite-plus/test/config";export default defineConfig({test:{'
+              'include:["case.test.ts"],pool:"forks",maxWorkers:1,retry:0,bail:0,reporters:[' + json.dumps(str(reporter)) + ']}});')
+    for label, donor, expected_package in [("current", installed, "vitest"), ("bundled", bundled_installed, "@voidzero-dev/vite-plus-test")]:
+        root = output / label
+        if copied_stores:
+            metadata = execution_runner.read_json(copied_stores)[label]
+            require(Path(metadata["installedRoot"]).resolve() == Path(donor).resolve(), "Reused control store must have the same explicit donor")
+            dependencies = DependencyStore(donor, metadata["root"])
+            execution_runner.inside(dependencies.root, Path(copied_stores).resolve().parent)
+            dependencies.modules = metadata["modules"]
+            dependencies.workspace_links = metadata["workspaceLinks"]
+            dependencies.owned_directories = set(metadata["ownedDirectories"])
+            dependencies.sha256 = metadata["sha256"]
+            require(dependencies.current_digest() == dependencies.sha256, "Reused owned control store must retain its exact recorded digest")
+        else:
+            dependencies = DependencyStore(donor, root / "dependencies").copy()
+        files = {"package.json": '{"type":"module"}', "source.ts": "export const lower=(n:number)=>n<2;export const upper=(n:number)=>n>3;",
+                 "case.test.ts": tests, "vite.config.ts": config}
+
+        def template(name, changed=False):
+            entries = dict(files)
+            if changed:
+                entries["source.ts"] = entries["source.ts"].replace("n<2", "n<=2")
+            case = fixture(root / name, entries)
+            for relative in dependencies.workspace_links.values():
+                (case / relative).mkdir(parents=True, exist_ok=True)
+            return case
+
+        case = template("template")
+        baseline = execute_case(case, root / "baseline", direct_vitest_command(), dependencies=dependencies, node=node, keep_source=True)
+        require(baseline["complete"] and baseline["status"] == "survived", f"Actual {label} backend must pass: {baseline['infrastructureErrors']}")
+        require(baseline["vitest"]["runnerPackage"] == expected_package, "Runner must use its explicit declared package")
+        require(len(baseline["tests"]) == 2 and len({test["id"] for test in baseline["tests"]}) == 2, "Actual duplicate tests need two stable IDs")
+        require(json.loads((root / "baseline/inventory.json").read_text())["runtime"] == baseline["node"], "Actual reporter and fork must use the pinned runtime")
+        require(baseline["command"][:2] == [baseline["node"]["path"], baseline["vitest"]["path"]], "Actual historical entry must launch directly with pinned Node")
+        version_process = run_command([baseline["node"]["path"], baseline["vitest"]["path"], "--version"], root / "baseline/source",
+                                      private_environment(root / "version-private"), root / "actual-cli-version")
+        version_stdout = (root / "actual-cli-version/stdout.txt").read_text().strip()
+        require(version_process["status"] == "finished" and version_process["exitCode"] == 0 and version_process["cleanupComplete"] and
+                not version_process["cleanupErrors"] and not version_process["residualProcessGroup"], "Real direct CLI version command must finish normally")
+        prefix = "vp test" if label == "bundled" else "vitest"
+        version_match = re.match(re.escape(prefix) + r"/([^\s]+)", version_stdout)
+        require(version_match is not None and version_match.group(1) == baseline["vitest"]["version"], "Actual CLI Vitest version must agree with package metadata")
+        require("node-" + baseline["node"]["version"] in version_stdout, "Actual CLI version command must identify the pinned Node version")
+        faulty = execute_case(template("faulty-template", True), root / "faulty", direct_vitest_command(), dependencies=dependencies,
+                              baseline=baseline["tests"], node=node)
+        require(faulty["complete"] and list(faulty["outcomes"].values()).count("killed") == 1 and
+                list(faulty["outcomes"].values()).count("notKilled") == 1, "Actual backend must distinguish assertion failure and unaffected test")
+        restored = execute_case(case, root / "restored", direct_vitest_command(), dependencies=dependencies, baseline=baseline["tests"], node=node)
+        require(restored["complete"] and restored["status"] == "survived", "Correction must restore actual passing inventory")
+        route_source = root / "baseline/source"
+        environment = private_environment(root / "probe-private")
+        if label == "bundled":
+            before_script = ('import {createRequire} from "node:module";import path from "node:path";'
+                             'const context=createRequire(path.join(process.cwd(),"package.json")).resolve("vite-plus/package.json");'
+                             'createRequire(context).resolve("vitest/package.json");')
+            before = run_command([baseline["node"]["path"], "--input-type=module", "-e", before_script], route_source,
+                                 environment, root / "before-old-assumption")
+            require(before["exitCode"] != 0 and before["cleanupComplete"] and "Cannot find module" in
+                    (root / "before-old-assumption/stderr.txt").read_text(), "Previous separate Vitest assumption must fail on the real historical package")
+        entry = Path(baseline["vitest"]["path"])
+        renamed = entry.with_name(entry.name + ".control-retained")
+        entry.rename(renamed)
+        try:
+            try:
+                execution_runner.vitest_entrypoint(route_source, dependencies, baseline["node"]["path"], environment)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError("Missing declared entrypoint was accepted")
+        finally:
+            renamed.rename(entry)
+        context = Path(baseline["vitest"]["context"])
+        original = context.read_bytes()
+        metadata = json.loads(original)
+        metadata["dependencies"].pop(expected_package)
+        context.write_text(json.dumps(metadata))
+        try:
+            try:
+                execution_runner.vitest_entrypoint(route_source, dependencies, baseline["node"]["path"], environment)
+            except ValueError as error:
+                require("must declare exactly one" in str(error), "Undeclared package must reject before resolving an available transitive entry")
+            else:
+                raise AssertionError("Undeclared available test package was accepted")
+        finally:
+            context.write_bytes(original)
+        require(dependencies.current_digest() == dependencies.sha256, "Restored copied package bytes must match their frozen digest")
+        records.append({"backend": label, "passed": True, "runner": baseline["vitest"], "node": baseline["node"],
+                        "actualCliVersion": version_stdout, "actualCliVersionProcess": version_process,
+                        "baseline": label + "/baseline/execution.json", "faulty": label + "/faulty/execution.json",
+                        "restored": label + "/restored/execution.json", "negativeControls": ["missing-entry", "undeclared-package"]})
+    write_json(output / "controls.json", {"schemaVersion": 1, "validationOnly": True, "controls": records})
+    return records
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
@@ -574,7 +681,16 @@ def main():
     parser.add_argument("--vitest-node", help="Explicit Vitest runtime when the native Node event adapter requires another version")
     parser.add_argument("--wrong-node", help="Different actual Node executable for the real reporter runtime rejection control")
     parser.add_argument("--ownership-only", action="store_true", help="Run only subprocess ownership and Darwin cleanup controls")
+    parser.add_argument("--backend-only", action="store_true", help="Run the declared current and bundled Vitest entry controls")
+    parser.add_argument("--bundled-installed", help="Explicit installed historical vite-plus test package for backend controls")
+    parser.add_argument("--backend-copied-stores", help="Explicit unchanged owned store metadata for repeating backend controls")
     arguments = parser.parse_args()
+    if arguments.backend_only:
+        if not arguments.installed or not arguments.bundled_installed:
+            parser.error("Backend controls require both --installed and --bundled-installed")
+        records = backend_controls(Path(arguments.output).resolve(), arguments.installed, arguments.bundled_installed, arguments.node, arguments.backend_copied_stores)
+        print(f"Passed {len(records)} backend controls")
+        return
     if arguments.ownership_only:
         output = Path(arguments.output).resolve()
         output.mkdir(parents=True, exist_ok=False)
