@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 from analyze import analyze, compact_evaluation, evaluate_fault, summarize_faults
-from runner import HERE, REPOSITORY, DependencyStore, copy_owned_source, direct_vitest_command, disk_check, execute_case as raw_execute_case, hash_tree, install_signal_handlers, node_fingerprint, owned_source_path, read_json, runner_fingerprint, run_command, write_json
+from runner import HERE, REPOSITORY, DependencyStore, copy_owned_source, direct_vitest_command, disk_check, execute_case as raw_execute_case, hash_tree, install_signal_handlers, node_fingerprint, owned_source_path, parse_json, read_json, runner_fingerprint, run_command, write_json
 from rust_slice import archive
 
 COMMAND = direct_vitest_command('research-test-value.config.ts')
@@ -452,7 +452,7 @@ def main():
     reporter = Path(__file__).resolve().parent / 'vitest-reporter.ts'
     dependencies = {}
     candidates_bytes = args.candidates.read_bytes()
-    manifest = json.loads(candidates_bytes)
+    manifest = parse_json(candidates_bytes, args.candidates)
     candidates = manifest['candidates'] if isinstance(manifest, dict) else manifest
     installations = HistoricalInstallations(args.dependency_installations, candidates, output) if args.dependency_installations else None
     if installations:

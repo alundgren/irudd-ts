@@ -115,9 +115,12 @@ def vitest_entrypoint(source, dependencies, node, environment):
 
 
 def read_json(path):
-    raw = Path(path).read_bytes()
+    return parse_json(Path(path).read_bytes(), path)
+
+
+def parse_json(raw, origin):
     if len(raw) > MAX_JSON:
-        raise ValueError(f"JSON exceeds byte budget: {path}")
+        raise ValueError(f"JSON exceeds byte budget: {origin}")
 
     def unique(pairs):
         value = {}

@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from controls_runner import fixture, require
 from history import HistoricalInstallations, INSTALLATION_SAFEGUARDS, archive
-from runner import DependencyStore, copy_owned_source, hash_tree, install_signal_handlers, private_environment, read_json, run_command, write_json
+from runner import MAX_JSON, DependencyStore, copy_owned_source, hash_tree, install_signal_handlers, private_environment, read_json, run_command, write_json
 
 
 def checksum(path):
@@ -308,6 +308,16 @@ def controls(output, node):
     require(changed['exitCode'] != 0 and changed['cleanupComplete'] and
             'experiment identity changed' in (output / 'changed-manifest-process/stderr.txt').read_text(), 'Same candidates with altered audit metadata must reject existing registration')
     require(read_json(cli_output / 'preregistration.json') == registered_manifest, 'Rejected manifest metadata change must preserve the original registration')
+    write_json(candidate_path, excluded_manifest)
+    for name, raw, diagnostic in [('duplicate-candidates', b'{"candidates":[],"candidates":[]}', 'Duplicate JSON field: candidates'),
+                                  ('duplicate-audit-metadata', b'{"sourceBindingAuditSha256":"a","sourceBindingAuditSha256":"b","candidates":[]}', 'Duplicate JSON field: sourceBindingAuditSha256'),
+                                  ('oversized-candidate-manifest', b' ' * (MAX_JSON + 1), 'JSON exceeds byte budget')]:
+        candidate_path.write_bytes(raw)
+        invalid = run_command(command, output, private_environment(output / (name + '-private')), output / (name + '-process'), timeout=30)
+        require(invalid['exitCode'] != 0 and invalid['cleanupComplete'] and diagnostic in (output / (name + '-process/stderr.txt')).read_text(),
+                'Candidate manifest must preserve strict bounded duplicate-free decoding: ' + name)
+        require(read_json(cli_output / 'preregistration.json') == registered_manifest, 'Malformed manifest must preserve existing registration')
+        records.append({'control': name, 'passed': True})
     write_json(candidate_path, excluded_manifest)
     mixed = subprocess.run(command + ['--t3-dependencies', str(prepared), '--scope-dependencies', str(prepared)], capture_output=True, timeout=15)
     require(mixed.returncode == 2 and b'never both modes' in mixed.stderr, 'CLI must reject donor fallback mixed with explicit installation mode')
