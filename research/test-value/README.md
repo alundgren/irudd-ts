@@ -91,4 +91,15 @@ python3 research/test-value/sensitivity.py --root PRIMARY_NATIVE --output NEW_SE
 
 The derived matrix binds original event hashes and the primary matrix hash. It calculates its own fixed requirement set without changing primary bytes. Compare denominators as well as kills. Exceptions can reflect defensive checks or incidental crashes; more kills do not establish stronger assertions. [Du, Palepu and Jones, ISSTA 2023](https://superhangdu.com/publications/issta-23/conference-paper.pdf) studies this distinction. [Stryker's outcome definitions](https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/) distinguish individually failed tests from test-runner errors. This secondary analysis does not replace the historical assertion-regression eligibility controls.
 
+`historical_sensitivity.py` applies that same secondary policy to a separately preregistered, retained historical archive. It validates the archive and source records, reproduces the unchanged assertion-only aggregate, then writes separate primary, secondary, paired, and additional-secondary evaluations. A candidate only enters the secondary summary when its existing fixed-before baseline, declared mutant prefix, runtime identity, and retained test events all validate. The secondary cohort was specified after the assertion-only exclusions were observed; its added outcomes are sensitivity evidence, not corrected primary labels.
+
+```sh
+python3 research/test-value/historical_sensitivity.py \
+  --plan /absolute/historical-sensitivity-plan-v2.json \
+  --primary-root /absolute/original-history-continuation \
+  --output research/local/new-historical-sensitivity
+```
+
+For the archived original-history controls, set `TEST_VALUE_HISTORICAL_ROOT` and `TEST_VALUE_HISTORICAL_PLAN` to those same inputs, then run `python3 -m unittest discover -s research/test-value -p test_historical_sensitivity.py -v`. These controls inspect retained event records; they do not launch historical test runners. They check a real test-body failure, unchanged primary bytes and labels, stale fault/event/runtime rejection, and a shortened declared prefix.
+
 Runtime fields exclude shared setup and startup. Repeated clean baselines do not prove zero flakiness. Historical churn and ownership cost were not measured. A minimal observed core remains exploratory until actual subsets, requirement coverage outside sampled mutants, and historical fault behavior are checked independently.
