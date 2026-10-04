@@ -194,6 +194,14 @@ pass `node=absolute_runtime_path` to `execute_case` for each subject's pin.
 Callers can freeze `node_fingerprint(node)` once and supply it as `expected_node`
 across multiple executions. Each execution records both selected and expected
 identities; a changed executable leaves every cell unknown.
+The direct runner follows the exact test package declared by `vite-plus`.
+Current packages declare `vitest`; older packages declare
+`@voidzero-dev/vite-plus-test` and distribute `vitest.mjs` with the underlying
+Vitest version in `bundledVersions`. Evidence records both package identities
+and the owned entrypoint hash. Missing, ambiguous or inexact declarations reject
+execution. Use `--backend-only --installed CURRENT --bundled-installed HISTORICAL`
+with `controls_runner.py` to validate both actual entries, CLI versions, forked
+runtime identities, assertion correction and missing or undeclared entries.
 Standalone callers can use `install_signal_handlers()` to route interruption
 through owned subprocess cleanup. It returns previous handlers for restoration.
 The caller must record revision identities, classify the replay method and
