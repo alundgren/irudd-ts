@@ -32,6 +32,130 @@ def require(value, message):
         raise AssertionError(message)
 
 
+def copy_controls(output):
+    output.mkdir(parents=True, exist_ok=False)
+    source = output / "source.bin"
+    payload = bytes(range(256)) * 32768
+    execution_runner.disk_check(output)
+    source.write_bytes(payload)
+    source.chmod(0o751)
+    os.utime(source, ns=(1700000000000000000, 1700000000123456789))
+    original_mode, original_mtime = source.stat().st_mode, source.stat().st_mtime_ns
+    records = []
+
+    def isolation(label, forced_error=None):
+        target = output / label
+        evidence = {"policy": execution_runner.COPY_POLICY}
+        if forced_error is None:
+            execution_runner.guarded_copy(source, target, evidence)
+        else:
+            with patch.object(execution_runner, "clone_regular_file", side_effect=OSError(forced_error, "Authored unsupported clone control")):
+                execution_runner.guarded_copy(source, target, evidence)
+        require(target.stat().st_ino != source.stat().st_ino, "Copied source must have a separate inode")
+        require(target.read_bytes() == payload, "Copied bytes must match the regular source")
+        require(target.stat().st_mode == original_mode and target.stat().st_mtime_ns == original_mtime, "Copy must preserve mode and modification time")
+        expected_backend = "darwin-clonefile" if forced_error is None and sys.platform == "darwin" else "bounded-stream"
+        require(evidence["backends"] == {expected_backend: 1}, "Recorded backend must match the actual operation")
+        with target.open("r+b") as writer:
+            writer.write(b"private target")
+        require(source.read_bytes() == payload, "Private target writes must leave original bytes unchanged")
+        private_target = target.read_bytes()
+        with source.open("r+b") as writer:
+            writer.write(b"private source")
+        require(target.read_bytes() == private_target, "Original writes must leave the private target unchanged")
+        source.write_bytes(payload)
+        source.chmod(0o751)
+        os.utime(source, ns=(1700000000000000000, original_mtime))
+        records.append({"control": label, "passed": True, "sourceCopy": evidence, "distinctInodes": True,
+                        "privateWritesInBothDirections": True, "bytesModeAndModificationTimeMatched": True})
+
+    isolation("actual-copy")
+    if sys.platform == "darwin":
+        isolation("unsupported-fallback", errno.ENOTSUP)
+        isolation("cross-volume-fallback", errno.EXDEV)
+        for number in [errno.EINVAL, errno.EPERM, errno.EIO, errno.ENOSPC]:
+            target = output / ("error-" + str(number))
+            try:
+                with patch.object(execution_runner, "clone_regular_file", side_effect=OSError(number, "Authored clone failure")):
+                    execution_runner.guarded_copy(source, target)
+            except OSError as error:
+                require(error.errno == number and not target.exists(), "Clone errors must propagate without a stream destination")
+            else:
+                raise AssertionError("Unexpected clone failure accepted")
+        with patch.object(execution_runner.ctypes, "CDLL", return_value=object()):
+            try:
+                execution_runner.guarded_copy(source, output / "missing-clone")
+            except RuntimeError as error:
+                require("unavailable" in str(error), "Missing clone API must fail explicitly")
+            else:
+                raise AssertionError("Missing clone API silently used stream fallback")
+    with patch.object(execution_runner.sys, "platform", "linux"), patch.object(execution_runner, "clone_regular_file", side_effect=AssertionError("Non-Darwin clone must not run")):
+        isolation("non-darwin-stream")
+    existing = output / "existing"
+    existing.write_bytes(b"retained")
+    for target in [existing, output / "destination-link"]:
+        if target != existing:
+            target.symlink_to(existing)
+        try:
+            execution_runner.guarded_copy(source, target)
+        except OSError:
+            require(existing.read_bytes() == b"retained", "Existing destinations and linked targets must stay unchanged")
+        else:
+            raise AssertionError("Existing destination was overwritten")
+    link = output / "source-link"
+    link.symlink_to(source)
+    try:
+        execution_runner.guarded_copy(link, output / "linked-copy")
+    except OSError:
+        require(not (output / "linked-copy").exists(), "Source links must be handled by owned-link validation")
+    else:
+        raise AssertionError("Regular copy followed a source link")
+    real_parent = output / "directory"
+    real_parent.mkdir()
+    parent_link = output / "directory-link"
+    parent_link.symlink_to(real_parent, target_is_directory=True)
+    try:
+        execution_runner.guarded_copy(source, parent_link / "escaped")
+    except OSError:
+        require(not (real_parent / "escaped").exists(), "Destination directory descriptor must not follow its final link")
+    else:
+        raise AssertionError("Copy followed a linked destination directory")
+    before = output / "disk-before"
+    with patch.object(execution_runner, "disk_check", side_effect=RuntimeError("DISK STOP authored control")):
+        try:
+            execution_runner.guarded_copy(source, before)
+        except RuntimeError:
+            require(not before.exists(), "Disk boundary must stop before destination creation")
+        else:
+            raise AssertionError("Disk boundary accepted")
+    if sys.platform == "darwin":
+        after = output / "disk-after"
+        calls = 0
+        def disk_after_clone(_directory):
+            nonlocal calls
+            calls += 1
+            if calls >= 3:
+                raise RuntimeError("DISK STOP after real clone")
+        with patch.object(execution_runner, "disk_check", side_effect=disk_after_clone):
+            try:
+                execution_runner.guarded_copy(source, after)
+            except RuntimeError:
+                require(after.exists() and source.read_bytes() == payload, "After-clone disk stop must retain owned evidence and original bytes")
+            else:
+                raise AssertionError("After-clone disk boundary accepted")
+    with patch.object(execution_runner, "CANCEL_SIGNAL", signal.SIGTERM):
+        try:
+            execution_runner.guarded_copy(source, output / "cancelled")
+        except execution_runner.ResearchCancelled:
+            require(not (output / "cancelled").exists(), "Cancellation must stop before a copy")
+        else:
+            raise AssertionError("Cancelled copy accepted")
+    records.append({"control": "copy-negative-cases", "passed": True, "existingDestinationUnchanged": True,
+                    "sourceAndDestinationLinksRejected": True, "diskBoundaryAndCancellationRejected": True})
+    write_json(output / "controls.json", records)
+    return records
+
+
 def ownership_controls(output):
     directory = output / "ownership"
     directory.mkdir()
@@ -609,6 +733,8 @@ def backend_controls(output, installed, bundled_installed, node, copied_stores=N
         baseline = execute_case(case, root / "baseline", direct_vitest_command(), dependencies=dependencies, node=node, keep_source=True)
         require(baseline["complete"] and baseline["status"] == "survived", f"Actual {label} backend must pass: {baseline['infrastructureErrors']}")
         require(baseline["vitest"]["runnerPackage"] == expected_package, "Runner must use its explicit declared package")
+        if sys.platform == "darwin":
+            require(baseline["sourceCopy"]["backends"].get("darwin-clonefile", 0) > 0 and not baseline["sourceCopy"]["backends"].get("bounded-stream"), "Actual Darwin baseline must use private cloned source files")
         require(len(baseline["tests"]) == 2 and len({test["id"] for test in baseline["tests"]}) == 2, "Actual duplicate tests need two stable IDs")
         require(json.loads((root / "baseline/inventory.json").read_text())["runtime"] == baseline["node"], "Actual reporter and fork must use the pinned runtime")
         require(baseline["command"][:2] == [baseline["node"]["path"], baseline["vitest"]["path"]], "Actual historical entry must launch directly with pinned Node")
@@ -680,11 +806,16 @@ def main():
     parser.add_argument("--node", default="node")
     parser.add_argument("--vitest-node", help="Explicit Vitest runtime when the native Node event adapter requires another version")
     parser.add_argument("--wrong-node", help="Different actual Node executable for the real reporter runtime rejection control")
+    parser.add_argument("--copy-only", action="store_true", help="Run only private file-copy controls")
     parser.add_argument("--ownership-only", action="store_true", help="Run only subprocess ownership and Darwin cleanup controls")
     parser.add_argument("--backend-only", action="store_true", help="Run the declared current and bundled Vitest entry controls")
     parser.add_argument("--bundled-installed", help="Explicit installed historical vite-plus test package for backend controls")
     parser.add_argument("--backend-copied-stores", help="Explicit unchanged owned store metadata for repeating backend controls")
     arguments = parser.parse_args()
+    if arguments.copy_only:
+        records = copy_controls(Path(arguments.output).resolve())
+        print(f"Passed {len(records)} private copy control groups")
+        return
     if arguments.backend_only:
         if not arguments.installed or not arguments.bundled_installed:
             parser.error("Backend controls require both --installed and --bundled-installed")
