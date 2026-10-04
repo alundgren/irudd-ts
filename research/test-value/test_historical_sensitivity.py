@@ -137,9 +137,10 @@ class HistoricalSensitivityControls(unittest.TestCase):
             changed_fault['killedBy'] = list(changed_fault['killedBy']) + ['invented test label']
             with self.assertRaisesRegex(historical.EvidenceError, 'differ for killedBy'):
                 historical.require_core_match(attempt, changed_fault, registered)
+            historical.validate_attempt_registration(self.attempts, self.registered)
             orphaned_attempts = self.attempts + [{**self.attempts[0], 'id': 'not-preregistered'}]
             with self.assertRaisesRegex(historical.EvidenceError, 'absent from preregistration'):
-                historical.validate_attempt_registration(orphaned_attempts, registered)
+                historical.validate_attempt_registration(orphaned_attempts, self.registered)
 
         with tempfile.TemporaryDirectory(prefix='historical-secondary-stale-event-') as scratch:
             candidate_root = self.extract(scratch)
