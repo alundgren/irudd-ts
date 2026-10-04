@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import stat
 import subprocess
 import sys
 import time
@@ -161,33 +162,130 @@ def inside(path, root):
         raise ValueError(f"Path escapes configured root: {path}") from None
 
 
-def snapshot_source(source, destination, includes, excludes):
+def owned_source_path(path, root):
+    """Resolve each component without permitting a link to leave the owned root."""
+    root = Path(root).resolve()
+    path = Path(path)
+    pending = list(inside(path, root).parts)
+    current = root
+    followed = set()
+    while pending:
+        component = pending.pop(0)
+        if component in {"", "."}:
+            continue
+        if component == "..":
+            if current == root:
+                raise ValueError(f"Source link leaves owned root: {path}")
+            current = current.parent
+            continue
+        candidate = current / component
+        if candidate.is_symlink():
+            if candidate in followed or len(followed) >= 128:
+                raise ValueError(f"Source link cycle or traversal limit: {path}")
+            followed.add(candidate)
+            target = Path(os.readlink(candidate))
+            if target.is_absolute():
+                pending = list(inside(target, root).parts) + pending
+                current = root
+            else:
+                pending = list(target.parts) + pending
+        else:
+            current = candidate
+    return current
+
+
+def copy_owned_source(source, destination, includes=None, excludes=None):
+    source = Path(source).resolve()
+    destination = Path(destination).absolute()
+    if destination.is_symlink():
+        raise ValueError("Owned source destination cannot be a link")
+    destination = destination.resolve()
+    if destination.is_relative_to(source) or source.is_relative_to(destination):
+        raise ValueError("Source and destination trees must be disjoint")
+    if destination.exists() and any(destination.iterdir()):
+        raise ValueError("Owned source destination must be new or empty")
+    destination.mkdir(parents=True, exist_ok=True)
+    destination = destination.resolve()
+    includes = ["**"] if includes is None else includes
+    excludes = excludes or []
     manifest = []
-    for directory, dirs, files in os.walk(source, followlinks=False):
+    directory_edges = {}
+
+    def copy_entry(path):
+        relative = path.relative_to(source).as_posix()
+        if not matches(relative, includes) or matches(relative, excludes):
+            return
+        target = destination / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        disk_check(destination)
+        resolved = owned_source_path(path, source)
+        if path.is_symlink():
+            if resolved.is_dir():
+                directory_edges.setdefault(path.parent, set()).add(resolved)
+            original = os.readlink(path)
+            link = str(destination / inside(Path(original), source)) if Path(original).is_absolute() else original
+            target.symlink_to(link)
+            raw = os.fsencode(original)
+            manifest.append({"file": relative, "kind": "symlink", "target": original, "sha256": digest(raw), "bytes": len(raw)})
+        elif stat.S_ISREG(path.stat().st_mode):
+            guarded_copy(path, target)
+            checksum = hashlib.sha256()
+            size = 0
+            with target.open('rb') as reader:
+                while True:
+                    disk_check(destination)
+                    chunk = reader.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    checksum.update(chunk)
+                    size += len(chunk)
+            manifest.append({"file": relative, "sha256": checksum.hexdigest(), "bytes": size})
+        else:
+            raise ValueError(f"Source input is not a regular file or owned link: {path}")
+
+    def failed_walk(error):
+        raise error
+
+    for directory, dirs, files in os.walk(source, followlinks=False, onerror=failed_walk):
         disk_check(destination)
         base = Path(directory)
-        dirs[:] = sorted(name for name in dirs if name not in {".git", "node_modules", "target"} and
-                         not matches((base / name).relative_to(source).as_posix() + "/", excludes))
-        for name in dirs:
-            if (base / name).is_symlink():
-                raise ValueError(f"Source directory symlink requires an explicit owned copy: {base / name}")
-        for name in sorted(files):
+        selected_dirs = []
+        for name in sorted(dirs):
             path = base / name
             relative = path.relative_to(source).as_posix()
-            if not matches(relative, includes) or matches(relative, excludes):
+            if matches(relative + "/", excludes) or matches(relative, excludes):
                 continue
             if path.is_symlink():
-                inside(path.resolve(), source)
-            if not path.is_file():
-                raise ValueError(f"Source input is not a regular file: {path}")
-            target = destination / relative
-            target.parent.mkdir(parents=True, exist_ok=True)
-            guarded_copy(path, target)
-            raw = target.read_bytes()
-            manifest.append({"file": relative, "sha256": digest(raw), "bytes": len(raw)})
+                copy_entry(path)
+            else:
+                (destination / relative).mkdir(parents=True, exist_ok=True)
+                directory_edges.setdefault(base, set()).add(path)
+                selected_dirs.append(name)
+        dirs[:] = selected_dirs
+        for name in sorted(files):
+            copy_entry(base / name)
+    visited = set()
+    for start in directory_edges:
+        active = set()
+        pending = [(start, False)]
+        while pending:
+            current, completed = pending.pop()
+            if completed:
+                active.remove(current)
+                visited.add(current)
+            elif current in active:
+                raise ValueError(f"Source directory link cycle: {current}")
+            elif current not in visited:
+                active.add(current)
+                pending.append((current, True))
+                pending.extend((child, False) for child in directory_edges.get(current, []))
     if not manifest:
         raise ValueError("Empty configured source snapshot")
     return manifest
+
+
+def snapshot_source(source, destination, includes, excludes):
+    return copy_owned_source(source, destination, includes, excludes)
 
 
 def hash_tree(root):
@@ -595,7 +693,7 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     output.mkdir(parents=True, exist_ok=False)
     source = output / "source"
     disk_check(output)
-    shutil.copytree(template, source, symlinks=False, copy_function=guarded_copy)
+    copy_owned_source(template, source)
     if dependencies:
         dependencies.attach(source)
     source_digest = hash_tree(template)[0]
@@ -638,6 +736,8 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
             apply_mutation(source, mutation)
         resolutions = []
         for control in import_controls or []:
+            if control.get("resolverEvidence"):
+                continue
             specifier = control["specifier"]
             script = ('import fs from "node:fs";import {fileURLToPath} from "node:url";'
                       'const resolved=import.meta.resolve(process.argv[1]);'
@@ -664,6 +764,22 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
         records = []
         problems = []
         protocol = None
+        for control in import_controls or []:
+            if not control.get("resolverEvidence"):
+                continue
+            try:
+                path = owned_source_path(source / control["resolverEvidence"], source)
+                record = read_json(path)
+                expected = owned_source_path(source / control["expectedWorkspacePath"], source)
+                if (record.get("specifier") != control["specifier"] or record.get("realPath") != str(expected) or
+                        record.get("sourceRoot") != str(source) or record.get("sha256") != digest(expected.read_bytes())):
+                    raise ValueError("Actual workspace import resolved outside the expected fresh source")
+                resolutions.append(record)
+            except (OSError, ValueError) as error:
+                if isinstance(error, FileNotFoundError) and control.get("allowUnused"):
+                    resolutions.append({"specifier": control["specifier"], "observed": False})
+                    continue
+                problems.append(f"Workspace resolver evidence failed: {error}")
         if raw["status"] != "finished":
             problems.append(f"Command did not finish: {raw['status']}")
             problems.extend(raw.get("cleanupErrors", []))
@@ -676,7 +792,8 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
                     raise ValueError("Final SDK protocol validation failed")
                 protocol = json.loads(validation.stdout)
                 inventory = read_json(output / "inventory.json")
-                records, problems = validate_inventory(inventory, protocol, request, raw["exitCode"], expected_node or node_identity)
+                records, inventory_problems = validate_inventory(inventory, protocol, request, raw["exitCode"], expected_node or node_identity)
+                problems.extend(inventory_problems)
                 if expected_node is not None and node_identity != expected_node:
                     problems.append("Selected Node runtime changed from the frozen execution identity")
             except (OSError, ValueError, subprocess.SubprocessError) as error:

@@ -4,14 +4,16 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 from analyze import analyze, compact_evaluation, evaluate_fault, summarize_faults
-from runner import HERE, REPOSITORY, DependencyStore, direct_vitest_command, disk_check, execute_case as raw_execute_case, hash_tree, install_signal_handlers, node_fingerprint, read_json, runner_fingerprint, run_command, write_json
+from runner import HERE, REPOSITORY, DependencyStore, copy_owned_source, direct_vitest_command, disk_check, execute_case as raw_execute_case, hash_tree, install_signal_handlers, node_fingerprint, owned_source_path, read_json, runner_fingerprint, run_command, write_json
 from rust_slice import archive
 
 COMMAND = direct_vitest_command('research-test-value.config.ts')
+WORKSPACE_ADAPTER = {'specifier': '@irudd-scope/sqlite', 'package': 'packages/sqlite/package.json',
+                     'export': './src/maintenance.ts', 'consumers': ['apps/desktop/package.json', 'apps/hub/package.json'],
+                     'resolution': 'exact-specifier Vite alias into the fresh source tree; actual resolution path/hash retained when imported'}
 
 
 def execute_case(*args, **kwargs):
@@ -26,9 +28,43 @@ def execute_case(*args, **kwargs):
     return result
 
 
+def scope_workspace_adapter(template):
+    template = Path(template).resolve()
+    package_path = template / WORKSPACE_ADAPTER['package']
+    if not package_path.exists():
+        return None
+    package = read_json(owned_source_path(package_path, template))
+    if package.get('name') != WORKSPACE_ADAPTER['specifier']:
+        return None
+    if package.get('exports') != {'.': WORKSPACE_ADAPTER['export']}:
+        raise ValueError('Historical SQLite workspace export is unsupported')
+    consumers = []
+    for relative in WORKSPACE_ADAPTER['consumers']:
+        path = template / relative
+        if path.exists():
+            consumer = read_json(owned_source_path(path, template))
+            declaration = consumer.get('dependencies', {}).get(WORKSPACE_ADAPTER['specifier'])
+            if isinstance(declaration, str) and declaration.startswith('workspace:'):
+                consumers.append({'file': relative, 'declaration': declaration, 'sha256': hashlib.sha256(path.read_bytes()).hexdigest()})
+    if not consumers:
+        raise ValueError('Historical SQLite workspace has no declared desktop/hub consumer')
+    export_path = package_path.parent / WORKSPACE_ADAPTER['export']
+    resolved = owned_source_path(export_path, template)
+    if not resolved.is_file():
+        raise ValueError('Historical SQLite workspace export is unavailable')
+    return {**WORKSPACE_ADAPTER, 'packageSha256': hashlib.sha256(package_path.read_bytes()).hexdigest(),
+            'consumerDeclarations': consumers, 'sourcePath': export_path.relative_to(template).as_posix(),
+            'exportSha256': hashlib.sha256(resolved.read_bytes()).hexdigest()}
+
+
+def workspace_import_controls(adapters):
+    return [{'specifier': adapter['specifier'], 'expectedWorkspacePath': adapter['sourcePath'],
+             'resolverEvidence': 'research-workspace-resolution.json', 'allowUnused': True} for adapter in adapters]
+
+
 def configure(template, tests, reporter):
-    # Original tests and application imports remain unchanged. Only test discovery,
-    # worker count and reporting are replaced, so every result is an adapted replay.
+    # Original tests and application imports remain unchanged. Discovery, worker
+    # count, reporting and the declared workspace route use a trusted replay config.
     config = {'environment': 'node', 'include': tests, 'pool': 'forks', 'maxWorkers': 1,
               'fileParallelism': False, 'retry': 0, 'bail': 0, 'testTimeout': 30000,
               'hookTimeout': 30000, 'reporters': [str(reporter)]}
@@ -38,11 +74,22 @@ def configure(template, tests, reporter):
     if (template / 'apps/web/src').exists():
         settings['resolve'] = {'alias':{'~':str((template / 'apps/web/src').resolve())}}
     # The alias must follow each fresh execution rather than point into the template.
-    text = 'import {defineConfig} from "vite-plus/test/config";import {fileURLToPath} from "node:url";\nconst config=' + json.dumps(settings) + ';\n'
+    adapter = scope_workspace_adapter(template)
+    text = 'import {defineConfig} from "vite-plus/test/config";import {fileURLToPath} from "node:url";import fs from "node:fs";import crypto from "node:crypto";\nconst config=' + json.dumps(settings) + ';\n'
     if 'resolve' in settings:
         text += 'config.resolve.alias["~"]=fileURLToPath(new URL("./apps/web/src",import.meta.url));\n'
+    if adapter:
+        text += ('const root=fileURLToPath(new URL("./",import.meta.url)).replace(/\\/$/,"");'
+                 'const sqlite=fileURLToPath(new URL("./packages/sqlite/src/maintenance.ts",import.meta.url));'
+                 'config.resolve={alias:[{find:/^@irudd-scope\\/sqlite$/,replacement:sqlite,customResolver(id){'
+                 'const realPath=fs.realpathSync(id);if(realPath!==fs.realpathSync(sqlite)||!realPath.startsWith(root+"/"))'
+                 'throw new Error("SQLite alias resolved outside owned source");'
+                 'fs.writeFileSync(new URL("./research-workspace-resolution.json",import.meta.url),JSON.stringify({'
+                 'specifier:"@irudd-scope/sqlite",sourceRoot:root,realPath,sha256:crypto.createHash("sha256").update(fs.readFileSync(realPath)).digest("hex")}));'
+                 'return realPath;}}]};\n')
     text += 'export default defineConfig(config);\n'
     (template / 'research-test-value.config.ts').write_text(text)
+    return [adapter] if adapter else []
 
 
 def plan(template, files, cli, output):
@@ -73,13 +120,16 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
     if fix != candidate['fix'] or parent != candidate['parent']:
         raise ValueError('historical commit identity disagrees with manifest')
     archive(repository, fix, template)
-    configure(template, candidate['testFiles'], reporter)
-    options = dict(dependencies=dependencies, timeout=90, node=str(node), expected_runtime=runtime_identity)
+    adapters = configure(template, candidate['testFiles'], reporter)
+    write_json(output / 'workspace-adapters.json', adapters)
+    options = dict(dependencies=dependencies, timeout=90, node=str(node), expected_runtime=runtime_identity,
+                   import_controls=workspace_import_controls(adapters))
     fixed = execute_case(template, output / 'fixed-before', COMMAND, **options)
     if not fixed['complete'] or fixed['status'] != 'survived':
-        return {**candidate, 'verified': False, 'exclusion': 'fixed adapted baseline incomplete or failing', 'fixedEvidence': 'fixed-before/execution.json'}
+        return {**candidate, 'verified': False, 'exclusion': 'fixed adapted baseline incomplete or failing', 'fixedEvidence': 'fixed-before/execution.json',
+                'workspaceAdapters': adapters}
     faulty = output / 'faulty-template'
-    shutil.copytree(template, faulty)
+    copy_owned_source(template, faulty)
     reverted = []
     for file in candidate['sourceFiles']:
         target = faulty / file
@@ -90,7 +140,7 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
             target.write_bytes(before)
             reverted.append(file)
     if not reverted:
-        return {**candidate, 'verified': False, 'exclusion': 'no historical source difference'}
+        return {**candidate, 'verified': False, 'exclusion': 'no historical source difference', 'workspaceAdapters': adapters}
     regression = execute_case(faulty, output / 'faulty', COMMAND, baseline=fixed['tests'], **options)
     corrected = execute_case(template, output / 'fixed-after', COMMAND, baseline=fixed['tests'], **options)
     killed = [identity for identity, outcome in regression['outcomes'].items() if outcome == 'killed']
@@ -100,7 +150,7 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
              'killedBy': killed, 'unaffected': unaffected,
              'fixedTemplateSha256': hash_tree(template)[0], 'faultyTemplateSha256': hash_tree(faulty)[0],
              'dependencySha256': dependencies.sha256,
-             'node': runtime_identity,
+             'node': runtime_identity, 'workspaceAdapters': adapters,
              'fixedBefore': 'fixed-before/execution.json', 'faulty': 'faulty/execution.json', 'fixedAfter': 'fixed-after/execution.json'}
     # Presence in the parent file distinguishes existing inventory from retrospective
     # fix-revision inventory; exact individual test additions require manual diff audit.
@@ -109,7 +159,7 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
         exists = subprocess.run(['git', '-C', str(repository), 'cat-file', '-e', parent + ':' + file], capture_output=True).returncode == 0
         fault['testFileOrigins'][file] = 'parent file existed; individual additions not classified' if exists else 'fix-added regression file'
     parent_tests = output / 'parent-tests-template'
-    shutil.copytree(template, parent_tests)
+    copy_owned_source(template, parent_tests)
     existing_files = []
     for file in candidate['testFiles']:
         if fault['testFileOrigins'][file].startswith('parent file existed'):
@@ -139,6 +189,7 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
     matrix = {'schemaVersion': 1, 'baselineComplete': True, 'subject': {'name': candidate['subject'], 'revision': fix, 'faultId': candidate['id']},
               'tests': [{k: test[k] for k in ['id', 'name', 'file', 'durationMs'] if k in test} for test in fixed['tests']], 'mutants': [],
               'provenance': {'replay': fault['replay'], 'sourceSha256': fault['fixedTemplateSha256'], 'dependencySha256': dependencies.sha256,
+                             'workspaceAdapters': adapters,
                              'archguardSha256': hashlib.sha256(cli.read_bytes()).hexdigest(), 'planSha256': hash_tree(output / 'planning')[0],
                              'plannedMutants': len(mutation_plan['sites']), 'predeclaredPrefixLimit': limit}}
     for index, mutation in enumerate(sites):
@@ -223,6 +274,8 @@ def main():
                'replay': 'adapted fixed source + first-parent changed-source reversion + borrowed current dependencies',
                'seedCount': 100, 'testFractions': [0.25, 0.5, 0.75, 1], 'unit': 'historical fault, clustered by relatedGroup',
                'operators': ['comparison','equality','logical'], 'runnerSha256': runner_fingerprint(),
+               'sourceCopyPolicy': 'preserved validated owned links; internal absolute links rewritten into each fresh copy',
+               'workspaceAdapterPolicy': WORKSPACE_ADAPTER,
                'experimentSha256': runner_fingerprint(), 'sdkSha256': hash_tree(REPOSITORY/'sdk')[0],
                'node': {name:node_fingerprint(str(path)) for name,path in runtimes.items()},
                'archguardSha256': hashlib.sha256(args.archguard.resolve().read_bytes()).hexdigest(),
@@ -246,8 +299,10 @@ def main():
             except (ValueError, OSError, subprocess.SubprocessError) as error:
                 result = {**candidate, 'verified': False, 'exclusion': str(error)}
             verify_experiment_identity(registration,args.archguard.resolve(),runtimes)
+            if (directory / 'workspace-adapters.json').exists():
+                result['workspaceAdapters'] = read_json(directory / 'workspace-adapters.json')
             result['recordDigests'] = {file:hashlib.sha256((directory/file).read_bytes()).hexdigest() for file in
-                 ['matrix.json','analysis.json','evaluation.json','fixed-before/execution.json','faulty/execution.json','fixed-after/execution.json'] if (directory/file).exists()}
+                 ['matrix.json','analysis.json','evaluation.json','workspace-adapters.json','fixed-before/execution.json','faulty/execution.json','fixed-after/execution.json'] if (directory/file).exists()}
             write_json(directory / 'fault.json', result)
         results.append(result)
         write_json(output / 'attempts.json', results)
