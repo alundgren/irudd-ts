@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Focused owned-source and historical workspace setup controls."""
 import argparse
+import errno
 import json
 import os
 from pathlib import Path
@@ -77,7 +78,7 @@ def source_controls(output):
             raise RuntimeError('Injected disk boundary after one copied chunk')
         return {}
 
-    with patch('runner.disk_check', side_effect=stop_after_chunk):
+    with patch('runner.clone_regular_file', side_effect=OSError(errno.ENOTSUP, 'Authored unsupported clone control')), patch('runner.disk_check', side_effect=stop_after_chunk):
         try:
             copy_owned_source(large, partial)
         except RuntimeError:
