@@ -59,3 +59,5 @@ Start with the [runnable examples](examples/README.md), including a [T3 Code ado
 Archguard is MIT licensed. See [dependency licenses](docs/licenses/README.md) when distributing binaries or upstream assets.
 
 For optional structural duplicate and mutation feedback, see the [code-quality guide](docs/code-quality.md) and [authored examples](examples/code-quality/README.md). Findings are review evidence, with no CI gate or score target.
+
+To have an agent evaluate architecture checks, duplication improvements, and tests within a time and disk budget, install the [evaluation skill](docs/guides/evaluate.md). It publishes an authorized draft PR before mutation testing and updates it as results arrive.

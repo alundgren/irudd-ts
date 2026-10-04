@@ -9,6 +9,7 @@
 | Write a Rust or TypeScript graph plugin | [Plugin guide](extensions/plugins.md) |
 | Use compiler member facts | [Semantic provider guide](extensions/semantic-provider.md) |
 | Try a small complete configuration | [Examples](../examples/README.md) |
+| Have an agent evaluate this tool on my project | [Evaluation skill](guides/evaluate.md) |
 | Adapt policies for T3 Code | [T3 case study](../examples/t3code/README.md) |
 | Change Archguard | [Architecture](development/architecture.md), [development setup](development/README.md) |
 | Review redistribution requirements | [Licenses](licenses/README.md) |

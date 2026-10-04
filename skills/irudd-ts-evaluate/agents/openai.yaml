@@ -1,0 +1,4 @@
+interface:
+  display_name: "Evaluate irudd-ts"
+  short_description: "Evaluate architecture, duplication, and test value"
+  default_prompt: "Use $irudd-ts-evaluate to evaluate this project within an agreed time and disk budget and prepare a draft PR with useful findings."
