@@ -287,7 +287,8 @@ def controls(output, node):
     excluded = [{**candidate, 'repository': str(output / 'never-archive'), 'fix': 'not-a-commit', 'parent': 'not-a-parent',
                  'sourceFiles': ['never.ts'], 'testFiles': ['never.test.ts']} for candidate in candidates[3:]]
     candidate_path, exclusion_map = output / 'excluded-candidates.json', output / 'exclusion-map.json'
-    write_json(candidate_path, excluded)
+    excluded_manifest = {'schemaVersion': 1, 'sourceBindingAuditSha256': 'a' * 64, 'candidates': excluded}
+    write_json(candidate_path, excluded_manifest)
     write_json(exclusion_map, {**manifest, 'candidates': {key: value for key, value in manifest['candidates'].items() if key in {row['id'] for row in excluded}}})
     cli_output = output / 'cli-exclusions'
     command = [sys.executable, str(Path(__file__).with_name('history.py')), '--candidates', str(candidate_path), '--output', str(cli_output),
@@ -298,6 +299,16 @@ def controls(output, node):
     require(len(attempts) == 3 and all(row.get('executionAttempted') is False and not row['verified'] and
                                       row['exclusion'].startswith('Setup:') for row in attempts), 'CLI exclusion ledger must be explicit for all unavailable routes')
     require(not list(cli_output.glob('*/fixed-template')) and not list(cli_output.glob('*/*/execution.json')), 'Unavailable map routes must not archive or run a test')
+    registered_manifest = read_json(cli_output / 'preregistration.json')
+    require(registered_manifest['candidatesManifestSha256'] == checksum(candidate_path) and
+            registered_manifest['candidatesManifestMetadata'] == {'schemaVersion': 1, 'sourceBindingAuditSha256': 'a' * 64},
+            'Registration must bind whole manifest bytes and retain the independent audit metadata')
+    write_json(candidate_path, {**excluded_manifest, 'sourceBindingAuditSha256': 'b' * 64})
+    changed = run_command(command, output, private_environment(output / 'changed-manifest-private'), output / 'changed-manifest-process', timeout=30)
+    require(changed['exitCode'] != 0 and changed['cleanupComplete'] and
+            'experiment identity changed' in (output / 'changed-manifest-process/stderr.txt').read_text(), 'Same candidates with altered audit metadata must reject existing registration')
+    require(read_json(cli_output / 'preregistration.json') == registered_manifest, 'Rejected manifest metadata change must preserve the original registration')
+    write_json(candidate_path, excluded_manifest)
     mixed = subprocess.run(command + ['--t3-dependencies', str(prepared), '--scope-dependencies', str(prepared)], capture_output=True, timeout=15)
     require(mixed.returncode == 2 and b'never both modes' in mixed.stderr, 'CLI must reject donor fallback mixed with explicit installation mode')
     records.append({'control': 'cli-missing-failed-unknown-exclusions-and-no-global-fallback', 'passed': True})

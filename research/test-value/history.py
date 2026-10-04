@@ -451,7 +451,8 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     reporter = Path(__file__).resolve().parent / 'vitest-reporter.ts'
     dependencies = {}
-    manifest = read_json(args.candidates)
+    candidates_bytes = args.candidates.read_bytes()
+    manifest = json.loads(candidates_bytes)
     candidates = manifest['candidates'] if isinstance(manifest, dict) else manifest
     installations = HistoricalInstallations(args.dependency_installations, candidates, output) if args.dependency_installations else None
     if installations:
@@ -479,6 +480,8 @@ def main():
         return
     runtimes = {'t3code':args.t3_node.resolve(), 'scope':args.scope_node.resolve()}
     registration = {'candidates': candidates, 'mutantPrefixLimit': args.mutant_limit,
+               'candidatesManifestSha256': hashlib.sha256(candidates_bytes).hexdigest(),
+               'candidatesManifestMetadata': {key: value for key, value in manifest.items() if key != 'candidates'} if isinstance(manifest, dict) else None,
                'planningMaxRawUnits': args.max_raw_units if args.max_raw_units is not None else 8192,
                'testPool': 'fixed-revision tests; retrospective test changes remain a confounder',
                'replay': ('adapted fixed source + first-parent changed-source reversion + explicit lock-matched prepared dependencies' if installations else
@@ -497,6 +500,8 @@ def main():
     register_experiment(output, registration)
 
     def verify_candidate(candidate):
+        if hashlib.sha256(args.candidates.read_bytes()).hexdigest() != registration['candidatesManifestSha256']:
+            raise RuntimeError('Registered historical candidate manifest changed; stop and retain evidence')
         verify_experiment_identity(registration, args.archguard.resolve(), runtimes)
         if installations:
             installations.verify(candidate)
