@@ -137,6 +137,7 @@ pub(crate) fn atomic_write(path: &Path, bytes: &[u8]) -> Result<()> {
 }
 
 pub(crate) fn create_private_directory(parent: &Path, prefix: &str) -> Result<PathBuf> {
+    let parent = parent.canonicalize()?;
     let path = parent.join(format!("{prefix}-{}", unique_id()));
     #[cfg(unix)]
     {

@@ -14,7 +14,7 @@ struct Fixture {
 }
 impl Fixture {
     fn new() -> Self {
-        let directory = tempfile::tempdir().unwrap();
+        let directory = tempfile::tempdir_in(std::env::temp_dir().canonicalize().unwrap()).unwrap();
         let root = directory.path().join("input");
         fs::create_dir(&root).unwrap();
         for (name, source) in [
@@ -301,7 +301,7 @@ fn cancelled_or_timed_out_commands_cleanup_and_allow_fresh_resume() {
     fixture.mode("wait");
     let report = fixture.run();
     assert!(!report.complete);
-    assert_eq!(report.summary.timed_out, 2);
+    assert_eq!(report.summary.timed_out, 2, "{:?}", report);
     assert!(
         report
             .problems
@@ -403,7 +403,7 @@ fn completed_checkpoint_survives_cancel_and_resumes_after_fresh_baseline() {
     });
     assert!(!report.complete);
     assert_eq!(report.summary.killed, 1);
-    assert_eq!(report.summary.cancelled, 1);
+    assert_eq!(report.summary.cancelled, 1, "{:?}", report);
     fs::write(fixture.marker.with_extension("txt.released"), "release").unwrap();
     let before = fixture.calls().len();
     let resumed = fixture.run();

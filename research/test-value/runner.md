@@ -1,0 +1,305 @@
+# Research execution
+
+`runner.py` produces a per-test mutation matrix for an explicitly configured
+trusted command. It does not install dependencies, select a framework, alter
+product protocols, or execute commands found in the scanned repository.
+
+The command requires Python 3 and Node with TypeScript stripping. Native
+`node:test` reporting also requires the event identity fields validated by the
+controls. A runner with missing fields fails as incomplete. The Vitest adapter
+extends the SDK v1 reporter, so compatibility includes its shutdown APIs.
+
+## Run a selected test slice
+
+Supply an absolute installed Archguard binary and a config such as:
+
+```json
+{
+  "sourceRoot": "/absolute/clean/source",
+  "dependencyRoot": "/absolute/installed/source",
+  "archguard": "/absolute/archguard",
+  "node": "/absolute/pinned/runtime/bin/node",
+  "subject": { "name": "selected-subject", "revision": "exact-git-commit" },
+  "workspaceInclude": ["**"],
+  "workspaceExclude": ["**/dist-electron/**"],
+  "command": [
+    "{node}", "{vitest}", "run",
+    "--config", "vite.config.ts", "--reporter={reporter}",
+    "selected/file.test.ts"
+  ],
+  "planConfig": {
+    "schemaVersion": 1,
+    "selection": { "include": ["selected/source.ts"] }
+  },
+  "timeoutSeconds": 60,
+  "importControls": [
+    {
+      "specifier": "@workspace/package/subpath",
+      "expectedWorkspacePath": "packages/package/src/subpath.ts"
+    }
+  ]
+}
+```
+
+Replace the example paths and import specifier with actual selected inputs.
+Inspect the entire explicit command and its test setup before execution. Native
+Node commands use `--test-reporter={nodeReporter}` and explicit test paths.
+Command arguments also support `{sdk}` and `{node}`. `cwd` is relative to the
+owned source root. Configured environment values are hashed; keep credentials
+out of the configuration and artifacts.
+
+`{vitest}` resolves the declared Vitest executable from the copied `vite-plus`
+package context. This also works when the subject has no top-level Vitest
+dependency. The runner launches that file directly with the selected actual
+Node executable. It does not invoke the Vite+ launcher or install runtimes in
+each execution's private HOME. Prepare the subject's pinned runtime before the
+reserved execution window and supply its absolute executable path.
+
+```sh
+python3 research/test-value/runner.py run \
+  --config /absolute/config.json --output /absolute/new-output-directory
+```
+
+Use `planPath` instead of `planConfig` to supply an existing complete Archguard
+plan. The runner verifies each source SHA256, expected UTF-8 bytes and byte range
+before applying its edit. A changed source hash prevents test execution.
+
+`workspaceInclude` declares execution inputs separately from mutation selection.
+Include tests, configuration, helpers, package manifests and lockfiles. The
+default execution snapshot excludes `.git`, `node_modules`, `target`, `dist`
+directories, `.repos`, `.t3`, Vite caches and local `.env` files. Dependencies
+come only from `dependencyRoot`.
+Selected tests and source do not establish whole-repository coverage.
+
+An optional predeclared `mutantLimit` bounds the planned prefix and is retained
+with the original plan size. It changes the experimental corpus; it is not
+coverage pruning. The runner never stops a column after its first assertion.
+
+## Build generated test inputs
+
+An optional `buildPreparation` declares one audited command for every fresh
+execution. `execute_case(..., build_preparation=spec)` accepts the same record.
+Preparation runs after a mutation or historical source reversion and before
+the test command. For the audited Scope packages, launch the owned
+`node_modules/vite-plus/dist/pack-bin.js` directly with the pinned Node. Its
+arguments do not include `pack`. Do not use a package-manager script or the
+runtime-selecting Vite+ launcher.
+
+```json
+{
+  "schemaVersion": 1,
+  "command": ["{node}", "{buildEntry}"],
+  "cwd": "packages/cli",
+  "entryPoint": {
+    "path": "node_modules/vite-plus/dist/pack-bin.js",
+    "sha256": "REPLACE_WITH_AUDITED_ENTRY_SHA256"
+  },
+  "identityFiles": [
+    { "path": "node_modules/vite-plus/package.json", "sha256": "REPLACE_WITH_AUDITED_FILE_SHA256" }
+  ],
+  "inputPaths": ["packages/cli/src", "packages/cli/package.json", "packages/cli/vite.config.ts"],
+  "outputDirectories": ["packages/cli/dist"],
+  "outputs": ["packages/cli/dist/main.mjs"],
+  "timeoutSeconds": 120,
+  "maxOutputBytes": 4194304
+}
+```
+
+Replace all placeholders with audited hashes and declare the actual compiler
+JavaScript, package manifests, and native binary files in `identityFiles`.
+All paths are relative to the fresh source. Tool files may resolve into its
+owned dependency store. Source/configuration inputs and output paths must
+remain within the source; generated directories cannot overlap declared
+inputs, selected historical source/tests, dependencies, or each other.
+The declaration supports only the displayed fields and placeholders.
+
+Each build clears the complete generated directories, including old chunks.
+It requires every named output file and hashes each generated directory
+recursively. Declared source/configuration inputs must retain their post-edit
+bytes during the build. Evidence records the exact command, cwd, deadline,
+tool hashes, actual Node observations, source hashes before and after the
+build, output hashes, bounded logs, and owned process cleanup. A preload check
+records the direct process and inherited Node children. This relies on the
+explicitly audited command retaining its environment and is not an
+arbitrary-code sandbox.
+
+The SDK request digest combines any caller-supplied digest with preparation
+configuration, tool/runtime identities and effective source/output hashes.
+It cannot reuse a fixed digest while executing a different compiled mutation.
+Failed builds, missing outputs, runtime/pin mismatches and deadlines leave all
+test cells unknown. Tests do not start. Uncertain cleanup preserves the source
+and stops further scheduled execution. Without preparation, existing request
+identity and assertion classification remain unchanged.
+
+Run focused authored failure, correction and negative controls with:
+
+```sh
+python3 research/test-value/controls_runner.py --build-only \
+  --archguard /absolute/archguard --node /absolute/pinned/node \
+  --wrong-node /absolute/different/node --output /absolute/new-build-controls
+```
+
+## What completion means
+
+Each baseline test has an ID containing project, relative file, the full name
+hierarchy, and duplicate occurrence. Raw framework IDs are also retained. Per
+test durations are optional, descriptive observations.
+
+The baseline must finish with a nonempty active inventory and all tests passing.
+Every accepted mutant must execute exactly that inventory once, without retries,
+repetitions, skipped, pending, missing, extra or duplicate tests. An assertion
+failure kills a mutant only when no import, hook, runtime, unhandled or teardown
+error accompanies it. A complete passing column survives.
+
+The research sidecar records individual tests. Its request identity and SHA256
+bind it to the final SDK v1 result. After the child exits, `protocol-check.ts`
+validates that result with the product SDK. The parent compares the actual exit
+status, aggregate counts, raw assertion IDs and individual records. Matching
+aggregate counts alone cannot establish a complete test inventory.
+Both reporters record their actual executable path, version and SHA256. These
+must agree with the selected Node identity or every baseline cell stays unknown.
+The selected executable's directory comes first in PATH, including for forked
+tests and configured import checks. Protocol validation uses that same absolute
+executable. Runtime identity and the resolved Vitest entry hash enter provenance.
+The standalone matrix freezes its initial runtime identity across all columns.
+A replacement after the baseline rejects subsequent columns even when their
+reporters agree with the replacement runtime.
+
+Timeouts, rejected edits and infrastructure failures retain `unknown` for every
+baseline cell. Failed baselines produce evidence and `notRun` columns. They do
+not produce mutation-score evidence. `matrix.json` is the analysis input;
+`execution.json`, the raw result, inventory and process logs are the supporting
+evidence. An empty baseline remains recorded even when downstream analysis
+rejects its empty inventory.
+The runner reports stale hashes, unsafe paths and import mismatches as execution
+errors. It does not classify edits as compiler-invalid without compiler evidence.
+
+## Owned copies and dependencies
+
+The runner first copies the configured source into a hashed template. Each
+execution copies that template into a new source tree and creates private HOME,
+temporary, cache, config and data directories. Configured artifact paths can be
+retained through `capturedArtifacts`. Execution sources are removed afterward
+unless `keepSource` is explicitly enabled.
+
+Installed external dependencies are copied once into an owned store. Dependency
+links resolve within that store. Workspace source links are removed from the
+store and recreated against each execution's source. Required workspace targets
+must exist in the declared source snapshot. Generated package launchers are
+copied into each execution and their installed-root paths are replaced with the
+owned root. The runner never links the whole live `node_modules` directory.
+
+`importControls` records Node's resolved URL and real filesystem path. A
+declared workspace import must resolve to the expected file inside that fresh
+source copy. Dependencies and source manifests, locks included when declared,
+runner files, SDK, Node executable, Archguard executable, command and config
+contribute to provenance. The final dependency-store hash must match its initial
+hash; a changed store invalidates the matrix.
+
+External modules share the copied store. They must not write that store or rely
+on discovering source workspace packages through an external package's own
+physical dependency directory. Such imports fail rather than reach live source.
+This is trusted-command isolation, not protection against deliberately escaping
+commands or undisclosed external state.
+
+Disk checks run before copies and during subprocess execution. At or below 12%
+free space the runner stops its captured process group and leaves evidence. A
+timeout or output-budget failure also stops only that group. A process group
+left behind after the command exits makes the execution incomplete. The leader
+remains reserved through group observation and every signal. Unknown ownership
+or uncertain group observation suppresses numeric signals and fails completion.
+Unconfirmed cleanup stops the matrix scheduler. Remaining columns stay `notRun`
+with unknown cells; the runner preserves the uncertain source and evidence.
+The CLI handles SIGINT and SIGTERM so command cleanup runs before it exits.
+On Darwin only, a denied group signal keeps the leader reserved while bounded
+observation continues. No further numeric signals follow that denial. Cleanup
+requires renewed owned exit and a positive empty-group observation before reaping.
+Unknown observation, other signal errors or a live group at the deadline remain
+incomplete. Successfully settled cleanup does not make a timed-out test complete.
+
+## Controls
+
+```sh
+python3 research/test-value/controls_runner.py \
+  --output /absolute/new-controls-directory \
+  --archguard /absolute/archguard \
+  --installed /absolute/installed/vitest/repository \
+  --node /absolute/pinned/runtime/bin/node \
+  --wrong-node /absolute/different/runtime/bin/node
+```
+
+The optional `--installed` argument enables real Vitest controls. Without it,
+native Node and dependency-copy controls still run. Controls cover independent
+kill sets, duplicate names, skipped/missing/extra tests, assertion plus runtime,
+imports, assertion correction, late teardown and process exit, retries, source
+hash mismatch, workspace import ownership, and artifact-writing tests in both
+mutation orders. They create owned fixtures and never edit the installed source.
+Use `--ownership-only` for focused subprocess checks. Darwin checks include a
+real group that exits after an injected signal denial, retained live and unknown
+groups, non-Darwin denial and other signal errors, and timeout classification.
+Their durations are validation observations, not reserved benchmark measurements.
+Process controls also cover a live descendant after leader exit, deadlines,
+lost child ownership, delayed group observation and unavailable group inventory.
+Vitest controls check the actual runtime inside a forked test and the reporter,
+and reject a real assertion result produced under another runtime. If the pinned
+Vitest runtime lacks native Node event identity fields, use `--vitest-node` for
+that pin and `--node` for the supported native adapter runtime. The distinction
+is retained in each execution's evidence.
+
+## Historical caller API
+
+Import `execute_case` and pass an owned source template, a new evidence directory
+and the explicit command. Its return contains `tests`, `complete`, `status`,
+`outcomes`, `infrastructureErrors`, `protocol` and process metadata. Freeze
+`fixed_result["tests"]` as `baseline` for faulty and corrected executions.
+`dependencies` accepts one reusable `DependencyStore(...).copy()` instance.
+Use `direct_vitest_command(config_path)` for the explicit direct command and
+pass `node=absolute_runtime_path` to `execute_case` for each subject's pin.
+Callers can freeze `node_fingerprint(node)` once and supply it as `expected_node`
+across multiple executions. Each execution records both selected and expected
+identities; a changed executable leaves every cell unknown.
+The direct runner follows the exact test package declared by `vite-plus`.
+Current packages declare `vitest`; older packages declare
+`@voidzero-dev/vite-plus-test` and distribute `vitest.mjs` with the underlying
+Vitest version in `bundledVersions`. Evidence records both package identities
+and the owned entrypoint hash. Missing, ambiguous or inexact declarations reject
+execution. Use `--backend-only --installed CURRENT --bundled-installed HISTORICAL`
+with `controls_runner.py` to validate both actual entries, CLI versions, forked
+runtime identities, assertion correction and missing or undeclared entries.
+Standalone callers can use `install_signal_handlers()` to route interruption
+through owned subprocess cleanup. It returns previous handlers for restoration.
+The caller must record revision identities, classify the replay method and
+separate existing from fix-added tests. An assertion-only faulty replay accepted
+against a fixed inventory is evidence for that selected test slice, not a full
+historical dependency replay.
+
+`history.py --execution-profiles /absolute/profiles.json` accepts
+`{"schemaVersion":1,"candidates":{"DECLARED_ID":{"buildPreparation":SPEC}}}`.
+The same candidate preparation reaches fixed-before, reverted source,
+fixed-after, parent-test inventory and every mutant. The profile map is hashed
+in registration and revalidated before and after each case. Changing it needs
+a new output directory.
+
+A profile may also declare `fixtureOverlay` with `path`, absolute `bytesPath`,
+SHA256 `sha256`, exact `sourceRevision` and Git `gitBlob`. This narrow repair
+permits a missing `.ndjson` under a `fixtures` directory. It cannot replace an
+existing archive file, selected production source, a test, or a declared build
+input. The canonical revision must descend from the candidate fix and preserve
+every selected test-file Git blob. The copied bytes must match both their
+SHA256 and the specified canonical Git object. The runner validates the
+original archive first, then applies and records the overlay separately.
+Fixture bytes are rehashed before application and every case. Preserve the
+original unavailable ledger and canonical upstream notice.
+
+`--prepared-installations /absolute/existing-prepared-root` requires explicit
+`--dependency-installations`. It reuses only fully existing owned stores and
+metadata, validates their receipts and hashes, and never creates or repairs
+files in that root. All routes are validated before any execution. New
+registration retains the prepared root, metadata hashes and store/receipt
+bindings. Use a new output directory for the new execution profile.
+
+Fresh regular source files use `darwin-clone-or-bounded-stream-v1`. On Darwin the runner calls `fclonefileat` with retained source and destination directory descriptors and an exclusive destination. APFS gives the copy its own inode and makes later writes private. The runner records actual backend counts separately in `execution.json` as `sourceCopy`; byte manifests and `runner-hash-tree-v1` retain their existing format.
+
+Only unsupported cloning or a different filesystem permits the bounded byte stream on Darwin. Other clone failures stop the copy. Other operating systems use the bounded stream directly. Both paths check cancellation and the 12% disk boundary, preserve file bytes, mode and modification time, and reject existing destinations. Owned symbolic links still follow the existing validation and reconstruction rules. Darwin cloning also copies source extended attributes, so this policy does not claim identical filesystem metadata to the earlier byte stream. Prepared dependency stores retain their original recorded copy provenance.
+
+Run `controls_runner.py --copy-only --archguard ABSOLUTE_CLI --output NEW_OUTPUT` for real cloning, private writes in both directions, mode and time agreement, explicit fallback, error, existing destination, link, cancellation and disk controls. The current and bundled backend controls also verify actual cloned source files before running with the pinned Node executable.
