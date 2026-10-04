@@ -35,6 +35,13 @@ pub struct ClonePair {
     pub left_opaque_nodes: usize,
     pub right_opaque_nodes: usize,
 }
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct CloneGroup {
+    pub members: Vec<FunctionLocation>,
+    pub pair_indices: Vec<usize>,
+    pub all_members_match: bool,
+}
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct DryerReport {
@@ -49,6 +56,8 @@ pub struct DryerReport {
     pub functions: Vec<FunctionFacts>,
     pub excluded: Vec<FunctionExclusion>,
     pub pairs: Vec<ClonePair>,
+    pub groups: Vec<CloneGroup>,
+    pub groups_complete: bool,
     pub problems: Vec<AnalysisProblem>,
     pub omitted_evidence: OmittedEvidence,
     pub elapsed_ms: f64,

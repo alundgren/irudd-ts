@@ -2,10 +2,12 @@
 mod analyze;
 mod config;
 mod facts;
+mod groups;
 mod normalize;
 pub use analyze::{analyze, analyze_cached};
 pub use config::*;
 pub use facts::{
-    ClonePair, DryerReport, FunctionExclusion, FunctionFacts, FunctionInventory, SimilarityValues,
+    CloneGroup, ClonePair, DryerReport, FunctionExclusion, FunctionFacts, FunctionInventory,
+    SimilarityValues,
 };
 pub use normalize::extract;
