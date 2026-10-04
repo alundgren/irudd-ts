@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "review": "PASS independent final presentation review",
+  "scopeRevision": 76,
+  "reportSha256": "cc9f6bb53b490754dacc44a92a69bf7ff6a74d4e80b713e5c827e88f88c308d0",
+  "checkedManifestRows": 23,
+  "reviewer": "/root/reviewer",
+  "claims": "Screenshot and final report retain unfinished historical target, seven unrepaired results, open draft PR29 and unmerged PR26. main unchanged.",
+  "finalEditedMarkdownLinks": "PASS README.md and RESUME.md",
+  "preservedArtifactHashes": "PASS all relocation entries"
+}

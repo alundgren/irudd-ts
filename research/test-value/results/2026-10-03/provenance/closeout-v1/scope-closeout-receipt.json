@@ -1,0 +1,19 @@
+{
+  "title": "Test value research: prototype and resumption",
+  "kind": "html",
+  "blob": "cc9f6bb53b490754dacc44a92a69bf7ff6a74d4e80b713e5c827e88f88c308d0",
+  "fileName": "report.html",
+  "mediaType": "text/html",
+  "source": {
+    "host": "andreass-MacBook-Air.local",
+    "repo": "/Users/alun/repos/irudd-ts",
+    "worktree": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3",
+    "branch": "t3code/test-value-benchmark",
+    "cwd": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3"
+  },
+  "id": "archguard-test-value-20261003",
+  "revision": 76,
+  "createdAt": "2026-10-03T23:21:59.036Z",
+  "updatedAt": "2026-10-04T06:19:14.751Z",
+  "size": 4406479
+}

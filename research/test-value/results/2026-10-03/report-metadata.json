@@ -1,0 +1,11 @@
+{
+  "handoff": "Stopped at the user's request after investigating historical setup failures. The working prototype has measured all 199 declared mutations across 104 tests in selected Archguard, T3 Code and Scope slices. The original historical profile has five verified adapted fault replays and three rankable matrices. The larger 78-candidate profile has 46 prepared, independently rehashed dependency stores and completed baseline-only validation: 68 pass, seven unavailable, three declared preflight exclusions. No fault replays or mutations have run for that larger profile, and the requested 30\u201350 verified historical pairs remain unfinished. The seven failures need one missing Kiro transcript fixture, one Scope web-server build and five Scope CLI builds. Resume with audited explicit build commands that rebuild after each source edit; preserve the fixed test assertions and all earlier attempts. See the retained README and resumption document. The final pull request stays open; main is unchanged. Draft main PR29 is open. Historical sensitivity child PR26 remains open and unmerged.",
+  "validation": "Full scripts/check.sh and all 24 research controls passed on the combined source. Release build, private-copy controls and actual current/bundled runner controls passed. All 75 historical baseline executions confirmed cleanup and frozen runtime/runner identities. Fresh restoration of all six retained profiles passed.",
+  "evidenceRoot": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/results/2026-10-03",
+  "disk": {
+    "stopFreeFraction": 0.12,
+    "lastFreeFraction": 0.2852753000934892
+  },
+  "review": "Independent review passed for the implementation, retained archives, report fidelity control, seven-failure diagnosis and final resumption instructions.",
+  "pullRequest": "https://github.com/alundgren/irudd-ts/pull/29"
+}

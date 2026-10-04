@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "artifactId": "archguard-test-value-20261003",
+  "revision": 76,
+  "htmlSha256": "cc9f6bb53b490754dacc44a92a69bf7ff6a74d4e80b713e5c827e88f88c308d0",
+  "visualCheck": "PASS",
+  "method": "Native Scope accessibility and screenshots via cua_repl, under explicit user authorization for this Mac",
+  "checked": [
+    "Results shows 104 tests, 144 completed columns, 30 requirements and five historical replays",
+    "Method and handoff visibly states 199 declared mutations, 68 passing expanded baselines, seven unavailable, three preflight exclusions, no expanded fault or mutation results, unfinished 30\u201350 target",
+    "Draft PR29 URL and pending unmerged PR26 visible",
+    "Independent review and 24-control validation text visible; no repair success claimed",
+    "Readable handoff layout with no clipping in observed desktop viewport"
+  ],
+  "previousSelectedTabRestored": "Collaborative planner overnight results",
+  "preferencesAndTabs": "No preference or retention changes; existing tabs preserved"
+}

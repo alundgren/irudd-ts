@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "finalHtmlSha256": "cc9f6bb53b490754dacc44a92a69bf7ff6a74d4e80b713e5c827e88f88c308d0",
+  "collectedPayloadRoundTrip": "PASS",
+  "scopeAcceptedExactHtmlBytes": "PASS",
+  "scopeVisualQA": "PASS",
+  "mainRevision": "194bf91ce887498bf798cff2163d51bd897aa942",
+  "mainPr": "https://github.com/alundgren/irudd-ts/pull/29",
+  "state": "OPEN DRAFT",
+  "pendingChild26Head": "1779247e379da615978d9e7c89d6d06d6563fc1b",
+  "diskFreeFraction": 0.2851399061491859
+}

@@ -4,6 +4,8 @@ The current-suite experiment covers four selected CPU test slices across Archgua
 
 The user requested closeout after investigating the seven unavailable baselines. The requested 30–50 verified historical pairs remain unfinished. Read [the resumption steps](RESUME.md) before continuing.
 
+[Open the interactive report](report.html). The same report was accepted and visually checked in Scope as `archguard-test-value-20261003`, revision 76. The [draft PR29](https://github.com/alundgren/irudd-ts/pull/29) remains open.
+
 ## Current-suite result
 
 | Selected slice | Tests | Declared mutations executed | Usable columns | Killed | Unexplained survivors | Unknown | Compiler rejected | Fixed requirements | Exploratory core |

@@ -28,6 +28,8 @@ A fixture overlay changes the original execution inputs even when it uses a cano
 
 ## Local state to preserve
 
+The final [draft PR29](https://github.com/alundgren/irudd-ts/pull/29) is open against `main`. It contains the working prototype and retained measurements. Keep it open for continuation.
+
 The implementation branch is `t3code/test-value-benchmark` in `/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3`. Historical baseline validation froze source revision `4a96d4e76bb3b1be0b8e37b456a02301ad299e14` and runner fingerprint `6ea7bd34ee830feed10ebfb844797ee0488df79ef95470626c40187bdc9a3546`. Later closeout changes add report wording and a payload regression control; they do not change measured matrices.
 
 The prepared stores are under `research/local/test-value-20261003-lock-matched/`. That directory contains preparation evidence and all 46 owned stores. It has no historical mutation registration or results. Baseline-only records are separately under `research/local/test-value-20261003-lock-matched-baseline-validation/`. Current measurements are under `research/local/test-value-20261003-final/`; current posthoc analysis is under `research/local/test-value-20261003-sensitivity/`.

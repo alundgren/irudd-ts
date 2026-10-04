@@ -109,6 +109,42 @@
       "bytes": 759,
       "sha256": "45562c81905e7c188c1718cde13f902ac1409ef084979f2b8ef645ad0ccf29d1",
       "originalPath": "review receipt recorded from independent reviewer messages in this session"
+    },
+    {
+      "file": "scope-closeout-receipt.json",
+      "bytes": 662,
+      "sha256": "f547d74a4c6d59f2256ce7ad0337da22dd3c04c6a80f2865752fac0e5470dc6f",
+      "originalPath": "/private/tmp/archguard-test-value-20261003/scope-closeout-receipt.json"
+    },
+    {
+      "file": "scope-closeout-handoff.png",
+      "bytes": 693500,
+      "sha256": "57f90d411e89a6925ea46fbe3dff56c103cf1ca294130bcc281efbd1c24d5a39",
+      "originalPath": "/private/tmp/archguard-test-value-20261003/scope-closeout-handoff.png"
+    },
+    {
+      "file": "scope-closeout-visual-qa.json",
+      "bytes": 1037,
+      "sha256": "b64d17eaf67c96d99d367e2d6888bca82c9a17b2562b54cd533d3fabda978e9c",
+      "originalPath": "/Users/alun/.t3/worktrees/irudd-ts/t3code-6f4260d3/research/test-value/results/2026-10-03/provenance/closeout-v1/scope-closeout-visual-qa.json"
+    },
+    {
+      "file": "final-pr-receipt-at-creation.json",
+      "bytes": 198,
+      "sha256": "9eae6011589b6e617ec7fa29fb0e833db7da75af264b2715d259588d70a4859c",
+      "originalPath": "/private/tmp/archguard-test-value-20261003/final-pr-receipt.json"
+    },
+    {
+      "file": "final-closeout-receipt.json",
+      "bytes": 479,
+      "sha256": "b8ec2f07f7d422177382245a8bc94f560c2725569522e0a1d2f81fe5ca7f9f18",
+      "originalPath": "final closeout verification in this session"
+    },
+    {
+      "file": "final-presentation-review.json",
+      "bytes": 532,
+      "sha256": "f3980da9338485e038e732d9c8ea9bcc85f46d7d3bbf6458dc611125815ada96",
+      "originalPath": "independent reviewer messages and final edited-document checks in this session"
     }
   ]
 }
