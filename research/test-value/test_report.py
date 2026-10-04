@@ -9,6 +9,25 @@ from test_analysis import matrix
 
 
 class ReportEvidenceControls(unittest.TestCase):
+    def test_reporting_profile_does_not_choose_each_faults_best_attempt(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);history=root/'history';old=history/'fault';old.mkdir(parents=True)
+            data=matrix();fault={'id':'fault','verified':True,'killedBy':['A'],'relatedGroup':'authored-control'}
+            (history/'attempts.json').write_text(json.dumps([fault]))
+            (old/'matrix.json').write_text(json.dumps(data));(old/'analysis.json').write_text(json.dumps(analyze(data)))
+            (old/'evaluation.json').write_text(json.dumps(compact_evaluation(evaluate_fault(data,fault,seeds=1),data)))
+            repaired=root/'repaired';repaired.mkdir()
+            newer={**fault,'verified':False,'exclusion':'authored fixed baseline failure'}
+            (repaired/'attempts.json').write_text(json.dumps([newer]))
+            result=collect(root,history_root=repaired)
+            self.assertEqual(result['aggregate']['faults'],0)
+            self.assertEqual(len(result['history']),1)
+            self.assertFalse(result['history'][0]['verified'])
+            self.assertTrue(result['archivedHistory'][0]['verified'])
+            self.assertEqual(collect(root)['aggregate']['faults'],1)
+            with self.assertRaisesRegex(ValueError,'no attempts ledger'):
+                collect(root,history_root=root/'missing')
+
     def test_stale_analysis_cannot_describe_changed_matrix_as_complete(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);subject=root/'current'/'slice';subject.mkdir(parents=True)
