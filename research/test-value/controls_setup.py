@@ -145,6 +145,17 @@ def workspace_controls(output, dependencies, node):
                          baseline=fixed['tests'], import_controls=controls)
     require(wrong['protocol']['exitCode'] == 0 and not wrong['complete'] and all(v == 'unknown' for v in wrong['outcomes'].values()),
             'Passing tests with altered actual-resolution evidence must reject the entire column')
+    deleted = directory / 'deleted-export-template'
+    copy_owned_source(template, deleted)
+    (deleted / 'case.test.ts').write_text((template / 'case.test.ts').read_text() +
+        'import{afterAll}from"vite-plus/test";import fs from"node:fs";afterAll(()=>{fs.unlinkSync("./packages/sqlite/src/maintenance.ts");});')
+    deletion = execute_case(deleted, directory / 'deleted-export', COMMAND, dependencies=dependencies, node=node,
+                            baseline=fixed['tests'], import_controls=controls)
+    require(deletion['protocol']['exitCode'] == 0 and not deletion['complete'] and
+            all(v == 'unknown' for v in deletion['outcomes'].values()) and
+            any('Workspace resolver evidence failed' in message for message in deletion['infrastructureErrors']) and
+            not any(record.get('observed') is False for record in deletion['importControls']),
+            'Passing tests that delete an imported export in teardown must retain resolver validation failure and unknown cells')
     unused = directory / 'unused-alias-template'
     copy_owned_source(template, unused)
     (unused / 'case.test.ts').write_text('import{test,expect}from"vite-plus/test";test("unrelated",()=>expect(1).toBe(1));')
@@ -166,9 +177,9 @@ def workspace_controls(output, dependencies, node):
         else:
             raise AssertionError(f'Unsupported alias setup accepted: {name}')
     record = {'control': 'exact-declared-workspace-with-actual-resolver-and-restoration', 'passed': True,
-              'negativeControls': ['undeclared-subpath', 'unsupported-export', 'undeclared-consumer', 'escaping-export', 'mismatched-resolution'],
+              'negativeControls': ['undeclared-subpath', 'unsupported-export', 'undeclared-consumer', 'escaping-export', 'mismatched-resolution', 'deleted-export'],
               'adapter': adapters, 'unusedAliasEvidence': 'unused-alias/execution.json',
-              'evidence': ['fixed/execution.json', 'changed/execution.json', 'restored/execution.json', 'undeclared-subpath/execution.json', 'mismatched-resolution/execution.json']}
+              'evidence': ['fixed/execution.json', 'changed/execution.json', 'restored/execution.json', 'undeclared-subpath/execution.json', 'mismatched-resolution/execution.json', 'deleted-export/execution.json']}
     write_json(directory / 'controls.json', record)
     return record
 

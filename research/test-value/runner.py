@@ -769,16 +769,19 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
                 continue
             try:
                 path = owned_source_path(source / control["resolverEvidence"], source)
-                record = read_json(path)
+                try:
+                    record = read_json(path)
+                except FileNotFoundError:
+                    if control.get("allowUnused") and not (source / control["resolverEvidence"]).is_symlink():
+                        resolutions.append({"specifier": control["specifier"], "observed": False})
+                        continue
+                    raise
                 expected = owned_source_path(source / control["expectedWorkspacePath"], source)
                 if (record.get("specifier") != control["specifier"] or record.get("realPath") != str(expected) or
                         record.get("sourceRoot") != str(source) or record.get("sha256") != digest(expected.read_bytes())):
                     raise ValueError("Actual workspace import resolved outside the expected fresh source")
                 resolutions.append(record)
             except (OSError, ValueError) as error:
-                if isinstance(error, FileNotFoundError) and control.get("allowUnused"):
-                    resolutions.append({"specifier": control["specifier"], "observed": False})
-                    continue
                 problems.append(f"Workspace resolver evidence failed: {error}")
         if raw["status"] != "finished":
             problems.append(f"Command did not finish: {raw['status']}")
