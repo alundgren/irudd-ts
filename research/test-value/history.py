@@ -14,6 +14,161 @@ COMMAND = direct_vitest_command('research-test-value.config.ts')
 WORKSPACE_ADAPTER = {'specifier': '@irudd-scope/sqlite', 'package': 'packages/sqlite/package.json',
                      'export': './src/maintenance.ts', 'consumers': ['apps/desktop/package.json', 'apps/hub/package.json'],
                      'resolution': 'exact-specifier Vite alias into the fresh source tree; actual resolution path/hash retained when imported'}
+INSTALLATION_SAFEGUARDS = {'frozenLockfile': True, 'lifecycleScripts': False, 'pnpmHooks': False,
+                           'automaticPackageManagerSwitch': False, 'automaticRuntimeInstall': False}
+
+
+def sha256_text(value):
+    return isinstance(value, str) and len(value) == 64 and all(letter in '0123456789abcdef' for letter in value)
+
+
+def verify_installation_inputs(row, receipt):
+    root = Path(row['root']).resolve()
+    for relative, expected in receipt['inputFiles'].items():
+        path = owned_source_path(root / relative, root)
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise ValueError('Prepared dependency input changed or is unavailable: ' + relative)
+
+
+class HistoricalInstallations:
+    """Explicit candidate routes to prepared installations; no installation commands."""
+
+    def __init__(self, manifest_path, candidates, output):
+        self.path = Path(manifest_path).resolve()
+        self.manifest_sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
+        manifest = read_json(self.path)
+        if (not isinstance(manifest, dict) or type(manifest.get('schemaVersion')) is not int or
+                manifest['schemaVersion'] != 1 or not isinstance(manifest.get('installations'), list) or
+                not isinstance(manifest.get('candidates'), dict)):
+            raise ValueError('Invalid dependency installation map')
+        self.manifest = manifest
+        self.rows, self.receipts, self.stores, self.profiles = {}, {}, {}, {}
+        if (not isinstance(candidates, list) or any(not isinstance(candidate, dict) or not isinstance(candidate.get('id'), str) or
+                not candidate['id'] or candidate['id'] in {'.', '..'} or Path(candidate['id']).is_absolute() or
+                candidate.get('subject') not in {'t3code', 'scope'} for candidate in candidates)):
+            raise ValueError('Invalid historical candidate identity or subject')
+        expected = {candidate['id']: candidate for candidate in candidates}
+        if len(expected) != len(candidates) or any(not isinstance(key, str) or not key or Path(key).parts != (key,)
+                                                  for key in expected):
+            raise ValueError('Duplicate or invalid historical candidate ID')
+        if set(manifest['candidates']) - expected.keys():
+            raise ValueError('Dependency map contains undeclared historical candidates')
+        for row in manifest['installations']:
+            if (not isinstance(row, dict) or not isinstance(row.get('id'), str) or not row['id'] or
+                    row['id'] in self.rows or row.get('subject') not in {'t3code', 'scope'} or
+                    not isinstance(row.get('root'), str) or not Path(row['root']).is_absolute() or
+                    not isinstance(row.get('receiptPath'), str) or not Path(row['receiptPath']).is_absolute() or
+                    not sha256_text(row.get('receiptSha256'))):
+                raise ValueError('Duplicate or invalid declared dependency installation')
+            receipt_path = Path(row['receiptPath'])
+            if hashlib.sha256(receipt_path.read_bytes()).hexdigest() != row['receiptSha256']:
+                raise ValueError('Dependency preparation receipt hash mismatch')
+            receipt = read_json(receipt_path)
+            if (not isinstance(receipt, dict) or type(receipt.get('schemaVersion')) is not int or receipt['schemaVersion'] != 1 or
+                    receipt.get('id') != row['id'] or receipt.get('subject') != row['subject'] or
+                    not isinstance(receipt.get('installationRoot'), str) or not Path(receipt['installationRoot']).is_absolute() or
+                    Path(receipt['installationRoot']).resolve() != Path(row['root']).resolve() or
+                    not sha256_text(receipt.get('inputSignature')) or type(receipt.get('complete')) is not bool or
+                    receipt.get('policy') != 'lock-matched-adapted-v1' or not isinstance(receipt.get('safeguards'), dict) or
+                    any(receipt['safeguards'].get(key) is not value for key, value in INSTALLATION_SAFEGUARDS.items())):
+                raise ValueError('Dependency preparation receipt identity or safeguards disagree')
+            inputs = receipt.get('inputFiles')
+            if (not isinstance(inputs, dict) or not inputs or any(not isinstance(path, str) or not path or
+                    Path(path).is_absolute() or '..' in Path(path).parts or Path(path).as_posix() != path or
+                    not sha256_text(checksum) for path, checksum in inputs.items()) or
+                    hashlib.sha256(json.dumps(sorted(inputs.items()), separators=(',', ':')).encode()).hexdigest() != receipt['inputSignature']):
+                raise ValueError('Dependency preparation input records disagree with their signature')
+            if receipt['complete']:
+                if receipt.get('inputFilesUnchanged') is not True or receipt.get('changedArchivedInputs') != []:
+                    raise ValueError('Complete dependency preparation changed archived inputs')
+                process = receipt.get('process', {})
+                if (not isinstance(process, dict) or process.get('status') != 'finished' or type(process.get('exitCode')) is not int or
+                        process['exitCode'] != 0 or process.get('cleanupComplete') is not True or
+                        process.get('cleanupErrors') or process.get('residualProcessGroup')):
+                    raise ValueError('Complete dependency preparation has incomplete process evidence')
+                verify_installation_inputs(row, receipt)
+            self.rows[row['id']], self.receipts[row['id']] = row, receipt
+        for candidate in candidates:
+            identity = candidate['id']
+            installation_id = manifest['candidates'].get(identity)
+            if identity in manifest['candidates'] and (not isinstance(installation_id, str) or not installation_id):
+                raise ValueError('Invalid candidate dependency installation ID')
+            if installation_id is None:
+                profile = {'installationId': None, 'setupExclusion': 'Setup: no explicit dependency installation is mapped for this candidate'}
+            elif installation_id not in self.rows:
+                profile = {'installationId': installation_id, 'setupExclusion': 'Setup: mapped dependency installation is absent: ' + installation_id}
+            else:
+                row, receipt = self.rows[installation_id], self.receipts[installation_id]
+                if row['subject'] != candidate['subject']:
+                    raise ValueError('Candidate and dependency installation subjects disagree')
+                profile = {'installationId': installation_id, 'receiptPath': row['receiptPath'], 'receiptSha256': row['receiptSha256'],
+                           'inputSignature': receipt['inputSignature'], 'complete': receipt['complete'], 'policy': receipt['policy']}
+                if not receipt['complete']:
+                    profile['setupExclusion'] = 'Setup: explicitly registered dependency installation is incomplete: ' + installation_id
+            self.profiles[identity] = profile
+        # Every receipt is validated before any successful installation is copied.
+        for candidate in candidates:
+            profile = self.profiles[candidate['id']]
+            if profile.get('setupExclusion') or candidate.get('preflightExclusion'):
+                continue
+            row = self.rows[profile['installationId']]
+            key = row['subject'] + '-' + profile['inputSignature']
+            if key not in self.stores:
+                root = Path(output) / 'installation-dependencies' / key
+                metadata = Path(output) / 'installation-metadata' / (key + '.json')
+                store = DependencyStore(row['root'], root)
+                if metadata.exists():
+                    info = read_json(metadata)
+                    if info.get('inputSignature') != profile['inputSignature'] or info.get('subject') != row['subject']:
+                        raise ValueError('Resumed installation store has a different declared identity')
+                    source_id = info.get('sourceInstallationId')
+                    source_row, source_receipt = self.rows.get(source_id), self.receipts.get(source_id)
+                    if (not source_row or not source_receipt['complete'] or source_receipt['inputSignature'] != profile['inputSignature'] or
+                            source_row['subject'] != row['subject'] or Path(info['installedRoot']).resolve() != Path(source_row['root']).resolve()):
+                        raise ValueError('Resumed store source installation is absent or disagrees with its receipt')
+                    store.modules, store.workspace_links, store.owned_directories = info['modules'], info['workspaceLinks'], set(info['ownedDirectories'])
+                    store.sha256 = info['sha256']
+                    if store.current_digest() != store.sha256:
+                        raise ValueError('Resumed installation dependency store has changed')
+                else:
+                    store.copy()
+                    info = {'modules': store.modules, 'workspaceLinks': store.workspace_links,
+                            'ownedDirectories': sorted(store.owned_directories), 'sha256': store.sha256,
+                            'installedRoot': str(Path(row['root']).resolve()), 'sourceInstallationId': row['id'],
+                            'subject': row['subject'], 'inputSignature': profile['inputSignature']}
+                    write_json(metadata, info)
+                    write_json(metadata.with_name(key + '-files.json'), store.manifest)
+                self.stores[key] = (store, info['sourceInstallationId'])
+            store, source_installation_id = self.stores[key]
+            profile.update(storeKey=key, ownedStoreSha256=store.sha256, sourceInstallationId=source_installation_id)
+
+    def registration(self):
+        return {'schemaVersion': 1, 'manifestPath': str(self.path), 'manifestSha256': self.manifest_sha256,
+                'declaredMap': self.manifest,
+                'receipts': {key: {'receiptSha256': self.rows[key]['receiptSha256'], 'complete': receipt['complete'],
+                                   'inputSignature': receipt['inputSignature']} for key, receipt in self.receipts.items()},
+                'candidateProfiles': self.profiles,
+                'ownedStores': {key: {'sha256': store.sha256, 'sourceInstallationId': installation_id}
+                                for key, (store, installation_id) in self.stores.items()}}
+
+    def dependency(self, candidate):
+        key = self.profiles[candidate['id']].get('storeKey')
+        return self.stores[key][0] if key else None
+
+    def verify(self, candidate):
+        if hashlib.sha256(self.path.read_bytes()).hexdigest() != self.manifest_sha256:
+            raise RuntimeError('Registered dependency installation map changed; stop and retain evidence')
+        for row in self.rows.values():
+            if hashlib.sha256(Path(row['receiptPath']).read_bytes()).hexdigest() != row['receiptSha256']:
+                raise RuntimeError('Registered dependency preparation receipt changed; stop and retain evidence')
+            if self.receipts[row['id']]['complete']:
+                try:
+                    verify_installation_inputs(row, self.receipts[row['id']])
+                except (ValueError, OSError) as error:
+                    raise RuntimeError('Registered prepared dependency input changed; stop and retain evidence: ' + str(error)) from error
+        store = self.dependency(candidate)
+        if store is not None and store.current_digest() != store.sha256:
+            raise RuntimeError('Registered owned installation dependency store changed; stop and retain evidence')
 
 
 def execute_case(*args, **kwargs):
@@ -106,7 +261,7 @@ def plan(template, files, cli, output):
     return value
 
 
-def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity):
+def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None):
     output.mkdir(parents=True)
     preflight=candidate.get('preflightExclusion')
     if preflight is not None:
@@ -192,6 +347,8 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
                              'workspaceAdapters': adapters,
                              'archguardSha256': hashlib.sha256(cli.read_bytes()).hexdigest(), 'planSha256': hash_tree(output / 'planning')[0],
                              'plannedMutants': len(mutation_plan['sites']), 'predeclaredPrefixLimit': limit}}
+    if dependency_installation is not None:
+        matrix['provenance']['dependencyInstallation'] = dependency_installation
     for index, mutation in enumerate(sites):
         run = execute_case(template, output / f'mutant-{index:04d}', COMMAND, baseline=fixed['tests'], mutation=mutation, **options)
         matrix['mutants'].append({'id': mutation['id'], 'status': run['status'], 'outcomes': run['outcomes'], 'mutation': mutation,
@@ -234,44 +391,55 @@ def main():
     parser.add_argument('--candidates', required=True, type=Path)
     parser.add_argument('--output', required=True, type=Path)
     parser.add_argument('--archguard', required=True, type=Path)
-    parser.add_argument('--t3-dependencies', required=True, type=Path)
-    parser.add_argument('--scope-dependencies', required=True, type=Path)
+    parser.add_argument('--t3-dependencies', type=Path)
+    parser.add_argument('--scope-dependencies', type=Path)
+    parser.add_argument('--dependency-installations', type=Path)
     parser.add_argument('--mutant-limit', type=int, default=None)
     parser.add_argument('--prepare-only', action='store_true')
     parser.add_argument('--t3-node', required=True, type=Path)
     parser.add_argument('--scope-node', required=True, type=Path)
     args = parser.parse_args()
+    if args.dependency_installations:
+        if args.t3_dependencies or args.scope_dependencies:
+            parser.error('Use an explicit installation map or both global dependency donors, never both modes')
+    elif not args.t3_dependencies or not args.scope_dependencies:
+        parser.error('Both global dependency donors are required without an explicit installation map')
     install_signal_handlers()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     reporter = Path(__file__).resolve().parent / 'vitest-reporter.ts'
     dependencies = {}
-    for name, installed in [('t3code', args.t3_dependencies), ('scope', args.scope_dependencies)]:
-        store_root = output / (name + '-dependencies')
-        # Store metadata is loaded only to resume this explicitly owned experiment.
-        metadata = output / (name + '-dependencies.json')
-        store = DependencyStore(installed, store_root)
-        if metadata.exists():
-            info = read_json(metadata)
-            store.modules, store.workspace_links, store.owned_directories = info['modules'], info['workspaceLinks'], set(info['ownedDirectories'])
-            store.sha256 = info['sha256']
-            if store.current_digest() != store.sha256:
-                raise ValueError('resumed dependency store has changed')
-        else:
-            store.copy()
-            write_json(metadata, {'modules': store.modules, 'workspaceLinks': store.workspace_links,
-                                  'ownedDirectories': sorted(store.owned_directories), 'sha256': store.sha256,
-                                  'installedRoot': str(installed.resolve())})
-            write_json(output / (name + '-dependency-files.json'), store.manifest)
-        dependencies[name] = store
-    if args.prepare_only:
-        return
     manifest = read_json(args.candidates)
     candidates = manifest['candidates'] if isinstance(manifest, dict) else manifest
+    installations = HistoricalInstallations(args.dependency_installations, candidates, output) if args.dependency_installations else None
+    if installations:
+        write_json(output / 'dependency-installations.json', installations.registration())
+    else:
+        for name, installed in [('t3code', args.t3_dependencies), ('scope', args.scope_dependencies)]:
+            store_root = output / (name + '-dependencies')
+            # Store metadata is loaded only to resume this explicitly owned experiment.
+            metadata = output / (name + '-dependencies.json')
+            store = DependencyStore(installed, store_root)
+            if metadata.exists():
+                info = read_json(metadata)
+                store.modules, store.workspace_links, store.owned_directories = info['modules'], info['workspaceLinks'], set(info['ownedDirectories'])
+                store.sha256 = info['sha256']
+                if store.current_digest() != store.sha256:
+                    raise ValueError('resumed dependency store has changed')
+            else:
+                store.copy()
+                write_json(metadata, {'modules': store.modules, 'workspaceLinks': store.workspace_links,
+                                      'ownedDirectories': sorted(store.owned_directories), 'sha256': store.sha256,
+                                      'installedRoot': str(installed.resolve())})
+                write_json(output / (name + '-dependency-files.json'), store.manifest)
+            dependencies[name] = store
+    if args.prepare_only:
+        return
     runtimes = {'t3code':args.t3_node.resolve(), 'scope':args.scope_node.resolve()}
     registration = {'candidates': candidates, 'mutantPrefixLimit': args.mutant_limit,
                'testPool': 'fixed-revision tests; retrospective test changes remain a confounder',
-               'replay': 'adapted fixed source + first-parent changed-source reversion + borrowed current dependencies',
+               'replay': ('adapted fixed source + first-parent changed-source reversion + explicit lock-matched prepared dependencies' if installations else
+                          'adapted fixed source + first-parent changed-source reversion + borrowed current dependencies'),
                'seedCount': 100, 'testFractions': [0.25, 0.5, 0.75, 1], 'unit': 'historical fault, clustered by relatedGroup',
                'operators': ['comparison','equality','logical'], 'runnerSha256': runner_fingerprint(),
                'sourceCopyPolicy': 'preserved validated owned links; internal absolute links rewritten into each fresh copy',
@@ -279,26 +447,43 @@ def main():
                'experimentSha256': runner_fingerprint(), 'sdkSha256': hash_tree(REPOSITORY/'sdk')[0],
                'node': {name:node_fingerprint(str(path)) for name,path in runtimes.items()},
                'archguardSha256': hashlib.sha256(args.archguard.resolve().read_bytes()).hexdigest(),
-               'dependencySha256': {name:store.sha256 for name,store in dependencies.items()}}
+               'dependencySha256': ({key: store.sha256 for key, (store, _) in installations.stores.items()} if installations else
+                                    {name:store.sha256 for name,store in dependencies.items()})}
+    if installations:
+        registration['dependencyInstallations'] = installations.registration()
     register_experiment(output, registration)
+
+    def verify_candidate(candidate):
+        verify_experiment_identity(registration, args.archguard.resolve(), runtimes)
+        if installations:
+            installations.verify(candidate)
+
     results = []
     for candidate in candidates:
         disk_check(output)
-        verify_experiment_identity(registration,args.archguard.resolve(),runtimes)
+        verify_candidate(candidate)
         directory = output / candidate['id']
         if (directory / 'fault.json').exists():
             result = read_json(directory / 'fault.json')
             for file, expected in result.get('recordDigests', {}).items():
                 if hashlib.sha256((directory/file).read_bytes()).hexdigest()!=expected:
                     raise ValueError('retained historical evidence changed')
+            verify_candidate(candidate)
         else:
             try:
-                result = run_fault(candidate, dependencies[candidate['subject']], args.archguard.resolve(), directory, reporter, args.mutant_limit,
-                                   runtimes[candidate['subject']], registration['node'][candidate['subject']],
-                                   lambda:verify_experiment_identity(registration,args.archguard.resolve(),runtimes))
+                profile = installations.profiles[candidate['id']] if installations else None
+                if profile and profile.get('setupExclusion') and not candidate.get('preflightExclusion'):
+                    result = {**candidate, 'verified': False, 'executionAttempted': False, 'exclusion': profile['setupExclusion']}
+                else:
+                    store = installations.dependency(candidate) if installations else dependencies[candidate['subject']]
+                    result = run_fault(candidate, store, args.archguard.resolve(), directory, reporter, args.mutant_limit,
+                                       runtimes[candidate['subject']], registration['node'][candidate['subject']],
+                                       lambda:verify_candidate(candidate), dependency_installation=profile)
             except (ValueError, OSError, subprocess.SubprocessError) as error:
                 result = {**candidate, 'verified': False, 'exclusion': str(error)}
-            verify_experiment_identity(registration,args.archguard.resolve(),runtimes)
+            verify_candidate(candidate)
+            if installations:
+                result['dependencyInstallation'] = installations.profiles[candidate['id']]
             if (directory / 'workspace-adapters.json').exists():
                 result['workspaceAdapters'] = read_json(directory / 'workspace-adapters.json')
             result['recordDigests'] = {file:hashlib.sha256((directory/file).read_bytes()).hexdigest() for file in
