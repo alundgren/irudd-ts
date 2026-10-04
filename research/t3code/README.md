@@ -8,7 +8,7 @@
 | Compiler regression and Effect installation | [semantic reproduction](semantic/README.md) |
 | Synthetic repository conventions | [Structure experiment](structure.md) |
 | Installed source profiles and remaining failures | [Installed resolution](installed-resolution.md), [profiles](installed/profiles/) |
-| Continuous and reset-primer cache trials | [Cache measurements](cache.md), [raw results](results/cache/) |
+| Continuous and reset-primer cache trials | [Cache measurements](cache.md), [raw results](https://github.com/alundgren/irudd-ts/blob/194bf91ce887498bf798cff2163d51bd897aa942/research/t3code/results/cache) |
 | Regression acceptance tests | [tests/](tests/) |
 | Archived summaries | [overnight report](reports/overnight.html), [followup report](reports/followup.html) |
 

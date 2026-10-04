@@ -31,7 +31,7 @@ python3 research/t3code/scripts/simulate_structure.py --t3 /path/to/t3code
 
 The runner verifies exact diagnostic IDs, complete analysis and exit 0 or 1 on eleven synthetic cases. Each mutation has a correction check against the clean fixture. The clean control permits selective migration testing, split toolkit exports, layer infrastructure and host-to-contract imports. The optional real-tree scan requires the clean pinned checkout, records all analysis problems and labels diagnostics provisional when incomplete. It records executable, configuration, source-input and corpus hashes, every timing sample, ranges and medians. Timing is end-to-end process latency including parsing, source resolution and the selected rules. There is no Oxlint comparison or historical detection claim in this experiment.
 
-Raw results are saved to [structure-simulation.json](results/structure-simulation.json). The broad research inventory is [fact research](../notes/facts.md).
+Raw results are saved to [structure-simulation.json](https://github.com/alundgren/irudd-ts/blob/194bf91ce887498bf798cff2163d51bd897aa942/research/t3code/results/structure-simulation.json). The broad research inventory is [fact research](../notes/facts.md).
 
 ## Recorded results
 
@@ -39,7 +39,7 @@ The complete pinned T3 scan selected 1,151 files and 10,451 imports. It returned
 
 That single end-to-end real-tree scan took 865.38 ms. It is an observation on this machine, not a general latency guarantee. The eleven synthetic cases used 11 to 13 files and seven measured runs after a warmup. Their medians ranged from 10.09 to 18.67 ms; the clean control's median was 18.67 ms. All ten deliberate violations produced exactly the expected rule, and all corrections passed. See the raw artifact for every sample and range.
 
-The [before-closure artifact](results/structure-simulation-before-closure.json) retains the first experiment: 1,096 files, 84 excluded-source problems, exit 2 and no provisional diagnostics. Explicitly adding the referenced integration helpers and workspace package source directories made the later scan complete. The selected corpora differ, so these two real-tree timings are not a speed comparison.
+The [before-closure artifact](https://github.com/alundgren/irudd-ts/blob/194bf91ce887498bf798cff2163d51bd897aa942/research/t3code/results/structure-simulation-before-closure.json) retains the first experiment: 1,096 files, 84 excluded-source problems, exit 2 and no provisional diagnostics. Explicitly adding the referenced integration helpers and workspace package source directories made the later scan complete. The selected corpora differ, so these two real-tree timings are not a speed comparison.
 
 ## Useful next facts
 

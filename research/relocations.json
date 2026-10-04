@@ -2,21 +2,6 @@
   "description": "Recorded artifacts retain their original bytes and paths. Map those paths to the current checkout with this inventory.",
   "artifacts": [
     {
-      "original": "benchmarks/cache/process-latency-reset-primer.json",
-      "current": "research/t3code/results/cache/process-latency-reset-primer.json",
-      "sha256": "faaa1ce89fed29f6887812dd8109e75e1e48d4900e0977993c2ade50cb205cf1"
-    },
-    {
-      "original": "benchmarks/cache/process-latency.json",
-      "current": "research/t3code/results/cache/process-latency.json",
-      "sha256": "60be6de0714422215f2282e1dfdb3dae2f1d85a62c892fe5531eee9f4fa32aa0"
-    },
-    {
-      "original": "benchmarks/cache/uncached-baseline.json",
-      "current": "research/t3code/results/cache/uncached-baseline.json",
-      "sha256": "100a6acf7b3f9dc186f7e2b5691b222828719e1a0c127fca61af4e89e1782218"
-    },
-    {
       "original": "benchmarks/installed/install-audit.json",
       "current": "research/t3code/installed/install-audit.json",
       "sha256": "7061f784c3d92c6c7f07f87fdc85576ab34f39c9c29c03e7a7f5c99139eca149"
@@ -47,46 +32,6 @@
       "sha256": "33033628311ef1c6106e2e467be799f6bce8b8ca6d62ba6692c16badfc186f8d"
     },
     {
-      "original": "benchmarks/results/compiler-semantic-provider.json",
-      "current": "research/t3code/results/compiler-semantic-provider.json",
-      "sha256": "0fe23aa1784c173a47a8550f8ee38ea4895676b148164fc24937149df35426fb"
-    },
-    {
-      "original": "benchmarks/results/process-latency-repository-roles-validation-overlap.json",
-      "current": "research/benchmarks/results/process-latency-repository-roles-validation-overlap.json",
-      "sha256": "312dc26fdf109e04e6dec74372dacd495c04e5103a55f89c7dd23ac40694edc7"
-    },
-    {
-      "original": "benchmarks/results/process-latency-repository-roles.json",
-      "current": "research/benchmarks/results/process-latency-repository-roles.json",
-      "sha256": "2924e553654322b8b8824407a0a7af35e1d6541b4a632b9a152ee7efca18975f"
-    },
-    {
-      "original": "benchmarks/results/process-latency.before-optimization.json",
-      "current": "research/benchmarks/results/process-latency.before-optimization.json",
-      "sha256": "b7542be3d0ddc52437ae80353b3a42efda10266e224780336c0ea34b6de92df4"
-    },
-    {
-      "original": "benchmarks/results/process-latency.json",
-      "current": "research/benchmarks/results/process-latency.json",
-      "sha256": "d61128fd920d3aa8bd4804f3337716d73321cc9246d9af2b941a3d3aa260d5d6"
-    },
-    {
-      "original": "benchmarks/results/structure-simulation-before-closure.json",
-      "current": "research/t3code/results/structure-simulation-before-closure.json",
-      "sha256": "9608fc54355db866bfbc13e97a9fdba96f08459b0f839d9085d4d7d82f40967e"
-    },
-    {
-      "original": "benchmarks/results/structure-simulation.json",
-      "current": "research/t3code/results/structure-simulation.json",
-      "sha256": "4233cd21e3d39f93fd4610976706f988c94e54b41664637daeb61dd022aecdce"
-    },
-    {
-      "original": "benchmarks/results/t3-census-summary.json",
-      "current": "research/t3code/results/t3-census-summary.json",
-      "sha256": "35c6774936b0617132bcd34663609f12a6a1c47636b9283a070e9a6c513267cb"
-    },
-    {
       "original": "benchmarks/toolchain/licenses.json",
       "current": "research/benchmarks/toolchain/licenses.json",
       "sha256": "d4fca8d212c75aca639c3d9a6698f3c18f2ce9abc7ae2d5b4b85d21dd88be656"
@@ -110,11 +55,6 @@
       "original": "docs/overnight-report.html",
       "current": "research/t3code/reports/overnight.html",
       "sha256": "61d9aa194b2b2df9a9c73d67550032d6fc8a95fbb8b3543f20abc5e92e29672e"
-    },
-    {
-      "original": "docs/t3-policy-scan-summary.json",
-      "current": "research/t3code/results/policy-scan-summary.json",
-      "sha256": "30922f5aeedd7aad41eba5999313f6991886cdad8f0896fae67e76d7f6ff6f39"
     }
   ]
 }

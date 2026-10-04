@@ -33,7 +33,7 @@ python3 research/t3code/scripts/benchmark_semantic.py --binary target/release/ar
 
 The third measurement runs the provider directly on a request emitted by the Rust SDK example, excluding host graph discovery and site inventory from that measurement. Its process exit 0 means a valid protocol response; the response's complete flag still distinguishes the historical failure. CLI exit codes retain their usual meaning. Native executable hashing in this measurement script currently targets Linux x64. SemanticFacts.complete describes compiler capability completion; source graph problems are also printed and prevent a clean CLI exit.
 
-The recorded [seven-sample cost result](../results/compiler-semantic-provider.json) uses clean source revision `044caef1e431fbab485e81b76c5be5ff4bb906d6`, Linux x64 and Node 24.21.0. Each cell shows wall-time median and full range in milliseconds:
+The recorded [seven-sample cost result](https://github.com/alundgren/irudd-ts/blob/194bf91ce887498bf798cff2163d51bd897aa942/research/t3code/results/compiler-semantic-provider.json) uses clean source revision `044caef1e431fbab485e81b76c5be5ff4bb906d6`, Linux x64 and Node 24.21.0. Each cell shows wall-time median and full range in milliseconds:
 
 | Selected source | Graph only | Compiler enabled | Direct provider |
 | --- | ---: | ---: | ---: |
