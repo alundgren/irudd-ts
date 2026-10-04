@@ -7,7 +7,7 @@ from pathlib import Path
 import subprocess
 import sys
 from analyze import analyze, compact_evaluation, evaluate_fault, summarize_faults
-from runner import HERE, REPOSITORY, DependencyStore, copy_owned_source, direct_vitest_command, disk_check, execute_case as raw_execute_case, hash_tree, install_signal_handlers, node_fingerprint, owned_source_path, parse_json, read_json, runner_fingerprint, run_command, write_json
+from runner import HERE, REPOSITORY, DependencyStore, copy_owned_source, direct_vitest_command, disk_check, execute_case as raw_execute_case, hash_tree, install_signal_handlers, node_fingerprint, owned_source_path, parse_json, read_json, relative_build_path, runner_fingerprint, run_command, validate_build_preparation, write_json
 from rust_slice import archive
 
 COMMAND = direct_vitest_command('research-test-value.config.ts')
@@ -33,7 +33,7 @@ def verify_installation_inputs(row, receipt):
 class HistoricalInstallations:
     """Explicit candidate routes to prepared installations; no installation commands."""
 
-    def __init__(self, manifest_path, candidates, output):
+    def __init__(self, manifest_path, candidates, output, prepared_output=None):
         self.path = Path(manifest_path).resolve()
         self.manifest_sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
         manifest = read_json(self.path)
@@ -43,6 +43,8 @@ class HistoricalInstallations:
             raise ValueError('Invalid dependency installation map')
         self.manifest = manifest
         self.rows, self.receipts, self.stores, self.profiles = {}, {}, {}, {}
+        self.prepared_root = Path(prepared_output).resolve() if prepared_output is not None else None
+        self.metadata_digests = {}
         if (not isinstance(candidates, list) or any(not isinstance(candidate, dict) or not isinstance(candidate.get('id'), str) or
                 not candidate['id'] or candidate['id'] in {'.', '..'} or Path(candidate['id']).is_absolute() or
                 candidate.get('subject') not in {'t3code', 'scope'} for candidate in candidates)):
@@ -124,8 +126,14 @@ class HistoricalInstallations:
             row = self.rows[profile['installationId']]
             key = row['subject'] + '-' + profile['inputSignature']
             if key not in self.stores:
-                root = Path(output) / 'installation-dependencies' / key
-                metadata = Path(output) / 'installation-metadata' / (key + '.json')
+                store_parent = self.prepared_root or Path(output)
+                root = store_parent / 'installation-dependencies' / key
+                metadata = store_parent / 'installation-metadata' / (key + '.json')
+                if self.prepared_root is not None and (not root.is_dir() or not metadata.is_file()):
+                    raise ValueError('Explicit prepared installation reuse requires complete existing metadata and store')
+                if self.prepared_root is not None and (not root.resolve().is_relative_to(self.prepared_root) or
+                                                       not metadata.resolve().is_relative_to(self.prepared_root)):
+                    raise ValueError('Prepared installation paths leave their declared owned root')
                 store = DependencyStore(row['root'], root)
                 if metadata.exists():
                     info = read_json(metadata)
@@ -141,6 +149,8 @@ class HistoricalInstallations:
                     store.sha256 = info['sha256']
                     if store.current_digest() != store.sha256:
                         raise ValueError('Resumed installation dependency store has changed')
+                    if self.prepared_root is not None:
+                        self.metadata_digests[str(metadata)] = hashlib.sha256(metadata.read_bytes()).hexdigest()
                 else:
                     store.copy()
                     info = {'modules': store.modules, 'workspaceLinks': store.workspace_links,
@@ -156,6 +166,8 @@ class HistoricalInstallations:
 
     def registration(self):
         return {'schemaVersion': 1, 'manifestPath': str(self.path), 'manifestSha256': self.manifest_sha256,
+                'preparedRoot': str(self.prepared_root) if self.prepared_root else None,
+                'preparedMetadataSha256': self.metadata_digests,
                 'declaredMap': self.manifest,
                 'receipts': {key: {'receiptSha256': self.rows[key]['receiptSha256'], 'complete': receipt['complete'],
                                    'inputSignature': receipt['inputSignature']} for key, receipt in self.receipts.items()},
@@ -184,6 +196,9 @@ class HistoricalInstallations:
     def verify(self, candidate):
         if hashlib.sha256(self.path.read_bytes()).hexdigest() != self.manifest_sha256:
             raise RuntimeError('Registered dependency installation map changed; stop and retain evidence')
+        for path, expected in self.metadata_digests.items():
+            if hashlib.sha256(Path(path).read_bytes()).hexdigest() != expected:
+                raise RuntimeError('Registered prepared installation metadata changed; stop and retain evidence')
         for row in self.rows.values():
             if hashlib.sha256(Path(row['receiptPath']).read_bytes()).hexdigest() != row['receiptSha256']:
                 raise RuntimeError('Registered dependency preparation receipt changed; stop and retain evidence')
@@ -197,9 +212,103 @@ class HistoricalInstallations:
             raise RuntimeError('Registered owned installation dependency store changed; stop and retain evidence')
 
 
+class ExecutionProfiles:
+    """Explicit build and canonical fixture declarations, separate from archives."""
+
+    def __init__(self, path, candidates):
+        self.path = Path(path).resolve()
+        self.sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
+        self.manifest = read_json(self.path)
+        if (not isinstance(self.manifest, dict) or set(self.manifest) != {'schemaVersion', 'candidates'} or
+                type(self.manifest['schemaVersion']) is not int or self.manifest['schemaVersion'] != 1 or
+                not isinstance(self.manifest['candidates'], dict)):
+            raise ValueError('Invalid historical execution profile map')
+        declared = {candidate['id']: candidate for candidate in candidates}
+        if set(self.manifest['candidates']) - declared.keys():
+            raise ValueError('Execution profile contains undeclared historical candidates')
+        self.overlays = {}
+        for identity, profile in self.manifest['candidates'].items():
+            if not isinstance(profile, dict) or set(profile) - {'buildPreparation', 'fixtureOverlay'}:
+                raise ValueError('Invalid historical execution profile')
+            candidate = declared[identity]
+            protected = [*candidate['sourceFiles'], *candidate['testFiles'], 'research-test-value.config.ts']
+            if profile.get('buildPreparation') is not None:
+                validate_build_preparation(profile['buildPreparation'], protected)
+                protected += [*profile['buildPreparation']['inputPaths'], profile['buildPreparation']['entryPoint']['path'],
+                              *(pin['path'] for pin in profile['buildPreparation']['identityFiles'])]
+            if profile.get('fixtureOverlay') is not None:
+                overlay = profile['fixtureOverlay']
+                fields = {'path', 'bytesPath', 'sha256', 'sourceRevision', 'gitBlob'}
+                if (not isinstance(overlay, dict) or set(overlay) != fields or not sha256_text(overlay['sha256']) or
+                        any(not isinstance(overlay[field], str) or len(overlay[field]) != 40 or
+                            any(letter not in '0123456789abcdef' for letter in overlay[field]) for field in ['sourceRevision', 'gitBlob']) or
+                        not isinstance(overlay['bytesPath'], str) or not Path(overlay['bytesPath']).is_absolute()):
+                    raise ValueError('Invalid canonical fixture overlay identity')
+                relative = relative_build_path(overlay['path'])
+                if (relative.suffix != '.ndjson' or 'fixtures' not in relative.parts or
+                        any(relative.is_relative_to(Path(path)) or Path(path).is_relative_to(relative) for path in protected)):
+                    raise ValueError('Canonical overlay must name a non-code fixture outside selected source and tests')
+                self.verify_overlay(overlay)
+                repository = candidate['repository']
+                revision = overlay['sourceRevision']
+                if subprocess.run(['git', '-C', repository, 'merge-base', '--is-ancestor', candidate['fix'], revision], capture_output=True).returncode:
+                    raise ValueError('Canonical fixture revision is not a descendant of the selected fix')
+                for file in candidate['testFiles']:
+                    fixed = subprocess.check_output(['git', '-C', repository, 'rev-parse', candidate['fix'] + ':' + file])
+                    canonical = subprocess.check_output(['git', '-C', repository, 'rev-parse', revision + ':' + file])
+                    if fixed != canonical:
+                        raise ValueError('Canonical fixture revision changes a selected test file')
+                blob = subprocess.check_output(['git', '-C', repository, 'rev-parse', revision + ':' + overlay['path']], text=True).strip()
+                raw = subprocess.check_output(['git', '-C', repository, 'show', revision + ':' + overlay['path']])
+                if blob != overlay['gitBlob'] or hashlib.sha256(raw).hexdigest() != overlay['sha256']:
+                    raise ValueError('Canonical fixture Git object and copied bytes disagree')
+                self.overlays[identity] = overlay
+
+    @staticmethod
+    def verify_overlay(overlay):
+        path = Path(overlay['bytesPath'])
+        if not path.is_file() or path.stat().st_size > 8 * 1024 * 1024 or hashlib.sha256(path.read_bytes()).hexdigest() != overlay['sha256']:
+            raise ValueError('Canonical fixture bytes changed or exceed their budget')
+
+    def verify(self):
+        if hashlib.sha256(self.path.read_bytes()).hexdigest() != self.sha256:
+            raise RuntimeError('Registered historical execution profile changed; stop and retain evidence')
+        for overlay in self.overlays.values():
+            self.verify_overlay(overlay)
+
+    def apply_overlay(self, candidate, template):
+        template = Path(template).resolve()
+        self.verify()
+        overlay = self.overlays.get(candidate['id'])
+        if overlay is None:
+            return None
+        target = owned_source_path(template / overlay['path'], template)
+        if target.exists() or target.is_symlink():
+            raise ValueError('Canonical missing-fixture overlay would replace an existing archive file')
+        target.parent.mkdir(parents=True, exist_ok=True)
+        raw = Path(overlay['bytesPath']).read_bytes()
+        if hashlib.sha256(raw).hexdigest() != overlay['sha256']:
+            raise ValueError('Canonical fixture bytes changed before application')
+        target.write_bytes(raw)
+        return {**overlay, 'sourceAfterOverlaySha256': hash_tree(template)[0]}
+
+    def build_preparation(self, candidate):
+        return self.manifest['candidates'].get(candidate['id'], {}).get('buildPreparation')
+
+    def registration(self):
+        return {'manifestPath': str(self.path), 'manifestSha256': self.sha256, 'declaredMap': self.manifest}
+
+
 def execute_case(*args, **kwargs):
     expected_runtime = kwargs.pop('expected_runtime', None)
-    result = raw_execute_case(*args, **kwargs)
+    verify_execution = kwargs.pop('verify_execution', None)
+    if verify_execution:
+        verify_execution()
+    try:
+        result = raw_execute_case(*args, **kwargs)
+    finally:
+        if verify_execution:
+            verify_execution()
     if result.get('cleanupComplete') is not True or result.get('cleanupErrors'):
         raise RuntimeError('process cleanup uncertain; stop experiment and retain evidence')
     if expected_runtime is not None and result.get('node') != expected_runtime:
@@ -291,7 +400,7 @@ def plan(template, files, cli, output, max_raw_units=None):
     return value
 
 
-def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None, max_raw_units=None, verify_source=None):
+def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None, max_raw_units=None, verify_source=None, execution_profiles=None):
     output.mkdir(parents=True)
     preflight=candidate.get('preflightExclusion')
     if preflight is not None:
@@ -311,10 +420,16 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
         except ValueError as error:
             return {**candidate, 'verified': False, 'executionAttempted': False, 'exclusion': str(error)}
         write_json(output / 'candidate-installation-inputs.json', candidate_inputs)
+    if execution_profiles is not None:
+        overlay = execution_profiles.apply_overlay(candidate, template)
+        if overlay is not None:
+            write_json(output / 'fixture-overlay.json', overlay)
     adapters = configure(template, candidate['testFiles'], reporter)
     write_json(output / 'workspace-adapters.json', adapters)
     options = dict(dependencies=dependencies, timeout=90, node=str(node), expected_runtime=runtime_identity,
-                   import_controls=workspace_import_controls(adapters))
+                   expected_node=runtime_identity, verify_execution=verify_identity,
+                   import_controls=workspace_import_controls(adapters),
+                   build_preparation=execution_profiles.build_preparation(candidate) if execution_profiles else None)
     fixed = execute_case(template, output / 'fixed-before', COMMAND, **options)
     if not fixed['complete'] or fixed['status'] != 'survived':
         return {**candidate, 'verified': False, 'exclusion': 'fixed adapted baseline incomplete or failing', 'fixedEvidence': 'fixed-before/execution.json',
@@ -381,6 +496,7 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
               'tests': [{k: test[k] for k in ['id', 'name', 'file', 'durationMs'] if k in test} for test in fixed['tests']], 'mutants': [],
               'provenance': {'replay': fault['replay'], 'sourceSha256': fault['fixedTemplateSha256'], 'dependencySha256': dependencies.sha256,
                              'workspaceAdapters': adapters,
+                             'executionProfile': execution_profiles.registration() if execution_profiles else None,
                              'archguardSha256': hashlib.sha256(cli.read_bytes()).hexdigest(), 'planSha256': hash_tree(output / 'planning')[0],
                              'plannedMutants': len(mutation_plan['sites']), 'predeclaredPrefixLimit': limit,
                              'planningMaxRawUnits': max_raw_units if max_raw_units is not None else 8192}}
@@ -433,12 +549,16 @@ def main():
     parser.add_argument('--t3-dependencies', type=Path)
     parser.add_argument('--scope-dependencies', type=Path)
     parser.add_argument('--dependency-installations', type=Path)
+    parser.add_argument('--prepared-installations', type=Path, help='Read-only reuse of fully existing prepared owned stores')
+    parser.add_argument('--execution-profiles', type=Path, help='Explicit per-candidate build and canonical fixture declarations')
     parser.add_argument('--mutant-limit', type=int, default=None)
     parser.add_argument('--max-raw-units', type=int, default=None)
     parser.add_argument('--prepare-only', action='store_true')
     parser.add_argument('--t3-node', required=True, type=Path)
     parser.add_argument('--scope-node', required=True, type=Path)
     args = parser.parse_args()
+    if args.prepared_installations and not args.dependency_installations:
+        parser.error('--prepared-installations requires --dependency-installations')
     if args.max_raw_units is not None and not 1 <= args.max_raw_units <= 16384:
         parser.error('--max-raw-units must be between 1 and the product ceiling of 16384')
     if args.dependency_installations:
@@ -454,7 +574,8 @@ def main():
     candidates_bytes = args.candidates.read_bytes()
     manifest = parse_json(candidates_bytes, args.candidates)
     candidates = manifest['candidates'] if isinstance(manifest, dict) else manifest
-    installations = HistoricalInstallations(args.dependency_installations, candidates, output) if args.dependency_installations else None
+    execution_profiles = ExecutionProfiles(args.execution_profiles, candidates) if args.execution_profiles else None
+    installations = HistoricalInstallations(args.dependency_installations, candidates, output, args.prepared_installations) if args.dependency_installations else None
     if installations:
         write_json(output / 'dependency-installations.json', installations.registration())
     else:
@@ -497,6 +618,8 @@ def main():
                                     {name:store.sha256 for name,store in dependencies.items()})}
     if installations:
         registration['dependencyInstallations'] = installations.registration()
+    if execution_profiles:
+        registration['executionProfiles'] = execution_profiles.registration()
     register_experiment(output, registration)
 
     def verify_candidate(candidate):
@@ -505,6 +628,8 @@ def main():
         verify_experiment_identity(registration, args.archguard.resolve(), runtimes)
         if installations:
             installations.verify(candidate)
+        if execution_profiles:
+            execution_profiles.verify()
 
     results = []
     for candidate in candidates:
@@ -527,7 +652,8 @@ def main():
                     result = run_fault(candidate, store, args.archguard.resolve(), directory, reporter, args.mutant_limit,
                                        runtimes[candidate['subject']], registration['node'][candidate['subject']],
                                        lambda:verify_candidate(candidate), dependency_installation=profile, max_raw_units=args.max_raw_units,
-                                       verify_source=(lambda template:installations.verify_source(candidate, template)) if installations else None)
+                                       verify_source=(lambda template:installations.verify_source(candidate, template)) if installations else None,
+                                       execution_profiles=execution_profiles)
             except (ValueError, OSError, subprocess.SubprocessError) as error:
                 result = {**candidate, 'verified': False, 'exclusion': str(error)}
             verify_candidate(candidate)
@@ -537,8 +663,10 @@ def main():
                 result['workspaceAdapters'] = read_json(directory / 'workspace-adapters.json')
             if (directory / 'candidate-installation-inputs.json').exists():
                 result['candidateInstallationInputs'] = read_json(directory / 'candidate-installation-inputs.json')
+            if (directory / 'fixture-overlay.json').exists():
+                result['fixtureOverlay'] = read_json(directory / 'fixture-overlay.json')
             result['recordDigests'] = {file:hashlib.sha256((directory/file).read_bytes()).hexdigest() for file in
-                 ['matrix.json','analysis.json','evaluation.json','workspace-adapters.json','candidate-installation-inputs.json','fixed-before/execution.json','faulty/execution.json','fixed-after/execution.json'] if (directory/file).exists()}
+                 ['matrix.json','analysis.json','evaluation.json','workspace-adapters.json','candidate-installation-inputs.json','fixture-overlay.json','fixed-before/execution.json','faulty/execution.json','fixed-after/execution.json'] if (directory/file).exists()}
             write_json(directory / 'fault.json', result)
         results.append(result)
         write_json(output / 'attempts.json', results)

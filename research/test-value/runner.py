@@ -60,7 +60,7 @@ def write_json(path, value):
 
 def runner_fingerprint():
     return digest(json.dumps([[path.name, digest(path.read_bytes())] for path in sorted(HERE.iterdir())
-                              if path.is_file() and path.suffix in {".py", ".ts", ".mjs"}], separators=(",", ":")).encode())
+                              if path.is_file() and path.suffix in {".py", ".ts", ".mjs", ".cjs"}], separators=(",", ":")).encode())
 
 
 def node_fingerprint(node, environment=None):
@@ -755,9 +755,164 @@ def validate_inventory(inventory, protocol, request, raw_exit, node_identity):
     return tests, problems
 
 
+def relative_build_path(value):
+    if (not isinstance(value, str) or not value or Path(value).is_absolute() or
+            '..' in Path(value).parts or Path(value).as_posix() != value or value == '.'):
+        raise ValueError('Build paths must be explicit relative paths below the owned root')
+    return Path(value)
+
+
+def validate_build_preparation(spec, protected_inputs=()):
+    required = {'schemaVersion', 'command', 'cwd', 'entryPoint', 'identityFiles', 'inputPaths',
+                'outputDirectories', 'outputs', 'timeoutSeconds', 'maxOutputBytes'}
+    if not isinstance(spec, dict) or set(spec) != required or type(spec.get('schemaVersion')) is not int or spec['schemaVersion'] != 1:
+        raise ValueError('Invalid explicit build preparation declaration')
+    command = spec['command']
+    if (not isinstance(command, list) or len(command) < 2 or command[:2] != ['{node}', '{buildEntry}'] or
+            any(not isinstance(argument, str) or not argument or '\0' in argument for argument in command)):
+        raise ValueError('Build command must directly launch the pinned Node and configured entry')
+    try:
+        for argument in command:
+            argument.format_map({'node': '', 'buildEntry': '', 'root': ''})
+    except (KeyError, ValueError) as error:
+        raise ValueError('Unsupported build command placeholder') from error
+    if spec['cwd'] != '.':
+        relative_build_path(spec['cwd'])
+    if (type(spec['timeoutSeconds']) not in {int, float} or not 0 < spec['timeoutSeconds'] <= 600 or
+            type(spec['maxOutputBytes']) is not int or not 1 <= spec['maxOutputBytes'] <= 4 * 1024 * 1024):
+        raise ValueError('Build deadline or output budget is invalid')
+    for field in ['identityFiles', 'inputPaths', 'outputDirectories', 'outputs']:
+        if not isinstance(spec[field], list) or len(spec[field]) > 1024:
+            raise ValueError('Build path declarations exceed their budget')
+    if not spec['inputPaths'] or not spec['outputDirectories'] or not spec['outputs']:
+        raise ValueError('Build inputs and generated output directories/files must be explicit')
+    pins = [spec['entryPoint'], *spec['identityFiles']]
+    for pin in pins:
+        if (not isinstance(pin, dict) or set(pin) != {'path', 'sha256'} or not isinstance(pin['sha256'], str) or
+                len(pin['sha256']) != 64 or any(character not in '0123456789abcdef' for character in pin['sha256'])):
+            raise ValueError('Invalid build tool file identity')
+        relative_build_path(pin['path'])
+    inputs = [relative_build_path(path) for path in [*spec['inputPaths'], *protected_inputs,
+                                                   *(pin['path'] for pin in pins)]]
+    directories = [relative_build_path(path) for path in spec['outputDirectories']]
+    outputs = [relative_build_path(path) for path in spec['outputs']]
+    for index, directory in enumerate(directories):
+        if ('node_modules' in directory.parts or any(directory.is_relative_to(path) or path.is_relative_to(directory)
+                for path in [*inputs, *directories[:index]])):
+            raise ValueError('Generated build directory overlaps source, configuration, dependencies or another output directory')
+    if len(set(outputs)) != len(outputs) or any(not any(path.is_relative_to(directory) for directory in directories) for path in outputs):
+        raise ValueError('Required build outputs must be unique files within declared generated directories')
+    return spec
+
+
+def prepare_build(source, output, spec, dependencies, env, node_identity, evidence):
+    record = {'configuration': spec, 'complete': False, 'node': node_identity}
+    evidence['buildPreparation'] = record
+    validate_build_preparation(spec)
+    cwd = owned_source_path(source / spec['cwd'], source)
+    if not cwd.is_dir():
+        raise ValueError('Build working directory is unavailable')
+    pins = []
+    for pin in [spec['entryPoint'], *spec['identityFiles']]:
+        path = (source / pin['path']).resolve(strict=True)
+        if not path.is_relative_to(source) and not (dependencies and path.is_relative_to(dependencies.root)):
+            raise ValueError('Build tool file resolves outside owned inputs')
+        if not path.is_file() or digest(path.read_bytes()) != pin['sha256']:
+            raise ValueError('Configured build tool identity changed: ' + pin['path'])
+        pins.append({**pin, 'realPath': str(path)})
+    record['toolFiles'] = pins
+    input_records = []
+    for relative in spec['inputPaths']:
+        path = owned_source_path(source / relative, source)
+        if not path.exists():
+            raise ValueError('Configured build input is unavailable: ' + relative)
+        input_records.append({'path': relative, 'sha256': hash_tree(path)[0] if path.is_dir() else digest(path.read_bytes())})
+    record['inputsBefore'] = input_records
+    for relative in spec['outputDirectories']:
+        path = owned_source_path(source / relative, source)
+        if path != source / relative or (source / relative).is_symlink():
+            raise ValueError('Generated build directory must not traverse a source link')
+        if path.exists():
+            if not path.is_dir():
+                raise ValueError('Generated build directory is not a directory')
+            shutil.rmtree(path)
+    record['sourceBeforeSha256'] = hash_tree(source)[0]
+    build_output = output / 'build'
+    build_output.mkdir()
+    runtime_path = build_output / 'runtime.jsonl'
+    build_env = dict(env)
+    build_env.update(NODE_OPTIONS='--require ' + json.dumps(str(HERE / 'build-runtime.cjs')),
+                     ARCHGUARD_BUILD_RUNTIME=str(runtime_path), ARCHGUARD_BUILD_NODE=json.dumps(node_identity, sort_keys=True))
+    command = [argument.format_map({'node': node_identity['path'], 'buildEntry': pins[0]['realPath'], 'root': str(source)})
+               for argument in spec['command']]
+    try:
+        evidence['cleanupComplete'] = False
+        process = run_command(command, cwd, build_env, build_output, spec['timeoutSeconds'], spec['maxOutputBytes'])
+    except BaseException as error:
+        process = getattr(error, 'command_result', None)
+        if process:
+            record['process'] = process
+            for field in ['cleanupComplete', 'cleanupErrors', 'residualProcessGroup']:
+                evidence[field] = process[field]
+        raise
+    finally:
+        # Runtime records remain useful when compilation or process cleanup fails.
+        if runtime_path.exists():
+            raw = runtime_path.read_bytes() if runtime_path.stat().st_size <= 256 * 1024 else None
+            if raw is not None:
+                try:
+                    record['runtimeObservations'] = [json.loads(line) for line in raw.splitlines()]
+                except ValueError:
+                    record['runtimeEvidenceError'] = 'Invalid build runtime JSONL'
+            else:
+                record['runtimeEvidenceError'] = 'Build runtime JSONL exceeds byte budget'
+        if evidence.get('cleanupComplete') is True:
+            record['sourceAfterSha256'] = hash_tree(source)[0]
+    record['process'] = process
+    write_json(build_output / 'process.json', process)
+    for field in ['cleanupComplete', 'cleanupErrors', 'residualProcessGroup']:
+        evidence[field] = process[field]
+    if process['cleanupComplete'] is True:
+        record['sourceAfterSha256'] = hash_tree(source)[0]
+    observations = record.get('runtimeObservations', [])
+    if (record.get('runtimeEvidenceError') or not observations or len(observations) > 1024 or
+            any(not isinstance(observation, dict) or observation.get('runtime') != node_identity for observation in observations) or
+            not any(observation.get('pid') == process['capturedPid'] and observation.get('entryPath') == pins[0]['realPath'] and
+                    observation.get('entrySha256') == pins[0]['sha256'] for observation in observations)):
+        raise ValueError('Actual build runtime or entry identity evidence is missing or disagrees')
+    if process['status'] != 'finished' or process['exitCode'] != 0 or process['cleanupComplete'] is not True or process['cleanupErrors']:
+        raise ValueError('Build preparation did not complete cleanly: ' + process['status'])
+    for pin in pins:
+        if digest(Path(pin['realPath']).read_bytes()) != pin['sha256']:
+            raise ValueError('Build tool identity changed during preparation')
+    for item in input_records:
+        path = owned_source_path(source / item['path'], source)
+        observed = hash_tree(path)[0] if path.is_dir() else digest(path.read_bytes())
+        if observed != item['sha256']:
+            raise ValueError('Build preparation changed a declared source or configuration input: ' + item['path'])
+    output_records = []
+    for relative in spec['outputs']:
+        path = owned_source_path(source / relative, source)
+        if path != source / relative or path.is_symlink() or not path.is_file():
+            raise ValueError('Required generated build output is missing or linked: ' + relative)
+        output_records.append({'path': relative, 'sha256': digest(path.read_bytes())})
+    record['outputs'] = output_records
+    record['outputDirectories'] = []
+    for relative in spec['outputDirectories']:
+        path = owned_source_path(source / relative, source)
+        tree_digest, files = hash_tree(path)
+        if any(row[1] == 'link' for row in files):
+            raise ValueError('Generated build outputs contain a symbolic link')
+        if len(files) > 16384 or len(json.dumps(files).encode()) > MAX_JSON // 2:
+            raise ValueError('Generated build file inventory exceeds evidence budget')
+        record['outputDirectories'].append({'path': relative, 'sha256': tree_digest, 'fileCount': len(files), 'files': files})
+    record['complete'] = True
+    return record
+
+
 def execute_case(template, output, command, *, dependencies=None, baseline=None, mutation=None,
                  cwd=".", environment=None, timeout=60, input_digest=None, run_id=None, node="node", keep_source=False,
-                 import_controls=None, captured_artifacts=None, expected_node=None):
+                 import_controls=None, captured_artifacts=None, expected_node=None, build_preparation=None):
     """Run one explicit fresh copy. Returns records and complete/unknown classification.
 
     Historical callers can pass their fixed inventory as baseline and a separate
@@ -810,6 +965,15 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     try:
         if mutation:
             apply_mutation(source, mutation)
+        if build_preparation is not None:
+            if expected_node is not None and node_identity != expected_node:
+                raise ValueError('Selected Node runtime changed before build preparation')
+            prepared = prepare_build(source, output, build_preparation, dependencies, env, node_identity, evidence)
+            request['inputDigest'] = digest(json.dumps({'runInputDigest': input_digest, 'configuration': build_preparation,
+                'toolFiles': prepared['toolFiles'], 'node': node_identity, 'sourceBeforeSha256': prepared['sourceBeforeSha256'],
+                'sourceAfterSha256': prepared['sourceAfterSha256'], 'outputs': prepared['outputs'],
+                'outputDirectories': prepared['outputDirectories']}, sort_keys=True).encode())
+            write_json(request_path, request)
         resolutions = []
         for control in import_controls or []:
             if control.get("resolverEvidence"):
@@ -896,7 +1060,7 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     except (OSError, ValueError, RuntimeError) as error:
         evidence.update(getattr(error, "command_result", {}))
         evidence.update(complete=False, tests=[], outcomes={test["id"]: "unknown" for test in baseline or []},
-                        status="error",
+                        status="timeout" if evidence.get('buildPreparation', {}).get('process', {}).get('status') == 'timeout' else "error",
                         infrastructureErrors=[str(error)] + evidence.get("cleanupErrors", []))
     finally:
         for relative in captured_artifacts or []:
@@ -974,7 +1138,8 @@ def run_matrix(config, output):
                    timeout=config.get("timeoutSeconds", 60), input_digest=inputs_digest, run_id=uuid.uuid4().hex,
                    node=config.get("node", "node"), keep_source=config.get("keepSource", False),
                    expected_node=node_identity,
-                   import_controls=config.get("importControls"), captured_artifacts=config.get("capturedArtifacts"))
+                   import_controls=config.get("importControls"), captured_artifacts=config.get("capturedArtifacts"),
+                   build_preparation=config.get('buildPreparation'))
     baseline = execute_case(template, output / "baseline", config["command"], **options)
     inventory = baseline["tests"]
     baseline_complete = baseline["complete"] and baseline["status"] == "survived"

@@ -75,6 +75,70 @@ An optional predeclared `mutantLimit` bounds the planned prefix and is retained
 with the original plan size. It changes the experimental corpus; it is not
 coverage pruning. The runner never stops a column after its first assertion.
 
+## Build generated test inputs
+
+An optional `buildPreparation` declares one audited command for every fresh
+execution. `execute_case(..., build_preparation=spec)` accepts the same record.
+Preparation runs after a mutation or historical source reversion and before
+the test command. For the audited Scope packages, launch the owned
+`node_modules/vite-plus/dist/pack-bin.js` directly with the pinned Node. Its
+arguments do not include `pack`. Do not use a package-manager script or the
+runtime-selecting Vite+ launcher.
+
+```json
+{
+  "schemaVersion": 1,
+  "command": ["{node}", "{buildEntry}"],
+  "cwd": "packages/cli",
+  "entryPoint": {
+    "path": "node_modules/vite-plus/dist/pack-bin.js",
+    "sha256": "REPLACE_WITH_AUDITED_ENTRY_SHA256"
+  },
+  "identityFiles": [
+    { "path": "node_modules/vite-plus/package.json", "sha256": "REPLACE_WITH_AUDITED_FILE_SHA256" }
+  ],
+  "inputPaths": ["packages/cli/src", "packages/cli/package.json", "packages/cli/vite.config.ts"],
+  "outputDirectories": ["packages/cli/dist"],
+  "outputs": ["packages/cli/dist/main.mjs"],
+  "timeoutSeconds": 120,
+  "maxOutputBytes": 4194304
+}
+```
+
+Replace all placeholders with audited hashes and declare the actual compiler
+JavaScript, package manifests, and native binary files in `identityFiles`.
+All paths are relative to the fresh source. Tool files may resolve into its
+owned dependency store. Source/configuration inputs and output paths must
+remain within the source; generated directories cannot overlap declared
+inputs, selected historical source/tests, dependencies, or each other.
+The declaration supports only the displayed fields and placeholders.
+
+Each build clears the complete generated directories, including old chunks.
+It requires every named output file and hashes each generated directory
+recursively. Declared source/configuration inputs must retain their post-edit
+bytes during the build. Evidence records the exact command, cwd, deadline,
+tool hashes, actual Node observations, source hashes before and after the
+build, output hashes, bounded logs, and owned process cleanup. A preload check
+records the direct process and inherited Node children. This relies on the
+explicitly audited command retaining its environment and is not an
+arbitrary-code sandbox.
+
+The SDK request digest combines any caller-supplied digest with preparation
+configuration, tool/runtime identities and effective source/output hashes.
+It cannot reuse a fixed digest while executing a different compiled mutation.
+Failed builds, missing outputs, runtime/pin mismatches and deadlines leave all
+test cells unknown. Tests do not start. Uncertain cleanup preserves the source
+and stops further scheduled execution. Without preparation, existing request
+identity and assertion classification remain unchanged.
+
+Run focused authored failure, correction and negative controls with:
+
+```sh
+python3 research/test-value/controls_runner.py --build-only \
+  --archguard /absolute/archguard --node /absolute/pinned/node \
+  --wrong-node /absolute/different/node --output /absolute/new-build-controls
+```
+
 ## What completion means
 
 Each baseline test has an ID containing project, relative file, the full name
@@ -208,6 +272,31 @@ The caller must record revision identities, classify the replay method and
 separate existing from fix-added tests. An assertion-only faulty replay accepted
 against a fixed inventory is evidence for that selected test slice, not a full
 historical dependency replay.
+
+`history.py --execution-profiles /absolute/profiles.json` accepts
+`{"schemaVersion":1,"candidates":{"DECLARED_ID":{"buildPreparation":SPEC}}}`.
+The same candidate preparation reaches fixed-before, reverted source,
+fixed-after, parent-test inventory and every mutant. The profile map is hashed
+in registration and revalidated before and after each case. Changing it needs
+a new output directory.
+
+A profile may also declare `fixtureOverlay` with `path`, absolute `bytesPath`,
+SHA256 `sha256`, exact `sourceRevision` and Git `gitBlob`. This narrow repair
+permits a missing `.ndjson` under a `fixtures` directory. It cannot replace an
+existing archive file, selected production source, a test, or a declared build
+input. The canonical revision must descend from the candidate fix and preserve
+every selected test-file Git blob. The copied bytes must match both their
+SHA256 and the specified canonical Git object. The runner validates the
+original archive first, then applies and records the overlay separately.
+Fixture bytes are rehashed before application and every case. Preserve the
+original unavailable ledger and canonical upstream notice.
+
+`--prepared-installations /absolute/existing-prepared-root` requires explicit
+`--dependency-installations`. It reuses only fully existing owned stores and
+metadata, validates their receipts and hashes, and never creates or repairs
+files in that root. All routes are validated before any execution. New
+registration retains the prepared root, metadata hashes and store/receipt
+bindings. Use a new output directory for the new execution profile.
 
 Fresh regular source files use `darwin-clone-or-bounded-stream-v1`. On Darwin the runner calls `fclonefileat` with retained source and destination directory descriptors and an exclusive destination. APFS gives the copy its own inode and makes later writes private. The runner records actual backend counts separately in `execution.json` as `sourceCopy`; byte manifests and `runner-hash-tree-v1` retain their existing format.
 
