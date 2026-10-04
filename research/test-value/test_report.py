@@ -4,11 +4,23 @@ from pathlib import Path
 import tempfile
 import unittest
 from analyze import analyze, compact_evaluation, evaluate_fault
-from report import collect
+from report import collect, render
 from test_analysis import matrix
 
 
 class ReportEvidenceControls(unittest.TestCase):
+    def test_embedded_payload_preserves_operator_and_script_text(self):
+        data={'subjects':[{'matrix':{'mutants':[
+            {'mutation':{'expected':'<','replacement':'<='}},
+            {'name':r'literal \u003c text'},
+            {'name':'</script><script>alert("retained text")</script>'},
+        ]}}]}
+        html=render(data)
+        payload=html.split('<script type="application/json" id="data">',1)[1].split('</script>',1)[0]
+        self.assertNotIn('<',payload)
+        decoded=json.loads(payload)
+        self.assertEqual(decoded,data)
+
     def test_reporting_profile_does_not_choose_each_faults_best_attempt(self):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory);history=root/'history';old=history/'fault';old.mkdir(parents=True)
