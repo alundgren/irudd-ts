@@ -152,16 +152,76 @@ def disk_check(directory, minimum=0.12):
     return {"freeBytes": usage.free, "totalBytes": usage.total, "freeFraction": usage.free / usage.total}
 
 
-def guarded_copy(source, destination):
-    destination = Path(destination)
-    with Path(source).open("rb") as reader, destination.open("wb") as writer:
-        while True:
+COPY_POLICY = {"name": "darwin-clone-or-bounded-stream-v1", "darwin": "fclonefileat",
+               "streamFallbackErrnos": [errno.ENOTSUP, errno.EXDEV],
+               "metadata": "Bytes, mode and modification time retained; Darwin clones also retain source extended attributes"}
+
+
+def clone_regular_file(source_fd, destination_fd, name):
+    library = ctypes.CDLL(None, use_errno=True)
+    try:
+        clone = library.fclonefileat
+    except AttributeError as error:
+        raise RuntimeError("Darwin fclonefileat is unavailable") from error
+    clone.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint32]
+    clone.restype = ctypes.c_int
+    # Source and destination descriptors retain the selected files across the call.
+    if clone(source_fd, destination_fd, os.fsencode(name), 0x0001 | 0x0002) != 0:
+        number = ctypes.get_errno()
+        raise OSError(number, os.strerror(number), name)
+
+
+def guarded_copy(source, destination, copy_evidence=None):
+    source, destination = Path(source), Path(destination)
+    check_cancelled()
+    disk_check(destination.parent)
+    source_fd = os.open(source, os.O_RDONLY | os.O_NOFOLLOW)
+    try:
+        if not stat.S_ISREG(os.fstat(source_fd).st_mode):
+            raise ValueError("Copy source must be a regular file")
+        destination_fd = os.open(destination.parent, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try:
+            check_cancelled()
             disk_check(destination.parent)
-            chunk = reader.read(1024 * 1024)
-            if not chunk:
-                break
-            writer.write(chunk)
-    shutil.copystat(source, destination)
+            backend = "bounded-stream"
+            fallback_errno = None
+            if sys.platform == "darwin":
+                try:
+                    clone_regular_file(source_fd, destination_fd, destination.name)
+                    backend = "darwin-clonefile"
+                except OSError as error:
+                    if error.errno not in {errno.ENOTSUP, errno.EXDEV}:
+                        raise
+                    fallback_errno = error.errno
+                check_cancelled()
+                disk_check(destination.parent)
+            if backend == "bounded-stream":
+                writer_fd = os.open(destination.name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                                    0o600, dir_fd=destination_fd)
+                with os.fdopen(writer_fd, "wb") as writer, os.fdopen(os.dup(source_fd), "rb") as reader:
+                    while True:
+                        check_cancelled()
+                        disk_check(destination.parent)
+                        chunk = reader.read(1024 * 1024)
+                        if not chunk:
+                            break
+                        writer.write(chunk)
+                        check_cancelled()
+                        disk_check(destination.parent)
+            shutil.copystat(source, destination)
+            check_cancelled()
+            disk_check(destination.parent)
+            if copy_evidence is not None:
+                counts = copy_evidence.setdefault("backends", {})
+                counts[backend] = counts.get(backend, 0) + 1
+                if fallback_errno is not None:
+                    fallbacks = copy_evidence.setdefault("fallbackErrnos", {})
+                    key = str(fallback_errno)
+                    fallbacks[key] = fallbacks.get(key, 0) + 1
+        finally:
+            os.close(destination_fd)
+    finally:
+        os.close(source_fd)
     return str(destination)
 
 
@@ -209,7 +269,7 @@ def owned_source_path(path, root):
     return current
 
 
-def copy_owned_source(source, destination, includes=None, excludes=None):
+def copy_owned_source(source, destination, includes=None, excludes=None, copy_evidence=None):
     source = Path(source).resolve()
     destination = Path(destination).absolute()
     if destination.is_symlink():
@@ -243,7 +303,7 @@ def copy_owned_source(source, destination, includes=None, excludes=None):
             raw = os.fsencode(original)
             manifest.append({"file": relative, "kind": "symlink", "target": original, "sha256": digest(raw), "bytes": len(raw)})
         elif stat.S_ISREG(path.stat().st_mode):
-            guarded_copy(path, target)
+            guarded_copy(path, target, copy_evidence)
             checksum = hashlib.sha256()
             size = 0
             with target.open('rb') as reader:
@@ -708,7 +768,8 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
     output.mkdir(parents=True, exist_ok=False)
     source = output / "source"
     disk_check(output)
-    copy_owned_source(template, source)
+    copy_evidence = {"policy": COPY_POLICY}
+    copy_owned_source(template, source, copy_evidence=copy_evidence)
     if dependencies:
         dependencies.attach(source)
     source_digest = hash_tree(template)[0]
@@ -741,7 +802,7 @@ def execute_case(template, output, command, *, dependencies=None, baseline=None,
         actual_command[0] = node
     actual_cwd = source / cwd
     inside(actual_cwd.resolve(), source)
-    evidence = {"templateSha256": source_digest, "mutation": mutation, "request": request,
+    evidence = {"templateSha256": source_digest, "sourceCopy": copy_evidence, "mutation": mutation, "request": request,
                 "baselineIds": [test["id"] for test in baseline] if baseline is not None else None,
                 "node": node_identity, "expectedNode": expected_node or node_identity,
                 "vitest": vitest, "runnerSha256": runner_digest,

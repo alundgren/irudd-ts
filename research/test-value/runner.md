@@ -208,3 +208,9 @@ The caller must record revision identities, classify the replay method and
 separate existing from fix-added tests. An assertion-only faulty replay accepted
 against a fixed inventory is evidence for that selected test slice, not a full
 historical dependency replay.
+
+Fresh regular source files use `darwin-clone-or-bounded-stream-v1`. On Darwin the runner calls `fclonefileat` with retained source and destination directory descriptors and an exclusive destination. APFS gives the copy its own inode and makes later writes private. The runner records actual backend counts separately in `execution.json` as `sourceCopy`; byte manifests and `runner-hash-tree-v1` retain their existing format.
+
+Only unsupported cloning or a different filesystem permits the bounded byte stream on Darwin. Other clone failures stop the copy. Other operating systems use the bounded stream directly. Both paths check cancellation and the 12% disk boundary, preserve file bytes, mode and modification time, and reject existing destinations. Owned symbolic links still follow the existing validation and reconstruction rules. Darwin cloning also copies source extended attributes, so this policy does not claim identical filesystem metadata to the earlier byte stream. Prepared dependency stores retain their original recorded copy provenance.
+
+Run `controls_runner.py --copy-only --archguard ABSOLUTE_CLI --output NEW_OUTPUT` for real cloning, private writes in both directions, mode and time agreement, explicit fallback, error, existing destination, link, cancellation and disk controls. The current and bundled backend controls also verify actual cloned source files before running with the pinned Node executable.
