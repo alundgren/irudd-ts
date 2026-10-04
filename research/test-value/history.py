@@ -247,8 +247,12 @@ def configure(template, tests, reporter):
     return [adapter] if adapter else []
 
 
-def plan(template, files, cli, output):
+def plan(template, files, cli, output, max_raw_units=None):
     config = {'schemaVersion': 1, 'selection': {'include': files}, 'operators': ['comparison', 'equality', 'logical']}
+    if max_raw_units is not None:
+        if type(max_raw_units) is not int or not 1 <= max_raw_units <= 16384:
+            raise ValueError('Historical planning maxRawUnits must be between 1 and 16384')
+        config['limits'] = {'maxRawUnits': max_raw_units}
     write_json(output / 'plan-config.json', config)
     command = [str(cli), 'mutator', 'plan', '--root', str(template), '--config', str(output / 'plan-config.json'), '--json']
     process = run_command(command, template, dict(__import__('os').environ), output / 'planning', timeout=60)
@@ -261,7 +265,7 @@ def plan(template, files, cli, output):
     return value
 
 
-def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None):
+def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runtime_identity, verify_identity, dependency_installation=None, max_raw_units=None):
     output.mkdir(parents=True)
     preflight=candidate.get('preflightExclusion')
     if preflight is not None:
@@ -339,14 +343,15 @@ def run_fault(candidate, dependencies, cli, output, reporter, limit, node, runti
     if not verified:
         fault['exclusion'] = 'faulty assertion regression, unaffected control, or restored pass not established'
         return fault
-    mutation_plan = plan(template, reverted, cli, output)
+    mutation_plan = plan(template, reverted, cli, output, max_raw_units)
     sites = mutation_plan['sites'][:limit] if limit is not None else mutation_plan['sites']
     matrix = {'schemaVersion': 1, 'baselineComplete': True, 'subject': {'name': candidate['subject'], 'revision': fix, 'faultId': candidate['id']},
               'tests': [{k: test[k] for k in ['id', 'name', 'file', 'durationMs'] if k in test} for test in fixed['tests']], 'mutants': [],
               'provenance': {'replay': fault['replay'], 'sourceSha256': fault['fixedTemplateSha256'], 'dependencySha256': dependencies.sha256,
                              'workspaceAdapters': adapters,
                              'archguardSha256': hashlib.sha256(cli.read_bytes()).hexdigest(), 'planSha256': hash_tree(output / 'planning')[0],
-                             'plannedMutants': len(mutation_plan['sites']), 'predeclaredPrefixLimit': limit}}
+                             'plannedMutants': len(mutation_plan['sites']), 'predeclaredPrefixLimit': limit,
+                             'planningMaxRawUnits': max_raw_units if max_raw_units is not None else 8192}}
     if dependency_installation is not None:
         matrix['provenance']['dependencyInstallation'] = dependency_installation
     for index, mutation in enumerate(sites):
@@ -395,10 +400,13 @@ def main():
     parser.add_argument('--scope-dependencies', type=Path)
     parser.add_argument('--dependency-installations', type=Path)
     parser.add_argument('--mutant-limit', type=int, default=None)
+    parser.add_argument('--max-raw-units', type=int, default=None)
     parser.add_argument('--prepare-only', action='store_true')
     parser.add_argument('--t3-node', required=True, type=Path)
     parser.add_argument('--scope-node', required=True, type=Path)
     args = parser.parse_args()
+    if args.max_raw_units is not None and not 1 <= args.max_raw_units <= 16384:
+        parser.error('--max-raw-units must be between 1 and the product ceiling of 16384')
     if args.dependency_installations:
         if args.t3_dependencies or args.scope_dependencies:
             parser.error('Use an explicit installation map or both global dependency donors, never both modes')
@@ -437,6 +445,7 @@ def main():
         return
     runtimes = {'t3code':args.t3_node.resolve(), 'scope':args.scope_node.resolve()}
     registration = {'candidates': candidates, 'mutantPrefixLimit': args.mutant_limit,
+               'planningMaxRawUnits': args.max_raw_units if args.max_raw_units is not None else 8192,
                'testPool': 'fixed-revision tests; retrospective test changes remain a confounder',
                'replay': ('adapted fixed source + first-parent changed-source reversion + explicit lock-matched prepared dependencies' if installations else
                           'adapted fixed source + first-parent changed-source reversion + borrowed current dependencies'),
@@ -478,7 +487,7 @@ def main():
                     store = installations.dependency(candidate) if installations else dependencies[candidate['subject']]
                     result = run_fault(candidate, store, args.archguard.resolve(), directory, reporter, args.mutant_limit,
                                        runtimes[candidate['subject']], registration['node'][candidate['subject']],
-                                       lambda:verify_candidate(candidate), dependency_installation=profile)
+                                       lambda:verify_candidate(candidate), dependency_installation=profile, max_raw_units=args.max_raw_units)
             except (ValueError, OSError, subprocess.SubprocessError) as error:
                 result = {**candidate, 'verified': False, 'exclusion': str(error)}
             verify_candidate(candidate)
