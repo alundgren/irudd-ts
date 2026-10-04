@@ -444,6 +444,8 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
         functions: vec![],
         excluded: vec![],
         pairs: vec![],
+        groups: vec![],
+        groups_complete: false,
         problems: loaded.problems,
         omitted_evidence: loaded.omitted,
         elapsed_ms: 0.0,
@@ -754,10 +756,13 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
 }
 
 fn fit_report(result: &mut DryerReport) {
+    result.groups = super::groups::group_pairs(&result.pairs);
+    result.groups_complete = result.complete;
     if validate_report_size(result, &result.configuration.limits).is_ok() {
         return;
     }
     result.complete = false;
+    result.groups_complete = false;
     result.problems.push(issue(
         ProblemKind::ReportLimit,
         ".",
@@ -766,10 +771,27 @@ fn fit_report(result: &mut DryerReport) {
         Some(AnalysisLimitKind::ReportBytes),
         &result.configuration.limits,
     ));
+    // Search retained prefixes rather than rebuilding components for each removed edge.
+    let pairs = std::mem::take(&mut result.pairs);
+    let mut low = 0;
+    let mut high = pairs.len();
+    let omitted_before = result.omitted_evidence.pairs;
+    while low < high {
+        let count = low + (high - low).div_ceil(2);
+        result.pairs = pairs[..count].to_vec();
+        result.groups = super::groups::group_pairs(&result.pairs);
+        result.omitted_evidence.pairs = omitted_before + pairs.len() - count;
+        if validate_report_size(result, &result.configuration.limits).is_ok() {
+            low = count;
+        } else {
+            high = count - 1;
+        }
+    }
+    result.pairs = pairs[..low].to_vec();
+    result.groups = super::groups::group_pairs(&result.pairs);
+    result.omitted_evidence.pairs = omitted_before + pairs.len() - low;
     while validate_report_size(result, &result.configuration.limits).is_err() {
-        if result.pairs.pop().is_some() {
-            result.omitted_evidence.pairs += 1;
-        } else if result.functions.pop().is_some() {
+        if result.functions.pop().is_some() {
             result.omitted_evidence.functions += 1;
         } else if result.excluded.pop().is_some() {
             result.omitted_evidence.excluded += 1;
@@ -842,6 +864,58 @@ mod tests {
                 },
             ],
         }
+    }
+    #[test]
+    fn group_bytes_trigger_report_trimming_and_references_follow_retained_pairs() {
+        let temp = tempfile::TempDir::new().unwrap();
+        std::fs::write(
+            temp.path().join("f.ts"),
+            "function a(x){return x+1} function b(y){return y+2}",
+        )
+        .unwrap();
+        let config = super::DryerConfig {
+            minimum_lines: 1,
+            minimum_nodes: 1,
+            similarity_threshold: 0.0,
+            ..super::DryerConfig::default()
+        };
+        let mut report = super::analyze(temp.path(), &config).unwrap();
+        let template = report.pairs[0].clone();
+        report.pairs = (0..50)
+            .map(|index| {
+                let mut pair = template.clone();
+                pair.left.location.file = format!("{}-{index}-left.ts", "a".repeat(250));
+                pair.right.location.file = format!("{}-{index}-right.ts", "a".repeat(250));
+                pair
+            })
+            .collect();
+        report.groups.clear();
+        report.configuration.limits.max_report_bytes = 64 * 1024;
+        super::validate_report_size(&report, &report.configuration.limits).unwrap();
+        report.groups = crate::dryer::groups::group_pairs(&report.pairs);
+        assert!(super::validate_report_size(&report, &report.configuration.limits).is_err());
+        super::fit_report(&mut report);
+        assert!(!report.complete);
+        assert!(!report.groups_complete);
+        assert!(
+            report
+                .problems
+                .iter()
+                .any(|problem| problem.message == "dryer report byte budget reached")
+        );
+        assert!(report.pairs.len() < 50);
+        assert!(!report.pairs.is_empty());
+        assert_eq!(report.omitted_evidence.pairs, 50 - report.pairs.len());
+        assert_eq!(report.groups.len(), report.pairs.len());
+        for (index, group) in report.groups.iter().enumerate() {
+            assert_eq!(group.pair_indices.len(), 1);
+            let pair_index = group.pair_indices[0];
+            let pair = &report.pairs[pair_index];
+            assert_eq!(group.members, vec![pair.left.clone(), pair.right.clone()]);
+            assert!(group.all_members_match);
+            assert!(index < report.pairs.len());
+        }
+        super::validate_report_size(&report, &report.configuration.limits).unwrap();
     }
     #[test]
     fn hash_collisions_do_not_establish_exact_normalized_equality() {

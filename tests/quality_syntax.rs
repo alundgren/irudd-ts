@@ -30,6 +30,10 @@ fn compare(source: &str, options: NormalizationOptions) -> dryer::DryerReport {
     assert!(report.complete, "{:?}", report.problems);
     assert_eq!(report.functions.len(), 2, "{source}");
     assert_eq!(report.pairs.len(), 1);
+    assert!(report.groups_complete);
+    assert_eq!(report.groups.len(), 1);
+    assert_eq!(report.groups[0].pair_indices, vec![0]);
+    assert!(report.groups[0].all_members_match);
     report
 }
 fn exact(source: &str) -> bool {
@@ -207,6 +211,10 @@ fn comparison_counts_and_resource_limits_preserve_partial_results() {
     let report = dryer::analyze(temp.path(), &limited).unwrap();
     assert!(!report.complete);
     assert_eq!(report.pairs.len(), 1);
+    assert!(!report.groups_complete);
+    assert_eq!(report.groups.len(), 1);
+    assert_eq!(report.groups[0].members.len(), 2);
+    assert!(report.groups[0].all_members_match);
     assert!(
         report
             .problems
@@ -216,6 +224,10 @@ fn comparison_counts_and_resource_limits_preserve_partial_results() {
     let restored = dryer::analyze(temp.path(), &config()).unwrap();
     assert!(restored.complete);
     assert_eq!(restored.pairs.len(), 3);
+    assert!(restored.groups_complete);
+    assert_eq!(restored.groups.len(), 1);
+    assert_eq!(restored.groups[0].members.len(), 3);
+    assert!(restored.groups[0].all_members_match);
     let threshold = DryerConfig {
         similarity_threshold: 1.0,
         ..config()
@@ -573,6 +585,32 @@ fn aggregate_reports_omit_evidence_before_collection_and_keep_json_valid() {
     let report = dryer::analyze(temp.path(), &limited).unwrap();
     assert!(!report.complete);
     assert!(report.omitted_evidence.pairs > 0);
+    assert!(!report.groups_complete);
+    let grouped: Vec<_> = report
+        .groups
+        .iter()
+        .flat_map(|group| {
+            assert!(
+                group
+                    .pair_indices
+                    .windows(2)
+                    .all(|indices| indices[0] < indices[1])
+            );
+            for index in &group.pair_indices {
+                let pair = &report.pairs[*index];
+                assert!(group.members.contains(&pair.left));
+                assert!(group.members.contains(&pair.right));
+            }
+            assert_eq!(
+                group.all_members_match,
+                group.pair_indices.len() == group.members.len() * (group.members.len() - 1) / 2
+            );
+            group.pair_indices.clone()
+        })
+        .collect();
+    let mut grouped = grouped;
+    grouped.sort_unstable();
+    assert_eq!(grouped, (0..report.pairs.len()).collect::<Vec<_>>());
     assert!(
         report
             .problems
@@ -585,6 +623,10 @@ fn aggregate_reports_omit_evidence_before_collection_and_keep_json_valid() {
     let restored = dryer::analyze(temp.path(), &config()).unwrap();
     assert!(restored.complete);
     assert_eq!(restored.pairs.len(), 190);
+    assert!(restored.groups_complete);
+    assert_eq!(restored.groups.len(), 1);
+    assert_eq!(restored.groups[0].members.len(), 20);
+    assert!(restored.groups[0].all_members_match);
     let short = TempDir::new().unwrap();
     fs::write(
         short.path().join("small.ts"),
@@ -661,6 +703,8 @@ fn parallel_batches_produce_the_same_order_and_facts_as_one_worker() {
     assert!(many.complete);
     assert_eq!(single.functions, many.functions);
     assert_eq!(single.pairs, many.pairs);
+    assert_eq!(single.groups, many.groups);
+    assert_eq!(single.groups_complete, many.groups_complete);
     let single = mutator::plan(temp.path(), &MutationPlanConfig::default()).unwrap();
     let many = mutator::plan(
         temp.path(),
