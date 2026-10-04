@@ -9,8 +9,8 @@ import sys
 from unittest.mock import patch
 
 from controls_runner import fixture, require
-from history import HistoricalInstallations, INSTALLATION_SAFEGUARDS
-from runner import DependencyStore, copy_owned_source, install_signal_handlers, private_environment, read_json, run_command, write_json
+from history import HistoricalInstallations, INSTALLATION_SAFEGUARDS, archive
+from runner import DependencyStore, copy_owned_source, hash_tree, install_signal_handlers, private_environment, read_json, run_command, write_json
 
 
 def checksum(path):
@@ -81,8 +81,12 @@ def archive_binding_control(output, registry, rows, node):
     git('add', '.')
     git('commit', '-qm', 'fixed')
     fix = git('rev-parse', 'HEAD')
+    declared_archive = output / 'declared-archive'
+    archive(repository, fix, declared_archive)
     candidate = {'id': 'archive-probe', 'subject': 't3code', 'repository': str(repository), 'fix': fix, 'parent': parent,
-                 'sourceFiles': ['subject.ts'], 'testFiles': ['subject.test.ts'], 'relatedGroup': 'authored-archive-binding-control'}
+                 'sourceFiles': ['subject.ts'], 'testFiles': ['subject.test.ts'], 'relatedGroup': 'authored-archive-binding-control',
+                 'installationInputSignature': registry.receipts['first']['inputSignature'],
+                 'sourceArchiveTreeSha256': hash_tree(declared_archive)[0], 'sourceArchiveAlgorithm': 'runner-hash-tree-v1'}
     manifest = output / 'candidates.json'
     mapping = output / 'map.json'
     write_json(manifest, [candidate])
@@ -99,12 +103,52 @@ def archive_binding_control(output, registry, rows, node):
     archived = destination / candidate['id'] / 'fixed-template'
     require(archived.exists() and not (archived / 'research-test-value.config.ts').exists() and not list(destination.glob('*/*/execution.json')),
             'Archive mismatch must stop before configuration adaptation and any baseline execution')
-    corrected = registry.verify_source({'id': 'two'}, archived)
+    corrected_candidate = {**candidate, 'id': 'two', 'installationInputSignature': registry.receipts['second']['inputSignature']}
+    corrected = registry.verify_source(corrected_candidate, archived)
     registry.verify({'id': 'one'})
     registry.verify({'id': 'two'})
     require(corrected['inputSignature'] == registry.receipts['second']['inputSignature'], 'Same actual archive must match its declared second installation inputs')
-    return {'control': 'actual-archive-wrong-installation-rejected-before-baseline-and-correct-binding', 'passed': True,
-            'exclusion': excluded[0]['exclusion'], 'correctInputSignature': corrected['inputSignature']}
+    for name, relative, content in [('extra-manifest', 'packages/extra/package.json', '{"name":"new-package"}'),
+                                    ('extra-installer-config', '.npmrc', 'node-linker=hoisted\n')]:
+        extra = archived / relative
+        extra.parent.mkdir(parents=True, exist_ok=True)
+        extra.write_text(content)
+        try:
+            registry.verify_source(corrected_candidate, archived)
+        except ValueError as error:
+            require('frozen complete archive' in str(error), 'Unlisted installer input must fail complete source inventory binding')
+        else:
+            raise AssertionError('New archive installer input accepted: ' + name)
+        extra.unlink()
+        before_extra = git('rev-parse', 'HEAD')
+        repository_extra = repository / relative
+        repository_extra.parent.mkdir(parents=True, exist_ok=True)
+        repository_extra.write_text(content)
+        git('add', '.')
+        git('commit', '-qm', name)
+        extra_candidate = {**candidate, 'fix': git('rev-parse', 'HEAD'), 'parent': before_extra,
+                           'installationInputSignature': registry.receipts['second']['inputSignature']}
+        extra_manifest, extra_map = output / (name + '-candidate.json'), output / (name + '-map.json')
+        write_json(extra_manifest, [extra_candidate])
+        write_json(extra_map, {'schemaVersion': 1, 'installations': rows, 'candidates': {'archive-probe': 'second'}})
+        extra_destination = output / (name + '-experiment')
+        extra_command = list(command)
+        for option, value in [('--candidates', extra_manifest), ('--dependency-installations', extra_map), ('--output', extra_destination)]:
+            extra_command[extra_command.index(option) + 1] = str(value)
+        extra_process = run_command(extra_command, output, environment, output / (name + '-process'), timeout=30)
+        extra_attempt = read_json(extra_destination / 'attempts.json')[0]
+        require(extra_process['exitCode'] == 0 and extra_process['cleanupComplete'] and extra_attempt.get('executionAttempted') is False and
+                'frozen complete archive' in extra_attempt['exclusion'], 'Real CLI archive with an extra input must exclude before baseline')
+        require(not list(extra_destination.glob('*/*/execution.json')) and
+                not list(extra_destination.glob('*/fixed-template/research-test-value.config.ts')), 'Extra input must stop before configuration and test execution')
+        registry.verify({'id': 'two'})
+        repository_extra.unlink()
+        git('add', '.')
+        git('commit', '-qm', 'restore declared control archive')
+    registry.verify_source(corrected_candidate, archived)
+    return {'control': 'actual-archive-wrong-installation-and-extra-input-rejection-before-baseline-and-correct-binding', 'passed': True,
+            'exclusion': excluded[0]['exclusion'], 'correctInputSignature': corrected['inputSignature'],
+            'extraInputNegatives': ['new-package-manifest', 'new-installer-config']}
 
 
 def controls(output, node):
@@ -112,7 +156,14 @@ def controls(output, node):
     prepared = output / 'prepared'
     prepared.mkdir()
     rows = [receipt(prepared, 'first', 1), receipt(prepared, 'second', 2), receipt(prepared, 'failed', 3, False)]
-    candidates = [{'id': name, 'subject': 't3code'} for name in ['one', 'two', 'also-two', 'failed', 'unmapped', 'missing-installation']]
+    candidates = []
+    for name, row in zip(['one', 'two', 'also-two', 'failed', 'unmapped', 'missing-installation'],
+                         [rows[0], rows[1], rows[1], rows[2], rows[0], rows[0]]):
+        declaration = read_json(row['receiptPath'])
+        source = fixture(output / ('declared-source-' + name), {file: (Path(row['root']) / file).read_text()
+                                                              for file in declaration['inputFiles']})
+        candidates.append({'id': name, 'subject': 't3code', 'installationInputSignature': declaration['inputSignature'],
+                           'sourceArchiveTreeSha256': hash_tree(source)[0], 'sourceArchiveAlgorithm': 'runner-hash-tree-v1'})
     manifest = {'schemaVersion': 1, 'installations': rows,
                 'candidates': {'one': 'first', 'two': 'second', 'also-two': 'second',
                                'failed': 'failed', 'missing-installation': 'not-declared'}}
@@ -162,6 +213,9 @@ def controls(output, node):
                 raise AssertionError('Invalid dependency map accepted: ' + name)
 
     reject('duplicate-installation', {**manifest, 'installations': rows + [rows[0]]})
+    missing_archive_identity = [{key: value for key, value in candidates[0].items() if key != 'sourceArchiveTreeSha256'}] + candidates[1:]
+    reject('missing-complete-candidate-archive-identity', manifest, missing_archive_identity)
+    reject('unsupported-complete-archive-algorithm', manifest, [{**candidates[0], 'sourceArchiveAlgorithm': 'unsupported'}] + candidates[1:])
     duplicate_inputs = receipt(prepared, 'second-same-inputs-different-bytes', 2)
     (Path(duplicate_inputs['root']) / 'node_modules/control-pkg/index.mjs').write_text('export const value=999;\n')
     reject('same-inputs-different-prepared-dependencies', {**manifest, 'installations': rows + [duplicate_inputs]})

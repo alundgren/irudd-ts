@@ -51,6 +51,10 @@ class HistoricalInstallations:
         if len(expected) != len(candidates) or any(not isinstance(key, str) or not key or Path(key).parts != (key,)
                                                   for key in expected):
             raise ValueError('Duplicate or invalid historical candidate ID')
+        if any(not candidate.get('preflightExclusion') and (not sha256_text(candidate.get('installationInputSignature')) or
+                not sha256_text(candidate.get('sourceArchiveTreeSha256')) or candidate.get('sourceArchiveAlgorithm') != 'runner-hash-tree-v1')
+                for candidate in candidates):
+            raise ValueError('Explicit installations require complete audited candidate input and archive fingerprints')
         if set(manifest['candidates']) - expected.keys():
             raise ValueError('Dependency map contains undeclared historical candidates')
         for row in manifest['installations']:
@@ -167,10 +171,15 @@ class HistoricalInstallations:
     def verify_source(self, candidate, template):
         receipt = self.receipts[self.profiles[candidate['id']]['installationId']]
         try:
+            if candidate['installationInputSignature'] != receipt['inputSignature']:
+                raise ValueError('Complete audited candidate input signature differs from preparation')
+            if hash_tree(template)[0] != candidate['sourceArchiveTreeSha256']:
+                raise ValueError('Fresh candidate archive differs from the frozen complete archive')
             verify_installation_inputs({'root': str(template)}, receipt)
         except (ValueError, OSError) as error:
             raise ValueError('Setup: archived candidate inputs disagree with the mapped installation: ' + str(error)) from error
-        return {'inputSignature': receipt['inputSignature'], 'inputFiles': receipt['inputFiles']}
+        return {'inputSignature': receipt['inputSignature'], 'inputFiles': receipt['inputFiles'],
+                'sourceArchiveTreeSha256': candidate['sourceArchiveTreeSha256'], 'sourceArchiveAlgorithm': candidate['sourceArchiveAlgorithm']}
 
     def verify(self, candidate):
         if hashlib.sha256(self.path.read_bytes()).hexdigest() != self.manifest_sha256:
