@@ -44,6 +44,12 @@ python3 research/test-value/history.py \
   --mutant-limit 50
 ```
 
+For a historical cohort with changing lockfiles, supply `--dependency-installations /absolute/installations.json` instead of the two global dependency arguments. Each candidate maps to one explicit installation and a hashed preparation receipt. The receipt records the frozen lockfile, disabled lifecycle scripts and package-manager hooks, disabled runtime downloads and manager switching, exact package-manager/runtime identities, and unchanged archived installer inputs. Failed or missing installations remain setup exclusions. There is no borrowed-dependency fallback.
+
+Before this mode runs, independently audit the complete installer input set and archive each exact fixed revision. Each candidate must retain `installationInputSignature`, `sourceArchiveTreeSha256`, and `sourceArchiveAlgorithm` of `runner-hash-tree-v1`. The full archive hash is checked before the replay config is written; adding an otherwise unlisted manifest or config invalidates the source. Keep the audit helper, plan and source-binding audit hashes in the candidate manifest metadata. The registration binds the entire manifest, each receipt and each owned dependency store. These checks bind the declared installation to its source; they do not claim faithful execution of the whole historical environment.
+
+`--max-raw-units 16384` declares the larger supported planning budget uniformly for a new cohort. Without it, the budget remains 8192. Changing the budget requires a new experiment directory. Preparation and baseline validation take place before mutation measurements; they are not historical fault results.
+
 The candidate file has a `candidates` array. Each entry names `id`, `subject` of `t3code` or `scope`, `repository`, exact `fix` and first `parent` commit hashes, `sourceFiles`, `testFiles`, `title`, and `relatedGroup`. The operator set and prefix limit are declared before outcomes are observed. Reusing an output directory with changed candidates, tools, operators, limits or dependencies fails. Start a new directory for a changed experiment.
 
 A declared `preflightExclusion` records a candidate that the configured harness cannot safely run, before archiving or test execution. Such candidates stay in the cohort ledger with `executionAttempted: false`. The overnight Node-only cohort excludes one Electron/Playwright integration harness after inspecting its launch helper.
