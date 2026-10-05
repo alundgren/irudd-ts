@@ -150,7 +150,7 @@
     {
       "slug": "service-namespace",
       "title": "Enforce a team import convention",
-      "summary": "T3 Code imports Effect services as namespaces. Three pull requests fixed this by hand.",
+      "summary": "Require namespace imports for Effect service modules.",
       "capabilities": [
         "serviceNamespace"
       ],
@@ -342,7 +342,7 @@
     {
       "slug": "run-mutations",
       "title": "Find code changes your tests miss",
-      "summary": "Archguard makes small edits, like >= to >, and runs your tests on a copy. An edit no test notices shows a gap.",
+      "summary": "Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.",
       "capabilities": [
         "mutator"
       ],

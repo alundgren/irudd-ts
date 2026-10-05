@@ -1,6 +1,6 @@
 # Find code changes your tests miss
 
-Archguard makes small edits, like >= to >, and runs your tests on a copy. An edit no test notices shows a gap.
+Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.
 
 Run · mutator.json names the source files and your test command:
 

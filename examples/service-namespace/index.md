@@ -1,6 +1,6 @@
 # Enforce a team import convention
 
-T3 Code imports Effect services as namespaces. Three pull requests fixed this by hand.
+Require namespace imports for Effect service modules.
 
 archguard.json:
 

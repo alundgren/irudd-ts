@@ -24,11 +24,11 @@ Exit 0: every selected file parsed, every internal import resolved, all rules pa
 - [Make other code use a package's public entry](https://alundgren.github.io/irudd-ts/examples/public-entry/index.md): Stop code from reaching into a workspace package's private files.
 - [Keep a package's dependency list clean](https://alundgren.github.io/irudd-ts/examples/package-dependencies/index.md): Stop a domain package from picking up React.
 - [Keep runtime calls at the edge](https://alundgren.github.io/irudd-ts/examples/block-calls/index.md): Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.
-- [Enforce a team import convention](https://alundgren.github.io/irudd-ts/examples/service-namespace/index.md): T3 Code imports Effect services as namespaces. Three pull requests fixed this by hand.
+- [Enforce a team import convention](https://alundgren.github.io/irudd-ts/examples/service-namespace/index.md): Require namespace imports for Effect service modules.
 - [Give every file a known role](https://alundgren.github.io/irudd-ts/examples/classify-files/index.md): Catch files that land outside your folder conventions.
 - [Require files that belong together](https://alundgren.github.io/irudd-ts/examples/companions/index.md): Every service needs its layer file next to it.
 - [Never forget to register a migration](https://alundgren.github.io/irudd-ts/examples/registry-imports/index.md): The registry must import every migration file.
 - [Write your own rule over the whole graph](https://alundgren.github.io/irudd-ts/examples/typescript-plugin/index.md): Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.
 - [Find copy-pasted logic](https://alundgren.github.io/irudd-ts/examples/find-duplicates/index.md): Groups functions with the same structure, even after variables were renamed.
-- [Find code changes your tests miss](https://alundgren.github.io/irudd-ts/examples/run-mutations/index.md): Archguard makes small edits, like >= to >, and runs your tests on a copy. An edit no test notices shows a gap.
+- [Find code changes your tests miss](https://alundgren.github.io/irudd-ts/examples/run-mutations/index.md): Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.
 - [Let your agent try Archguard on your repo](https://alundgren.github.io/irudd-ts/examples/agent-evaluation/index.md): Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.
