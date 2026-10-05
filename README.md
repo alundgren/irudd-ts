@@ -2,6 +2,8 @@
 
 Archguard checks architecture rules across a source repository. It follows dependencies, enforces package and module boundaries, detects cycles, and checks file conventions such as companion files and registry imports. Rust and TypeScript plugins can add checks over the same project graph. An optional TypeScript compiler provider checks inferred public members.
 
+Browse the [searchable recipe book](https://alundgren.github.io/irudd-ts/) for practical configurations, code, and diagrams. Agents can start with the [task index](https://alundgren.github.io/irudd-ts/llms.txt).
+
 ## Get started
 
 Install an exact [released binary](docs/guides/installation.md) for Linux or macOS on x86_64 or arm64. Binary releases become available after the first manual release. To build from this checkout instead, use Rust 1.96 or newer:

@@ -16,4 +16,6 @@ python3 scripts/licenses.py
 python3 scripts/semantic_licenses.py
 python3 scripts/semantic_licenses.py --history
 python3 scripts/check_docs.py
+python3 website/check.py
+python3 -O website/test_publish.py
 cargo run --locked -- check --config archguard.json
