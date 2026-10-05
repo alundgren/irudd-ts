@@ -22,7 +22,8 @@ runs:
       env:
         ARCHGUARD_VERSION: ${{ inputs.version }}
       run: |
-        directory=$("$GITHUB_ACTION_PATH/scripts/install.sh" "$ARCHGUARD_VERSION" "$RUNNER_TEMP/archguard-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT")
+        invocation=$(mktemp -d "$RUNNER_TEMP/archguard-action.XXXXXXXX")
+        directory=$("$GITHUB_ACTION_PATH/scripts/install.sh" "$ARCHGUARD_VERSION" "$invocation/distribution")
         echo "directory=$directory" >> "$GITHUB_OUTPUT"
     - shell: bash
       env:

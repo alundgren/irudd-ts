@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 def metadata(platform):
     return json.loads(subprocess.check_output(
-        ['cargo', 'metadata', '--locked', '--format-version', '1', '--filter-platform', PLATFORMS[platform][0]],
+        ['cargo', '+1.96.0', 'metadata', '--locked', '--format-version', '1', '--filter-platform', PLATFORMS[platform][0]],
         cwd=ROOT, text=True))
 
 

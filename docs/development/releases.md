@@ -60,7 +60,10 @@ manual workflows. There is no automatic validation CI in this repository.
    current release request authorizes only this release task.
 5. Merge the reviewed release PR and record its exact merged commit. Dispatch
    `publish-release.yml` with only `release_pr=NUMBER`. The workflow derives the
-   version and commit from that merged default-branch release PR. Never pass an
+   version and commit from that merged default-branch release PR. Verify the
+   merged source revision matches the tested PR revision; if merging included
+   additional source changes, run `scripts/check.sh` at the exact merged commit
+   before dispatching publication. Never pass an
    arbitrary version or commit to publication. All four native builds, license
    packages, installer checks, and exit-code smoke tests must pass before a
    draft is created or resumed.
@@ -91,7 +94,9 @@ assets are uploaded. A conflicting tag, identity, checksum, note, or asset stops
 the run. Inspect the cause instead of replacing conflicting bytes. If a draft
 upload is interrupted, the release remains unpublished until complete.
 
-After publication, reruns verify existing public assets and leave them intact.
+After publication, reruns skip rebuilding and verify the existing public
+archives against their published checksums, tag commit, version and platform
+records. They leave public assets intact.
 They can finish release-label bookkeeping interrupted after publication.
 Public assets are never deleted or replaced. There is no separate release
 database; Cargo, the manifest, changelog, PR, tag, and GitHub release hold the

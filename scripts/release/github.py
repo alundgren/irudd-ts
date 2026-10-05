@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Guard manual release preparation and publish one merged release PR."""
 import argparse
+import base64
 import hashlib
 import json
 import os
@@ -34,6 +35,13 @@ def public_release(repo, value):
             if release['tag_name'] == f'v{value}':
                 if release['draft'] or release['prerelease']:
                     raise RuntimeError(f'Previous version v{value} has not been published')
+                commit = tag_commit(repo, release['tag_name'])
+                if commit is None or release['target_commitish'] != commit:
+                    raise RuntimeError(f'Previous public release v{value} has a missing or conflicting tag')
+                content = api(f'repos/{repo}/contents/.release-please-manifest.json?ref={commit}')
+                identity = json.loads(base64.b64decode(content['content']))
+                if identity.get('.') != value:
+                    raise RuntimeError(f'Previous public release v{value} has a conflicting manifest version')
                 return release
     raise RuntimeError(f'Previous version v{value} has not been published')
 
@@ -143,6 +151,20 @@ def release_for_tag(repo, tag):
     return next((r for page in pages for r in page if r['tag_name'] == tag), None)
 
 
+def verify_public_assets(repo, release, info):
+    expected = asset_names(info['version'])
+    names = [asset['name'] for asset in release['assets']]
+    if sorted(names) != sorted(expected):
+        raise RuntimeError('Published release assets are incomplete or conflicting')
+    with tempfile.TemporaryDirectory() as temp:
+        directory = Path(temp)
+        for asset in release['assets']:
+            with (directory / asset['name']).open('wb') as stream:
+                subprocess.run(['gh', 'api', f"repos/{repo}/releases/assets/{asset['id']}",
+                                '-H', 'Accept: application/octet-stream'], stdout=stream, check=True)
+        validate_assets(directory, info)
+
+
 def verify_remote(repo, release, directory, expected, complete):
     actual = [asset['name'] for asset in release['assets']]
     if len(actual) != len(set(actual)) or not set(actual).issubset(expected) or (complete and sorted(actual) != sorted(expected)):
@@ -159,7 +181,6 @@ def verify_remote(repo, release, directory, expected, complete):
 
 
 def publish(repo, info, directory):
-    expected = validate_assets(directory, info)
     tag = f"v{info['version']}"
     existing_commit = tag_commit(repo, tag)
     if existing_commit is not None and existing_commit != info['commit']:
@@ -172,8 +193,11 @@ def publish(repo, info, directory):
             raise RuntimeError('Published release tag is missing or conflicts')
         if release['body'].strip() != info['notes'].strip():
             raise RuntimeError('Published release notes conflict with the changelog')
-        verify_remote(repo, release, directory, expected, complete=True)
+        verify_public_assets(repo, release, info)
     else:
+        if directory is None:
+            raise RuntimeError('A draft release requires all four built archives and checksum files')
+        expected = validate_assets(directory, info)
         if release:
             if release['target_commitish'] != info['commit'] or release['body'].strip() != info['notes'].strip():
                 raise RuntimeError('Conflicting draft release commit or notes')
@@ -229,11 +253,11 @@ if __name__ == '__main__':
             parser.error('--pr must be a positive release PR number')
         info = release_info(args.repo, args.pr)
         if args.operation == 'validate':
+            existing = release_for_tag(args.repo, f"v{info['version']}")
+            info['published'] = bool(existing and not existing['draft'])
             print(json.dumps(info))
             if os.environ.get('GITHUB_OUTPUT'):
                 with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-                    output.write(f"version={info['version']}\ncommit={info['commit']}\n")
+                    output.write(f"version={info['version']}\ncommit={info['commit']}\npublished={str(info['published']).lower()}\n")
         else:
-            if args.assets is None:
-                parser.error('--assets is required')
             publish(args.repo, info, args.assets)

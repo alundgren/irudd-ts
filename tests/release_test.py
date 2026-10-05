@@ -67,6 +67,47 @@ class ReleaseTests(unittest.TestCase):
              patch.object(github, 'api', return_value={'can_approve_pull_request_reviews': True}):
             github.prepare('owner/repo')
 
+    def test_previous_public_tag_and_manifest_identity(self):
+        release = {'tag_name': 'v0.1.0', 'draft': False, 'prerelease': False,
+                   'target_commitish': self.info['commit']}
+        import base64
+        def identity(value):
+            return {'content': base64.b64encode(json.dumps({'.': value}).encode()).decode()}
+        with patch.object(github, 'run', return_value=json.dumps([[release]])), \
+             patch.object(github, 'tag_commit', return_value=None):
+            with self.assertRaisesRegex(RuntimeError, 'missing or conflicting tag'):
+                github.public_release('owner/repo', '0.1.0')
+        with patch.object(github, 'run', return_value=json.dumps([[release]])), \
+             patch.object(github, 'tag_commit', return_value=self.info['commit']), \
+             patch.object(github, 'api', return_value=identity('0.2.0')):
+            with self.assertRaisesRegex(RuntimeError, 'conflicting manifest'):
+                github.public_release('owner/repo', '0.1.0')
+        with patch.object(github, 'run', return_value=json.dumps([[release]])), \
+             patch.object(github, 'tag_commit', return_value=self.info['commit']), \
+             patch.object(github, 'api', return_value=identity('0.1.0')):
+            self.assertEqual(github.public_release('owner/repo', '0.1.0'), release)
+
+    def test_public_assets_verify_without_fresh_build(self):
+        names = github.asset_names('0.1.0')
+        release = {'assets': [{'name': name, 'id': index} for index, name in enumerate(names)]}
+        def download(args, stdout, check):
+            asset_id = int(args[2].rsplit('/', 1)[1])
+            stdout.write((self.directory / names[asset_id]).read_bytes())
+        with patch.object(github.subprocess, 'run', side_effect=download):
+            github.verify_public_assets('owner/repo', release, self.info)
+            checksum = self.directory / names[1]
+            original = checksum.read_text()
+            checksum.write_text('invalid checksum')
+            with self.assertRaisesRegex(RuntimeError, 'checksum mismatch'):
+                github.verify_public_assets('owner/repo', release, self.info)
+            checksum.write_text(original)
+            github.verify_public_assets('owner/repo', release, self.info)
+            with self.assertRaisesRegex(RuntimeError, 'identity mismatch'):
+                github.verify_public_assets('owner/repo', release, {**self.info, 'commit': 'b' * 40})
+        release['assets'].pop()
+        with self.assertRaisesRegex(RuntimeError, 'incomplete'):
+            github.verify_public_assets('owner/repo', release, self.info)
+
     def test_conflicting_tag_prevents_writes(self):
         with patch.object(github, 'tag_commit', return_value='b' * 40), patch.object(github, 'run') as run:
             with self.assertRaisesRegex(RuntimeError, 'Conflicting existing'):
@@ -93,6 +134,7 @@ class ReleaseTests(unittest.TestCase):
         with patch.object(github, 'tag_commit', return_value=self.info['commit']), \
              patch.object(github, 'release_for_tag', return_value=release), \
              patch.object(github, 'verify_remote', return_value=present), \
+             patch.object(github, 'verify_public_assets') as verify_public, \
              patch.object(github, 'api', side_effect=lambda path, *args: [[{'name': 'autorelease: tagged'}]] if '/labels?' in path else {'labels': [{'name': name} for name in labels]}), \
              patch.object(github, 'run', side_effect=command):
             github.publish('owner/repo', self.info, self.directory)
@@ -100,7 +142,8 @@ class ReleaseTests(unittest.TestCase):
             self.assertEqual(len(uploads), 5)
             self.assertTrue(any(call[1:3] == ('release', 'edit') for call in calls))
             calls.clear()
-            github.publish('owner/repo', self.info, self.directory)
+            github.publish('owner/repo', self.info, None)
+            verify_public.assert_called_once()
             self.assertFalse(any(call[1] == 'release' for call in calls))
 
     def test_failed_upload_leaves_draft_and_labels(self):

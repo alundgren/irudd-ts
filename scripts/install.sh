@@ -23,7 +23,7 @@ if command -v sha256sum >/dev/null; then actual=$(sha256sum "$work/$archive" | c
 # The publisher creates a single top-level directory and regular files only.
 root="archguard-$version"
 tar -tzf "$work/$archive" > "$work/files"
-awk -v root="$root" '$0 !~ ("^" root "(/|$)") || $0 ~ /(^|\/)\.\.(\/|$)/ {bad=1} END {exit bad}' "$work/files" || { echo 'Unsafe archive path' >&2; exit 2; }
+awk -v root="$root" '($0 != root && index($0, root "/") != 1) || $0 ~ /(^|\/)\.\.(\/|$)/ {bad=1} END {exit bad}' "$work/files" || { echo 'Unsafe archive path' >&2; exit 2; }
 tar -tvzf "$work/$archive" | awk 'substr($0, 1, 1) !~ /^[-d]$/ {bad=1} END {exit bad}' || { echo 'Archive contains unsupported file types' >&2; exit 2; }
 tar -xzf "$work/$archive" -C "$work"
 [[ "$(cat "$work/$root/VERSION")" == "$version" ]] || { echo 'Archive version mismatch' >&2; exit 2; }
