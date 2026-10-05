@@ -24,3 +24,5 @@ Check licenses before adding dependencies or copying source. Keep locked license
 Use direct, concrete language and follow the session's prohibited-word instructions. Use the `github-use` skill and `gh` for GitHub work. Obtain independent review before merging; use only branch and merge authorization provided for the current task. Do not carry an old task's branch or merge permission into new work.
 
 For historical evidence, benchmark windows, and archived artifacts, follow [research/AGENTS.md](research/AGENTS.md).
+
+For explicitly requested releases, follow [the manual release procedure](docs/development/releases.md).
