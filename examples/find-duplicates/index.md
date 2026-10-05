@@ -1,6 +1,6 @@
-# Find copy-pasted logic
+# Review similar functions
 
-Groups functions with the same structure, even after variables were renamed.
+Group selected functions by structural similarity.
 
 dryer.json:
 
@@ -19,6 +19,6 @@ Run:
 archguard dryer --root . --config dryer.json
 ```
 
-You get pairs and groups of similar functions with their locations. Not every pair in a group matches. You decide what to merge.
+The output lists pairs and groups with source locations. Use the reported pairs to review matches within a group, and compare behavior before sharing an implementation.
 
 Reference: https://github.com/alundgren/irudd-ts/blob/main/docs/code-quality.md

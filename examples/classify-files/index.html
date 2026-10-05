@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Give every file a known role · Archguard</title><meta name="description" content="Catch files that land outside your folder conventions.">
+<title>Check configured file roles · Archguard</title><meta name="description" content="Report analyzed files that do not match the configured roles.">
 <link rel="canonical" href="https://alundgren.github.io/irudd-ts/examples/classify-files/"><meta name="theme-color" content="#F2EADE">
 <link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script><link rel="alternate" type="text/markdown" href="index.md"></head>
@@ -8,7 +8,7 @@
 <header class="site-header"><a class="brand" href="../../index.html"><img src="../../assets/mark.svg" width="28" height="28" alt="">Archguard</a>
 <nav aria-label="Main"><a href="../../index.html#examples">Examples</a><a href="../../agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
 <main id="main"><article class="recipe"><a class="back-link" data-back-to-results href="../../index.html#examples">← All examples</a>
-<h1>Give every file a known role</h1><p class="lede">Catch files that land outside your folder conventions.</p>
+<h1>Check configured file roles</h1><p class="lede">Report analyzed files that do not match the configured roles.</p>
 <figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="services/ → contracts/ → src/misc.ts · no role"><g class="diagram-info"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="57.0">services/</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-info"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="57.0">contracts/</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-danger"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="57.0">src/misc.ts · no role</tspan></text></g></svg>
 <ol class="diagram-mobile"><li class="diagram-info">services/</li><li class="diagram-info">contracts/</li><li class="diagram-danger">src/misc.ts · no role</li></ol></figure>
 <div class="recipe-steps"><div class="code-section"><div class="code-label"><p>archguard.json</p>

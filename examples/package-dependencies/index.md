@@ -1,6 +1,6 @@
-# Keep a package's dependency list clean
+# Restrict a package dependency
 
-Stop a domain package from picking up React.
+Report React dependencies in a selected domain package's manifest.
 
 archguard.json:
 

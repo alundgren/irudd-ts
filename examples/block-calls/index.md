@@ -1,6 +1,6 @@
-# Keep runtime calls at the edge
+# Report specified calls in dependencies
 
-Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.
+Report a dependency path to a module containing an Effect.runPromise call.
 
 archguard.json:
 

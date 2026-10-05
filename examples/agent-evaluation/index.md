@@ -1,6 +1,6 @@
-# Let your agent try Archguard on your repo
+# Evaluate checks with an agent
 
-Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.
+Review candidate policies, structural matches, and mutation results within a time and disk budget.
 
 Prompt for your agent:
 

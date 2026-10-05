@@ -1,6 +1,6 @@
 # Keep server code out of the client
 
-Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.
+Report a configured restriction when client code reaches a server module through a shared module.
 
 archguard.json:
 

@@ -1,6 +1,6 @@
-# Find code changes your tests miss
+# Review edits that survive your tests
 
-Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.
+Run selected tests against small edits, such as changing >= to >, in isolated copies.
 
 Run · mutator.json names the source files and your test command:
 

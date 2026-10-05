@@ -1,6 +1,6 @@
-# Require files that belong together
+# Require a companion file
 
-Every service needs its layer file next to it.
+Check that each selected service has a corresponding analyzed layer file.
 
 archguard.json:
 

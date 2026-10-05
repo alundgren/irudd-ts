@@ -1,6 +1,6 @@
-# Never forget to register a migration
+# Require static imports for migration files
 
-The registry must import every migration file.
+Check that a configured registry statically imports each selected migration file.
 
 archguard.json:
 

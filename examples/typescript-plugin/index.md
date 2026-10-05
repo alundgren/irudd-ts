@@ -1,4 +1,4 @@
-# Write your own rule over the whole graph
+# Write a policy over the analyzed graph
 
 Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.
 

@@ -4,7 +4,7 @@
     {
       "slug": "block-server",
       "title": "Keep server code out of the client",
-      "summary": "Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.",
+      "summary": "Report a configured restriction when client code reaches a server module through a shared module.",
       "capabilities": [
         "forbiddenDependency"
       ],
@@ -76,8 +76,8 @@
     },
     {
       "slug": "package-dependencies",
-      "title": "Keep a package's dependency list clean",
-      "summary": "Stop a domain package from picking up React.",
+      "title": "Restrict a package dependency",
+      "summary": "Report React dependencies in a selected domain package's manifest.",
       "capabilities": [
         "packageDependency"
       ],
@@ -110,8 +110,8 @@
     },
     {
       "slug": "block-calls",
-      "title": "Keep runtime calls at the edge",
-      "summary": "Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.",
+      "title": "Report specified calls in dependencies",
+      "summary": "Report a dependency path to a module containing an Effect.runPromise call.",
       "capabilities": [
         "forbiddenCall"
       ],
@@ -183,8 +183,8 @@
     },
     {
       "slug": "classify-files",
-      "title": "Give every file a known role",
-      "summary": "Catch files that land outside your folder conventions.",
+      "title": "Check configured file roles",
+      "summary": "Report analyzed files that do not match the configured roles.",
       "capabilities": [
         "repository.classified"
       ],
@@ -222,8 +222,8 @@
     },
     {
       "slug": "companions",
-      "title": "Require files that belong together",
-      "summary": "Every service needs its layer file next to it.",
+      "title": "Require a companion file",
+      "summary": "Check that each selected service has a corresponding analyzed layer file.",
       "capabilities": [
         "repository.companion"
       ],
@@ -256,8 +256,8 @@
     },
     {
       "slug": "registry-imports",
-      "title": "Never forget to register a migration",
-      "summary": "The registry must import every migration file.",
+      "title": "Require static imports for migration files",
+      "summary": "Check that a configured registry statically imports each selected migration file.",
       "capabilities": [
         "repository.registryImport"
       ],
@@ -290,7 +290,7 @@
     },
     {
       "slug": "typescript-plugin",
-      "title": "Write your own rule over the whole graph",
+      "title": "Write a policy over the analyzed graph",
       "summary": "Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.",
       "capabilities": [
         "plugins",
@@ -317,8 +317,8 @@
     },
     {
       "slug": "find-duplicates",
-      "title": "Find copy-pasted logic",
-      "summary": "Groups functions with the same structure, even after variables were renamed.",
+      "title": "Review similar functions",
+      "summary": "Group selected functions by structural similarity.",
       "capabilities": [
         "dryer"
       ],
@@ -334,15 +334,15 @@
           "code": "archguard dryer --root . --config dryer.json"
         }
       ],
-      "result": "You get pairs and groups of similar functions with their locations. Not every pair in a group matches. You decide what to merge.",
+      "result": "The output lists pairs and groups with source locations. Use the reported pairs to review matches within a group, and compare behavior before sharing an implementation.",
       "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/code-quality.md",
       "url": "https://alundgren.github.io/irudd-ts/examples/find-duplicates/",
       "markdown": "https://alundgren.github.io/irudd-ts/examples/find-duplicates/index.md"
     },
     {
       "slug": "run-mutations",
-      "title": "Find code changes your tests miss",
-      "summary": "Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.",
+      "title": "Review edits that survive your tests",
+      "summary": "Run selected tests against small edits, such as changing >= to >, in isolated copies.",
       "capabilities": [
         "mutator"
       ],
@@ -365,8 +365,8 @@
     },
     {
       "slug": "agent-evaluation",
-      "title": "Let your agent try Archguard on your repo",
-      "summary": "Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.",
+      "title": "Evaluate checks with an agent",
+      "summary": "Review candidate policies, structural matches, and mutation results within a time and disk budget.",
       "capabilities": [
         "irudd-ts-evaluate"
       ],

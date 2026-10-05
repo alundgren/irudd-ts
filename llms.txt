@@ -1,14 +1,14 @@
 # Archguard
 
-> Archguard checks how a repository fits together: rules over the resolved dependency graph of the whole repository, repository structure rules, custom TypeScript/Rust rules over the same graph, and review tools for duplicated code and test gaps (mutation testing).
+> Archguard applies configured policies to selected source files and their resolved dependencies. It also checks file conventions and provides duplication review and mutation testing tools. Use the examples as starting points and review their scope on your repository.
 
-## Compared with Oxlint
+## Compare existing coverage
 
-Oxlint covers per-file rules, banning an import by name, import cycles, and type-aware rules. Archguard adds transitive path rules (client -> shared -> server), package public-entry and dependency rules, transitive call-origin rules, file roles, companion files, registry imports, plugins over one shared resolved graph, structural duplicate detection, and mutation testing. dependency-cruiser and eslint-plugin-boundaries overlap with the path and package rules.
+Review the rules and plugins already enabled in your linter and dependency-analysis tools. Archguard examples cover transitive dependency restrictions, package entry points and dependencies, specified calls, file roles, companion files, static registry imports, custom graph policies, structural similarity, and mutation testing. Some checks overlap with existing tools; evaluate which policies fit your repository's conventions.
 
 ## Contracts
 
-Exit 0: every selected file parsed, every internal import resolved, all rules pass. Exit 1: complete analysis with rule violations. Exit 2: incomplete analysis or invalid configuration. Selectors never add files to discovery. Archguard runs only plugin and provider commands that are explicitly configured. Duplicate and mutation reports exit 0 when complete, even with findings.
+For archguard check, exit 0 means complete selected analysis with no policy findings. Exit 1 means complete analysis with rule violations. Exit 2 means incomplete analysis or invalid configuration. Selectors never add files to discovery. Archguard runs only plugin and provider commands that are explicitly configured. Duplicate and mutation reports exit 0 when complete, even with findings.
 
 ## Start
 
@@ -20,15 +20,15 @@ Exit 0: every selected file parsed, every internal import resolved, all rules pa
 
 ## Examples
 
-- [Keep server code out of the client](https://alundgren.github.io/irudd-ts/examples/block-server/index.md): Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.
+- [Keep server code out of the client](https://alundgren.github.io/irudd-ts/examples/block-server/index.md): Report a configured restriction when client code reaches a server module through a shared module.
 - [Make other code use a package's public entry](https://alundgren.github.io/irudd-ts/examples/public-entry/index.md): Stop code from reaching into a workspace package's private files.
-- [Keep a package's dependency list clean](https://alundgren.github.io/irudd-ts/examples/package-dependencies/index.md): Stop a domain package from picking up React.
-- [Keep runtime calls at the edge](https://alundgren.github.io/irudd-ts/examples/block-calls/index.md): Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.
+- [Restrict a package dependency](https://alundgren.github.io/irudd-ts/examples/package-dependencies/index.md): Report React dependencies in a selected domain package's manifest.
+- [Report specified calls in dependencies](https://alundgren.github.io/irudd-ts/examples/block-calls/index.md): Report a dependency path to a module containing an Effect.runPromise call.
 - [Enforce a team import convention](https://alundgren.github.io/irudd-ts/examples/service-namespace/index.md): Require namespace imports for Effect service modules.
-- [Give every file a known role](https://alundgren.github.io/irudd-ts/examples/classify-files/index.md): Catch files that land outside your folder conventions.
-- [Require files that belong together](https://alundgren.github.io/irudd-ts/examples/companions/index.md): Every service needs its layer file next to it.
-- [Never forget to register a migration](https://alundgren.github.io/irudd-ts/examples/registry-imports/index.md): The registry must import every migration file.
-- [Write your own rule over the whole graph](https://alundgren.github.io/irudd-ts/examples/typescript-plugin/index.md): Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.
-- [Find copy-pasted logic](https://alundgren.github.io/irudd-ts/examples/find-duplicates/index.md): Groups functions with the same structure, even after variables were renamed.
-- [Find code changes your tests miss](https://alundgren.github.io/irudd-ts/examples/run-mutations/index.md): Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.
-- [Let your agent try Archguard on your repo](https://alundgren.github.io/irudd-ts/examples/agent-evaluation/index.md): Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.
+- [Check configured file roles](https://alundgren.github.io/irudd-ts/examples/classify-files/index.md): Report analyzed files that do not match the configured roles.
+- [Require a companion file](https://alundgren.github.io/irudd-ts/examples/companions/index.md): Check that each selected service has a corresponding analyzed layer file.
+- [Require static imports for migration files](https://alundgren.github.io/irudd-ts/examples/registry-imports/index.md): Check that a configured registry statically imports each selected migration file.
+- [Write a policy over the analyzed graph](https://alundgren.github.io/irudd-ts/examples/typescript-plugin/index.md): Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.
+- [Review similar functions](https://alundgren.github.io/irudd-ts/examples/find-duplicates/index.md): Group selected functions by structural similarity.
+- [Review edits that survive your tests](https://alundgren.github.io/irudd-ts/examples/run-mutations/index.md): Run selected tests against small edits, such as changing >= to >, in isolated copies.
+- [Evaluate checks with an agent](https://alundgren.github.io/irudd-ts/examples/agent-evaluation/index.md): Review candidate policies, structural matches, and mutation results within a time and disk budget.

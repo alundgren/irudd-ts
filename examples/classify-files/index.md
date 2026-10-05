@@ -1,6 +1,6 @@
-# Give every file a known role
+# Check configured file roles
 
-Catch files that land outside your folder conventions.
+Report analyzed files that do not match the configured roles.
 
 archguard.json:
 
