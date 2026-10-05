@@ -1,0 +1,236 @@
+[
+  {
+    "name": "fast-glob",
+    "version": "1.1.2",
+    "repository": "https://github.com/oxc-project/fast-glob.git",
+    "commit": "cd1157ebe949c07c2e08ccf7b96f753dfc08e7bd",
+    "notices": [
+      {
+        "file": "fast-glob-cd1157ebe949c07c2e08ccf7b96f753dfc08e7bd-LICENSE",
+        "sha256": "7fb47d7306f9a3ba25b44e7b9a94a300548a46709ed27753e28deac8e868b1cd",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "nodejs-built-in-modules",
+    "version": "1.0.0",
+    "repository": "https://github.com/oxc-project/nodejs-built-in-modules",
+    "commit": "9117efa38fe088325e8a1036a8ddea7f3546c1ac",
+    "notices": [
+      {
+        "file": "nodejs-built-in-modules-9117efa38fe088325e8a1036a8ddea7f3546c1ac-LICENSE",
+        "sha256": "20538257cfb1812d48164a7d11c0008a66b33c01b4debdfa0ec2a104fe00f028",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_allocator",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_ast",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_ast_macros",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_ast_visit",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_data_structures",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_diagnostics",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_ecmascript",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_estree",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_index",
+    "version": "5.0.0",
+    "repository": "https://github.com/oxc-project/oxc-index-vec",
+    "commit": "8e09fe324eb6df02f56e4eacdfac958930300380",
+    "notices": [
+      {
+        "file": "oxc-index-vec-8e09fe324eb6df02f56e4eacdfac958930300380-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_parser",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_regular_expression",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_resolver",
+    "version": "11.24.3",
+    "repository": "https://github.com/oxc-project/oxc-resolver",
+    "commit": "b6a6125c5556ca1ae0e48b479d203e8f06effd10",
+    "notices": [
+      {
+        "file": "oxc-resolver-b6a6125c5556ca1ae0e48b479d203e8f06effd10-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_semantic",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_span",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_str",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  },
+  {
+    "name": "oxc_syntax",
+    "version": "0.152.0",
+    "repository": "https://github.com/oxc-project/oxc",
+    "commit": "dfbc0d1ea752f021ba4a68e4703b3a9031082a46",
+    "notices": [
+      {
+        "file": "oxc-dfbc0d1ea752f021ba4a68e4703b3a9031082a46-LICENSE",
+        "sha256": "95ced5ecf1133fbf41d409b5555c86c344f83f3b019926057ddbc07cfdcc27b3",
+        "upstreamPath": "LICENSE"
+      }
+    ]
+  }
+]

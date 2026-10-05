@@ -1,0 +1,33 @@
+name: Archguard
+description: Install a pinned Archguard binary and check the consumer repository
+inputs:
+  version:
+    description: Exact published version, for example 0.1.0
+    required: true
+  config:
+    description: Configuration path relative to the consumer repository
+    default: archguard.json
+  root:
+    description: Consumer repository root
+    default: '.'
+outputs:
+  directory:
+    description: Installed distribution directory, including SDK and optional provider source
+    value: ${{ steps.install.outputs.directory }}
+runs:
+  using: composite
+  steps:
+    - id: install
+      shell: bash
+      env:
+        ARCHGUARD_VERSION: ${{ inputs.version }}
+      run: |
+        invocation=$(mktemp -d "$RUNNER_TEMP/archguard-action.XXXXXXXX")
+        directory=$("$GITHUB_ACTION_PATH/scripts/install.sh" "$ARCHGUARD_VERSION" "$invocation/distribution")
+        echo "directory=$directory" >> "$GITHUB_OUTPUT"
+    - shell: bash
+      env:
+        ARCHGUARD_DIRECTORY: ${{ steps.install.outputs.directory }}
+        ARCHGUARD_ROOT: ${{ inputs.root }}
+        ARCHGUARD_CONFIG: ${{ inputs.config }}
+      run: '"$ARCHGUARD_DIRECTORY/bin/archguard" check --root "$ARCHGUARD_ROOT" --config "$ARCHGUARD_CONFIG"'
