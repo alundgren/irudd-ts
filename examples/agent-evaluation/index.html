@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let your agent try Archguard on your repo · Archguard</title><meta name="description" content="Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.">
+<link rel="canonical" href="https://alundgren.github.io/irudd-ts/examples/agent-evaluation/"><meta name="theme-color" content="#F2EADE">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script><link rel="alternate" type="text/markdown" href="index.md"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="../../index.html"><img src="../../assets/mark.svg" width="28" height="28" alt="">Archguard</a>
+<nav aria-label="Main"><a href="../../index.html#examples">Examples</a><a href="../../agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main"><article class="recipe"><a class="back-link" data-back-to-results href="../../index.html#examples">← All examples</a>
+<h1>Let your agent try Archguard on your repo</h1><p class="lede">Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.</p>
+<figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="Your repo + budget → Agent tries Archguard → Findings · draft PR if allowed"><g class="diagram-neutral"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="57.0">Your repo + budget</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-info"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="57.0">Agent tries Archguard</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="46.5">Findings · draft PR if</tspan><tspan x="643.3333333333334" y="67.5">allowed</tspan></text></g></svg>
+<ol class="diagram-mobile"><li class="diagram-neutral">Your repo + budget</li><li class="diagram-info">Agent tries Archguard</li><li class="diagram-neutral">Findings · draft PR if allowed</li></ol></figure>
+<div class="recipe-steps"><div class="code-section"><div class="code-label"><p>Prompt for your agent</p>
+<button class="copy" type="button" data-copy="code-0" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-0" class="language-text">Install the irudd-ts-evaluate skill from github.com/alundgren/irudd-ts
+(skills/irudd-ts-evaluate) in your personal skills folder, not in this
+repository. Use it to evaluate this repository.
+You have eight hours and may use at most <span class="token-keyword">20</span> GiB of disk, including setup.
+Stop before free space falls below <span class="token-keyword">12</span>%.
+You may create a draft PR here. Leave it open.</code></pre></div></div>
+<p class="outcome">The agent proposes rules backed by your docs or past fixes, and reports anything it could not check.</p>
+<p class="more"><a href="https://github.com/alundgren/irudd-ts/blob/main/docs/guides/evaluate.md">All options in the reference <span aria-hidden="true">↗</span></a></p></article></main>
+<footer class="site-footer"><span>Archguard · MIT licensed</span><div><a href="../../style.html">Site style</a><a href="../../llms.txt">llms.txt</a><a href="../../assets/fonts/OFL.txt">Font license</a></div></footer>
+<p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p></body></html>

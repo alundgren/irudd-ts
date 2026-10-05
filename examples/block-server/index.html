@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keep server code out of the client · Archguard</title><meta name="description" content="Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.">
+<link rel="canonical" href="https://alundgren.github.io/irudd-ts/examples/block-server/"><meta name="theme-color" content="#F2EADE">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script><link rel="alternate" type="text/markdown" href="index.md"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="../../index.html"><img src="../../assets/mark.svg" width="28" height="28" alt="">Archguard</a>
+<nav aria-label="Main"><a href="../../index.html#examples">Examples</a><a href="../../agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main"><article class="recipe"><a class="back-link" data-back-to-results href="../../index.html#examples">← All examples</a>
+<h1>Keep server code out of the client</h1><p class="lede">Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.</p>
+<figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="client/main.ts → shared/data.ts → server/db.ts · blocked"><g class="diagram-info"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="57.0">client/main.ts</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="57.0">shared/data.ts</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-danger"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="57.0">server/db.ts · blocked</tspan></text></g></svg>
+<ol class="diagram-mobile"><li class="diagram-info">client/main.ts</li><li class="diagram-neutral">shared/data.ts</li><li class="diagram-danger">server/db.ts · blocked</li></ol></figure>
+<div class="recipe-steps"><div class="code-section"><div class="code-label"><p>archguard.json</p>
+<button class="copy" type="button" data-copy="code-0" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-0" class="language-json"><span class="token-operator">{</span>
+  <span class="token-key">&quot;schemaVersion&quot;</span><span class="token-operator">:</span> <span class="token-number">1</span><span class="token-operator">,</span>
+  <span class="token-key">&quot;include&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;src/**/*.ts&quot;</span><span class="token-operator">],</span>
+  <span class="token-key">&quot;rules&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span>
+    <span class="token-operator">{</span>
+      <span class="token-key">&quot;id&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;client-server&quot;</span><span class="token-operator">,</span>
+      <span class="token-key">&quot;kind&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;forbiddenDependency&quot;</span><span class="token-operator">,</span>
+      <span class="token-key">&quot;files&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;src/client/**&quot;</span><span class="token-operator">],</span>
+      <span class="token-key">&quot;targets&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;src/server/**&quot;</span><span class="token-operator">],</span>
+      <span class="token-key">&quot;transitive&quot;</span><span class="token-operator">:</span> <span class="token-keyword">true</span>
+    <span class="token-operator">}</span>
+  <span class="token-operator">]</span>
+<span class="token-operator">}</span></code></pre></div><div class="code-section"><div class="code-label"><p>src/client/main.ts</p>
+<button class="copy" type="button" data-copy="code-1" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-1" class="language-typescript"><span class="token-keyword">import</span> <span class="token-string">&#x27;../shared/data&#x27;</span><span class="token-operator">;</span></code></pre></div><div class="code-section"><div class="code-label"><p>src/shared/data.ts</p>
+<button class="copy" type="button" data-copy="code-2" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-2" class="language-typescript"><span class="token-keyword">import</span> <span class="token-string">&#x27;../server/db&#x27;</span><span class="token-operator">;</span></code></pre></div><div class="code-section"><div class="code-label"><p>Archguard reports</p>
+<button class="copy" type="button" data-copy="code-3" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-3" class="language-output"><span class="token-comment">src/client/main.ts:1:1:</span><span class="token-danger"> client-server:</span> forbidden dependency on src/server/db.ts
+  src/client/main.ts -&gt; src/shared/data.ts -&gt; src/server/db.ts</code></pre></div><div class="code-section"><div class="code-label"><p>Fix · src/client/main.ts</p>
+<button class="copy" type="button" data-copy="code-4" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-4" class="language-typescript"><span class="token-keyword">export</span> <span class="token-operator">{};</span></code></pre></div></div>
+<p class="outcome">Exit 1 with the finding above. After the fix, exit 0.</p>
+<p class="more"><a href="https://github.com/alundgren/irudd-ts/blob/main/docs/guides/rules.md">All options in the reference <span aria-hidden="true">↗</span></a></p></article></main>
+<footer class="site-footer"><span>Archguard · MIT licensed</span><div><a href="../../style.html">Site style</a><a href="../../llms.txt">llms.txt</a><a href="../../assets/fonts/OFL.txt">Font license</a></div></footer>
+<p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p></body></html>

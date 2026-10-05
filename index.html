@@ -1,401 +1,156 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Make your codebase rules checkable · Archguard recipes</title><meta name="description" content="Search practical examples of every Archguard capability, with code, configurations, and diagrams.">
+<title>Check how your repository fits together · Archguard</title><meta name="description" content="Archguard checks paths through your whole repository, file structure rules, and test gaps. What it adds to Oxlint, with examples.">
 <link rel="canonical" href="https://alundgren.github.io/irudd-ts/"><meta name="theme-color" content="#F2EADE">
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
 <body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="brand" href="index.html"><img src="assets/mark.svg" width="28" height="28" alt="">Archguard<span>recipe book</span></a>
-<nav aria-label="Main"><a href="index.html#recipes">Recipes</a><a href="agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
-<main id="main"><section class="intro"><p class="eyebrow">A cookbook for your repository</p><h1>Make the rules of your<br class="wide-only"> codebase checkable.</h1>
-<p class="lede">Keep dependencies in bounds. Check file conventions.<br class="wide-only"> Find duplicate code and test behavior with mutations.</p>
-<a class="primary-link" href="recipes/first-check/index.html">Run your first check <span aria-hidden="true">→</span></a>
-<a class="quiet-link" href="agents.html">Point your agent here <span aria-hidden="true">↗</span></a></section>
-<details class="overview"><summary>How a check works</summary><figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="Select sources, choose checks, and review findings."><g class="diagram-neutral"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="51.0">Your source + config</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-info"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="51.0">Archguard checks</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="51.0">Findings with evidence</tspan></text></g></svg>
-<ol class="diagram-mobile" aria-hidden="true"><li class="diagram-neutral">Your source + config</li><li class="diagram-info">Archguard checks</li><li class="diagram-neutral">Findings with evidence</li></ol><figcaption>Select sources, choose checks, and review findings.</figcaption></figure></details>
-<section class="catalog" id="recipes"><div class="catalog-title"><h2>Find a recipe</h2><p>38 practical examples. Pick the task you have.</p></div>
-<div class="search-tools" hidden><label for="recipe-search">Search recipes</label><div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="recipe-search" type="search" placeholder="Try client imports, companion files, or mutations…" autocomplete="off" aria-describedby="search-help"><button id="clear-search" type="button" hidden aria-label="Clear search">Clear</button></div>
-<p id="search-help">Search by task, rule name, command, or configuration key.</p><div class="filters" role="group" aria-label="Recipe categories"><button type="button" data-category="all" aria-pressed="true">All recipes</button><button type="button" data-category="start" aria-pressed="false">Start here</button><button type="button" data-category="dependencies" aria-pressed="false">Control dependencies</button><button type="button" data-category="conventions" aria-pressed="false">Keep file conventions</button><button type="button" data-category="extensions" aria-pressed="false">Add your own checks</button><button type="button" data-category="review" aria-pressed="false">Review code and tests</button></div>
+<header class="site-header"><a class="brand" href="index.html"><img src="assets/mark.svg" width="28" height="28" alt="">Archguard</a>
+<nav aria-label="Main"><a href="index.html#examples">Examples</a><a href="agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main"><section class="intro"><h1>Your linter checks files and imports. Archguard checks how your repository fits together.</h1>
+<p class="lede">Write down the rules your team already agrees on: which code may reach which, and which files belong together. Run Archguard on each change, and drift shows up in the change that causes it.</p>
+<figure class="diagram hero-diagram"><svg viewBox="0 0 960 222" role="img" aria-label="Checked one import at a time, both imports are allowed. Archguard follows the whole path and flags it."><g class="diagram-info"><rect x="0" y="20" width="260" height="72" rx="12"/><text x="130" y="62" text-anchor="middle">src/client/ui.ts</text></g><g class="diagram-neutral"><rect x="350" y="20" width="260" height="72" rx="12"/><text x="480" y="62" text-anchor="middle">src/shared/format.ts</text></g><g class="diagram-neutral"><rect x="700" y="20" width="260" height="72" rx="12"/><text x="830" y="62" text-anchor="middle">src/server/db.ts</text></g><path class="diagram-arrow" d="M 266 56 H 342 m -7 -6 l 7 6 l -7 6"/><text class="diagram-note-ok" x="305" y="122" text-anchor="middle">✓ allowed alone</text><path class="diagram-arrow" d="M 616 56 H 692 m -7 -6 l 7 6 l -7 6"/><text class="diagram-note-ok" x="655" y="122" text-anchor="middle">✓ allowed alone</text><path class="diagram-path" d="M 130 98 V 160 Q 130 172 142 172 H 818 Q 830 172 830 160 V 98"/><text class="diagram-note-danger" x="480" y="208" text-anchor="middle">✕ client reaches server · flagged</text></svg>
+<ol class="diagram-mobile"><li class="diagram-info">src/client/ui.ts</li><li class="diagram-neutral">src/shared/format.ts <small>✓ allowed alone</small></li><li class="diagram-neutral">src/server/db.ts <small>✓ allowed alone</small></li><li class="diagram-danger">Whole path: client reaches server · flagged</li></ol>
+<figcaption>Checked one import at a time, both imports are allowed. Archguard follows the whole path and flags it.</figcaption></figure>
+<p class="actions"><a class="primary-link" href="#try">Try it on your repo <span aria-hidden="true">→</span></a><a class="quiet-link" href="#examples">See examples</a></p></section>
+
+<section class="band" id="compare"><h2>Keep Oxlint. Add Archguard.</h2>
+<div class="compare"><div class="keep"><p class="column-title">Oxlint already covers</p><ul>
+<li>Correctness and style rules inside each file</li><li>Banning an import by name (<code>no-restricted-imports</code>)</li><li>Import cycles (<code>import/no-cycle</code>)</li><li>Type-aware rules</li></ul>
+<p class="aside">Archguard can also ban imports and find cycles. If Oxlint already does that for you, keep it that way.</p></div>
+<div><p class="column-title">Archguard adds</p><ul class="adds"><li><h3>Paths, not just imports</h3><p>Block client code from reaching server code, even through shared files.</p><p class="see"><a href="examples/block-server/index.html">Keep server code out of the client</a></p></li><li><h3>Package borders</h3><p>Imports go through a package&#x27;s public entry. A package keeps its dependency list clean.</p><p class="see"><a href="examples/public-entry/index.html">Make other code use a package&#x27;s public entry</a> · <a href="examples/package-dependencies/index.html">Keep a package&#x27;s dependency list clean</a></p></li><li><h3>Where calls may happen</h3><p>Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.</p><p class="see"><a href="examples/block-calls/index.html">Keep runtime calls at the edge</a></p></li><li><h3>Repository structure</h3><p>Every file has a role. Files that belong together exist together. New migrations get registered.</p><p class="see"><a href="examples/classify-files/index.html">Give every file a known role</a> · <a href="examples/companions/index.html">Require files that belong together</a> · <a href="examples/registry-imports/index.html">Never forget to register a migration</a></p></li><li><h3>Your own rules</h3><p>Write rules in TypeScript or Rust over the same resolved graph. Some team conventions, like T3 Code&#x27;s service imports, are built in.</p><p class="see"><a href="examples/typescript-plugin/index.html">Write your own rule over the whole graph</a> · <a href="examples/service-namespace/index.html">Enforce a team import convention</a></p></li><li><h3>Test and copy-paste review</h3><p>Find code edits your tests don&#x27;t notice, and functions that were copied and renamed.</p><p class="see"><a href="examples/run-mutations/index.html">Find code changes your tests miss</a> · <a href="examples/find-duplicates/index.html">Find copy-pasted logic</a></p></li></ul></div></div>
+<p class="aside wide">Using dependency-cruiser or eslint-plugin-boundaries? Their path and package rules overlap with the first two items. The structure rules, your own graph rules, and the review tools are what Archguard adds there.</p></section>
+
+<section class="band" id="trust"><h2>A pass you can trust</h2>
+<p>A file that fails to parse or an internal import that can't be resolved never turns into a quiet pass.</p>
+<figure class="diagram disconnected"><svg viewBox="0 0 760 102" role="img" aria-label="Exit codes: 0 pass, 1 rule broken, 2 incomplete. Only a complete check can pass."><g class="diagram-ok"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="36.0">0 · everything selected</tspan><tspan x="116.66666666666667" y="57.0">was checked, all rules</tspan><tspan x="116.66666666666667" y="78.0">pass</tspan></text></g><g class="diagram-danger"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="57.0">1 · a rule is broken</tspan></text></g><g class="diagram-warn"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="46.5">2 · couldn&#x27;t check</tspan><tspan x="643.3333333333334" y="67.5">everything</tspan></text></g></svg>
+<ol class="diagram-mobile"><li class="diagram-ok">0 · everything selected was checked, all rules pass</li><li class="diagram-danger">1 · a rule is broken</li><li class="diagram-warn">2 · couldn&#x27;t check everything</li></ol><figcaption>Exit codes: 0 pass, 1 rule broken, 2 incomplete. Only a complete check can pass.</figcaption></figure></section>
+
+<section class="band" id="real"><h2>Tried on a real repository</h2>
+<p>We wrote 25 candidate rules for <a href="https://github.com/pingdotgg/t3code">T3 Code</a>, mostly from its docs and past pull requests. Three of its pull requests (#14385, #14387, #14389) moved Effect services to namespace imports by hand. The <a href="examples/service-namespace/index.html">service import rule</a> flags reduced copies of the code from before those fixes and passes after them.</p>
+<p class="more"><a href="https://github.com/alundgren/irudd-ts/blob/main/examples/t3code/rules.md">See the T3 Code rules and their sources <span aria-hidden="true">↗</span></a></p></section>
+
+<section class="band" id="try"><h2>Try it on your repo</h2>
+<p>The quickest way is to let your coding agent do it. It installs what it needs, tries rules that fit your docs and history, and reports back.</p>
+<figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="You set the budget. The agent reports findings and, if you allow it, opens a draft PR."><g class="diagram-neutral"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="57.0">Your repo + budget</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-info"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="57.0">Agent tries Archguard</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="46.5">Findings · draft PR if</tspan><tspan x="643.3333333333334" y="67.5">allowed</tspan></text></g></svg>
+<ol class="diagram-mobile"><li class="diagram-neutral">Your repo + budget</li><li class="diagram-info">Agent tries Archguard</li><li class="diagram-neutral">Findings · draft PR if allowed</li></ol><figcaption>You set the budget. The agent reports findings and, if you allow it, opens a draft PR.</figcaption></figure>
+<div class="code-section"><div class="code-label"><p>Paste this to your agent</p>
+<button class="copy" type="button" data-copy="code-prompt" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-prompt" class="language-text">Install the irudd-ts-evaluate skill from github.com/alundgren/irudd-ts
+(skills/irudd-ts-evaluate) in your personal skills folder, not in this
+repository. Use it to evaluate this repository.
+You have eight hours and may use at most <span class="token-keyword">20</span> GiB of disk, including setup.
+Stop before free space falls below <span class="token-keyword">12</span>%.
+You may create a draft PR here. Leave it open.</code></pre></div>
+<p class="more">Prefer to set it up yourself? Point your agent at <a href="llms.txt">llms.txt</a> or read the <a href="https://github.com/alundgren/irudd-ts#readme">README</a>.</p></section>
+
+<section class="catalog" id="examples"><h2>Examples</h2>
+<div class="search-tools" hidden><label class="visually-hidden" for="recipe-search">Search examples</label><div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="recipe-search" type="search" placeholder="Search: server, package, migration, tests…" autocomplete="off"><button id="clear-search" type="button" hidden aria-label="Clear search">Clear</button></div>
 <p id="result-count" role="status" aria-live="polite"></p></div>
-<noscript><p>Every recipe is listed below. Use your browser's Find command to search.</p></noscript>
-<div id="recipe-list"><section class="recipe-group" data-group="start" id="start"><div class="group-heading"><h2>Start here</h2><p>Build the CLI, select your files, and read a result.</p></div><a class="recipe-row" data-recipe data-category="start" data-search="run your first architecture check build archguard and stop a client module from importing server code. exit 2 means analysis did not complete or configuration is invalid. source resolution does not check compiler types. check installation cargo build --release --locked
-export path=&quot;$pwd/target/release:$path&quot; {
+<div id="recipe-list"><a class="recipe-row" data-recipe data-search="keep server code out of the client each import looks fine on its own. archguard follows the whole path and flags the client reaching the server. exit 1 with the finding above. after the fix, exit 0. forbiddendependency {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;,
-    &quot;src/**/*.tsx&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;rules&quot;: [
     {
       &quot;id&quot;: &quot;client-server&quot;,
       &quot;kind&quot;: &quot;forbiddendependency&quot;,
-      &quot;files&quot;: [
-        &quot;src/client/**&quot;
-      ],
-      &quot;targets&quot;: [
-        &quot;src/server/**&quot;
-      ],
+      &quot;files&quot;: [&quot;src/client/**&quot;],
+      &quot;targets&quot;: [&quot;src/server/**&quot;],
       &quot;transitive&quot;: true
     }
   ]
-} export const db = {}; import { db } from &#x27;../server/db&#x27;;
-console.log(db); export {}; archguard check --root . --config archguard.json
-archguard check --root . --config archguard.json --json" href="recipes/first-check/index.html">
-<div><h3>Run your first architecture check</h3><p>Build Archguard and stop a client module from importing server code.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="start" data-search="choose the files archguard analyzes include application sources and their local dependencies. leave generated files out. an import into excluded source makes analysis incomplete. rule and role selectors never add files to discovery. include exclude packagemanifests {
+} import &#x27;../shared/data&#x27;; import &#x27;../server/db&#x27;; src/client/main.ts:1:1: client-server: forbidden dependency on src/server/db.ts
+  src/client/main.ts -&gt; src/shared/data.ts -&gt; src/server/db.ts export {};" href="examples/block-server/index.html">
+<div><h3>Keep server code out of the client</h3><p>Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="make other code use a package&#x27;s public entry stop code from reaching into a workspace package&#x27;s private files. exit 1 with the finding above. after the fix, exit 0. publicentry {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;apps/**/*.ts&quot;,
-    &quot;packages/**/*.ts&quot;
-  ],
-  &quot;exclude&quot;: [
-    &quot;**/generated/**&quot;
-  ],
-  &quot;packagemanifests&quot;: [
-    &quot;package.json&quot;,
-    &quot;apps/*/package.json&quot;,
-    &quot;packages/*/package.json&quot;
-  ],
-  &quot;rules&quot;: []
-} archguard facts --root . --config archguard.json &gt; project-facts.json" href="recipes/select-sources/index.html">
-<div><h3>Choose the files Archguard analyzes</h3><p>Include application sources and their local dependencies. Leave generated files out.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="start" data-search="resolve typescript aliases and package imports use tsconfig paths, workspace package exports, and explicit source lookup settings. keep requireexternalresolution false for uninstalled external packages. source lookup is separate from compiler and runtime resolution. conditions extensions extensionaliases requireexternalresolution {
-  &quot;compileroptions&quot;: {
-    &quot;baseurl&quot;: &quot;.&quot;,
-    &quot;paths&quot;: {
-      &quot;@app/*&quot;: [
-        &quot;src/*&quot;
-      ]
-    }
-  }
-} {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;conditions&quot;: [
-    &quot;types&quot;,
-    &quot;import&quot;,
-    &quot;default&quot;
-  ],
-  &quot;extensions&quot;: [
-    &quot;.ts&quot;,
-    &quot;.tsx&quot;,
-    &quot;.js&quot;,
-    &quot;.json&quot;
-  ],
-  &quot;extensionaliases&quot;: [
-    [
-      &quot;.js&quot;,
-      [
-        &quot;.ts&quot;,
-        &quot;.tsx&quot;,
-        &quot;.js&quot;
-      ]
-    ]
-  ],
-  &quot;requireexternalresolution&quot;: true
-} archguard check --root . --config archguard.json --json" href="recipes/resolve-imports/index.html">
-<div><h3>Resolve TypeScript aliases and package imports</h3><p>Use tsconfig paths, workspace package exports, and explicit source lookup settings.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="start" data-search="read clean, failing, and incomplete results use completeness and the process exit code to decide the next action. an incomplete report can still contain useful findings. dryer and mutation runs exit 0 for complete evidence, including matches or survivors. exitcodes json archguard check --root . --config archguard.json --json &gt; archguard-report.json import { readfilesync } from &#x27;node:fs&#x27;;
-const report = json.parse(readfilesync(&#x27;archguard-report.json&#x27;, &#x27;utf8&#x27;));
-console.log(report.complete, report.diagnostics, report.problems);" href="recipes/read-results/index.html">
-<div><h3>Read clean, failing, and incomplete results</h3><p>Use completeness and the process exit code to decide the next action.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="start" data-search="try the t3 code adoption profiles start with a concrete architecture profile from a real application. the external checkout must match the profile. a clean selected profile does not establish whole-repository coverage or historical benchmark performance. adoption profiles ./target/debug/archguard check --root /absolute/path/to/t3code --config examples/t3code/profiles/t3code.json --json" href="recipes/adoption-profiles/index.html">
-<div><h3>Try the T3 Code adoption profiles</h3><p>Start with a concrete architecture profile from a real application.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a></section><section class="recipe-group" data-group="dependencies" id="dependencies"><div class="group-heading"><h2>Control dependencies</h2><p>Keep imports, packages, and calls where they belong.</p></div><a class="recipe-row" data-recipe data-category="dependencies" data-search="keep server code out of the client catch direct imports and indirect paths through shared modules. this checks resolved module reachability. includetypes: false ignores erased type imports. it does not prove code executes. forbiddendependency {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;client-server&quot;,
-      &quot;kind&quot;: &quot;forbiddendependency&quot;,
-      &quot;files&quot;: [
-        &quot;src/client/**&quot;
-      ],
-      &quot;targets&quot;: [
-        &quot;src/server/**&quot;
-      ],
-      &quot;transitive&quot;: true,
-      &quot;includetypes&quot;: false
-    }
-  ]
-} import &#x27;../shared/data&#x27;; import &#x27;../server/db&#x27;; export const db = {}; export {}; archguard check --root . --config archguard.json --json" href="recipes/block-server/index.html">
-<div><h3>Keep server code out of the client</h3><p>Catch direct imports and indirect paths through shared modules.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="ban an import by its written name keep node builtins out of browser sources, even when they are external endpoints. specifiers match the written import string. use forbiddendependency for resolved file paths. forbiddenimport {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;browser-no-fs&quot;,
-      &quot;kind&quot;: &quot;forbiddenimport&quot;,
-      &quot;files&quot;: [
-        &quot;src/client/**&quot;
-      ],
-      &quot;specifiers&quot;: [
-        &quot;node:fs&quot;,
-        &quot;node:fs/*&quot;
-      ]
-    }
-  ]
-} import { readfilesync } from &#x27;node:fs&#x27;; export const load = () =&gt; fetch(&#x27;/settings.json&#x27;); archguard check --root . --config archguard.json --json" href="recipes/block-imports/index.html">
-<div><h3>Ban an import by its written name</h3><p>Keep Node builtins out of browser sources, even when they are external endpoints.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="keep runtime calls at the application edge report modules that call effect.runpromise, and modules that depend on them. imported aliases are recognized; locally shadowed names are not attributed to the import. a dependency path does not prove a callback runs. forbiddencall {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;domain-no-run&quot;,
-      &quot;kind&quot;: &quot;forbiddencall&quot;,
-      &quot;files&quot;: [
-        &quot;src/domain/**&quot;
-      ],
-      &quot;origins&quot;: [
-        &quot;effect/effect#runpromise&quot;
-      ],
-      &quot;transitive&quot;: true
-    }
-  ]
-} import &#x27;../runner&#x27;; import * as e from &#x27;effect/effect&#x27;;
-e.runpromise(task); export const order = 1; archguard check --root . --config archguard.json --json" href="recipes/block-calls/index.html">
-<div><h3>Keep runtime calls at the application edge</h3><p>Report modules that call Effect.runPromise, and modules that depend on them.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="find dependency cycles catch two modules that import each other before the cycle grows. nocycles omits literal dynamic-import edges. includetypes: false also omits type-only edges. nocycles {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;no-cycles&quot;,
-      &quot;kind&quot;: &quot;nocycles&quot;,
-      &quot;files&quot;: [
-        &quot;src/**&quot;
-      ],
-      &quot;includetypes&quot;: false
-    }
-  ]
-} import &#x27;./b&#x27;;
-export const a = 1; import &#x27;./a&#x27;;
-export const b = 2; export const b = 2; archguard check --root . --config archguard.json --json" href="recipes/no-cycles/index.html">
-<div><h3>Find dependency cycles</h3><p>Catch two modules that import each other before the cycle grows.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="keep a package free of a dependency stop a domain workspace package from declaring react. this checks production, peer, and optional dependencies. development dependencies are outside the current package facts. packagedependency {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;domain-no-react&quot;,
-      &quot;kind&quot;: &quot;packagedependency&quot;,
-      &quot;files&quot;: [
-        &quot;packages/domain/package.json&quot;
-      ],
-      &quot;specifiers&quot;: [
-        &quot;react&quot;,
-        &quot;react-dom&quot;
-      ]
-    }
-  ]
-} {&quot;name&quot;:&quot;@app/domain&quot;,&quot;dependencies&quot;:{&quot;react&quot;:&quot;*&quot;}} export {}; {&quot;name&quot;:&quot;@app/domain&quot;,&quot;dependencies&quot;:{}} archguard check --root . --config archguard.json --json" href="recipes/package-dependencies/index.html">
-<div><h3>Keep a package free of a dependency</h3><p>Stop a domain workspace package from declaring React.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="require imports through a public package entry stop consumers from reaching into a workspace package&#x27;s private source paths. include protected package sources in discovery. the allowed list checks the written specifier for imports that resolve into those sources. publicentry {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;,
-    &quot;packages/**/*.ts&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;packages/**/*.ts&quot;],
   &quot;rules&quot;: [
     {
       &quot;id&quot;: &quot;api-public-entry&quot;,
       &quot;kind&quot;: &quot;publicentry&quot;,
-      &quot;files&quot;: [
-        &quot;src/**&quot;
-      ],
-      &quot;targets&quot;: [
-        &quot;packages/api/src/**&quot;
-      ],
-      &quot;specifiers&quot;: [
-        &quot;@app/api&quot;
-      ]
+      &quot;files&quot;: [&quot;src/**&quot;],
+      &quot;targets&quot;: [&quot;packages/api/src/**&quot;],
+      &quot;specifiers&quot;: [&quot;@app/api&quot;]
     }
   ]
-} {&quot;name&quot;:&quot;@app/api&quot;,&quot;exports&quot;:{&quot;.&quot;:&quot;./src/index.ts&quot;}} export const api = 1; import &#x27;../packages/api/src/index&#x27;; import &#x27;@app/api&#x27;; archguard check --root . --config archguard.json --json" href="recipes/public-entry/index.html">
-<div><h3>Require imports through a public package entry</h3><p>Stop consumers from reaching into a workspace package&#x27;s private source paths.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="check direct rust module dependencies apply a dependency rule to crate::module imports in rust source. only the first module component resolves. self::, super::, inline modules, nested resolution, macros, and compiler types are unsupported. rust {
+} import &#x27;../packages/api/src/index&#x27;; src/main.ts:1:1: api-public-entry: import packages/api/src/index.ts through its declared public package entry import &#x27;@app/api&#x27;;" href="examples/public-entry/index.html">
+<div><h3>Make other code use a package&#x27;s public entry</h3><p>Stop code from reaching into a workspace package&#x27;s private files.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="keep a package&#x27;s dependency list clean stop a domain package from picking up react. exit 1 with the finding above. after the fix, exit 0. packagedependency {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.rs&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;rules&quot;: [
     {
-      &quot;id&quot;: &quot;client-server&quot;,
-      &quot;kind&quot;: &quot;forbiddendependency&quot;,
-      &quot;files&quot;: [
-        &quot;src/client.rs&quot;
-      ],
-      &quot;targets&quot;: [
-        &quot;src/server.rs&quot;
-      ]
+      &quot;id&quot;: &quot;domain-no-react&quot;,
+      &quot;kind&quot;: &quot;packagedependency&quot;,
+      &quot;files&quot;: [&quot;packages/domain/package.json&quot;],
+      &quot;specifiers&quot;: [&quot;react&quot;, &quot;react-dom&quot;]
     }
   ]
-} pub mod client;
-pub mod server; use crate::server;
-pub fn run() {} pub fn serve() {} pub fn run() {} archguard check --root . --config archguard.json --json" href="recipes/rust-sources/index.html">
-<div><h3>Check direct Rust module dependencies</h3><p>Apply a dependency rule to crate::module imports in Rust source.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="dependencies" data-search="limit a rule and allow one explicit exception block filesystem imports in application source while keeping one legacy adapter out of scope. rule exceptions filter policy scope; top-level exclude changes discovery. requiredfile always checks every configured files pattern. forbiddenimport {
+} {&quot;name&quot;:&quot;@app/domain&quot;,&quot;dependencies&quot;:{&quot;react&quot;:&quot;*&quot;}} packages/domain/package.json:1:1: domain-no-react: package @app/domain must not depend on react {&quot;name&quot;:&quot;@app/domain&quot;,&quot;dependencies&quot;:{}}" href="examples/package-dependencies/index.html">
+<div><h3>Keep a package&#x27;s dependency list clean</h3><p>Stop a domain package from picking up React.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="keep runtime calls at the edge flag domain code that imports a module calling effect.runpromise, directly or through a helper. exit 1 with the finding above. after the fix, exit 0. forbiddencall {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;,
-    &quot;tools/**/*.ts&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;rules&quot;: [
     {
-      &quot;id&quot;: &quot;no-fs&quot;,
-      &quot;kind&quot;: &quot;forbiddenimport&quot;,
-      &quot;files&quot;: [
-        &quot;src/**&quot;
-      ],
-      &quot;exceptions&quot;: [
-        &quot;src/legacy.ts&quot;
-      ],
-      &quot;specifiers&quot;: [
-        &quot;node:fs&quot;
-      ]
+      &quot;id&quot;: &quot;domain-no-run&quot;,
+      &quot;kind&quot;: &quot;forbiddencall&quot;,
+      &quot;files&quot;: [&quot;src/domain/**&quot;],
+      &quot;origins&quot;: [&quot;effect/effect#runpromise&quot;],
+      &quot;transitive&quot;: true
     }
   ]
-} import &#x27;node:fs&#x27;; import &#x27;node:fs&#x27;; export {}; archguard check --root . --config archguard.json --json" href="recipes/rule-exceptions/index.html">
-<div><h3>Limit a rule and allow one explicit exception</h3><p>Block filesystem imports in application source while keeping one legacy adapter out of scope.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a></section><section class="recipe-group" data-group="conventions" id="conventions"><div class="group-heading"><h2>Keep file conventions</h2><p>Check exports, service modules, and companion files.</p></div><a class="recipe-row" data-recipe data-category="conventions" data-search="require a named export make every adapter expose a create function. each name needs one visible export origin. this checks presence, not the function signature; external star exports are not enumerated. requiredexport {
+} import &#x27;../runner&#x27;; import * as e from &#x27;effect/effect&#x27;;
+e.runpromise(task); src/domain/orders.ts:1:1: domain-no-run: reachable dependency src/runner.ts calls effect/effect#runpromise
+  src/domain/orders.ts -&gt; src/runner.ts -&gt; src/runner.ts:36 export const order = 1;" href="examples/block-calls/index.html">
+<div><h3>Keep runtime calls at the edge</h3><p>Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="enforce a team import convention t3 code imports effect services as namespaces. three pull requests fixed this by hand. exit 1 with the finding above. after the fix, exit 0. servicenamespace {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;adapter-create&quot;,
-      &quot;kind&quot;: &quot;requiredexport&quot;,
-      &quot;files&quot;: [
-        &quot;src/adapters/*.ts&quot;
-      ],
-      &quot;names&quot;: [
-        &quot;create&quot;
-      ]
-    }
-  ]
-} export const send = () =&gt; {}; export const create = () =&gt; ({}); archguard check --root . --config archguard.json --json" href="recipes/required-exports/index.html">
-<div><h3>Require a named export</h3><p>Make every adapter expose a create function.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="require an analyzed source file require a contracts entry point to exist in the selected source inventory. every configured pattern must match an analyzed source. this cannot require a readme or another unsupported non-source file. requiredfile {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;contracts-entry&quot;,
-      &quot;kind&quot;: &quot;requiredfile&quot;,
-      &quot;files&quot;: [
-        &quot;src/contracts/index.ts&quot;
-      ]
-    }
-  ]
-} export {}; export type message = { id: string }; archguard check --root . --config archguard.json --json" href="recipes/required-sources/index.html">
-<div><h3>Require an analyzed source file</h3><p>Require a contracts entry point to exist in the selected source inventory.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="use namespace imports for effect services keep a service and its layer under one module name at call sites. only recognized effect service syntax and value consumers are checked. this is an import convention. servicenamespace {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;rules&quot;: [
     {
       &quot;id&quot;: &quot;service-namespace&quot;,
       &quot;kind&quot;: &quot;servicenamespace&quot;,
-      &quot;files&quot;: [
-        &quot;src/**&quot;
-      ]
+      &quot;files&quot;: [&quot;src/**&quot;]
     }
   ]
-} import * as c from &#x27;effect/context&#x27;;
-export class orders extends c.service&lt;orders, {}&gt;()(&#x27;app/orders&#x27;) {}
-export const layer = 1; import { orders, layer } from &#x27;./orders&#x27;; import * as orders from &#x27;./orders&#x27;; archguard check --root . --config archguard.json --json" href="recipes/service-namespace/index.html">
-<div><h3>Use namespace imports for Effect services</h3><p>Keep a service and its layer under one module name at call sites.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="catch duplicate effect service identifiers give each recognized service its own literal identifier. computed identifiers and arbitrary service factories are outside the recognized syntax. uniqueserviceid {
+} import { orders, layer } from &#x27;./orders&#x27;; src/main.ts:1:1: service-namespace: import service module src/orders.ts as a namespace instead of orders
+  src/orders.ts
+src/main.ts:1:1: service-namespace: import service module src/orders.ts as a namespace instead of layer
+  src/orders.ts import * as orders from &#x27;./orders&#x27;;" href="examples/service-namespace/index.html">
+<div><h3>Enforce a team import convention</h3><p>T3 Code imports Effect services as namespaces. Three pull requests fixed this by hand.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="give every file a known role catch files that land outside your folder conventions. exit 1 with the finding above. after the fix, exit 0. repository.classified {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;unique-service-id&quot;,
-      &quot;kind&quot;: &quot;uniqueserviceid&quot;,
-      &quot;files&quot;: [
-        &quot;src/**&quot;
-      ]
-    }
-  ]
-} import * as c from &#x27;effect/context&#x27;;
-export class orders extends c.service&lt;orders, {}&gt;()(&#x27;app/orders&#x27;) {} import * as c from &#x27;effect/context&#x27;;
-export class payments extends c.service&lt;payments, {}&gt;()(&#x27;app/orders&#x27;) {} import * as c from &#x27;effect/context&#x27;;
-export class payments extends c.service&lt;payments, {}&gt;()(&#x27;app/payments&#x27;) {} archguard check --root . --config archguard.json --json" href="recipes/unique-service-id/index.html">
-<div><h3>Catch duplicate Effect service identifiers</h3><p>Give each recognized service its own literal identifier.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="require an effect service layer export require one visible value export called layer on service files. the placeholder value demonstrates export presence only. this rule does not prove that layer constructs the service. servicelayer {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;service-layer&quot;,
-      &quot;kind&quot;: &quot;servicelayer&quot;,
-      &quot;files&quot;: [
-        &quot;src/**&quot;
-      ]
-    }
-  ]
-} import * as c from &#x27;effect/context&#x27;;
-export class orders extends c.service&lt;orders, {}&gt;()(&#x27;app/orders&#x27;) {} import * as c from &#x27;effect/context&#x27;;
-export class orders extends c.service&lt;orders, {}&gt;()(&#x27;app/orders&#x27;) {}
-export const layer = 1; archguard check --root . --config archguard.json --json" href="recipes/service-layer/index.html">
-<div><h3>Require an Effect service layer export</h3><p>Require one visible value export called layer on service files.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="give every source file exactly one role catch sources that fall outside your conventions or match overlapping roles. roles filter selected sources. a classification rule chooses where exactly-one membership is required. repository.classified {
-  &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;repository&quot;: {
     &quot;roles&quot;: [
       {
         &quot;id&quot;: &quot;service&quot;,
-        &quot;files&quot;: [
-          &quot;src/services/**&quot;
-        ]
+        &quot;files&quot;: [&quot;src/services/**&quot;]
       },
       {
         &quot;id&quot;: &quot;contract&quot;,
-        &quot;files&quot;: [
-          &quot;src/contracts/**&quot;
-        ]
+        &quot;files&quot;: [&quot;src/contracts/**&quot;]
       },
       {
         &quot;id&quot;: &quot;test&quot;,
-        &quot;files&quot;: [
-          &quot;src/*.test.ts&quot;
-        ]
+        &quot;files&quot;: [&quot;src/*.test.ts&quot;]
       }
     ],
     &quot;rules&quot;: [
       {
         &quot;id&quot;: &quot;classify-source&quot;,
         &quot;kind&quot;: &quot;classified&quot;,
-        &quot;files&quot;: [
-          &quot;src/**&quot;
-        ]
+        &quot;files&quot;: [&quot;src/**&quot;]
       }
     ]
   }
-} export {}; export {}; export {}; rm src/misc.ts archguard check --root . --config archguard.json --json" href="recipes/classify-files/index.html">
-<div><h3>Give every source file exactly one role</h3><p>Catch sources that fall outside your conventions or match overlapping roles.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="require a matching companion file require src/layers/orders.ts whenever src/services/orders.ts is analyzed. the replacement string must occur exactly once. the companion must be analyzed; presence does not prove it implements the service. repository.companion {
+} export {}; src/misc.ts:1:1: classify-source: expected exactly one repository role, found 0 export {}; rm src/misc.ts" href="examples/classify-files/index.html">
+<div><h3>Give every file a known role</h3><p>Catch files that land outside your folder conventions.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="require files that belong together every service needs its layer file next to it. exit 1 with the finding above. after the fix, exit 0. repository.companion {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;repository&quot;: {
     &quot;roles&quot;: [
       {
         &quot;id&quot;: &quot;service&quot;,
-        &quot;files&quot;: [
-          &quot;src/services/*.ts&quot;
-        ],
-        &quot;exclude&quot;: [
-          &quot;**/*.test.ts&quot;
-        ]
+        &quot;files&quot;: [&quot;src/services/*.ts&quot;],
+        &quot;exclude&quot;: [&quot;**/*.test.ts&quot;]
       }
     ],
     &quot;rules&quot;: [
@@ -403,29 +158,21 @@ export const layer = 1; archguard check --root . --config archguard.json --json"
         &quot;id&quot;: &quot;service-companion&quot;,
         &quot;kind&quot;: &quot;companion&quot;,
         &quot;role&quot;: &quot;service&quot;,
-        &quot;replace&quot;: [
-          &quot;/services/&quot;,
-          &quot;/layers/&quot;
-        ]
+        &quot;replace&quot;: [&quot;/services/&quot;, &quot;/layers/&quot;]
       }
     ]
   }
-} export class orders {} export const live = 1; archguard check --root . --config archguard.json --json" href="recipes/companions/index.html">
-<div><h3>Require a matching companion file</h3><p>Require src/layers/Orders.ts whenever src/services/Orders.ts is analyzed.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="require a registry to import every migration catch a new migration with no static value import in the registry. dynamic imports, require calls, type imports, and re-exports do not qualify. this checks imports, not registry membership or execution. repository.registryimport {
+} export class orders {} src/services/orders.ts:1:1: service-companion: required analyzed companion is absent: src/layers/orders.ts
+  src/services/orders.ts -&gt; src/layers/orders.ts export const live = 1;" href="examples/companions/index.html">
+<div><h3>Require files that belong together</h3><p>Every service needs its layer file next to it.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="never forget to register a migration the registry must import every migration file. exit 1 with the finding above. after the fix, exit 0. repository.registryimport {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;repository&quot;: {
     &quot;roles&quot;: [
       {
         &quot;id&quot;: &quot;migration&quot;,
-        &quot;files&quot;: [
-          &quot;src/migrations/*.ts&quot;
-        ],
-        &quot;exclude&quot;: [
-          &quot;**/*.test.ts&quot;
-        ]
+        &quot;files&quot;: [&quot;src/migrations/*.ts&quot;],
+        &quot;exclude&quot;: [&quot;**/*.test.ts&quot;]
       }
     ],
     &quot;rules&quot;: [
@@ -437,57 +184,16 @@ export const layer = 1; archguard check --root . --config archguard.json --json"
       }
     ]
   }
-} export default 1; export const migrations = []; import first from &#x27;./migrations/001&#x27;;
-export const migrations = [first]; archguard check --root . --config archguard.json --json" href="recipes/registry-imports/index.html">
-<div><h3>Require a registry to import every migration</h3><p>Catch a new migration with no static value import in the registry.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="conventions" data-search="block dependencies between file roles keep contracts independent of host implementation code. role exclusions affect source and target membership. transitive paths can pass through modules with no role. repository.forbiddendependency {
+} export const migrations = []; src/migrations/001.ts:1:1: migration-import: role migration requires a direct static value import in src/migrations.ts
+  src/migrations.ts -&gt; src/migrations/001.ts import first from &#x27;./migrations/001&#x27;;
+export const migrations = [first];" href="examples/registry-imports/index.html">
+<div><h3>Never forget to register a migration</h3><p>The registry must import every migration file.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="write your own rule over the whole graph plugins get the same resolved graph as the built-in rules. this one does the client-to-server check by hand. plugin findings show up next to built-in findings, with the same exit codes. rust rules use the same graph. archguard facts exports it as json. plugins typescript sdk rust sdk facts {
   &quot;schemaversion&quot;: 1,
-  &quot;include&quot;: [
-    &quot;src/**/*.ts&quot;
-  ],
-  &quot;repository&quot;: {
-    &quot;roles&quot;: [
-      {
-        &quot;id&quot;: &quot;contract&quot;,
-        &quot;files&quot;: [
-          &quot;src/contracts/**&quot;
-        ]
-      },
-      {
-        &quot;id&quot;: &quot;host&quot;,
-        &quot;files&quot;: [
-          &quot;src/host/**&quot;
-        ]
-      }
-    ],
-    &quot;rules&quot;: [
-      {
-        &quot;id&quot;: &quot;contracts-no-host&quot;,
-        &quot;kind&quot;: &quot;forbiddendependency&quot;,
-        &quot;from&quot;: &quot;contract&quot;,
-        &quot;to&quot;: &quot;host&quot;,
-        &quot;transitive&quot;: true,
-        &quot;includetypes&quot;: true
-      }
-    ]
-  }
-} import &#x27;../host/main&#x27;; export const host = 1; export type message = { id: string }; archguard check --root . --config archguard.json --json" href="recipes/role-dependencies/index.html">
-<div><h3>Block dependencies between file roles</h3><p>Keep contracts independent of host implementation code.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a></section><section class="recipe-group" data-group="extensions" id="extensions"><div class="group-heading"><h2>Add your own checks</h2><p>Use graph facts or opt into compiler member facts.</p></div><a class="recipe-row" data-recipe data-category="extensions" data-search="export the source dependency graph feed versioned project facts into your own reports or graph tools. keep every import&#x27;s resolution status and analysis problems. a selected dependency closure does not establish whole-repository coverage. facts projectfacts archguard facts --root . --config archguard.json &gt; project-facts.json import { readfilesync } from &#x27;node:fs&#x27;;
-const project = json.parse(readfilesync(&#x27;project-facts.json&#x27;, &#x27;utf8&#x27;));
-for (const file of project.files) {
-  console.log(file.path, file.imports);
-}" href="recipes/export-graph/index.html">
-<div><h3>Export the source dependency graph</h3><p>Feed versioned project facts into your own reports or graph tools.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="extensions" data-search="add a typescript graph plugin run a custom rule over the same graph as built-in policies. plugins are trusted commands, run from the configuration directory. reuse one dependency query for many roots. process limits are not a sandbox. plugins typescript sdk createdependencyquery cargo build --locked --bins --examples
-./target/debug/archguard check --root examples/graph-plugin --config examples/graph-plugin/archguard.json --json import &#x27;../server/db.ts&#x27;;
-export const message = &#x27;hello&#x27;; {
-  &quot;schemaversion&quot;: 1,
+  &quot;include&quot;: [&quot;src/**/*.ts&quot;],
   &quot;plugins&quot;: [
     {
       &quot;name&quot;: &quot;team-rules&quot;,
-      &quot;command&quot;: [
-        &quot;node&quot;,
-        &quot;./team-rules.ts&quot;
-      ],
-      &quot;timeoutms&quot;: 5000
+      &quot;command&quot;: [&quot;node&quot;, &quot;./team-rules.ts&quot;]
     }
   ]
 } import { createdependencyquery, runplugin } from &#x27;./sdk/index.ts&#x27;;
@@ -503,225 +209,22 @@ runplugin(project =&gt; {
         message: `client reaches ${target}`, evidence: path
       }));
   });
-});" href="recipes/typescript-plugin/index.html">
-<div><h3>Add a TypeScript graph plugin</h3><p>Run a custom rule over the same graph as built-in policies.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="extensions" data-search="use the rust graph-rule api check immutable project facts in rust or return findings from an executable plugin. executable plugins read one json project on stdin and write one versioned diagnostics object on stdout. put logs on stderr. rust sdk projectrule cargo build --locked --bins --examples
-./target/debug/archguard facts --root examples/graph-plugin --config examples/graph-plugin/archguard.json &gt; /tmp/graph.json
-./target/debug/examples/graph_plugin &lt; /tmp/graph.json import &#x27;../server/db.ts&#x27;;
-export const message = &#x27;hello&#x27;; use archguard::facts::projectrule;
-
-let diagnostics = rule.check(&amp;project)?;
-println!(&quot;{}&quot;, serde_json::json!({
-    &quot;schemaversion&quot;: 1,
-    &quot;diagnostics&quot;: diagnostics
-}));" href="recipes/rust-plugin/index.html">
-<div><h3>Use the Rust graph-rule API</h3><p>Check immutable project facts in Rust or return findings from an executable plugin.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="extensions" data-search="check an inferred public member opt into the pinned compiler provider and catch account.missing on an inferred object. the provider pins typescript 7.0.2 and its experimental api. unknown, any, error, and unavailable states do not establish a clean result. missingmember semantic-config npm ci --prefix providers/typescript7 --ignore-scripts --no-audit --no-fund
-cargo build --locked --bins --examples
-./target/debug/archguard check --root examples/semantic --config examples/semantic/archguard.json --semantic-config examples/semantic/semantic.json --json const account = { name: &#x27;ada&#x27; };
-account.missing; {
-  &quot;schemaversion&quot;: 1,
-  &quot;provider&quot;: {
-    &quot;name&quot;: &quot;typescript7&quot;,
-    &quot;command&quot;: [
-      &quot;node&quot;,
-      &quot;../../providers/typescript7/provider.mjs&quot;
-    ],
-    &quot;timeoutms&quot;: 30000
-  },
-  &quot;contexts&quot;: [
-    {
-      &quot;id&quot;: &quot;app&quot;,
-      &quot;tsconfig&quot;: &quot;tsconfig.json&quot;,
-      &quot;files&quot;: [
-        &quot;main.ts&quot;
-      ]
-    }
-  ],
-  &quot;rules&quot;: [
-    {
-      &quot;id&quot;: &quot;missing-member&quot;,
-      &quot;kind&quot;: &quot;missingmember&quot;,
-      &quot;files&quot;: [
-        &quot;**&quot;
-      ]
-    }
-  ]
-}" href="recipes/missing-member/index.html">
-<div><h3>Check an inferred public member</h3><p>Opt into the pinned compiler provider and catch account.missing on an inferred object.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="extensions" data-search="export compiler facts by context inspect inferred receiver types and public member status separately from source graph facts. computed and private properties are outside this contract. public optional access and jsx member tags are included. context selectors never add sources. semantic-facts semanticfacts semanticrule ./target/debug/archguard semantic-facts --root examples/semantic --config examples/semantic/archguard.json --semantic-config examples/semantic/semantic.json &gt; /tmp/semantic-facts.json import { readsemanticfacts, missingmemberdiagnostics } from &#x27;./sdk/index.ts&#x27;;
-
-const facts = readsemanticfacts();
-console.log(missingmemberdiagnostics(facts, &#x27;missing-member&#x27;)); node inspect-semantic.ts &lt; /tmp/semantic-facts.json" href="recipes/compiler-facts/index.html">
-<div><h3>Export compiler facts by context</h3><p>Inspect inferred receiver types and public member status separately from source graph facts.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="extensions" data-search="reuse a validated source graph keep a complete graph between checks while still rerunning policies and plugins. keep the cache outside selected inputs. compiler facts rerun independently. recorded cache measurements were slower; reuse counts do not prove a speedup. cache archguard check --root . --config archguard.json --cache /tmp/project.archguard-cache.json --json
-archguard check --root . --config archguard.json --cache /tmp/project.archguard-cache.json --json" href="recipes/graph-cache/index.html">
-<div><h3>Reuse a validated source graph</h3><p>Keep a complete graph between checks while still rerunning policies and plugins.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a></section><section class="recipe-group" data-group="review" id="review"><div class="group-heading"><h2>Review code and tests</h2><p>Inspect duplicate code and test behavior with mutations.</p></div><a class="recipe-row" data-recipe data-category="review" data-search="find structurally similar functions compare renamed invoice and order logic before deciding what to extract. dryer supports typescript and tsx. similarity is review evidence, not proof that two functions should be combined. dryer similaritythreshold ./target/debug/archguard dryer --root . --config examples/code-quality/dryer.json --json {
+});" href="examples/typescript-plugin/index.html">
+<div><h3>Write your own rule over the whole graph</h3><p>Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="find copy-pasted logic groups functions with the same structure, even after variables were renamed. you get pairs and groups of similar functions with their locations. not every pair in a group matches. you decide what to merge. dryer {
   &quot;schemaversion&quot;: 1,
   &quot;selection&quot;: {
-    &quot;include&quot;: [
-      &quot;src/**/*.ts&quot;,
-      &quot;src/**/*.tsx&quot;
-    ]
-  },
-  &quot;minimumlines&quot;: 4,
-  &quot;minimumnodes&quot;: 20,
-  &quot;similaritythreshold&quot;: 0.82
-} archguard dryer --root . --config dryer.json --json &gt; duplicate-report.json" href="recipes/find-duplicates/index.html">
-<div><h3>Find structurally similar functions</h3><p>Compare renamed invoice and order logic before deciding what to extract.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="compare duplicate normalization settings keep literal values for a stricter comparison, or erase local names when investigating shifted declarations. erasing locals loses the difference between a + a and a + b. repeated boilerplate can match. inspect both reports and opaque-node counts. normalization dryer cache {
-  &quot;schemaversion&quot;: 1,
-  &quot;selection&quot;: {
-    &quot;include&quot;: [
-      &quot;src/**/*.ts&quot;
-    ]
-  },
-  &quot;normalization&quot;: {
-    &quot;normalizationversion&quot;: 1,
-    &quot;localidentifiers&quot;: &quot;erase&quot;,
-    &quot;properties&quot;: &quot;preserve&quot;,
-    &quot;literals&quot;: &quot;value&quot;
+    &quot;include&quot;: [&quot;src/**/*.ts&quot;, &quot;src/**/*.tsx&quot;]
   }
-} archguard dryer --root . --config dryer.json --json &gt; default-report.json
-archguard dryer --root . --config dryer-strict.json --cache /tmp/dryer-extraction.json --json &gt; strict-report.json" href="recipes/tune-duplicates/index.html">
-<div><h3>Compare duplicate normalization settings</h3><p>Keep literal values for a stricter comparison, or erase local names when investigating shifted declarations.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="read duplicate groups without assuming every pair matches review connected groups and follow their pair indices to the actual evidence. check complete, groupscomplete, problems, and omittedevidence. a matching b and b matching c does not imply a matches c. groups groupscomplete allmembersmatch archguard dryer --root . --config dryer.json --json &gt; duplicate-report.json import { readfilesync } from &#x27;node:fs&#x27;;
-const report = json.parse(readfilesync(&#x27;duplicate-report.json&#x27;, &#x27;utf8&#x27;));
-for (const group of report.groups) {
-  console.log(group.members, group.allmembersmatch);
-  console.log(group.pairindices.map(index =&gt; report.pairs[index]));
-}" href="recipes/duplicate-groups/index.html">
-<div><h3>Read duplicate groups without assuming every pair matches</h3><p>Review connected groups and follow their pair indices to the actual evidence.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="inspect mutation edits before running tests list exact runtime edits and source hashes without executing a repository command. operators cover comparisons, equality, arithmetic, logic, updates, booleans, and zero/one literals. type-only literals are excluded. mutator plan mutation operators ./target/debug/archguard mutator plan --root . --config examples/code-quality/plan.json --json &gt; /tmp/domain-plan.json // original
-const approved = amount &gt; 100;
-// one mutation
-const approved = amount &gt;= 100; {
-  &quot;schemaversion&quot;: 1,
-  &quot;selection&quot;: {
-    &quot;include&quot;: [
-      &quot;src/domain/**/*.ts&quot;
-    ]
-  }
-}" href="recipes/plan-mutations/index.html">
-<div><h3>Inspect mutation edits before running tests</h3><p>List exact runtime edits and source hashes without executing a repository command.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="find behavior your tests miss run weak and strengthened tests against isolated edits of the same domain functions. a complete run exits 0 even with survivors. a survivor can be equivalent behavior. import, hook, timeout, and resource errors are separate outcomes. mutator run baseline survivors node examples/code-quality/prepare-domain.ts /tmp/archguard-domain-profiles
-./target/debug/archguard mutator run --root . --config /tmp/archguard-domain-profiles/weak.json --json &gt; /tmp/weak.json
-./target/debug/archguard mutator run --root . --config /tmp/archguard-domain-profiles/strong.json --json &gt; /tmp/strong.json ./target/debug/archguard mutator run --root . --config /tmp/archguard-domain-profiles/strong.json --plan /tmp/domain-plan.json --json" href="recipes/run-mutations/index.html">
-<div><h3>Find behavior your tests miss</h3><p>Run weak and strengthened tests against isolated edits of the same domain functions.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="connect an existing vitest test command copy the sdk reporter into your project and declare the test command and all worker inputs. use a compatible already installed one-shot runner. the adapter was checked with vitest 5.0.1. it does not install or discover tests, and watch mode is unsupported. vitest reporter mutation protocol workspace dependencies cp -r /path/to/irudd-ts/sdk /path/to/project/sdk {
-  &quot;schemaversion&quot;: 1,
-  &quot;plan&quot;: {
-    &quot;schemaversion&quot;: 1,
-    &quot;selection&quot;: {
-      &quot;include&quot;: [
-        &quot;src/**/*.ts&quot;
-      ]
-    }
-  },
-  &quot;execution&quot;: {
-    &quot;command&quot;: [
-      &quot;/absolute/path/to/node&quot;,
-      &quot;node_modules/vitest/vitest.mjs&quot;,
-      &quot;run&quot;,
-      &quot;--reporter=./sdk/mutator-vitest-reporter.ts&quot;
-    ],
-    &quot;workspace&quot;: {
-      &quot;include&quot;: [
-        &quot;src/**&quot;,
-        &quot;tests/**&quot;,
-        &quot;sdk/**&quot;,
-        &quot;package.json&quot;,
-        &quot;package-lock.json&quot;,
-        &quot;vitest.config.ts&quot;
-      ],
-      &quot;exclude&quot;: [
-        &quot;**/node_modules/**&quot;
-      ],
-      &quot;dependencies&quot;: [
-        {
-          &quot;source&quot;: &quot;./node_modules&quot;,
-          &quot;destination&quot;: &quot;node_modules&quot;
-        }
-      ]
-    },
-    &quot;limits&quot;: {
-      &quot;workers&quot;: 1,
-      &quot;maxmutants&quot;: 20
-    }
-  }
-} archguard mutator run --root . --config mutator.json --json" href="recipes/vitest-reporter/index.html">
-<div><h3>Connect an existing Vitest test command</h3><p>Copy the SDK reporter into your project and declare the test command and all worker inputs.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="bound a mutation run set a small mutation budget, worker count, deadline, and workspace ceiling. worker copies and limits are not an arbitrary-code sandbox. address-space limits are linux-only. sigint and sigterm request bounded cleanup. execution limits cancellation {
-  &quot;workers&quot;: 1,
-  &quot;maxmutants&quot;: 20,
-  &quot;commandtimeoutms&quot;: 10000,
-  &quot;runtimeoutms&quot;: 120000,
-  &quot;maxworkspacefiles&quot;: 10000,
-  &quot;maxworkspacefilebytes&quot;: 10485760,
-  &quot;maxworkspacebytes&quot;: 268435456,
-  &quot;maxtotalworkspacebytes&quot;: 536870912,
-  &quot;maxcpuseconds&quot;: 10,
-  &quot;maxgeneratedfilebytes&quot;: 10485760
-} archguard mutator run --root . --config mutator.json --json" href="recipes/mutation-limits/index.html">
-<div><h3>Bound a mutation run</h3><p>Set a small mutation budget, worker count, deadline, and workspace ceiling.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="reuse complete mutation results opt into conservative result reuse when every relevant test input is declared and deterministic. keep state outside source and dependency inputs. leave reuse off for network, clock, or undeclared host dependencies. cleanup uncertainty prevents reuse. declaredinputs state externalinputs {
-  &quot;directory&quot;: &quot;/tmp/project-mutation-state&quot;,
-  &quot;reuse&quot;: &quot;declaredinputs&quot;,
-  &quot;externalinputs&quot;: [
-    &quot;/absolute/path/to/test-data.json&quot;
-  ]
-} archguard mutator run --root . --config mutator.json --json
-archguard mutator run --root . --config mutator.json --json" href="recipes/mutation-reuse/index.html">
-<div><h3>Reuse complete mutation results</h3><p>Opt into conservative result reuse when every relevant test input is declared and deterministic.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="have your agent try archguard on a repository install the evaluation skill and give your agent a time, disk, and change budget. the skill supplies instructions, not the cli or dependencies. per-test attribution uses experimental research tooling when suitable; the product reporter gives aggregate evidence. irudd-ts-evaluate agent workflow mkdir -p /path/to/project/.agents/skills
-cp -r skills/irudd-ts-evaluate /path/to/project/.agents/skills/ use $irudd-ts-evaluate to evaluate this repository.
-you have two hours and may use at most 5 gib, including setup.
+} archguard dryer --root . --config dryer.json" href="examples/find-duplicates/index.html">
+<div><h3>Find copy-pasted logic</h3><p>Groups functions with the same structure, even after variables were renamed.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="find code changes your tests miss archguard makes small edits, like &gt;= to &gt;, and runs your tests on a copy. an edit no test notices shows a gap. each surviving edit names the line and the change. some edits change nothing real, so read each one before adding a test. archguard never edits your files. it works on copies. mutator archguard mutator run --root . --config mutator.json survived examples/code-quality/domain.ts:9 bytes 265..267  &gt;= -&gt; &gt;
+  original:   return purchase.subtotal &gt;= 100 &amp;&amp; purchase.domestic;
+  mutant:     return purchase.subtotal &gt; 100 &amp;&amp; purchase.domestic;" href="examples/run-mutations/index.html">
+<div><h3>Find code changes your tests miss</h3><p>Archguard makes small edits, like &gt;= to &gt;, and runs your tests on a copy. An edit no test notices shows a gap.</p></div><span class="row-arrow" aria-hidden="true">→</span></a><a class="recipe-row" data-recipe data-search="let your agent try archguard on your repo give your agent a time and disk budget. it looks for rules that fit, copy-pasted code, and test gaps. the agent proposes rules backed by your docs or past fixes, and reports anything it could not check. irudd-ts-evaluate install the irudd-ts-evaluate skill from github.com/alundgren/irudd-ts
+(skills/irudd-ts-evaluate) in your personal skills folder, not in this
+repository. use it to evaluate this repository.
+you have eight hours and may use at most 20 gib of disk, including setup.
 stop before free space falls below 12%.
-you may create and update a draft pr here. leave it open.
-look for useful architecture rules, duplicate reductions, and missing behavior tests." href="recipes/agent-evaluation/index.html">
-<div><h3>Have your agent try Archguard on a repository</h3><p>Install the evaluation skill and give your agent a time, disk, and change budget.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a><a class="recipe-row" data-recipe data-category="review" data-search="write a small test-command adapter use the node-builtin sdk to report an assertion you actually executed. only assertionerror becomes assertion evidence. other errors remain runtime failures. a nonzero process status by itself cannot kill a mutation. readmutationrequest writemutationresult custom test command cp -r /path/to/irudd-ts/sdk /path/to/project/sdk export const approved = (amount: number) =&gt; amount &gt; 100; import { assertionerror, strictequal } from &#x27;node:assert&#x27;;
-import { approved } from &#x27;./src/approval.ts&#x27;;
-import { readmutationrequest, writemutationresult } from &#x27;./sdk/mutator.ts&#x27;;
-import type { testfailure } from &#x27;./sdk/mutator.ts&#x27;;
-
-const request = readmutationrequest();
-const failures: testfailure[] = [];
-try {
-  strictequal(approved(100), false);
-} catch (error) {
-  failures.push({
-    kind: error instanceof assertionerror ? &#x27;assertion&#x27; : &#x27;runtime&#x27;,
-    testid: &#x27;approval/threshold&#x27;, file: &#x27;src/approval.ts&#x27;,
-    message: string(error)
-  });
-}
-const exitcode = failures.length ? 1 : 0;
-writemutationresult(request, {
-  schemaversion: 1, requestid: request.requestid,
-  runid: request.runid, inputdigest: request.inputdigest,
-  complete: true, exitcode, reason: &#x27;finished&#x27;,
-  tests: { passed: failures.length ? 0 : 1, failed: failures.length, skipped: 0 },
-  failures
-});
-process.exitcode = exitcode; {
-  &quot;schemaversion&quot;: 1,
-  &quot;plan&quot;: {
-    &quot;schemaversion&quot;: 1,
-    &quot;selection&quot;: {
-      &quot;include&quot;: [
-        &quot;src/**/*.ts&quot;
-      ]
-    },
-    &quot;operators&quot;: [
-      &quot;comparison&quot;
-    ]
-  },
-  &quot;execution&quot;: {
-    &quot;command&quot;: [
-      &quot;/absolute/path/to/node&quot;,
-      &quot;run-tests.ts&quot;
-    ],
-    &quot;workspace&quot;: {
-      &quot;include&quot;: [
-        &quot;src/**&quot;,
-        &quot;run-tests.ts&quot;,
-        &quot;sdk/**&quot;
-      ]
-    },
-    &quot;limits&quot;: {
-      &quot;workers&quot;: 1,
-      &quot;maxmutants&quot;: 10
-    }
-  }
-} archguard mutator run --root . --config mutator.json --json" href="recipes/test-adapter/index.html">
-<div><h3>Write a small test-command adapter</h3><p>Use the Node-builtin SDK to report an assertion you actually executed.</p></div><span class="row-arrow" aria-hidden="true">↗</span></a></section></div><div class="empty" id="empty-results" hidden><h3>No recipes match that search.</h3><p>Try a task such as imports, exports, or tests.</p><button type="button" id="reset-search">Show all recipes</button></div></section></main>
-<footer class="site-footer"><span>Archguard · explicit repository checks</span><div><a href="style.html">Visual style</a><a href="llms.txt">Agent index</a><a href="assets/fonts/OFL.txt">Font license</a></div></footer>
+you may create a draft pr here. leave it open." href="examples/agent-evaluation/index.html">
+<div><h3>Let your agent try Archguard on your repo</h3><p>Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.</p></div><span class="row-arrow" aria-hidden="true">→</span></a></div><div class="empty" id="empty-results" hidden><p>No examples match that search.</p><button type="button" id="reset-search">Show all examples</button></div></section></main>
+<footer class="site-footer"><span>Archguard · MIT licensed</span><div><a href="style.html">Site style</a><a href="llms.txt">llms.txt</a><a href="assets/fonts/OFL.txt">Font license</a></div></footer>
 <p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p></body></html>

@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "examples": [
+    {
+      "slug": "block-server",
+      "title": "Keep server code out of the client",
+      "summary": "Each import looks fine on its own. Archguard follows the whole path and flags the client reaching the server.",
+      "capabilities": [
+        "forbiddenDependency"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"rules\": [\n    {\n      \"id\": \"client-server\",\n      \"kind\": \"forbiddenDependency\",\n      \"files\": [\"src/client/**\"],\n      \"targets\": [\"src/server/**\"],\n      \"transitive\": true\n    }\n  ]\n}"
+        },
+        {
+          "label": "src/client/main.ts",
+          "language": "typescript",
+          "code": "import '../shared/data';"
+        },
+        {
+          "label": "src/shared/data.ts",
+          "language": "typescript",
+          "code": "import '../server/db';"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/client/main.ts:1:1: client-server: forbidden dependency on src/server/db.ts\n  src/client/main.ts -> src/shared/data.ts -> src/server/db.ts"
+        },
+        {
+          "label": "Fix \u00b7 src/client/main.ts",
+          "language": "typescript",
+          "code": "export {};"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/block-server/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/block-server/index.md"
+    },
+    {
+      "slug": "public-entry",
+      "title": "Make other code use a package's public entry",
+      "summary": "Stop code from reaching into a workspace package's private files.",
+      "capabilities": [
+        "publicEntry"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\", \"packages/**/*.ts\"],\n  \"rules\": [\n    {\n      \"id\": \"api-public-entry\",\n      \"kind\": \"publicEntry\",\n      \"files\": [\"src/**\"],\n      \"targets\": [\"packages/api/src/**\"],\n      \"specifiers\": [\"@app/api\"]\n    }\n  ]\n}"
+        },
+        {
+          "label": "src/main.ts",
+          "language": "typescript",
+          "code": "import '../packages/api/src/index';"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/main.ts:1:1: api-public-entry: import packages/api/src/index.ts through its declared public package entry"
+        },
+        {
+          "label": "Fix \u00b7 src/main.ts",
+          "language": "typescript",
+          "code": "import '@app/api';"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/public-entry/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/public-entry/index.md"
+    },
+    {
+      "slug": "package-dependencies",
+      "title": "Keep a package's dependency list clean",
+      "summary": "Stop a domain package from picking up React.",
+      "capabilities": [
+        "packageDependency"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"rules\": [\n    {\n      \"id\": \"domain-no-react\",\n      \"kind\": \"packageDependency\",\n      \"files\": [\"packages/domain/package.json\"],\n      \"specifiers\": [\"react\", \"react-dom\"]\n    }\n  ]\n}"
+        },
+        {
+          "label": "packages/domain/package.json",
+          "language": "json",
+          "code": "{\"name\":\"@app/domain\",\"dependencies\":{\"react\":\"*\"}}"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "packages/domain/package.json:1:1: domain-no-react: package @app/domain must not depend on react"
+        },
+        {
+          "label": "Fix \u00b7 packages/domain/package.json",
+          "language": "json",
+          "code": "{\"name\":\"@app/domain\",\"dependencies\":{}}"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/package-dependencies/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/package-dependencies/index.md"
+    },
+    {
+      "slug": "block-calls",
+      "title": "Keep runtime calls at the edge",
+      "summary": "Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.",
+      "capabilities": [
+        "forbiddenCall"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"rules\": [\n    {\n      \"id\": \"domain-no-run\",\n      \"kind\": \"forbiddenCall\",\n      \"files\": [\"src/domain/**\"],\n      \"origins\": [\"effect/Effect#runPromise\"],\n      \"transitive\": true\n    }\n  ]\n}"
+        },
+        {
+          "label": "src/domain/orders.ts",
+          "language": "typescript",
+          "code": "import '../runner';"
+        },
+        {
+          "label": "src/runner.ts",
+          "language": "typescript",
+          "code": "import * as E from 'effect/Effect';\nE.runPromise(task);"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/domain/orders.ts:1:1: domain-no-run: reachable dependency src/runner.ts calls effect/Effect#runPromise\n  src/domain/orders.ts -> src/runner.ts -> src/runner.ts:36"
+        },
+        {
+          "label": "Fix \u00b7 src/domain/orders.ts",
+          "language": "typescript",
+          "code": "export const order = 1;"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/block-calls/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/block-calls/index.md"
+    },
+    {
+      "slug": "service-namespace",
+      "title": "Enforce a team import convention",
+      "summary": "T3 Code imports Effect services as namespaces. Three pull requests fixed this by hand.",
+      "capabilities": [
+        "serviceNamespace"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"rules\": [\n    {\n      \"id\": \"service-namespace\",\n      \"kind\": \"serviceNamespace\",\n      \"files\": [\"src/**\"]\n    }\n  ]\n}"
+        },
+        {
+          "label": "src/main.ts",
+          "language": "typescript",
+          "code": "import { Orders, layer } from './orders';"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/main.ts:1:1: service-namespace: import service module src/orders.ts as a namespace instead of Orders\n  src/orders.ts\nsrc/main.ts:1:1: service-namespace: import service module src/orders.ts as a namespace instead of layer\n  src/orders.ts"
+        },
+        {
+          "label": "Fix \u00b7 src/main.ts",
+          "language": "typescript",
+          "code": "import * as Orders from './orders';"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/service-namespace/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/service-namespace/index.md"
+    },
+    {
+      "slug": "classify-files",
+      "title": "Give every file a known role",
+      "summary": "Catch files that land outside your folder conventions.",
+      "capabilities": [
+        "repository.classified"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"repository\": {\n    \"roles\": [\n      {\n        \"id\": \"service\",\n        \"files\": [\"src/services/**\"]\n      },\n      {\n        \"id\": \"contract\",\n        \"files\": [\"src/contracts/**\"]\n      },\n      {\n        \"id\": \"test\",\n        \"files\": [\"src/*.test.ts\"]\n      }\n    ],\n    \"rules\": [\n      {\n        \"id\": \"classify-source\",\n        \"kind\": \"classified\",\n        \"files\": [\"src/**\"]\n      }\n    ]\n  }\n}"
+        },
+        {
+          "label": "src/misc.ts",
+          "language": "typescript",
+          "code": "export {};"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/misc.ts:1:1: classify-source: expected exactly one repository role, found 0"
+        },
+        {
+          "label": "Fix \u00b7 src/contracts/message.ts",
+          "language": "typescript",
+          "code": "export {};"
+        },
+        {
+          "label": "Fix",
+          "language": "shell",
+          "code": "rm src/misc.ts"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/repository-rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/classify-files/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/classify-files/index.md"
+    },
+    {
+      "slug": "companions",
+      "title": "Require files that belong together",
+      "summary": "Every service needs its layer file next to it.",
+      "capabilities": [
+        "repository.companion"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"repository\": {\n    \"roles\": [\n      {\n        \"id\": \"service\",\n        \"files\": [\"src/services/*.ts\"],\n        \"exclude\": [\"**/*.test.ts\"]\n      }\n    ],\n    \"rules\": [\n      {\n        \"id\": \"service-companion\",\n        \"kind\": \"companion\",\n        \"role\": \"service\",\n        \"replace\": [\"/services/\", \"/layers/\"]\n      }\n    ]\n  }\n}"
+        },
+        {
+          "label": "src/services/Orders.ts",
+          "language": "typescript",
+          "code": "export class Orders {}"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/services/Orders.ts:1:1: service-companion: required analyzed companion is absent: src/layers/Orders.ts\n  src/services/Orders.ts -> src/layers/Orders.ts"
+        },
+        {
+          "label": "Fix \u00b7 src/layers/Orders.ts",
+          "language": "typescript",
+          "code": "export const live = 1;"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/repository-rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/companions/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/companions/index.md"
+    },
+    {
+      "slug": "registry-imports",
+      "title": "Never forget to register a migration",
+      "summary": "The registry must import every migration file.",
+      "capabilities": [
+        "repository.registryImport"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"repository\": {\n    \"roles\": [\n      {\n        \"id\": \"migration\",\n        \"files\": [\"src/migrations/*.ts\"],\n        \"exclude\": [\"**/*.test.ts\"]\n      }\n    ],\n    \"rules\": [\n      {\n        \"id\": \"migration-import\",\n        \"kind\": \"registryImport\",\n        \"role\": \"migration\",\n        \"registry\": \"src/migrations.ts\"\n      }\n    ]\n  }\n}"
+        },
+        {
+          "label": "src/migrations.ts",
+          "language": "typescript",
+          "code": "export const migrations = [];"
+        },
+        {
+          "label": "Archguard reports",
+          "language": "output",
+          "code": "src/migrations/001.ts:1:1: migration-import: role migration requires a direct static value import in src/migrations.ts\n  src/migrations.ts -> src/migrations/001.ts"
+        },
+        {
+          "label": "Fix \u00b7 src/migrations.ts",
+          "language": "typescript",
+          "code": "import first from './migrations/001';\nexport const migrations = [first];"
+        }
+      ],
+      "result": "Exit 1 with the finding above. After the fix, exit 0.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/repository-rules.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/registry-imports/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/registry-imports/index.md"
+    },
+    {
+      "slug": "typescript-plugin",
+      "title": "Write your own rule over the whole graph",
+      "summary": "Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.",
+      "capabilities": [
+        "plugins",
+        "TypeScript SDK",
+        "Rust SDK",
+        "facts"
+      ],
+      "blocks": [
+        {
+          "label": "archguard.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"include\": [\"src/**/*.ts\"],\n  \"plugins\": [\n    {\n      \"name\": \"team-rules\",\n      \"command\": [\"node\", \"./team-rules.ts\"]\n    }\n  ]\n}"
+        },
+        {
+          "label": "team-rules.ts \u00b7 Node 24, with sdk/ copied from the Archguard repository",
+          "language": "typescript",
+          "code": "import { createDependencyQuery, runPlugin } from './sdk/index.ts';\n\nrunPlugin(project => {\n  const dependencies = createDependencyQuery(project);\n  return project.files.flatMap(file => {\n    if (!file.path.startsWith('src/client/')) return [];\n    return [...dependencies(file.path)]\n      .filter(([target]) => target.startsWith('src/server/'))\n      .map(([target, path]) => ({\n        rule: 'client-server', file: file.path, offset: 0,\n        message: `Client reaches ${target}`, evidence: path\n      }));\n  });\n});"
+        }
+      ],
+      "result": "Plugin findings show up next to built-in findings, with the same exit codes. Rust rules use the same graph. archguard facts exports it as JSON.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/extensions/plugins.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/typescript-plugin/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/typescript-plugin/index.md"
+    },
+    {
+      "slug": "find-duplicates",
+      "title": "Find copy-pasted logic",
+      "summary": "Groups functions with the same structure, even after variables were renamed.",
+      "capabilities": [
+        "dryer"
+      ],
+      "blocks": [
+        {
+          "label": "dryer.json",
+          "language": "json",
+          "code": "{\n  \"schemaVersion\": 1,\n  \"selection\": {\n    \"include\": [\"src/**/*.ts\", \"src/**/*.tsx\"]\n  }\n}"
+        },
+        {
+          "label": "Run",
+          "language": "shell",
+          "code": "archguard dryer --root . --config dryer.json"
+        }
+      ],
+      "result": "You get pairs and groups of similar functions with their locations. Not every pair in a group matches. You decide what to merge.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/code-quality.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/find-duplicates/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/find-duplicates/index.md"
+    },
+    {
+      "slug": "run-mutations",
+      "title": "Find code changes your tests miss",
+      "summary": "Archguard makes small edits, like >= to >, and runs your tests on a copy. An edit no test notices shows a gap.",
+      "capabilities": [
+        "mutator"
+      ],
+      "blocks": [
+        {
+          "label": "Run \u00b7 mutator.json names the source files and your test command",
+          "language": "shell",
+          "code": "archguard mutator run --root . --config mutator.json"
+        },
+        {
+          "label": "Trimmed output \u00b7 the bundled example's weak tests",
+          "language": "output",
+          "code": "Survived examples/code-quality/domain.ts:9 bytes 265..267  >= -> >\n  original:   return purchase.subtotal >= 100 && purchase.domestic;\n  mutant:     return purchase.subtotal > 100 && purchase.domestic;"
+        }
+      ],
+      "result": "Each surviving edit names the line and the change. Some edits change nothing real, so read each one before adding a test. Archguard never edits your files. It works on copies.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/code-quality.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/run-mutations/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/run-mutations/index.md"
+    },
+    {
+      "slug": "agent-evaluation",
+      "title": "Let your agent try Archguard on your repo",
+      "summary": "Give your agent a time and disk budget. It looks for rules that fit, copy-pasted code, and test gaps.",
+      "capabilities": [
+        "irudd-ts-evaluate"
+      ],
+      "blocks": [
+        {
+          "label": "Prompt for your agent",
+          "language": "text",
+          "code": "Install the irudd-ts-evaluate skill from github.com/alundgren/irudd-ts\n(skills/irudd-ts-evaluate) in your personal skills folder, not in this\nrepository. Use it to evaluate this repository.\nYou have eight hours and may use at most 20 GiB of disk, including setup.\nStop before free space falls below 12%.\nYou may create a draft PR here. Leave it open."
+        }
+      ],
+      "result": "The agent proposes rules backed by your docs or past fixes, and reports anything it could not check.",
+      "reference": "https://github.com/alundgren/irudd-ts/blob/main/docs/guides/evaluate.md",
+      "url": "https://alundgren.github.io/irudd-ts/examples/agent-evaluation/",
+      "markdown": "https://alundgren.github.io/irudd-ts/examples/agent-evaluation/index.md"
+    }
+  ]
+}

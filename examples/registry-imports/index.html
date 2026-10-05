@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Never forget to register a migration · Archguard</title><meta name="description" content="The registry must import every migration file.">
+<link rel="canonical" href="https://alundgren.github.io/irudd-ts/examples/registry-imports/"><meta name="theme-color" content="#F2EADE">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script><link rel="alternate" type="text/markdown" href="index.md"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="../../index.html"><img src="../../assets/mark.svg" width="28" height="28" alt="">Archguard</a>
+<nav aria-label="Main"><a href="../../index.html#examples">Examples</a><a href="../../agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main"><article class="recipe"><a class="back-link" data-back-to-results href="../../index.html#examples">← All examples</a>
+<h1>Never forget to register a migration</h1><p class="lede">The registry must import every migration file.</p>
+<figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="migrations/001.ts → migrations.ts · no import"><g class="diagram-info"><rect x="0.0" y="12" width="365.0" height="78" rx="12"/><text text-anchor="middle"><tspan x="182.5" y="57.0">migrations/001.ts</tspan></text></g><path class="diagram-arrow" d="M 370.0 51 H 388.0 m -6 -5 l 6 5 l -6 5"/><g class="diagram-danger"><rect x="395.0" y="12" width="365.0" height="78" rx="12"/><text text-anchor="middle"><tspan x="577.5" y="57.0">migrations.ts · no import</tspan></text></g></svg>
+<ol class="diagram-mobile"><li class="diagram-info">migrations/001.ts</li><li class="diagram-danger">migrations.ts · no import</li></ol></figure>
+<div class="recipe-steps"><div class="code-section"><div class="code-label"><p>archguard.json</p>
+<button class="copy" type="button" data-copy="code-0" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-0" class="language-json"><span class="token-operator">{</span>
+  <span class="token-key">&quot;schemaVersion&quot;</span><span class="token-operator">:</span> <span class="token-number">1</span><span class="token-operator">,</span>
+  <span class="token-key">&quot;include&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;src/**/*.ts&quot;</span><span class="token-operator">],</span>
+  <span class="token-key">&quot;repository&quot;</span><span class="token-operator">:</span> <span class="token-operator">{</span>
+    <span class="token-key">&quot;roles&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span>
+      <span class="token-operator">{</span>
+        <span class="token-key">&quot;id&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;migration&quot;</span><span class="token-operator">,</span>
+        <span class="token-key">&quot;files&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;src/migrations/*.ts&quot;</span><span class="token-operator">],</span>
+        <span class="token-key">&quot;exclude&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;**/*.test.ts&quot;</span><span class="token-operator">]</span>
+      <span class="token-operator">}</span>
+    <span class="token-operator">],</span>
+    <span class="token-key">&quot;rules&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span>
+      <span class="token-operator">{</span>
+        <span class="token-key">&quot;id&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;migration-import&quot;</span><span class="token-operator">,</span>
+        <span class="token-key">&quot;kind&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;registryImport&quot;</span><span class="token-operator">,</span>
+        <span class="token-key">&quot;role&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;migration&quot;</span><span class="token-operator">,</span>
+        <span class="token-key">&quot;registry&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;src/migrations.ts&quot;</span>
+      <span class="token-operator">}</span>
+    <span class="token-operator">]</span>
+  <span class="token-operator">}</span>
+<span class="token-operator">}</span></code></pre></div><div class="code-section"><div class="code-label"><p>src/migrations.ts</p>
+<button class="copy" type="button" data-copy="code-1" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-1" class="language-typescript"><span class="token-keyword">export</span> <span class="token-keyword">const</span> migrations <span class="token-operator">=</span> <span class="token-operator">[];</span></code></pre></div><div class="code-section"><div class="code-label"><p>Archguard reports</p>
+<button class="copy" type="button" data-copy="code-2" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-2" class="language-output"><span class="token-comment">src/migrations/001.ts:1:1:</span><span class="token-danger"> migration-import:</span> role migration requires a direct static value import in src/migrations.ts
+  src/migrations.ts -&gt; src/migrations/001.ts</code></pre></div><div class="code-section"><div class="code-label"><p>Fix · src/migrations.ts</p>
+<button class="copy" type="button" data-copy="code-3" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-3" class="language-typescript"><span class="token-keyword">import</span> first <span class="token-keyword">from</span> <span class="token-string">&#x27;./migrations/001&#x27;</span><span class="token-operator">;</span>
+<span class="token-keyword">export</span> <span class="token-keyword">const</span> migrations <span class="token-operator">=</span> <span class="token-operator">[</span>first<span class="token-operator">];</span></code></pre></div></div>
+<p class="outcome">Exit 1 with the finding above. After the fix, exit 0.</p>
+<p class="more"><a href="https://github.com/alundgren/irudd-ts/blob/main/docs/guides/repository-rules.md">All options in the reference <span aria-hidden="true">↗</span></a></p></article></main>
+<footer class="site-footer"><span>Archguard · MIT licensed</span><div><a href="../../style.html">Site style</a><a href="../../llms.txt">llms.txt</a><a href="../../assets/fonts/OFL.txt">Font license</a></div></footer>
+<p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p></body></html>

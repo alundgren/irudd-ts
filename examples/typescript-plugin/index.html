@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Write your own rule over the whole graph · Archguard</title><meta name="description" content="Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.">
+<link rel="canonical" href="https://alundgren.github.io/irudd-ts/examples/typescript-plugin/"><meta name="theme-color" content="#F2EADE">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script><link rel="alternate" type="text/markdown" href="index.md"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="../../index.html"><img src="../../assets/mark.svg" width="28" height="28" alt="">Archguard</a>
+<nav aria-label="Main"><a href="../../index.html#examples">Examples</a><a href="../../agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main"><article class="recipe"><a class="back-link" data-back-to-results href="../../index.html#examples">← All examples</a>
+<h1>Write your own rule over the whole graph</h1><p class="lede">Plugins get the same resolved graph as the built-in rules. This one does the client-to-server check by hand.</p>
+<figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="Resolved graph → Your rule → Findings"><g class="diagram-info"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="57.0">Resolved graph</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="57.0">Your rule</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="57.0">Findings</tspan></text></g></svg>
+<ol class="diagram-mobile"><li class="diagram-info">Resolved graph</li><li class="diagram-neutral">Your rule</li><li class="diagram-neutral">Findings</li></ol></figure>
+<div class="recipe-steps"><div class="code-section"><div class="code-label"><p>archguard.json</p>
+<button class="copy" type="button" data-copy="code-0" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-0" class="language-json"><span class="token-operator">{</span>
+  <span class="token-key">&quot;schemaVersion&quot;</span><span class="token-operator">:</span> <span class="token-number">1</span><span class="token-operator">,</span>
+  <span class="token-key">&quot;include&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;src/**/*.ts&quot;</span><span class="token-operator">],</span>
+  <span class="token-key">&quot;plugins&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span>
+    <span class="token-operator">{</span>
+      <span class="token-key">&quot;name&quot;</span><span class="token-operator">:</span> <span class="token-string">&quot;team-rules&quot;</span><span class="token-operator">,</span>
+      <span class="token-key">&quot;command&quot;</span><span class="token-operator">:</span> <span class="token-operator">[</span><span class="token-string">&quot;node&quot;</span><span class="token-operator">,</span> <span class="token-string">&quot;./team-rules.ts&quot;</span><span class="token-operator">]</span>
+    <span class="token-operator">}</span>
+  <span class="token-operator">]</span>
+<span class="token-operator">}</span></code></pre></div><div class="code-section"><div class="code-label"><p>team-rules.ts · Node 24, with sdk/ copied from the Archguard repository</p>
+<button class="copy" type="button" data-copy="code-1" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-1" class="language-typescript"><span class="token-keyword">import</span> <span class="token-operator">{</span> createDependencyQuery<span class="token-operator">,</span> runPlugin <span class="token-operator">}</span> <span class="token-keyword">from</span> <span class="token-string">&#x27;./sdk/index.ts&#x27;</span><span class="token-operator">;</span>
+
+runPlugin(project <span class="token-operator">=&gt;</span> <span class="token-operator">{</span>
+  <span class="token-keyword">const</span> dependencies <span class="token-operator">=</span> createDependencyQuery(project)<span class="token-operator">;</span>
+  <span class="token-keyword">return</span> project.files.flatMap(file <span class="token-operator">=&gt;</span> <span class="token-operator">{</span>
+    <span class="token-keyword">if</span> (<span class="token-operator">!</span>file.path.startsWith(<span class="token-string">&#x27;src/client/&#x27;</span>)) <span class="token-keyword">return</span> <span class="token-operator">[];</span>
+    <span class="token-keyword">return</span> <span class="token-operator">[</span>...dependencies(file.path)<span class="token-operator">]</span>
+      .filter((<span class="token-operator">[</span>target<span class="token-operator">]</span>) <span class="token-operator">=&gt;</span> target.startsWith(<span class="token-string">&#x27;src/server/&#x27;</span>))
+      .map((<span class="token-operator">[</span>target<span class="token-operator">,</span> path<span class="token-operator">]</span>) <span class="token-operator">=&gt;</span> (<span class="token-operator">{</span>
+        rule<span class="token-operator">:</span> <span class="token-string">&#x27;client-server&#x27;</span><span class="token-operator">,</span> file<span class="token-operator">:</span> file.path<span class="token-operator">,</span> offset<span class="token-operator">:</span> <span class="token-number">0</span><span class="token-operator">,</span>
+        message<span class="token-operator">:</span> <span class="token-string">`Client reaches ${target}`</span><span class="token-operator">,</span> evidence<span class="token-operator">:</span> path
+      <span class="token-operator">}</span>))<span class="token-operator">;</span>
+  <span class="token-operator">}</span>)<span class="token-operator">;</span>
+<span class="token-operator">}</span>)<span class="token-operator">;</span></code></pre></div></div>
+<p class="outcome">Plugin findings show up next to built-in findings, with the same exit codes. Rust rules use the same graph. archguard facts exports it as JSON.</p>
+<p class="more"><a href="https://github.com/alundgren/irudd-ts/blob/main/docs/extensions/plugins.md">All options in the reference <span aria-hidden="true">↗</span></a></p></article></main>
+<footer class="site-footer"><span>Archguard · MIT licensed</span><div><a href="../../style.html">Site style</a><a href="../../llms.txt">llms.txt</a><a href="../../assets/fonts/OFL.txt">Font license</a></div></footer>
+<p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p></body></html>
