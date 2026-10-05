@@ -1,0 +1,67 @@
+# Archguard recipe book
+
+> Practical examples of repository architecture checks, file conventions, compiler member checks, duplicate evidence, and mutation testing.
+
+## Contracts
+
+Graph facts, compiler facts, policy, and runtime behavior are distinct. Exit 0 requires complete clean checks; exit 1 means complete policy violations; exit 2 means incomplete analysis or invalid config. Dryer and mutator exit 0 for complete evidence, including matches and survivors. Execute only explicitly configured trusted commands. Selectors do not expand discovery.
+
+## Maps
+
+- [JSON recipe index](https://alundgren.github.io/irudd-ts/recipes.json)
+- [Full reference](https://github.com/alundgren/irudd-ts/blob/main/docs/README.md)
+- [Repository instructions](https://github.com/alundgren/irudd-ts/blob/main/AGENTS.md)
+
+## Start here
+
+- [Run your first architecture check](https://alundgren.github.io/irudd-ts/recipes/first-check/index.md): Build Archguard and stop a client module from importing server code.
+- [Choose the files Archguard analyzes](https://alundgren.github.io/irudd-ts/recipes/select-sources/index.md): Include application sources and their local dependencies. Leave generated files out.
+- [Resolve TypeScript aliases and package imports](https://alundgren.github.io/irudd-ts/recipes/resolve-imports/index.md): Use tsconfig paths, workspace package exports, and explicit source lookup settings.
+- [Read clean, failing, and incomplete results](https://alundgren.github.io/irudd-ts/recipes/read-results/index.md): Use completeness and the process exit code to decide the next action.
+- [Try the T3 Code adoption profiles](https://alundgren.github.io/irudd-ts/recipes/adoption-profiles/index.md): Start with a concrete architecture profile from a real application.
+
+## Control dependencies
+
+- [Keep server code out of the client](https://alundgren.github.io/irudd-ts/recipes/block-server/index.md): Catch direct imports and indirect paths through shared modules.
+- [Ban an import by its written name](https://alundgren.github.io/irudd-ts/recipes/block-imports/index.md): Keep Node builtins out of browser sources, even when they are external endpoints.
+- [Keep runtime calls at the application edge](https://alundgren.github.io/irudd-ts/recipes/block-calls/index.md): Report modules that call Effect.runPromise, and modules that depend on them.
+- [Find dependency cycles](https://alundgren.github.io/irudd-ts/recipes/no-cycles/index.md): Catch two modules that import each other before the cycle grows.
+- [Keep a package free of a dependency](https://alundgren.github.io/irudd-ts/recipes/package-dependencies/index.md): Stop a domain workspace package from declaring React.
+- [Require imports through a public package entry](https://alundgren.github.io/irudd-ts/recipes/public-entry/index.md): Stop consumers from reaching into a workspace package's private source paths.
+- [Check direct Rust module dependencies](https://alundgren.github.io/irudd-ts/recipes/rust-sources/index.md): Apply a dependency rule to crate::module imports in Rust source.
+- [Limit a rule and allow one explicit exception](https://alundgren.github.io/irudd-ts/recipes/rule-exceptions/index.md): Block filesystem imports in application source while keeping one legacy adapter out of scope.
+
+## Keep file conventions
+
+- [Require a named export](https://alundgren.github.io/irudd-ts/recipes/required-exports/index.md): Make every adapter expose a create function.
+- [Require an analyzed source file](https://alundgren.github.io/irudd-ts/recipes/required-sources/index.md): Require a contracts entry point to exist in the selected source inventory.
+- [Use namespace imports for Effect services](https://alundgren.github.io/irudd-ts/recipes/service-namespace/index.md): Keep a service and its layer under one module name at call sites.
+- [Catch duplicate Effect service identifiers](https://alundgren.github.io/irudd-ts/recipes/unique-service-id/index.md): Give each recognized service its own literal identifier.
+- [Require an Effect service layer export](https://alundgren.github.io/irudd-ts/recipes/service-layer/index.md): Require one visible value export called layer on service files.
+- [Give every source file exactly one role](https://alundgren.github.io/irudd-ts/recipes/classify-files/index.md): Catch sources that fall outside your conventions or match overlapping roles.
+- [Require a matching companion file](https://alundgren.github.io/irudd-ts/recipes/companions/index.md): Require src/layers/Orders.ts whenever src/services/Orders.ts is analyzed.
+- [Require a registry to import every migration](https://alundgren.github.io/irudd-ts/recipes/registry-imports/index.md): Catch a new migration with no static value import in the registry.
+- [Block dependencies between file roles](https://alundgren.github.io/irudd-ts/recipes/role-dependencies/index.md): Keep contracts independent of host implementation code.
+
+## Add your own checks
+
+- [Export the source dependency graph](https://alundgren.github.io/irudd-ts/recipes/export-graph/index.md): Feed versioned project facts into your own reports or graph tools.
+- [Add a TypeScript graph plugin](https://alundgren.github.io/irudd-ts/recipes/typescript-plugin/index.md): Run a custom rule over the same graph as built-in policies.
+- [Use the Rust graph-rule API](https://alundgren.github.io/irudd-ts/recipes/rust-plugin/index.md): Check immutable project facts in Rust or return findings from an executable plugin.
+- [Check an inferred public member](https://alundgren.github.io/irudd-ts/recipes/missing-member/index.md): Opt into the pinned compiler provider and catch account.missing on an inferred object.
+- [Export compiler facts by context](https://alundgren.github.io/irudd-ts/recipes/compiler-facts/index.md): Inspect inferred receiver types and public member status separately from source graph facts.
+- [Reuse a validated source graph](https://alundgren.github.io/irudd-ts/recipes/graph-cache/index.md): Keep a complete graph between checks while still rerunning policies and plugins.
+
+## Review code and tests
+
+- [Find structurally similar functions](https://alundgren.github.io/irudd-ts/recipes/find-duplicates/index.md): Compare renamed invoice and order logic before deciding what to extract.
+- [Compare duplicate normalization settings](https://alundgren.github.io/irudd-ts/recipes/tune-duplicates/index.md): Keep literal values for a stricter comparison, or erase local names when investigating shifted declarations.
+- [Read duplicate groups without assuming every pair matches](https://alundgren.github.io/irudd-ts/recipes/duplicate-groups/index.md): Review connected groups and follow their pair indices to the actual evidence.
+- [Inspect mutation edits before running tests](https://alundgren.github.io/irudd-ts/recipes/plan-mutations/index.md): List exact runtime edits and source hashes without executing a repository command.
+- [Find behavior your tests miss](https://alundgren.github.io/irudd-ts/recipes/run-mutations/index.md): Run weak and strengthened tests against isolated edits of the same domain functions.
+- [Connect an existing Vitest test command](https://alundgren.github.io/irudd-ts/recipes/vitest-reporter/index.md): Copy the SDK reporter into your project and declare the test command and all worker inputs.
+- [Bound a mutation run](https://alundgren.github.io/irudd-ts/recipes/mutation-limits/index.md): Set a small mutation budget, worker count, deadline, and workspace ceiling.
+- [Reuse complete mutation results](https://alundgren.github.io/irudd-ts/recipes/mutation-reuse/index.md): Opt into conservative result reuse when every relevant test input is declared and deterministic.
+- [Have your agent try Archguard on a repository](https://alundgren.github.io/irudd-ts/recipes/agent-evaluation/index.md): Install the evaluation skill and give your agent a time, disk, and change budget.
+- [Write a small test-command adapter](https://alundgren.github.io/irudd-ts/recipes/test-adapter/index.md): Use the Node-builtin SDK to report an assertion you actually executed.
+

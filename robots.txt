@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alundgren.github.io/irudd-ts/sitemap.xml

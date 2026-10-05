@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use the Rust graph-rule API · Archguard recipes</title><meta name="description" content="Check immutable project facts in Rust or return findings from an executable plugin.">
+<link rel="canonical" href="https://alundgren.github.io/irudd-ts/recipes/rust-plugin/"><meta name="theme-color" content="#F2EADE">
+<link rel="icon" href="../../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/site.css"><script src="../../assets/site.js" defer></script><link rel="alternate" type="text/markdown" href="index.md"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="brand" href="../../index.html"><img src="../../assets/mark.svg" width="28" height="28" alt="">Archguard<span>recipe book</span></a>
+<nav aria-label="Main"><a href="../../index.html#recipes">Recipes</a><a href="../../agents.html">For agents</a><a href="https://github.com/alundgren/irudd-ts">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main"><article class="recipe"><div class="recipe-top"><a class="back-link" data-back-to-results href="../../index.html#recipes">← All recipes</a><a href="index.md">Read as Markdown</a></div>
+<p class="eyebrow">Add your own checks</p><h1>Use the Rust graph-rule API</h1><p class="lede">Check immutable project facts in Rust or return findings from an executable plugin.</p>
+<p class="needs"><span>You need</span> Rust 1.96+ to build the repository example. The Rust snippet is an API excerpt; use the linked complete main.rs.</p>
+<figure class="diagram"><svg viewBox="0 0 760 102" role="img" aria-label="ProjectFacts v1 → ProjectRule::check → Diagnostics"><g class="diagram-info"><rect x="0.0" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="116.66666666666667" y="51.0">ProjectFacts v1</tspan></text></g><path class="diagram-arrow" d="M 238.33333333333334 51 H 256.33333333333337 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="263.33333333333337" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="380.00000000000006" y="51.0">ProjectRule::check</tspan></text></g><path class="diagram-arrow" d="M 501.66666666666674 51 H 519.6666666666667 m -6 -5 l 6 5 l -6 5"/><g class="diagram-neutral"><rect x="526.6666666666667" y="12" width="233.33333333333334" height="78" rx="12"/><text text-anchor="middle"><tspan x="643.3333333333334" y="51.0">Diagnostics</tspan></text></g></svg>
+<ol class="diagram-mobile" aria-hidden="true"><li class="diagram-info">ProjectFacts v1</li><li class="diagram-neutral">ProjectRule::check</li><li class="diagram-neutral">Diagnostics</li></ol><figcaption>ProjectFacts v1 → ProjectRule::check → Diagnostics</figcaption></figure>
+<div class="recipe-steps" id="example"><section class="code-section"><div class="code-label"><h3>Archguard checkout</h3>
+<button class="copy" type="button" data-copy="code-0" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-0" class="language-shell"><span class="token-keyword">cargo</span> build --locked --bins --examples
+./target/debug/<span class="token-keyword">archguard</span> facts --root examples/graph-plugin --config examples/graph-plugin/<span class="token-keyword">archguard</span>.json <span class="token-operator">&gt;</span> /tmp/graph.json
+./target/debug/examples/graph_plugin <span class="token-operator">&lt;</span> /tmp/graph.json</code></pre></section><section class="code-section"><div class="code-label"><h3>examples/graph-plugin/shared/message.ts · try a violation</h3>
+<button class="copy" type="button" data-copy="code-1" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-1" class="language-typescript"><span class="token-keyword">import</span> <span class="token-string">&#x27;../server/db.ts&#x27;</span><span class="token-operator">;</span>
+<span class="token-keyword">export</span> <span class="token-keyword">const</span> message <span class="token-operator">=</span> <span class="token-string">&#x27;hello&#x27;</span><span class="token-operator">;</span></code></pre></section><section class="code-section"><div class="code-label"><h3>Core API · excerpt from examples/graph-plugin/main.rs</h3>
+<button class="copy" type="button" data-copy="code-2" hidden>Copy</button></div>
+<pre tabindex="0"><code id="code-2" class="language-rust"><span class="token-keyword">use</span> <span class="token-keyword">archguard</span><span class="token-operator">::</span>facts<span class="token-operator">::</span>ProjectRule<span class="token-operator">;</span>
+
+<span class="token-keyword">let</span> diagnostics <span class="token-operator">=</span> rule.check(<span class="token-operator">&amp;</span>project)<span class="token-operator">?;</span>
+<span class="token-keyword">println</span><span class="token-operator">!</span>(<span class="token-string">&quot;{}&quot;</span><span class="token-operator">,</span> serde_json<span class="token-operator">::</span>json<span class="token-operator">!</span>(<span class="token-operator">{</span>
+    <span class="token-string">&quot;schemaVersion&quot;</span><span class="token-operator">:</span> <span class="token-number">1</span><span class="token-operator">,</span>
+    <span class="token-string">&quot;diagnostics&quot;</span><span class="token-operator">:</span> diagnostics
+<span class="token-operator">}</span>))<span class="token-operator">;</span></code></pre></section></div>
+<section class="outcome" id="result"><h2>What to expect</h2><p>The bundled graph is clean: diagnostics is empty. Apply the shared/message.ts edit below, then export facts again and rerun the plugin to see the client-server finding. Restore the file afterward.</p></section>
+<aside class="limit" id="scope"><h2>Keep in mind</h2><p>Executable plugins read one JSON project on stdin and write one versioned diagnostics object on stdout. Put logs on stderr.</p></aside>
+<details class="references"><summary>Reference and source</summary><div><a href="https://github.com/alundgren/irudd-ts/blob/main/examples/graph-plugin/main.rs">examples/graph-plugin/main.rs</a><a href="https://github.com/alundgren/irudd-ts/blob/main/docs/extensions/plugins.md">docs/extensions/plugins.md</a></div></details>
+<nav class="next-recipes" aria-label="Related recipes"><a href="../typescript-plugin/index.html">Add a TypeScript graph plugin <span aria-hidden="true">→</span></a></nav></article></main>
+<footer class="site-footer"><span>Archguard · explicit repository checks</span><div><a href="../../style.html">Visual style</a><a href="../../llms.txt">Agent index</a><a href="../../assets/fonts/OFL.txt">Font license</a></div></footer>
+<p id="copy-status" class="visually-hidden" role="status" aria-live="polite"></p></body></html>
