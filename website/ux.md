@@ -9,9 +9,10 @@ in the reference. A reader who wants to try Archguard hands those to their agent
 ## Navigation and content
 
 The home page is the main page. In order: the claim with one diagram, what Oxlint
-already covers next to what Archguard adds, what an exit code means, one real
-repository, how to try it with an agent, and a searchable list of examples.
+already covers next to what Archguard adds, what an exit code means, how mutation
+testing works, how to try it with an agent, and a searchable list of examples.
 Each "adds" item links to the examples that show it.
+Validation histories belong in the reference documentation.
 
 Keep sections few and spaced. Do not add foldouts, per-section eyebrows,
 "you need" notes, or long lists of caveats. If a point needs a caveat to stay

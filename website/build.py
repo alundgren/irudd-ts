@@ -149,7 +149,7 @@ ADDS = [
     ("Package borders", "Imports go through a package's public entry. A package keeps its dependency list clean.", ["public-entry", "package-dependencies"]),
     ("Where calls may happen", "Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.", ["block-calls"]),
     ("Repository structure", "Every file has a role. Files that belong together exist together. New migrations get registered.", ["classify-files", "companions", "registry-imports"]),
-    ("Your own rules", "Write rules in TypeScript or Rust over the same resolved graph. Some team conventions, like T3 Code's service imports, are built in.", ["typescript-plugin", "service-namespace"]),
+    ("Your own rules", "Write rules in TypeScript or Rust over the same resolved graph.", ["typescript-plugin", "service-namespace"]),
     ("Test and copy-paste review", "Find code edits your tests don't notice, and functions that were copied and renamed.", ["run-mutations", "find-duplicates"]),
 ]
 
@@ -179,9 +179,11 @@ def home():
 <p>A file that fails to parse or an internal import that can't be resolved never turns into a quiet pass.</p>
 {diagram([("0 · everything selected was checked, all rules pass", "ok"), ("1 · a rule is broken", "danger"), ("2 · couldn't check everything", "warn")], "Exit codes: 0 pass, 1 rule broken, 2 incomplete. Only a complete check can pass.", connected=False)}</section>
 
-<section class="band" id="real"><h2>Tried on a real repository</h2>
-<p>We wrote 25 candidate rules for <a href="https://github.com/pingdotgg/t3code">T3 Code</a>, mostly from its docs and past pull requests. Three of its pull requests (#14385, #14387, #14389) moved Effect services to namespace imports by hand. The <a href="examples/service-namespace/index.html">service import rule</a> flags reduced copies of the code from before those fixes and passes after them.</p>
-<p class="more"><a href="{REPO}examples/t3code/rules.md">See the T3 Code rules and their sources <span aria-hidden="true">↗</span></a></p></section>
+<section class="band" id="mutation-testing"><h2>Check whether your tests notice small mistakes</h2>
+<p>Mutation testing checks your tests by changing the code they run. Archguard first runs your test command against unchanged source, then makes one small edit in an isolated copy and runs the tests again.</p>
+{diagram([("Passing baseline", "ok"), ("One edit in a copy", "info"), ("Run the same tests", "neutral")], "Mutation testing: establish a passing baseline, make one isolated edit, then rerun the same tests.")}
+<p>For example, changing <code>subtotal &gt;= 100</code> to <code>subtotal &gt; 100</code> changes what happens at 100. An assertion failure shows your tests caught the edit. If they still pass, that boundary may need an assertion. Review surviving edits before adding tests; some preserve behavior.</p>
+<p class="more"><a href="examples/run-mutations/index.html">See a mutation test and its report <span aria-hidden="true">↗</span></a></p></section>
 
 <section class="band" id="try"><h2>Try it on your repo</h2>
 <p>The quickest way is to let your coding agent do it. It installs what it needs, tries rules that fit your docs and history, and reports back.</p>
