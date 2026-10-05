@@ -1,0 +1,99 @@
+name: Publish merged release PR
+on:
+  workflow_dispatch:
+    inputs:
+      release_pr:
+        description: Merged release-please PR number
+        type: string
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: archguard-release
+  cancel-in-progress: false
+jobs:
+  identify:
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      commit: ${{ steps.release.outputs.commit }}
+      published: ${{ steps.release.outputs.published }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+      - id: release
+        name: Validate merged release PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARCHGUARD_RELEASE_PR: ${{ inputs.release_pr }}
+        run: python3 scripts/release/github.py validate --pr "$ARCHGUARD_RELEASE_PR"
+  build:
+    needs: identify
+    if: needs.identify.outputs.published != 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-22.04
+            platform: linux-x86_64
+          - runner: ubuntu-22.04-arm
+            platform: linux-arm64
+          - runner: macos-15-intel
+            platform: macos-x86_64
+          - runner: macos-15
+            platform: macos-arm64
+    runs-on: ${{ matrix.runner }}
+    env:
+      MACOSX_DEPLOYMENT_TARGET: '15.0'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ needs.identify.outputs.commit }}
+      - name: Build locked executable on its native OS and architecture
+        run: |
+          rustup toolchain install 1.96.0 --profile minimal --component rust-docs
+          cargo +1.96.0 build --release --locked --bin archguard
+      - name: Package notices and smoke test installed archive
+        env:
+          ARCHGUARD_PLATFORM: ${{ matrix.platform }}
+          ARCHGUARD_VERSION: ${{ needs.identify.outputs.version }}
+        run: |
+          python3 scripts/release/package.py --binary target/release/archguard --platform "$ARCHGUARD_PLATFORM" --output dist
+          ARCHGUARD_DOWNLOAD_BASE_URL="file://$PWD/dist" scripts/install.sh "$ARCHGUARD_VERSION" "$RUNNER_TEMP/archguard-smoke"
+          python3 scripts/release/smoke.py "$RUNNER_TEMP/archguard-smoke/bin/archguard"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: archguard-${{ matrix.platform }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+  publish:
+    needs: [identify, build]
+    if: ${{ !cancelled() && needs.identify.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+      - if: needs.identify.outputs.published != 'true'
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: archguard-*
+          merge-multiple: true
+          path: dist
+      - name: Verify, resume draft if needed, and publish complete release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARCHGUARD_RELEASE_PR: ${{ inputs.release_pr }}
+        run: |
+          if [[ -d dist ]]; then
+            python3 scripts/release/github.py publish --pr "$ARCHGUARD_RELEASE_PR" --assets dist
+          else
+            python3 scripts/release/github.py publish --pr "$ARCHGUARD_RELEASE_PR"
+          fi

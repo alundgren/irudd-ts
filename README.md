@@ -6,7 +6,7 @@ The [Archguard site](https://alundgren.github.io/irudd-ts/) shows what it adds t
 
 ## Get started
 
-Build from this checkout with Rust 1.96 or newer:
+Install an exact [released binary](docs/guides/installation.md) for Linux or macOS on x86_64 or arm64. Binary releases become available after the first manual release. To build from this checkout instead, use Rust 1.96 or newer:
 
 ```sh
 cargo build --release --locked
