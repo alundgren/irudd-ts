@@ -8,9 +8,9 @@ from urllib.parse import unquote
 
 root = Path(__file__).resolve().parents[1]
 paths = [root / 'README.md', root / 'AGENTS.md']
-for directory in ['docs', 'examples', 'sdk', 'providers', 'research', 'skills']:
+for directory in ['docs', 'examples', 'sdk', 'providers', 'research', 'skills', 'website']:
     paths.extend(path for path in (root / directory).rglob('*.md')
-                 if 'node_modules' not in path.parts and 'local' not in path.parts)
+                 if 'node_modules' not in path.parts and 'local' not in path.parts and 'dist' not in path.parts)
 errors = []
 for path in sorted(paths):
     content = path.read_text()

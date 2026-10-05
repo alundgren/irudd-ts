@@ -1,5 +1,7 @@
 # Documentation
 
+For short practical examples, start with the [searchable recipe book](https://alundgren.github.io/irudd-ts/). The [agent index](https://alundgren.github.io/irudd-ts/llms.txt) links the same recipes as Markdown.
+
 | I want to | Read |
 | --- | --- |
 | Run checks and configure source resolution | [Configuration](guides/configuration.md) |
