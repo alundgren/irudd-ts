@@ -71,7 +71,7 @@ jobs:
           retention-days: 7
   publish:
     needs: [identify, build]
-    if: always() && needs.identify.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped')
+    if: ${{ !cancelled() && needs.identify.result == 'success' && (needs.build.result == 'success' || needs.build.result == 'skipped') }}
     runs-on: ubuntu-22.04
     permissions:
       contents: write
