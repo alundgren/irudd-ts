@@ -1,21 +1,27 @@
-# Archguard recipe book
+# Archguard site
 
-The public cookbook is at [alundgren.github.io/irudd-ts](https://alundgren.github.io/irudd-ts/).
-It is a static GitHub Pages project site. Python 3 builds HTML, Markdown recipes,
-a JSON recipe index, and `llms.txt`. The browser needs no framework, package
-install, or external service. Without JavaScript, every recipe remains readable.
+The public site is at [alundgren.github.io/irudd-ts](https://alundgren.github.io/irudd-ts/).
+It answers one question for someone with an existing repository: what does
+Archguard add to the linter they already run? The home page makes that case.
+A short list of examples shows each point in action. Setup, options, and
+experiments stay in the [reference documentation](../docs/README.md), which
+readers' agents can follow from `llms.txt`.
 
-## Maintain a recipe
+It is a static GitHub Pages project site. Python 3 builds HTML, Markdown copies,
+`examples.json`, and `llms.txt`. The browser needs no framework, package install,
+or external service. Without JavaScript, every page remains readable.
 
-Edit [recipes.py](recipes.py). Each entry has a task name, a short summary,
-prerequisites, explicit code labels, a result, an evidence limit, references,
-related tasks, and a small diagram. See [ux.md](ux.md) for visual and writing rules.
+## Maintain the content
 
-Code blocks accept `json`, `shell`, `typescript`, `javascript`, `rust`, and `text`.
-The builder escapes all code and highlights lexical tokens at build time.
-Keep JSON fragments explicitly labeled. Use the supplied `policy` helper for
-architecture examples. Its failing, corrected, and control file inventories
-drive the CLI checks. All displayed input files must match those inventories.
+The home page text lives in [build.py](build.py) (`home()` and `ADDS`). Examples
+live in [recipes.py](recipes.py). Add an example only when it shows something a
+reader would care about before trying Archguard. See [ux.md](ux.md) for visual
+and writing rules.
+
+Code blocks accept `json`, `shell`, `typescript`, `javascript`, `rust`, `text`,
+and `output`. The builder escapes all code and highlights tokens at build time.
+Use the `policy` helper for rule examples. Its failing, fixed, and control file
+sets drive the CLI checks, and its `report` must be the CLI's real text output.
 
 Run from the repository root:
 
@@ -24,15 +30,12 @@ cargo build --locked --bins --examples
 python3 website/check.py
 ```
 
-The check builds ignored `website/dist/`, audits links, anchors, code copy text,
-metadata, agent files, capability coverage, and font hashes, then executes each
-policy example's failure, correction, and negative control. The repository's
-[complete check](../scripts/check.sh) includes this check.
-
-The generator is deliberately small. Content is trusted, checked-in Python
-data. There is no Markdown rendering engine and no executable discovery.
-Existing [reference documentation](../docs/README.md) remains the source for
-protocol details and options. Keep cookbook examples consistent with it.
+The check builds ignored `website/dist/` and audits links, anchors, code copy
+text, metadata, agent files, and font hashes. It checks that every rule kind is
+documented in the reference that `llms.txt` links. It then runs each policy
+example's failure, fix, and negative control, and compares the shown report
+with the real output. The repository's [complete check](../scripts/check.sh)
+includes this check.
 
 ## Publish
 
@@ -55,7 +58,7 @@ settings. `deployment.json` records the exact source revision.
 For initial setup only, create the repository Pages site with source branch
 `gh-pages` and source path `/` through `gh api`. Publishing and repository
 settings require operator authorization. Verify the Pages build status and the
-public index, nested recipe, CSS, JavaScript, font, `llms.txt`, JSON, and Markdown
+public index, nested example, CSS, JavaScript, font, `llms.txt`, JSON, and Markdown
 URLs before reporting a deployment complete.
 
 The canonical project prefix is `/irudd-ts/`. Assets and navigation use relative

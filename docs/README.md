@@ -1,6 +1,6 @@
 # Documentation
 
-For short practical examples, start with the [searchable recipe book](https://alundgren.github.io/irudd-ts/). The [agent index](https://alundgren.github.io/irudd-ts/llms.txt) links the same recipes as Markdown.
+For what Archguard adds and short examples, see the [Archguard site](https://alundgren.github.io/irudd-ts/). Its [llms.txt](https://alundgren.github.io/irudd-ts/llms.txt) links the same examples as Markdown.
 
 | I want to | Read |
 | --- | --- |

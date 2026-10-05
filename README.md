@@ -2,7 +2,7 @@
 
 Archguard checks architecture rules across a source repository. It follows dependencies, enforces package and module boundaries, detects cycles, and checks file conventions such as companion files and registry imports. Rust and TypeScript plugins can add checks over the same project graph. An optional TypeScript compiler provider checks inferred public members.
 
-Browse the [searchable recipe book](https://alundgren.github.io/irudd-ts/) for practical configurations, code, and diagrams. Agents can start with the [task index](https://alundgren.github.io/irudd-ts/llms.txt).
+The [Archguard site](https://alundgren.github.io/irudd-ts/) shows what it adds to Oxlint, with short examples. Agents can start with [llms.txt](https://alundgren.github.io/irudd-ts/llms.txt).
 
 ## Get started
 
