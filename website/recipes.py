@@ -91,7 +91,7 @@ policy("block-calls", "Keep runtime calls at the edge",
 service = "import * as C from 'effect/Context';\nexport class Orders extends C.Service<Orders, {}>()('app/Orders') {}"
 
 policy("service-namespace", "Enforce a team import convention",
-       "T3 Code imports Effect services as namespaces. Three pull requests fixed this by hand.",
+       "Require namespace imports for Effect service modules.",
        dict(id="service-namespace", kind="serviceNamespace", files=["src/**"]),
        {"src/orders.ts": service + "\nexport const layer = 1;", "src/main.ts": "import { Orders, layer } from './orders';"},
        {"src/orders.ts": service + "\nexport const layer = 1;", "src/main.ts": "import * as Orders from './orders';"},
@@ -151,9 +151,9 @@ add("find-duplicates", "Find copy-pasted logic",
     "docs/code-quality.md")
 
 add("run-mutations", "Find code changes your tests miss",
-    "Archguard makes small edits, like >= to >, and runs your tests on a copy. An edit no test notices shows a gap.",
+    "Archguard makes small edits, like >= to >, and runs your tests on a copy to find changes they miss.",
     ["mutator"],
-    [("subtotal >= 100", "neutral"), ("subtotal > 100", "info"), ("Tests still pass · gap", "warn")],
+    [("subtotal >= 100", "neutral"), ("subtotal > 100", "info"), ("Tests still pass · review", "warn")],
     [block("Run · mutator.json names the source files and your test command", "shell", "archguard mutator run --root . --config mutator.json"),
      block("Trimmed output · the bundled example's weak tests", "output", "Survived examples/code-quality/domain.ts:9 bytes 265..267  >= -> >\n  original:   return purchase.subtotal >= 100 && purchase.domestic;\n  mutant:     return purchase.subtotal > 100 && purchase.domestic;")],
     "Each surviving edit names the line and the change. Some edits change nothing real, so read each one before adding a test. Archguard never edits your files. It works on copies.",
