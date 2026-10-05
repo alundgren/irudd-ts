@@ -40,6 +40,13 @@ A fix removing a forbidden import can motivate an import guard. A rounding
 fix motivates a regression test; an import rule cannot prevent that arithmetic
 error. Cite the actual project's requirement and pre-fix evidence.
 
+Validate the import spellings covered by the requirement. A package root such
+as `electron` does not establish that `electron/main` and `electron/renderer`
+are forbidden too. Include supported subpaths, builtin prefixes such as `node:`,
+and configured aliases where relevant. Use violating, corrected, and allowed
+controls, plus indirect imports when claiming transitive enforcement. Keep
+unresolved or unsupported spellings explicit rather than count them as clean.
+
 Start from existing config. Keep uncertain intent/completeness as proposals.
 Retain current violations with narrow justified exceptions. Custom plugins
 are a later option when existing facts support a valuable missing check and
@@ -61,6 +68,9 @@ that omit cross-partition comparisons remain partial evidence.
 Refactors must retain endpoints, schemas, error messages, authorization, and
 other contracts. A shared helper is useful when the repeated operation is the
 same. Parallel test scenarios and independent adapters can remain separate.
+An inspected result with no useful refactor is a valid outcome. Explain the
+distinct contracts or added indirection that made extraction unsuitable; a
+similarity score alone does not justify changing the code.
 
 ## Documentation
 

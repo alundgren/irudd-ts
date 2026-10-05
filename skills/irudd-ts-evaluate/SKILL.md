@@ -24,6 +24,10 @@ installed tools, Git state, and available disk. Establish:
 - Permission to create a draft PR in the exact target repository and push
   subsequent updates to that same branch. Ask explicitly if missing. A
   declined PR leaves a local patch and report; continue evaluation.
+- A useful completion point and evidence retention choice. Complete the
+  declared sample and review useful follow-ups within the budget; exhausting
+  every site or spending the whole allowance is unnecessary. Agree on a compact
+  evidence bundle, its location, and whether to retain it or remove it at finish.
 
 Reuse answers and permissions already supplied. Propose reasonable budgets
 when missing, state which setup/reporting time they include, and wait for
@@ -56,11 +60,12 @@ actionable checks. Full historical replay is a separate experiment.
 
 For each architecture proposal, record its requirement source, selected files,
 supported rule/configuration, current violations, and limitations. Verify a
-violating case, correction, and allowed case in an owned fixture. A historical
-claim needs evidence that the rule would catch the relevant pre-fix pattern;
-a synthetic example establishes only a proposed guard. Preserve existing
-enforcement and explain the added value. Runtime bugs that cannot be checked
-statically remain test suggestions.
+violating case, correction, and allowed case in an owned fixture. Include
+relevant package roots, subpaths, and configured aliases in import controls.
+A historical claim needs evidence that the rule would catch the relevant
+pre-fix pattern; a synthetic example establishes only a proposed guard.
+Preserve existing enforcement and explain the added value. Runtime bugs that
+cannot be checked statically remain test suggestions.
 
 Run Dryer over the requested authored source scope. Include supported tests
 and tools for an entire-project request, but review those findings separately
@@ -87,10 +92,20 @@ locally and continue within the agreed scope.
 ## Run mutations last and update incrementally
 
 Read [mutation-campaign.md](references/mutation-campaign.md) when a supported
-runner and enough budget remain. For an all-tests request, establish the full
-active pool across declared projects, including suites excluded from routine
-checks. Test selection and mutation selection are separate: run all tests
-against a representative budgeted mutant sample without exhausting every site.
+runner and enough budget remain. Default to every active test across declared
+projects on the chosen platform, including suites excluded from routine checks.
+Fit the budget by reducing the mutant sample first. A narrower test pool needs
+a recorded task, measured budget, or platform reason and a claim limited to
+that pool. Record source discovery, file/site sampling, test selection, and
+required patch validation separately before mutation. Check whether selected
+scenarios exercise the chosen sites; unknown execution remains unknown.
+
+Prefer the product `archguard mutator run` for aggregate campaigns. Use the
+experimental research runner only when per-test attribution is required, with
+its setup and limitations disclosed. Compare aggregate active/skip counts with
+the frozen pool; mismatches are unknown evidence even if the product reports
+a kill or survivor. Counts alone do not prove matching test identities.
+Follow the reference's selection and inventory rules for focused verification.
 
 Measure a small pilot, then execute diverse, complete batches. Reserve time to
 verify useful survivors, validate patches, publish results, and clean artifacts.
@@ -104,9 +119,11 @@ failures leave the last validated patch intact and add incomplete results to
 its description.
 
 Add tests for survivors only when intended observable behavior is established.
-Show original source passing, the relevant mutant failing by an assertion, and
-unaffected controls. Build/import errors, timeouts, changed inventories, and
-runtime failures are separate from assertion kills.
+Show original and restored source passing, the relevant mutant failing by an
+assertion, and unaffected controls. Build/import errors, timeouts, changed
+inventories, and runtime failures are separate from assertion kills. Explain
+mutant-caused runtime failures separately from setup, build, environment, or
+cleanup failures; uncertain causes stay uncertain.
 
 Test-removal suggestions need complete per-test evidence, fixed subsumption
 targets, overlap analysis, and separate runtime costs. Zero exclusive kills
@@ -120,8 +137,11 @@ not measure flake rates or maintenance cost.
 Report changes and their reasons, useful/unsuitable capabilities, validation,
 actual source/test scope, planned/executed/unknown mutants, elapsed time, and
 disk peak/final use. Separate measurements from estimates. Retain compact
-external evidence and the pending schedule bound to exact inputs; rebaseline
-when inputs change. Remove settled owned workers, builds, and caches and
-account for retained files. Leave the draft open with the next useful action.
+external evidence only as agreed, bound to exact inputs; rebaseline when inputs
+change. Store shared inventories once rather than retaining repeated source
+snapshots. Remove settled owned workers, builds, and caches and account for
+retained files. Describe regression fixtures and stale documentation corrections
+separately from production migrations or newly introduced schema versions.
+Leave the draft open with the next useful action.
 A budget stop is a partial result, not permission to overrun or present an
 incomplete scan as clean.
