@@ -89,8 +89,8 @@ def diagram(nodes, caption, connected=True, *, visible_caption=True):
 
 
 def path_diagram():
-    """Home page: each import passes alone; the whole path is the problem."""
-    caption = "Checked one import at a time, both imports are allowed. Archguard follows the whole path and flags it."
+    """Illustrate a configured transitive dependency restriction."""
+    caption = "This example restricts dependencies from client to server, including paths through shared modules."
     nodes = [(0, "src/client/ui.ts", "info"), (350, "src/shared/format.ts", "neutral"), (700, "src/server/db.ts", "neutral")]
     parts = [f'<g class="diagram-{state}"><rect x="{x}" y="20" width="260" height="72" rx="12"/><text x="{x + 130}" y="62" text-anchor="middle">{label}</text></g>' for x, label, state in nodes]
     for start in (266, 616):
@@ -145,12 +145,12 @@ def example_link(slug):
 
 
 ADDS = [
-    ("Paths, not just imports", "Block client code from reaching server code, even through shared files.", ["block-server"]),
-    ("Package borders", "Imports go through a package's public entry. A package keeps its dependency list clean.", ["public-entry", "package-dependencies"]),
-    ("Where calls may happen", "Flag domain code that imports a module calling Effect.runPromise, directly or through a helper.", ["block-calls"]),
-    ("Repository structure", "Every file has a role. Files that belong together exist together. New migrations get registered.", ["classify-files", "companions", "registry-imports"]),
-    ("Your own rules", "Write rules in TypeScript or Rust over the same resolved graph.", ["typescript-plugin", "service-namespace"]),
-    ("Test and copy-paste review", "Find code edits your tests don't notice, and functions that were copied and renamed.", ["run-mutations", "find-duplicates"]),
+    ("Dependency paths", "Check configured dependency restrictions across intermediate modules.", ["block-server"]),
+    ("Package imports and dependencies", "Require declared package entry points and check selected package dependencies.", ["public-entry", "package-dependencies"]),
+    ("Specified calls", "Report specified calls in analyzed source or reachable dependencies.", ["block-calls"]),
+    ("File conventions", "Check file roles, required companion files, and static registry imports.", ["classify-files", "companions", "registry-imports"]),
+    ("Custom policies", "Write rules in TypeScript or Rust over the analyzed source graph.", ["typescript-plugin", "service-namespace"]),
+    ("Duplication and mutation experiments", "Review structurally similar functions and edits that survive the tests you select.", ["run-mutations", "find-duplicates"]),
 ]
 
 PROMPT = next(b["code"] for r in RECIPES if r["slug"] == "agent-evaluation" for b in r["blocks"])
@@ -163,44 +163,44 @@ def home():
         search = ' '.join([recipe['title'], recipe['summary'], recipe['result'], *recipe['capabilities'], *[b['code'] for b in recipe['blocks']]])
         rows.append(f'''<a class="recipe-row" data-recipe data-search="{esc(search.lower())}" href="examples/{recipe['slug']}/index.html">
 <div><h3>{esc(recipe['title'])}</h3><p>{esc(recipe['summary'])}</p></div><span class="row-arrow" aria-hidden="true">→</span></a>''')
-    body = f'''<section class="intro"><h1>Your linter checks files and imports. Archguard checks how your repository fits together.</h1>
-<p class="lede">Write down the rules your team already agrees on: which code may reach which, and which files belong together. Run Archguard on each change, and drift shows up in the change that causes it.</p>
+    body = f'''<section class="intro"><h1>Check dependency paths and repository conventions</h1>
+<p class="lede">Archguard builds a source graph for the files you select and applies configured rules. It may be useful when your team repeatedly reviews the same import relationships or file conventions.</p>
 {path_diagram()}
-<p class="actions"><a class="primary-link" href="#try">Try it on your repo <span aria-hidden="true">→</span></a><a class="quiet-link" href="#examples">See examples</a></p></section>
+<p class="actions"><a class="primary-link" href="#try">Evaluate on your repository <span aria-hidden="true">→</span></a><a class="quiet-link" href="#examples">Read examples</a></p></section>
 
-<section class="band" id="compare"><h2>Keep Oxlint. Add Archguard.</h2>
-<div class="compare"><div class="keep"><p class="column-title">Oxlint already covers</p><ul>
+<section class="band" id="compare"><h2>Compare with your existing checks</h2>
+<div class="compare"><div class="keep"><p class="column-title">Coverage to review in your current tools</p><ul>
 <li>Correctness and style rules inside each file</li><li>Banning an import by name (<code>no-restricted-imports</code>)</li><li>Import cycles (<code>import/no-cycle</code>)</li><li>Type-aware rules</li></ul>
-<p class="aside">Archguard can also ban imports and find cycles. If Oxlint already does that for you, keep it that way.</p></div>
-<div><p class="column-title">Archguard adds</p><ul class="adds">{adds}</ul></div></div>
-<p class="aside wide">Using dependency-cruiser or eslint-plugin-boundaries? Their path and package rules overlap with the first two items. The structure rules, your own graph rules, and the review tools are what Archguard adds there.</p></section>
+<p class="aside">Coverage depends on the rules and plugins you enable. Check your current configuration before adding overlapping rules.</p></div>
+<div><p class="column-title">Archguard examples to evaluate</p><ul class="adds">{adds}</ul></div></div>
+<p class="aside wide">If you use Oxlint or a dependency-analysis tool, compare these examples with what it already checks. Which policies are useful depends on your repository's conventions.</p></section>
 
-<section class="band" id="trust"><h2>A pass you can trust</h2>
-<p>A file that fails to parse or an internal import that can't be resolved never turns into a quiet pass.</p>
-{diagram([("0 · everything selected was checked, all rules pass", "ok"), ("1 · a rule is broken", "danger"), ("2 · couldn't check everything", "warn")], "Exit codes: 0 pass, 1 rule broken, 2 incomplete. Only a complete check can pass.", connected=False)}</section>
+<section class="band" id="trust"><h2>Check command status</h2>
+<p><code>archguard check</code> returns 0 when the selected analysis is complete and configured policies pass. Parse errors and required import-resolution failures produce an incomplete result.</p>
+{diagram([("0 · complete, no policy findings", "ok"), ("1 · complete, policy findings", "danger"), ("2 · incomplete or invalid configuration", "warn")], "Check command exit codes: 0 complete and clean, 1 complete with policy findings, 2 incomplete analysis or invalid configuration.", connected=False)}</section>
 
-<section class="band" id="mutation-testing"><h2>Check whether your tests notice small mistakes</h2>
+<section class="band" id="mutation-testing"><h2>Mutation testing</h2>
 <p>Mutation testing checks your tests by changing the code they run. Archguard first runs your test command against unchanged source, then makes one small edit in an isolated copy and runs the tests again.</p>
 {diagram([("Passing baseline", "ok"), ("One edit in a copy", "info"), ("Run the same tests", "neutral")], "Mutation testing: establish a passing baseline, make one isolated edit, then rerun the same tests.")}
 <p>For example, changing <code>subtotal &gt;= 100</code> to <code>subtotal &gt; 100</code> changes what happens at 100. An assertion failure shows your tests caught the edit. If they still pass, that boundary may need an assertion. Review surviving edits before adding tests; some preserve behavior.</p>
 <p class="more"><a href="examples/run-mutations/index.html">See a mutation test and its report <span aria-hidden="true">↗</span></a></p></section>
 
-<section class="band" id="try"><h2>Try it on your repo</h2>
-<p>The quickest way is to let your coding agent do it. It installs what it needs, tries rules that fit your docs and history, and reports back.</p>
+<section class="band" id="try"><h2>Evaluate a few checks on your repository</h2>
+<p>An agent can try checks within an agreed time and disk budget. Review the proposed rules, findings, and reported limits before deciding which checks to keep.</p>
 {diagram(next(r["nodes"] for r in RECIPES if r["slug"] == "agent-evaluation"), "You set the budget. The agent reports findings and, if you allow it, opens a draft PR.")}
 {code_block(block("Paste this to your agent", "text", PROMPT), "prompt")}
-<p class="more">Prefer to set it up yourself? Point your agent at <a href="llms.txt">llms.txt</a> or read the <a href="{GITHUB}#readme">README</a>.</p></section>
+<p class="more">For setup instructions, read the <a href="{GITHUB}#readme">README</a>. Agents can start with <a href="llms.txt">llms.txt</a>.</p></section>
 
 <section class="catalog" id="examples"><h2>Examples</h2>
 <div class="search-tools" hidden><label class="visually-hidden" for="recipe-search">Search examples</label><div class="search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></svg><input id="recipe-search" type="search" placeholder="Search: server, package, migration, tests…" autocomplete="off"><button id="clear-search" type="button" hidden aria-label="Clear search">Clear</button></div>
 <p id="result-count" role="status" aria-live="polite"></p></div>
 <div id="recipe-list">{''.join(rows)}</div><div class="empty" id="empty-results" hidden><p>No examples match that search.</p><button type="button" id="reset-search">Show all examples</button></div></section>'''
-    return layout("Check how your repository fits together", "Archguard checks paths through your whole repository, file structure rules, and test gaps. What it adds to Oxlint, with examples.", body)
+    return layout("Dependency and repository checks", "Configured checks over selected source dependencies and file conventions, plus duplication review and mutation testing.", body)
 
 
 def agents_page():
     entries = ''.join(f'<li><a href="examples/{r["slug"]}/index.md">{esc(r["title"])}</a></li>' for r in RECIPES)
-    body = f'''<article class="recipe"><h1>For coding agents</h1><p class="lede">Every page here is plain HTML with a Markdown copy. Start with llms.txt. The full reference lives in the repository.</p>
+    body = f'''<article class="recipe"><h1>For coding agents</h1><p class="lede">Each example has an HTML page, a Markdown copy, and an entry in examples.json. Start with llms.txt. The full reference lives in the repository.</p>
 <ul class="agent-files"><li><a href="llms.txt">llms.txt</a> What Archguard does, its contracts, and every example</li><li><a href="examples.json">examples.json</a> The examples as data</li><li><a href="{REPO}docs/README.md">Reference</a> Installation, configuration, every rule, plugins</li></ul>
 {code_block(block("Paste this to your agent", "text", PROMPT), 0)}
 <h2>Examples as Markdown</h2><ul class="agent-index">{entries}</ul></article>'''
@@ -209,17 +209,17 @@ def agents_page():
 
 def style_page():
     body = '''<article class="recipe"><h1>Site style</h1><p class="lede">Warm paper, quiet type, and examples that show a problem and what Archguard says about it.</p>
-<div class="style-roles"><p class="style-neutral">Warm paper and soil ink organize the page.</p><p class="style-info">Blue marks links and the starting file in a diagram.</p><p class="style-ok">Sage marks an allowed path or a pass.</p><p class="style-warn">Pear marks an incomplete result or a test gap.</p><p class="style-danger">Clay marks a blocked path or a broken rule.</p></div>
+<div class="style-roles"><p class="style-neutral">Warm paper and soil ink organize the page.</p><p class="style-info">Blue marks links and the starting file in a diagram.</p><p class="style-ok">Sage marks an allowed path or a pass.</p><p class="style-warn">Pear marks an incomplete result or a surviving mutation.</p><p class="style-danger">Clay marks a blocked path or a broken rule.</p></div>
 <p>Color is only used when it carries one of those meanings. Every status also has a word or symbol, so color is never the only signal.</p>
-<p>Lead with what the reader gets. Show a small example instead of explaining. Leave setup and options to the reference and the reader's agent.</p>
+<p>Describe the configured check, show a representative example, and name the scope of the result. Leave setup and protocol details to the reference.</p>
 <p><a href="https://github.com/alundgren/irudd-ts/blob/main/website/ux.md">Read the full style record ↗</a></p></article>'''
     return layout("Site style", "The visual and writing style for the Archguard site.", body, path="style.html")
 
 
 def llms():
-    text = "# Archguard\n\n> Archguard checks how a repository fits together: rules over the resolved dependency graph of the whole repository, repository structure rules, custom TypeScript/Rust rules over the same graph, and review tools for duplicated code and test gaps (mutation testing).\n\n"
-    text += "## Compared with Oxlint\n\nOxlint covers per-file rules, banning an import by name, import cycles, and type-aware rules. Archguard adds transitive path rules (client -> shared -> server), package public-entry and dependency rules, transitive call-origin rules, file roles, companion files, registry imports, plugins over one shared resolved graph, structural duplicate detection, and mutation testing. dependency-cruiser and eslint-plugin-boundaries overlap with the path and package rules.\n\n"
-    text += "## Contracts\n\nExit 0: every selected file parsed, every internal import resolved, all rules pass. Exit 1: complete analysis with rule violations. Exit 2: incomplete analysis or invalid configuration. Selectors never add files to discovery. Archguard runs only plugin and provider commands that are explicitly configured. Duplicate and mutation reports exit 0 when complete, even with findings.\n\n"
+    text = "# Archguard\n\n> Archguard applies configured policies to selected source files and their resolved dependencies. It also checks file conventions and provides duplication review and mutation testing tools. Use the examples as starting points and review their scope on your repository.\n\n"
+    text += "## Compare existing coverage\n\nReview the rules and plugins already enabled in your linter and dependency-analysis tools. Archguard examples cover transitive dependency restrictions, package entry points and dependencies, specified calls, file roles, companion files, static registry imports, custom graph policies, structural similarity, and mutation testing. Some checks overlap with existing tools; evaluate which policies fit your repository's conventions.\n\n"
+    text += "## Contracts\n\nFor archguard check, exit 0 means complete selected analysis with no policy findings. Exit 1 means complete analysis with rule violations. Exit 2 means incomplete analysis or invalid configuration. Selectors never add files to discovery. Archguard runs only plugin and provider commands that are explicitly configured. Duplicate and mutation reports exit 0 when complete, even with findings.\n\n"
     text += f"## Start\n\n- [Evaluate a repository with an agent]({REPO}docs/guides/evaluate.md): install the irudd-ts-evaluate skill and give it a time and disk budget.\n- [README: build and first check]({REPO}README.md)\n- [Full reference]({REPO}docs/README.md): configuration, file selection, import resolution, every rule kind, plugins, compiler member checks, caching.\n- [Every rule kind]({REPO}docs/guides/rules.md) and [repository rules]({REPO}docs/guides/repository-rules.md)\n- [Examples as JSON]({SITE}examples.json)\n\n## Examples\n\n"
     text += ''.join(f"- [{r['title']}]({SITE}examples/{r['slug']}/index.md): {r['summary']}\n" for r in RECIPES)
     return text

@@ -1,17 +1,17 @@
 # Site UX
 
-The reader already has a repository and a linter. Their question is whether
-Archguard would help them keep quality up and stop the codebase drifting, and
-what it adds to Oxlint. The site answers that question and nothing else.
+The reader already has a repository and development tools. Their question is
+whether any Archguard checks are worth evaluating alongside their current
+configuration. Describe the configured behavior and give examples they can assess.
 Installation, file selection, options, experiments, and protocol details belong
-in the reference. A reader who wants to try Archguard hands those to their agent.
+in the reference. Readers can use that documentation directly or with an agent.
 
 ## Navigation and content
 
-The home page is the main page. In order: the claim with one diagram, what Oxlint
-already covers next to what Archguard adds, what an exit code means, how mutation
+The home page is the main page. In order: the configured checks with one diagram,
+existing coverage to compare with the examples, what an exit code means, how mutation
 testing works, how to try it with an agent, and a searchable list of examples.
-Each "adds" item links to the examples that show it.
+Each candidate check links to an example that shows it.
 Validation histories belong in the reference documentation.
 
 Keep sections few and spaced. Do not add foldouts, per-section eyebrows,
@@ -42,9 +42,9 @@ treatments, so color is never the only signal.
 | Field | `#F9F6F0` | Search input and action text |
 | Text | `#604939` | Main prose and diagram labels |
 | Muted | `#66574D` | Captions, labels, and secondary metadata |
-| Accent | `#784F26` | Main "try it" action, numeric syntax |
+| Accent | `#784F26` | Main evaluation action, numeric syntax |
 | Link | `#3D5D71` | Links, graph input, JSON keys and code keywords |
-| Success | `#3D6034` | Allowed paths, passes, "Archguard adds" items, string syntax |
+| Success | `#3D6034` | Allowed paths, passes, example check marks, string syntax |
 | Warning | `#7E5220` | Incomplete results, surviving mutations |
 | Danger | `#8F3A2D` | Blocked paths, policy violations, rule IDs in reports |
 
@@ -70,7 +70,7 @@ their labels in reading order rather than shrinking text.
 
 Use hand-authored SVG markup and CSS, never Mermaid. Two to four rounded nodes
 show one relationship. The home page diagram may add one path line under the
-nodes to show what a per-import check misses. Neutral arrows indicate a path or processing order;
+nodes to illustrate a configured transitive restriction. Neutral arrows indicate a path or processing order;
 labels identify the actual source, command, or result. Allowed paths use sage.
 Blocked paths use clay and dashed outlines. Incomplete results use pear and
 dotted outlines. Unrelated result states do not have connecting arrows.
@@ -82,14 +82,15 @@ execution from a source dependency arrow.
 
 ## Tone
 
-Lead with what the reader gets. Name the actual problem: client code reaching
-the server, a migration nobody registered, a test that passes after the code
-changed. Show it in a small example instead of explaining it.
+Write as one senior engineer explaining an option to another. Describe the
+configured behavior, the selected scope, and a concrete example. Give readers
+enough information to decide whether a check is worth evaluating.
 
-Compare with other tools factually. Say what Oxlint already does well and tell
-readers to keep using it for that. Name overlapping tools such as
-dependency-cruiser. Make no speed claims, bug counts, or claims that a check is
-impossible elsewhere. Write like a colleague, in sentence case and plain words.
+Compare with the reader's enabled rules and plugins. Distinguish source
+relationships from runtime behavior, static imports from registry execution,
+and review candidates from established defects. Avoid slogans, adoption
+imperatives, unmeasured speed claims, and promises of preventing every mistake.
+Use sentence case and plain words.
 
 ## Review
 

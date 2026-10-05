@@ -1,11 +1,12 @@
 # Archguard site
 
 The public site is at [alundgren.github.io/irudd-ts](https://alundgren.github.io/irudd-ts/).
-It answers one question for someone with an existing repository: what does
-Archguard add to the linter they already run? The home page makes that case.
-A short list of examples shows each point in action. Setup, options, and
-experiments stay in the [reference documentation](../docs/README.md), which
-readers' agents can follow from `llms.txt`.
+It helps readers assess whether any Archguard checks are worth evaluating
+alongside their existing tools. The home page describes configured behavior
+and analysis scope, with examples for dependency rules, file conventions,
+duplication review, and mutation testing. Setup, options, and experiments stay
+in the [reference documentation](../docs/README.md). Agents can start with
+`llms.txt`.
 
 It is a static GitHub Pages project site. Python 3 builds HTML, Markdown copies,
 `examples.json`, and `llms.txt`. The browser needs no framework, package install,
