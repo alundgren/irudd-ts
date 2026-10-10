@@ -96,8 +96,9 @@ fn native_provider_unicode_multicontext_and_unavailable_controls() {
     assert_eq!(findings.len(), 2);
     assert!(findings.iter().all(|f| f.message.contains("missing")));
     let sdk = Path::new(env!("CARGO_MANIFEST_DIR")).join("sdk/semantic.ts");
+    let sdk = serde_json::to_string(sdk.to_str().unwrap()).unwrap();
     let script = format!(
-        "import {{readSemanticFacts,missingMemberDiagnostics}} from {sdk:?}; process.stdout.write(JSON.stringify(missingMemberDiagnostics(readSemanticFacts())));"
+        "import {{pathToFileURL}} from 'node:url'; const {{readSemanticFacts,missingMemberDiagnostics}} = await import(pathToFileURL({sdk}).href); process.stdout.write(JSON.stringify(missingMemberDiagnostics(readSemanticFacts())));"
     );
     let mut child = std::process::Command::new("node")
         .args(["--input-type=module", "-e", &script])
