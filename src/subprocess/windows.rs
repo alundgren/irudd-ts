@@ -216,8 +216,16 @@ impl Job {
             }
             thread::sleep(Duration::from_millis(2));
         }
-        if unsafe { WaitForSingleObject(raw(process), 0) } != WAIT_OBJECT_0 {
-            bail!("command process exit unavailable after job cleanup");
+        // Job accounting can reach zero before the process object signals.
+        // Wait for that signal within the same deadline used for descendants.
+        let remaining = deadline.saturating_duration_since(Instant::now());
+        let timeout_ms = remaining.as_millis().min(u32::MAX as u128) as u32;
+        match unsafe { WaitForSingleObject(raw(process), timeout_ms) } {
+            WAIT_OBJECT_0 => {}
+            WAIT_TIMEOUT => bail!("command process exit unavailable at cleanup deadline"),
+            _ => {
+                return Err(io::Error::last_os_error()).context("waiting for command process exit");
+            }
         }
         let mut code = 0;
         check(
@@ -1197,6 +1205,7 @@ mod tests {
         );
         command
             .env_clear()
+            .env("SystemRoot", std::env::var_os("SystemRoot").unwrap())
             .env("straße", "left")
             .env("STRASSE", "right")
             .env("mixed", "selected");
@@ -1204,7 +1213,12 @@ mod tests {
         bound.inherit_environment = false;
         let output = run_command(command, b"", &bound, || false, || Ok(())).unwrap();
         assert_eq!(output.stop, CommandStop::Completed);
-        assert!(output.status.unwrap().success() && output.cleanup_complete);
+        assert!(output.cleanup_complete);
+        assert!(
+            output.status.unwrap().success(),
+            "Node failed: {}",
+            String::from_utf8_lossy(&output.stderr)
+        );
         assert_eq!(
             serde_json::from_slice::<serde_json::Value>(&output.stdout).unwrap(),
             serde_json::json!(["left", "right", "selected"])
@@ -1215,11 +1229,20 @@ mod tests {
         let mut command = node(
             "process.stdout.write(JSON.stringify([process.env.PATH,process.env.ARCHGUARD_EXPLICIT]))",
         );
-        command.env_clear().env("ARCHGUARD_EXPLICIT", "yes");
+        command
+            .env_clear()
+            .env("SystemRoot", std::env::var_os("SystemRoot").unwrap())
+            .env("ARCHGUARD_EXPLICIT", "yes");
         let mut bound = limits();
         bound.inherit_environment = false;
         let output = run_command(command, b"", &bound, || false, || Ok(())).unwrap();
         assert_eq!(output.stop, CommandStop::Completed);
+        assert!(output.cleanup_complete);
+        assert!(
+            output.status.unwrap().success(),
+            "Node failed: {}",
+            String::from_utf8_lossy(&output.stderr)
+        );
         assert_eq!(
             serde_json::from_slice::<serde_json::Value>(&output.stdout).unwrap(),
             serde_json::json!([null, "yes"])
