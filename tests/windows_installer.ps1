@@ -17,13 +17,14 @@ try {
     $env:ARCHGUARD_DOWNLOAD_BASE_URL = ([Uri]($work + [IO.Path]::DirectorySeparatorChar)).AbsoluteUri.TrimEnd('/')
     $installer = Join-Path $PSScriptRoot '..\scripts\install.ps1'
     function Install-Control {
-        param([string]$Name, [bool]$Succeeds)
+        param([string]$Name, [bool]$Succeeds, [string]$ExpectedError)
         $destination = Join-Path $work $Name
         $ErrorActionPreference = 'Continue'
         $output = & powershell -NoProfile -File $installer -Version $version -InstallDirectory $destination -NoPath 2>&1
         $code = $LASTEXITCODE
         $ErrorActionPreference = 'Stop'
         if (($code -eq 0) -ne $Succeeds) { throw "Installer $Name expected success=$Succeeds, exit=$code output=$output" }
+        if ($ExpectedError -and ($output -join "`n") -notmatch [Regex]::Escape($ExpectedError)) { throw "Installer $Name did not reject the archive during path validation: $output" }
         if (-not $Succeeds -and $Name -ne 'installed' -and (Test-Path -LiteralPath $destination)) { throw 'Failed install published a destination.' }
     }
     Write-Checksum
@@ -36,7 +37,7 @@ try {
     $binary = Join-Path $work 'installed\bin\archguard.exe'
     & python (Join-Path $PSScriptRoot '..\scripts\release\smoke.py') $binary
     if ($LASTEXITCODE -ne 0) { throw 'Installed executable smoke failed.' }
-    foreach ($control in @('traversal', 'symlink', 'duplicate', 'wrong-version')) {
+    foreach ($control in @('traversal', 'symlink', 'duplicate', 'wrong-version', 'device-name', 'console-name')) {
         [IO.File]::Copy($source.FullName, $archive, $true)
         $zip = [IO.Compression.ZipFile]::Open($archive, [IO.Compression.ZipArchiveMode]::Update)
         try {
@@ -50,13 +51,16 @@ try {
                     'traversal' { "archguard-$version/../../escaped" }
                     'symlink' { "archguard-$version/link" }
                     'duplicate' { "archguard-$version/version" }
+                    'device-name' { "archguard-$version/COM$([char]0x00b9).txt" }
+                    'console-name' { 'archguard-' + $version + '/CONOUT$' }
                 }
                 $entry = $zip.CreateEntry($name)
                 if ($control -eq 'symlink') { $entry.ExternalAttributes = -1610612736 }
             }
         } finally { $zip.Dispose() }
         Write-Checksum
-        Install-Control $control $false
+        $expectedError = if ($control -in @('device-name', 'console-name')) { 'Unsafe archive path.' } else { $null }
+        Install-Control $control $false $expectedError
     }
     [IO.File]::Copy($source.FullName, $archive, $true)
     Write-Checksum
