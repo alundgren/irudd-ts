@@ -271,7 +271,9 @@ fn executable(command: &Command) -> Result<std::path::PathBuf> {
             .unwrap_or_else(|| std::env::var_os("PATH"));
         let mut paths = vec![];
         if let Some(path) = path {
-            paths.extend(std::env::split_paths(&path).map(|directory| directory.join(program)));
+            paths.extend(
+                std::env::split_paths(&path).map(|directory| cwd.join(directory).join(program)),
+            );
         }
         paths
     };
@@ -838,6 +840,25 @@ mod tests {
         assert_eq!(
             std::fs::canonicalize(std::fs::read_to_string(marker).unwrap()).unwrap(),
             resolved
+        );
+    }
+    #[test]
+    fn relative_path_entries_resolve_from_command_working_directory() {
+        let directory = tempfile::tempdir().unwrap();
+        let tools = directory.path().join("tools");
+        std::fs::create_dir(&tools).unwrap();
+        let real_node = executable(&node("process.exit(0)")).unwrap();
+        let selected = tools.join("node.exe");
+        std::fs::copy(real_node, &selected).unwrap();
+        let mut command = node("process.stdout.write(process.execPath)");
+        command.current_dir(directory.path()).env("PATH", "tools");
+        let expected = std::fs::canonicalize(selected).unwrap();
+        assert_eq!(executable(&command).unwrap(), expected);
+        let output = run_command(command, b"", &limits(), || false, || Ok(())).unwrap();
+        assert!(output.status.unwrap().success() && output.cleanup_complete);
+        assert_eq!(
+            std::fs::canonicalize(String::from_utf8(output.stdout).unwrap()).unwrap(),
+            expected
         );
     }
     #[test]
