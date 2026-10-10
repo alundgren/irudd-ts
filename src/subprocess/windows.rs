@@ -381,7 +381,11 @@ fn spawn(
     let env = environment(command, inherit)?;
     let cwd = command
         .get_current_dir()
-        .map(|path| wide(path.as_os_str()))
+        .map(|path| {
+            let path =
+                std::fs::canonicalize(path).context("resolving command working directory")?;
+            wide(path.as_os_str())
+        })
         .transpose()?;
     let jobs = [raw(&job.handle)];
     let pipes = [raw(stdin), raw(stdout), raw(stderr)];
@@ -893,6 +897,17 @@ mod tests {
         assert_eq!(
             std::fs::canonicalize(String::from_utf8(output.stdout).unwrap()).unwrap(),
             expected
+        );
+    }
+    #[test]
+    fn explicit_relative_working_directory_is_resolved_before_creation() {
+        let mut command = node("process.stdout.write(process.cwd())");
+        command.current_dir(".");
+        let output = run_command(command, b"", &limits(), || false, || Ok(())).unwrap();
+        assert!(output.status.unwrap().success() && output.cleanup_complete);
+        assert_eq!(
+            std::fs::canonicalize(String::from_utf8(output.stdout).unwrap()).unwrap(),
+            std::fs::canonicalize(std::env::current_dir().unwrap()).unwrap()
         );
     }
     #[test]
