@@ -57,7 +57,7 @@ Worker copies and resource limits protect ordinary trusted test execution. They 
 
 On Windows, an owned Job Object provides descendant cleanup. Its CPU bound counts user-mode CPU time per process. Windows does not support `maxAddressSpaceBytes`, Unix open-file limits, or per-file generated-size limits. `maxOpenFiles` and `maxGeneratedFileBytes` default to zero on Windows, and a nonzero request is rejected before execution. Workspace file-count and aggregate-byte ceilings, deadlines, and output/result/report budgets still apply.
 
-Windows commands must resolve to an `.exe`; configure `node` with a script or explicitly configure a command interpreter such as `cmd.exe /d /c npm.cmd test` when needed.
+Windows commands must resolve to an `.exe`; configure `node` with a script or explicitly configure a command interpreter when needed. For `cmd.exe`, use `/s` and supply exactly one command body after `/c` or `/k`, for example `["cmd.exe", "/d", "/s", "/c", "npm.cmd test"]`. The command body uses `cmd.exe` quoting rules and is preserved verbatim.
 
 Windows directory links are copied as junctions inside the owned workspace. Copying file symlinks requires Windows Developer Mode or symlink privileges; unavailable privileges produce incomplete analysis.
 
