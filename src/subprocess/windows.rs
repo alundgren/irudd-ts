@@ -1,4 +1,7 @@
-use super::*;
+use crate::subprocess::{
+    ChildLimits, CommandLimits, CommandOutput, CommandStop, PIPE_DRAIN_TIME, PROCESS_CLEANUP_TIME,
+};
+use anyhow::{Context, Result, bail};
 use std::{
     cmp::Ordering,
     ffi::{OsStr, OsString},
@@ -8,8 +11,11 @@ use std::{
         io::{AsRawHandle, FromRawHandle, OwnedHandle},
         process::ExitStatusExt,
     },
+    path::Path,
+    process::{Command, ExitStatus},
     ptr::{null, null_mut},
     thread,
+    time::{Duration, Instant},
 };
 use windows_sys::Win32::{
     Foundation::{
@@ -371,12 +377,42 @@ fn spawn(
     stderr: &OwnedHandle,
     inherit: bool,
 ) -> Result<OwnedHandle> {
-    let application = wide(executable(command)?.as_os_str())?;
+    let executable = executable(command)?;
+    let application = wide(executable.as_os_str())?;
     let mut line = vec![];
     quote(command.get_program(), &mut line)?;
-    for argument in command.get_args() {
-        line.push(b' ' as u16);
-        quote(argument, &mut line)?;
+    let arguments: Vec<_> = command.get_args().collect();
+    if executable
+        .file_name()
+        .is_some_and(|name| name.eq_ignore_ascii_case("cmd.exe"))
+    {
+        let body_at = arguments.iter().position(|argument| argument.eq_ignore_ascii_case("/c") || argument.eq_ignore_ascii_case("/k"))
+            .context("configured cmd.exe requires /s and a standalone /c or /k followed by one command string")?;
+        if arguments.len() != body_at + 2
+            || !arguments[..body_at]
+                .iter()
+                .any(|argument| argument.eq_ignore_ascii_case("/s"))
+        {
+            bail!(
+                "configured cmd.exe requires /s and exactly one command string after standalone /c or /k; use [cmd.exe, /d, /s, /c, command string]"
+            );
+        }
+        for argument in &arguments[..=body_at] {
+            line.push(b' ' as u16);
+            quote(argument, &mut line)?;
+        }
+        let mut body = wide(arguments[body_at + 1])?;
+        body.pop();
+        // /s removes the outer pair. Interior quotes belong to cmd syntax and
+        // must not receive the CRT backslash escaping used by ordinary programs.
+        line.extend([b' ' as u16, b'"' as u16]);
+        line.extend(body);
+        line.push(b'"' as u16);
+    } else {
+        for argument in arguments {
+            line.push(b' ' as u16);
+            quote(argument, &mut line)?;
+        }
     }
     line.push(0);
     if line.len() > 32767 {
@@ -838,7 +874,22 @@ impl Drop for InputPipe {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::subprocess::windows::{executable, handle, raw};
+    use crate::subprocess::{ChildLimits, CommandLimits, CommandOutput, CommandStop, run_command};
+    use anyhow::bail;
+    use std::{
+        os::windows::io::OwnedHandle,
+        process::Command,
+        thread,
+        time::{Duration, Instant},
+    };
+    use windows_sys::Win32::{
+        Foundation::WAIT_OBJECT_0,
+        System::Threading::{
+            OpenProcess, PROCESS_QUERY_LIMITED_INFORMATION, PROCESS_SYNCHRONIZE,
+            WaitForSingleObject,
+        },
+    };
     fn limits() -> CommandLimits {
         CommandLimits {
             inherit_environment: true,
@@ -929,6 +980,47 @@ mod tests {
                     "archguard-shell"
                 );
             }
+        }
+    }
+    #[test]
+    fn explicit_cmd_command_strings_preserve_quotes_and_batch_paths() {
+        let mut command = Command::new("cmd.exe");
+        command.args(["/d", "/s", "/c", "echo \"space here\""]);
+        let output = run_command(command, b"", &limits(), || false, || Ok(())).unwrap();
+        assert_eq!(output.stop, CommandStop::Completed);
+        assert!(output.status.unwrap().success() && output.cleanup_complete);
+        assert_eq!(
+            String::from_utf8(output.stdout).unwrap().trim(),
+            "\"space here\""
+        );
+        let directory = tempfile::tempdir().unwrap();
+        let folder = directory.path().join("batch folder");
+        std::fs::create_dir(&folder).unwrap();
+        let batch = folder.join("test command.cmd");
+        std::fs::write(&batch, "@echo off\r\necho archguard-batch\r\nexit /b 7\r\n").unwrap();
+        let mut command = Command::new("cmd.exe");
+        command
+            .args(["/d", "/s", "/c"])
+            .arg(format!("\"{}\"", batch.display()));
+        let output = run_command(command, b"", &limits(), || false, || Ok(())).unwrap();
+        assert_eq!(output.stop, CommandStop::Completed);
+        assert_eq!(output.status.unwrap().code(), Some(7));
+        assert!(output.cleanup_complete);
+        assert_eq!(
+            String::from_utf8(output.stdout).unwrap().trim(),
+            "archguard-batch"
+        );
+        for arguments in [
+            vec!["/d", "/c", "echo unexpected"],
+            vec!["/d", "/s", "/c", "echo", "unexpected"],
+            vec!["/d", "/s", "/cecho unexpected"],
+        ] {
+            let mut command = Command::new("cmd.exe");
+            command.args(arguments);
+            let error = run_command(command, b"", &limits(), || false, || Ok(()))
+                .err()
+                .unwrap();
+            assert!(error.to_string().contains("cmd.exe requires"));
         }
     }
     #[test]
