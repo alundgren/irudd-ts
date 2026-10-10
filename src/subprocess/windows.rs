@@ -269,7 +269,7 @@ fn executable(command: &Command) -> Result<std::path::PathBuf> {
             .find(|(name, _)| name.eq_ignore_ascii_case("PATH"))
             .map(|(_, value)| value.map(OsStr::to_os_string))
             .unwrap_or_else(|| std::env::var_os("PATH"));
-        let mut paths = vec![cwd.join(program)];
+        let mut paths = vec![];
         if let Some(path) = path {
             paths.extend(std::env::split_paths(&path).map(|directory| directory.join(program)));
         }
@@ -751,7 +751,9 @@ impl InputPipe {
         Ok(false)
     }
     fn complete(&self) -> bool {
-        self.at == self.input.as_ref().map_or(0, Vec::len)
+        self.input
+            .as_ref()
+            .is_some_and(|input| self.at == input.len())
     }
     fn finish(&mut self) -> Result<()> {
         if self.pending {
@@ -810,6 +812,33 @@ mod tests {
     }
     fn invoke(program: &str, input: &[u8], limits: &CommandLimits) -> CommandOutput {
         run_command(node(program), input, limits, || false, || Ok(())).unwrap()
+    }
+    #[test]
+    fn bare_commands_do_not_discover_executables_in_scanned_directory() {
+        let directory = tempfile::tempdir().unwrap();
+        // A repository executable must not replace the configured PATH command.
+        std::fs::copy(
+            std::env::current_exe().unwrap(),
+            directory.path().join("node.exe"),
+        )
+        .unwrap();
+        let marker = directory.path().join("ran");
+        let mut command = node(&format!(
+            "require('node:fs').writeFileSync({:?},process.execPath)",
+            marker.to_string_lossy()
+        ));
+        command.current_dir(directory.path());
+        let resolved = executable(&command).unwrap();
+        assert_ne!(
+            resolved,
+            std::fs::canonicalize(directory.path().join("node.exe")).unwrap()
+        );
+        let output = run_command(command, b"", &limits(), || false, || Ok(())).unwrap();
+        assert!(output.status.unwrap().success() && output.cleanup_complete);
+        assert_eq!(
+            std::fs::canonicalize(std::fs::read_to_string(marker).unwrap()).unwrap(),
+            resolved
+        );
     }
     #[test]
     fn complete_transport_and_argument_quoting() {
