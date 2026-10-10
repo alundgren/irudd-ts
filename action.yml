@@ -13,11 +13,12 @@ inputs:
 outputs:
   directory:
     description: Installed distribution directory, including SDK and optional provider source
-    value: ${{ steps.install.outputs.directory }}
+    value: ${{ steps.install.outputs.directory || steps.install-windows.outputs.directory }}
 runs:
   using: composite
   steps:
     - id: install
+      if: runner.os != 'Windows'
       shell: bash
       env:
         ARCHGUARD_VERSION: ${{ inputs.version }}
@@ -26,8 +27,27 @@ runs:
         directory=$("$GITHUB_ACTION_PATH/scripts/install.sh" "$ARCHGUARD_VERSION" "$invocation/distribution")
         echo "directory=$directory" >> "$GITHUB_OUTPUT"
     - shell: bash
+      if: runner.os != 'Windows'
       env:
         ARCHGUARD_DIRECTORY: ${{ steps.install.outputs.directory }}
         ARCHGUARD_ROOT: ${{ inputs.root }}
         ARCHGUARD_CONFIG: ${{ inputs.config }}
       run: '"$ARCHGUARD_DIRECTORY/bin/archguard" check --root "$ARCHGUARD_ROOT" --config "$ARCHGUARD_CONFIG"'
+    - id: install-windows
+      if: runner.os == 'Windows'
+      shell: powershell
+      env:
+        ARCHGUARD_VERSION: ${{ inputs.version }}
+      run: |
+        $invocation = Join-Path $env:RUNNER_TEMP ('archguard-action-' + [Guid]::NewGuid().ToString('N'))
+        $directory = & "$env:GITHUB_ACTION_PATH/scripts/install.ps1" -Version $env:ARCHGUARD_VERSION -InstallDirectory "$invocation/distribution" -NoPath
+        "directory=$directory" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+    - if: runner.os == 'Windows'
+      shell: powershell
+      env:
+        ARCHGUARD_DIRECTORY: ${{ steps.install-windows.outputs.directory }}
+        ARCHGUARD_ROOT: ${{ inputs.root }}
+        ARCHGUARD_CONFIG: ${{ inputs.config }}
+      run: |
+        & "$env:ARCHGUARD_DIRECTORY/bin/archguard.exe" check --root $env:ARCHGUARD_ROOT --config $env:ARCHGUARD_CONFIG
+        exit $LASTEXITCODE

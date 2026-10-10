@@ -9,6 +9,7 @@ import subprocess
 import tarfile
 import tempfile
 import unittest
+import zipfile
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,8 +55,41 @@ class ReleaseTests(unittest.TestCase):
         checksum.write_text(original)
         github.validate_assets(self.directory, self.info)
         (self.directory / 'unexpected').write_text('x')
-        with self.assertRaisesRegex(RuntimeError, 'exactly four'):
+        with self.assertRaisesRegex(RuntimeError, 'exactly the supported'):
             github.validate_assets(self.directory, self.info)
+
+    def test_windows_assets_required_for_new_versions_and_historical_replay(self):
+        self.assertEqual(len(github.asset_names('0.1.0')), 8)
+        self.assertEqual(len(github.asset_names('0.2.0')), 10)
+        info = {**self.info, 'version': '0.2.0'}
+        directory = self.directory / 'new-release'
+        directory.mkdir()
+        for platform in github.platforms(info['version']):
+            name = github.archive_name(info['version'], platform)
+            identity = json.dumps({**info, 'platform': platform}).encode()
+            path = directory / name
+            if platform.startswith('windows-'):
+                with zipfile.ZipFile(path, 'w') as archive:
+                    archive.writestr('archguard-0.2.0/release.json', identity)
+            else:
+                with tarfile.open(path, 'w:gz') as archive:
+                    item = tarfile.TarInfo('archguard-0.2.0/release.json')
+                    item.size = len(identity)
+                    archive.addfile(item, io.BytesIO(identity))
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            (directory / f'{name}.sha256').write_text(f'{digest}  {name}\n')
+        self.assertEqual(len(github.validate_assets(directory, info)), 10)
+        windows = directory / 'archguard-0.2.0-windows-x86_64.zip'
+        data = windows.read_bytes()
+        windows.unlink()
+        with self.assertRaisesRegex(RuntimeError, 'exactly the supported'):
+            github.validate_assets(directory, info)
+        windows.write_bytes(data)
+        github.validate_assets(directory, info)
+        with self.assertRaisesRegex(RuntimeError, 'identity mismatch'):
+            github.validate_assets(directory, {**info, 'commit': 'b' * 40})
+        # Adding Windows cannot invalidate an already published older release.
+        self.assertEqual(len(github.validate_assets(self.directory, self.info)), 8)
 
     def test_unpublished_previous_blocks_preparation(self):
         with patch.object(github.Path, 'read_text', return_value='{".": "0.1.0"}'), \

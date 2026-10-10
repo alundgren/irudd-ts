@@ -10,7 +10,7 @@ Install the optional provider without lifecycle scripts:
 npm ci --prefix providers/typescript7 --ignore-scripts --no-audit --no-fund
 ```
 
-The compiler's native optional package must be installed for the current platform. Missing API exports or binaries become incomplete analysis. The subprocess runner currently requires Unix process-group cleanup. Provider input is bounded to 64 MiB, output to 8 MiB, stderr to 64 KiB, and the configured deadline includes IO and response validation. The default native API child inherits the provider's process group. Compiler configuration does not authorize repository plugins or external content mappers. The adapter passes only the root directory to API construction and rejects exposed external-code options.
+The compiler's native optional package must be installed for the current platform. Missing API exports or binaries become incomplete analysis. The subprocess runner uses process-group cleanup on Linux/macOS and Job Object cleanup on Windows. Provider input is bounded to 64 MiB, output to 8 MiB, stderr to 64 KiB, and the configured deadline includes IO and response validation. The default native API child inherits the provider's process group or Windows Job Object. Compiler configuration does not authorize repository plugins or external content mappers. The adapter passes only the root directory to API construction and rejects exposed external-code options.
 
 Create an explicit semantic configuration next to your normal archguard.json. Provider commands are trusted code chosen by the person configuring Archguard. This example assumes the configuration lives at the repository root:
 
