@@ -70,7 +70,11 @@ fn default_working_directory() -> String {
     ".".into()
 }
 fn default_inherited_environment() -> Vec<String> {
-    vec!["PATH".into()]
+    if cfg!(windows) {
+        vec!["PATH".into(), "SYSTEMROOT".into()]
+    } else {
+        vec!["PATH".into()]
+    }
 }
 impl ExecutionConfig {
     pub fn validate(&self) -> Result<()> {
@@ -97,14 +101,26 @@ impl ExecutionConfig {
         if self.inherit_environment.len() > 256 || self.environment.len() > 256 {
             bail!("too many configured environment variables");
         }
-        let mut inherited = BTreeSet::new();
+        let mut inherited: Vec<&str> = Vec::new();
         for key in &self.inherit_environment {
             validate_environment_key(key)?;
-            if !inherited.insert(key) {
+            if inherited
+                .iter()
+                .any(|existing| environment_keys_equal(existing, key))
+            {
                 bail!("duplicate inherited environment key");
             }
+            inherited.push(key);
         }
+        let mut configured: Vec<&str> = Vec::new();
         for (key, value) in &self.environment {
+            if configured
+                .iter()
+                .any(|existing| environment_keys_equal(existing, key))
+            {
+                bail!("duplicate configured environment key");
+            }
+            configured.push(key);
             validate_environment_key(key)?;
             if value.contains('\0') {
                 bail!("environment values cannot contain NUL");
@@ -118,12 +134,25 @@ impl ExecutionConfig {
         Ok(())
     }
 }
+fn environment_key(key: &str) -> String {
+    if cfg!(windows) {
+        key.to_ascii_uppercase()
+    } else {
+        key.to_owned()
+    }
+}
 fn validate_environment_key(key: &str) -> Result<()> {
+    let normalized = environment_key(key);
+    let key = normalized.as_str();
+    let prefix: String = key.chars().take("ARCHGUARD_MUTATION_".len()).collect();
     if key.is_empty()
         || key.contains(['=', '\0'])
         || key.len() > 4096
-        || key.starts_with("ARCHGUARD_MUTATION_")
-        || matches!(key, "HOME" | "TMPDIR" | "TMP" | "TEMP")
+        || environment_keys_equal(&prefix, "ARCHGUARD_MUTATION_")
+        || (["HOME", "TMPDIR", "TMP", "TEMP"]
+            .iter()
+            .any(|reserved| environment_keys_equal(key, reserved))
+            || cfg!(windows) && environment_keys_equal(key, "USERPROFILE"))
     {
         bail!("invalid or reserved environment key");
     }
@@ -288,9 +317,9 @@ impl Default for ExecutionLimits {
             max_workspace_file_bytes: 268435456,
             max_workspace_bytes: 2147483648,
             max_total_workspace_bytes: 8589934592,
-            max_open_files: 1024,
+            max_open_files: if cfg!(windows) { 0 } else { 1024 },
             max_cpu_seconds: 120,
-            max_generated_file_bytes: 67108864,
+            max_generated_file_bytes: if cfg!(windows) { 0 } else { 67108864 },
             max_address_space_bytes: None,
         }
     }
@@ -319,12 +348,20 @@ impl ExecutionLimits {
         limit!(max_workspace_file_bytes, 4294967296);
         limit!(max_workspace_bytes, 68719476736);
         limit!(max_total_workspace_bytes, 274877906944);
+        #[cfg(unix)]
         limit!(max_open_files, 16384);
         limit!(max_cpu_seconds, 3600);
+        #[cfg(unix)]
         limit!(max_generated_file_bytes, 4294967296);
+        #[cfg(windows)]
+        if self.max_open_files != 0 || self.max_generated_file_bytes != 0 {
+            bail!(
+                "Windows cannot enforce hard open-file or generated-file bounds; these fields must be zero"
+            );
+        }
         if self.max_result_bytes < 1024
             || self.max_report_bytes < MIN_REPORT_BYTES as u64
-            || self.max_open_files < 32
+            || (cfg!(unix) && self.max_open_files < 32)
             || self.max_workspace_file_bytes > self.max_workspace_bytes
             || self.max_workspace_bytes > self.max_total_workspace_bytes
         {
@@ -355,9 +392,30 @@ impl ExecutionLimits {
                 bail!("open-file limit exceeds inherited hard limit");
             }
         }
-        #[cfg(not(any(target_os = "linux", target_os = "macos")))]
-        bail!("mutation execution requires Linux or macOS");
+        #[cfg(not(any(target_os = "linux", target_os = "macos", windows)))]
+        bail!("mutation execution requires Linux, macOS, or Windows");
         Ok(())
+    }
+}
+
+pub(super) fn environment_keys_equal(left: &str, right: &str) -> bool {
+    #[cfg(unix)]
+    {
+        left == right
+    }
+    #[cfg(windows)]
+    {
+        let left: Vec<u16> = left.encode_utf16().collect();
+        let right: Vec<u16> = right.encode_utf16().collect();
+        unsafe {
+            windows_sys::Win32::Globalization::CompareStringOrdinal(
+                left.as_ptr(),
+                left.len() as i32,
+                right.as_ptr(),
+                right.len() as i32,
+                1,
+            ) == windows_sys::Win32::Globalization::CSTR_EQUAL
+        }
     }
 }
 
@@ -371,7 +429,7 @@ mod tests {
             serde_json::from_str(r#"{"command":["node","tests.mjs"]}"#).unwrap();
         config.validate().unwrap();
         assert_eq!(config.limits.max_inventory_bytes, 16777216);
-        assert_eq!(config.inherit_environment, vec!["PATH"]);
+        assert_eq!(config.inherit_environment, default_inherited_environment());
         config.command.clear();
         assert!(config.validate().is_err());
         config.command = vec!["node".into()];
@@ -408,5 +466,44 @@ mod tests {
         assert!(config.validate().is_err());
         config.workspace.dependencies[0].destination = "node_modules".into();
         config.validate().unwrap();
+    }
+}
+
+#[cfg(test)]
+#[cfg(windows)]
+mod windows_tests {
+    use crate::mutator::config::*;
+    #[test]
+    fn windows_defaults_run_and_reject_unsupported_requested_limits() {
+        let defaults = ExecutionLimits::default();
+        defaults.validate().unwrap();
+        assert_eq!(defaults.max_open_files, 0);
+        assert_eq!(defaults.max_generated_file_bytes, 0);
+        let mut limits = defaults.clone();
+        limits.max_open_files = 1024;
+        assert!(limits.validate().is_err());
+        limits = defaults.clone();
+        limits.max_generated_file_bytes = 1024;
+        assert!(limits.validate().is_err());
+        limits = defaults.clone();
+        limits.max_address_space_bytes = Some(1024);
+        assert!(limits.validate().is_err());
+        defaults.validate().unwrap();
+    }
+    #[test]
+    fn windows_environment_names_reject_case_duplicates_and_reserved_keys() {
+        let mut config: ExecutionConfig = serde_json::from_str(r#"{"command":["node"]}"#).unwrap();
+        config.inherit_environment = vec!["Path".into(), "PATH".into()];
+        assert!(config.validate().is_err());
+        config.inherit_environment = vec!["Path".into()];
+        config.validate().unwrap();
+        config.environment.insert("temp".into(), "elsewhere".into());
+        assert!(config.validate().is_err());
+        config.environment.clear();
+        assert!(!environment_keys_equal("straße", "STRASSE"));
+        assert!(environment_keys_equal("Path", "PATH"));
+        config.environment.insert("custom".into(), "one".into());
+        config.environment.insert("CUSTOM".into(), "two".into());
+        assert!(config.validate().is_err());
     }
 }

@@ -557,6 +557,8 @@ fn publish(path: &Path, snapshot: Snapshot) -> Result<()> {
         checksum: digest(&serde_json::to_vec(&snapshot)?),
         snapshot,
     };
+    #[cfg(windows)]
+    let _ancestors = crate::windows_fs::hold_ancestors(parent)?;
     let temporary = parent.join(format!(
         ".archguard-cache-{}-{}",
         std::process::id(),
@@ -569,7 +571,11 @@ fn publish(path: &Path, snapshot: Snapshot) -> Result<()> {
             .open(&temporary)?;
         file.write_all(&serde_json::to_vec(&envelope)?)?;
         file.sync_all()?;
+        drop(file);
+        #[cfg(unix)]
         fs::rename(&temporary, path)?;
+        #[cfg(windows)]
+        crate::windows_fs::replace(&temporary, path)?;
         Ok(())
     })();
     if result.is_err() {

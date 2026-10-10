@@ -84,6 +84,26 @@ impl Fixture {
     }
 }
 #[test]
+#[cfg(windows)]
+fn windows_plain_absolute_runner_executes_the_mutated_copy() {
+    let mut fixture = Fixture::new();
+    let original = fs::read(fixture.root.join("subject.ts")).unwrap();
+    let runner = fixture.root.join("runner.mjs").canonicalize().unwrap();
+    fixture.config.command[1] = runner
+        .to_str()
+        .unwrap()
+        .strip_prefix(r"\\?\")
+        .unwrap()
+        .to_owned();
+    let report = fixture.run();
+    assert!(report.complete, "{:?}", report.problems);
+    assert_eq!(report.summary.killed, 1);
+    assert_eq!(report.summary.survived, 1);
+    assert_eq!(fixture.calls(), vec!["baseline", "mutation", "mutation"]);
+    assert_eq!(fs::read(fixture.root.join("subject.ts")).unwrap(), original);
+}
+
+#[test]
 fn fresh_baseline_resume_invalidation_and_source_preservation() {
     let fixture = Fixture::new();
     let original = fs::read(fixture.root.join("subject.ts")).unwrap();

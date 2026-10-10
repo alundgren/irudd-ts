@@ -1,5 +1,5 @@
 use crate::mutator::{
-    config::{ExecutionConfig, ReusePolicy},
+    config::{ExecutionConfig, ReusePolicy, environment_keys_equal},
     facts::{MutationPlan, MutationSite, SyntaxValidation},
     result::*,
     state::RunState,
@@ -348,14 +348,23 @@ impl Prepared {
         for key in &config.inherit_environment {
             if let Some(value) = std::env::var_os(key) {
                 environment.insert(
-                    key.clone(),
+                    environment_key(key),
                     value
                         .into_string()
                         .map_err(|_| anyhow::anyhow!("inherited environment must be UTF-8"))?,
                 );
             }
         }
-        environment.extend(config.environment.clone());
+        for (key, value) in &config.environment {
+            if let Some(existing) = environment
+                .keys()
+                .find(|existing| environment_keys_equal(existing, key))
+                .cloned()
+            {
+                environment.remove(&existing);
+            }
+            environment.insert(environment_key(key), value.clone());
+        }
         let environment_bytes = storage::encode(&environment, 65536)
             .context("execution environment exceeds byte budget")?;
         let (program, invocation) = resolve_program(
@@ -550,14 +559,17 @@ impl Prepared {
         task: &Path,
         request: &TestExecutionRequest,
     ) -> Result<Command> {
-        let program = relocate(&self.program, inputs, workspace);
+        let program = relocate(&self.program, inputs, workspace)?;
         let mut command = Command::new(program);
-        use std::os::unix::process::CommandExt;
-        command.arg0(relocate(&self.invocation, inputs, workspace));
+        #[cfg(unix)]
+        {
+            use std::os::unix::process::CommandExt;
+            command.arg0(relocate(&self.invocation, inputs, workspace)?);
+        }
         for argument in &config.command[1..] {
             let path = Path::new(argument);
             if path.is_absolute() {
-                command.arg(relocate(path, inputs, workspace));
+                command.arg(relocate(path, inputs, workspace)?);
             } else {
                 command.arg(argument);
             }
@@ -574,26 +586,46 @@ impl Prepared {
             .current_dir(cwd)
             .env_clear()
             .envs(&self.environment)
-            .env("HOME", home)
+            .env("HOME", &home)
             .env("TMPDIR", &temporary)
             .env("TMP", &temporary)
             .env("TEMP", temporary)
             .env("ARCHGUARD_MUTATION_REQUEST", task.join("request.json"))
             .env("ARCHGUARD_MUTATION_RESULT", &request.result_path);
+        #[cfg(windows)]
+        command.env("USERPROFILE", &home);
         Ok(command)
     }
 }
 fn mode(metadata: &fs::Metadata) -> u32 {
-    use std::os::unix::fs::MetadataExt;
-    metadata.mode() & 0o777
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::MetadataExt;
+        metadata.mode() & 0o777
+    }
+    #[cfg(windows)]
+    {
+        crate::windows_fs::mode(metadata)
+    }
 }
-fn relocate(path: &Path, inputs: &Inputs, destination: &Path) -> PathBuf {
+fn environment_key(key: &str) -> String {
+    if cfg!(windows) {
+        key.to_ascii_uppercase()
+    } else {
+        key.to_owned()
+    }
+}
+fn relocate(path: &Path, inputs: &Inputs, destination: &Path) -> Result<PathBuf> {
+    #[cfg(windows)]
+    let normalized = crate::quality::load::prospective_path(path)?;
+    #[cfg(windows)]
+    let path = normalized.as_path();
     for (root, relative) in &inputs.roots {
         if let Ok(suffix) = path.strip_prefix(root) {
-            return destination.join(relative).join(suffix);
+            return Ok(destination.join(relative).join(suffix));
         }
     }
-    path.to_owned()
+    Ok(path.to_owned())
 }
 fn resolve_program(
     command: &str,
@@ -622,16 +654,39 @@ fn resolve_program(
         })
         .collect()
     };
+    #[cfg(windows)]
+    let candidates: Vec<_> = candidates
+        .into_iter()
+        .flat_map(|path| {
+            if path.extension().is_none() {
+                vec![path.with_extension("exe"), path]
+            } else {
+                vec![path]
+            }
+        })
+        .collect();
     for candidate in candidates {
         if let Ok(path) = candidate.canonicalize() {
             let metadata = fs::metadata(&path)?;
-            if metadata.is_file() && mode(&metadata) & 0o111 != 0 {
+            let executable = {
+                #[cfg(unix)]
+                {
+                    mode(&metadata) & 0o111 != 0
+                }
+                #[cfg(windows)]
+                {
+                    path.extension()
+                        .is_some_and(|ext| ext.eq_ignore_ascii_case("exe"))
+                }
+            };
+            if metadata.is_file() && executable {
                 return Ok((path, candidate));
             }
         }
     }
     bail!("explicit test command executable unavailable")
 }
+#[cfg(unix)]
 fn write_mutated_source(path: &Path, bytes: &[u8]) -> Result<()> {
     use std::os::unix::fs::PermissionsExt;
     let parent = path.parent().context("mutant source has no parent")?;
@@ -825,8 +880,10 @@ impl TaskContext<'_> {
                 resources: ChildLimits {
                     core_bytes: Some(0),
                     cpu_seconds: Some(self.config.limits.max_cpu_seconds),
-                    file_bytes: Some(self.config.limits.max_generated_file_bytes),
-                    open_files: Some(self.config.limits.max_open_files),
+                    file_bytes: (self.config.limits.max_generated_file_bytes != 0)
+                        .then_some(self.config.limits.max_generated_file_bytes),
+                    open_files: (self.config.limits.max_open_files != 0)
+                        .then_some(self.config.limits.max_open_files),
                     address_space_bytes: self.config.limits.max_address_space_bytes,
                 },
             };
@@ -897,13 +954,9 @@ impl TaskContext<'_> {
                 bail!("test command did not consume the request");
             }
             kind = ExecutionProblemKind::Protocol;
-            use std::os::unix::process::ExitStatusExt;
-            let observed = result.exit_code.ok_or_else(|| {
-                anyhow::anyhow!(
-                    "test command terminated without an exit code (signal {:?})",
-                    raw.status.and_then(|status| status.signal())
-                )
-            })?;
+            let observed = result
+                .exit_code
+                .context("test command terminated without an exit code")?;
             let reported = TestExecutionResult::read(&protocol.result_path, &protocol)?;
             result.tests = Some(reported.tests.clone());
             result.outcome = match reported.classify(observed) {
@@ -1462,8 +1515,13 @@ mod monitor_tests {
                 workspace_limits.max_inventory_bytes = 1024;
             }
             let visits = Cell::new(0);
-            let mut command = Command::new("sh");
-            command.args(["-c", "while :; do :; done"]);
+            let node = Command::new("node")
+                .args(["-p", "process.execPath"])
+                .output()
+                .unwrap();
+            assert!(node.status.success());
+            let mut command = Command::new(String::from_utf8(node.stdout).unwrap().trim());
+            command.args(["-e", "setInterval(() => {}, 1000)"]);
             let output = run_command(
                 command,
                 b"",
@@ -1506,5 +1564,89 @@ mod monitor_tests {
         let (outcome, problem, _) = monitor_failure(&CancellationToken::new(), Instant::now());
         assert_eq!(outcome, MutationOutcome::TimedOut);
         assert_eq!(problem, ExecutionProblemKind::Limit);
+    }
+}
+
+#[cfg(windows)]
+fn write_mutated_source(path: &Path, bytes: &[u8]) -> Result<()> {
+    let parent = path.parent().context("mutant source has no parent")?;
+    let parent_mode = crate::windows_fs::mode_for_path(parent, &fs::symlink_metadata(parent)?)?;
+    let file_mode = mode(&fs::symlink_metadata(path)?);
+    crate::windows_fs::set_mode(parent, 0o666)?;
+    crate::windows_fs::set_mode(path, 0o666)?;
+    let written = storage::atomic_write(path, bytes);
+    let file_restored = crate::windows_fs::set_mode(path, file_mode);
+    let parent_restored = crate::windows_fs::set_mode(parent, parent_mode);
+    written?;
+    file_restored?;
+    parent_restored?;
+    Ok(())
+}
+
+#[cfg(test)]
+#[cfg(windows)]
+mod windows_tests {
+    use crate::mutator::run::*;
+    #[test]
+    fn windows_absolute_arguments_relocate_existing_and_missing_input_paths() {
+        let directory = tempfile::tempdir().unwrap();
+        let root = directory.path().join("input");
+        fs::create_dir(&root).unwrap();
+        fs::write(root.join("runner.mjs"), b"export {};").unwrap();
+        let config: ExecutionConfig =
+            serde_json::from_str(r#"{"command":["node","runner.mjs"]}"#).unwrap();
+        let inputs = Inputs::inventory(&root, &config, directory.path(), &|| Ok(())).unwrap();
+        let plain_root =
+            PathBuf::from(inputs.root.to_str().unwrap().strip_prefix(r"\\?\").unwrap());
+        let copied = directory.path().join("worker");
+        for relative in ["runner.mjs", "results/missing.json"] {
+            assert_eq!(
+                relocate(&plain_root.join(relative), &inputs, &copied).unwrap(),
+                copied.join(relative)
+            );
+        }
+        let external = directory.path().join("external.json");
+        fs::write(&external, b"{}").unwrap();
+        assert_eq!(
+            relocate(&external, &inputs, &copied).unwrap(),
+            external.canonicalize().unwrap()
+        );
+    }
+
+    #[test]
+    fn windows_command_resolution_requires_executable_and_folds_path_key() {
+        let node = Command::new("node")
+            .args(["-p", "process.execPath"])
+            .output()
+            .unwrap();
+        assert!(node.status.success());
+        let node_path = PathBuf::from(String::from_utf8(node.stdout).unwrap().trim());
+        let directory = tempfile::tempdir().unwrap();
+        let spaced = directory.path().join("command with spaces");
+        fs::create_dir(&spaced).unwrap();
+        fs::copy(node_path, spaced.join("runner.exe")).unwrap();
+        fs::write(spaced.join("wrapper.cmd"), b"@echo off\r\n").unwrap();
+        let environment =
+            BTreeMap::from([(environment_key("Path"), spaced.to_str().unwrap().to_owned())]);
+        assert!(resolve_program("runner", &environment, directory.path()).is_ok());
+        assert!(resolve_program("wrapper.cmd", &environment, directory.path()).is_err());
+        assert!(resolve_program("missing", &environment, directory.path()).is_err());
+    }
+    #[test]
+    fn windows_mutation_restores_readonly_file_and_directory() {
+        let root = tempfile::tempdir().unwrap();
+        let parent = root.path().join("readonly");
+        crate::windows_fs::create_private_directory(&parent).unwrap();
+        let source = parent.join("subject.ts");
+        fs::write(&source, b"true").unwrap();
+        crate::windows_fs::set_mode(&source, 0o444).unwrap();
+        crate::windows_fs::set_mode(&parent, 0o444).unwrap();
+        assert!(fs::write(&source, b"false").is_err());
+        write_mutated_source(&source, b"false").unwrap();
+        assert_eq!(fs::read(&source).unwrap(), b"false");
+        assert!(fs::write(&source, b"true").is_err());
+        assert!(fs::write(parent.join("extra"), b"data").is_err());
+        crate::windows_fs::set_mode(&parent, 0o666).unwrap();
+        crate::windows_fs::set_mode(&source, 0o666).unwrap();
     }
 }
