@@ -23,6 +23,8 @@ pub(crate) struct ChildLimits {
 }
 
 pub(crate) struct CommandLimits {
+    // Command does not expose whether env_clear was used. Windows must build
+    // the environment block explicitly for atomic job assignment.
     #[cfg_attr(not(windows), allow(dead_code))]
     pub inherit_environment: bool,
     pub deadline: Instant,
