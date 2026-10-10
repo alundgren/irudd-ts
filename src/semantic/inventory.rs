@@ -1,4 +1,5 @@
 use crate::{
+    compiler_path,
     config::Matcher,
     facts::ProjectFacts,
     semantic::{
@@ -102,14 +103,16 @@ pub fn request(project: &ProjectFacts, config: &SemanticConfig) -> Result<Semant
         }
         contexts.push(RequestedContext {
             id: context.id.clone(),
-            tsconfig: tsconfig.to_string_lossy().into(),
+            tsconfig: compiler_path::compatible(&tsconfig)?
+                .to_string_lossy()
+                .into(),
             config_sha256,
             files,
         });
     }
     Ok(SemanticRequest {
         schema_version: SCHEMA_VERSION,
-        root: root.to_string_lossy().into(),
+        root: compiler_path::compatible(&root)?.to_string_lossy().into(),
         backend: Backend {
             name: "typescript".into(),
             version: BACKEND_VERSION.into(),
