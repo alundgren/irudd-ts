@@ -559,17 +559,17 @@ impl Prepared {
         task: &Path,
         request: &TestExecutionRequest,
     ) -> Result<Command> {
-        let program = relocate(&self.program, inputs, workspace);
+        let program = relocate(&self.program, inputs, workspace)?;
         let mut command = Command::new(program);
         #[cfg(unix)]
         {
             use std::os::unix::process::CommandExt;
-            command.arg0(relocate(&self.invocation, inputs, workspace));
+            command.arg0(relocate(&self.invocation, inputs, workspace)?);
         }
         for argument in &config.command[1..] {
             let path = Path::new(argument);
             if path.is_absolute() {
-                command.arg(relocate(path, inputs, workspace));
+                command.arg(relocate(path, inputs, workspace)?);
             } else {
                 command.arg(argument);
             }
@@ -615,13 +615,17 @@ fn environment_key(key: &str) -> String {
         key.to_owned()
     }
 }
-fn relocate(path: &Path, inputs: &Inputs, destination: &Path) -> PathBuf {
+fn relocate(path: &Path, inputs: &Inputs, destination: &Path) -> Result<PathBuf> {
+    #[cfg(windows)]
+    let normalized = crate::quality::load::prospective_path(path)?;
+    #[cfg(windows)]
+    let path = normalized.as_path();
     for (root, relative) in &inputs.roots {
         if let Ok(suffix) = path.strip_prefix(root) {
-            return destination.join(relative).join(suffix);
+            return Ok(destination.join(relative).join(suffix));
         }
     }
-    path.to_owned()
+    Ok(path.to_owned())
 }
 fn resolve_program(
     command: &str,
@@ -1582,6 +1586,32 @@ fn write_mutated_source(path: &Path, bytes: &[u8]) -> Result<()> {
 #[cfg(all(test, windows))]
 mod windows_tests {
     use super::*;
+    #[test]
+    fn windows_absolute_arguments_relocate_existing_and_missing_input_paths() {
+        let directory = tempfile::tempdir().unwrap();
+        let root = directory.path().join("input");
+        fs::create_dir(&root).unwrap();
+        fs::write(root.join("runner.mjs"), b"export {};").unwrap();
+        let config: ExecutionConfig =
+            serde_json::from_str(r#"{"command":["node","runner.mjs"]}"#).unwrap();
+        let inputs = Inputs::inventory(&root, &config, directory.path(), &|| Ok(())).unwrap();
+        let plain_root =
+            PathBuf::from(inputs.root.to_str().unwrap().strip_prefix(r"\\?\").unwrap());
+        let copied = directory.path().join("worker");
+        for relative in ["runner.mjs", "results/missing.json"] {
+            assert_eq!(
+                relocate(&plain_root.join(relative), &inputs, &copied).unwrap(),
+                copied.join(relative)
+            );
+        }
+        let external = directory.path().join("external.json");
+        fs::write(&external, b"{}").unwrap();
+        assert_eq!(
+            relocate(&external, &inputs, &copied).unwrap(),
+            external.canonicalize().unwrap()
+        );
+    }
+
     #[test]
     fn windows_command_resolution_requires_executable_and_folds_path_key() {
         let node = Command::new("node")
