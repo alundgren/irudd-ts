@@ -233,6 +233,10 @@ fn quote(argument: &OsStr, output: &mut Vec<u16>) -> Result<()> {
     if units.contains(&0) {
         bail!("command argument contains a NUL character");
     }
+    if !units.is_empty() && !units.iter().any(|unit| matches!(*unit, 9 | 32 | 34)) {
+        output.extend(units);
+        return Ok(());
+    }
     output.push(b'"' as u16);
     let mut slashes = 0;
     for unit in units {
@@ -909,6 +913,23 @@ mod tests {
             std::fs::canonicalize(String::from_utf8(output.stdout).unwrap()).unwrap(),
             std::fs::canonicalize(std::env::current_dir().unwrap()).unwrap()
         );
+    }
+    #[test]
+    fn explicitly_configured_windows_command_interpreter_preserves_status() {
+        for (script, code) in [("echo archguard-shell", 0), ("exit /b 7", 7)] {
+            let mut command = Command::new("cmd.exe");
+            command.args(["/d", "/s", "/c", script]);
+            let output = run_command(command, b"", &limits(), || false, || Ok(())).unwrap();
+            assert_eq!(output.stop, CommandStop::Completed);
+            assert_eq!(output.status.unwrap().code(), Some(code));
+            assert!(output.cleanup_complete);
+            if code == 0 {
+                assert_eq!(
+                    String::from_utf8(output.stdout).unwrap().trim(),
+                    "archguard-shell"
+                );
+            }
+        }
     }
     #[test]
     fn complete_transport_and_argument_quoting() {
