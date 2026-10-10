@@ -715,7 +715,7 @@ mod tests {
             input_digest: "a".repeat(64),
             phase: ExecutionPhase::Mutation,
             mutation_id: Some("b".repeat(64)),
-            result_path: "/tmp/result.json".into(),
+            result_path: std::env::temp_dir().join("result.json"),
             max_result_bytes: 1048576,
         }
     }
@@ -798,6 +798,11 @@ mod tests {
         result.failures[0].message = "x".repeat(8192);
         result.validate(&request()).unwrap();
         let mut request = request();
+        let valid_path = request.result_path.clone();
+        request.result_path = "result.json".into();
+        assert!(request.validate().is_err());
+        request.result_path = valid_path;
+        request.validate().unwrap();
         request.max_result_bytes = 1024;
         assert!(result.validate(&request).is_err());
         assert!(

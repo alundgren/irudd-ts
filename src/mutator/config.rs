@@ -460,7 +460,7 @@ mod tests {
             .insert("TOKEN".into(), "sample-secret".into());
         config.validate().unwrap();
         config.workspace.dependencies.push(DependencyCopy {
-            source: "/tmp/deps".into(),
+            source: std::env::temp_dir().join("deps"),
             destination: "../original".into(),
         });
         assert!(config.validate().is_err());
