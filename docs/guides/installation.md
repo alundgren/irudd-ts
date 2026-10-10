@@ -49,6 +49,8 @@ irm https://raw.githubusercontent.com/alundgren/irudd-ts/v0.2.0/scripts/install.
 
 Windows ARM64 and 32-bit Windows are not release targets. The GitHub Action also
 supports `windows-2022` runners when pinned to a release with Windows support.
+The executable statically links Microsoft's C runtime. The Windows archive
+includes the applicable Microsoft toolchain terms and version records in `licenses`.
 
 Each archive includes `bin/archguard` or `bin/archguard.exe`, the TypeScript SDK, the evaluation skill,
 examples, guides, the optional compiler adapter and its lockfile, actual Cargo

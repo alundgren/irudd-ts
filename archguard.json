@@ -188,6 +188,33 @@
       ]
     },
     {
+      "id": "compiler-path-no-policy",
+      "kind": "forbiddenImport",
+      "files": [
+        "src/compiler_path.rs"
+      ],
+      "specifiers": [
+        "crate::config",
+        "crate::config::*",
+        "crate::project",
+        "crate::project::*",
+        "crate::rules",
+        "crate::rules::*",
+        "crate::roles",
+        "crate::roles::*",
+        "crate::plugin",
+        "crate::plugin::*",
+        "crate::cache",
+        "crate::cache::*",
+        "crate::semantic",
+        "crate::semantic::*",
+        "crate::mutator",
+        "crate::mutator::*",
+        "crate::subprocess",
+        "crate::subprocess::*"
+      ]
+    },
+    {
       "id": "windows-filesystem-no-policy",
       "kind": "forbiddenImport",
       "files": [
@@ -226,6 +253,7 @@
           "src/roles.rs",
           "src/cache.rs",
           "src/semantic/**",
+          "src/compiler_path.rs",
           "src/windows_fs.rs",
           "src/subprocess/windows.rs"
         ]
@@ -281,6 +309,12 @@
         "id": "semantic-coordinator",
         "files": [
           "src/semantic/mod.rs"
+        ]
+      },
+      {
+        "id": "compiler-path",
+        "files": [
+          "src/compiler_path.rs"
         ]
       },
       {

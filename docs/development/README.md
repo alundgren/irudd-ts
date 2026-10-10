@@ -39,5 +39,7 @@ This creates owned temporary fixtures and leaves the target source untouched. Th
 
 On native Windows x64, run `powershell -NoProfile -File scripts/check_windows.ps1`.
 It installs the explicit compiler test environment, runs the native acceptance
-suite, packages the executable, and tests the PowerShell installer. Before merging
+suite, builds the release executable with a static Microsoft C runtime, checks
+its DLL imports, retains the actual toolchain notices, packages the executable,
+and tests the PowerShell installer. Before merging
 Windows changes from another OS, use the manual [branch validation](releases.md#validate-a-windows-branch-before-merging).
