@@ -96,11 +96,22 @@ export function validateMutationRequest(value: unknown): TestExecutionRequest {
   };
 }
 
+function sameRequestSnapshot(left: fs.BigIntStats, right: fs.BigIntStats): boolean {
+  return right.isFile() && left.dev === right.dev && left.ino === right.ino
+    && left.mode === right.mode && left.size === right.size
+    && left.mtimeNs === right.mtimeNs && left.ctimeNs === right.ctimeNs
+    && left.birthtimeNs === right.birthtimeNs;
+}
 function readBoundedRegularFile(file: string, limit: number): Buffer {
+  // Node does not support O_NOFOLLOW on Windows. Check the path against the
+  // opened descriptor before and after reading instead of trusting that flag.
+  const before = fs.lstatSync(file, { bigint: true });
+  if (!before.isFile() || before.size > BigInt(limit)) invalid("request must be a bounded regular file");
+  if (before.ino === 0n) invalid("request file identity is unavailable");
   const descriptor = fs.openSync(file, fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK);
   try {
-    const metadata = fs.fstatSync(descriptor);
-    if (!metadata.isFile() || metadata.size > limit) invalid("request must be a bounded regular file");
+    const metadata = fs.fstatSync(descriptor, { bigint: true });
+    if (!sameRequestSnapshot(before, metadata) || !sameRequestSnapshot(metadata, fs.lstatSync(file, { bigint: true }))) invalid("request file changed during open");
     const bytes = Buffer.alloc(limit + 1);
     let used = 0;
     while (used < bytes.length) {
@@ -109,6 +120,8 @@ function readBoundedRegularFile(file: string, limit: number): Buffer {
       used += read;
     }
     if (used > limit) invalid("request exceeds its byte budget");
+    if (!sameRequestSnapshot(metadata, fs.fstatSync(descriptor, { bigint: true }))
+      || !sameRequestSnapshot(metadata, fs.lstatSync(file, { bigint: true }))) invalid("request file changed during read");
     return bytes.subarray(0, used);
   } finally { fs.closeSync(descriptor); }
 }
