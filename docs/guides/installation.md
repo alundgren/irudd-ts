@@ -1,7 +1,7 @@
 # Install a released binary
 
 Archguard distributes native executables for Linux and macOS on x86_64 and arm64,
-and Windows x64. Windows archives require Windows 10 or Windows Server 2016 or newer.
+and Windows x64. Windows archives require Windows 10 1809 or Windows Server 2019 or newer.
 Linux archives require Ubuntu 22.04 or newer with glibc 2.35 and libgcc. macOS
 archives require macOS 15 or newer. Each release builds and runs its installed
 archive on the corresponding native GitHub runner. Other Linux distributions

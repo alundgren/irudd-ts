@@ -53,7 +53,13 @@ Reuse assumes that you declared every relevant input. Network services, wall-clo
 
 Reuse invalidates the run's results when a declared input changes. It does not retain killed mutations by function alone. You can narrow source selection to changed files, but tests and helpers still belong in the declared workspace. The current runner does not use coverage to skip mutation sites.
 
-Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections. Windows uses an owned Job Object for descendant cleanup. Its CPU bound counts user-mode CPU time per process. Windows does not support `maxAddressSpaceBytes`, Unix open-file limits, or per-file generated-size limits. `maxOpenFiles` and `maxGeneratedFileBytes` default to zero on Windows, and a nonzero request is rejected before execution. Workspace file-count and aggregate-byte ceilings, deadlines, and output/result/report budgets still apply. Commands must resolve to an `.exe`; configure `node` with a script or explicitly configure a command interpreter when needed. macOS has different memory controls from Linux.
+Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections.
+
+On Windows, an owned Job Object provides descendant cleanup. Its CPU bound counts user-mode CPU time per process. Windows does not support `maxAddressSpaceBytes`, Unix open-file limits, or per-file generated-size limits. `maxOpenFiles` and `maxGeneratedFileBytes` default to zero on Windows, and a nonzero request is rejected before execution. Workspace file-count and aggregate-byte ceilings, deadlines, and output/result/report budgets still apply.
+
+Windows commands must resolve to an `.exe`; configure `node` with a script or explicitly configure a command interpreter such as `cmd.exe /d /c npm.cmd test` when needed.
+
+Windows directory links are copied as junctions inside the owned workspace. Copying file symlinks requires Windows Developer Mode or symlink privileges; unavailable privileges produce incomplete analysis.
 
 Process-group cleanup allows five seconds after sending SIGKILL to confirm that the owned group has no live members. Pipe draining after executable exit has a separate 250 ms limit. Cleanup uncertainty preserves the workspace and stops the run, even when the command originally timed out. Cleanup checks a separate thirty-second deadline while traversing owned workspaces. Individual kernel filesystem calls can still block; these deadlines are not hard wall-clock guarantees for an unresponsive kernel or filesystem.
 
