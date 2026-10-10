@@ -950,6 +950,18 @@ pub(crate) fn disk_usage(
     Ok(bytes)
 }
 
+fn portable_relative(path: &Path) -> Result<String> {
+    let text = path.to_str().context("relative path must be UTF-8")?;
+    #[cfg(windows)]
+    {
+        Ok(text.replace('\\', "/"))
+    }
+    #[cfg(unix)]
+    {
+        Ok(text.to_owned())
+    }
+}
+
 #[cfg(all(test, unix))]
 mod tests {
     use crate::mutator::workspace::*;
@@ -1372,9 +1384,10 @@ fn remove_owned_until(path: &Path, identity: DirectoryIdentity, deadline: Instan
     visit(path, &root, &mut budget, deadline, 0)
 }
 
-#[cfg(all(test, windows))]
+#[cfg(test)]
+#[cfg(windows)]
 mod windows_tests {
-    use super::*;
+    use crate::mutator::workspace::*;
     #[test]
     fn windows_absolute_roots_and_existing_ancestor_checks_preserve_inputs() {
         for (input, expected) in [
@@ -1513,17 +1526,5 @@ mod windows_tests {
         corrected.cleanup().unwrap();
         assert!(!path.exists());
         assert_eq!(fs::read(outside.join("keep")).unwrap(), b"preserved");
-    }
-}
-
-fn portable_relative(path: &Path) -> Result<String> {
-    let text = path.to_str().context("relative path must be UTF-8")?;
-    #[cfg(windows)]
-    {
-        Ok(text.replace('\\', "/"))
-    }
-    #[cfg(unix)]
-    {
-        Ok(text.to_owned())
     }
 }

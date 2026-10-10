@@ -612,7 +612,7 @@ fn probe_cleanup_capability(directory: &Path, remove: impl Fn(&File) -> Result<(
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::windows_fs::*;
     #[test]
     fn private_acl_rejects_shared_directory_and_accepts_owned_directory() {
         let root = tempfile::tempdir().unwrap();

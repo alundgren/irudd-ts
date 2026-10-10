@@ -631,9 +631,10 @@ fn validate_private(path: &Path) -> Result<()> {
     Ok(())
 }
 
-#[cfg(all(test, windows))]
+#[cfg(test)]
+#[cfg(windows)]
 mod windows_tests {
-    use super::*;
+    use crate::mutator::state::*;
     #[test]
     fn state_retains_directory_records_and_ancestor_handles_until_drop() {
         let root = storage::create_private_directory(

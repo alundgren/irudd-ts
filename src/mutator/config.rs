@@ -469,9 +469,10 @@ mod tests {
     }
 }
 
-#[cfg(all(test, windows))]
+#[cfg(test)]
+#[cfg(windows)]
 mod windows_tests {
-    use super::*;
+    use crate::mutator::config::*;
     #[test]
     fn windows_defaults_run_and_reject_unsupported_requested_limits() {
         let defaults = ExecutionLimits::default();

@@ -1583,9 +1583,10 @@ fn write_mutated_source(path: &Path, bytes: &[u8]) -> Result<()> {
     Ok(())
 }
 
-#[cfg(all(test, windows))]
+#[cfg(test)]
+#[cfg(windows)]
 mod windows_tests {
-    use super::*;
+    use crate::mutator::run::*;
     #[test]
     fn windows_absolute_arguments_relocate_existing_and_missing_input_paths() {
         let directory = tempfile::tempdir().unwrap();
