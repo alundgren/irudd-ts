@@ -23,6 +23,8 @@ pub(crate) struct ChildLimits {
 }
 
 pub(crate) struct CommandLimits {
+    #[cfg_attr(not(windows), allow(dead_code))]
+    pub inherit_environment: bool,
     pub deadline: Instant,
     pub stdin_bytes: usize,
     pub stdout_bytes: usize,
@@ -77,6 +79,7 @@ pub(crate) fn run<T: Serialize, R>(
         command,
         &request,
         &CommandLimits {
+            inherit_environment: true,
             deadline,
             stdin_bytes: INPUT_LIMIT + 1,
             stdout_bytes: STDOUT_LIMIT,
@@ -129,14 +132,23 @@ pub(crate) fn run_command(
     if input.len() > limits.stdin_bytes {
         bail!("input exceeds {} bytes", limits.stdin_bytes);
     }
-    #[cfg(not(any(target_os = "linux", target_os = "macos")))]
+    #[cfg(not(any(target_os = "linux", target_os = "macos", windows)))]
     {
         let _ = (command, input, limits, cancelled, monitor);
-        bail!("subprocess execution requires Linux or macOS process-group cleanup in this release");
+        bail!("subprocess execution requires Linux, macOS, or Windows process cleanup");
     }
     #[cfg(any(target_os = "linux", target_os = "macos"))]
-    unix::run(command, input, limits, cancelled, monitor)
+    {
+        unix::run(command, input, limits, cancelled, monitor)
+    }
+    #[cfg(windows)]
+    {
+        windows::run(command, input, limits, cancelled, monitor)
+    }
 }
+
+#[cfg(windows)]
+mod windows;
 
 #[cfg(any(target_os = "linux", target_os = "macos"))]
 mod unix {
@@ -967,6 +979,7 @@ mod tests {
 
     fn limits() -> CommandLimits {
         CommandLimits {
+            inherit_environment: true,
             deadline: Instant::now() + Duration::from_secs(3),
             stdin_bytes: 2 * 1024 * 1024,
             stdout_bytes: 1024,

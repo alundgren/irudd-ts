@@ -1,4 +1,4 @@
-#![cfg(unix)]
+#![cfg(any(unix, windows))]
 use archguard::{
     config::{Config, PluginConfig},
     plugin, project,
@@ -133,7 +133,11 @@ fn rust_and_typescript_plugins_use_the_same_transitive_graph() {
     let ts = plugin::run(&facts, &config, root.path()).unwrap();
     assert_eq!(rust, ts);
     assert_eq!(rust.len(), 3);
-    let sdk = format!("file://{}/sdk/index.ts", env!("CARGO_MANIFEST_DIR"));
+    let sdk = format!(
+        "file://{}{}/sdk/index.ts",
+        if cfg!(windows) { "/" } else { "" },
+        env!("CARGO_MANIFEST_DIR").replace('\\', "/")
+    );
     let config = PluginConfig {
         name: "query-reuse".into(),
         command: vec![

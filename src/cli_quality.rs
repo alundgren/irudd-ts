@@ -220,7 +220,7 @@ pub(super) fn run(
     Ok(if report.complete { 0 } else { 2 })
 }
 
-#[cfg(unix)]
+#[cfg(any(unix, windows))]
 static CANCELLED: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
 #[cfg(unix)]
 extern "C" fn cancel_run(_: nix::libc::c_int) {
@@ -254,7 +254,19 @@ impl CliCancellation {
             }
             Ok(guard)
         }
-        #[cfg(not(unix))]
+        #[cfg(windows)]
+        {
+            use windows_sys::Win32::System::Console::SetConsoleCtrlHandler;
+            CANCELLED.store(false, std::sync::atomic::Ordering::Relaxed);
+            if unsafe { SetConsoleCtrlHandler(Some(cancel_windows_run), 1) } == 0 {
+                return Err(std::io::Error::last_os_error())
+                    .context("installing Windows console cancellation handler");
+            }
+            Ok(Self {
+                token: mutator::CancellationToken::from_static_flag(&CANCELLED),
+            })
+        }
+        #[cfg(not(any(unix, windows)))]
         {
             Ok(Self {
                 token: mutator::CancellationToken::new(),
@@ -262,8 +274,22 @@ impl CliCancellation {
         }
     }
 }
+#[cfg(windows)]
+unsafe extern "system" fn cancel_windows_run(event: u32) -> i32 {
+    use windows_sys::Win32::System::Console::{CTRL_BREAK_EVENT, CTRL_C_EVENT};
+    if matches!(event, CTRL_C_EVENT | CTRL_BREAK_EVENT) {
+        CANCELLED.store(true, std::sync::atomic::Ordering::Relaxed);
+        1
+    } else {
+        0
+    }
+}
 impl Drop for CliCancellation {
     fn drop(&mut self) {
+        #[cfg(windows)]
+        unsafe {
+            windows_sys::Win32::System::Console::SetConsoleCtrlHandler(Some(cancel_windows_run), 0);
+        }
         #[cfg(unix)]
         for (signal, action) in self.previous.iter().rev() {
             // Restore the process handlers installed before this CLI command.
