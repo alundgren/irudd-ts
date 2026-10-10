@@ -38,7 +38,8 @@ flowchart LR
 | `quality` | Explicit source selection, bounded syntax processing and versioned source locations |
 | `dryer` | Function normalization, exact subtree comparison and validated extraction persistence |
 | `mutator` | Verified source edits, explicit isolated test execution and validated run state |
-| `subprocess` | Bounded Unix transport shared by graph plugins, semantic providers and mutation execution |
+| `subprocess` | Bounded process transport with Unix process groups and Windows Job Objects, shared by graph plugins, semantic providers and mutation execution |
+| `windows_fs` | Private Windows handle identity, reparse checks, access control, locking, and durable file replacement |
 | `main` | Command parsing, rendering, and exit codes |
 
 The public Rust module paths and JSON protocol versions remain unchanged. Semantic child modules are private and re-export the existing `semantic::*` API. The TypeScript SDK stays in `sdk/`. Graph and compiler contracts remain separate from the mutation request/result protocol and optional Vitest reporter.
@@ -88,6 +89,6 @@ flowchart LR
   Protocol --> Reviewer
 ```
 
-Mutation execution snapshots configured files and dependency copies. A fresh baseline is required every run. Reuse is opt-in and conservative over the full declared input digest. Process-group ownership and cleanup are checked before persisting reusable results. Incomplete input discovery, protocol failures and resource failures remain explicit. Limits protect trusted commands; they are not an arbitrary-code sandbox.
+Mutation execution snapshots configured files and dependency copies. A fresh baseline is required every run. Reuse is opt-in and conservative over the full declared input digest. Process-group or Windows Job Object ownership and cleanup are checked before persisting reusable results. Incomplete input discovery, protocol failures and resource failures remain explicit. Limits protect trusted commands; they are not an arbitrary-code sandbox.
 
 The CLI owns process signal handlers. Library callers pass a cancellation token. Node builtins implement the SDK protocol; an explicitly installed Vitest supplies actual test lifecycle events. No new product dependency, automatic runner discovery or CI gate is introduced. See the [user guide](../code-quality.md) and [protocol](../mutator-test-protocol.md).

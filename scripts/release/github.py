@@ -10,6 +10,7 @@ import re
 import subprocess
 import tarfile
 import tempfile
+import zipfile
 
 PLATFORMS = ['linux-x86_64', 'linux-arm64', 'macos-x86_64', 'macos-arm64']
 VERSION = re.compile(r'^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$')
@@ -107,29 +108,44 @@ def release_info(repo, number):
     return {'version': value, 'commit': commit, 'notes': notes, 'pr': number}
 
 
+def platforms(value):
+    # v0.1.0 shipped before Windows support; its public assets remain immutable.
+    return PLATFORMS if version(value) < (0, 2, 0) else [*PLATFORMS, 'windows-x86_64']
+
+
+def archive_name(value, platform):
+    extension = 'zip' if platform.startswith('windows-') else 'tar.gz'
+    return f'archguard-{value}-{platform}.{extension}'
+
+
 def asset_names(value):
-    return [f'archguard-{value}-{platform}.tar.gz{suffix}' for platform in PLATFORMS for suffix in ['', '.sha256']]
+    return [archive_name(value, platform) + suffix for platform in platforms(value) for suffix in ['', '.sha256']]
 
 
 def validate_assets(directory, info):
     expected = asset_names(info['version'])
     actual = sorted(path.name for path in directory.iterdir() if path.is_file())
     if sorted(expected) != actual:
-        raise RuntimeError('Expected exactly four archives and their four checksum files')
-    for platform in PLATFORMS:
-        name = f"archguard-{info['version']}-{platform}.tar.gz"
+        raise RuntimeError('Expected exactly the supported platform archives and their checksum files')
+    for platform in platforms(info['version']):
+        name = archive_name(info['version'], platform)
         archive = directory / name
         digest = hashlib.sha256(archive.read_bytes()).hexdigest()
         if (directory / f'{name}.sha256').read_text() != f'{digest}  {name}\n':
             raise RuntimeError(f'Archive checksum mismatch: {name}')
-        with tarfile.open(archive, 'r:gz') as package:
-            stream = package.extractfile(f"archguard-{info['version']}/release.json")
-            if stream is None:
-                raise RuntimeError(f'Missing release identity: {name}')
-            identity = json.load(stream)
-            if any(identity.get(key) != expected for key, expected in
+        identity_path = f"archguard-{info['version']}/release.json"
+        if platform.startswith('windows-'):
+            with zipfile.ZipFile(archive) as package:
+                identity = json.loads(package.read(identity_path))
+        else:
+            with tarfile.open(archive, 'r:gz') as package:
+                stream = package.extractfile(identity_path)
+                if stream is None:
+                    raise RuntimeError(f'Missing release identity: {name}')
+                identity = json.load(stream)
+        if any(identity.get(key) != expected for key, expected in
                    [('version', info['version']), ('commit', info['commit']), ('platform', platform)]):
-                raise RuntimeError(f'Archive release identity mismatch: {name}')
+            raise RuntimeError(f'Archive release identity mismatch: {name}')
     return expected
 
 
@@ -196,7 +212,7 @@ def publish(repo, info, directory):
         verify_public_assets(repo, release, info)
     else:
         if directory is None:
-            raise RuntimeError('A draft release requires all four built archives and checksum files')
+            raise RuntimeError('A draft release requires all supported platform archives and checksum files')
         expected = validate_assets(directory, info)
         if release:
             if release['target_commitish'] != info['commit'] or release['body'].strip() != info['notes'].strip():

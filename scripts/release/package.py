@@ -11,12 +11,14 @@ import shutil
 import subprocess
 import tarfile
 import tempfile
+import zipfile
 
 PLATFORMS = {
     'linux-x86_64': ('x86_64-unknown-linux-gnu', 'Ubuntu 22.04 / glibc 2.35'),
     'linux-arm64': ('aarch64-unknown-linux-gnu', 'Ubuntu 22.04 / glibc 2.35'),
     'macos-x86_64': ('x86_64-apple-darwin', 'macOS 15'),
     'macos-arm64': ('aarch64-apple-darwin', 'macOS 15'),
+    'windows-x86_64': ('x86_64-pc-windows-msvc', 'Windows 10 / Windows Server 2016'),
 }
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -85,12 +87,14 @@ def package(binary, platform, output):
     version = product['version']
     commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     output.mkdir(parents=True, exist_ok=True)
-    name = f'archguard-{version}-{platform}.tar.gz'
+    extension = 'zip' if platform.startswith('windows-') else 'tar.gz'
+    executable = 'archguard.exe' if platform.startswith('windows-') else 'archguard'
+    name = f'archguard-{version}-{platform}.{extension}'
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory) / f'archguard-{version}'
         (root / 'bin').mkdir(parents=True)
-        shutil.copyfile(binary, root / 'bin/archguard')
-        (root / 'bin/archguard').chmod(0o755)
+        shutil.copyfile(binary, root / 'bin' / executable)
+        (root / 'bin' / executable).chmod(0o755)
         for path in ['sdk', 'skills', 'docs', 'examples']:
             shutil.copytree(ROOT / path, root / path, ignore=shutil.ignore_patterns('node_modules', 'local'))
         provider = root / 'providers/typescript7'
@@ -109,14 +113,24 @@ def package(binary, platform, output):
         shutil.copyfile(toolchain / 'share/doc/rust/COPYRIGHT-library.html', standard_library / 'COPYRIGHT-library.html')
         shutil.copytree(toolchain / 'share/doc/rust/licenses', standard_library / 'licenses')
         # Stable archive metadata lets interrupted uploads compare bytes on reruns.
-        with (output / name).open('wb') as stream, gzip.GzipFile(fileobj=stream, mode='wb', filename='', mtime=0) as compressed:
-            with tarfile.open(fileobj=compressed, mode='w') as archive:
+        if extension == 'zip':
+            with zipfile.ZipFile(output / name, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
                 for path in sorted(root.rglob('*')):
-                    info = archive.gettarinfo(str(path), arcname=f'{root.name}/{path.relative_to(root)}')
-                    info.uid = info.gid = info.mtime = 0
-                    info.uname = info.gname = ''
-                    info.mode = 0o755 if path.is_dir() or path == root / 'bin/archguard' else 0o644
-                    archive.addfile(info, io.BytesIO(path.read_bytes()) if path.is_file() else None)
+                    if path.is_file():
+                        entry = zipfile.ZipInfo(f'{root.name}/{path.relative_to(root).as_posix()}', (1980, 1, 1, 0, 0, 0))
+                        entry.create_system = 3
+                        entry.external_attr = (0o100644 << 16)
+                        entry.compress_type = zipfile.ZIP_DEFLATED
+                        archive.writestr(entry, path.read_bytes())
+        else:
+            with (output / name).open('wb') as stream, gzip.GzipFile(fileobj=stream, mode='wb', filename='', mtime=0) as compressed:
+                with tarfile.open(fileobj=compressed, mode='w') as archive:
+                    for path in sorted(root.rglob('*')):
+                        info = archive.gettarinfo(str(path), arcname=f'{root.name}/{path.relative_to(root).as_posix()}')
+                        info.uid = info.gid = info.mtime = 0
+                        info.uname = info.gname = ''
+                        info.mode = 0o755 if path.is_dir() or path == root / 'bin' / executable else 0o644
+                        archive.addfile(info, io.BytesIO(path.read_bytes()) if path.is_file() else None)
     digest = hashlib.sha256((output / name).read_bytes()).hexdigest()
     (output / f'{name}.sha256').write_text(f'{digest}  {name}\n')
     print(output / name)

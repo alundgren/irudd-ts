@@ -5,14 +5,47 @@ on:
       release_pr:
         description: Merged release-please PR number
         type: string
-        required: true
+        required: false
+      validation_only:
+        description: Validate the selected branch on Windows without preparing or publishing a release
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
   group: archguard-release
   cancel-in-progress: false
 jobs:
+  windows-validation:
+    if: inputs.validation_only
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - id: windows-check
+        name: Native Windows acceptance and installer controls
+        shell: powershell
+        run: ./scripts/check_windows.ps1
+      - id: consumer-action
+        name: Exercise the Windows consumer Action
+        uses: ./
+        env:
+          ARCHGUARD_DOWNLOAD_BASE_URL: ${{ steps.windows-check.outputs.download_base }}
+        with:
+          version: ${{ steps.windows-check.outputs.version }}
+          root: ${{ steps.windows-check.outputs.action_root }}
+          config: ${{ steps.windows-check.outputs.action_root }}/archguard.json
+      - name: Verify Windows Action output
+        if: runner.os == 'Windows'
+        shell: powershell
+        env:
+          ARCHGUARD_ACTION_DIRECTORY: ${{ steps.consumer-action.outputs.directory }}
+        run: |
+          if (-not $env:ARCHGUARD_ACTION_DIRECTORY -or -not (Test-Path -LiteralPath "$env:ARCHGUARD_ACTION_DIRECTORY/bin/archguard.exe")) { throw 'Missing Windows Action distribution output' }
   identify:
+    if: ${{ !inputs.validation_only }}
     runs-on: ubuntu-22.04
     outputs:
       version: ${{ steps.release.outputs.version }}
@@ -44,6 +77,8 @@ jobs:
             platform: macos-x86_64
           - runner: macos-15
             platform: macos-arm64
+          - runner: windows-2022
+            platform: windows-x86_64
     runs-on: ${{ matrix.runner }}
     env:
       MACOSX_DEPLOYMENT_TARGET: '15.0'
@@ -51,11 +86,39 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: ${{ needs.identify.outputs.commit }}
+      - if: matrix.platform == 'windows-x86_64'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - id: windows-check
+        name: Native Windows acceptance, packaging, and installed smoke
+        if: matrix.platform == 'windows-x86_64'
+        shell: powershell
+        run: ./scripts/check_windows.ps1
+      - id: consumer-action
+        name: Exercise the Windows consumer Action
+        if: matrix.platform == 'windows-x86_64'
+        uses: ./
+        env:
+          ARCHGUARD_DOWNLOAD_BASE_URL: ${{ steps.windows-check.outputs.download_base }}
+        with:
+          version: ${{ steps.windows-check.outputs.version }}
+          root: ${{ steps.windows-check.outputs.action_root }}
+          config: ${{ steps.windows-check.outputs.action_root }}/archguard.json
+      - name: Verify Windows Action output
+        if: runner.os == 'Windows'
+        shell: powershell
+        env:
+          ARCHGUARD_ACTION_DIRECTORY: ${{ steps.consumer-action.outputs.directory }}
+        run: |
+          if (-not $env:ARCHGUARD_ACTION_DIRECTORY -or -not (Test-Path -LiteralPath "$env:ARCHGUARD_ACTION_DIRECTORY/bin/archguard.exe")) { throw 'Missing Windows Action distribution output' }
       - name: Build locked executable on its native OS and architecture
+        if: matrix.platform != 'windows-x86_64'
         run: |
           rustup toolchain install 1.96.0 --profile minimal --component rust-docs
           cargo +1.96.0 build --release --locked --bin archguard
       - name: Package notices and smoke test installed archive
+        if: matrix.platform != 'windows-x86_64'
         env:
           ARCHGUARD_PLATFORM: ${{ matrix.platform }}
           ARCHGUARD_VERSION: ${{ needs.identify.outputs.version }}

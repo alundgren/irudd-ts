@@ -1,14 +1,14 @@
 # Install a released binary
 
-Archguard distributes native executables for Linux and macOS on x86_64 and arm64.
+Archguard distributes native executables for Linux and macOS on x86_64 and arm64,
+and Windows x64. Windows archives require Windows 10 or Windows Server 2016 or newer.
 Linux archives require Ubuntu 22.04 or newer with glibc 2.35 and libgcc. macOS
 archives require macOS 15 or newer. Each release builds and runs its installed
 archive on the corresponding native GitHub runner. Other Linux distributions
 with those libraries may work, but are not part of release smoke validation.
 
 Choose an exact version from the [published releases](https://github.com/alundgren/irudd-ts/releases).
-No binary release exists until the first manual release is published. Download
-the installer from the matching tag, inspect it, and run it:
+Download the installer from the matching tag, inspect it, and run it:
 
 ```sh
 curl --fail --location https://raw.githubusercontent.com/alundgren/irudd-ts/v0.1.0/scripts/install.sh -o install-archguard.sh
@@ -24,7 +24,33 @@ or shasum. It refuses an existing destination. Select a new directory when
 upgrading, then point PATH at that version. Checksums catch damaged downloads;
 trust the repository and release author before executing a downloaded binary.
 
-Each archive includes `bin/archguard`, the TypeScript SDK, the evaluation skill,
+## Windows PowerShell
+
+Run this in Windows PowerShell 5.1 or PowerShell 7:
+
+```powershell
+$env:ARCHGUARD_VERSION = '0.2.0'
+irm https://raw.githubusercontent.com/alundgren/irudd-ts/v0.2.0/scripts/install.ps1 | iex
+archguard --version
+archguard check --root . --config archguard.json
+```
+
+The installer downloads the Windows ZIP, checks SHA256, validates archive paths
+and platform identity, and checks the executable version before installation.
+It installs under `%LOCALAPPDATA%\Archguard\VERSION` and adds that version's
+`bin` directory to your user PATH and the current shell. No administrator rights
+are needed. Omit `ARCHGUARD_VERSION` to select the latest published stable release.
+An existing destination is refused. To inspect the script or choose a directory:
+
+```powershell
+irm https://raw.githubusercontent.com/alundgren/irudd-ts/v0.2.0/scripts/install.ps1 -OutFile install-archguard.ps1
+.\install-archguard.ps1 -Version 0.2.0 -InstallDirectory "$env:LOCALAPPDATA\Archguard\0.2.0"
+```
+
+Windows ARM64 and 32-bit Windows are not release targets. The GitHub Action also
+supports `windows-2022` runners when pinned to a release with Windows support.
+
+Each archive includes `bin/archguard` or `bin/archguard.exe`, the TypeScript SDK, the evaluation skill,
 examples, guides, the optional compiler adapter and its lockfile, actual Cargo
 dependency license notices, and a release identity record. It does not include
 a compiler installation or `node_modules`. Structural checks need no Node or

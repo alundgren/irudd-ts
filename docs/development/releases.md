@@ -64,11 +64,11 @@ manual workflows. There is no automatic validation CI in this repository.
    merged source revision matches the tested PR revision; if merging included
    additional source changes, run `scripts/check.sh` at the exact merged commit
    before dispatching publication. Never pass an
-   arbitrary version or commit to publication. All four native builds, license
+   arbitrary version or commit to publication. All five native builds, license
    packages, installer checks, and exit-code smoke tests must pass before a
    draft is created or resumed.
 6. Monitor publication. The publisher rejects conflicting tags and asset bytes,
-   verifies all four archives and all four checksum assets, and publishes only
+   verifies all five archives and all five checksum assets, and publishes only
    a complete draft. GitHub release notes come from the release-please changelog
    section. Do not use GitHub's automatic release notes. Verify the public tag,
    exact commit, notes and downloads. Only successful publication reconciles the
@@ -103,3 +103,17 @@ database; Cargo, the manifest, changelog, PR, tag, and GitHub release hold the
 release state. Native runtime validation on all supported systems occurs during
 the explicitly dispatched publisher; a local Linux check cannot establish macOS
 or arm64 compatibility.
+
+## Validate a Windows branch before merging
+
+The existing manual publisher has a validation-only mode. Dispatch it against
+an explicitly selected branch to run native Windows build, plugin/provider,
+mutation, and installer acceptance without creating a release:
+
+```sh
+gh workflow run publish-release.yml --repo alundgren/irudd-ts --ref BRANCH -f validation_only=true
+```
+
+`scripts/check_windows.ps1` runs both here and during publication. This workflow
+has no push or pull-request triggers. Releases before 0.2.0 keep their original
+four-platform asset requirements; later releases require the Windows ZIP too.

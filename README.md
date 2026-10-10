@@ -6,7 +6,7 @@ The [Archguard site](https://alundgren.github.io/irudd-ts/) shows what it adds t
 
 ## Get started
 
-Install an exact [released binary](docs/guides/installation.md) for Linux or macOS on x86_64 or arm64. Binary releases become available after the first manual release. To build from this checkout instead, use Rust 1.96 or newer:
+Install an exact [released binary](docs/guides/installation.md) for Linux or macOS on x86_64 or arm64, or Windows x64. To build from this checkout instead, use Rust 1.96 or newer:
 
 ```sh
 cargo build --release --locked
@@ -54,7 +54,7 @@ Parser errors and unresolved internal dependencies remain visible. Select all so
 - [Compiler member checks](docs/extensions/semantic-provider.md) use an optional, separately installed TypeScript 7.0.2 provider.
 - [Graph caching](docs/guides/cache.md) is opt-in. Recorded measurements have not shown a speed improvement.
 
-Plugins and semantic providers are trusted commands you explicitly configure. Subprocess execution currently requires Unix.
+Plugins and semantic providers are trusted commands you explicitly configure. They run on Linux, macOS, and Windows.
 
 Start with the [runnable examples](examples/README.md), including a [T3 Code adoption case study](examples/t3code/README.md). The [documentation index](docs/README.md) has reference and extension guides.
 

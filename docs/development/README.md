@@ -36,3 +36,8 @@ node scripts/check_mutator_vitest.mjs /absolute/installed/project
 ```
 
 This creates owned temporary fixtures and leaves the target source untouched. The SDK and reporter unit tests run through `check.sh`.
+
+On native Windows x64, run `powershell -NoProfile -File scripts/check_windows.ps1`.
+It installs the explicit compiler test environment, runs the native acceptance
+suite, packages the executable, and tests the PowerShell installer. Before merging
+Windows changes from another OS, use the manual [branch validation](releases.md#validate-a-windows-branch-before-merging).
