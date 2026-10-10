@@ -81,7 +81,51 @@ def notices(packages, destination):
     (destination / 'inventory.json').write_text(json.dumps(records, indent=2) + '\n')
 
 
-def package(binary, platform, output):
+def windows_runtime_notices(source, binary, destination):
+    if source is None:
+        raise RuntimeError('Windows release requires collected static runtime notices')
+    record = json.loads((source / 'provenance.json').read_text())
+    if (record.get('schemaVersion') != 1 or record.get('target') != PLATFORMS['windows-x86_64'][0]
+            or record.get('runtime') != 'static-release'
+            or record.get('binarySha256') != hashlib.sha256(binary.read_bytes()).hexdigest()):
+        raise RuntimeError('Windows runtime provenance does not match the release binary')
+    if (record.get('visualStudio', {}).get('productId') not in ('Microsoft.VisualStudio.Product.Enterprise', 'Microsoft.VisualStudio.Product.Professional')
+            or not re.fullmatch(r'17\.\d+\.\d+\.\d+', record.get('visualStudio', {}).get('version', ''))
+            or not re.fullmatch(r'14\.\d+\.\d+', record.get('toolsetVersion', ''))
+            or not re.fullmatch(r'10\.0\.\d+\.\d+', record.get('windowsSdkVersion', ''))):
+        raise RuntimeError('Windows runtime toolchain identity is unsupported')
+    libraries = record.get('libraries', [])
+    if (len(libraries) != 3 or {entry.get('name') for entry in libraries} != {'libvcruntime.lib', 'libcmt.lib', 'libucrt.lib'}
+            or any(not re.fullmatch(r'[0-9a-f]{64}', entry.get('sha256', '')) or not entry.get('sourcePath') for entry in libraries)):
+        raise RuntimeError('Windows release runtime library provenance is incomplete')
+    if not record.get('linker', {}).get('sourcePath') or not re.fullmatch(r'[0-9a-f]{64}', record.get('linker', {}).get('sha256', '')):
+        raise RuntimeError('Windows release linker provenance is incomplete')
+    notices = record.get('notices', [])
+    if not notices or {entry.get('kind') for entry in notices} != {'visual-studio', 'windows-sdk'}:
+        raise RuntimeError('Windows release is missing applicable runtime terms')
+    expected = {'provenance.json'}
+    for notice in notices:
+        relative = notice.get('file', '')
+        if (not relative or '\\' in relative or ':' in relative or relative.startswith('/')
+                or any(part in ('', '.', '..') for part in relative.split('/'))
+                or Path(relative).suffix.lower() not in ('.docx', '.html', '.rtf', '.txt')
+                or relative in expected or not notice.get('source')):
+            raise RuntimeError('Windows runtime notice path or provenance is invalid')
+        path = source / relative
+        if path.is_symlink() or not path.is_file() or path.stat().st_size > 4 * 1024 * 1024 or hashlib.sha256(path.read_bytes()).hexdigest() != notice.get('sha256'):
+            raise RuntimeError('Windows runtime notice is missing or its checksum changed')
+        expected.add(relative)
+    actual = {path.relative_to(source).as_posix() for path in source.rglob('*') if path.is_file()}
+    if actual != expected or any(path.is_symlink() for path in source.rglob('*')):
+        raise RuntimeError('Windows runtime notices contain unexpected files')
+    shutil.copytree(source, destination)
+
+
+def package(binary, platform, output, runtime_notices=None):
+    if platform.startswith('windows-') and runtime_notices is None:
+        raise RuntimeError('Windows release requires collected static runtime notices')
+    if not platform.startswith('windows-') and runtime_notices is not None:
+        raise RuntimeError('Microsoft runtime notices require a Windows release')
     data = metadata(platform)
     product = next(p for p in data['packages'] if p['id'] == data['resolve']['root'])
     version = product['version']
@@ -107,6 +151,8 @@ def package(binary, platform, output):
         (root / 'release.json').write_text(json.dumps({'version': version, 'commit': commit, 'platform': platform,
                                                       'minimumOS': PLATFORMS[platform][1]}, sort_keys=True) + '\n')
         notices(dependencies(data), root / 'licenses')
+        if platform.startswith('windows-'):
+            windows_runtime_notices(runtime_notices, binary, root / 'licenses/microsoft-static-runtime')
         toolchain = Path(subprocess.check_output(['rustc', '+1.96.0', '--print', 'sysroot'], text=True).strip())
         standard_library = root / 'licenses/rust-standard-library-1.96.0'
         standard_library.mkdir()
@@ -141,5 +187,6 @@ if __name__ == '__main__':
     parser.add_argument('--binary', required=True, type=Path)
     parser.add_argument('--platform', required=True, choices=PLATFORMS)
     parser.add_argument('--output', required=True, type=Path)
+    parser.add_argument('--windows-runtime-notices', type=Path)
     args = parser.parse_args()
-    package(args.binary, args.platform, args.output)
+    package(args.binary, args.platform, args.output, args.windows_runtime_notices)
