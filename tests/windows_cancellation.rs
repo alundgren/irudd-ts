@@ -14,8 +14,9 @@ use windows_sys::Win32::{
     Foundation::WAIT_OBJECT_0,
     System::{
         Console::{
-            AllocConsole, CTRL_BREAK_EVENT, FreeConsole, GenerateConsoleCtrlEvent, GetStdHandle,
-            STD_ERROR_HANDLE, STD_INPUT_HANDLE, STD_OUTPUT_HANDLE, SetStdHandle,
+            AllocConsole, CTRL_BREAK_EVENT, CTRL_C_EVENT, FreeConsole, GenerateConsoleCtrlEvent,
+            GetStdHandle, STD_ERROR_HANDLE, STD_INPUT_HANDLE, STD_OUTPUT_HANDLE,
+            SetConsoleCtrlHandler, SetStdHandle,
         },
         Threading::{
             CREATE_NEW_PROCESS_GROUP, OpenProcess, PROCESS_QUERY_LIMITED_INFORMATION,
@@ -47,25 +48,27 @@ fn collect(child: std::process::Child, timeout: Duration) -> Output {
 fn console_break_cancels_mutation_and_cleans_commands() {
     const HELPER: &str = "ARCHGUARD_WINDOWS_CONSOLE_HELPER";
     if std::env::var_os(HELPER).is_none() {
-        let child = Command::new(std::env::current_exe().unwrap())
-            .args([
-                "console_break_cancels_mutation_and_cleans_commands",
-                "--exact",
-                "--nocapture",
-            ])
-            .env(HELPER, "1")
-            .stdin(Stdio::null())
-            .stdout(Stdio::piped())
-            .stderr(Stdio::piped())
-            .spawn()
-            .unwrap();
-        let output = collect(child, Duration::from_secs(90));
-        assert!(
-            output.status.success(),
-            "{}\n{}",
-            String::from_utf8_lossy(&output.stdout),
-            String::from_utf8_lossy(&output.stderr)
-        );
+        for event in ["break", "ctrl-c"] {
+            let child = Command::new(std::env::current_exe().unwrap())
+                .args([
+                    "console_break_cancels_mutation_and_cleans_commands",
+                    "--exact",
+                    "--nocapture",
+                ])
+                .env(HELPER, event)
+                .stdin(Stdio::null())
+                .stdout(Stdio::piped())
+                .stderr(Stdio::piped())
+                .spawn()
+                .unwrap();
+            let output = collect(child, Duration::from_secs(90));
+            assert!(
+                output.status.success(),
+                "{event}: {}\n{}",
+                String::from_utf8_lossy(&output.stdout),
+                String::from_utf8_lossy(&output.stderr)
+            );
+        }
         return;
     }
     // An isolated helper owns a fresh console so the targeted event cannot
@@ -84,6 +87,9 @@ fn console_break_cancels_mutation_and_cleans_commands() {
     for (stream, handle) in streams {
         assert_ne!(unsafe { SetStdHandle(stream, handle) }, 0);
     }
+    // Ctrl-C must reach the CLI even when its parent and new process group
+    // initially disable it. The helper remains immune to the broadcast.
+    assert_ne!(unsafe { SetConsoleCtrlHandler(None, 1) }, 0);
     struct ConsoleGuard;
     impl Drop for ConsoleGuard {
         fn drop(&mut self) {
@@ -143,8 +149,13 @@ fn console_break_cancels_mutation_and_cleans_commands() {
     };
     assert!(!process.is_null());
     let process = unsafe { OwnedHandle::from_raw_handle(process) };
+    let (event, group) = if std::env::var(HELPER).unwrap() == "ctrl-c" {
+        (CTRL_C_EVENT, 0)
+    } else {
+        (CTRL_BREAK_EVENT, child.id())
+    };
     assert_ne!(
-        unsafe { GenerateConsoleCtrlEvent(CTRL_BREAK_EVENT, child.id()) },
+        unsafe { GenerateConsoleCtrlEvent(event, group) },
         0,
         "{}",
         std::io::Error::last_os_error()

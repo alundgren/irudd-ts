@@ -258,6 +258,11 @@ impl CliCancellation {
         {
             use windows_sys::Win32::System::Console::SetConsoleCtrlHandler;
             CANCELLED.store(false, std::sync::atomic::Ordering::Relaxed);
+            // A new console group can inherit disabled Ctrl-C handling.
+            if unsafe { SetConsoleCtrlHandler(None, 0) } == 0 {
+                return Err(std::io::Error::last_os_error())
+                    .context("enabling Windows Ctrl-C cancellation");
+            }
             if unsafe { SetConsoleCtrlHandler(Some(cancel_windows_run), 1) } == 0 {
                 return Err(std::io::Error::last_os_error())
                     .context("installing Windows console cancellation handler");
