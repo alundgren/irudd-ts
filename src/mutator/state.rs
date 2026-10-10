@@ -630,3 +630,34 @@ fn validate_private(path: &Path) -> Result<()> {
     }
     Ok(())
 }
+
+#[cfg(all(test, windows))]
+mod windows_tests {
+    use super::*;
+    #[test]
+    fn state_retains_directory_records_and_ancestor_handles_until_drop() {
+        let root = storage::create_private_directory(
+            &std::env::temp_dir(),
+            "archguard-state-lifetime-test",
+        )
+        .unwrap();
+        let ancestor = root.join("ancestor");
+        fs::create_dir(&ancestor).unwrap();
+        let directory = ancestor.join("state");
+        let config = StateConfig {
+            directory: directory.clone(),
+            reuse: ReusePolicy::Off,
+            external_inputs: vec![],
+        };
+        let state = RunState::open(&config, &root, &[]).unwrap();
+        assert!(fs::rename(&directory, ancestor.join("moved-state")).is_err());
+        assert!(fs::rename(directory.join("records"), directory.join("moved-records")).is_err());
+        assert!(fs::rename(&ancestor, root.join("moved-ancestor")).is_err());
+        drop(state);
+        let moved = ancestor.join("moved-state");
+        fs::rename(&directory, &moved).unwrap();
+        fs::rename(moved.join("records"), moved.join("moved-records")).unwrap();
+        fs::rename(&ancestor, root.join("moved-ancestor")).unwrap();
+        fs::remove_dir_all(root).unwrap();
+    }
+}
