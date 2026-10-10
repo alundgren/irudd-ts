@@ -815,6 +815,7 @@ impl TaskContext<'_> {
                 &protocol,
             )?;
             let limits = CommandLimits {
+                inherit_environment: false,
                 deadline: self.deadline.min(
                     Instant::now() + Duration::from_millis(self.config.limits.command_timeout_ms),
                 ),
@@ -1449,6 +1450,7 @@ mod monitor_tests {
             let token = CancellationToken::new();
             let deadline = Instant::now() + Duration::from_secs(2);
             let limits = CommandLimits {
+                inherit_environment: false,
                 deadline,
                 stdin_bytes: 1024,
                 stdout_bytes: 1024,
