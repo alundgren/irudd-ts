@@ -1,4 +1,5 @@
 pub mod cache;
+mod compiler_path;
 pub mod config;
 pub mod dryer;
 pub mod facts;

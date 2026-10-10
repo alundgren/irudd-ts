@@ -465,8 +465,16 @@ impl CacheRun {
                         .path
                         .canonicalize()
                         .unwrap_or_else(|_| self.path.clone());
-                    let destination_used = observations.iter().any(|observation| observation.path == self.path
-                        || matches!(&observation.value, Observed::Path(path) if path == &canonical_destination));
+                    let destination_used = observations.iter().any(|observation| {
+                        let identity = observation.path.canonicalize().or_else(|error| {
+                            let Some(parent) = observation.path.parent() else { return Err(error) };
+                            let Some(name) = observation.path.file_name() else { return Err(error) };
+                            parent.canonicalize().map(|parent| parent.join(name))
+                        });
+                        observation.path == self.path
+                            || identity.is_ok_and(|path| path == canonical_destination)
+                            || matches!(&observation.value, Observed::Path(path) if path == &canonical_destination)
+                    });
                     if destination_used {
                         self.errors.push(
                             "cache destination is a resolver input; graph was not published".into(),
