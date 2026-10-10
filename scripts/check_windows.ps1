@@ -4,6 +4,9 @@ $ErrorActionPreference = 'Stop'
 # Mutation inventories hash the CLI; omit debugger data from acceptance binaries.
 $env:CARGO_PROFILE_DEV_DEBUG = '0'
 $env:CARGO_PROFILE_TEST_DEBUG = '0'
+# Inventory hashing also reads external executables such as Node.
+$env:CARGO_PROFILE_DEV_OPT_LEVEL = '1'
+$env:CARGO_PROFILE_TEST_OPT_LEVEL = '1'
 function Invoke-Checked {
     param([string]$Program, [string[]]$Arguments)
     & $Program @Arguments
