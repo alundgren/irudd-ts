@@ -1,6 +1,6 @@
 use super::*;
 use std::{
-    collections::BTreeMap,
+    cmp::Ordering,
     ffi::{OsStr, OsString},
     io,
     os::windows::{
@@ -294,26 +294,60 @@ fn executable(command: &Command) -> Result<std::path::PathBuf> {
     }
     bail!("configured executable {} was not found", program.display())
 }
+fn environment_key_order(left: &OsStr, right: &OsStr) -> Result<Ordering> {
+    use windows_sys::Win32::Globalization::{
+        CSTR_EQUAL, CSTR_GREATER_THAN, CSTR_LESS_THAN, CompareStringOrdinal,
+    };
+    let left: Vec<_> = left.encode_wide().collect();
+    let right: Vec<_> = right.encode_wide().collect();
+    let compared = unsafe {
+        CompareStringOrdinal(
+            left.as_ptr(),
+            i32::try_from(left.len())?,
+            right.as_ptr(),
+            i32::try_from(right.len())?,
+            1,
+        )
+    };
+    match compared {
+        CSTR_LESS_THAN => Ok(Ordering::Less),
+        CSTR_EQUAL => Ok(Ordering::Equal),
+        CSTR_GREATER_THAN => Ok(Ordering::Greater),
+        _ => Err(io::Error::last_os_error()).context("comparing Windows environment names"),
+    }
+}
 fn environment(command: &Command, inherit: bool) -> Result<Vec<u16>> {
-    let mut values: BTreeMap<OsString, (OsString, OsString)> = std::env::vars_os()
-        .filter(|_| inherit)
-        .map(|(key, value)| {
-            (
-                OsString::from(key.to_string_lossy().to_uppercase()),
-                (key, value),
-            )
-        })
-        .collect();
+    let mut values: Vec<(OsString, OsString)> = std::env::vars_os().filter(|_| inherit).collect();
     for (key, value) in command.get_envs() {
-        let normalized = OsString::from(key.to_string_lossy().to_uppercase());
+        let mut found = None;
+        for (index, (existing, _)) in values.iter().enumerate() {
+            if environment_key_order(existing, key)? == Ordering::Equal {
+                found = Some(index);
+                break;
+            }
+        }
+        if let Some(index) = found {
+            values.remove(index);
+        }
         if let Some(value) = value {
-            values.insert(normalized, (key.into(), value.into()));
-        } else {
-            values.remove(&normalized);
+            values.push((key.into(), value.into()));
         }
     }
+    let mut compare_error = None;
+    values.sort_by(
+        |(left, _), (right, _)| match environment_key_order(left, right) {
+            Ok(order) => order,
+            Err(error) => {
+                compare_error = Some(error);
+                Ordering::Equal
+            }
+        },
+    );
+    if let Some(error) = compare_error {
+        return Err(error);
+    }
     let mut output = vec![];
-    for (_, (key, value)) in values {
+    for (key, value) in values {
         let mut item = key;
         item.push("=");
         item.push(value);
@@ -1026,6 +1060,26 @@ mod tests {
         assert_eq!(
             unsafe { WaitForSingleObject(raw(&child_handle.unwrap()), 1000) },
             WAIT_OBJECT_0
+        );
+    }
+    #[test]
+    fn unicode_environment_names_follow_windows_ordinal_comparison() {
+        let mut command = node(
+            "process.stdout.write(JSON.stringify([process.env['straße'],process.env.STRASSE,process.env.Mixed]))",
+        );
+        command
+            .env_clear()
+            .env("straße", "left")
+            .env("STRASSE", "right")
+            .env("mixed", "selected");
+        let mut bound = limits();
+        bound.inherit_environment = false;
+        let output = run_command(command, b"", &bound, || false, || Ok(())).unwrap();
+        assert_eq!(output.stop, CommandStop::Completed);
+        assert!(output.status.unwrap().success() && output.cleanup_complete);
+        assert_eq!(
+            serde_json::from_slice::<serde_json::Value>(&output.stdout).unwrap(),
+            serde_json::json!(["left", "right", "selected"])
         );
     }
     #[test]
