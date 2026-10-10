@@ -1,4 +1,6 @@
 research/**/results/*.json linguist-generated=true
 research/**/measurements/*.json linguist-generated=true
 docs/licenses/*.json linguist-generated=true
+# Retained upstream notices must match their recorded byte checksums on Windows.
+docs/licenses/upstream/** -text
 research/benchmarks/toolchain/licenses.json linguist-generated=true

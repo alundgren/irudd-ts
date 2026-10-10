@@ -251,6 +251,37 @@ class ReleaseTests(unittest.TestCase):
             for notice in record['notices']:
                 self.assertEqual(hashlib.sha256((directory / notice['file']).read_bytes()).hexdigest(), notice['sha256'])
 
+    def test_windows_checkout_preserves_upstream_notice_bytes(self):
+        checkout = self.directory / 'checkout'
+        checkout.mkdir()
+        def git(*arguments):
+            subprocess.run(['git', '-C', str(checkout), *arguments], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        git('init', '--quiet')
+        record = json.loads((ROOT / 'docs/licenses/upstream/index.json').read_text())[0]
+        notice = record['notices'][0]
+        relative = Path('docs/licenses/upstream') / notice['file']
+        saved = checkout / relative
+        saved.parent.mkdir(parents=True)
+        original = (ROOT / relative).read_bytes()
+        saved.write_bytes(original)
+        ordinary = checkout / 'ordinary.txt'
+        ordinary.write_bytes(b'ordinary text\n')
+        git('-c', 'core.autocrlf=false', 'add', '.')
+        saved.unlink()
+        ordinary.unlink()
+        git('-c', 'core.autocrlf=true', 'checkout-index', '--force', '--all')
+        self.assertNotEqual(hashlib.sha256(saved.read_bytes()).hexdigest(), notice['sha256'])
+        self.assertEqual(ordinary.read_bytes(), b'ordinary text\r\n')
+        (checkout / '.gitattributes').write_bytes((ROOT / '.gitattributes').read_bytes())
+        git('-c', 'core.autocrlf=false', 'add', '.gitattributes')
+        saved.unlink()
+        ordinary.unlink()
+        git('-c', 'core.autocrlf=true', 'checkout-index', '--force', '--all')
+        self.assertEqual(saved.read_bytes(), original)
+        self.assertEqual(hashlib.sha256(saved.read_bytes()).hexdigest(), notice['sha256'])
+        self.assertEqual(ordinary.read_bytes(), b'ordinary text\r\n')
+
     def test_merged_pr_version_controls(self):
         pr = {'merged': True, 'base': {'ref': 'main', 'repo': {'full_name': 'owner/repo'}},
               'head': {'ref': 'release-please--branches--main'}, 'labels': [{'name': 'autorelease: pending'}],
