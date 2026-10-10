@@ -15,7 +15,7 @@ function Invoke-Checked {
 Invoke-Checked rustup -Arguments @('toolchain', 'install', '1.96.0', '--profile', 'minimal', '--component', 'rust-docs')
 Invoke-Checked npm.cmd -Arguments @('ci', '--prefix', 'providers/typescript7', '--ignore-scripts', '--no-audit', '--no-fund')
 Invoke-Checked cargo -Arguments @('+1.96.0', 'build', '--release', '--locked', '--bin', 'archguard')
-Invoke-Checked cargo -Arguments @('+1.96.0', 'test', '--locked', '--features', 'semantic-tests')
+Invoke-Checked cargo -Arguments @('+1.96.0', 'test', '--locked', '--features', 'semantic-tests', '--no-fail-fast')
 Invoke-Checked node -Arguments @('--test', 'tests/mutator_sdk.test.ts', 'tests/mutator_reporter.test.ts')
 Invoke-Checked python -Arguments @('scripts/release/package.py', '--binary', 'target/release/archguard.exe', '--platform', 'windows-x86_64', '--output', $OutputDirectory)
 Invoke-Checked powershell -Arguments @('-NoProfile', '-File', 'tests/windows_installer.ps1', '-DistributionDirectory', $OutputDirectory)
