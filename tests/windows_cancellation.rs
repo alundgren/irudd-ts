@@ -6,7 +6,7 @@ use std::{
         io::{AsRawHandle, FromRawHandle, OwnedHandle},
         process::CommandExt,
     },
-    process::{Command, Stdio},
+    process::{Command, Output, Stdio},
     thread,
     time::{Duration, Instant},
 };
@@ -19,29 +19,35 @@ use windows_sys::Win32::{
         },
         Threading::{
             CREATE_NEW_PROCESS_GROUP, OpenProcess, PROCESS_QUERY_LIMITED_INFORMATION,
-            PROCESS_SYNCHRONIZE, WaitForSingleObject,
+            PROCESS_SYNCHRONIZE, PROCESS_TERMINATE, TerminateProcess, WaitForSingleObject,
         },
     },
 };
 
-fn wait(child: &mut std::process::Child, deadline: Instant) {
-    loop {
-        if child.try_wait().unwrap().is_some() {
-            return;
+fn collect(child: std::process::Child, timeout: Duration) -> Output {
+    let process = unsafe { OpenProcess(PROCESS_TERMINATE, 0, child.id()) };
+    assert!(!process.is_null());
+    let process = unsafe { OwnedHandle::from_raw_handle(process) };
+    let (sender, receiver) = std::sync::mpsc::sync_channel(1);
+    thread::spawn(move || {
+        let _ = sender.send(child.wait_with_output());
+    });
+    match receiver.recv_timeout(timeout) {
+        Ok(output) => output.unwrap(),
+        Err(error) => {
+            unsafe {
+                TerminateProcess(process.as_raw_handle(), 1);
+            }
+            let _ = receiver.recv_timeout(Duration::from_secs(5));
+            panic!("Windows CLI cancellation did not complete before deadline: {error}");
         }
-        if Instant::now() >= deadline {
-            let _ = child.kill();
-            let _ = child.wait();
-            panic!("Windows CLI cancellation did not complete before deadline");
-        }
-        thread::sleep(Duration::from_millis(10));
     }
 }
 #[test]
 fn console_break_cancels_mutation_and_cleans_commands() {
     const HELPER: &str = "ARCHGUARD_WINDOWS_CONSOLE_HELPER";
     if std::env::var_os(HELPER).is_none() {
-        let mut child = Command::new(std::env::current_exe().unwrap())
+        let child = Command::new(std::env::current_exe().unwrap())
             .args([
                 "console_break_cancels_mutation_and_cleans_commands",
                 "--exact",
@@ -53,8 +59,7 @@ fn console_break_cancels_mutation_and_cleans_commands() {
             .stderr(Stdio::piped())
             .spawn()
             .unwrap();
-        wait(&mut child, Instant::now() + Duration::from_secs(90));
-        let output = child.wait_with_output().unwrap();
+        let output = collect(child, Duration::from_secs(90));
         assert!(
             output.status.success(),
             "{}\n{}",
@@ -144,8 +149,7 @@ fn console_break_cancels_mutation_and_cleans_commands() {
         "{}",
         std::io::Error::last_os_error()
     );
-    wait(&mut child, Instant::now() + Duration::from_secs(15));
-    let output = child.wait_with_output().unwrap();
+    let output = collect(child, Duration::from_secs(15));
     assert_eq!(
         output.status.code(),
         Some(2),

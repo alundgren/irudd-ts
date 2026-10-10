@@ -1102,8 +1102,10 @@ mod tests {
                 &limits(),
                 || false,
                 || {
-                    if let Ok(text) = fs::read_to_string(&marker) {
-                        let pid = Pid::from_raw(text.parse().unwrap());
+                    if let Ok(text) = fs::read_to_string(&marker)
+                        && let Ok(pid) = text.parse()
+                    {
+                        let pid = Pid::from_raw(pid);
                         if kill(pid, None) == Err(Errno::ESRCH) {
                             checked_after_cleanup = true;
                             if reject {

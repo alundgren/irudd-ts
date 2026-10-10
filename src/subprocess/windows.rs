@@ -1012,9 +1012,10 @@ mod tests {
             || false,
             || {
                 if child_handle.is_none()
-                    && let Ok(pid) = std::fs::read_to_string(&marker)
+                    && let Ok(text) = std::fs::read_to_string(&marker)
+                    && let Ok(pid) = text.parse()
                 {
-                    child_handle = Some(process_handle(pid.parse().unwrap()));
+                    child_handle = Some(process_handle(pid));
                 }
                 Ok(())
             },
