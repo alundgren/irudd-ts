@@ -7,6 +7,20 @@
 
 * **windows:** add native x64 support and PowerShell installation ([#47](https://github.com/alundgren/irudd-ts/issues/47)) ([a6041e6](https://github.com/alundgren/irudd-ts/commit/a6041e6f1a56605b4b37702b37d9c17c8a25102d))
 
+Native Windows x64 now supports architecture checks, configured plugins and
+providers, duplication analysis, and mutation commands. Install with the
+checksum-verified PowerShell installer or use the consumer GitHub Action.
+Windows archives link the C runtime statically and retain the applicable
+Microsoft notices; no separate Visual C++ runtime installation is required.
+
+### Requirements and behavior
+
+* Windows requires Windows 10 version 1809 or Windows Server 2019 or newer. The installer supports Windows PowerShell 5.1 and PowerShell 7.
+* Windows CPU limits count per-process user CPU time. Address-space limits are unavailable; nonzero open-file and per-file generated-byte limits are rejected before execution. Aggregate mutation workspace budgets remain available.
+* Explicit `cmd.exe` commands require `/s` and a single command body after `/c` or `/k`. File symlinks require Developer Mode or appropriate privileges; directory links use junctions.
+* The Node mutation SDK rejects request links and detected file replacements or changes. Its Windows path/descriptor checks use Node's 64-bit file identity and metadata snapshots; native Rust mutation workspaces retain their separate 128-bit identity and ownership controls.
+* Existing Unix users need no configuration, CLI, SDK protocol, or compiler-pin migration. The optional provider remains pinned to TypeScript 7.0.2 and SDK scripts require Node 24.
+
 ## 0.1.0 (2026-10-07)
 
 
