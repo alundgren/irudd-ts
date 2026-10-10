@@ -501,4 +501,51 @@ mod tests {
                 .complete
         );
     }
+
+    #[test]
+    fn persisted_root_rejects_path_aliases_and_accepts_the_canonical_source() {
+        let root = tempfile::tempdir().unwrap();
+        std::fs::write(root.path().join("subject.ts"), "const f=()=>true").unwrap();
+        let mut plan = plan(root.path(), &MutationPlanConfig::default()).unwrap();
+        let canonical = plan.root.clone();
+        assert_eq!(
+            std::path::Path::new(&canonical),
+            root.path().canonicalize().unwrap()
+        );
+        for suffix in ["/.", "/..", "//alias", "/"] {
+            plan.root = format!("{canonical}{suffix}");
+            assert!(plan.validate().is_err(), "{}", plan.root);
+        }
+        plan.root = "relative/source".into();
+        assert!(plan.validate().is_err());
+        plan.root = canonical;
+        plan.validate().unwrap();
+        #[cfg(windows)]
+        {
+            for valid in [
+                r"C:\",
+                r"C:\source",
+                r"\\server\share\",
+                r"\\server\share\source",
+                r"\\?\C:\",
+                r"\\?\UNC\server\share\",
+                r"\\?\UNC\server\share\source",
+            ] {
+                plan.root = valid.into();
+                plan.validate().unwrap();
+            }
+            for invalid in [
+                r"C:source",
+                r"\source",
+                r"\\.\device",
+                r"C:\source\..\alias",
+                r"C:\source\.\alias",
+                r"C:\source\\alias",
+                r"C:\source\",
+            ] {
+                plan.root = invalid.into();
+                assert!(plan.validate().is_err(), "{invalid}");
+            }
+        }
+    }
 }

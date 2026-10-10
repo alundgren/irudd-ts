@@ -1,5 +1,6 @@
 use crate::{
     cache::{CacheRun, CachedAnalysis, RecordingFileSystem},
+    compiler_path,
     config::{Config, Matcher},
     facts::*,
     rust, typescript,
@@ -156,7 +157,7 @@ fn analyze_inner(
         resolver: ResolverGeneric::new_with_file_system(
             fs,
             ResolveOptions {
-                cwd: Some(root.clone()),
+                cwd: Some(compiler_path::compatible(&root)?),
                 tsconfig: Some(TsconfigDiscovery::Auto),
                 condition_names: config.conditions.clone(),
                 extensions: config.extensions.clone(),
@@ -289,6 +290,7 @@ fn resolve_edge(
         edge.status = ResolutionStatus::External;
         return Ok(());
     }
+    let source = compiler_path::compatible(source)?;
     let workspace = packages
         .iter()
         .filter(|p| specifier == p.name || specifier.starts_with(&format!("{}/", p.name)))
@@ -311,7 +313,7 @@ fn resolve_edge(
         ) {
             Some(target) if valid_export_target(&target) => resolver
                 .resolver
-                .resolve(&directory, &target)
+                .resolve(&compiler_path::compatible(&directory)?, &target)
                 .map(|r| r.path().to_owned()),
             _ => {
                 edge.status = ResolutionStatus::Unresolved;
@@ -325,7 +327,7 @@ fn resolve_edge(
     } else {
         resolver
             .resolver
-            .resolve_file(source, specifier)
+            .resolve_file(&source, specifier)
             .map(|r| r.path().to_owned())
     };
     match result {
@@ -336,7 +338,7 @@ fn resolve_edge(
                 edge.detail = Some(error.to_string());
                 return Ok(());
             }
-            let tsconfig = match resolver.resolver.find_tsconfig(source) {
+            let tsconfig = match resolver.resolver.find_tsconfig(&source) {
                 Ok(config) => config,
                 Err(error) => {
                     edge.status = ResolutionStatus::Unsupported;

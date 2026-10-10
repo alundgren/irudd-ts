@@ -9,6 +9,7 @@ import subprocess
 import tarfile
 import tempfile
 import unittest
+import zipfile
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +24,7 @@ def module(name):
 
 github = module('github')
 packaging = module('package')
+windows_notices = module('windows_notices')
 
 
 class ReleaseTests(unittest.TestCase):
@@ -54,8 +56,41 @@ class ReleaseTests(unittest.TestCase):
         checksum.write_text(original)
         github.validate_assets(self.directory, self.info)
         (self.directory / 'unexpected').write_text('x')
-        with self.assertRaisesRegex(RuntimeError, 'exactly four'):
+        with self.assertRaisesRegex(RuntimeError, 'exactly the supported'):
             github.validate_assets(self.directory, self.info)
+
+    def test_windows_assets_required_for_new_versions_and_historical_replay(self):
+        self.assertEqual(len(github.asset_names('0.1.0')), 8)
+        self.assertEqual(len(github.asset_names('0.2.0')), 10)
+        info = {**self.info, 'version': '0.2.0'}
+        directory = self.directory / 'new-release'
+        directory.mkdir()
+        for platform in github.platforms(info['version']):
+            name = github.archive_name(info['version'], platform)
+            identity = json.dumps({**info, 'platform': platform}).encode()
+            path = directory / name
+            if platform.startswith('windows-'):
+                with zipfile.ZipFile(path, 'w') as archive:
+                    archive.writestr('archguard-0.2.0/release.json', identity)
+            else:
+                with tarfile.open(path, 'w:gz') as archive:
+                    item = tarfile.TarInfo('archguard-0.2.0/release.json')
+                    item.size = len(identity)
+                    archive.addfile(item, io.BytesIO(identity))
+            digest = hashlib.sha256(path.read_bytes()).hexdigest()
+            (directory / f'{name}.sha256').write_text(f'{digest}  {name}\n')
+        self.assertEqual(len(github.validate_assets(directory, info)), 10)
+        windows = directory / 'archguard-0.2.0-windows-x86_64.zip'
+        data = windows.read_bytes()
+        windows.unlink()
+        with self.assertRaisesRegex(RuntimeError, 'exactly the supported'):
+            github.validate_assets(directory, info)
+        windows.write_bytes(data)
+        github.validate_assets(directory, info)
+        with self.assertRaisesRegex(RuntimeError, 'identity mismatch'):
+            github.validate_assets(directory, {**info, 'commit': 'b' * 40})
+        # Adding Windows cannot invalidate an already published older release.
+        self.assertEqual(len(github.validate_assets(self.directory, self.info)), 8)
 
     def test_unpublished_previous_blocks_preparation(self):
         with patch.object(github.Path, 'read_text', return_value='{".": "0.1.0"}'), \
@@ -216,6 +251,37 @@ class ReleaseTests(unittest.TestCase):
             for notice in record['notices']:
                 self.assertEqual(hashlib.sha256((directory / notice['file']).read_bytes()).hexdigest(), notice['sha256'])
 
+    def test_windows_checkout_preserves_upstream_notice_bytes(self):
+        checkout = self.directory / 'checkout'
+        checkout.mkdir()
+        def git(*arguments):
+            subprocess.run(['git', '-C', str(checkout), *arguments], check=True,
+                           stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        git('init', '--quiet')
+        record = json.loads((ROOT / 'docs/licenses/upstream/index.json').read_text())[0]
+        notice = record['notices'][0]
+        relative = Path('docs/licenses/upstream') / notice['file']
+        saved = checkout / relative
+        saved.parent.mkdir(parents=True)
+        original = (ROOT / relative).read_bytes()
+        saved.write_bytes(original)
+        ordinary = checkout / 'ordinary.txt'
+        ordinary.write_bytes(b'ordinary text\n')
+        git('-c', 'core.autocrlf=false', 'add', '.')
+        saved.unlink()
+        ordinary.unlink()
+        git('-c', 'core.autocrlf=true', 'checkout-index', '--force', '--all')
+        self.assertNotEqual(hashlib.sha256(saved.read_bytes()).hexdigest(), notice['sha256'])
+        self.assertEqual(ordinary.read_bytes(), b'ordinary text\r\n')
+        (checkout / '.gitattributes').write_bytes((ROOT / '.gitattributes').read_bytes())
+        git('-c', 'core.autocrlf=false', 'add', '.gitattributes')
+        saved.unlink()
+        ordinary.unlink()
+        git('-c', 'core.autocrlf=true', 'checkout-index', '--force', '--all')
+        self.assertEqual(saved.read_bytes(), original)
+        self.assertEqual(hashlib.sha256(saved.read_bytes()).hexdigest(), notice['sha256'])
+        self.assertEqual(ordinary.read_bytes(), b'ordinary text\r\n')
+
     def test_merged_pr_version_controls(self):
         pr = {'merged': True, 'base': {'ref': 'main', 'repo': {'full_name': 'owner/repo'}},
               'head': {'ref': 'release-please--branches--main'}, 'labels': [{'name': 'autorelease: pending'}],
@@ -271,6 +337,98 @@ class ReleaseTests(unittest.TestCase):
         (source / 'src/LICENSE-UNICODE').unlink()
         with self.assertRaisesRegex(RuntimeError, 'Missing actual license'):
             packaging.notices(selected, self.directory / 'missing')
+
+    def test_windows_static_runtime_terms_provenance_and_correction(self):
+        vs = self.directory / 'Visual Studio'
+        toolset = vs / 'VC/Tools/MSVC/14.44.35207'
+        sdk = self.directory / 'Windows Kits/10'
+        vc_lib = toolset / 'lib/x64'
+        sdk_lib = sdk / 'Lib/10.0.22621.0/ucrt/x64'
+        for directory in [vc_lib, sdk_lib]:
+            directory.mkdir(parents=True)
+        linker = toolset / 'bin/Hostx64/x64/link.exe'
+        linker.parent.mkdir(parents=True)
+        linker.write_bytes(b'fixture release linker')
+        for name in ['libvcruntime.lib', 'libcmt.lib']:
+            (vc_lib / name).write_bytes(b'fixture release library ' + name.encode())
+        (sdk_lib / 'libucrt.lib').write_bytes(b'fixture release UCRT library')
+        binary = self.directory / 'archguard.exe'
+        binary.write_bytes(b'fixture release binary')
+        selected = {'productId': 'Microsoft.VisualStudio.Product.Enterprise', 'installationVersion': '17.14.36617.5', 'installationPath': str(vs), 'releaseLinkerPath': str(linker)}
+        environment = {'VSINSTALLDIR': str(vs), 'VCToolsInstallDir': str(toolset), 'VCToolsVersion': '14.44.35207',
+                       'WindowsSdkDir': str(sdk), 'WindowsSDKVersion': '10.0.22621.0', 'LIB': f'{vc_lib};{sdk_lib}'}
+        document = io.BytesIO()
+        with zipfile.ZipFile(document, 'w') as archive:
+            archive.writestr('word/document.xml', '<document>Fixture VISUAL STUDIO 2022 DISTRIBUTABLE CODE</document>')
+        def download(_url, timeout):
+            self.assertEqual(timeout, 30)
+            result = io.BytesIO(document.getvalue())
+            result.url = windows_notices.VS_TERMS
+            return result
+        output = self.directory / 'runtime-notices'
+        with patch.object(windows_notices.urllib.request, 'urlopen', side_effect=download):
+            with self.assertRaisesRegex(RuntimeError, 'Missing actual installed Windows SDK terms'):
+                windows_notices.collect(binary, output, selected, environment)
+            self.assertFalse(output.exists())
+            terms = sdk / 'Licenses/10.0.22621.0/License.rtf'
+            terms.parent.mkdir(parents=True)
+            terms.write_text(r'{\rtf1 Fixture MICROSOFT SOFTWARE LICENSE TERMS MICROSOFT WINDOWS SOFTWARE DEVELOPMENT KIT (SDK)}')
+            windows_notices.collect(binary, output, selected, environment)
+        manifest = json.loads((output / 'provenance.json').read_text())
+        self.assertEqual({entry['name'] for entry in manifest['libraries']}, set(windows_notices.LIBRARIES))
+        self.assertEqual(manifest['binarySha256'], hashlib.sha256(binary.read_bytes()).hexdigest())
+        copied = self.directory / 'packaged-notices'
+        packaging.windows_runtime_notices(output, binary, copied)
+        self.assertEqual((copied / 'visual-studio-license.docx').read_bytes(), document.getvalue())
+        retained_sdk = output / manifest['notices'][1]['file']
+        original = retained_sdk.read_bytes()
+        retained_sdk.write_bytes(b'changed license')
+        with self.assertRaisesRegex(RuntimeError, 'checksum changed'):
+            packaging.windows_runtime_notices(output, binary, self.directory / 'wrong')
+        retained_sdk.write_bytes(original)
+        packaging.windows_runtime_notices(output, binary, self.directory / 'corrected')
+        binary.write_bytes(b'different binary')
+        with self.assertRaisesRegex(RuntimeError, 'does not match'):
+            packaging.windows_runtime_notices(output, binary, self.directory / 'different')
+        binary.write_bytes(b'fixture release binary')
+        (output / 'libcmt.lib').write_bytes(b'must not distribute libraries')
+        with self.assertRaisesRegex(RuntimeError, 'unexpected files'):
+            packaging.windows_runtime_notices(output, binary, self.directory / 'libraries')
+        with self.assertRaisesRegex(RuntimeError, 'requires collected'):
+            packaging.package(binary, 'windows-x86_64', self.directory / 'archive')
+        with self.assertRaisesRegex(RuntimeError, 'Unsupported Visual Studio'):
+            windows_notices.collect(binary, self.directory / 'community', {**selected, 'productId': 'Microsoft.VisualStudio.Product.Community'}, environment)
+        foreign = self.directory / 'other-release'
+        foreign.mkdir()
+        (foreign / 'libcmt.lib').write_bytes(b'wrong toolset')
+        with self.assertRaisesRegex(RuntimeError, 'LIB lookup'):
+            windows_notices.collect(binary, self.directory / 'wrong-toolset', selected, {**environment, 'LIB': f'{foreign};{environment["LIB"]}'})
+        with self.assertRaisesRegex(RuntimeError, 'release linker'):
+            windows_notices.collect(binary, self.directory / 'wrong-linker', {**selected, 'releaseLinkerPath': str(foreign / 'link.exe')}, environment)
+        sdk_26100 = sdk / 'Lib/10.0.26100.0/ucrt/x64'
+        sdk_26100.mkdir(parents=True)
+        (sdk_26100 / 'libucrt.lib').write_bytes(b'fixture 26100 UCRT library')
+        environment_26100 = {**environment, 'WindowsSDKVersion': '10.0.26100.0', 'LIB': f'{vc_lib};{sdk_26100}'}
+        sdk_license = {'value': b'wrong SDK license body'}
+        calls = []
+        def download_fallback(url, timeout):
+            self.assertEqual(timeout, 30)
+            calls.append(url)
+            result = io.BytesIO(document.getvalue() if url == windows_notices.VS_TERMS else sdk_license['value'])
+            result.url = url
+            return result
+        with patch.object(windows_notices.urllib.request, 'urlopen', side_effect=download_fallback):
+            with self.assertRaisesRegex(RuntimeError, 'applicable SDK package license'):
+                windows_notices.collect(binary, self.directory / 'fallback', selected, environment_26100)
+            self.assertFalse((self.directory / 'fallback').exists())
+            sdk_license['value'] = b'Fixture MICROSOFT SOFTWARE LICENSE TERMS MICROSOFT WINDOWS SOFTWARE DEVELOPMENT KIT (SDK)'
+            windows_notices.collect(binary, self.directory / 'fallback', selected, environment_26100)
+        fallback = json.loads((self.directory / 'fallback/provenance.json').read_text())
+        self.assertEqual(fallback['sdkLicensePackage']['version'], '10.0.26100.1')
+        self.assertEqual(fallback['windowsSdkVersion'], '10.0.26100.0')
+        self.assertEqual(len(fallback['notices']), 2)
+        self.assertEqual(calls[-1], windows_notices.VS_TERMS)
+        packaging.windows_runtime_notices(self.directory / 'fallback', binary, self.directory / 'fallback-packaged')
 
 
 if __name__ == '__main__':

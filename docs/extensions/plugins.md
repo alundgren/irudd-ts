@@ -23,7 +23,7 @@ Each invocation receives one JSON project on stdin and returns one JSON object o
 
 Logs belong on stderr. Each diagnostic contains `rule`, `file`, `offset`, `message`, and optional `evidence`. Files must refer to analyzed sources or inventoried package manifests; offsets must be in range. Repository-wide findings use `.` with offset zero. Unknown protocol versions and malformed responses fail the check.
 
-The Unix runner bounds input to 64 MiB, stdout to 8 MiB, and stderr to 64 KiB. It handles stdin concurrently and terminates the process group on deadline or exit. Rust plugins can be statically linked or run as executables; Archguard does not use a compiler-dependent dynamic Rust ABI.
+The runner bounds input to 64 MiB, stdout to 8 MiB, and stderr to 64 KiB. It handles stdin concurrently and terminates the owned process group on Linux/macOS or Job Object on Windows on deadline or exit. Rust plugins can be statically linked or run as executables; Archguard does not use a compiler-dependent dynamic Rust ABI.
 
 For many TypeScript dependency roots, call `createDependencyQuery(project)` once and reuse it. `dependencyPaths` is convenient for a single root. Do not mutate facts while querying them.
 

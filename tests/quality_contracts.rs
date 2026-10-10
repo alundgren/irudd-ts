@@ -12,7 +12,17 @@ use serde_json::{Value, json};
 use std::{path::Path, process::Command};
 
 fn fixture() -> MutationPlan {
-    serde_json::from_str(include_str!("fixtures/quality/mutation-plan.json")).unwrap()
+    serde_json::from_value(fixture_value()).unwrap()
+}
+
+fn fixture_value() -> Value {
+    let mut value: Value =
+        serde_json::from_str(include_str!("fixtures/quality/mutation-plan.json")).unwrap();
+    // Absolute plan roots use the host's path syntax; source identities are portable.
+    if cfg!(windows) {
+        value["root"] = json!(r"C:\repo");
+    }
+    value
 }
 
 fn problem(kind: ProblemKind, limit: Option<AnalysisLimitKind>) -> AnalysisProblem {
@@ -172,8 +182,7 @@ fn selection_and_configuration_failures_do_not_become_complete_empty_analysis() 
 
 #[test]
 fn mutation_json_fixture_round_trips_exact_public_fields_and_versions() {
-    let expected: Value =
-        serde_json::from_str(include_str!("fixtures/quality/mutation-plan.json")).unwrap();
+    let expected = fixture_value();
     let plan = fixture();
     plan.validate().unwrap();
     assert_eq!(serde_json::to_value(&plan).unwrap(), expected);

@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as fs from "node:fs";
+import mutableFs from "node:fs";
+import { syncBuiltinESMExports } from "node:module";
 import * as os from "node:os";
 import * as path from "node:path";
 import {
@@ -250,14 +252,67 @@ test("callable values cannot impersonate plain request data", () => withDirector
   assert.throws(() => validateMutationRequest(Object.setPrototypeOf({ ...request }, { custom: true })), /plain data/);
 }));
 
-test("assigned request files require absolute paths even when a relative file exists", () => withDirectory(directory => {
-  sdkAssignedRequest(directory, (request, requestFile) => {
+test("assigned request files require absolute paths even when a relative file exists", () => {
+  const directory = fs.mkdtempSync(path.join(process.cwd(), ".archguard-sdk-relative-"));
+  try { sdkAssignedRequest(directory, (request, requestFile) => {
     assert.deepEqual(readMutationRequest(), request);
     const relative = path.relative(process.cwd(), requestFile);
     assert.equal(path.isAbsolute(relative), false);
     process.env.ARCHGUARD_MUTATION_REQUEST = relative;
     assert.throws(readMutationRequest, /absolute file/);
     process.env.ARCHGUARD_MUTATION_REQUEST = requestFile;
+    assert.deepEqual(readMutationRequest(), request);
+  }); } finally { fs.rmSync(directory, { recursive: true, force: true }); }
+});
+
+test("request replacement before open and during read is rejected, then a stable correction reads", t => withDirectory(directory => {
+  sdkAssignedRequest(directory, (request, requestFile) => {
+    for (const boundary of ["open", "read", "change"] as const) {
+      fs.writeFileSync(requestFile, JSON.stringify(request));
+      let changed = false;
+      const originalOpen = mutableFs.openSync;
+      const originalRead = mutableFs.readSync;
+      let descriptor: number | undefined;
+      const replace = (): void => {
+        if (boundary === "change") { fs.appendFileSync(requestFile, " "); return; }
+        fs.renameSync(requestFile, path.join(directory, `original-${boundary}.json`));
+        fs.writeFileSync(requestFile, JSON.stringify(request));
+      };
+      try {
+        t.mock.method(mutableFs, "openSync", (...args: Parameters<typeof mutableFs.openSync>) => {
+          if (boundary === "open" && args[0] === requestFile && !changed) { changed = true; replace(); }
+          const opened = originalOpen(...args);
+          if (args[0] === requestFile && args[1] === (fs.constants.O_RDONLY | fs.constants.O_NOFOLLOW | fs.constants.O_NONBLOCK)) descriptor = opened;
+          return opened;
+        });
+        t.mock.method(mutableFs, "readSync", (...args: Parameters<typeof mutableFs.readSync>) => {
+          const read = originalRead(...args);
+          if (boundary !== "open" && args[0] === descriptor && !changed) { changed = true; replace(); }
+          return read;
+        });
+        syncBuiltinESMExports();
+        assert.throws(readMutationRequest, /request file changed/);
+        assert.equal(changed, true);
+      } finally { t.mock.restoreAll(); syncBuiltinESMExports(); }
+      assert.notEqual(descriptor, undefined);
+      assert.throws(() => fs.fstatSync(descriptor!), /EBADF/);
+      assert.deepEqual(readMutationRequest(), request);
+    }
+  });
+}));
+
+test("an unavailable request file identity fails, then a real file identity reads", t => withDirectory(directory => {
+  sdkAssignedRequest(directory, (request, requestFile) => {
+    const original = mutableFs.lstatSync;
+    try {
+      t.mock.method(mutableFs, "lstatSync", (...args: Parameters<typeof mutableFs.lstatSync>) => {
+        const metadata = original(...args);
+        if (args[0] === requestFile) Object.defineProperty(metadata, "ino", { value: 0n });
+        return metadata;
+      });
+      syncBuiltinESMExports();
+      assert.throws(readMutationRequest, /identity is unavailable/);
+    } finally { t.mock.restoreAll(); syncBuiltinESMExports(); }
     assert.deepEqual(readMutationRequest(), request);
   });
 }));

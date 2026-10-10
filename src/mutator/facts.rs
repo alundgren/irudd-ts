@@ -149,11 +149,8 @@ impl MutationPlan {
         }
         self.configuration.validate()?;
         if self.root.len() > MAX_PATH_BYTES
-            || !Path::new(&self.root).is_absolute()
-            || self.root.contains('\\')
             || self.root.chars().any(char::is_control)
-            || self.root.split('/').any(|part| matches!(part, "." | ".."))
-            || (self.root != "/" && (self.root.contains("//") || self.root.ends_with('/')))
+            || !canonical_root(&self.root)
         {
             bail!("mutation plan root must be a bounded absolute canonical path");
         }
@@ -215,6 +212,39 @@ impl MutationPlan {
             }
         }
         validate_report_size(self, &self.configuration.limits)
+    }
+}
+
+fn canonical_root(root: &str) -> bool {
+    let path = Path::new(root);
+    if !path.is_absolute() {
+        return false;
+    }
+    #[cfg(unix)]
+    {
+        !root.contains('\\')
+            && !root.split('/').any(|part| matches!(part, "." | ".."))
+            && (root == "/" || (!root.contains("//") && !root.ends_with('/')))
+    }
+    #[cfg(windows)]
+    {
+        use std::path::{Component, PathBuf, Prefix};
+        if root.contains('/') {
+            return false;
+        }
+        let mut components = path.components();
+        if !matches!(
+            components.next(),
+            Some(Component::Prefix(prefix))
+                if matches!(prefix.kind(), Prefix::Disk(_) | Prefix::UNC(_, _)
+                    | Prefix::VerbatimDisk(_) | Prefix::VerbatimUNC(_, _))
+        ) || components.any(|part| matches!(part, Component::CurDir | Component::ParentDir))
+        {
+            return false;
+        }
+        // Rebuilding rejects repeated separators and lexical aliases while retaining native roots.
+        let rebuilt: PathBuf = path.components().collect();
+        rebuilt.as_os_str() == path.as_os_str()
     }
 }
 

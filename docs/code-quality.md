@@ -35,7 +35,7 @@ archguard mutator run --root . --config examples/code-quality/mutator-strong.jso
 
 Planning parses selected source and lists exact UTF-8 byte edits. It executes no repository commands. Runtime operators cover comparisons, equality, arithmetic, logical operators, prefix/postfix update operations, boolean literals and zero/one literals. Type-only literals are excluded. The plan identifies source hashes and mutation ownership. Stored plans are revalidated before execution.
 
-Running requires an explicit trusted command and Linux or macOS. Archguard never discovers or installs a test runner. It copies configured source and dependencies into private workspaces, runs a fresh baseline, and then applies one verified edit per fresh worker copy. The original source stays untouched. File selection determines analysis scope; workspace selection determines the command's available inputs. Declare all required tests, helpers, configuration and dependency copies. Exclude the original installed dependency and build directories when supplying separate dependency copies.
+Running requires an explicit trusted command and Linux, macOS, or Windows. Archguard never discovers or installs a test runner. It copies configured source and dependencies into private workspaces, runs a fresh baseline, and then applies one verified edit per fresh worker copy. The original source stays untouched. File selection determines analysis scope; workspace selection determines the command's available inputs. Declare all required tests, helpers, configuration and dependency copies. Exclude the original installed dependency and build directories when supplying separate dependency copies.
 
 The [test protocol](mutator-test-protocol.md) records executed tests and failure kinds. Use the supplied Node-builtin SDK and Vitest reporter with an already installed compatible Vitest. A nonzero process status alone cannot kill a mutant. Assertion failures can kill it; missing metadata, imports, teardown failures, timeouts and resource failures remain separate outcomes. Syntax-invalid edits are identified before execution. A survivor names the original expression, replacement and source context for a reviewer.
 
@@ -43,7 +43,7 @@ The authored domain example deliberately starts with weak tests. The strengthene
 
 ## Bound execution and reuse
 
-Execution configuration sets worker count, per-command and whole-run deadlines, output/result/report budgets, workspace file and byte ceilings, open-file limits, CPU limits and generated-file limits. Linux can also enforce an address-space limit. The report records effective limits and selected workspace inputs. SIGINT and SIGTERM request cancellation and bounded cleanup. Library callers must keep the default SIGCHLD disposition and must not reap Archguard-owned child processes. An incompatible SIGCHLD handler fails closed because Archguard must confirm process ownership and cleanup.
+Execution configuration sets worker count, per-command and whole-run deadlines, output/result/report budgets, workspace file and byte ceilings, open-file limits, CPU limits and generated-file limits. Linux can also enforce an address-space limit. The report records effective limits and selected workspace inputs. SIGINT and SIGTERM on Unix, and Ctrl-C or Ctrl-Break on Windows, request cancellation and bounded cleanup. Unix library callers must keep the default SIGCHLD disposition and must not reap Archguard-owned child processes. An incompatible SIGCHLD handler fails closed because Archguard must confirm process ownership and cleanup.
 
 The executable and declared external inputs are hashed without copying them into the worker workspace. Their read limits are one GiB per file and eight GiB in total, separate from copied and generated workspace bytes. The metadata budget and shared run deadline still apply.
 
@@ -53,7 +53,13 @@ Reuse assumes that you declared every relevant input. Network services, wall-clo
 
 Reuse invalidates the run's results when a declared input changes. It does not retain killed mutations by function alone. You can narrow source selection to changed files, but tests and helpers still belong in the declared workspace. The current runner does not use coverage to skip mutation sites.
 
-Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections. macOS has different memory controls from Linux.
+Worker copies and resource limits protect ordinary trusted test execution. They do not sandbox arbitrary code. A command that deliberately escapes its process group or accesses external paths can exceed those protections.
+
+On Windows, an owned Job Object provides descendant cleanup. Its CPU bound counts user-mode CPU time per process. Windows does not support `maxAddressSpaceBytes`, Unix open-file limits, or per-file generated-size limits. `maxOpenFiles` and `maxGeneratedFileBytes` default to zero on Windows, and a nonzero request is rejected before execution. Workspace file-count and aggregate-byte ceilings, deadlines, and output/result/report budgets still apply.
+
+Windows commands must resolve to an `.exe`; configure `node` with a script or explicitly configure a command interpreter when needed. For `cmd.exe`, use `/s` and supply exactly one command body after `/c` or `/k`, for example `["cmd.exe", "/d", "/s", "/c", "npm.cmd test"]`. The command body uses `cmd.exe` quoting rules and is preserved verbatim.
+
+Windows directory links are copied as junctions inside the owned workspace. Copying file symlinks requires Windows Developer Mode or symlink privileges; unavailable privileges produce incomplete analysis.
 
 Process-group cleanup allows five seconds after sending SIGKILL to confirm that the owned group has no live members. Pipe draining after executable exit has a separate 250 ms limit. Cleanup uncertainty preserves the workspace and stops the run, even when the command originally timed out. Cleanup checks a separate thirty-second deadline while traversing owned workspaces. Individual kernel filesystem calls can still block; these deadlines are not hard wall-clock guarantees for an unresponsive kernel or filesystem.
 

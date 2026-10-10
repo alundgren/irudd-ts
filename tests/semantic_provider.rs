@@ -28,7 +28,11 @@ fn native_jsx_member_tags_have_independent_sites_and_facts() {
     let properties = &facts.file("jsx", "main.tsx").unwrap().properties;
     assert_eq!(properties.len(), 1);
     assert_eq!(properties[0].offset, before.find("Missing").unwrap());
-    assert_eq!(properties[0].receiver.state, ReceiverState::Known);
+    assert_eq!(
+        properties[0].receiver.state,
+        ReceiverState::Known,
+        "{facts:#?}"
+    );
     assert_eq!(properties[0].status, MemberStatus::Missing);
     assert!(!facts.complete);
     let fixed = analyze_source("const View={Child:()=>null}; const tag=<View.Child/>;");
@@ -76,7 +80,7 @@ fn native_provider_unicode_multicontext_and_unavailable_controls() {
     let properties = &facts.file("a", "main.ts").unwrap().properties;
     let missing = properties.iter().find(|p| p.member == "missing").unwrap();
     assert_eq!(missing.offset, source.find("x.missing").unwrap() + 2);
-    assert_eq!(missing.receiver.state, ReceiverState::Known);
+    assert_eq!(missing.receiver.state, ReceiverState::Known, "{facts:#?}");
     assert_eq!(missing.status, MemberStatus::Missing);
     assert!(
         properties
@@ -92,8 +96,9 @@ fn native_provider_unicode_multicontext_and_unavailable_controls() {
     assert_eq!(findings.len(), 2);
     assert!(findings.iter().all(|f| f.message.contains("missing")));
     let sdk = Path::new(env!("CARGO_MANIFEST_DIR")).join("sdk/semantic.ts");
+    let sdk = serde_json::to_string(sdk.to_str().unwrap()).unwrap();
     let script = format!(
-        "import {{readSemanticFacts,missingMemberDiagnostics}} from {sdk:?}; process.stdout.write(JSON.stringify(missingMemberDiagnostics(readSemanticFacts())));"
+        "import {{pathToFileURL}} from 'node:url'; const {{readSemanticFacts,missingMemberDiagnostics}} = await import(pathToFileURL({sdk}).href); process.stdout.write(JSON.stringify(missingMemberDiagnostics(readSemanticFacts())));"
     );
     let mut child = std::process::Command::new("node")
         .args(["--input-type=module", "-e", &script])
@@ -122,7 +127,7 @@ fn native_nullable_optional_and_union_members_remain_present() {
         json!([{"id":"app","tsconfig":"tsconfig.json","files":["*.ts"]}]),
     );
     let facts = analyze(&graph(root.path()), &config, root.path()).unwrap();
-    assert!(facts.complete);
+    assert!(facts.complete, "{facts:#?}");
     let properties = &facts.file("app", "main.ts").unwrap().properties;
     assert_eq!(properties.len(), 2);
     assert!(
@@ -168,7 +173,7 @@ fn member_rule_remains_useful_when_compiler_diagnostics_are_suppressed() {
         json!([{"id":"app","tsconfig":"tsconfig.json","files":["*.ts"]}]),
     );
     let facts = analyze(&graph(root.path()), &config, root.path()).unwrap();
-    assert!(facts.complete);
+    assert!(facts.complete, "{facts:#?}");
     assert!(facts.contexts[0].diagnostics.is_empty());
     let findings = check(&facts, &config).unwrap();
     assert_eq!(findings.len(), 1);
@@ -188,7 +193,7 @@ fn native_clean_and_context_membership_failures() {
     );
     let project = graph(root.path());
     let facts = analyze(&project, &config, root.path()).unwrap();
-    assert!(facts.complete);
+    assert!(facts.complete, "{facts:#?}");
     assert!(check(&facts, &config).unwrap().is_empty());
     fs::write(root.path().join("tsconfig.json"),r#"{"compilerOptions":{"noEmit":true,"strict":true,"skipLibCheck":true},"files":["other.ts"]}"#).unwrap();
     fs::write(root.path().join("other.ts"), "export {};\n").unwrap();
