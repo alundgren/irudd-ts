@@ -9,6 +9,8 @@ $ErrorActionPreference = 'Stop'
 $work = $null
 try {
     if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) { throw 'This installer requires Windows.' }
+    $build = [int](Get-CimInstance -ClassName Win32_OperatingSystem).BuildNumber
+    if ($build -lt 17763) { throw 'This release requires Windows 10 1809 or Windows Server 2019 or newer.' }
     $architecture = if ($env:PROCESSOR_ARCHITEW6432) { $env:PROCESSOR_ARCHITEW6432 } else { $env:PROCESSOR_ARCHITECTURE }
     if ($architecture -ne 'AMD64') { throw 'This release supports native Windows x64 only.' }
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

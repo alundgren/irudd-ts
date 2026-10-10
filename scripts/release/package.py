@@ -18,7 +18,7 @@ PLATFORMS = {
     'linux-arm64': ('aarch64-unknown-linux-gnu', 'Ubuntu 22.04 / glibc 2.35'),
     'macos-x86_64': ('x86_64-apple-darwin', 'macOS 15'),
     'macos-arm64': ('aarch64-apple-darwin', 'macOS 15'),
-    'windows-x86_64': ('x86_64-pc-windows-msvc', 'Windows 10 / Windows Server 2016'),
+    'windows-x86_64': ('x86_64-pc-windows-msvc', 'Windows 10 1809 / Windows Server 2019'),
 }
 ROOT = Path(__file__).resolve().parents[2]
 

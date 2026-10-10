@@ -1,6 +1,9 @@
 # Native validation shared by premerge checks and the manual release publisher.
 param([string]$OutputDirectory = 'dist')
 $ErrorActionPreference = 'Stop'
+# Mutation inventories hash the CLI; omit debugger data from acceptance binaries.
+$env:CARGO_PROFILE_DEV_DEBUG = '0'
+$env:CARGO_PROFILE_TEST_DEBUG = '0'
 function Invoke-Checked {
     param([string]$Program, [string[]]$Arguments)
     & $Program @Arguments
