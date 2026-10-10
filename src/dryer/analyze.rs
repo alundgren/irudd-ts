@@ -9,6 +9,8 @@ use crate::{
         *,
     },
 };
+#[cfg(windows)]
+use anyhow::Context;
 use anyhow::{Result, ensure};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -218,8 +220,14 @@ fn write_cache(path: &Path, payload: CachePayload, limits: &AnalysisLimits) -> R
     {
         write_cache_in_directory(path, parent, &document)
     }
-    #[cfg(not(unix))]
+    #[cfg(windows)]
     {
+        let parent = parent.canonicalize()?;
+        let _ancestors = crate::windows_fs::hold_ancestors(&parent)?;
+        let path = parent.join(
+            path.file_name()
+                .context("dryer cache path has no filename")?,
+        );
         let temporary = parent.join(format!(
             ".archguard-dryer-{}-{}.tmp",
             std::process::id(),
@@ -233,7 +241,9 @@ fn write_cache(path: &Path, payload: CachePayload, limits: &AnalysisLimits) -> R
             serde_json::to_writer(&mut file, &document)?;
             file.flush()?;
             file.sync_all()?;
-            fs::rename(&temporary, path)?;
+            drop(file);
+            #[cfg(windows)]
+            crate::windows_fs::replace(&temporary, &path)?;
             Ok(())
         })();
         if outcome.is_err() {

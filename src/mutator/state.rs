@@ -6,11 +6,15 @@ use crate::mutator::{
     workspace::{self, OwnedDirectory},
 };
 use anyhow::{Context, Result, bail};
+#[cfg(unix)]
 use nix::fcntl::{Flock, FlockArg};
 use serde::{Deserialize, Serialize};
+#[cfg(unix)]
+use std::fs::OpenOptions;
+#[cfg(unix)]
+use std::os::unix::fs::{MetadataExt, OpenOptionsExt, PermissionsExt};
 use std::{
-    fs::{self, File, OpenOptions},
-    os::unix::fs::{MetadataExt, OpenOptionsExt, PermissionsExt},
+    fs::{self, File},
     path::{Path, PathBuf},
 };
 
@@ -46,7 +50,16 @@ struct Active {
 pub(crate) struct RunState {
     pub directory: PathBuf,
     pub reuse: ReusePolicy,
+    #[cfg(unix)]
     _lock: Flock<File>,
+    #[cfg(windows)]
+    _lock: File,
+    #[cfg(windows)]
+    _directory: File,
+    #[cfg(windows)]
+    _ancestors: Vec<File>,
+    #[cfg(windows)]
+    _records: File,
     active: bool,
     bytes: std::cell::Cell<u64>,
     records: std::cell::Cell<usize>,
@@ -69,25 +82,42 @@ impl RunState {
         let mut prefix = PathBuf::new();
         for part in requested.components() {
             prefix.push(part.as_os_str());
+            if matches!(part, std::path::Component::Prefix(_)) {
+                continue;
+            }
             match fs::symlink_metadata(&prefix) {
                 Ok(metadata) => {
-                    if metadata.file_type().is_symlink() || !metadata.is_dir() {
+                    if is_link(&metadata) || !metadata.is_dir() {
                         bail!("state directory contains a link or non-directory");
                     }
                 }
                 Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
-                    fs::create_dir(&prefix)?;
-                    fs::set_permissions(&prefix, fs::Permissions::from_mode(0o700))?;
+                    create_private(&prefix)?;
                 }
                 Err(error) => return Err(error.into()),
             }
         }
         let directory = requested.canonicalize()?;
         workspace::assert_outside(&directory, roots)?;
-        let metadata = fs::metadata(&directory)?;
-        if metadata.uid() != unsafe { nix::libc::geteuid() } || metadata.mode() & 0o077 != 0 {
-            bail!("state directory must be owned by the current user with private permissions");
+        #[cfg(unix)]
+        validate_private(&directory)?;
+        #[cfg(windows)]
+        let ancestors = crate::windows_fs::hold_ancestors(
+            directory
+                .parent()
+                .context("state directory has no parent")?,
+        )?;
+        #[cfg(windows)]
+        let directory_handle = crate::windows_fs::open_owned(&directory, false)?;
+        #[cfg(windows)]
+        {
+            let metadata = directory_handle.metadata()?;
+            if !metadata.is_dir() || is_link(&metadata) {
+                bail!("state directory is a reparse point or non-directory");
+            }
+            crate::windows_fs::validate_private(&directory_handle)?;
         }
+        #[cfg(unix)]
         let file = OpenOptions::new()
             .read(true)
             .write(true)
@@ -96,15 +126,20 @@ impl RunState {
             .mode(0o600)
             .custom_flags(nix::libc::O_NOFOLLOW | nix::libc::O_NONBLOCK | nix::libc::O_CLOEXEC)
             .open(directory.join("lock"))?;
+        #[cfg(unix)]
         let metadata = file.metadata()?;
+        #[cfg(unix)]
         if !metadata.is_file()
             || metadata.uid() != unsafe { nix::libc::geteuid() }
             || metadata.mode() & 0o077 != 0
         {
             bail!("state lock must be a private regular file");
         }
+        #[cfg(unix)]
         let lock = Flock::lock(file, FlockArg::LockExclusiveNonblock)
             .map_err(|(_, error)| anyhow::anyhow!("mutation state is locked: {error}"))?;
+        #[cfg(windows)]
+        let lock = crate::windows_fs::open_lock(&directory.join("lock"))?;
         if fs::symlink_metadata(directory.join("active.json")).is_ok() {
             let active: Active = serde_json::from_slice(&storage::read_regular(
                 &directory.join("active.json"),
@@ -127,19 +162,24 @@ impl RunState {
         let records = directory.join("records");
         match fs::symlink_metadata(&records) {
             Ok(metadata) => {
-                if !metadata.is_dir()
-                    || metadata.file_type().is_symlink()
-                    || metadata.uid() != unsafe { nix::libc::geteuid() }
-                    || metadata.mode() & 0o077 != 0
-                {
+                if !metadata.is_dir() || is_link(&metadata) || validate_private(&records).is_err() {
                     bail!("state records directory is not private");
                 }
             }
             Err(error) if error.kind() == std::io::ErrorKind::NotFound => {
-                fs::create_dir(&records)?;
-                fs::set_permissions(&records, fs::Permissions::from_mode(0o700))?;
+                create_private(&records)?;
             }
             Err(error) => return Err(error.into()),
+        }
+        #[cfg(windows)]
+        let records_handle = crate::windows_fs::open_owned(&records, false)?;
+        #[cfg(windows)]
+        {
+            let metadata = records_handle.metadata()?;
+            if !metadata.is_dir() || is_link(&metadata) {
+                bail!("state records directory is a reparse point or non-directory");
+            }
+            crate::windows_fs::validate_private(&records_handle)?;
         }
         let mut bytes = 0u64;
         let mut count = 0usize;
@@ -164,6 +204,12 @@ impl RunState {
             directory,
             reuse: config.reuse,
             _lock: lock,
+            #[cfg(windows)]
+            _directory: directory_handle,
+            #[cfg(windows)]
+            _ancestors: ancestors,
+            #[cfg(windows)]
+            _records: records_handle,
             active: false,
             bytes: std::cell::Cell::new(bytes),
             records: std::cell::Cell::new(count),
@@ -193,6 +239,7 @@ impl RunState {
                 Err(error) if error.kind() == std::io::ErrorKind::NotFound => {}
                 Err(error) => return Err(error.into()),
             }
+            #[cfg(unix)]
             File::open(&self.directory)?.sync_all()?;
             self.active = false;
         }
@@ -477,6 +524,7 @@ mod tests {
         fs::remove_dir_all(root).unwrap();
     }
 
+    #[cfg(unix)]
     #[test]
     fn state_rejects_ancestor_links_and_accepts_corrected_directory() {
         let root =
@@ -544,4 +592,41 @@ mod publication_tests {
         RunState::open(&config, &root, &[]).unwrap();
         fs::remove_dir_all(root).unwrap();
     }
+}
+
+fn is_link(metadata: &fs::Metadata) -> bool {
+    #[cfg(unix)]
+    {
+        metadata.file_type().is_symlink()
+    }
+    #[cfg(windows)]
+    {
+        crate::windows_fs::is_reparse(metadata)
+    }
+}
+fn create_private(path: &Path) -> Result<()> {
+    #[cfg(unix)]
+    {
+        fs::create_dir(path)?;
+        fs::set_permissions(path, fs::Permissions::from_mode(0o700))?;
+    }
+    #[cfg(windows)]
+    {
+        crate::windows_fs::create_private_directory(path)?;
+    }
+    Ok(())
+}
+fn validate_private(path: &Path) -> Result<()> {
+    #[cfg(unix)]
+    {
+        let metadata = fs::symlink_metadata(path)?;
+        if metadata.uid() != unsafe { nix::libc::geteuid() } || metadata.mode() & 0o077 != 0 {
+            bail!("state directory must be owned by the current user with private permissions");
+        }
+    }
+    #[cfg(windows)]
+    {
+        crate::windows_fs::validate_private(&crate::windows_fs::open_owned(path, false)?)?;
+    }
+    Ok(())
 }

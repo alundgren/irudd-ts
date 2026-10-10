@@ -1,8 +1,10 @@
 use anyhow::{Context, Result, bail};
 use serde::Serialize;
 use sha2::{Digest, Sha256};
+#[cfg(unix)]
+use std::fs::File;
 use std::{
-    fs::{self, File, OpenOptions},
+    fs::{self, OpenOptions},
     io::{Read, Write},
     path::{Path, PathBuf},
     sync::atomic::{AtomicU64, Ordering},
@@ -40,9 +42,12 @@ pub(crate) fn read_regular(path: &Path, maximum: u64) -> Result<Vec<u8>> {
         use std::os::unix::fs::OpenOptionsExt;
         options.custom_flags(nix::libc::O_NOFOLLOW | nix::libc::O_NONBLOCK | nix::libc::O_CLOEXEC);
     }
+    #[cfg(unix)]
     let file = options
         .open(path)
         .context("opening assigned regular file")?;
+    #[cfg(windows)]
+    let file = crate::windows_fs::open_regular(path)?;
     let metadata = file.metadata()?;
     if !metadata.is_file() || metadata.len() > maximum {
         bail!("assigned file is not regular or exceeds byte budget");
@@ -114,6 +119,8 @@ pub(crate) fn encoded_size<T: Serialize + ?Sized>(value: &T, maximum: u64) -> Re
 
 pub(crate) fn atomic_write(path: &Path, bytes: &[u8]) -> Result<()> {
     let parent = path.parent().context("assigned file has no parent")?;
+    #[cfg(windows)]
+    let _ancestors = crate::windows_fs::hold_ancestors(parent)?;
     let temporary = parent.join(format!(".archguard-{}.tmp", unique_id()));
     let result = (|| {
         let mut options = OpenOptions::new();
@@ -123,11 +130,20 @@ pub(crate) fn atomic_write(path: &Path, bytes: &[u8]) -> Result<()> {
             use std::os::unix::fs::OpenOptionsExt;
             options.mode(0o600);
         }
+        #[cfg(unix)]
         let mut file = options.open(&temporary)?;
+        #[cfg(windows)]
+        let mut file = crate::windows_fs::create_private_file(&temporary)?;
         file.write_all(bytes)?;
         file.sync_all()?;
-        fs::rename(&temporary, path)?;
-        File::open(parent)?.sync_all()?;
+        drop(file);
+        #[cfg(unix)]
+        {
+            fs::rename(&temporary, path)?;
+            File::open(parent)?.sync_all()?;
+        }
+        #[cfg(windows)]
+        crate::windows_fs::replace(&temporary, path)?;
         Ok(())
     })();
     if result.is_err() {
@@ -144,8 +160,8 @@ pub(crate) fn create_private_directory(parent: &Path, prefix: &str) -> Result<Pa
         use std::os::unix::fs::DirBuilderExt;
         fs::DirBuilder::new().mode(0o700).create(&path)?;
     }
-    #[cfg(not(unix))]
-    fs::create_dir(&path)?;
+    #[cfg(windows)]
+    crate::windows_fs::create_private_directory(&path)?;
     Ok(path)
 }
 
@@ -162,11 +178,17 @@ mod tests {
         assert_eq!(read_regular(&file, 3).unwrap(), b"new");
         assert!(read_regular(&file, 2).is_err());
         assert!(read_regular(&directory, 100).is_err());
-        std::os::unix::fs::symlink(&file, directory.join("alias")).unwrap();
-        assert!(read_regular(&directory.join("alias"), 100).is_err());
+        #[cfg(unix)]
+        {
+            std::os::unix::fs::symlink(&file, directory.join("alias")).unwrap();
+            assert!(read_regular(&directory.join("alias"), 100).is_err());
+        }
         assert!(encode(&vec!["x"; 100], 10).is_err());
         assert!(encode(&vec!["x"; 1], 10).is_ok());
-        assert_eq!(fs::read_dir(&directory).unwrap().count(), 2);
+        assert_eq!(
+            fs::read_dir(&directory).unwrap().count(),
+            if cfg!(unix) { 2 } else { 1 }
+        );
         fs::remove_dir_all(directory).unwrap();
     }
 }

@@ -195,6 +195,10 @@ pub(crate) fn load_guarded(
             );
             continue;
         };
+        #[cfg(windows)]
+        let portable_path = path.replace('\\', "/");
+        #[cfg(windows)]
+        let path = portable_path.as_str();
         if entry.file_type().is_some_and(|kind| kind.is_symlink())
             && std::fs::metadata(entry.path()).map_or(true, |metadata| metadata.is_dir())
         {
@@ -442,6 +446,9 @@ pub(crate) fn prospective_path(path: &Path) -> Result<PathBuf> {
             }
             _ => resolved.push(component.as_os_str()),
         }
+        if matches!(component, Component::Prefix(_)) {
+            continue;
+        }
         match resolved.canonicalize() {
             Ok(canonical) => resolved = canonical,
             Err(error) if error.kind() == std::io::ErrorKind::NotFound => {}
@@ -462,9 +469,9 @@ fn same_snapshot(left: &Metadata, right: &Metadata) -> bool {
             && left.ctime() == right.ctime()
             && left.ctime_nsec() == right.ctime_nsec()
     }
-    #[cfg(not(unix))]
+    #[cfg(windows)]
     {
-        left.len() == right.len() && left.modified().ok() == right.modified().ok()
+        crate::windows_fs::same_snapshot(left, right)
     }
 }
 
@@ -481,7 +488,14 @@ pub(crate) fn read_regular(path: &Path, maximum: usize) -> std::io::Result<Vec<u
     options.read(true);
     #[cfg(unix)]
     options.custom_flags(nix::libc::O_NONBLOCK | nix::libc::O_NOFOLLOW);
+    #[cfg(unix)]
     let mut handle = options.open(path)?;
+    #[cfg(windows)]
+    let mut handle = crate::windows_fs::open_regular(path)
+        .map_err(|error| std::io::Error::other(error.to_string()))?;
+    #[cfg(windows)]
+    let identity = crate::windows_fs::identity(&handle)
+        .map_err(|error| std::io::Error::other(error.to_string()))?;
     let opened = handle.metadata()?;
     if !opened.is_file() || !same_snapshot(&initial, &opened) {
         return Err(invalid());
@@ -490,6 +504,13 @@ pub(crate) fn read_regular(path: &Path, maximum: usize) -> std::io::Result<Vec<u
     (&mut handle)
         .take(maximum.saturating_add(1) as u64)
         .read_to_end(&mut bytes)?;
+    #[cfg(windows)]
+    if crate::windows_fs::identity(&handle)
+        .map_err(|error| std::io::Error::other(error.to_string()))?
+        != identity
+    {
+        return Err(invalid());
+    }
     let final_descriptor = handle.metadata()?;
     let final_path = std::fs::symlink_metadata(path)?;
     if !final_path.is_file()

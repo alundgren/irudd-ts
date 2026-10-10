@@ -12,3 +12,6 @@ pub mod rust;
 pub mod semantic;
 mod subprocess;
 pub mod typescript;
+
+#[cfg(windows)]
+mod windows_fs;
