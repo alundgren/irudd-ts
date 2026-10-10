@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/alundgren/irudd-ts/compare/v0.1.0...v0.2.0) (2026-10-10)
+
+
+### Features
+
+* **windows:** add native x64 support and PowerShell installation ([#47](https://github.com/alundgren/irudd-ts/issues/47)) ([a6041e6](https://github.com/alundgren/irudd-ts/commit/a6041e6f1a56605b4b37702b37d9c17c8a25102d))
+
 ## 0.1.0 (2026-10-07)
 
 
