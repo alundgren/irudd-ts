@@ -1522,6 +1522,8 @@ mod monitor_tests {
             assert!(node.status.success());
             let mut command = Command::new(String::from_utf8(node.stdout).unwrap().trim());
             command.args(["-e", "setInterval(() => {}, 1000)"]);
+            #[cfg(windows)]
+            command.env("SystemRoot", std::env::var_os("SystemRoot").unwrap());
             let output = run_command(
                 command,
                 b"",
