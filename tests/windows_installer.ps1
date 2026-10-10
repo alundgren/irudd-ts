@@ -1,6 +1,7 @@
 # Exercise the real PowerShell installer with a native release archive.
 param([Parameter(Mandatory = $true)][string]$DistributionDirectory)
 $ErrorActionPreference = 'Stop'
+Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $work = Join-Path ([IO.Path]::GetTempPath()) ('archguard-installer-test-' + [Guid]::NewGuid().ToString('N'))
 [IO.Directory]::CreateDirectory($work) | Out-Null
