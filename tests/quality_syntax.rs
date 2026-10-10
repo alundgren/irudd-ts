@@ -830,10 +830,16 @@ fn dogfood_existing_sdk_and_ts_examples_with_explicit_scope() {
     assert!(plan.files.iter().any(|file| file.path == "sdk/index.ts"));
     let expected: std::collections::BTreeSet<_> = originals
         .iter()
-        .map(|(path, _)| path.strip_prefix(repository).unwrap().to_str().unwrap())
+        .map(|(path, _)| {
+            path.strip_prefix(repository)
+                .unwrap()
+                .to_str()
+                .unwrap()
+                .replace('\\', "/")
+        })
         .collect();
     let observed: std::collections::BTreeSet<_> =
-        plan.files.iter().map(|file| file.path.as_str()).collect();
+        plan.files.iter().map(|file| file.path.clone()).collect();
     assert_eq!(observed, expected);
     let original = fs::read(root.join("sdk/index.ts")).unwrap();
     for site in plan

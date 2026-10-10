@@ -40,6 +40,7 @@ flowchart LR
 | `mutator` | Verified source edits, explicit isolated test execution and validated run state |
 | `subprocess` | Bounded process transport with Unix process groups and Windows Job Objects, shared by graph plugins, semantic providers and mutation execution |
 | `windows_fs` | Private Windows handle identity, reparse checks, access control, locking, and durable file replacement |
+| `compiler_path` | Verified Windows path conversion for resolver and compiler APIs, preserving canonical source and cache identity |
 | `main` | Command parsing, rendering, and exit codes |
 
 The public Rust module paths and JSON protocol versions remain unchanged. Semantic child modules are private and re-export the existing `semantic::*` API. The TypeScript SDK stays in `sdk/`. Graph and compiler contracts remain separate from the mutation request/result protocol and optional Vitest reporter.
