@@ -13,7 +13,10 @@ use std::{
 use windows_sys::Win32::{
     Foundation::WAIT_OBJECT_0,
     System::{
-        Console::{AllocConsole, CTRL_BREAK_EVENT, FreeConsole, GenerateConsoleCtrlEvent},
+        Console::{
+            AllocConsole, CTRL_BREAK_EVENT, FreeConsole, GenerateConsoleCtrlEvent, GetStdHandle,
+            STD_ERROR_HANDLE, STD_INPUT_HANDLE, STD_OUTPUT_HANDLE, SetStdHandle,
+        },
         Threading::{
             CREATE_NEW_PROCESS_GROUP, OpenProcess, PROCESS_QUERY_LIMITED_INFORMATION,
             PROCESS_SYNCHRONIZE, WaitForSingleObject,
@@ -45,6 +48,7 @@ fn console_break_cancels_mutation_and_cleans_commands() {
                 "--nocapture",
             ])
             .env(HELPER, "1")
+            .stdin(Stdio::null())
             .stdout(Stdio::piped())
             .stderr(Stdio::piped())
             .spawn()
@@ -61,6 +65,8 @@ fn console_break_cancels_mutation_and_cleans_commands() {
     }
     // An isolated helper owns a fresh console so the targeted event cannot
     // cancel another test, the development terminal, or the release runner.
+    let streams = [STD_INPUT_HANDLE, STD_OUTPUT_HANDLE, STD_ERROR_HANDLE]
+        .map(|stream| (stream, unsafe { GetStdHandle(stream) }));
     unsafe {
         FreeConsole();
     }
@@ -70,6 +76,9 @@ fn console_break_cancels_mutation_and_cleans_commands() {
         "{}",
         std::io::Error::last_os_error()
     );
+    for (stream, handle) in streams {
+        assert_ne!(unsafe { SetStdHandle(stream, handle) }, 0);
+    }
     struct ConsoleGuard;
     impl Drop for ConsoleGuard {
         fn drop(&mut self) {
