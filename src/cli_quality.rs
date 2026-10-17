@@ -26,9 +26,10 @@ pub(super) fn dryer(
         print_json(&report)?;
     } else {
         println!(
-            "dryer: {} selected files, {} candidate functions, {} similar pairs; {}",
+            "dryer: {} selected files, {} candidate functions, {} excluded below minimum size, {} similar pairs; {}",
             report.files.len(),
             report.functions.len(),
+            report.excluded.len(),
             report.pairs.len(),
             completion(report.complete),
         );
