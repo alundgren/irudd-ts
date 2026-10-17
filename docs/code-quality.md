@@ -23,6 +23,33 @@ Binding identifiers use declaration order. Adding a declaration can change later
 
 Parsing has explicit byte, node, raw-unit and recursion budgets. Conservative preflight checks also count punctuation in strings and comments, so unusually large literals or flat expressions can produce an incomplete report even when a compiler accepts them. The report identifies that limit instead of claiming the file was analyzed. Inspect or narrow the source selection; do not treat skipped analysis as clean evidence.
 
+### Configure analysis limits
+
+Dryer's `limits` object accepts `maxCandidates`, `maxComparisons` and `maxComparisonEntries`. Defaults are 1,000, 250,000 and 20,000,000 respectively. Their hard ceilings are 5,000, 2,000,000 and 100,000,000. Limits are fixed work budgets, independent of selected file count or elapsed time. Values above a hard ceiling are rejected.
+
+`maxCandidates` counts extracted functions before the `minimumLines` and `minimumNodes` filters. The text summary and JSON `functions` list count retained candidates; `excluded` lists functions below minimum size. With no omitted evidence, 897 retained candidates and 103 exclusions consume a 1,000-function budget. A candidate-limit problem means more functions remain unprocessed. `omittedEvidence.functions` counts observed omissions, not a census of functions in unprocessed files.
+
+`maxComparisons` bounds visited pairs, including pairs rejected by the fingerprint-set size bound. For N retained candidates, allow N × (N − 1) / 2 comparisons. `maxComparisonEntries` separately bounds the sum of the two unique fingerprint-set sizes for pairs requiring structural comparison. Pairs whose set sizes cannot meet `similarityThreshold` skip that work without discarding a possible match. A low threshold reduces pruning and may require narrowing the source selection.
+
+For a selection with about 2,000 extracted functions and 1,800 retained candidates, start with:
+
+```json
+{
+  "schemaVersion": 1,
+  "selection": {
+    "include": ["apps/**/*.ts", "apps/**/*.tsx", "packages/**/*.ts", "packages/**/*.tsx", "tools/**/*.ts"]
+  },
+  "limits": {
+    "maxRawUnits": 16384,
+    "maxCandidates": 2500,
+    "maxComparisons": 2000000,
+    "maxComparisonEntries": 100000000
+  }
+}
+```
+
+Inspect `complete`, `problems` and `omittedEvidence` after changing limits. A larger budget does not guarantee complete analysis for every selection.
+
 An optional `--cache /outside/project/dryer-cache.json` reuses complete extraction after checking configuration, source contents, discovery and implementation identity. Policies and comparisons still run. A cache hit does not establish a faster run.
 
 ## Inspect mutations before executing tests

@@ -301,7 +301,7 @@ pub fn extract(
                     ProblemKind::AnalysisLimit,
                     &path_owned,
                     function.location.start,
-                    "function candidate limit reached",
+                    "function candidate limit reached before minimum-size filtering; raise limits.maxCandidates",
                     Some(AnalysisLimitKind::Candidates),
                     &limits_owned,
                 ));

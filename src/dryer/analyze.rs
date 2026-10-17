@@ -596,7 +596,7 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
                         ProblemKind::AnalysisLimit,
                         &file.path,
                         0,
-                        "total function candidate limit reached",
+                        "total function candidate limit reached before minimum-size filtering; raise limits.maxCandidates",
                         Some(AnalysisLimitKind::Candidates),
                         &config.limits,
                     ));
@@ -643,10 +643,18 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
     let mut pairs_used = 0;
     'compare: for left in 0..bags.len() {
         for right in left + 1..bags.len() {
-            let work = bags[left]
-                .counts
-                .len()
-                .saturating_add(bags[right].counts.len());
+            let left_size = bags[left].counts.len();
+            let right_size = bags[right].counts.len();
+            // Set intersection cannot exceed the smaller set, and union cannot
+            // be smaller than the larger set. This bound cannot discard a match.
+            let can_match = left_size.min(right_size) as f64
+                / left_size.max(right_size).max(1) as f64
+                >= config.similarity_threshold;
+            let work = if can_match {
+                left_size.saturating_add(right_size)
+            } else {
+                0
+            };
             let limit = if comparisons >= config.limits.max_comparisons {
                 Some(AnalysisLimitKind::Comparisons)
             } else if compared_entries.saturating_add(work) > config.limits.max_comparison_entries {
@@ -667,6 +675,9 @@ fn analyze_inner(root: &Path, config: &DryerConfig, cache: Option<&Path>) -> Res
             }
             comparisons += 1;
             compared_entries += work;
+            if !can_match {
+                continue;
+            }
             let similarity = similarity(&bags[left], &bags[right], &weights);
             if similarity.set < config.similarity_threshold {
                 continue;
